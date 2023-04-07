@@ -22,12 +22,12 @@ Do we want to have a user page, where we view user data (shops, products)? Maybe
 
 Model Order
 -Users
--Following
--Shops
--Favorite Shops
--Products
--Carts
--Product Images
--Product Reviews
--Shop Images
--Review Images
+-Following chris
+-Shops chris
+-Favorite Shops chris
+-Products chris
+-Carts marc
+-Product Images marc
+-Product Reviews marc
+-Shop Images marc
+-Review Images marc
