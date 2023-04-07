@@ -14,5 +14,4 @@ class ProductImage(db.Model):
             'id': self.id,
             'url': self.url,
             'productId': self.product_id,
-            'product': self.product
         }
