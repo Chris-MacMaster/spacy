@@ -19,3 +19,15 @@ Do we want to have a user page, where we view user data (shops, products)? Maybe
 --copy undo seeder funcs and replace table name
 --must set schema on table
 --keys in wtform must be the same as those in react frontend
+
+Model Order
+-Users
+-Following
+-Shops
+-Favorite Shops
+-Products
+-Carts
+-Product Images
+-Product Reviews
+-Shop Images
+-Review Images
