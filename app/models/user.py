@@ -14,7 +14,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
 
-    cart = db.relationship("Cart", backref="user")
+    cart = db.relationship("Cart", backref="user", uselist=False)
 
     @property
     def password(self):
