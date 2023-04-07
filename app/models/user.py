@@ -1,8 +1,8 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
-
-
+from app.models.follows import following_users
+from .follows import follows
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
 
@@ -16,16 +16,22 @@ class User(db.Model, UserMixin):
     first_name = db.Column(db.String(50), nullable=False)
     last_name = db.Column(db.String(50), nullable=False)
     bio = db.Column(db.Text)
-    
+
     cart = db.relationship("Cart", backref="user")
     shop = db.relationship('Shop', backref='user')
     review = db.relationship('Review', backref='user')
 
-    following_users = db.relationship(
+    followers = db.relationship(
         'Users',
-        secondary='following_users',
-        back_populates='users'
+        secondary=follows,
+        primaryjoin=(follows.c.follower_id == id),
+        secondaryjoin=(follows.c.followed_id == id),
+        backref=db.backref('following', lazy='dynamic'),
+        lazy='dynamic'
     )
+    # this relationship allows you to access both the collectino of following_users
+    # that follow a given user(with user.followers), and the collection
+    # of users that a user follows (with user.following)
 
     @property
     def password(self):
