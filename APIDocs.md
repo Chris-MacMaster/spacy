@@ -1469,8 +1469,8 @@ Returns all the reviews written by the current user.
 
 * Require Authentication: true
 * Request
-  * Method: GET
-  * URL: /api/users/current
+  * Method: DELETE
+  * URL: /api/followers/current
   * Body: none
 
 //WHERE user_id == "user_id"
