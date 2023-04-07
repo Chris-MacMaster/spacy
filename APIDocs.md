@@ -68,7 +68,8 @@ Returns the information about the current user that is logged in.
         "firstName": "John",
         "lastName": "Smith",
         "email": "john.smith@gmail.com",
-        "username": "JohnSmith"
+        "username": "JohnSmith",
+        "bio": "OMG I LOVE CRAFTS"
       }
     }
 
@@ -1349,4 +1350,148 @@ Deletes an existing product.
 
 ## FOLLOWING USERS
 
-### Follow a User 
+### Follow a User by id
+
+Create following relationship and return success status.
+
+* Require Authentication: true
+* Require proper authorization: User must be signed in
+* Request
+  * Method: POST
+  * URL: /api/users/:userId/
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "followed_id": 2
+    }
+    ```
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "id": 1,
+      "user_id": 1,
+      "followed_id": 2
+    }
+    ```
+
+* Error response: Couldn't find a User with the specified id
+  * Status Code: 404
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "User couldn't be found",
+      "statusCode": 404
+    }
+    ```
+
+### Get all followers of current user
+
+Returns all the reviews written by the current user.
+
+* Require Authentication: true
+* Request
+  * Method: GET
+  * URL: /api/users/current
+  * Body: none
+
+//WHERE user_id == "followed_id"
+
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "Followers": [
+        {
+        "id": 1,
+        "firstName": "John",
+        "lastName": "Smith",
+        "email": "john.smith@gmail.com",
+        "username": "JohnSmith",
+        "bio": "OMG I LOVE CRAFTS"
+        }
+      ]
+    }
+    ```
+
+### Get all users client is following
+
+Returns all the reviews written by the current user.
+
+* Require Authentication: true
+* Request
+  * Method: GET
+  * URL: /api/users/current
+  * Body: none
+
+//WHERE user_id == "user_id"
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "Following": [
+        {
+        "id": 1,
+        "firstName": "John",
+        "lastName": "Smith",
+        "email": "john.smith@gmail.com",
+        "username": "JohnSmith",
+        "bio": "OMG I LOVE CRAFTS"
+        }
+      ]
+    }
+    ```
+
+### Delete Following relationship (Unfollow)
+
+Returns all the reviews written by the current user.
+
+* Require Authentication: true
+* Request
+  * Method: GET
+  * URL: /api/users/current
+  * Body: none
+
+//WHERE user_id == "user_id"
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "Following": [
+        {
+        "id": 1,
+        "firstName": "John",
+        "lastName": "Smith",
+        "email": "john.smith@gmail.com",
+        "username": "JohnSmith",
+        "bio": "OMG I LOVE CRAFTS"
+        }
+      ]
+    }
+    ```

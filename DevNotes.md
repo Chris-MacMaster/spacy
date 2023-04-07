@@ -12,3 +12,5 @@ Partial CRUD
 --Product Images [C]
 --Review Image [C]
 --Shop Image [C]
+
+Do we want to have a user page, where we view user data (shops, products)? Maybe something like the Manage Spots from AirBNB project?
