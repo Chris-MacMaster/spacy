@@ -5,7 +5,7 @@ class ProductImage(db.Model):
 
     id = db.Column(db.Integer, primary_key = True)
     url = db.Column(db.String)
-    product_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('product.id')))
+    product_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('products.id')))
 
     product = db.relationship('Product', back_populates='product_images')
 

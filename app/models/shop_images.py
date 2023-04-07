@@ -9,7 +9,7 @@ class ShopImage(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     url = db.Column(db.String(255), nullable=False)
 
-    shop_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('shop.id')))
+    shop_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('shops.id')))
 
     def to_dict(self):
         return {
