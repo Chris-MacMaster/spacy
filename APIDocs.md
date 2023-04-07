@@ -776,7 +776,7 @@ Create and return a new review for a product specified by id.
 
 ### Add an Image to a Review based on the Product Review's id
 
-Create and return a new image for a review specified by id.
+Create and return a new image for a product review specified by id.
 
 * Require Authentication: true
 * Require proper authorization: Review must belong to the current user
@@ -789,7 +789,8 @@ Create and return a new image for a review specified by id.
 
     ```json
     {
-      "url": "image url"
+      "url": "image url",
+      "preview": true
     }
     ```
 
@@ -805,5 +806,398 @@ Create and return a new image for a review specified by id.
       "url": "image url",
       "owner_id": 1,
       "review_id": 1,
+    }
+    ```
+
+* Error response: Couldn't find a Review with the specified id
+  * Status Code: 404
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Review couldn't be found",
+      "statusCode": 404
+    }
+    ```
+
+* Error response: Cannot add any more images because there is a maximum of 10
+  images per resource
+  * Status Code: 403
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Maximum number of images for this resource was reached",
+      "statusCode": 403
+    }
+    ```
+
+
+### Edit a Product Review
+
+Update and return an existing review.
+
+* Require Authentication: true
+* Require proper authorization: Review must belong to the current user
+* Request
+  * Method: PUT
+  * URL: /api/productReviews/:reviewId
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "review": "This was an awesome spot!",
+      "stars": 5,
+      "shop_id": 1
+    }
+    ```
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "id": 1,
+      "user_id": 1,
+      "shop_id": 1,
+      "review": "This was an awesome product!",
+      "stars": 5,
+      "createdAt": "2021-11-19 20:39:36",
+      "updatedAt": "2021-11-20 10:06:40"
+    }
+    ```
+
+* Error Response: Body validation errors
+  * Status Code: 400
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Validation error",
+      "statusCode": 400,
+      "errors": {
+        "review": "Review text is required",
+        "stars": "Stars must be an integer from 1 to 5",
+        "shop_id": "Shop id is required"
+      }
+    }
+    ```
+
+* Error response: Couldn't find a Review with the specified id
+  * Status Code: 404
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Review couldn't be found",
+      "statusCode": 404
+    }
+    ```
+
+### Delete a Product Review
+
+Delete an existing product review.
+
+* Require Authentication: true
+* Require proper authorization: Review must belong to the current user
+* Request
+  * Method: DELETE
+  * URL: /api/productReviews/:reviewId
+  * Body: none
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Successfully deleted",
+      "statusCode": 200
+    }
+    ```
+
+* Error response: Couldn't find a Review with the specified id
+  * Status Code: 404
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Product Review couldn't be found",
+      "statusCode": 404
+    }
+    ```
+
+
+## SHOPS
+
+### Get details of a Shop from an id
+
+Returns the details of a spot specified by its id.
+
+* Require Authentication: false
+* Request
+  * Method: GET
+  * URL: /api/shops/:shopId
+  * Body: none
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "id": 1,
+      "name": "Da best shop",
+      "ownerId": 1,
+      "address": "123 Disney Lane",
+      "city": "San Francisco",
+      "state": "California",
+      "country": "United States of America",
+      "description": "Place where web developers are created",
+      "category": "Science",
+      "sales": 1000,
+      "createdAt": "2021-11-19 20:39:36",
+      "updatedAt": "2021-11-19 20:39:36" ,
+      "numReviews": 5, //not in table
+      "avgStarRating": 4.5, //not in table
+      "ShopImages": [
+        {
+          "id": 1,
+          "url": "image url",
+          "preview": true
+        },
+        {
+          "id": 2,
+          "url": "image url",
+          "preview": false
+        }
+      ],
+      "Owner": {
+        "id": 1,
+        "firstName": "John",
+        "lastName": "Smith"
+      }
+    }
+    ```
+
+* Error response: Couldn't find a Spot with the specified id
+  * Status Code: 404
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Spot couldn't be found",
+      "statusCode": 404
+    }
+    ```
+
+### Create a Shop
+
+Creates and returns a new spot.
+
+* Require Authentication: true
+* Request
+  * Method: POST
+  * URL: /api/shops
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "name": "Da best shop",
+      "ownerId": 1,
+      "address": "123 Disney Lane",
+      "city": "San Francisco",
+      "state": "California",
+      "country": "United States of America",
+      "description": "Place where web developers are created",
+      "category": "Science",
+    }
+    ```
+
+* Successful Response
+  * Status Code: 201
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "id": 1,
+      "name": "Da best shop",
+      "ownerId": 1,
+      "address": "123 Disney Lane",
+      "city": "San Francisco",
+      "state": "California",
+      "country": "United States of America",
+      "description": "Place where web developers are created",
+      "category": "Science",
+      "sales": 0, //always 0
+      "createdAt": "2021-11-19 20:39:36",
+      "updatedAt": "2021-11-19 20:39:36" ,
+    }
+    ```
+
+* Error Response: Body validation error
+  * Status Code: 400
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Validation Error",
+      "statusCode": 400,
+      "errors": {
+        "address": "Street address is required",
+        "city": "City is required",
+        "state": "State is required",
+        "country": "Country is required",
+        "category": "Category is required",
+        "name": "Name must be less than 50 characters",
+        "description": "Description is required"
+      }
+    }
+    ```
+
+### Add an Image to a Shop based on the Shop's id
+
+Create and return a new image for a shop specified by id.
+
+* Require Authentication: true
+* Require proper authorization: Shop must belong to the current user
+* Request
+  * Method: POST
+  * URL: /api/shops/:shopId/images
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "url": "image url",
+    }
+    ```
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "id": 1,
+      "url": "image url",
+      "preview": true
+    }
+    ```
+
+* Error response: Couldn't find a Spot with the specified id
+  * Status Code: 404
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Spot couldn't be found",
+      "statusCode": 404
+    }
+    ```
+
+### Get all Shops
+
+Returns all the shops.
+
+* Require Authentication: false
+* Request
+  * Method: GET
+  * URL: /api/shops
+  * Body: none
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "Shops": [
+        {
+          "id": 1,
+          "shop_id": 1,
+          "name": "App Academy",
+          "description": "123 Disney Lane",
+          "category": "science",
+          "available": 37,
+          "price": 123.00,
+          "avgRating": 4.5, //not a product column
+          "previewImage": "image url/path", //not a product column
+          "free_shipping": true,
+          "createdAt": "2021-11-19 20:39:36",
+          "updatedAt": "2021-11-19 20:39:36",
+        }
+      ]
+    }
+    ```
+
+### Get all Products owned by the Current User
+
+Returns all the products created by the current user.
+
+* Require Authentication: true
+* Request
+  * Method: GET
+  * URL: /api/products/current
+  * Body: none
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "Products": [
+        {
+          "id": 1,
+          "shop_id": 1,
+          "name": "App Academy",
+          "description": "123 Disney Lane",
+          "category": "science",
+          "available": 37,
+          "price": 123.00,
+          "avgRating": 4.5, //not a product column
+          "previewImage": "image url/path", //not a product column
+          "free_shipping": true,
+          "createdAt": "2021-11-19 20:39:36",
+          "updatedAt": "2021-11-19 20:39:36",
+        }
+      ]
     }
     ```
