@@ -18,8 +18,8 @@ class Product(db.Model):
     free_shipping = db.Column(db.Boolean, nullable=False)
     price = db.Column(db.Float, nullable=False) # if fails, float, DECIMAL
 
-    product_reviews = db.relationship('ProductReview', back_populates='product')
-    product_images = db.relationship('ProductImage', back_populates='product')
+    product_reviews = db.relationship('ProductReview', back_populates='product', cascade="all, delete")
+    product_images = db.relationship('ProductImage', back_populates='product', cascade="all, delete")
 
     def to_dict(self):
         return {
