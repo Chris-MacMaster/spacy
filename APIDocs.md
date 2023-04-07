@@ -1147,32 +1147,42 @@ Returns all the shops.
     ```json
     {
       "Shops": [
-        {
-          "id": 1,
-          "shop_id": 1,
-          "name": "App Academy",
-          "description": "123 Disney Lane",
-          "category": "science",
-          "available": 37,
-          "price": 123.00,
-          "avgRating": 4.5, //not a product column
-          "previewImage": "image url/path", //not a product column
-          "free_shipping": true,
-          "createdAt": "2021-11-19 20:39:36",
-          "updatedAt": "2021-11-19 20:39:36",
-        }
+            {
+            "id": 1,
+            "name": "Da best shop",
+            "owner_id": 1,
+            "address": "123 Disney Lane",
+            "city": "San Francisco",
+            "state": "California",
+            "country": "United States of America",
+            "description": "Place where web developers are created",
+            "category": "Science",
+            "sales": 1000,
+            "createdAt": "2021-11-19 20:39:36",
+            "updatedAt": "2021-11-19 20:39:36" ,
+            "ShopImages": [
+                {
+                "id": 1,
+                "url": "image url",
+                },
+                {
+                "id": 2,
+                "url": "image url",
+                }
+            ],
+            }
       ]
     }
     ```
 
-### Get all Products owned by the Current User
+### Get all Shops owned by the Current User
 
 Returns all the products created by the current user.
 
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: /api/products/current
+  * URL: /api/shops/current
   * Body: none
 
 * Successful Response
@@ -1183,21 +1193,156 @@ Returns all the products created by the current user.
 
     ```json
     {
-      "Products": [
-        {
-          "id": 1,
-          "shop_id": 1,
-          "name": "App Academy",
-          "description": "123 Disney Lane",
-          "category": "science",
-          "available": 37,
-          "price": 123.00,
-          "avgRating": 4.5, //not a product column
-          "previewImage": "image url/path", //not a product column
-          "free_shipping": true,
-          "createdAt": "2021-11-19 20:39:36",
-          "updatedAt": "2021-11-19 20:39:36",
-        }
+      "Shops": [
+            {
+            "id": 1,
+            "name": "Da best shop",
+            "owner_id": 1,
+            "address": "123 Disney Lane",
+            "city": "San Francisco",
+            "state": "California",
+            "country": "United States of America",
+            "description": "Place where web developers are created",
+            "category": "Science",
+            "sales": 1000,
+            "createdAt": "2021-11-19 20:39:36",
+            "updatedAt": "2021-11-19 20:39:36" ,
+            "ShopImages": [
+                {
+                "id": 1,
+                "url": "image url",
+                },
+                {
+                "id": 2,
+                "url": "image url",
+                }
+            ],
+            }
       ]
+    }
+    ```
+
+### Edit a Shop
+
+Updates and returns an existing product.
+
+* Require Authentication: true
+* Require proper authorization: Product must belong to the current user
+* Request
+  * Method: PUT
+  * URL: /api/shops/:shopId
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+        "name": "Da best shop",
+        "owner_id": 1,
+        "address": "123 Disney Lane",
+        "city": "San Francisco",
+        "state": "California",
+        "country": "United States of America",
+        "description": "Place where web developers are created",
+        "category": "Science",
+        "createdAt": "2021-11-19 20:39:36",
+        "updatedAt": "2021-11-19 20:39:36" ,
+    }
+    ```
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "id": 1,
+      "shop_id": 1,
+      "name": "Da best shop",
+      "owner_id": 1,
+      "address": "123 Disney Lane",
+      "city": "San Francisco",
+      "state": "California",
+      "country": "United States of America",
+      "description": "Place where web developers are created",
+      "category": "Science",
+      "sales": 1000, //users should probably not be allowed to edit sales
+      "createdAt": "2021-11-19 20:39:36",
+      "updatedAt": "2021-11-19 20:39:36" ,
+    }
+    ```
+
+* Error Response: Body validation error
+  * Status Code: 400
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Validation Error",
+      "statusCode": 400,
+      "errors": {
+        "shop_id": "Shop is required",
+        "name": "Name must be less than 50 characters",
+        "address": "Address is required",
+        "city": "City is required",
+        "state": "State is required",
+        "country": "Country is required",
+        "description": "Description is required",
+        "category": "At least one category is required",
+      }
+    }
+    ```
+
+* Error response: Couldn't find a Shop with the specified id
+  * Status Code: 404
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Shop couldn't be found",
+      "statusCode": 404
+    }
+    ```
+
+### Delete a Shop
+
+Deletes an existing product.
+
+* Require Authentication: true
+* Require proper authorization: Spot must belong to the current user
+* Request
+  * Method: DELETE
+  * URL: /api/shops/:shopId
+  * Body: none
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Successfully deleted",
+      "statusCode": 200
+    }
+    ```
+
+* Error response: Couldn't find a Shop with the specified id
+  * Status Code: 404
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Shop couldn't be found",
+      "statusCode": 404
     }
     ```
