@@ -1346,3 +1346,7 @@ Deletes an existing product.
       "statusCode": 404
     }
     ```
+
+## FOLLOWING USERS
+
+### Follow a User 
