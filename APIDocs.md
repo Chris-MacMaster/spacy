@@ -1495,3 +1495,6 @@ Returns all the reviews written by the current user.
       ]
     }
     ```
+
+## FAVORITED SHOPS
+
