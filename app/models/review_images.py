@@ -14,5 +14,6 @@ class ShopImage(db.Model):
     def to_dict(self):
         return {
             'id': self.id,
-            'url': self.url
+            'url': self.url,
+            'review_id': self.review_id
             }
