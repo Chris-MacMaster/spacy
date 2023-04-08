@@ -1,28 +1,18 @@
 
-from app.models import db, environment, SCHEMA, follows, User
+from app.models import db, environment, SCHEMA, FollowingUsers
 from sqlalchemy.sql import text, insert
 
 
 # Adds a demo user, you can add other users here if you want
 def seed_follows():
-    follower1 = User.query.filter_by(username='carlsagan').first()
-    followed1 = User.query.filter_by(username='scienceguy').first()
+    following_users1 = FollowingUsers(
+        id = 1,
+        follower_id = 1,
+        followed_id = 2
+    )
 
-    x = db.session.add(follows.insert().values(
-        follower_id = follower1.id ,
-        followed_id = followed1.id)
-        )
 
-    db.engine.execute(x)
-    # db.session.add(follows.insert().values(
-    #     follower_id = 2 ,
-    #     followed_id = 3)
-    #     )
-    # db.session.add(follows.insert().values(
-    #     follower_id = 3 ,
-    #     followed_id = 2)
-    #     )
-
+    db.session.add(following_users1)
     db.session.commit()
 
 # Uses a raw SQL query to TRUNCATE or DELETE the users table. SQLAlchemy doesn't
