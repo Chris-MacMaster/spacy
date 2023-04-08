@@ -15,8 +15,8 @@ def get_all_products():
 @login_required
 def current_users_products():
     """returns a list of all products of current user"""
+    print('THE ROUTE IS BEING HIT')
     if current_user.is_authenticated:
-        # user_shops = Shop.query.all()
-        print(current_user)
-        return current_user
+        products = Product.query.filter_by(user_id=current_user.id).all()
+        return { 'Products': {product.id: product.to_dict() for product in products } }, 200
     return '<h1>Please create an account</h1>'
