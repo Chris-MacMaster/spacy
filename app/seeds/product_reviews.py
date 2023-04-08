@@ -1,4 +1,5 @@
 from app.models import db, ProductReview, environment, SCHEMA
+from sqlalchemy.sql import text
 
 def seed_product_reviews():
     review01 = ProductReview(
@@ -20,6 +21,13 @@ def seed_product_reviews():
         user_id = 2,
         product_id = 1,
         review = "This necklace is simply stunning! The design is intricate and beautiful, and the quality is top-notch. I love how it captures the magic and mystery of the stars and galaxies. I get so many compliments every time I wear it. I highly recommend this necklace to anyone looking for a unique and beautiful piece of jewelry.",
+        stars = 5
+    )
+    review04 = ProductReview(
+        # shop and product tied to user 1, carl sagan
+        user_id = 5,
+        product_id = 1,
+        review = "These coasters are out of this world! 😉😏 The planets look so realistic, and I love that each one is different. They're also really practical - they're easy to clean and they protect my table from water rings. They arrived quickly and in great condition. Highly recommend!",
         stars = 5
     )
     review05 = ProductReview(
@@ -45,20 +53,20 @@ def seed_product_reviews():
     )
     review08 = ProductReview(
         # shop and product tied to user 1, carl sagan
-        user_id = 2,
+        user_id = 3,
         product_id = 1,
-        review = "",
+        review = "I love these coasters! They're so unique and fun. Each one features a different planet, and the colors and details are really beautiful. They're also really good quality - they're thick and sturdy, and the cork backing keeps them in place on my table. I've gotten a lot of compliments on them already!",
         stars = 5
     )
-    review04 = ProductReview(
+    review09 = ProductReview(
         # shop and product tied to user 1, carl sagan
-        user_id = 2,
+        user_id = 4,
         product_id = 1,
-        review = "",
+        review = "These coasters are really cool! The planets are beautifully rendered and the colors are so vibrant. The only reason I'm giving them 4 stars instead of 5 is that they're a little on the small side. They still work well as coasters, but I wish they were a bit bigger.",
         stars = 5
     )
 
-    db.session.add_all([review01, review02, review03])
+    db.session.add_all([review01, review02, review03, review04, review05, review06, review07, review08, review09])
     db.session.commit()
 
 # Uses a raw SQL query to TRUNCATE or DELETE the users table. SQLAlchemy doesn't

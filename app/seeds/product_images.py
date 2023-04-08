@@ -1,4 +1,5 @@
 from app.models import db, ProductImage, environment, SCHEMA
+from sqlalchemy.sql import text
 
 def seed_product_images():
     productimage1 = ProductImage(

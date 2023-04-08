@@ -1,4 +1,5 @@
 from app.models import db, ShopImage, environment, SCHEMA
+from sqlalchemy.sql import text
 
 def seed_shop_images():
     shop1img = ShopImage(
