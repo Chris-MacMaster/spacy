@@ -11,9 +11,12 @@ def get_all_products():
     products = Product.query.all()
     return { 'Products': { product.id: product.to_dict() for product in products } }, 200
 
-# @product_routes.route('/current')
-# def current_users_products():
-#     """returns a list of all products of current user"""
-#     if current_user.is_authenticated:
-#         user_shops = Shop.query.filter(User.id == Shop.owner_id)
-#         return user_shops
+@product_routes.route('/current')
+@login_required
+def current_users_products():
+    """returns a list of all products of current user"""
+    if current_user.is_authenticated:
+        # user_shops = Shop.query.all()
+        print(current_user)
+        return current_user
+    return '<h1>Please create an account</h1>'
