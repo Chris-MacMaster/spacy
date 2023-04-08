@@ -76,32 +76,32 @@ def seed_product_reviews():
         # shop and product tied to user 1, carl sagan
         user_id = 3,
         product_id = 4,
-        review = "",
-        stars = 5
+        review = "I wanted to love this figurine, but it really looks like it's from wish.com. You can see all of the seams where the plastic molds were pressed together, and not only can you see them, but they're actually really sharp! Hurts to hold this little thing in your hand for too long. As such, my kids don't really play with it too often and it just sits in their room. Maybe I'll give it to the dog for him to destroy",
+        stars = 1
     )
     review12 = ProductReview(
         # shop and product tied to user 1, carl sagan
         user_id = 4,
         product_id = 4,
-        review = "",
+        review = "The historical accuracy of this thing is ridiculous. This is an astronaut in an older model space suit that NASA retired about two decades ago. This figurine represents a piece of history and definitely more of a collector's piece than a toy to be given to your kids",
         stars = 5
     )
     review13 = ProductReview(
         # shop and product tied to user 1, carl sagan
         user_id = 5,
         product_id = 4,
-        review = "",
+        review = "The Astronaut Figurine is a beautiful piece of art that captures the wonder and excitement of space exploration. It's well-made, sturdy, and looks great on my desk. I couldn't be happier with my purchase.",
         stars = 5
     )
     review14 = ProductReview(
         # shop and product tied to user 1, carl sagan
         user_id = 6,
         product_id = 4,
-        review = "",
+        review = "It's an astronaut. What more can you want?",
         stars = 5
     )
 
-    db.session.add_all([review01, review02, review03, review04, review05, review06, review07, review08, review09])
+    db.session.add_all([review01, review02, review03, review04, review05, review06, review07, review08, review09, review10, review11, review12, review13, review14])
     db.session.commit()
 
 # Uses a raw SQL query to TRUNCATE or DELETE the users table. SQLAlchemy doesn't
