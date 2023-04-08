@@ -20,7 +20,7 @@ class Shop(db.Model):
     sales = db.Column(db.Integer, default=0)
     policies = db.Column(db.Text)
 
-    product = db.relationship("Product", back_populates="product", cascade="all, delete")
+    products = db.relationship("Product", back_populates="shops", cascade="all, delete")
 
     def to_dict(self):
         return {

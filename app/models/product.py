@@ -18,6 +18,7 @@ class Product(db.Model):
     free_shipping = db.Column(db.Boolean, nullable=False)
     price = db.Column(db.Float, nullable=False) # if fails, float, DECIMAL
 
+    shops = db.relationship('Shop', back_populates='products')
     product_reviews = db.relationship('ProductReview', back_populates='products', cascade="all, delete")
     product_images = db.relationship('ProductImage', back_populates='products', cascade="all, delete")
 
