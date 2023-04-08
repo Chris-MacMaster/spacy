@@ -4,6 +4,7 @@ from .product import seed_products, undo_products
 from .shops import seed_shops, undo_shops
 from .shop_images import seed_shop_images, undo_shop_images
 from .product_images import seed_product_images, undo_product_images
+from .product_reviews import seed_product_reviews, undo_product_reviews
 from app.models.db import db, environment, SCHEMA
 
 # Creates a seed group to hold our commands
@@ -24,11 +25,14 @@ def seed():
         undo_shops()
         undo_shop_images()
         undo_product_images()
+        undo_product_reviews()
     seed_users()
     seed_products()
     seed_shops()
     seed_shop_images()
     seed_shop_images()
+    seed_product_images()
+    seed_product_reviews()
     # Add other seed functions here
 
 
@@ -41,3 +45,4 @@ def undo():
     undo_shops()
     undo_shop_images()
     undo_product_images()
+    undo_product_reviews()
