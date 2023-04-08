@@ -3,7 +3,7 @@ from sqlalchemy.sql import text
 
 def seed_products():
     product1 = Product(
-        shop_id='1',
+        shop_id='3',
         name='Galaxy Necklace',
         description='A beautiful necklace inspired by the stars and galaxies.',
         category='Jewelry',
@@ -43,7 +43,7 @@ def seed_products():
     )
 
     product5 = Product(
-        shop_id='2',
+        shop_id='1',
         name='Solar System Poster',
         description='A beautiful poster featuring all the planets in our solar system.',
         category='Wall Art',
@@ -53,7 +53,7 @@ def seed_products():
     )
 
     product6 = Product(
-        shop_id='2',
+        shop_id='3',
         name='Meteorite Necklace',
         description='A necklace featuring a small piece of a real meteorite.',
         category='Jewelry',
@@ -73,7 +73,7 @@ def seed_products():
     )
 
     product8 = Product(
-        shop_id='3',
+        shop_id='1',
         name='Space Shuttle Model',
         description='A highly detailed model of the space shuttle, with all its parts and functions.',
         category='Collectibles',
@@ -83,7 +83,7 @@ def seed_products():
     )
 
     product9 = Product(
-        shop_id='3',
+        shop_id='2',
         name='Astronaut Ice Cream',
         description='Freeze-dried ice cream, just like the astronauts eat in space!',
         category='Food',

@@ -24,7 +24,7 @@ def seed_shops():
             city = 'Nova Station',
             state = 'Alpha Quadrant',
             country = 'Galactic Alliance',
-            description = 'We serve up the best coffee and snacks in the galaxy.',
+            description = 'We serve up the best coffee and snacks in the galaxy. Shipping is fast! We take pride in our work and strive to help you discover new organic flavors!',
             category = 'Cafe',
             sales = 50,
             policies = 'We strive for 100 percent customer satisfaction. If you are unable with your order, please reach out to us with 14 days of receiving your roder to request a return or exchange. Items must be returned in mint condition with all packaging and tags.'
