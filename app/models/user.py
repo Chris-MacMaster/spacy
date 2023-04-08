@@ -17,12 +17,12 @@ class User(db.Model, UserMixin):
     last_name = db.Column(db.String(50), nullable=False)
     bio = db.Column(db.Text)
 
-    cart = db.relationship("Cart", backref="user")
-    shop = db.relationship('Shop', backref='user')  
-    review = db.relationship('Review', backref='user')
+    carts = db.relationship("Cart", backref="users")
+    shops = db.relationship('Shop', backref='users')
+    product_reviews = db.relationship('ProductReview', backref='users')
 
     followers = db.relationship(
-        'Users',
+        'User',
         secondary=follows,
         primaryjoin=(follows.c.follower_id == id),
         secondaryjoin=(follows.c.followed_id == id),
