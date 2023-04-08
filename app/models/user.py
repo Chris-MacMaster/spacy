@@ -18,7 +18,7 @@ class User(db.Model, UserMixin):
     bio = db.Column(db.Text)
 
     cart = db.relationship("Cart", backref="user")
-    shop = db.relationship('Shop', backref='user')
+    shop = db.relationship('Shop', backref='user')  
     review = db.relationship('Review', backref='user')
 
     followers = db.relationship(
