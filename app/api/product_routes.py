@@ -1,0 +1,19 @@
+from flask import Blueprint, jsonify
+from app.models import db, Product, Shop, User
+from flask_login import current_user, login_required
+
+product_routes = Blueprint('/products', __name__)
+
+
+@product_routes.route('/')
+def get_all_products():
+    """returns all products regardless of session"""
+    products = Product.query.all()
+    return { 'Products': { product.id: product.to_dict() for product in products } }, 200
+
+# @product_routes.route('/current')
+# def current_users_products():
+#     """returns a list of all products of current user"""
+#     if current_user.is_authenticated:
+#         user_shops = Shop.query.filter(User.id == Shop.owner_id)
+#         return user_shops
