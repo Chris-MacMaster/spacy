@@ -3,14 +3,14 @@ from sqlalchemy.sql import text
 
 def seed_products():
     product1 = Product(
-    shop_id='1',
-    name='Galaxy Necklace',
-    description='A beautiful necklace inspired by the stars and galaxies.',
-    category='Jewelry',
-    available=50,
-    free_shipping=True,
-    price=29.99
-    )
+        shop_id='1',
+        name='Galaxy Necklace',
+        description='A beautiful necklace inspired by the stars and galaxies.',
+        category='Jewelry',
+        available=50,
+        free_shipping=True,
+        price=29.99
+        )
 
     product2 = Product(
         shop_id='1',
@@ -19,7 +19,7 @@ def seed_products():
         category='Accessories',
         available=20,
         free_shipping=False,
-        price=49.99
+        price=149.99
     )
 
     product3 = Product(
@@ -123,8 +123,8 @@ def seed_products():
 # it will reset the primary keys for you as well.
 def undo_products():
     if environment == "production":
-        db.session.execute(f"TRUNCATE table {SCHEMA}.users RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.products RESTART IDENTITY CASCADE;")
     else:
-        db.session.execute(text("DELETE FROM users"))
+        db.session.execute(text("DELETE FROM products"))
 
     db.session.commit()

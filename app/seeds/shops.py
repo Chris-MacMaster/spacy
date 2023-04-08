@@ -54,8 +54,8 @@ def seed_shops():
 # it will reset the primary keys for you as well.
 def undo_shops():
     if environment == "production":
-        db.session.execute(f"TRUNCATE table {SCHEMA}.users RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.shops RESTART IDENTITY CASCADE;")
     else:
-        db.session.execute(text("DELETE FROM users"))
+        db.session.execute(text("DELETE FROM shops"))
 
     db.session.commit()
