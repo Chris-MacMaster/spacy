@@ -44,16 +44,17 @@ def seed_users():
         last_name='Kaku',
         bio="I'm an American theoretical physicist, futurist, and popularizer of science (science communicator). I am a professor of theoretical physics in the City College of New York and CUNY Graduate Center. I'm the author of several books about physics and related topics and has made frequent appearances on radio, television, and film. I am also a regular contributor to his own blog, as well as other popular media outlets. For my efforts to bridge science and science fiction, I am a 2021 Sir Arthur Clarke Lifetime Achievement Awardee. My books Physics of the Impossible (2008), Physics of the Future (2011), The Future of the Mind (2014), and The God Equation: The Quest for a Theory of Everything (2021) became New York Times best sellers. Kaku has hosted several television specials for the BBC, the Discovery Channel, the History Channel, and the Science Channel. ")
 
-    valentina_tereshkova = User(
-        username='valentina_tereshkova',
-        email='valentina_tereshkova@roscomos.ru',
+    john_glenn = User(
+        username='john_glenn',
+        email='john_glenn@user.io',
         password='password',
-        first_name='Valentina',
-        last_name='Tereshkova',
-        bio='Valentina Tereshkova is a retired Russian cosmonaut who became the first woman to travel into space in 1963. She orbited the Earth 48 times aboard the Vostok 6 spacecraft. Tereshkova was also a prominent political figure in the Soviet Union and served in the State Duma, the lower house of the Russian parliament.')
+        first_name='John',
+        last_name='Glenn',
+        bio="I'm an American Marine Corps aviator, engineer, astronaut, businessman, and politician. I was the third American in space, and the first American to orbit the Earth, circling it three times in 1962. Following my retirement from NASA, he served from 1974 to 1999 as a Democratic United States Senator from Ohio; in 1998, I flew into space again at age 77. ")
 
 
-    db.session.add_all([carl_sagan, scienceguy, neil_armstrong, degrassetyson, michio_kaku, ])
+
+    db.session.add_all([carl_sagan, scienceguy, neil_armstrong, degrassetyson, michio_kaku, john_glenn])
     db.session.commit()
 
 
