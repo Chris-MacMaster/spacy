@@ -20,7 +20,7 @@ function App() {
 
     <Header isLoaded={isLoaded} />
       <Switch>
-        <Route path='/' component={Landing} />
+        <Route path='/' component={Landing} isLoaded={isLoaded}/>
       </Switch>
       {/* <Navigation isLoaded={isLoaded} />
       {isLoaded && (

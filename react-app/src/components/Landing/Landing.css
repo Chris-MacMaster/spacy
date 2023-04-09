@@ -1,3 +1,14 @@
 .landing-div{
-    margin-top: 7rem;
+    margin-top: 8rem;
+}
+.top-banner-suggest{
+    width: 12vw;
+    object-fit: cover;
+}
+.top-banner-suggest > img {
+
+}
+.suggest-image {
+    width: 12vw;
+    height: fit-content;
 }
