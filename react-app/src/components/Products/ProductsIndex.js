@@ -19,7 +19,7 @@ function ProductsIndex() {
     console.log("PRODUCTS", products)
 
     // takes in object, returns array of objects
-    
+
 
     if (!products.length) {
         return null
@@ -29,7 +29,7 @@ function ProductsIndex() {
 
         <div className="products-index">
             <div className="productIndex">
-                {products[0].map(product => (
+                {Object.values(products[0]).map(product => (
                     <ProductIndexItem title={product.name} product={product} key={product.id} />
                 ))}
             </div>
