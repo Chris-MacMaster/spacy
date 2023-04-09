@@ -6,7 +6,7 @@ import { fetchProducts } from "../../store/product";
 
 
 function ProductsIndex() {
-    console.log("TRIGGERED PRODUCTS INDEX COMPONENT")
+    // console.log("TRIGGERED PRODUCTS INDEX COMPONENT")
     const dispatch = useDispatch()
 
     const productState = useSelector(state => state.products.allProducts)
@@ -16,11 +16,20 @@ function ProductsIndex() {
         dispatch(fetchProducts())
     }, [dispatch])
 
+    console.log("PRODUCTS", products)
+
+    // takes in object, returns array of objects
+    
+
+    if (!products.length) {
+        return null
+    }
+
     return (
 
         <div className="products-index">
             <div className="productIndex">
-                {products.map(product => (
+                {products[0].map(product => (
                     <ProductIndexItem title={product.name} product={product} key={product.id} />
                 ))}
             </div>

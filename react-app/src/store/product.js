@@ -26,6 +26,7 @@ export default function productReducer(state = initialState, action) {
             newState.singleProduct = {}
             return newState
         }
+        default: return state
     }
 }
 
