@@ -61,6 +61,9 @@ def post_product_review(id):
         updated_at = datetime.now()
     )
 
+    db.session.add(new_review)
+    db.session.commit()
+
     return jsonify(new_review)
 
 @product_routes.route('/<:id>/reviews', methods=['PUT'])
@@ -73,4 +76,17 @@ def edit_review(id):
     review_to_edit['stars'] = request.data['stars']
     review_to_edit['updated_at'] = datetime.now()
 
+    db.session.commit()
+
     return jsonify(review_to_edit)
+
+@product_routes.route('/<:id>/reviews', methods=['DELETE'])
+@login_required
+def delete_review(id):
+    """deletes review"""
+    review_to_delete = ProductReview.query.filter(ProductReview.product_id == id and ProductReview.user_id == current_user.id).one()
+
+    db.session.delete(review_to_delete)
+    db.session.commit()
+
+    return jsonify({'review deleted'}), 200
