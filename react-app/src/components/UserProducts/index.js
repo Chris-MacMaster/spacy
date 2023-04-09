@@ -4,7 +4,7 @@ import userProductsThunk from '../../store/products'
 
 function UserProducts(){
     const dispatch = useDispatch();
-    const [user, products] = useSelector(state => state.session.user)
+    const [user, products] = useSelector(state => [state.session.user, state.products.UserProducts])
 
     useEffect(() => {
         dispatch(userProductsThunk())

@@ -2,7 +2,7 @@ from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 # from app.models.follows import following_users
-from .follows import follows
+from .following_users import FollowingUsers
 from sqlalchemy.sql import func
 
 class User(db.Model, UserMixin):
