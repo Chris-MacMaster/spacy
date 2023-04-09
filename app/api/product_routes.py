@@ -40,13 +40,13 @@ def current_users_products():
     return '<h1>Please create an account</h1>'
 
 # marc
-@product_routes.route('/<:id>/reviews')
+@product_routes.route('/<int:id>/reviews')
 def get_product_reviews(id):
     """gets product reviews"""
     reviews = ProductReview.query.filter(ProductReview.product_id == id).all()
     return jsonify(review.to_dict() for review in reviews)
 
-@product_routes.route('/<:id/reviews', methods=['POST'])
+@product_routes.route('/<int:id>/reviews', methods=['POST'])
 @login_required
 def post_product_review(id):
     """post a new product review"""
@@ -64,9 +64,9 @@ def post_product_review(id):
     db.session.add(new_review)
     db.session.commit()
 
-    return jsonify(new_review)
+    return jsonify(new_review.to_dict())
 
-@product_routes.route('/<:id>/reviews', methods=['PUT'])
+@product_routes.route('/<int:id>/reviews', methods=['PUT'])
 @login_required
 def edit_review(id):
     """edit a product review"""
@@ -78,9 +78,9 @@ def edit_review(id):
 
     db.session.commit()
 
-    return jsonify(review_to_edit)
+    return jsonify(review_to_edit.to_dict())
 
-@product_routes.route('/<:id>/reviews', methods=['DELETE'])
+@product_routes.route('/<int:id>/reviews', methods=['DELETE'])
 @login_required
 def delete_review(id):
     """deletes review"""
