@@ -7,6 +7,7 @@ shop_routes = Blueprint('/shops', __name__)
 @shop_routes.route('/')
 def get_all_shops():
     """returns all shops regardless of session"""
+    print('Shops hit')
     shops = Shop.query.all()
     shopcopy = copy.deepcopy(shops)
     def get_shop_images(id):

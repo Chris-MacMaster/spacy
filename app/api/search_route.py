@@ -2,9 +2,9 @@ from flask import Blueprint, jsonify, request
 from app.models import db, Product, Shop, User
 
 
-search = Blueprint('/search', __name__)
+search_route = Blueprint('/search', __name__)
 
-@search.route('/search', methods=['POST'])
+@search_route.route('/search', methods=['POST'])
 def search():
     """search database for results"""
     parameters = request.data['parameters'] #placeholder variable name
