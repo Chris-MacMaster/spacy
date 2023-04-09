@@ -3,6 +3,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 # from app.models.follows import following_users
 from .follows import follows
+from sqlalchemy.sql import func
+
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
 
@@ -16,7 +18,8 @@ class User(db.Model, UserMixin):
     first_name = db.Column(db.String(50), nullable=False)
     last_name = db.Column(db.String(50), nullable=False)
     bio = db.Column(db.Text)
-
+    created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
+    updated_at = db.Column(db.DateTime(timezone=True), onupdate=func.now())
     carts = db.relationship("Cart", backref="users")
     shops = db.relationship('Shop', backref='users')
     product_reviews = db.relationship('ProductReview', backref='users')
@@ -51,5 +54,7 @@ class User(db.Model, UserMixin):
             'email': self.email,
             'firstName': self.first_name,
             'lastName': self.last_name,
-            'bio': self.bio
+            'bio': self.bio,
+            'createdAt': self.created_at,
+            'updatedAt': self.updated_at
         }

@@ -1,23 +1,32 @@
-from flask import Blueprint, jsonify, redirect, render_template
-from app.models import db, Product, Shop, User
+from flask import Blueprint, jsonify
+from app.models import db, Product, Shop, ProductImage, ProductReview
 from flask_login import current_user, login_required
+import copy
 
 product_routes = Blueprint('/products', __name__)
-
 
 @product_routes.route('/')
 def get_all_products():
     """returns all products regardless of session"""
+    # get products
     products = Product.query.all()
-    # WORKING ORIGINAL CODE
-    return { 'Products': { product.id: product.to_dict() for product in products } }, 200
 
-    # ATTEMPT TO MAKE COMPATIBLE WITH TEMPLATE
-    # formatted_products = { 'Products': { product.id: product.to_dict() for product in products } }
-    # return render_template("main_page.html", products = products)
-
-
-
+    productcopy = copy.deepcopy(products)
+    # helper function to get associated images of each product
+    def get_images(id):
+        return ProductImage.query.filter(ProductImage.product_id == id).all()
+    def get_reviews(id):
+        return ProductReview.query.filter(ProductReview.product_id == id).all()
+    payload = {  product.id: product.to_dict() for product in productcopy }
+    for product in payload.values():
+        product_images = get_images(product['id'])
+        product['ProductImages'] = [image.to_dict() for image in product_images]
+        review_sum = 0
+        reviews = get_reviews(product['id'])
+        for review in reviews:
+            review_sum += review.stars
+        product['avgRating'] = round(review_sum / len(reviews), 1) if len(reviews) > 0 else 'New!'
+    return { 'Products': payload}, 200
 
 @product_routes.route('/current')
 @login_required
