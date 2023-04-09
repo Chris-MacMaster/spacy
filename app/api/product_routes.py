@@ -14,12 +14,12 @@ def get_all_products():
     # helper function to get associated images of each product
     def get_images(id):
         return ProductImage.query.filter(ProductImage.product_id == id).all()
-    answer = {  product.id: product.to_dict() for product in productcopy }
+    payload = {  product.id: product.to_dict() for product in productcopy }
     for product in answer.values():
         product_images = get_images(product['id'])
         product['ProductImages'] = [image.to_dict() for image in product_images]
 
-    return answer, 200
+    return { 'Products': payload}, 200
 
 @product_routes.route('/current')
 @login_required
