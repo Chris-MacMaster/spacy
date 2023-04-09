@@ -1,8 +1,8 @@
-"""debug
+"""migration name
 
-Revision ID: 5da4e4a8c769
+Revision ID: a8734913507f
 Revises: 
-Create Date: 2023-04-08 12:55:45.812555
+Create Date: 2023-04-09 00:24:20.876002
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '5da4e4a8c769'
+revision = 'a8734913507f'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -26,6 +26,8 @@ def upgrade():
     sa.Column('first_name', sa.String(length=50), nullable=False),
     sa.Column('last_name', sa.String(length=50), nullable=False),
     sa.Column('bio', sa.Text(), nullable=True),
+    sa.Column('created_at', sa.DateTime(timezone=True), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True),
+    sa.Column('updated_at', sa.DateTime(timezone=True), nullable=True),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email'),
     sa.UniqueConstraint('username')
@@ -50,6 +52,8 @@ def upgrade():
     sa.Column('category', sa.String(), nullable=False),
     sa.Column('sales', sa.Integer(), nullable=True),
     sa.Column('policies', sa.Text(), nullable=True),
+    sa.Column('created_at', sa.DateTime(timezone=True), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True),
+    sa.Column('updated_at', sa.DateTime(timezone=True), nullable=True),
     sa.ForeignKeyConstraint(['owner_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
@@ -62,6 +66,8 @@ def upgrade():
     sa.Column('available', sa.Integer(), nullable=True),
     sa.Column('free_shipping', sa.Boolean(), nullable=False),
     sa.Column('price', sa.Float(), nullable=False),
+    sa.Column('created_at', sa.DateTime(timezone=True), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True),
+    sa.Column('updated_at', sa.DateTime(timezone=True), nullable=True),
     sa.ForeignKeyConstraint(['shop_id'], ['shops.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
@@ -69,6 +75,8 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('url', sa.String(length=255), nullable=False),
     sa.Column('shop_id', sa.Integer(), nullable=True),
+    sa.Column('created_at', sa.DateTime(timezone=True), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True),
+    sa.Column('updated_at', sa.DateTime(timezone=True), nullable=True),
     sa.ForeignKeyConstraint(['shop_id'], ['shops.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
@@ -77,6 +85,8 @@ def upgrade():
     sa.Column('quantity', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.Column('product_id', sa.Integer(), nullable=True),
+    sa.Column('created_at', sa.DateTime(timezone=True), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True),
+    sa.Column('updated_at', sa.DateTime(timezone=True), nullable=True),
     sa.ForeignKeyConstraint(['product_id'], ['products.id'], ),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
@@ -85,6 +95,8 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('url', sa.String(), nullable=True),
     sa.Column('product_id', sa.Integer(), nullable=True),
+    sa.Column('created_at', sa.DateTime(timezone=True), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True),
+    sa.Column('updated_at', sa.DateTime(timezone=True), nullable=True),
     sa.ForeignKeyConstraint(['product_id'], ['products.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
@@ -94,6 +106,8 @@ def upgrade():
     sa.Column('product_id', sa.Integer(), nullable=True),
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.Column('stars', sa.Integer(), nullable=False),
+    sa.Column('created_at', sa.DateTime(timezone=True), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True),
+    sa.Column('updated_at', sa.DateTime(timezone=True), nullable=True),
     sa.ForeignKeyConstraint(['product_id'], ['products.id'], ),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
