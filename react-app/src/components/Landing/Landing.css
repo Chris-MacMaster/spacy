@@ -1,14 +1,33 @@
 .landing-div{
     margin-top: 8rem;
 }
-.top-banner-suggest{
-    width: 12vw;
-    object-fit: cover;
+.top-banner-suggest {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-left: 5vw;
+    margin-right: 5vw;
 }
-.top-banner-suggest > img {
-
+div.top-banner-suggestions > p {
+    font-family: 'Mulish', sans-serif;
+    text-align: center;
+    font-weight: bold;
+}
+.suggest-image-div {
+    width: 12vw;
+    height: 12vw;
+    /* border: white solid 2px; */
+    border-radius: 12vw;
+    overflow: hidden;
 }
 .suggest-image {
+    object-fit: cover;
+    box-sizing: border-box;
     width: 12vw;
-    height: fit-content;
+    height: 12vw;
+}
+.welcome-title {
+    font-family: 'Marcellus', serif;
+    font-weight: 200;
+    text-align: center;
 }
