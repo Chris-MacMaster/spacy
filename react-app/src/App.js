@@ -7,6 +7,7 @@ import { Route, Switch } from "react-router-dom";
 import { authenticate } from "./store/session";
 import Header from "./components/Header";
 import Landing from "./components/Landing";
+import ProductsIndex from "./components/Products/ProductsIndex";
 
 function App() {
   const dispatch = useDispatch();
@@ -21,6 +22,9 @@ function App() {
     <Header isLoaded={isLoaded} />
       <Switch>
         <Route path='/' component={Landing} isLoaded={isLoaded}/>
+        <Route path='/products' exact={true}>
+          <ProductsIndex />
+        </Route>
       </Switch>
       {/* <Navigation isLoaded={isLoaded} />
       {isLoaded && (
