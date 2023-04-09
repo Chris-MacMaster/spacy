@@ -10,11 +10,11 @@ def get_all_products():
     """returns all products regardless of session"""
     products = Product.query.all()
     # WORKING ORIGINAL CODE
-    # return { 'Products': { product.id: product.to_dict() for product in products } }, 200
+    return { 'Products': { product.id: product.to_dict() for product in products } }, 200
 
     # ATTEMPT TO MAKE COMPATIBLE WITH TEMPLATE
-    formatted_products = { 'Products': { product.id: product.to_dict() for product in products } }
-    return render_template("main_page.html", products = products)
+    # formatted_products = { 'Products': { product.id: product.to_dict() for product in products } }
+    # return render_template("main_page.html", products = products)
 
 
 
@@ -54,6 +54,8 @@ def make_new_product():
     db.session.add(product)
     db.session.commit()
     return redirect('/')
+
+
 
 
 
