@@ -1,5 +1,7 @@
 from flask import Blueprint
 from app.models import db, Product, ProductReview, ReviewImage
+import copy
+
 
 product_review_routes = Blueprint('/productReviews', __name__)
 
