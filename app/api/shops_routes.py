@@ -7,5 +7,5 @@ shop_routes = Blueprint('/shops', __name__)
 @shop_routes.route('/')
 def get_all_shops():
     """returns all shops regardless of session"""
-    # shops = Shop.query.all()
+    shops = Shop.query.all()
     return { 'Shops': { shop.id: shop.to_dict() for shop in shops } }, 200
