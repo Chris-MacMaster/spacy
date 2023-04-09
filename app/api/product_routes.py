@@ -15,7 +15,7 @@ def get_all_products():
     def get_images(id):
         return ProductImage.query.filter(ProductImage.product_id == id).all()
     payload = {  product.id: product.to_dict() for product in productcopy }
-    for product in answer.values():
+    for product in payload.values():
         product_images = get_images(product['id'])
         product['ProductImages'] = [image.to_dict() for image in product_images]
 
