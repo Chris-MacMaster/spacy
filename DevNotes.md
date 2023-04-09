@@ -7,6 +7,7 @@ Full CRUD
 --Shops
 --Products
 --Reviews
+--Cart
 
 Partial CRUD
 --Product Images [C]
