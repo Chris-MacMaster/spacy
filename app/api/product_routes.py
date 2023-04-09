@@ -2,8 +2,8 @@ from flask import Blueprint, jsonify
 from app.models import db, Product, Shop, ProductImage, ProductReview
 from flask_login import current_user, login_required
 import copy
-product_routes = Blueprint('/products', __name__)
 
+product_routes = Blueprint('/products', __name__)
 
 @product_routes.route('/')
 def get_all_products():
