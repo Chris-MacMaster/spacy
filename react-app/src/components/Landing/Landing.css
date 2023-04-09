@@ -31,3 +31,26 @@ div.top-banner-suggestions > p {
     font-weight: 200;
     text-align: center;
 }
+.what-is-etzy > h1 {
+    font-family: 'Marcellus', serif;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+.column-container {
+    font-family: 'Mulish', sans-serif;
+    display: flex;
+    flex-direction: row;
+    max-width: 1200px;
+    gap: 5rem;
+    justify-content: center;
+    margin: 0 auto;
+    line-height: 2rem;
+}
+
+.column-title {
+    margin-bottom: 3rem;
+}
+.what-is-etzy > h2 {
+    text-align: center;
+    font-family: 'Mulish', sans-serif;
+}

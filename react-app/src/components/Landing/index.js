@@ -50,6 +50,25 @@ function Landing({ isLoaded }) {
                 </div>
                 <p>On Sale</p></div>
             </div>
+
+            <div className='what-is-etzy'>
+                <h1>What is Spacey</h1>
+                <div className='column-container'>
+                <div className='text-column'>
+                    <h2 className='column-title'>A community of explorers and curious minds</h2>
+                    <p className='what-is-paragraph'> Spacey is a online marketplace where people come together to expand our horizons and the horizons of mankind. Around here we think of the final frontier as too vast, too curious, and we're a moth to a flame.</p>
+                </div>
+                <div className='text-column'>
+                    <h2 className='column-title'>Support independent creators</h2>
+                    <p className='what-is-paragraph'> There's no centralized warehouse at Spacey, not even a central solar systems, just billions of intelligent lifeforms sharing technology and selling things they love. We make the whole process of connecting with others parsecs away painless, so that we can all discover something extraordinary.</p>
+                </div>
+                <div className='text-column'>
+                    <h2 className='column-title'>Peace of mind</h2>
+                    <p className='what-is-paragraph'> Who is out there? When we finally make contact, will they wish us harm? Coerce our labor in mining camps on a barely habitable moon? Your safety is the highest priority of our dedicated team. And if you ever need assistance, we are always ready to step in for support and mediate peace between waring galactic federations.</p>
+                </div>
+                </div>
+                <h2>Have a question? Well, we've got some answers.</h2>
+            </div>
         </div>
     )
 }
