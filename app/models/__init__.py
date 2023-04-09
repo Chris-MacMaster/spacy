@@ -7,3 +7,4 @@ from .carts import Cart
 from .follows import follows
 from .shop import Shop
 from .shop_images import ShopImage
+from .review_images import ReviewImage
