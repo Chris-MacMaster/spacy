@@ -1,7 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
 from .db import db, SCHEMA, environment, add_prefix_for_prod
 # from sqlalchemy.orm import validates
-
+from sqlalchemy.sql import func
 
 class Product(db.Model):
     __tablename__ = "products"
@@ -17,7 +17,8 @@ class Product(db.Model):
     available = db.Column(db.Integer)
     free_shipping = db.Column(db.Boolean, nullable=False)
     price = db.Column(db.Float, nullable=False) # if fails, float, DECIMAL
-
+    created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
+    updated_at = db.Column(db.DateTime(timezone=True), onupdate=func.now())
     shops = db.relationship('Shop', back_populates='products')
     product_reviews = db.relationship('ProductReview', back_populates='products', cascade="all, delete")
     product_images = db.relationship('ProductImage', back_populates='products', cascade="all, delete")
@@ -31,7 +32,9 @@ class Product(db.Model):
             'category': self.category,
             'available': self.available,
             'freeShipping': self.free_shipping,
-            'price': self.price
+            'price': self.price,
+            'createdAt': self.created_at,
+            'updatedAt': self.updated_at
         }
 
 

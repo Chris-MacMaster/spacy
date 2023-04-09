@@ -25,3 +25,9 @@ API
 -Products
 --get all products
 --
+
+FONTS
+font-family: 'Marcellus', serif;
+font-family: 'Mulish', sans-serif;
+font-family: 'Orbitron', sans-serif;
+font-family: 'Special Elite', cursive;

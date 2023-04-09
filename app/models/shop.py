@@ -1,6 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
 from .db import db, SCHEMA, environment, add_prefix_for_prod
-
+from sqlalchemy.sql import func
 
 class Shop(db.Model):
     __tablename__ = "shops"
@@ -19,7 +19,8 @@ class Shop(db.Model):
     category = db.Column(db.String, nullable=False)
     sales = db.Column(db.Integer, default=0)
     policies = db.Column(db.Text)
-
+    created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
+    updated_at = db.Column(db.DateTime(timezone=True), onupdate=func.now())
     products = db.relationship("Product", back_populates="shops", cascade="all, delete")
 
     def to_dict(self):
@@ -34,5 +35,7 @@ class Shop(db.Model):
             'description':self.description,
             'category': self.category,
             'sales': self.sales,
-            'policies': self.policies
+            'policies': self.policies,
+            'createdAt': self.created_at,
+            'updatedAt': self.updated_at
         }
