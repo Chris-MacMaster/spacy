@@ -1,6 +1,5 @@
 const LOAD_PRODUCTS = "products/LOAD"
 
-
 //**Actions */
 export const actionLoadProducts = (products) => {
     return {

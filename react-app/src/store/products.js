@@ -17,13 +17,9 @@ const userProductsThunk = () => async dispatch => {
 }
 
 const initialState = {
-    products: {
-
-    },
-
-    userProducts: {
-
-    }
+    products: {},
+    singleProduct: {},
+    userProducts: {}
 }
 
 
