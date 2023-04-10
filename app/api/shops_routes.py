@@ -45,21 +45,24 @@ def get_all_shops():
         db.session.commit()
         return new_shop.to_dict()
 
-        # shop = Shop(
-        #     # request.data
-        #     # name = data['name'],
-        #     # owner_id = data['ownerId'],
-        #     # street_address = data['streetAdress'],
-        #     # city = data['city'],
-        #     # state = data['state'],
-        #     # country = data['country'],
-        #     # description = data['description'],
-        #     # category = data['category'],
-        #     # sales = data['sales'],
-        #     # policies = data['policies'],
-        # )
-
-        
+@shop_routes.route('/<int:shop_id>', methods=['DELETE'])
+@login_required
+def delete_one_shop(shop_id):
+    """deletes one shop according to id"""
+    if current_user.is_authenticated:
+        shop = Shop.query.filter_by(id=shop_id).first()
+        # cart_items = Cart.query.filter_by(user_id=current_user.id).all()
+        if shop == None:
+            return {"error": "Cannot find Shop with specified id"}
+        elif shop.owner_id == current_user.id:
+            db.session.delete(shop)
+            db.session.commit()
+            return shop.to_dict(), 200
+        elif shop.owner_id != current_user.id:
+            return {"error": "Only owner may delete thier own shop"}
+    
+    
+    
 
 
 @shop_routes.route('/current')
