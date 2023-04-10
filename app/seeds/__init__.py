@@ -36,7 +36,6 @@ def seed():
     seed_products()
     seed_shops()
     seed_shop_images()
-    seed_shop_images()
     seed_product_images()
     seed_product_reviews()
     seed_review_images()

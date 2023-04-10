@@ -1,22 +1,85 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request, redirect
 from app.models import db, Product, Shop, ShopImage
 from flask_login import current_user, login_required
 import copy
 shop_routes = Blueprint('/shops', __name__)
 
-@shop_routes.route('/')
+@shop_routes.route('/', methods=['GET', 'POST'])
 def get_all_shops():
     """returns all shops regardless of session"""
-    shops = Shop.query.all()
-    shopcopy = [shop.to_dict() for shop in shops]
-    def get_shop_images(id):
-        image = ShopImage.query.filter(ShopImage.shop_id == id).first()
-        print('================================',image)
-        return image.to_dict()
-    for shop in shopcopy:
-        # shopimage =
-        shop['ShopImage'] = get_shop_images(shop['id'])
-    # for shop in payload.values():
-    #     shop_image = get_shop_images(shop['id'])
-    #     shop['ShopImage'] = shop_image.to_dict()
-    return shopcopy, 200
+    if request.method == 'GET':
+        shops = Shop.query.all()
+        print("SHOPS", shops)
+        shopcopy = [shop.to_dict() for shop in shops]
+        def get_shop_images(id):
+            image = ShopImage.query.filter(ShopImage.shop_id == id).first()
+            if image:
+                    return image.to_dict()
+        for shop in shopcopy:
+            shopimage = get_shop_images(shop['id'])
+            if shopimage:
+                shop['ShopImage'] = shopimage
+            else:
+                shop['ShopImage'] = 'shopImage not available'
+        return shopcopy, 200
+    """posts a new shop"""
+    if request.method == 'POST' and current_user.is_authenticated:
+        # shop = request.data
+        # return shop
+        print("REQUEST NAME ------------------", request)
+        # data = request.json
+        new_shop = Shop(
+            name = request.data['name'],
+            owner_id = current_user.get_id(),
+            street_address = request.data['streetAddress'],
+            city = request.data['city'],
+            state = request.data['state'],
+            country = request.data['country'],
+            description = request.data['description'],
+            category = request.data['category'],
+            policies = request.data['policies'],
+        )
+        # print("NEW SHOP __________________========", new_shop, "TYPE ", type(new_shop))
+
+        db.session.add(new_shop)
+        db.session.commit()
+        return new_shop.to_dict()
+
+        # shop = Shop(
+        #     # request.data
+        #     # name = data['name'],
+        #     # owner_id = data['ownerId'],
+        #     # street_address = data['streetAdress'],
+        #     # city = data['city'],
+        #     # state = data['state'],
+        #     # country = data['country'],
+        #     # description = data['description'],
+        #     # category = data['category'],
+        #     # sales = data['sales'],
+        #     # policies = data['policies'],
+        # )
+
+        
+
+
+@shop_routes.route('/current')
+@login_required
+def get_my_shops():
+    """returns current user shops"""
+
+    if current_user.is_authenticated:
+        shops = Shop.query.filter_by(owner_id=current_user.id).all()
+        shopcopy = [shop.to_dict() for shop in shops]
+        def get_shop_images(id):
+            image = ShopImage.query.filter(ShopImage.shop_id == id).first()
+            if image:
+                    return image.to_dict()
+        for shop in shopcopy:
+            shopimage = get_shop_images(shop['id'])
+            if shopimage:
+                shop['ShopImage'] = shopimage
+            else:
+                shop['ShopImage'] = 'shopImage not available'
+        return shopcopy, 200
+
+
