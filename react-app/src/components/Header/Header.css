@@ -8,7 +8,7 @@ font-family: 'Special Elite', cursive;*/
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    position: fixed;
+    position: relative;
     background-color: white;
     height: 7rem;
     z-index: 100;
