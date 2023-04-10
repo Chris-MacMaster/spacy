@@ -17,7 +17,8 @@ function Header({ isLoaded }) {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        dispatch(getSearchResults(parameters))
+        const results = dispatch(getSearchResults(parameters))
+        console.log('results', results)
     }
 
     return (

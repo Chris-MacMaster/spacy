@@ -11,12 +11,20 @@ const search = (currSearchResults) => {
 
 
 
+// export const getSearchResults = (parameters) => async (dispatch) => {
+//     const res = await csrfFetch(`api/search/${parameters}`, {
+//         method: 'POST',
+//         headers: {'Content-Type': 'application/json'},
+//         body: JSON.stringify(parameters)
+//     })
+    
+//     if (res.ok) {
+//         const currSearchResults = await res.json()
+//         dispatch(search(currSearchResults))
+//     }
+// }
 export const getSearchResults = (parameters) => async (dispatch) => {
-    const res = await csrfFetch('/api/search', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(parameters)
-    })
+    const res = await csrfFetch(`api/search/${parameters}`)
     
     if (res.ok) {
         const currSearchResults = await res.json()
@@ -31,7 +39,8 @@ export default function searchReducer(state=initialState, action) {
     switch(action.type) {
         case GET_SEARCH_RESULTS: {
             const newState = {...state, searchResults: {...state.searchResults}}
-            newState.searchResults = {...action.currSearchResults}
+            action.currSearchResults.map(result => newState.searchResults[result.id] = {...result})
+            // newState.searchResults = {...action.currSearchResults}
             return newState
         }
         default:
