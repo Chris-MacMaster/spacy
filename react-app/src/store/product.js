@@ -29,7 +29,7 @@ export const fetchProducts = () => async dispatch => {
     }
 }
 
-const fetchUserProducts = () => async dispatch => {
+export const fetchUserProducts = () => async dispatch => {
     const res = await csrfFetch(`/api/products/current`)
 
     if (res.ok) {
@@ -46,11 +46,10 @@ const initialState = {
 
 //**Reducer and Cases */
 export default function productReducer(state = initialState, action) {
-    let newState
 
     switch (action.type) {
         case LOAD_PRODUCTS: {
-            newState = {...state}
+            const newState = {...state}
             newState.allProducts = action.payload
             // resets product details when going to allProducts page
             newState.singleProduct = {}

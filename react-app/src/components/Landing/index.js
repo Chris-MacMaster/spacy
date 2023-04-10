@@ -1,6 +1,14 @@
+import { useEffect } from 'react'
 import './Landing.css'
-
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchProducts } from '../../store/product'
 function Landing({ isLoaded }) {
+    const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(fetchProducts())
+    })
+    const products = useSelector(state => state.allProducts)
+    console.log(products)
     return (
         <div className='landing-div'>
         { isLoaded ? <h1 className='welcome-title'>Incredible style and decor, plus one-of-a-kind gifts right this way</h1> : <h1 className='welcome-title'>Welcome back user firstname</h1>}
