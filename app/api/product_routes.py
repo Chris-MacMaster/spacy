@@ -45,7 +45,7 @@ def current_users_products():
         #for i in products[0]:
         #    print(i.to_dict())
 
-        return { 'Products': {product.id: product.to_dict() for product in products[0]}, }, 200
+        return { product.id: product.to_dict() for product in products[0] }, 200
 
     return '<h1>Please create an account</h1>'
 
