@@ -6,7 +6,7 @@ function Landing({ isLoaded }) {
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(fetchProducts())
-    })
+    }, [dispatch])
     const products = useSelector(state => state.allProducts)
     console.log(products)
     return (
