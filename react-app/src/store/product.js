@@ -13,7 +13,7 @@ export const actionLoadProducts = (products) => {
     }
 }
 
-const userProducts = products => ({
+export const userProducts = products => ({
     type: LOAD_USER_PRODUCTS,
     products
 })
