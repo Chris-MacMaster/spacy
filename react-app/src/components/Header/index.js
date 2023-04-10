@@ -1,5 +1,5 @@
 import './Header.css'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import Navigation from '../Navigation'
 import { Switch, Route } from 'react-router-dom'
 import LoginFormPage from '../LoginFormPage'
@@ -14,11 +14,13 @@ function Header({ isLoaded }) {
     const [parameters, setParameters] = useState('')
 
     const dispatch = useDispatch()
+    const history = useHistory()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
         const results = dispatch(getSearchResults(parameters))
         console.log('results', results)
+        history.push(`/search/${parameters}`)
     }
 
     return (

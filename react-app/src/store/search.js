@@ -9,8 +9,6 @@ const search = (currSearchResults) => {
     }
 }
 
-
-
 // export const getSearchResults = (parameters) => async (dispatch) => {
 //     const res = await csrfFetch(`api/search/${parameters}`, {
 //         method: 'POST',
@@ -24,11 +22,12 @@ const search = (currSearchResults) => {
 //     }
 // }
 export const getSearchResults = (parameters) => async (dispatch) => {
+    console.log('redux')
     const res = await csrfFetch(`api/search/${parameters}`)
     
     if (res.ok) {
         const currSearchResults = await res.json()
-        dispatch(search(currSearchResults))
+        await dispatch(search(currSearchResults))
     }
 }
 
@@ -38,9 +37,12 @@ let initialState = {
 export default function searchReducer(state=initialState, action) {
     switch(action.type) {
         case GET_SEARCH_RESULTS: {
+            console.log('thunk hit')
             const newState = {...state, searchResults: {...state.searchResults}}
-            action.currSearchResults.map(result => newState.searchResults[result.id] = {...result})
-            // newState.searchResults = {...action.currSearchResults}
+            console.log('reducer data', action.currSearchResults)
+            // Object.values(action.currSearchResults).map(result => newState.searchResults[result.id] = result)
+            newState.searchResults = {...action.currSearchResults}
+            console.log('newState', newState)
             return newState
         }
         default:

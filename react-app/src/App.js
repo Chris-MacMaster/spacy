@@ -10,6 +10,8 @@ import Landing from "./components/Landing";
 import ProductsIndex from "./components/Products/ProductsIndex.js";
 import UserProducts from "./components/Products/UserProducts.js"
 
+import SearchResults from "./components/SearchResults";
+
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -28,6 +30,9 @@ function App() {
       </Route>
       <Route path='/products/current' exact={true}>
         <UserProducts />
+      </Route>
+      <Route path='/search/:parameters'>
+        <SearchResults />
       </Route>
     </Switch>
       {/* <Navigation isLoaded={isLoaded} />
