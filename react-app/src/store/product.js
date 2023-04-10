@@ -9,7 +9,7 @@ const LOAD_USER_PRODUCTS = 'products/LOAD_USER_PRODUCTS'
 export const actionLoadProducts = (products) => {
     return {
         type: LOAD_PRODUCTS,
-        payload: products
+        products
     }
 }
 
@@ -51,7 +51,7 @@ export default function productReducer(state = initialState, action) {
     switch (action.type) {
         case LOAD_PRODUCTS: {
             const newState = {...state}
-            newState.allProducts = action.payload
+            newState.allProducts = action.products
             // resets product details when going to allProducts page
             newState.singleProduct = {}
             return newState
