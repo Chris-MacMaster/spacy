@@ -56,7 +56,7 @@ function ProfileButton({ user }) {
           <>
           <p>Hello, {user.firstName}.</p>
             <p>{user.username}</p>
-            
+
             <p>{user.firstName} {user.lastName}</p>
             <hr></hr>
             <p>{user.email}</p>
@@ -69,12 +69,12 @@ function ProfileButton({ user }) {
         ) : (
           <>
             <OpenModalButton
-              itemText="Log In"
+              buttonText="Log In"
               onItemClick={closeMenu}
               modalComponent={<LoginFormModal />}
             />
             <OpenModalButton
-              itemText="Sign Up"
+              buttonText="Sign Up"
               onItemClick={closeMenu}
               modalComponent={<SignupFormModal />}
             />
