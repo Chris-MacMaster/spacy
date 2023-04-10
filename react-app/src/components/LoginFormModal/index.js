@@ -23,7 +23,7 @@ function LoginFormModal() {
 
   const demoUser = async (e) => {
     e.preventDefault();
-    let email = "michio_kaku@user.io.jp"
+    let email = "carlsagan@user.io"
     let password = "password"
     const data = await dispatch(login(email, password));
     if (data) {
