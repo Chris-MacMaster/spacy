@@ -14,7 +14,6 @@ function UserProducts(){
     return (
         <>
         <h1>These are your products</h1>
-
         </>
     )
 }

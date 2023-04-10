@@ -21,6 +21,17 @@ function LoginFormModal() {
     }
   };
 
+  const demoUser = async (e) => {
+    e.preventDefault();
+    const data = await dispatch(login(email, password));
+    if (data) {
+      setErrors(data);
+    } else {
+        closeModal()
+    }
+  };
+
+
   return (
     <>
       <h1>Log In</h1>

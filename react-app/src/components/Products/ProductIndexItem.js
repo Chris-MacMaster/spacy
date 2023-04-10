@@ -16,7 +16,7 @@ const ProductIndexItem = ({ product }) => {
         <li onClick={handleClick} className='productIndexItem'>
 
             <div title={product.name} className='product-card-div' >
-
+                {product.name}
             </div>
         </li>
     );

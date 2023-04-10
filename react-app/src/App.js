@@ -18,12 +18,10 @@ function App() {
 
   return (
     <>
-
     <Header isLoaded={isLoaded} />
     <Switch>
-      {/* <Route path='/' component={Landing} isLoaded={isLoaded}>
-      </Route> */}
-
+      <Route path='/' component={Landing} isLoaded={isLoaded} exact={true}>
+      </Route>
       <Route path='/products' exact={true}>
         <ProductsIndex />
       </Route>

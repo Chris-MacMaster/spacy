@@ -16,21 +16,23 @@ function ProductsIndex() {
         dispatch(fetchProducts())
     }, [dispatch])
 
-    console.log("PRODUCTS", products)
+    // console.log("PRODUCTS", products)
 
     // takes in object, returns array of objects
+
 
 
     if (!products.length) {
         return <>{console.log("WHAT?")}</>
     }
 
+    // console.log("!!!!!!!", Object.values(products[0]))
     return (
         <div className="products-index">
             <div className="productIndex">
                 {Object.values(products[0]).map(product => (
                     <>
-                    {console.log(product)}
+                    {console.log("++++++++++++++++++", product)}
                     <ProductIndexItem title={product.name} product={product} key={product.id} />
                     </>
                 ))}
