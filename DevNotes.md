@@ -5,6 +5,10 @@ Tables simplified
 
 Full CRUD
 --Shops
+---get all shops
+---get all of users shops
+---create a shop
+<!-- ---delete a shop -->
 --Products
 --Reviews
 --Cart
@@ -32,8 +36,8 @@ font-family: 'Mulish', sans-serif;
 font-family: 'Orbitron', sans-serif;
 font-family: 'Special Elite', cursive;
 
-
-2 chriss are going to work on Product CRUD
-Dylan and Mark Carts
-
+MONDAY
 -Chrism Product Details
+-ChrisL Products on Landing, backend routes
+-Dylan Backend/Frontend Carts -currentuser Products
+-Marc Reviews/ Search -Page for search results, Reviews [CUD]

@@ -7,7 +7,7 @@ import cartReducer from './cart';
 
 const rootReducer = combineReducers({
   session,
-  productReducer,
+  products: productReducer,
   cartReducer
 });
 

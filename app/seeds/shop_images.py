@@ -8,11 +8,11 @@ def seed_shop_images():
     )
     shop2img = ShopImage(
         url= 'https://i.imgur.com/WSGNKxC.jpg',
-        shop_id= 1
+        shop_id= 2
     )
     shop3img = ShopImage(
         url= 'https://i.imgur.com/89kEyub.jpg',
-        shop_id= 1
+        shop_id= 3
     )
 
     db.session.add_all([shop1img, shop2img, shop3img])

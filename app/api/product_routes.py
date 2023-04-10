@@ -27,13 +27,13 @@ def get_all_products():
         for review in reviews:
             review_sum += review.stars
         product['avgRating'] = round(review_sum / len(reviews), 1) if len(reviews) > 0 else 'New!'
-    return { 'Products': payload}, 200
+    return  payload, 200
 
 @product_routes.route('/current')
 @login_required
 def current_users_products():
     """returns a list of all products of current user"""
-    print('THE ROUTE IS BEING HIT')
+    # print('THE ROUTE IS BEING HIT')
 
     if current_user.is_authenticated:
         shops = Shop.query.filter_by(owner_id=current_user.id).all()
@@ -45,7 +45,7 @@ def current_users_products():
         #for i in products[0]:
         #    print(i.to_dict())
 
-        return { product.id: product.to_dict() for product in products[0] }, 200
+        return {product.id: product.to_dict() for product in products[0]}, 200
 
     return '<h1>Please create an account</h1>'
 
@@ -79,7 +79,7 @@ def make_new_product():
     )
     db.session.add(product)
     db.session.commit()
-    return redirect('/')
+    # return redirect('/')
 
 
 
