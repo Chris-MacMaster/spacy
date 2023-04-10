@@ -16,7 +16,7 @@ function Header({ isLoaded }) {
         <input className='header-search' type='text'
         placeholder='Search for anything in the universe'></input>
         <div className='telescope-search'>
-        <i class="fa-solid fa-telescope"></i>
+        <i className="fa-solid fa-telescope"></i>
         </div>
         </div>
 
@@ -32,7 +32,7 @@ function Header({ isLoaded }) {
                 </Switch>)}
 
         <div className='cart'>
-        <i class="fa-solid fa-cart-shopping"></i></div>
+        <i className="fa-solid fa-cart-shopping"></i></div>
         </div>
         <div className='header-tabs'>
             <span className='header-tab'>Home Favorites</span>
