@@ -6,7 +6,7 @@ import productReducer from './product';
 
 const rootReducer = combineReducers({
   session,
-  products: productReducer
+  productReducer
 });
 
 
