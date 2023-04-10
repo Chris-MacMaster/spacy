@@ -103,7 +103,7 @@ def make_new_product():
 def get_product_reviews(id):
     """gets product reviews"""
     reviews = ProductReview.query.filter(ProductReview.product_id == id).all()
-    return jsonify(review.to_dict() for review in reviews)
+    return [review.to_dict() for review in reviews]
 
 @product_routes.route('/<int:id>/reviews', methods=['POST'])
 @login_required
@@ -123,7 +123,7 @@ def post_product_review(id):
     db.session.add(new_review)
     db.session.commit()
 
-    return jsonify(new_review.to_dict())
+    return new_review.to_dict()
 
 @product_routes.route('/<int:id>/reviews', methods=['PUT'])
 @login_required
@@ -137,7 +137,7 @@ def edit_review(id):
 
     db.session.commit()
 
-    return jsonify(review_to_edit.to_dict())
+    return review_to_edit.to_dict()
 
 @product_routes.route('/<int:id>/reviews', methods=['DELETE'])
 @login_required
@@ -148,4 +148,4 @@ def delete_review(id):
     db.session.delete(review_to_delete)
     db.session.commit()
 
-    return jsonify({'review deleted'}), 200
+    return {'review deleted'}, 200
