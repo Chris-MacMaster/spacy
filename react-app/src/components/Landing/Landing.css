@@ -45,6 +45,8 @@ div.top-banner-suggestions > p {
     justify-content: center;
     margin: 0 auto;
     line-height: 2rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
 }
 
 .column-title {
