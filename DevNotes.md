@@ -31,3 +31,12 @@ font-family: 'Marcellus', serif;
 font-family: 'Mulish', sans-serif;
 font-family: 'Orbitron', sans-serif;
 font-family: 'Special Elite', cursive;
+<<<<<<< HEAD
+=======
+
+
+2 chriss are going to work on Product CRUD
+Dylan and Mark Carts
+
+-Chrism Product Details
+>>>>>>> dev
