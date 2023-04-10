@@ -5,7 +5,20 @@ import { Switch, Route } from 'react-router-dom'
 import LoginFormPage from '../LoginFormPage'
 import SignupFormPage from '../SignupFormPage'
 
+import { getSearchResults } from '../../store/search'
+import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+
 function Header({ isLoaded }) {
+
+    const [parameters, setParameters] = useState('')
+
+    const dispatch = useDispatch()
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        dispatch(getSearchResults(parameters))
+    }
 
     return (
         <div className='header-container'>
@@ -13,8 +26,14 @@ function Header({ isLoaded }) {
         <Link to={`/`}><span className='logo'>etzy</span></Link>
 
         <div className='search-bar'>
-        <input className='header-search' type='text'
+
+        <form onSubmit={handleSubmit}>
+        <input className='header-search' type='text' value={parameters}
+        onChange={(e) => setParameters(e.target.value)}
         placeholder='Search for anything in the universe'></input>
+        </form>
+
+        
         <div className='telescope-search'>
         <i className="fa-solid fa-telescope"></i>
         </div>
