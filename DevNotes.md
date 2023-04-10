@@ -32,6 +32,8 @@ font-family: 'Mulish', sans-serif;
 font-family: 'Orbitron', sans-serif;
 font-family: 'Special Elite', cursive;
 
-
+MONDAY
 -Chrism Product Details
 -ChrisL Products on Landing, backend routes
+-Dylan Backend/Frontend Carts -currentuser Products
+-Marc Reviews/ Search -Page for search results, Reviews [CUD]
