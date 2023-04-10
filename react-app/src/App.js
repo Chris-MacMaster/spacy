@@ -7,6 +7,8 @@ import { Route, Switch } from "react-router-dom";
 import { authenticate } from "./store/session";
 import Header from "./components/Header";
 import Landing from "./components/Landing";
+import ProductsIndex from "./components/Products/ProductsIndex.js";
+import UserProducts from "./components/Products/UserProducts.js"
 
 function App() {
   const dispatch = useDispatch();
@@ -17,11 +19,17 @@ function App() {
 
   return (
     <>
-
     <Header isLoaded={isLoaded} />
-      <Switch>
-        <Route path='/' component={Landing} />
-      </Switch>
+    <Switch>
+      <Route path='/' component={Landing} isLoaded={isLoaded} exact={true}>
+      </Route>
+      <Route path='/products' exact={true}>
+        <ProductsIndex />
+      </Route>
+      <Route path='/products/current' exact={true}>
+        <UserProducts />
+      </Route>
+    </Switch>
       {/* <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
@@ -30,6 +38,9 @@ function App() {
           </Route>
           <Route path="/signup">
             <SignupFormPage />
+          </Route>
+          <Route exact path={'/products/current'}>
+            <UserProducts />
           </Route>
         </Switch>
       )} */}

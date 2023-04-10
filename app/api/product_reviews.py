@@ -12,7 +12,7 @@ def get_all_reviews():
     reviewcopy = copy.deepcopy(reviews)
     def get_review_images(id):
         return ReviewImage.query.filter(ProductReview.id == id).all()
-    payload = { review.id: review.to_dict() for review in reviews }
+    payload = { review.id: review.to_dict() for review in reviewcopy }
     for review in payload.values():
         review_image = get_review_images(review['id'])
         review['ReviewImages'] = review_image.to_dict()

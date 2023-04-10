@@ -1,11 +1,13 @@
 from flask.cli import AppGroup
 from .users import seed_users, undo_users
-from .product import seed_products, undo_products
+from .products import seed_products, undo_products
 from .shops import seed_shops, undo_shops
 from .shop_images import seed_shop_images, undo_shop_images
 from .product_images import seed_product_images, undo_product_images
 from .product_reviews import seed_product_reviews, undo_product_reviews
 from .review_images import seed_review_images, undo_review_images
+from .carts import seed_carts, undo_carts
+from .following_users import seed_follows, undo_follows
 from app.models.db import db, environment, SCHEMA
 
 # Creates a seed group to hold our commands
@@ -28,6 +30,8 @@ def seed():
         undo_product_images()
         undo_product_reviews()
         undo_review_images()
+        undo_carts()
+        undo_follows()
     seed_users()
     seed_products()
     seed_shops()
@@ -36,6 +40,8 @@ def seed():
     seed_product_images()
     seed_product_reviews()
     seed_review_images()
+    seed_carts()
+    seed_follows()
     # Add other seed functions here
 
 
@@ -50,3 +56,5 @@ def undo():
     undo_product_images()
     undo_product_reviews()
     undo_review_images()
+    undo_carts()
+    undo_follows()

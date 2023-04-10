@@ -298,7 +298,7 @@ Returns all the products created by the current user.
 
 ### Get details of a Product from an id
 
-Returns the details of a spot specified by its id.
+Returns the details of a product specified by its id.
 
 * Require Authentication: false
 * Request
@@ -368,7 +368,7 @@ Creates and returns a new product.
 * Require Authentication: true
 * Request
   * Method: POST
-  * URL: /api/product
+  * URL: /api/products/new
   * Headers:
     * Content-Type: application/json
   * Body:

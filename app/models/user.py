@@ -2,7 +2,7 @@ from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 # from app.models.follows import following_users
-from .follows import follows
+from .following_users import FollowingUsers
 from sqlalchemy.sql import func
 
 class User(db.Model, UserMixin):
@@ -26,9 +26,9 @@ class User(db.Model, UserMixin):
 
     followers = db.relationship(
         'User',
-        secondary=follows,
-        primaryjoin=(follows.c.follower_id == id),
-        secondaryjoin=(follows.c.followed_id == id),
+        secondary=FollowingUsers.__table__,
+        primaryjoin=(FollowingUsers.follower_id == id),
+        secondaryjoin=(FollowingUsers.followed_id == id),
         backref=db.backref('following', lazy='dynamic'),
         lazy='dynamic'
     )

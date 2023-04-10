@@ -1,0 +1,48 @@
+button {
+    background-color: white;
+    border: none;
+    /* border-radius: 3rem;
+    border: solid grey; */
+    padding: .3rem;
+    justify-content: center;
+}
+i {
+    display: inline-block;
+    vertical-align: middle;
+    padding-inline: .3rem;
+    font-size: 1.5rem;
+    color: #A0A7B2
+}
+.fa-user-circle {
+    font-size: 1.5rem;
+}
+.hidden {
+    display: none;
+}
+.profile-dropdown {
+    /* box-shadow: 0px 0px 100rem black; */
+    position: fixed;
+    border-radius: .5rem;
+    border: solid slategrey 1px;
+    top: 6rem;
+    right: 7rem;
+    background: white;
+    padding: 2rem;
+    line-height: .5rem;
+}
+.popout-profile-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    line-height: .2rem;
+}
+.popout-profile-header > i {
+    font-size: 1.2rem;
+}
+.popout-profile-header >  {
+    font-size: 1.2rem;
+    margin-left: 1.5rem;
+}
+.subtext {
+    font-size: .8rem;
+}
