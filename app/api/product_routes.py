@@ -34,29 +34,7 @@ def get_all_products():
 def current_users_products():
     """returns a list of all products of current user"""
     print('THE ROUTE IS BEING HIT')
-    print('')
-    print('')
-    print('')
-    print('')
-    print('')
-    print('')
-    print('')
-    print('')
-    print('')
-    print('')
-    print('')
-    print('')
-    print(request)
-    print('')
-    print('')
-    print('')
-    print('')
-    print('')
-    print('')
-    print('')
-    print('')
-    print('')
-    print('')
+
     if current_user.is_authenticated:
         print ("HIT ME BABY")
         # products = Product.query.filter_by(user_id=current_user.id).all()
@@ -70,7 +48,13 @@ def current_users_products():
 def get_one_product(product_id):
     """returns one product with the specified id"""
     product = Product.query.filter_by(id=product_id).first()
-    return product.to_dict(), 200
+    productcopy = product.to_dict()
+    shop = Shop.query.filter_by(id=product.shop_id).first()
+    images = ProductImage.query.filter(ProductImage.product_id==product_id).all()
+    productcopy['ProductImages'] = [image.to_dict() for image in images]
+    productcopy['Shop'] = shop.to_dict()
+
+    return productcopy, 200
 
 
 #DEMO TESTING POST ROUTE, NOT CONNECTED TO FORM/USER INPUT YET
