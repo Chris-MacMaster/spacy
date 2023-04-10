@@ -1,16 +1,16 @@
 from app.models import db, Product, environment, SCHEMA
 from sqlalchemy.sql import text
 
-def seed_prdocuts():
+def seed_products():
     product1 = Product(
-    shop_id='1',
-    name='Galaxy Necklace',
-    description='A beautiful necklace inspired by the stars and galaxies.',
-    category='Jewelry',
-    available=50,
-    free_shipping=True,
-    price=29.99
-    )
+        shop_id='3',
+        name='Galaxy Necklace',
+        description='A beautiful necklace inspired by the stars and galaxies.',
+        category='Jewelry',
+        available=50,
+        free_shipping=True,
+        price=29.99
+        )
 
     product2 = Product(
         shop_id='1',
@@ -19,7 +19,7 @@ def seed_prdocuts():
         category='Accessories',
         available=20,
         free_shipping=False,
-        price=49.99
+        price=149.99
     )
 
     product3 = Product(
@@ -43,7 +43,7 @@ def seed_prdocuts():
     )
 
     product5 = Product(
-        shop_id='2',
+        shop_id='1',
         name='Solar System Poster',
         description='A beautiful poster featuring all the planets in our solar system.',
         category='Wall Art',
@@ -53,7 +53,7 @@ def seed_prdocuts():
     )
 
     product6 = Product(
-        shop_id='2',
+        shop_id='3',
         name='Meteorite Necklace',
         description='A necklace featuring a small piece of a real meteorite.',
         category='Jewelry',
@@ -73,7 +73,7 @@ def seed_prdocuts():
     )
 
     product8 = Product(
-        shop_id='3',
+        shop_id='1',
         name='Space Shuttle Model',
         description='A highly detailed model of the space shuttle, with all its parts and functions.',
         category='Collectibles',
@@ -83,7 +83,7 @@ def seed_prdocuts():
     )
 
     product9 = Product(
-        shop_id='3',
+        shop_id='2',
         name='Astronaut Ice Cream',
         description='Freeze-dried ice cream, just like the astronauts eat in space!',
         category='Food',
@@ -115,17 +115,16 @@ def seed_prdocuts():
 
     db.session.commit()
 
-
 # Uses a raw SQL query to TRUNCATE or DELETE the users table. SQLAlchemy doesn't
 # have a built in function to do this. With postgres in production TRUNCATE
 # removes all the data from the table, and RESET IDENTITY resets the auto
 # incrementing primary key, CASCADE deletes any dependent entities.  With
 # sqlite3 in development you need to instead use DELETE to remove all data and
 # it will reset the primary keys for you as well.
-def undo_prdocuts():
+def undo_products():
     if environment == "production":
-        db.session.execute(f"TRUNCATE table {SCHEMA}.users RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.products RESTART IDENTITY CASCADE;")
     else:
-        db.session.execute(text("DELETE FROM users"))
+        db.session.execute(text("DELETE FROM products"))
 
     db.session.commit()
