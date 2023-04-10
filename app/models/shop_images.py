@@ -17,11 +17,7 @@ class ShopImage(db.Model):
         return {
             'id': self.id,
             'url': self.url,
-<<<<<<< HEAD
-            'shopId': self.shop_id
-=======
             'shopId': self.shop_id,
             'createdAt': self.created_at,
             'updatedAt': self.updated_at
->>>>>>> dtest-follows
             }
