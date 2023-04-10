@@ -36,10 +36,17 @@ def current_users_products():
     print('THE ROUTE IS BEING HIT')
 
     if current_user.is_authenticated:
-        print ("HIT ME BABY")
-        # products = Product.query.filter_by(user_id=current_user.id).all()
-        # return { 'Products': {product.id: product.to_dict() for product in products } }, 200
-        return { 'Product': 4}
+        shops = Shop.query.filter_by(owner_id=current_user.id).all()
+        products = [Product.query.filter_by(shop_id=shop.id).all() for shop in shops]
+
+       # return { 'Products': {product.id: product.to_dict() for product in products } }, 200
+        # payload = {  product.id: product.to_dict() for product in productcopy }
+
+        #for i in products[0]:
+        #    print(i.to_dict())
+
+        return { 'Products': {product.id: product.to_dict() for product in products[0]}, }, 200
+
     return '<h1>Please create an account</h1>'
 
 

@@ -15,7 +15,7 @@ export const actionLoadProducts = (products) => {
 
 export const userProducts = products => ({
     type: LOAD_USER_PRODUCTS,
-    products
+    payload: products
 })
 //**Thunks */
 
@@ -23,14 +23,15 @@ export const userProducts = products => ({
 export const fetchProducts = () => async dispatch => {
     // console.log("TRIGGERED")
     const response = await fetch('/api/products')
-    const products = await response.json()
+
     if (response.ok) {
+        const products = await response.json()
         dispatch(actionLoadProducts(products))
     }
 }
 
 export const fetchUserProducts = () => async dispatch => {
-    const res = await csrfFetch(`/api/products/current`)
+    const res = await fetch(`/api/products/current`)
 
     if (res.ok) {
         const products = await res.json()
@@ -55,12 +56,12 @@ export default function productReducer(state = initialState, action) {
             newState.singleProduct = {}
             return newState
         }
-        case LOAD_USER_PRODUCTS:
+        case LOAD_USER_PRODUCTS: {
             const newState = {...state}
-            console.log(action)
-            return { newState}
-
-
+            console.log("FDASFDSAFAD", action.payload)
+            newState.userProducts = action.payload
+            return newState
+        }
         default: return state
     }
 }
