@@ -26,6 +26,7 @@ export const getSearchResults = (parameters) => async (dispatch) => {
     const res = await csrfFetch(`api/search/${parameters}`)
     
     if (res.ok) {
+        console.log('res ok')
         const currSearchResults = await res.json()
         await dispatch(search(currSearchResults))
     }

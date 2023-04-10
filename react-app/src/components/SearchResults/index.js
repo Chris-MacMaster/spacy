@@ -35,6 +35,10 @@ function SearchResults() {
     //     )
     // }
 
+
+
+    // alternate
+
     const {parameters} = useParams()
     const dispatch = useDispatch()
     console.log(parameters)
@@ -47,6 +51,7 @@ function SearchResults() {
 
     useEffect(() => {
         const searchResults = dispatch(getSearchResults(parameters))
+        console.log('search results', searchResults)
         setProducts(searchResults)
     }, [])
 
