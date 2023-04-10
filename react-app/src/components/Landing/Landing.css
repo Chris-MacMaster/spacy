@@ -36,6 +36,10 @@ div.top-banner-suggestions > p {
     text-align: center;
     margin-bottom: 3rem;
 }
+.what-is-etzy {
+    margin-left: 2rem;
+    margin-right: 2rem;
+}
 .column-container {
     font-family: 'Mulish', sans-serif;
     display: flex;
@@ -45,8 +49,8 @@ div.top-banner-suggestions > p {
     justify-content: center;
     margin: 0 auto;
     line-height: 2rem;
-    margin-left: 2rem;
-    margin-right: 2rem;
+    /* margin-left: 2rem;
+    margin-right: 2rem; */
 }
 
 .column-title {
