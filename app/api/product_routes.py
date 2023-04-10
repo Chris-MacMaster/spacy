@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, redirect
 from app.models import db, Product, Shop, ProductImage, ProductReview
 from flask_login import current_user, login_required
 import copy
@@ -45,11 +45,11 @@ def get_one_product(product_id):
     """returns one product with the specified id"""
     product = Product.query.filter_by(id=product_id).first()
     return product.to_dict(), 200
-    
+
 
 #DEMO TESTING POST ROUTE, NOT CONNECTED TO FORM/USER INPUT YET
 #running "post" for url in postman works, but not url entry yet
-@product_routes.route('/new', methods=["POST"]) 
+@product_routes.route('/new', methods=["POST"])
 def make_new_product():
     """makes a new product"""
     product = Product(
@@ -68,5 +68,5 @@ def make_new_product():
 
 
 
-#DEMO POST 
+#DEMO POST
 # @product_routes.route('/')

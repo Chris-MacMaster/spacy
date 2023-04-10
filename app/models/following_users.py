@@ -7,7 +7,7 @@ class FollowingUsers(db.Model):
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
 
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    id = db.Column(db.Integer, primary_key=True)
     follower_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), primary_key=True)
     followed_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), primary_key=True)
 

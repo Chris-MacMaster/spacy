@@ -22,15 +22,17 @@ function ProductsIndex() {
 
 
     if (!products.length) {
-        return null
+        return <>{console.log("WHAT?")}</>
     }
 
     return (
-
         <div className="products-index">
             <div className="productIndex">
                 {Object.values(products[0]).map(product => (
+                    <>
+                    {console.log(product)}
                     <ProductIndexItem title={product.name} product={product} key={product.id} />
+                    </>
                 ))}
             </div>
         </div>
@@ -38,5 +40,3 @@ function ProductsIndex() {
 }
 
 export default ProductsIndex;
-
-
