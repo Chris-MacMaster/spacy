@@ -5,6 +5,10 @@ Tables simplified
 
 Full CRUD
 --Shops
+---get all shops
+---get all of users shops
+---create a shop
+<!-- ---delete a shop -->
 --Products
 --Reviews
 --Cart

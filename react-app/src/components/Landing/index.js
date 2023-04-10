@@ -9,9 +9,17 @@ function Landing({ isLoaded }) {
         dispatch(fetchProducts())
         dispatch(authenticate())
     }, [dispatch])
-    const products = useSelector(state => state)
+    const products = useSelector(state => state.productReducer.allProducts)
     const user = useSelector(state => state.session.user)
-    console.log(user)
+    console.log('STATE', products)
+    // const randomProduct = (products) => products[Math.random()*products.length]
+    // const product1 = randomProduct()
+    // const product2 = randomProduct()
+    // const product3 = randomProduct()
+    // const product4 = randomProduct()
+    // const product5 = randomProduct()
+    // const product6 = randomProduct()
+
     return (
         <div className='landing-div'>
         { !user ? <h1 className='welcome-title'>Incredible style and decor, plus one-of-a-kind gifts right this way</h1> : <h1 className='welcome-title'>Welcome back {user.firstName}</h1>}
@@ -62,6 +70,16 @@ function Landing({ isLoaded }) {
                 <p>On Sale</p></div>
             </div>
 
+            <div className='from-etzy-sellers'>
+                <div className='by-etsy-header'>
+                    <p className='sponsored'>Sponsored <i className="fa-solid fa-question"></i></p>
+                </div>
+                {/* <div className='etsy-seller-grid-products'>
+                    <img src={`${product1.ProductImages[0].url}`}
+                    alt='prod1'></img>
+                </div> */}
+                <div className='from-etzy-closing'>Fun fact: behind every sponsored item there is an intelligent lifeform hoping you'll check out their shop</div>
+            </div>
             <div className='what-is-etzy'>
                 <h1>What is Spacey</h1>
                 <div className='column-container'>

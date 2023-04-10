@@ -27,7 +27,7 @@ def get_all_products():
         for review in reviews:
             review_sum += review.stars
         product['avgRating'] = round(review_sum / len(reviews), 1) if len(reviews) > 0 else 'New!'
-    return { 'Products': payload}, 200
+    return  payload, 200
 
 @product_routes.route('/current')
 @login_required
