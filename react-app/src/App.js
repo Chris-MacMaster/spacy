@@ -9,6 +9,7 @@ import Header from "./components/Header";
 import Landing from "./components/Landing";
 import ProductsIndex from "./components/Products/ProductsIndex.js";
 import UserProducts from "./components/Products/UserProducts.js"
+import ProductDetail from "./components/Products/ProductDetail";
 
 function App() {
   const dispatch = useDispatch();
@@ -28,6 +29,9 @@ function App() {
       </Route>
       <Route path='/products/current' exact={true}>
         <UserProducts />
+      </Route>
+      <Route path='/products/:productId' exact={true}>
+        <ProductDetail />
       </Route>
     </Switch>
       {/* <Navigation isLoaded={isLoaded} />

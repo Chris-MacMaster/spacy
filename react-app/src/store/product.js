@@ -1,6 +1,7 @@
 import { csrfFetch } from './csrf'
 const LOAD_PRODUCTS = "products/LOAD"
 
+const LOAD_PRODUCT = "product/LOAD"
 const LOAD_USER_PRODUCTS = 'products/LOAD_USER_PRODUCTS'
 
 
@@ -10,6 +11,13 @@ export const actionLoadProducts = (products) => {
     return {
         type: LOAD_PRODUCTS,
         products
+    }
+}
+
+export const actionLoadProduct = (product) => {
+    return {
+        type: LOAD_PRODUCT,
+        payload: product
     }
 }
 
@@ -30,6 +38,13 @@ export const fetchProducts = () => async dispatch => {
     }
 }
 
+export const fetchOneProduct = (id) => async dispatch => {
+    const response = await fetch(`/api/products/${id}`)
+    const product = await response.json()
+    if (response.ok) {
+        dispatch(actionLoadProduct(product))
+    }
+}
 export const fetchUserProducts = () => async dispatch => {
     const res = await fetch(`/api/products/current`)
 
@@ -54,6 +69,11 @@ export default function productReducer(state = initialState, action) {
             newState.allProducts = action.products
             // resets product details when going to allProducts page
             newState.singleProduct = {}
+            return newState
+        }
+        case LOAD_PRODUCT: {
+            let newState = { ...state }
+            newState.singleProduct = action.payload
             return newState
         }
         case LOAD_USER_PRODUCTS: {
