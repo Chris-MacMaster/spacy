@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 from app.models import db, Product, Shop, ShopImage
 from flask_login import current_user, login_required
 import copy

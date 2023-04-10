@@ -28,4 +28,21 @@ i {
     right: 7rem;
     background: white;
     padding: 2rem;
+    line-height: .5rem;
+}
+.popout-profile-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    line-height: .2rem;
+}
+.popout-profile-header > i {
+    font-size: 1.2rem;
+}
+.popout-profile-header >  {
+    font-size: 1.2rem;
+    margin-left: 1.5rem;
+}
+.subtext {
+    font-size: .8rem;
 }
