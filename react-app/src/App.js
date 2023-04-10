@@ -8,6 +8,7 @@ import { authenticate } from "./store/session";
 import Header from "./components/Header";
 import Landing from "./components/Landing";
 import ProductsIndex from "./components/Products/ProductsIndex.js";
+import UserProducts from "./components/Products/UserProducts.js"
 
 function App() {
   const dispatch = useDispatch();
@@ -24,6 +25,9 @@ function App() {
       </Route>
       <Route path='/products' exact={true}>
         <ProductsIndex />
+      </Route>
+      <Route path='/products/current' exact={true}>
+        <UserProducts />
       </Route>
     </Switch>
       {/* <Navigation isLoaded={isLoaded} />

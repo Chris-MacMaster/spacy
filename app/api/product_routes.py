@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, redirect
+from flask import Blueprint, jsonify, redirect, request
 from app.models import db, Product, Shop, ProductImage, ProductReview
 from flask_login import current_user, login_required
 import copy
@@ -18,7 +18,7 @@ def get_all_products():
     def get_reviews(id):
         return ProductReview.query.filter(ProductReview.product_id == id).all()
     payload = {  product.id: product.to_dict() for product in productcopy }
-    
+
     for product in payload.values():
         product_images = get_images(product['id'])
         product['ProductImages'] = [image.to_dict() for image in product_images]
@@ -34,9 +34,34 @@ def get_all_products():
 def current_users_products():
     """returns a list of all products of current user"""
     print('THE ROUTE IS BEING HIT')
+    print('')
+    print('')
+    print('')
+    print('')
+    print('')
+    print('')
+    print('')
+    print('')
+    print('')
+    print('')
+    print('')
+    print('')
+    print(request)
+    print('')
+    print('')
+    print('')
+    print('')
+    print('')
+    print('')
+    print('')
+    print('')
+    print('')
+    print('')
     if current_user.is_authenticated:
-        products = Product.query.filter_by(user_id=current_user.id).all()
-        return { 'Products': {product.id: product.to_dict() for product in products } }, 200
+        print ("HIT ME BABY")
+        # products = Product.query.filter_by(user_id=current_user.id).all()
+        # return { 'Products': {product.id: product.to_dict() for product in products } }, 200
+        return { 'Product': 4}
     return '<h1>Please create an account</h1>'
 
 
