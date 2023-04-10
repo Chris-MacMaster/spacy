@@ -9,6 +9,8 @@ import Header from "./components/Header";
 import Landing from "./components/Landing";
 import ProductsIndex from "./components/Products/ProductsIndex.js";
 
+import ProductDetail from "./components/Products/ProductDetail";
+
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -24,6 +26,9 @@ function App() {
       </Route>
       <Route path='/products' exact={true}>
         <ProductsIndex />
+      </Route>
+      <Route path='/products/:productId' exact={true}>
+        <ProductDetail />
       </Route>
     </Switch>
       {/* <Navigation isLoaded={isLoaded} />

@@ -44,6 +44,7 @@ def current_users_products():
 def get_one_product(product_id):
     """returns one product with the specified id"""
     product = Product.query.filter_by(id=product_id).first()
+
     return product.to_dict(), 200
 
 
@@ -70,3 +71,24 @@ def make_new_product():
 
 #DEMO POST
 # @product_routes.route('/')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#insert code here Chris M, for post, put and patch
+
+
+#

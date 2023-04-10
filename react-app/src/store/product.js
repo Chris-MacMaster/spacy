@@ -4,6 +4,7 @@ const LOAD_PRODUCTS = "products/LOAD"
 const LOAD_USER_PRODUCTS = 'products/LOAD_USER_PRODUCTS'
 
 
+const LOAD_PRODUCT = "product/LOAD"
 
 //**Actions */
 export const actionLoadProducts = (products) => {
@@ -12,6 +13,17 @@ export const actionLoadProducts = (products) => {
         payload: products
     }
 }
+
+export const actionLoadProduct = (product) => {
+    return {
+        type: LOAD_PRODUCT,
+        payload: product
+    }
+}
+
+
+
+
 
 const userProducts = products => ({
     type: LOAD_USER_PRODUCTS,
@@ -26,6 +38,14 @@ export const fetchProducts = () => async dispatch => {
     const products = await response.json()
     if (response.ok) {
         dispatch(actionLoadProducts(products))
+    }
+}
+
+export const fetchOneProduct = (id) => async dispatch => {
+    const response = await fetch(`/api/products/${id}`)
+    const product = await response.json()
+    if (response.ok) {
+        dispatch(actionLoadProduct(product))
     }
 }
 
@@ -46,14 +66,18 @@ const initialState = {
 
 //**Reducer and Cases */
 export default function productReducer(state = initialState, action) {
-    let newState
-
     switch (action.type) {
         case LOAD_PRODUCTS: {
+            let newState;
             newState = {...state}
             newState.allProducts = action.payload
             // resets product details when going to allProducts page
             newState.singleProduct = {}
+            return newState
+        }
+        case LOAD_PRODUCT: {
+            let newState = { ...state }
+            newState.singleProduct = action.payload
             return newState
         }
         case LOAD_USER_PRODUCTS:
