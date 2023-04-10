@@ -7,6 +7,7 @@ Full CRUD
 --Shops
 --Products
 --Reviews
+--Cart
 
 Partial CRUD
 --Product Images [C]
@@ -20,14 +21,13 @@ Do we want to have a user page, where we view user data (shops, products)? Maybe
 --must set schema on table
 --keys in wtform must be the same as those in react frontend
 
-Model Order
--Users
--Following chris
--Shops chris
--Favorite Shops chris
--Products chris
--Carts marc
--Product Images marc
--Product Reviews marc
--Shop Images marc
--Review Images marc
+API
+-Products
+--get all products
+--
+
+FONTS
+font-family: 'Marcellus', serif;
+font-family: 'Mulish', sans-serif;
+font-family: 'Orbitron', sans-serif;
+font-family: 'Special Elite', cursive;

@@ -5,6 +5,7 @@ from sqlalchemy.sql import text
 # Adds a demo user, you can add other users here if you want
 def seed_shops():
     shop1 = Shop(
+<<<<<<< HEAD
         name='Galactic Outfitters',
         owner_id = 1,
         street_address = '123 Starship Blvd',
@@ -16,6 +17,19 @@ def seed_shops():
         sales = 100,
         policies = 'All sales are final for used or damaged equipment.'
         )
+=======
+            name='Galactic Outfitters',
+            owner_id = 1,
+            street_address = '123 Starship Blvd',
+            city = 'New Terra',
+            state = 'Zeta Quadrant',
+            country = 'Galactic Federation',
+            description = 'We sell the latest and greatest space gear for explorers and adventurers alike.',
+            category = 'Space Equipment',
+            sales = 100,
+            policies = 'We accept all major credit cards. Gift cards are coming soon. All sales are final for used or damaged equipment. We require payment in full before we can ship your order. If you are unhappy with your order please reach out and contact us, we might be able to arrange an exchange or store credit.'
+            )
+>>>>>>> dtest-follows
 
     shop2 = Shop(
             name='Intergalactic Cafe',
@@ -24,10 +38,17 @@ def seed_shops():
             city = 'Nova Station',
             state = 'Alpha Quadrant',
             country = 'Galactic Alliance',
+<<<<<<< HEAD
             description = 'We serve up the best coffee and snacks in the galaxy.',
             category = 'Cafe',
             sales = 50,
             policies = 'Refunds available for orders cancelled within 24 hours.'
+=======
+            description = 'We serve up the best coffee and snacks in the galaxy. Shipping is fast! We take pride in our work and strive to help you discover new organic flavors!',
+            category = 'Cafe',
+            sales = 50,
+            policies = 'We strive for 100 percent customer satisfaction. If you are unable with your order, please reach out to us with 14 days of receiving your roder to request a return or exchange. Items must be returned in mint condition with all packaging and tags.'
+>>>>>>> dtest-follows
             )
 
     shop3 = Shop(
@@ -40,13 +61,20 @@ def seed_shops():
             description = 'We design and create one-of-a-kind space fashion for the stylish space traveler.',
             category = 'Fashion',
             sales = 200,
+<<<<<<< HEAD
             policies = 'Custom orders are final sale and cannot be returned or exchanged.'
+=======
+            policies = 'We love to work on customer orders. Please contact us and let us know your vision, maybe we could collaborate! Please note that customer orders take longer to produce and will ship later than standard policies.'
+>>>>>>> dtest-follows
             )
 
     db.session.add_all([shop1, shop2, shop3])
     db.session.commit()
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> dtest-follows
 # Uses a raw SQL query to TRUNCATE or DELETE the users table. SQLAlchemy doesn't
 # have a built in function to do this. With postgres in production TRUNCATE
 # removes all the data from the table, and RESET IDENTITY resets the auto
@@ -55,8 +83,14 @@ def seed_shops():
 # it will reset the primary keys for you as well.
 def undo_shops():
     if environment == "production":
+<<<<<<< HEAD
         db.session.execute(f"TRUNCATE table {SCHEMA}.users RESTART IDENTITY CASCADE;")
     else:
         db.session.execute(text("DELETE FROM users"))
+=======
+        db.session.execute(f"TRUNCATE table {SCHEMA}.shops RESTART IDENTITY CASCADE;")
+    else:
+        db.session.execute(text("DELETE FROM shops"))
+>>>>>>> dtest-follows
 
     db.session.commit()

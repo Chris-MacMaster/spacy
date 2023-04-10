@@ -4,12 +4,15 @@ import { logout } from "../../store/session";
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
-
+import * as sessionActions from '../../store/session'
+import { NavLink, useHistory } from "react-router-dom";
+import './ProfileButton.css'
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
-
+  //when user logs out, redirected to homepage
+  const history = useHistory();
   const openMenu = () => {
     if (showMenu) return;
     setShowMenu(true);
@@ -24,32 +27,60 @@ function ProfileButton({ user }) {
       }
     };
 
-    document.addEventListener("click", closeMenu);
+    document.addEventListener('click', closeMenu);
 
     return () => document.removeEventListener("click", closeMenu);
   }, [showMenu]);
 
-  const handleLogout = (e) => {
+  const closeMenu = () => setShowMenu(false);
+
+  const logout = (e) => {
     e.preventDefault();
-    dispatch(logout());
+    dispatch(sessionActions.logout());
+    closeMenu();
+    //when user logs out, redirected to homepage
+    history.push('/')
   };
 
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
-  const closeMenu = () => setShowMenu(false);
 
   return (
     <>
+    <div className="profileburger">
       <button onClick={openMenu}>
         <i className="fas fa-user-circle" />
       </button>
-      <ul className={ulClassName} ref={ulRef}>
+    </div>
+      <div className={ulClassName} ref={ulRef}>
         {user ? (
           <>
-            <li>{user.username}</li>
-            <li>{user.email}</li>
-            <li>
-              <button onClick={handleLogout}>Log Out</button>
-            </li>
+          <div className="popout-profile-header">
+          <div>
+            <i className="fas fa-user-circle" />
+          </div>
+          <div>
+            <p>{user.firstName} {user.lastName}</p>
+            <p className="subtext">View your profile</p>
+          </div>
+          </div>
+            <p><i className="fa-solid fa-clipboard-list"></i>
+            Purchases and reviews</p>
+            <p><i className="fa-solid fa-gift"></i>
+              Gift card balance: $0.00</p>
+            <p><i className="fa-solid fa-message"></i>
+            Messages</p>
+            <p><i className="fa-solid fa-tag"></i>
+            Your offers</p>
+            <p><i className="fa-solid fa-leaf"></i>
+            Your impact</p>
+            <p><i className="fa-solid fa-gear"></i>
+            Account Settings</p>
+            <p><i className="fa-solid fa-store"></i>
+            Sell on Etsy</p>
+            {/* <p><NavLink exact to={`/currentuser`}>User Details</NavLink></p> */}
+            <p>
+              <button onClick={logout}><i className="fa-solid fa-right-from-bracket"></i>Sign Out</button>
+            </p>
           </>
         ) : (
           <>
@@ -58,7 +89,6 @@ function ProfileButton({ user }) {
               onItemClick={closeMenu}
               modalComponent={<LoginFormModal />}
             />
-
             <OpenModalButton
               buttonText="Sign Up"
               onItemClick={closeMenu}
@@ -66,7 +96,7 @@ function ProfileButton({ user }) {
             />
           </>
         )}
-      </ul>
+      </div>
     </>
   );
 }
