@@ -2,16 +2,19 @@ import { useEffect } from 'react'
 import './Landing.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchProducts } from '../../store/product'
+import { authenticate } from '../../store/session'
 function Landing({ isLoaded }) {
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(fetchProducts())
+        dispatch(authenticate())
     }, [dispatch])
-    const products = useSelector(state => state.allProducts)
-    console.log(products)
+    const products = useSelector(state => state)
+    const user = useSelector(state => state.session.user)
+    console.log(user)
     return (
         <div className='landing-div'>
-        { isLoaded ? <h1 className='welcome-title'>Incredible style and decor, plus one-of-a-kind gifts right this way</h1> : <h1 className='welcome-title'>Welcome back user firstname</h1>}
+        { !user ? <h1 className='welcome-title'>Incredible style and decor, plus one-of-a-kind gifts right this way</h1> : <h1 className='welcome-title'>Welcome back {user.firstName}</h1>}
         <div className='top-banner-suggest'>
             <div className='top-banner-suggestions'>
                 <div className='suggest-image-div'>
