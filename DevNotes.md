@@ -33,7 +33,5 @@ font-family: 'Orbitron', sans-serif;
 font-family: 'Special Elite', cursive;
 
 
-2 chriss are going to work on Product CRUD
-Dylan and Mark Carts
-
 -Chrism Product Details
+-ChrisL Products on Landing, backend routes
