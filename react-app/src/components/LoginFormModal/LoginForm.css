@@ -1,0 +1,11 @@
+.demo-user{
+    display: flex;
+    justify-content: center;
+}
+.demo-user * {
+    font-weight: 200;
+}
+
+.demo-user > form > button:hover {
+    color: green;
+}

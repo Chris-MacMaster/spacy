@@ -1,23 +1,6 @@
 from app.models import db, ProductReview, environment, SCHEMA
 from sqlalchemy.sql import text
 
-<<<<<<< HEAD
-
-# Adds a demo user, you can add other users here if you want
-def seedproduct_reviews():
-    demo = User(
-        username='Demo',
-        email='demo@aa.io',
-        password='password')
-
-
-    db.session.add(demo)
-    db.session.add(marnie)
-    db.session.add(bobbie)
-    db.session.commit()
-
-
-=======
 def seed_product_reviews():
     review01 = ProductReview(
         # shop and product tied to user 3, bill nye
@@ -121,7 +104,6 @@ def seed_product_reviews():
     db.session.add_all([review01, review02, review03, review04, review05, review06, review07, review08, review09, review10, review11, review12, review13, review14])
     db.session.commit()
 
->>>>>>> dtest-follows
 # Uses a raw SQL query to TRUNCATE or DELETE the users table. SQLAlchemy doesn't
 # have a built in function to do this. With postgres in production TRUNCATE
 # removes all the data from the table, and RESET IDENTITY resets the auto
@@ -130,14 +112,8 @@ def seed_product_reviews():
 # it will reset the primary keys for you as well.
 def undo_product_reviews():
     if environment == "production":
-<<<<<<< HEAD
-        db.session.execute(f"TRUNCATE table {SCHEMA}.users RESTART IDENTITY CASCADE;")
-    else:
-        db.session.execute(text("DELETE FROM users"))
-=======
         db.session.execute(f"TRUNCATE table {SCHEMA}.product_reviews RESTART IDENTITY CASCADE;")
     else:
         db.session.execute(text("DELETE FROM product_reviews"))
->>>>>>> dtest-follows
 
     db.session.commit()
