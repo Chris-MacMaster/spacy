@@ -43,23 +43,32 @@ function SearchResults() {
     const dispatch = useDispatch()
     console.log(parameters)
 
-    const [products, setProducts] = useState({})
+    // const [products, setProducts] = useState({})
+    const products = useSelector((state) => state.search.searchResults)
 
     // const searchResults = dispatch(getSearchResults(parameters))
 
     // console.log('searchResults', searchResults)
 
     useEffect(() => {
-        const searchResults = dispatch(getSearchResults(parameters))
-        console.log('search results', searchResults)
-        setProducts(searchResults)
+        dispatch(getSearchResults(parameters))
+        // console.log('search results', searchResults)
+        // setProducts(searchResults)
     }, [])
+    // useEffect(() =>  {
+    //     let searchResults;
+    //     async function search (parameters) {
+    //         searchResults = await dispatch(getSearchResults(parameters))
+    //     }
+    //     search(parameters)
+    //     // setloading(!loading)
+    // }, [])
 
-    if (Object.values(products).length < 1) {
-        return (
-            <h1>No Results</h1>
-        )
-    }
+    // if (Object.values(products).length < 1) {
+    //     return (
+    //         <h1>No Results</h1>
+    //     )
+    // }
 
     return (
         <>

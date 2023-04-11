@@ -31,8 +31,8 @@ def search(parameters):
         # for shop in shop_results:
         #         print('shop products', shop.products.to_dict())
 
-        products_results = db.session.query(Product).filter(or_(Product.name.like(f'%{parameters}%'),
-                                                                Product.category == parameters
+        products_results = db.session.query(Product).filter(or_(Product.name.ilike(f'%{parameters}%'),
+                                                                Product.category.ilike(parameters)
                                                                 )).all()
         
         list_1 = [product.to_dict() for product in products_results]

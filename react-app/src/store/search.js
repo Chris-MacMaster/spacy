@@ -23,12 +23,16 @@ const search = (currSearchResults) => {
 // }
 export const getSearchResults = (parameters) => async (dispatch) => {
     console.log('redux')
-    const res = await csrfFetch(`api/search/${parameters}`)
+    console.log('parameters',parameters)
+    // const res = await fetch(`api/search/${parameters}`)
+
+    const res = await fetch(`/api/search/${parameters}`)
     
     if (res.ok) {
         console.log('res ok')
         const currSearchResults = await res.json()
         await dispatch(search(currSearchResults))
+        return currSearchResults
     }
 }
 
