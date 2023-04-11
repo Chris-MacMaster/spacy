@@ -68,3 +68,9 @@ MONDAY
 -ChrisL Products on Landing, backend routes
 -Dylan Backend/Frontend Carts -currentuser Products
 -Marc Reviews/ Search -Page for search results, Reviews [CUD]
+
+TUESDAY
+-MacMaster forms
+-Marc Review & Follow Post/Update
+-Post/Delete Carts
+-Chris Shop Details & Landing
