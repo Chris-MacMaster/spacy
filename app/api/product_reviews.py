@@ -31,7 +31,19 @@ def get_reviews_of_product(product_id):
         review['ReviewImages'] = review_image(review['id'])
     return reviewcopy, 200
 
-@product_review_routes.route('/<int:review_id>')
+@product_review_routes.route('/<int:review_id>', methods=['DELETE'])
 @login_required
-def delete_review_by_id():
-    pass
+def delete_review_by_id(review_id):
+    """delete a review by id if the owner is signed in"""
+    if current_user.is_authenticated:
+        review = ProductReview.query.filter(ProductReview.id == review_id).first()
+        if review == None:
+            return { "error": "Review with specified ID does not exist."}
+        if review.user_id == current_user.id:
+            db.session.delete(review)
+            db.session.commit()
+            return review.to_dict()
+        elif review.user_id != current_user.id:
+            return {"error": "Only the owner of the review may delete it"}
+    else:
+        {"error": "Please sign in to delete a review"}

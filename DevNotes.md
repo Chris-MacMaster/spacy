@@ -7,7 +7,7 @@ Full CRUD
 --Shops
 ✅get all shops
 ✅get all of users shops
-✅create a shop
+🔲create a shop
 ✅delete a shop
 ✅get shop by id
 🔲update shop
@@ -25,7 +25,7 @@ Full CRUD
 ✅get all reviews
 ✅get reviews by id
 🔲create review
-🔲delete review
+✅delete review
 🔲update review
 
 --Cart
