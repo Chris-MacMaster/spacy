@@ -7,22 +7,6 @@ shop_routes = Blueprint('/shops', __name__)
 @shop_routes.route('/', methods=['GET', 'POST'])
 def get_all_shops():
     """returns all shops regardless of session"""
-<<<<<<< HEAD:app/api/shop_routes.py
-    print('Shops hit')
-    shops = Shop.query.all()
-    shopcopy = [shop.to_dict() for shop in shops]
-    def get_shop_images(id):
-        image = ShopImage.query.filter(ShopImage.shop_id == id).first()
-        print('================================',image)
-        return image.to_dict()
-    for shop in shopcopy:
-        # shopimage =
-        shop['ShopImage'] = get_shop_images(shop['id'])
-    # for shop in payload.values():
-    #     shop_image = get_shop_images(shop['id'])
-    #     shop['ShopImage'] = shop_image.to_dict()
-    return shopcopy, 200
-=======
     if request.method == 'GET':
         shops = Shop.query.all()
         print("SHOPS", shops)
@@ -80,6 +64,7 @@ def delete_one_shop(shop_id):
 
 @shop_routes.route('/<int:shop_id>')
 def get_shop_by_id(shop_id):
+    """view an individual shop by id"""
     shop = Shop.query.filter(Shop.id == shop_id).first()
     if shop:
         shopcopy = shop.to_dict()
@@ -122,4 +107,3 @@ def get_my_shops():
             else:
                 shop['ShopImage'] = 'shopImage not available'
         return shopcopy, 200
->>>>>>> dev:app/api/shops_routes.py
