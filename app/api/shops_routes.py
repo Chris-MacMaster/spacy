@@ -60,10 +60,17 @@ def delete_one_shop(shop_id):
             return shop.to_dict(), 200
         elif shop.owner_id != current_user.id:
             return {"error": "Only owner may delete thier own shop"}
-    
-    
-    
 
+
+@shop_routes.route('/<int:shop_id>')
+def get_shop_by_id(shop_id):
+    shop = Shop.query.filter(Shop.id == shop_id).first()
+    def get_shop_images(id):
+        image = ShopImage.query.filter(ShopImage.shop_id == id).first()
+        if image:
+            return image.to_dict()
+    shopcopy = shop.to_dict()
+    
 
 @shop_routes.route('/current')
 @login_required
@@ -84,5 +91,3 @@ def get_my_shops():
             else:
                 shop['ShopImage'] = 'shopImage not available'
         return shopcopy, 200
-
-
