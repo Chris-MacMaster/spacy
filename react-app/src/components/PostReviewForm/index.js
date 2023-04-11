@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory, useParams } from "react-router-dom";
 import { fetchOneProduct } from "../../store/product";
 import { createProductReview } from "../../store/review";
+import './ReviewForm.css'
 
 export default function PostReviewForm() {
     let product = useSelector((state) => state.products.singleProduct)
@@ -20,7 +21,8 @@ export default function PostReviewForm() {
     const handleSubmit = async (e) => {
         e.preventDefault()
 
-        const res = await dispatch(createProductReview(product.id, review, stars, user))
+        const res = await dispatch(createProductReview(product.id, review, stars))
+        console.log('res', res)
     }
 
     if (!user) {

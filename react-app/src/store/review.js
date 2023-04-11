@@ -27,6 +27,8 @@ export const fetchProductReviews = (productId) => async dispatch => {
 }
 
 export const createProductReview = (productId, review, stars) => async dispatch => {
+    console.log('thunk hit')
+    console.log(productId)
     const res = await fetch(`/api/product-reviews/${productId}/new`, {
         method: 'POST',
         headers: {"Content-Type": "application/json"},
@@ -37,8 +39,9 @@ export const createProductReview = (productId, review, stars) => async dispatch 
     })
 
     if (res.ok) {
-        let newReview = res.json()
-        dispatch(actionPostReview(newReview))
+        console.log('res ok')
+        let newReview = await res.json()
+        await dispatch(actionPostReview(newReview))
     }
 }
 
@@ -59,9 +62,12 @@ export default function reviewReducer(state = initialState, action) {
             return newState
         }
         case POST_REVIEW: {
+            console.log('reducer')
             const newState2 = {...state, productReviews: {...state.productReviews}}
             
             newState2.newReview = {...action.newReview}
+
+            console.log('newState2', newState2)
             
             return newState2
         }

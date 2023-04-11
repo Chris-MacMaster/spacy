@@ -59,15 +59,18 @@ def post_review(product_id):
 
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
+        print('validating')
         data = form.data
         new_review = ProductReview(
-            review = data.review,
+            review = data['review'],
             product_id = product_id,
             user_id = current_user.id,
-            stars = data.stars,
+            stars = data['stars'],
             created_at = datetime.now(),
             updated_at = None
         )
+
+        print('new review', new_review.to_dict())
 
         return {'New Review': new_review.to_dict()}
 
