@@ -1,4 +1,4 @@
-import { csrfFetch } from './csrf'
+// import { csrfFetch } from './csrf'
 const LOAD_PRODUCTS = "products/LOAD"
 
 const LOAD_PRODUCT = "product/LOAD"
