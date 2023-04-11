@@ -3,6 +3,7 @@ import './ShopDetails.css'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchOneShop, fetchShops } from '../../store/shops'
+import ShopProductCard from '../ShopProductCard'
 
 export default function ShopDetails () {
     const {shopId} = useParams()
@@ -11,9 +12,10 @@ export default function ShopDetails () {
         dispatch(fetchOneShop(shopId))
         dispatch(fetchShops())
     }, [dispatch])
-
     const shop = useSelector(state => state.shops.singleShop)
+    console.log('STATE OF SHOP', shop)
     if (!shop || !Object.entries(shop).length) return null
+
     return (
         <div className='shop-page'>
 
@@ -43,21 +45,42 @@ export default function ShopDetails () {
         </div>
         <div className='favorite-shop'>
         <i className="fa-regular fa-heart shop-heart"></i>Follow Shop</div>
+
             <div className='items-section'>
             <div className='item-category-sidebar'>
-                
+                <h3>Items</h3>
+                <div className='mapped-categories'>
+
+            {shop.Products.map((p, i) => (
+                <div className='category'>
+                <span className='category-list'
+                key={`catp${i}`}>{p.category}</span>
+                <span className='catgory-number'
+                key={`catn${i}`}>{Math.floor(Math.random()*100)}</span>
+
+                </div>
+            ))}
+            </div>
+            <div className='category-column-buttons'>
+
+            <button className='column-buttons'><i className="fa-solid fa-clipboard-list"></i> Request Custom Order</button>
+            <button className='column-buttons'><i className="fa-solid fa-message"></i> Contact shop owner</button>
+            </div>
             </div>
             <div className='item-card-display'>
                 <h3 className='featured-items'>Featured Items</h3>
                 <div className='item-cards'>
-
+                {shop.Products.map(product => (
+                    <ShopProductCard product={product}
+                    key={`product${product.id}`}/>
+                ))}
 
                 </div>
             </div>
             </div>
-
+            <hr></hr>
             <div className='review-section' >
-
+                <h3 className='review-title'>Reviews</h3>
             </div>
         </div>
     )

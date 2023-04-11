@@ -33,6 +33,7 @@
     font-family: 'Mulish', sans-serif;
     font-size: .8rem;
     max-width: 20rem;
+    margin-top: 3rem;
 }
 .fa-truck {
     color: rgb(130, 52, 149);
@@ -71,10 +72,70 @@
     margin-left: 10rem;
     box-shadow: 0rem 0rem .5rem lightslategray;
 }
-.featured-items {
+h3 {
     font-family: 'Mulish', sans-serif;
+}
 
+.featured-items {
+    margin-bottom: 0rem;
 }
 .item-category-sidebar {
+    font-family: 'Mulish', sans-serif;
+}
+.item-cards {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    max-width: 190rem;
+    gap: 1rem;
+    left: 16rem;
+}
+.item-category-sidebar{
+    width: 15rem;
+}
+.mapped-categories {
     border-right: solid .2rem grey;
+    padding-bottom: 1rem;
+}
+.catgory-number {
+    float: right;
+    margin-right: .5rem;
+}
+.category{
+    margin-top: 1rem;
+    transition: opacity 0.3s;
+    margin-left: 2rem;
+}
+.category::after {
+    border-bottom: none;
+}
+.category:hover {
+    border-bottom: solid .2rem grey;
+
+}
+.items-section{
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    margin-top: 3rem;
+}
+.column-buttons {
+    text-align: center;
+    width: 13rem;
+    border: solid .1rem grey;
+    margin: 1rem;
+    border-radius: .3rem;
+    transition: opacity 0.3s;
+}
+.column-buttons:hover {
+    background-color: grey;
+}
+.column-buttons::after {
+    background-color: none;
+}
+.category-column-buttons{
+    margin-top: 3rem;
+}
+hr {
+    margin: 2rem;
+    color: gray;
 }
