@@ -4,6 +4,8 @@ const LOAD_PRODUCTS = "products/LOAD"
 const LOAD_PRODUCT = "product/LOAD"
 const LOAD_USER_PRODUCTS = 'products/LOAD_USER_PRODUCTS'
 
+const POST_PRODUCT = "products/POST"
+
 
 
 //**Actions */
@@ -25,6 +27,13 @@ export const userProducts = products => ({
     type: LOAD_USER_PRODUCTS,
     payload: products
 })
+
+export const actionPostProduct = (product) => {
+    return {
+        type: POST_PRODUCT,
+        payload: product
+    }
+}
 //**Thunks */
 
 //PRODUCTS HOME PAGE
@@ -54,10 +63,36 @@ export const fetchUserProducts = () => async dispatch => {
     }
 }
 
+export const makeProduct = (productBody) => async dispatch => {
+    const { name, shop_id, description, category, available, free_shipping, price } = productBody
+    const method = "POST"
+    const headers = { "Content-Type" : "application/json"}
+    const body = JSON.stringify({
+        name,
+        shop_id,
+        description,
+        category,
+        available,
+        free_shipping,
+        price
+    })
+    const options = { method, headers, body }
+    const response = await fetch('', options)
+    const product = await response.json()
+
+    //testing
+    if (response.ok){
+        // make product image
+        return product
+        //so your backend has to return product
+    }
+
+}
+
 const initialState = {
     allProducts: {},
     singleProduct: {},
-    userProducts: {}
+    userProducts: {},
 }
 
 //**Reducer and Cases */
@@ -80,6 +115,11 @@ export default function productReducer(state = initialState, action) {
             const newState = {...state}
             console.log("FDASFDSAFAD", action.payload)
             newState.userProducts = action.payload
+            return newState
+        }
+        case POST_PRODUCT: {
+            const newState = { ...state }
+            newState.singleProduct = action.payload
             return newState
         }
         default: return state
