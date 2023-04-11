@@ -78,7 +78,7 @@ export default function reviewReducer(state = initialState, action) {
 
             console.log('revew id', action.newReview.id)
         
-            newState2.singleReviewPost[action.newReview.id] = {...action.newReview}
+            newState2.singleReviewPost[action.newReview.id] = {...action.newReview} 
 
             console.log('newState2', newState2)
             
