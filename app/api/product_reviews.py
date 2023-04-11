@@ -1,6 +1,7 @@
 from flask import Blueprint
 from app.models import db, Product, ProductReview, ReviewImage
 import copy
+from flask_login import current_user, login_required
 product_review_routes = Blueprint('/product-reviews', __name__)
 
 @product_review_routes.route('/')
@@ -29,3 +30,20 @@ def get_reviews_of_product(product_id):
     for review in reviewcopy:
         review['ReviewImages'] = review_image(review['id'])
     return reviewcopy, 200
+
+@product_review_routes.route('/<int:review_id>', methods=['DELETE'])
+@login_required
+def delete_review_by_id(review_id):
+    """delete a review by id if the owner is signed in"""
+    if current_user.is_authenticated:
+        review = ProductReview.query.filter(ProductReview.id == review_id).first()
+        if review == None:
+            return { "error": "Review with specified ID does not exist."}
+        if review.user_id == current_user.id:
+            db.session.delete(review)
+            db.session.commit()
+            return review.to_dict()
+        elif review.user_id != current_user.id:
+            return {"error": "Only the owner of the review may delete it"}
+    else:
+        {"error": "Please sign in to delete a review"}

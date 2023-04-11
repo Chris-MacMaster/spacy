@@ -1,6 +1,4 @@
-.landing-div{
-    /* margin-top: 8rem; */
-}
+
 .top-banner-suggest {
     display: flex;
     justify-content: space-between;
@@ -30,6 +28,11 @@ div.top-banner-suggestions > p {
     font-family: 'Marcellus', serif;
     font-weight: 200;
     text-align: center;
+}
+.by-etzy-header {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 .what-is-etzy > h1 {
     font-family: 'Marcellus', serif;

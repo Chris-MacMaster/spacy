@@ -49,6 +49,24 @@ def current_users_products():
 
     return '<h1>Please create an account</h1>'
 
+@product_routes.route('/<int:product_id>', methods=['DELETE'])
+@login_required
+def delete_product_by_id(product_id):
+    """delete a product by id only if the user is authenticated"""
+    if current_user.is_authenticated:
+        product = Product.query.filter(Product.id==product_id).first()
+        if product == None:
+            return {"error": "Product with that id does not exist"}
+        shop = Shop.query.filter(Shop.id==product.shop_id).first()
+
+        if shop.owner_id == current_user.id:
+            db.session.delete(product)
+            db.session.commit()
+            return product.to_dict(), 200
+        elif shop.owner_id != current_user.id:
+            return {"error": "Only the owner of a product may delete it."}
+    else:
+        {"error": "Please sign in to delete one of your products."}
 
 # add other details to response
 @product_routes.route('/<int:product_id>')
