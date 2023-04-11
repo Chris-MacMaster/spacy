@@ -9,7 +9,7 @@ import shopReducer from './shops';
 const rootReducer = combineReducers({
   session,
   products: productReducer,
-  search: searchs: productReducer,
+  search: searchReducer,
   shops: shopReducer
 });
 

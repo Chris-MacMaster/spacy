@@ -54,7 +54,7 @@ function SearchResults() {
         dispatch(getSearchResults(parameters))
         // console.log('search results', searchResults)
         // setProducts(searchResults)
-    }, [])
+    }, [products])
     // useEffect(() =>  {
     //     let searchResults;
     //     async function search (parameters) {
@@ -79,9 +79,9 @@ function SearchResults() {
                 <div>{product.name}</div>
                 {/* <div className="productRating">Stars: {product.avgRating}</div> */}
                 <div>
-                {new Array(Math.floor(product.avgRating)).fill(null).map(() => (
+                {product.avgRating ? new Array(Math.floor(product.avgRating)).fill(null).map(() => (
                     <i class="fas fa-star"/>
-                ))} {`(${product.reviews.length})`}
+                )): 'No Reviews'} {`(${product.reviews.length})`}
                 </div>
                 <div className="productPrice">${product.price}</div>
                 <div className="productSeller">Sold by: {product.shop.name}</div>

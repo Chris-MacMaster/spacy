@@ -1,7 +1,10 @@
-from flask import Blueprint
+from flask import Blueprint, request, render_template
 from app.models import db, Product, ProductReview, ReviewImage
 import copy
 from flask_login import current_user, login_required
+from datetime import datetime
+from app.forms.post_review import ReviewForm
+
 product_review_routes = Blueprint('/product-reviews', __name__)
 
 @product_review_routes.route('/')
@@ -47,3 +50,39 @@ def delete_review_by_id(review_id):
             return {"error": "Only the owner of the review may delete it"}
     else:
         {"error": "Please sign in to delete a review"}
+
+@product_review_routes.route('/<int:product_id>', methods=['GET', 'POST'])
+@login_required
+def post_review(product_id):
+    # declare form here
+    form = ReviewForm()
+
+    if form.validate_on_submit():
+        data = form.data
+        new_review = ProductReview(
+            review = data.review,
+            product_id = product_id,
+            user_id = current_user.id,
+            stars = data.stars,
+            created_at = datetime.now(),
+            updated_at = None
+        )
+
+        return {'New Review': new_review.to_dict()}
+
+
+    return render_template('post_review.html', form=form)
+
+@product_review_routes.route('/<int:review_id>', methods=['GET','PUT'])
+@login_required
+def edit_review(id):
+    """edit a product review"""
+    review_to_edit = ProductReview.query.filter(ProductReview.product_id == id and ProductReview.user_id == current_user.id).one()
+
+    review_to_edit['review'] = request.data['review']
+    review_to_edit['stars'] = request.data['stars']
+    review_to_edit['updated_at'] = datetime.now()
+
+    db.session.commit()
+
+    return review_to_edit.to_dict()
