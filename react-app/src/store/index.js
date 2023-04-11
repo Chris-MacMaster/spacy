@@ -9,7 +9,8 @@ import reviewReducer from './review';
 const rootReducer = combineReducers({
   session,
   products: productReducer,
-  reviews: reviewReducer
+  reviews: reviewReducer,
+  shops: shopReducer
 });
 
 

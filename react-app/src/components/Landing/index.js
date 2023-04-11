@@ -3,7 +3,7 @@ import './Landing.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchProducts } from '../../store/product'
 import { authenticate } from '../../store/session'
-import { fetchShops } from '../../store/shops'
+import { fetchOneShop, fetchShops } from '../../store/shops'
 import ProductCard from '../ProductCard'
 
 function Landing({ isLoaded }) {
@@ -12,11 +12,12 @@ function Landing({ isLoaded }) {
         dispatch(fetchProducts())
         dispatch(authenticate())
         dispatch(fetchShops())
+        dispatch(fetchOneShop(1))
     }, [dispatch])
     const products = useSelector(state => state.products.allProducts)
-    // const shops = useSelector(state => state)
+    const shops = useSelector(state => state)
     const user = useSelector(state => state.session.user)
-    console.log('STATE', products)
+    console.log('STATE', shops)
     if (!products) return null
     // const randomProduct = (products) => Object.values(products)[Math.floor(Math.random()*products.length-1)]
     // const product1 = randomProduct()
