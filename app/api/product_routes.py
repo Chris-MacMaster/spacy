@@ -56,7 +56,7 @@ def delete_product_by_id(product_id):
     if current_user.is_authenticated:
         product = Product.query.filter(Product.id==product_id).first()
         if product == None:
-            return {"error": "Product with that ID does not exist."}
+            return {"error": "Product with that id does not exist"}
         shop = Shop.query.filter(Shop.id==product.shop_id).first()
 
         if shop.owner_id == current_user.id:
