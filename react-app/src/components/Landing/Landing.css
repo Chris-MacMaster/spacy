@@ -29,6 +29,11 @@ div.top-banner-suggestions > p {
     font-weight: 200;
     text-align: center;
 }
+.by-etzy-header {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
 .what-is-etzy > h1 {
     font-family: 'Marcellus', serif;
     text-align: center;

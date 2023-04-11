@@ -7,11 +7,11 @@ import { fetchOneProduct } from '../../store/product';
 import { fetchProductReviews } from '../../store/review';
 import "./ProductDetail.css"
 
-const ProductDetail = () => {
+const ProductDetail = ({ productId }) => {
     const dispatch = useDispatch()
     const productState = useSelector(state => state.products)
 
-    let { productId } = useParams()
+    // let { productId } = useParams()
 
     useEffect(() => {
         dispatch(fetchOneProduct(productId))
