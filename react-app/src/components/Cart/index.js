@@ -19,7 +19,14 @@ export default function DisplayCart(){
         <div>
             <ul>
                 {cart.map(item => (
-                    <li key={item.id}>{item.name}</li>
+                    <li key={item.id}>
+                        <div>
+                            {item.name} {item.price}
+                        </div>
+                        <div>
+                        <img src={item.productImages[0]}/>
+                        </div>
+                    </li>
                 ))}
             </ul>
         </div>

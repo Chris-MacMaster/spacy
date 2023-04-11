@@ -22,7 +22,7 @@ export const fetchCart = () => async dispatch => {
     // console.log(res)
     if(response.ok) {
         const cart = await response.json()
-        console.log(cart)
+        console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~", cart)
         return dispatch(loadCart(cart))
     }
 }
@@ -35,7 +35,7 @@ export default function cartReducer(state = initialState, action) {
     switch(action.type){
         case LOAD_CART: {
             const newState = {...state}
-            console.log("!!!!!!!!!!!!!!!",action.cart)
+            // console.log("!!!!!!!!!!!!!!!",action.cart)
             newState.products = action.cart
             return newState
         }
