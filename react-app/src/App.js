@@ -12,6 +12,7 @@ import UserProducts from "./components/Products/UserProducts.js"
 
 import SearchResults from "./components/SearchResults";
 import ProductDetail from "./components/Products/ProductDetail";
+import PostReviewForm from "./components/PostReviewForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -37,6 +38,9 @@ function App() {
       </Route>
       <Route path='/products/:productId' exact={true}>
         <ProductDetail />
+      </Route>
+      <Route path='/product-reviews/:productId/new'>
+        <PostReviewForm />
       </Route>
     </Switch>
       {/* <Navigation isLoaded={isLoaded} />

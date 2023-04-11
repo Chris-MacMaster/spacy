@@ -51,12 +51,13 @@ def delete_review_by_id(review_id):
     else:
         {"error": "Please sign in to delete a review"}
 
-@product_review_routes.route('/<int:product_id>', methods=['GET', 'POST'])
+@product_review_routes.route('/<int:product_id>/new', methods=['POST'])
 @login_required
 def post_review(product_id):
     # declare form here
     form = ReviewForm()
 
+    form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         data = form.data
         new_review = ProductReview(
@@ -71,7 +72,7 @@ def post_review(product_id):
         return {'New Review': new_review.to_dict()}
 
 
-    return render_template('post_review.html', form=form)
+    return {'Error': 'Validation Error'}, 401
 
 @product_review_routes.route('/<int:review_id>', methods=['GET','PUT'])
 @login_required
