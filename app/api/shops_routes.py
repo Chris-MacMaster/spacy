@@ -64,6 +64,7 @@ def delete_one_shop(shop_id):
 
 @shop_routes.route('/<int:shop_id>')
 def get_shop_by_id(shop_id):
+    """view an individual shop by id"""
     shop = Shop.query.filter(Shop.id == shop_id).first()
     if shop:
         shopcopy = shop.to_dict()

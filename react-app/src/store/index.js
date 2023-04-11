@@ -6,11 +6,13 @@ import productReducer from './product';
 import cartReducer from './cart';
 import shopReducer from './shops';
 
+import reviewReducer from './review';
 const rootReducer = combineReducers({
   session,
   products: productReducer,
   cartReducer,
-  shops: shopReducer
+  shops: shopReducer,
+  reviews: reviewReducer
 });
 
 
