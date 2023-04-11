@@ -3,17 +3,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory, useParams } from "react-router-dom";
 import { fetchOneProduct } from "../../store/product";
 import { createProductReview, editReview, getOneReview } from "../../store/review";
-import './ReviewForm.css'
+import '../PostReviewForm/ReviewForm.css'
 
 function EditReviewForm() {
-    let reviewToEdit = useSelector((state) => state.reviews.singleReviewGet)
-
+    
     const dispatch = useDispatch()
     const {reviewId} = useParams()
-    
     useEffect(() => {
         dispatch(getOneReview(reviewId))
     }, [])
+    
+    let reviewToEdit = useSelector((state) => state.reviews.singleReviewGet)
+    console.log('edit review', reviewToEdit)
+
+    
 
     const [review, setReview] = useEffect(reviewToEdit.review || '')
     const [stars, setStars] = useEffect(reviewToEdit.stars || '')
@@ -36,7 +39,7 @@ function EditReviewForm() {
         <h1>Edit Review Form</h1>
         <form onSubmit={handleSubmit} className='wholeForm'>
             <div className='headerAndReview'>
-                <div className='topText'>{`How did you like ${product.name}?`}</div>
+                <div className='topText'>{`How did you like it?`}</div>
                 <textarea name='review' className='reviewText' value={review} onChange={(e) => setReview(e.target.value)}/>
             </div>
             <div>

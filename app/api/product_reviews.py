@@ -108,6 +108,10 @@ def get_review(review_id):
     review = ProductReview.query.filter(ProductReview.id == review_id).one()
     
     if review:
-        return {review.to_dict()}
+        review_dict = review.to_dict()
+        review_dict['product'] = review.products()
+        review = review_dict
+        print(review)
+        return {review}
     
     return {'Review Not Found'}, 404
