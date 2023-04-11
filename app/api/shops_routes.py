@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request, redirect
-from app.models import db, Product, Shop, ShopImage
+from app.models import db, Product, Shop, ShopImage, ProductImage
 from flask_login import current_user, login_required
 import copy
 shop_routes = Blueprint('/shops', __name__)
@@ -65,12 +65,27 @@ def delete_one_shop(shop_id):
 @shop_routes.route('/<int:shop_id>')
 def get_shop_by_id(shop_id):
     shop = Shop.query.filter(Shop.id == shop_id).first()
-    def get_shop_images(id):
-        image = ShopImage.query.filter(ShopImage.shop_id == id).first()
-        if image:
-            return image.to_dict()
-    shopcopy = shop.to_dict()
-    
+    if shop:
+        shopcopy = shop.to_dict()
+        def get_shop_images(id):
+            image = ShopImage.query.filter(ShopImage.shop_id == id).first()
+            if image:
+                return image.to_dict()
+
+        def shop_products(id):
+            products = Product.query.filter(Product.shop_id == id).all()
+            return [product.to_dict() for product in products]
+        def get_images(id):
+            images = ProductImage.query.filter(ProductImage.product_id == id).all()
+            return [image.to_dict() for image in images]
+        products = shop_products(shopcopy['id'])
+        for product in products:
+            product['ProductImages'] = get_images(product['id'])
+        shopcopy['ShopImages'] = get_shop_images(shopcopy['id'])
+        shopcopy['Products'] = products
+        return shopcopy, 200
+    else:
+        return {"error": "Shop by that id does not exist"}, 404
 
 @shop_routes.route('/current')
 @login_required

@@ -9,9 +9,9 @@ function Landing({ isLoaded }) {
         dispatch(fetchProducts())
         dispatch(authenticate())
     }, [dispatch])
-    const products = useSelector(state => state.productReducer.allProducts)
+    // const products = useSelector(state => state.productReducer.allProducts)
     const user = useSelector(state => state.session.user)
-    console.log('STATE', products)
+    // console.log('STATE', products)
     // const randomProduct = (products) => products[Math.random()*products.length]
     // const product1 = randomProduct()
     // const product2 = randomProduct()

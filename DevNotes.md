@@ -9,7 +9,7 @@ Full CRUD
 ✅get all of users shops
 ✅create a shop
 ✅delete a shop
-🔲get shop by id
+✅get shop by id
 🔲update shop
 
 
