@@ -53,13 +53,13 @@ def delete_one_shop(shop_id):
         shop = Shop.query.filter_by(id=shop_id).first()
         # cart_items = Cart.query.filter_by(user_id=current_user.id).all()
         if shop == None:
-            return {"error": "Cannot find Shop with specified id"}
+            return {"errors": "Cannot find Shop with specified id"}
         elif shop.owner_id == current_user.id:
             db.session.delete(shop)
             db.session.commit()
             return shop.to_dict(), 200
         elif shop.owner_id != current_user.id:
-            return {"error": "Only owner may delete thier own shop"}
+            return {"errors": "Only owner may delete their own shop"}
 
 
 @shop_routes.route('/<int:shop_id>')
@@ -85,7 +85,7 @@ def get_shop_by_id(shop_id):
         shopcopy['Products'] = products
         return shopcopy, 200
     else:
-        return {"error": "Shop by that id does not exist"}, 404
+        return {"errors": "Shop by that id does not exist"}, 404
 
 @shop_routes.route('/current')
 @login_required

@@ -1,6 +1,7 @@
 from flask import Blueprint
 from app.models import db, Product, ProductReview, ReviewImage
 import copy
+from flask_login import current_user, login_required
 product_review_routes = Blueprint('/product-reviews', __name__)
 
 @product_review_routes.route('/')
@@ -29,3 +30,8 @@ def get_reviews_of_product(product_id):
     for review in reviewcopy:
         review['ReviewImages'] = review_image(review['id'])
     return reviewcopy, 200
+
+@product_review_routes.route('/<int:review_id>')
+@login_required
+def delete_review_by_id():
+    pass

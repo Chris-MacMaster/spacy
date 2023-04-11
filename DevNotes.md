@@ -18,7 +18,7 @@ Full CRUD
 ✅get user products
 ✅get product by id
 🔲UPDATE PRODUCT
-🔲DELETE PRODUCT BY ID
+✅DELETE PRODUCT BY ID
 🔲CREATE PRODUCT
 
 --Reviews
