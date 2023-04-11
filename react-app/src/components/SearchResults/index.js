@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { getSearchResults } from "../../store/search"
 import { useLocation, useParams } from "react-router-dom"
 
-
+import './SearchResults.css'
 
 function SearchResults() {
     // const [products, setProducts] = useState({})
@@ -75,8 +75,16 @@ function SearchResults() {
         <h1>Results:</h1>
         {Object.values(products).map(product => (
             <div>
-                <div><img src={product.ProductImages[0].url}/></div>
-                <div>{product.price}</div>
+                <div><img style={{width: 300, height: 320}} src={product.ProductImages[0].url}/></div>
+                <div>{product.name}</div>
+                {/* <div className="productRating">Stars: {product.avgRating}</div> */}
+                <div>
+                {new Array(Math.floor(product.avgRating)).fill(null).map(() => (
+                    <i class="fas fa-star"/>
+                ))} {`(${product.reviews.length})`}
+                </div>
+                <div className="productPrice">${product.price}</div>
+                <div className="productSeller">Sold by: {product.shop.name}</div>
             </div>
         ))}
         </>

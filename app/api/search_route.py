@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from app.models import db, Product, Shop, User, ProductImage
+from app.models import db, Product, Shop, User, ProductImage, ProductReview
 from sqlalchemy import or_
 
 search_route = Blueprint('/search', __name__)
@@ -23,6 +23,10 @@ search_route = Blueprint('/search', __name__)
 def search(parameters):
         def get_images(id):
             return ProductImage.query.filter(ProductImage.product_id == id).all()
+        def get_reviews(id):
+            return ProductReview.query.filter(ProductReview.product_id == id).all()
+        def get_shop(id):
+              return Shop.query.filter(Shop.id == id).one()
         
         print(parameters)
 
@@ -35,7 +39,25 @@ def search(parameters):
                                                                 Product.category.ilike(parameters)
                                                                 )).all()
         
+        for product in products_results:
+            #   product['reviews'] = []
+            #   for review in product.product_reviews:
+            #         product['reviews'].append(review.to_dict())
+              print('reviews', len(product.product_reviews))
+              print('')
+              print('')
+              print('')
+              print('')
+              print('')
+              print('')
+              print('')
+              print('')
+              print('')
+              print('')
+
+
         list_1 = [product.to_dict() for product in products_results]
+
 
 
         list_2 = []
@@ -46,10 +68,28 @@ def search(parameters):
         for product in list_1:
             product_images = get_images(product['id'])
             product['ProductImages'] = [image.to_dict() for image in product_images]
+            
+            review_sum = 0
+            reviews = get_reviews(product['id'])
+            for review in reviews:
+                review_sum += review.stars
+                product['avgRating'] = round(review_sum / len(reviews), 1) if len(reviews) > 0 else 'New!'
+            product['reviews'] = [review.to_dict() for review in reviews]
+
+
+            shop = get_shop(product['shopId'])
+            product['shop'] = shop.to_dict()
 
         for product in list_2:
             product_images = get_images(product['id'])
             product['ProductImages'] = [image.to_dict() for image in product_images]
+
+            review_sum = 0
+            reviews = get_reviews(product['id'])
+            for review in reviews:
+                review_sum += review.stars
+                product['avgRating'] = round(review_sum / len(reviews), 1) if len(reviews) > 0 else 'New!'
+            product['reviews'] = [review.to_dict() for review in reviews]
 
 
         full_list = list_1 + list_2         
