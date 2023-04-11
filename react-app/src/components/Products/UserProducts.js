@@ -8,7 +8,7 @@ function UserProducts(){
     const dispatch = useDispatch();
     const [user, products] = useSelector(state => {
         console.log(state)
-        return [state.session.user, state.productReducer.userProducts]}
+        return [state.session.user, state.products.userProducts]}
         )
 
     useEffect(() => {
