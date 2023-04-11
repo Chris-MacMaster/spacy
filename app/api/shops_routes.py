@@ -93,6 +93,7 @@ def get_shop_by_id(shop_id):
             product['Reviews'] = get_reviews(product['id'])
             for r in product['Reviews']:
                 r['ReviewImages'] = review_image(r['id'])
+                r['Reviewer'] = get_owner(r['userId'])
         shopcopy['ShopImages'] = get_shop_images(shopcopy['id'])
         shopcopy['Products'] = products
         shopcopy['Owner'] = get_owner(shopcopy['ownerId'])

@@ -75,7 +75,6 @@ export default function ShopDetails () {
                     <ShopProductCard product={product}
                     key={`product${product.id}`}/>
                 ))}
-
                 </div>
             </div>
             </div>
@@ -86,10 +85,21 @@ export default function ShopDetails () {
                 <div className='mapping-reviews'>
                     {allReviews.map((r,i)=> (
                     <>
-                    
+                    <div className='review-header'
+                    key={`reviewdivheader${i}`}>
+
                     <img src='https://i.imgur.com/mMEwXsu.png' alt='usericon'
                     className='user-icon'></img>
-
+                    <p className='username'
+                    key={`username${i}`}>{r.Reviewer.firstName} on {r.createdAt.slice(0, -12)}</p>
+                    </div>
+                        {new Array(5).fill(1).map((s,j)=> (
+                            j <= r.stars ? (
+                                <i class="fa-solid fa-star gold-star"></i>
+                            ) : (
+                                <i class="fa-solid fa-star blank-star"></i>
+                            )
+                        ))}
                        <div className='iterated-review'
                        key={`div${i}`}>
                         {r.ReviewImages && r.ReviewImages.url ? (
@@ -102,6 +112,7 @@ export default function ShopDetails () {
                         <div className='product-reviewed'
                         key={`productreviewed${i}`}>
                             <img src={`${shop.Products.filter(p=>p.id===r.productId)[0].ProductImages[0].url}`}
+                            className='product-ref-img'
                             alt='productreviewed'
                             key={`productreviewedimg${i}`}></img>
                             <div className='reviewed-item'
