@@ -41,7 +41,8 @@ export const createProductReview = (productId, review, stars) => async dispatch 
     if (res.ok) {
         console.log('res ok')
         let newReview = await res.json()
-        await dispatch(actionPostReview(newReview))
+        console.log('newReview json', newReview)
+        dispatch(actionPostReview(newReview))
     }
 }
 
