@@ -2,17 +2,17 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory, useParams } from "react-router-dom";
 import { fetchOneProduct } from "../../store/product";
-import { createProductReview, getOneReview } from "../../store/review";
+import { createProductReview, editReview, getOneReview } from "../../store/review";
 import './ReviewForm.css'
 
 function EditReviewForm() {
-    reviewToEdit = useSelector((state) => state.reviews.singleReviewGet)
+    let reviewToEdit = useSelector((state) => state.reviews.singleReviewGet)
 
     const dispatch = useDispatch()
-    const {productId} = useParams()
+    const {reviewId} = useParams()
     
     useEffect(() => {
-        dispatch(getOneReview(productId))
+        dispatch(getOneReview(reviewId))
     }, [])
 
     const [review, setReview] = useEffect(reviewToEdit.review || '')
@@ -25,7 +25,11 @@ function EditReviewForm() {
         } 
     }, [reviewToEdit])
 
+    const handleSubmit = async (e) => {
+        e.preventDefault()
 
+        dispatch(editReview(reviewId))
+    }
 
     return (
         <>

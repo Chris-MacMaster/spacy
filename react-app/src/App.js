@@ -43,7 +43,7 @@ function App() {
       <Route path='/product-reviews/:productId/new'>
         <PostReviewForm />
       </Route>
-      <Route path='/product-reviews/:productId/edit'>
+      <Route path='/product-reviews/:reviewId/edit'>
         <EditReviewForm />
       </Route>
     </Switch>

@@ -83,27 +83,31 @@ def post_review(product_id):
 
     return {'Error': 'Validation Error'}, 401
 
-@product_review_routes.route('/<int:review_id>', methods=['GET','PUT'])
+@product_review_routes.route('/<int:review_id>', methods=['PUT'])
 @login_required
-def edit_review(id):
+def edit_review(review_id):
     """edit a product review"""
-    review_to_edit = ProductReview.query.filter(ProductReview.product_id == id and ProductReview.user_id == current_user.id).one()
+    review_to_edit = ProductReview.query.filter(ProductReview.product_id == review_id and ProductReview.user_id == current_user.id).one()
 
-    form = EditReviewForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
-    if form.validate_on_submit:
-        review_to_edit['review'] = request.data['review']
-        review_to_edit['stars'] = request.data['stars']
-        review_to_edit['updated_at'] = datetime.now()
-        db.session.commit()
-        return review_to_edit.to_dict()
-
-    return review_to_edit.to_dict()
+    if review_to_edit:
+        form = EditReviewForm()
+        form['csrf_token'].data = request.cookies['csrf_token']
+        if form.validate_on_submit:
+            review_to_edit['review'] = request.data['review']
+            review_to_edit['stars'] = request.data['stars']
+            review_to_edit['updated_at'] = datetime.now()
+            db.session.commit()
+            return review_to_edit.to_dict()
+        
+    return {'Review does not exist or user did not write this review'}
 
 
 @product_review_routes.route('/<int:review_id>')
 def get_review(review_id):
     """get a single review by id"""
     review = ProductReview.query.filter(ProductReview.id == review_id).one()
-
-    return {review.to_dict()}
+    
+    if review:
+        return {review.to_dict()}
+    
+    return {'Review Not Found'}, 404

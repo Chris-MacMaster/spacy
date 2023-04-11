@@ -1,6 +1,7 @@
 const LOAD_REVIEWS = "reviews/LOAD"
 const POST_REVIEW = 'reviews/POST'
 const LOAD_ONE_REVIEW = 'reviews/LOAD_ONE'
+const EDIT_REVIEW = 'reviews/EDIT'
 //**Actions */
 export const actionLoadReviews = (reviews) => {
     return {
@@ -20,6 +21,13 @@ export const actionPostReview = (newReview) => {
     return {
         type: POST_REVIEW,
         newReview
+    }
+}
+
+export const actionEditReview = (editedReview) => {
+    return {
+        type: EDIT_REVIEW,
+        editedReview
     }
 }
 //**Thunks */
@@ -68,6 +76,23 @@ export const getOneReview = (reviewId) => async dispatch => {
     }
 }
 
+export const editReview = (reviewId, review, stars) => async dispatch => {
+    const res = await fetch(`/api/product-reviews/${reviewId}/edit`, {
+        method: 'PUT',
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+            'review': review,
+            'stars': stars
+        })
+    })
+
+    if (res.ok) {
+        let editedReview = await res.json()
+        dispatch(actionEditReview(editedReview))
+    }
+}
+
+
 const initialState = {
     productReviews: {},
     singleReviewPost: {},
@@ -107,6 +132,14 @@ export default function reviewReducer(state = initialState, action) {
             newState3.singleReviewGet[action.review.id] = {...action.review}
 
             return newState3
+        }
+        case EDIT_REVIEW: {
+            const newState4 = {...state, productReviews: {...state.productReviews}, singleReviewPost: {...state.singleReviewPost}, singleReviewGet: {...state.singleReviewGet}}
+
+            newState4.editedReview = {}
+            newState4.editedReview[action.editedReview.id] = {...action.editedReview}
+
+            return newState4
         }
         default: return state
     }
