@@ -30,9 +30,11 @@ div.top-banner-suggestions > p {
     text-align: center;
 }
 .by-etzy-header {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    /* margin-top: 7rem; */
+    max-width: 60rem;
+    gap: .5rem
 }
 .what-is-etzy > h1 {
     font-family: 'Marcellus', serif;

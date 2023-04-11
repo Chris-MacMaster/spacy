@@ -1,0 +1,14 @@
+.shop-product-preview-image {
+    object-fit: cover;
+    height: 12em;
+    width: 14rem;
+    border-radius: .3rem;
+}
+.shop-product-card {
+    font-family: 'Mulish', sans-serif;
+    line-height: .5rem;
+    height: 16rem;
+}
+.shop-product-price {
+    font-weight: bolder;
+}

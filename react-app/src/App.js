@@ -10,6 +10,7 @@ import Landing from "./components/Landing";
 import ProductsIndex from "./components/Products/ProductsIndex.js";
 import UserProducts from "./components/Products/UserProducts.js"
 import ProductDetail from "./components/Products/ProductDetail";
+import ShopDetails from "./components/ShopDetails";
 import DisplayCart from './components/Cart'
 
 function App() {
@@ -33,6 +34,9 @@ function App() {
       </Route>
       <Route path='/products/:productId' exact={true}>
         <ProductDetail />
+      </Route>
+      <Route path='/shops/:shopId'>
+        <ShopDetails />
       </Route>
       <Route path='/cart' exact={true}>
         <DisplayCart />
