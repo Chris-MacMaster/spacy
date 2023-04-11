@@ -13,11 +13,13 @@ def get_all_reviews():
     reviews = ProductReview.query.all()
     reviewcopy = copy.deepcopy(reviews)
     def get_review_images(id):
-        return ReviewImage.query.filter(ProductReview.id == id).all()
+        images = ReviewImage.query.filter(ProductReview.id == id).all()
+        return [r.to_dict() for r in images]
     payload = { review.id: review.to_dict() for review in reviewcopy }
     for review in payload.values():
+
         review_image = get_review_images(review['id'])
-        review['ReviewImages'] = review_image.to_dict()
+        review['ReviewImages'] = get_review_images(review['id'])
     return { 'ProductReviews': payload }, 200
 
 @product_review_routes.route('/<int:product_id>')
@@ -69,6 +71,9 @@ def post_review(product_id):
             created_at = datetime.now(),
             updated_at = None
         )
+
+        db.session.add(new_review)
+        db.session.commit()
 
         print('new review', new_review.to_dict())
 

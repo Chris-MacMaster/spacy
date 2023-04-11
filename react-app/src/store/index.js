@@ -5,12 +5,15 @@ import session from './session'
 import productReducer from './product';
 import searchReducer from './search';
 import shopReducer from './shops';
+import reviewReducer from './review';
+
 
 const rootReducer = combineReducers({
   session,
   products: productReducer,
   search: searchReducer,
-  shops: shopReducer
+  shops: shopReducer,
+  reviews: reviewReducer
 });
 
 

@@ -26,6 +26,10 @@ export const fetchProductReviews = (productId) => async dispatch => {
     }
 }
 
+export const getAllReviews = () => async dispatch => {
+
+}
+
 export const createProductReview = (productId, review, stars) => async dispatch => {
     console.log('thunk hit')
     console.log(productId)
@@ -43,12 +47,14 @@ export const createProductReview = (productId, review, stars) => async dispatch 
         let newReview = await res.json()
         console.log('newReview json', newReview)
         dispatch(actionPostReview(newReview))
+        // return newReview
     }
 }
 
 
 const initialState = {
     productReviews: {},
+    singleReviewPost: {}
 }
 
 //**Reducer and Cases */
@@ -57,6 +63,8 @@ export default function reviewReducer(state = initialState, action) {
         case LOAD_REVIEWS: {
             let newState;
             newState = { ...state }
+            console.log('newState', newState)
+            console.log('payload', action.payload)
             newState.productReviews = action.payload
             // resets product details when going to allreviews page
 
@@ -64,9 +72,13 @@ export default function reviewReducer(state = initialState, action) {
         }
         case POST_REVIEW: {
             console.log('reducer')
-            const newState2 = {...state, productReviews: {...state.productReviews}}
-            
-            newState2.newReview = {...action.newReview}
+            // const newState2 = {}
+            const newState2 = {...state, productReviews: {...state.productReviews}, singleReviewPost: {...state.singleReviewPost}}
+
+
+            console.log('revew id', action.newReview.id)
+        
+            newState2.singleReviewPost[action.newReview.id] = {...action.newReview}
 
             console.log('newState2', newState2)
             
