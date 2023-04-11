@@ -86,7 +86,7 @@ def get_shop_by_id(shop_id):
             return [r.to_dict() for r in reviews]
         def review_image(review_id):
             review_image = ReviewImage.query.filter(ReviewImage.review_id==review_id).first()
-            review_image.to_dict() if review_image else None
+            return review_image.to_dict() if review_image else None
         products = shop_products(shopcopy['id'])
         for product in products:
             product['ProductImages'] = get_images(product['id'])

@@ -15,10 +15,11 @@ export default function ShopDetails () {
     const shop = useSelector(state => state.shops.singleShop)
     console.log('STATE OF SHOP', shop)
     if (!shop || !Object.entries(shop).length) return null
+    const allReviews = shop.Products.map(p=>p.Reviews).flat()
 
+    console.log('REVIEWS FOR ALL PRODUCTS', allReviews)
     return (
         <div className='shop-page'>
-
         <div className='shop-header'>
             <div className='shop-businesscard'>
             <img src={`${shop.ShopImages.url}`} alt='shoplogo' className='shoplogo'></img>
@@ -83,7 +84,45 @@ export default function ShopDetails () {
                 <h3 className='review-title'>Reviews</h3>
 
                 <div className='mapping-reviews'>
+                    {allReviews.map((r,i)=> (
+                    <>
                     
+                    <img src='https://i.imgur.com/mMEwXsu.png' alt='usericon'
+                    className='user-icon'></img>
+
+                       <div className='iterated-review'
+                       key={`div${i}`}>
+                        {r.ReviewImages && r.ReviewImages.url ? (
+                            <img className='review-image'
+                            src={`${r.ReviewImages.url}`}
+                            alt='reviewimg'
+                            key={`reviewimage${i}`}></img>
+                            ) : null}
+                        <p key={`review${i}`}>{r.review}</p>
+                        <div className='product-reviewed'
+                        key={`productreviewed${i}`}>
+                            <img src={`${shop.Products.filter(p=>p.id===r.productId)[0].ProductImages[0].url}`}
+                            alt='productreviewed'
+                            key={`productreviewedimg${i}`}></img>
+                            <div className='reviewed-item'
+                            key={`revieweditem${i}`}>{shop.Products.filter(p=>p.id === r.productId)[0].name}</div>
+                            </div>
+                       </div>
+                       <div className='feedback'
+                       key={`feedback${i}`}>
+                        <p className='helpful'
+                        key={`helpful${i}`}>
+                            <i className="fa-solid fa-thumbs-up"
+                            key={`thumb${i}`}></i>
+                        Is this review helpful?</p>
+                        <p className='report'
+                        key={`report${i}`}>
+                            <i className="fa-solid fa-flag"
+                            key={`flag${i}`}></i>
+                        Report this review</p></div>
+                        <hr key={`hr${i}`}></hr>
+                        </>
+                    ))}
                 </div>
             </div>
         </div>
