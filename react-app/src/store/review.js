@@ -19,8 +19,6 @@ export const fetchProductReviews = (productId) => async dispatch => {
     }
 }
 
-
-
 const initialState = {
     productReviews: {},
 }

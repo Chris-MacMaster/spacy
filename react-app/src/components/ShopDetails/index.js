@@ -81,6 +81,10 @@ export default function ShopDetails () {
             <hr></hr>
             <div className='review-section' >
                 <h3 className='review-title'>Reviews</h3>
+
+                <div className='mapping-reviews'>
+                    
+                </div>
             </div>
         </div>
     )
