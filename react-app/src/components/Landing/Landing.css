@@ -1,6 +1,4 @@
-.landing-div{
-    margin-top: 8rem;
-}
+
 .top-banner-suggest {
     display: flex;
     justify-content: space-between;
@@ -31,6 +29,11 @@ div.top-banner-suggestions > p {
     font-weight: 200;
     text-align: center;
 }
+.by-etzy-header {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
 .what-is-etzy > h1 {
     font-family: 'Marcellus', serif;
     text-align: center;
@@ -59,4 +62,7 @@ div.top-banner-suggestions > p {
 .what-is-etzy > h2 {
     text-align: center;
     font-family: 'Mulish', sans-serif;
+}
+.fa-question {
+    font-size: 1rem;
 }

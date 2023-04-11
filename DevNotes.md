@@ -5,15 +5,46 @@ Tables simplified
 
 Full CRUD
 --Shops
+✅get all shops
+✅get all of users shops
+🔲create a shop
+✅delete a shop
+✅get shop by id
+🔲update shop
+
+
 --Products
+✅get all products
+✅get user products
+✅get product by id
+🔲UPDATE PRODUCT
+✅DELETE PRODUCT BY ID
+🔲CREATE PRODUCT
+
 --Reviews
+✅get all reviews
+✅get reviews by id
+🔲create review
+✅delete review
+🔲update review
+
 --Cart
 
 Partial CRUD
 --Product Images [C]
+🔲Create Product image
+
 --Review Image [C]
+🔲Create Review Image
+
 --Shop Image [C]
+🔲Create shop Image
+
 --Followers [CRD]
+🔲Follow a user
+🔲unfollow user
+✅get following relationships
+
 
 Do we want to have a user page, where we view user data (shops, products)? Maybe something like the Manage Spots from AirBNB project?
 
@@ -34,9 +65,8 @@ font-family: 'Special Elite', cursive;
 <<<<<<< HEAD
 =======
 
-
-2 chriss are going to work on Product CRUD
-Dylan and Mark Carts
-
+MONDAY
 -Chrism Product Details
->>>>>>> dev
+-ChrisL Products on Landing, backend routes
+-Dylan Backend/Frontend Carts -currentuser Products
+-Marc Reviews/ Search -Page for search results, Reviews [CUD]

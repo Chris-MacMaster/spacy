@@ -2,16 +2,33 @@ import { useEffect } from 'react'
 import './Landing.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchProducts } from '../../store/product'
+import { authenticate } from '../../store/session'
+import { fetchShops } from '../../store/shops'
+import ProductCard from '../ProductCard'
+
 function Landing({ isLoaded }) {
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(fetchProducts())
+        dispatch(authenticate())
+        dispatch(fetchShops())
     }, [dispatch])
-    const products = useSelector(state => state.allProducts)
-    console.log(products)
+    const products = useSelector(state => state.products.allProducts)
+    // const shops = useSelector(state => state)
+    const user = useSelector(state => state.session.user)
+    console.log('STATE', products)
+    if (!products) return null
+    // const randomProduct = (products) => Object.values(products)[Math.floor(Math.random()*products.length-1)]
+    // const product1 = randomProduct()
+    // const product2 = randomProduct()
+    // const product3 = randomProduct()
+    // const product4 = randomProduct()
+    // const product5 = randomProduct()
+    // const product6 = randomProduct()
+    const data = Object.values(products).sort((a,b) => Date.parse(b.createdAt) - Date.parse(a.createdAt)).slice(0, 6)
     return (
         <div className='landing-div'>
-        { isLoaded ? <h1 className='welcome-title'>Incredible style and decor, plus one-of-a-kind gifts right this way</h1> : <h1 className='welcome-title'>Welcome back user firstname</h1>}
+        { !user ? <h1 className='welcome-title'>Incredible style and decor, plus one-of-a-kind gifts right this way</h1> : <h1 className='welcome-title'>Welcome back {user.firstName}</h1>}
         <div className='top-banner-suggest'>
             <div className='top-banner-suggestions'>
                 <div className='suggest-image-div'>
@@ -57,6 +74,42 @@ function Landing({ isLoaded }) {
                 className='suggest-image'></img>
                 </div>
                 <p>On Sale</p></div>
+            </div>
+
+            <div className='from-etzy-sellers'>
+                <div className='by-etsy-header'>
+                    <p className='sponsored'>Sponsored <i className="fa-solid fa-question"></i></p>
+                </div>
+
+                {data.map(product => (
+                    // <img src={`${product.ProductImages[0].url}`} />
+                product.ProductImages[0].url ? (<ProductCard product={product}
+                key={`${product.id}`}/>) : null
+
+
+                ))}
+                {/* <div className='etsy-seller-grid-products'>
+                    <img src={`${product2.ProductImages[0].url}`}
+                    alt='prod1'></img>
+                </div>
+                <div className='etsy-seller-grid-products'>
+                    <img src={`${product3.ProductImages[0].url}`}
+                    alt='prod1'></img>
+                </div>
+                <div className='etsy-seller-grid-products'>
+                    <img src={`${product4.ProductImages[0].url}`}
+                    alt='prod1'></img>
+                </div>
+                <div className='etsy-seller-grid-products'>
+                    <img src={`${product5.ProductImages[0].url}`}
+                    alt='prod1'></img>
+                </div>
+                <div className='etsy-seller-grid-products'>
+                    <img src={`${product6.ProductImages[0].url}`}
+                    alt='prod1'></img>
+                </div> */}
+
+                <div className='from-etzy-closing'>Fun fact: behind every sponsored item there is an intelligent lifeform hoping you'll check out their shop</div>
             </div>
 
             <div className='what-is-etzy'>

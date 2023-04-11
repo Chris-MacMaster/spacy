@@ -4,11 +4,13 @@ import session from './session'
 // import product from './product'
 import productReducer from './product';
 import searchReducer from './search';
+import shopReducer from './shops';
 
 const rootReducer = combineReducers({
   session,
   products: productReducer,
-  search: searchReducer
+  search: searchs: productReducer,
+  shops: shopReducer
 });
 
 

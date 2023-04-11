@@ -11,6 +11,7 @@ import ProductsIndex from "./components/Products/ProductsIndex.js";
 import UserProducts from "./components/Products/UserProducts.js"
 
 import SearchResults from "./components/SearchResults";
+import ProductDetail from "./components/Products/ProductDetail";
 
 function App() {
   const dispatch = useDispatch();
@@ -33,6 +34,9 @@ function App() {
       </Route>
       <Route path='/search/:parameters'>
         <SearchResults />
+      </Route>
+      <Route path='/products/:productId' exact={true}>
+        <ProductDetail />
       </Route>
     </Switch>
       {/* <Navigation isLoaded={isLoaded} />

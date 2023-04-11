@@ -24,14 +24,14 @@ class User(db.Model, UserMixin):
     shops = db.relationship('Shop', backref='users')
     product_reviews = db.relationship('ProductReview', backref='users')
 
-    followers = db.relationship(
-        'User',
-        secondary=FollowingUsers.__table__,
-        primaryjoin=(FollowingUsers.follower_id == id),
-        secondaryjoin=(FollowingUsers.followed_id == id),
-        backref=db.backref('following', lazy='dynamic'),
-        lazy='dynamic'
-    )
+    # followers = db.relationship(
+    #     'User',
+    #     secondary=FollowingUsers.__table__,
+    #     primaryjoin=(FollowingUsers.follower_id == id),
+    #     secondaryjoin=(FollowingUsers.followed_id == id),
+    #     backref=db.backref('following', lazy='dynamic'),
+    #     lazy='dynamic'
+    # )
     # this relationship allows you to access both the collectino of following_users
     # that follow a given user(with user.followers), and the collection
     # of users that a user follows (with user.following)

@@ -26,7 +26,7 @@ function Header({ isLoaded }) {
     return (
         <div className='header-container'>
         <div className='header'>
-        <Link to={`/`}><span className='logo'>etzy</span></Link>
+        <Link to={`/`}><span className='logo'>Spacey</span></Link>
 
         <div className='search-bar'>
 

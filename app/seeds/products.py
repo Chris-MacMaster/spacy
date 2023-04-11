@@ -13,6 +13,7 @@ def seed_products():
         )
 
     product2 = Product(
+        # item belongs to Carl Sagan
         shop_id='1',
         name='Rocket Backpack',
         description='A backpack shaped like a rocket ship, perfect for carrying all your space gear.',
@@ -23,6 +24,8 @@ def seed_products():
     )
 
     product3 = Product(
+                # item belongs to Carl Sagan
+
         shop_id='1',
         name='Planet Coasters',
         description='Set of 6 coasters featuring different planets of our solar system.',
@@ -33,6 +36,8 @@ def seed_products():
     )
 
     product4 = Product(
+                # item belongs to Carl Sagan
+
         shop_id='1',
         name='Astronaut Figurine',
         description='A highly detailed figurine of an astronaut in a space suit.',
@@ -43,6 +48,8 @@ def seed_products():
     )
 
     product5 = Product(
+                # item belongs to Carl Sagan
+
         shop_id='1',
         name='Solar System Poster',
         description='A beautiful poster featuring all the planets in our solar system.',
@@ -73,6 +80,8 @@ def seed_products():
     )
 
     product8 = Product(
+                # item belongs to Carl Sagan
+
         shop_id='1',
         name='Space Shuttle Model',
         description='A highly detailed model of the space shuttle, with all its parts and functions.',
