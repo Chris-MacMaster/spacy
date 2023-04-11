@@ -1,10 +1,18 @@
 const LOAD_REVIEWS = "reviews/LOAD"
 const POST_REVIEW = 'reviews/POST'
+const LOAD_ONE_REVIEW = 'reviews/LOAD_ONE'
 //**Actions */
 export const actionLoadReviews = (reviews) => {
     return {
         type: LOAD_REVIEWS,
         payload: reviews
+    }
+}
+
+export const actionLoadSingleReview = (review) => {
+    return {
+        type: LOAD_ONE_REVIEW,
+        review
     }
 }
 
@@ -51,10 +59,19 @@ export const createProductReview = (productId, review, stars) => async dispatch 
     }
 }
 
+export const getOneReview = (reviewId) => async dispatch => {
+    const res = await fetch(`/api/product-reviews/${reviewId}`)
+
+    if (res.ok) {
+        let review = await res.json()
+        dispatch(actionLoadSingleReview(review))
+    }
+}
 
 const initialState = {
     productReviews: {},
-    singleReviewPost: {}
+    singleReviewPost: {},
+    singleReviewGet: {}
 }
 
 //**Reducer and Cases */
@@ -73,7 +90,7 @@ export default function reviewReducer(state = initialState, action) {
         case POST_REVIEW: {
             console.log('reducer')
             // const newState2 = {}
-            const newState2 = {...state, productReviews: {...state.productReviews}, singleReviewPost: {...state.singleReviewPost}}
+            const newState2 = {...state, productReviews: {...state.productReviews}, singleReviewPost: {...state.singleReviewPost}, singleReviewGet: {...state.singleReviewGet}}
 
 
             console.log('revew id', action.newReview.id)
@@ -83,6 +100,13 @@ export default function reviewReducer(state = initialState, action) {
             console.log('newState2', newState2)
             
             return newState2
+        }
+        case LOAD_ONE_REVIEW: {
+            const newState3 = {...state, productReviews: {...state.productReviews}, singleReviewPost: {...state.singleReviewPost}, singleReviewGet: {...state.singleReviewGet}}
+
+            newState3.singleReviewGet[action.review.id] = {...action.review}
+
+            return newState3
         }
         default: return state
     }

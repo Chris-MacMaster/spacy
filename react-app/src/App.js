@@ -13,6 +13,7 @@ import UserProducts from "./components/Products/UserProducts.js"
 import SearchResults from "./components/SearchResults";
 import ProductDetail from "./components/Products/ProductDetail";
 import PostReviewForm from "./components/PostReviewForm";
+import EditReviewForm from './components/EditReviewForm'
 
 function App() {
   const dispatch = useDispatch();
@@ -41,6 +42,9 @@ function App() {
       </Route>
       <Route path='/product-reviews/:productId/new'>
         <PostReviewForm />
+      </Route>
+      <Route path='/product-reviews/:productId/edit'>
+        <EditReviewForm />
       </Route>
     </Switch>
       {/* <Navigation isLoaded={isLoaded} />
