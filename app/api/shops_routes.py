@@ -27,7 +27,7 @@ def get_all_shops():
         # shop = request.data
         # return shop
         print("REQUEST NAME ------------------", request)
-        # data = request.json
+        # data = request.get_json()
         new_shop = Shop(
             name = request.data['name'],
             owner_id = current_user.get_id(),

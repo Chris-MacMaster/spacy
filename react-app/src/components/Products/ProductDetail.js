@@ -6,6 +6,8 @@ import { useParams } from 'react-router-dom';
 import productReducer, { fetchOneProduct } from '../../store/product';
 import { fetchProductReviews } from '../../store/review';
 import ReviewIndexItem from '../Reviews/ReviewIndexItem';
+import AddToCart from '../Cart/AddToCart';
+
 import "./ProductDetail.css"
 
 const ProductDetail = () => {
@@ -35,7 +37,7 @@ const ProductDetail = () => {
 
                 <div className='product-grid-div-col-a'>
                     <div className='product-images-div'>
-                        
+
                         <p >(proudct images data placeholder...)</p>
                         <img src={product.ProductImages[0].url} alt='no found' />
                         {/* product.ProductImages[0].url */}
@@ -68,7 +70,7 @@ const ProductDetail = () => {
                         </div>
                     </div>
                     <div className='purchase-buttons'>
-                        <button className='button buy-it-button'>Buy it now</button>
+                        <AddToCart product={product}/>
                         <button className='button buy-it-button'>Buy it now</button>
 
                     </div>

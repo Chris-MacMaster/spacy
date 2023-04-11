@@ -24,7 +24,7 @@ export default function DisplayCart(){
                             {item.name} {item.price}
                         </div>
                         <div>
-                        <img src={item.productImages[0]}/>
+                        <img src={item.productImage}/>
                         </div>
                     </li>
                 ))}
