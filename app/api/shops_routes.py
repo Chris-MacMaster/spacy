@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request, redirect
-from app.models import db, Product, Shop, ShopImage, ProductImage
+from app.models import db, Product, Shop, ShopImage, ProductImage, User
 from flask_login import current_user, login_required
 import copy
 shop_routes = Blueprint('/shops', __name__)
@@ -72,7 +72,9 @@ def get_shop_by_id(shop_id):
             image = ShopImage.query.filter(ShopImage.shop_id == id).first()
             if image:
                 return image.to_dict()
-
+        def get_owner(id):
+            owner = User.query.filter(User.id == id).first()
+            return owner.to_dict()
         def shop_products(id):
             products = Product.query.filter(Product.shop_id == id).all()
             return [product.to_dict() for product in products]
@@ -84,6 +86,7 @@ def get_shop_by_id(shop_id):
             product['ProductImages'] = get_images(product['id'])
         shopcopy['ShopImages'] = get_shop_images(shopcopy['id'])
         shopcopy['Products'] = products
+        shopcopy['Owner'] = get_owner(shopcopy['ownerId'])
         return shopcopy, 200
     else:
         return {"errors": "Shop by that id does not exist"}, 404

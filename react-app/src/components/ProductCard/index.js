@@ -4,7 +4,7 @@ import './ProductCard.css'
 
 export default function ProductCard({ product }) {
     if (!product.ProductImages[0].url) return null
-    console.log('PRODUCT', product)
+    // console.log('PRODUCT', product)
     return (
         // <NavLink to={`/products/${product.id}`} component={ProductDetail}>
         <div className='product-card'>

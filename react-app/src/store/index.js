@@ -12,7 +12,8 @@ const rootReducer = combineReducers({
   products: productReducer,
   cartReducer,
   shops: shopReducer,
-  reviews: reviewReducer
+  reviews: reviewReducer,
+  shops: shopReducer
 });
 
 
