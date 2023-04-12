@@ -15,10 +15,9 @@ export default function DisplayCart(){
     useEffect(() =>{
         dispatch(fetchCart())
     },[dispatch, user])
-    console.log("!!!!fdsafdsa!!!", cart)
-    if(!Object.values(cart)) return <h2>You have no items in your cart, don't you want to buy something?</h2>
+    if(!Object.values(cart).length) return <h2>You have no items in your cart, don't you want to buy something?</h2>
 
-    // const itemsByStore = groupItemsByStore(cart)
+    const itemsByStore = groupItemsByStore(cart)
     // console.log( Object.values(itemsByStore))
     // for (const i of Object.values(itemsByStore)) console.log(typeof i)
     return (
