@@ -1,25 +1,32 @@
 import React, { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { fetchCart, } from "../../store/cart"
-import Select from 'react-select'
+import { fetchCart, editCartItemThunk } from "../../store/cart"
 
-export default function ChangeQuantity({cartId, quantity}){
-
+export default function ChangeQuantity({cartId, quantity, productId}){
+    const [user, itemProperty] = useSelector(state => [state.session.user])
+    const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatchEvent()
-    })
+        dispatch(fetchCart())
+    }, [dispatch])
 
     const options = []
-
-    for (i = 1; i < 200; i++){
+    for (let i = 1; i <= 200; i++){
         options.push({value: i})
     }
 
+    const func = updatedQuantity => {
+        dispatch(editCartItemThunk(cartId, updatedQuantity, user.id, productId))
+        dispatch(fetchCart()) //Only way I could get it to re-render without infinite rerender. :| I don't like it, and want to refactor it, but also want to move on and make more progress.
+    }
+
     return (
-
         <>
-
+            <select value={quantity} onChange={e => func(e.target.value)}>
+                {options.map(i => (
+                <option value={i.value}>{i.value}</option>
+                ))}
+            </select>
         </>
     )
 }

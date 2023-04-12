@@ -49,6 +49,24 @@ def return_cart():
         db.session.commit()
         return {"message": "Product removed from cart"}, 204
 
+    if request.method == "PUT":
+        print(request.get_json())
+        form = CartForm()
+        form['csrf_token'].data = request.cookies['csrf_token']
+        if form.validate_on_submit():
+            req_data = request.get_json()
+            print(req_data)
+            cart_id = request.get_json()["cart_id"]
+            new_quantity = form.data["quantity"]
+            cart_to_edit = Cart.query.get(cart_id)
+            print(cart_to_edit.quantity)
+            print(new_quantity)
+            cart_to_edit.quantity = new_quantity
+
+            print("~~~~~~~~~~~~", cart_to_edit.quantity)
+            db.session.commit()
+            return cart_to_edit.to_dict(), 200
+
     user_cart = Cart.query\
     .join(Product)\
     .filter(Cart.user_id == current_user.id).all()
