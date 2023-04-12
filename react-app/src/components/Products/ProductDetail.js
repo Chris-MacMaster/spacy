@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { useParams } from 'react-router-dom';
-import productReducer, { fetchOneProduct } from '../../store/product';
+import { fetchOneProduct } from '../../store/product';
 import { fetchProductReviews } from '../../store/review';
 import ReviewIndexItem from '../Reviews/ReviewIndexItem';
 import AddToCart from '../Cart/AddToCart';
@@ -18,6 +18,7 @@ const ProductDetail = () => {
     let { productId } = useParams()
 
     useEffect(() => {
+        console.log("TRIGGERED")
         dispatch(fetchOneProduct(productId))
         dispatch(fetchProductReviews(productId))
     }, [dispatch, productId])

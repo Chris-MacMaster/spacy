@@ -9,7 +9,7 @@ from app.forms.edit_review import EditReviewForm
 product_review_routes = Blueprint('/product-reviews', __name__)
 
 
-@product_review_routes.route('/<int:review_id>')
+@product_review_routes.route('/search/<int:review_id>')
 def get_review(review_id):
     """get a single review by id"""
     print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
@@ -38,7 +38,7 @@ def get_all_reviews():
 @product_review_routes.route('/<int:product_id>')
 def get_reviews_of_product(product_id):
     """returns one reviews of the specified productid"""
-
+    print('reviews back end here --------------------------')
     reviews = ProductReview.query.filter(ProductReview.product_id == product_id).all()
     def review_image(review_id):
         review_image = ReviewImage.query.filter(ReviewImage.review_id==review_id).first()
