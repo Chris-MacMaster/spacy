@@ -2,7 +2,7 @@ const LOAD_CART = 'cart/LOAD'
 const ADD_TO_CART = 'cart/ADD'
 const REMOVE_FROM_CART ='cart/REMOVE'
 const EDIT_QUANTITY = 'cart/QUANTITY'
-// const DELETE_CART = 'cart/DELETE'
+const DELETE_CART = 'cart/DELETE'
 
 //ACTIONS
 
@@ -27,6 +27,12 @@ export const removeFromCart = cart => {
     }
 }
 
+export const checkoutCart = cart => {
+    return {
+        type: DELETE_CART,
+        cart
+    }
+}
 export const editItemQuantity = cart => {
     return {
         type: EDIT_QUANTITY,
@@ -73,6 +79,15 @@ export const removeCartItemThunk = (cartId) => async dispatch => {
         return dispatch(removeFromCart(cartId))
     }
 }
+export const checkoutCartThunk = (cart) => async dispatch => {
+    const response = await fetch('/api/cart/empty', {
+        method: 'DELETE',
+        headers: {"Content-Type": "application/json"},
+    })
+    if (response.ok){
+        return dispatch(checkoutCart(cart))
+    }
+}
 
 export const editCartItemThunk = (cartId, quantity, userId, productId) =>  async dispatch =>{
     console.log('PUTPUTPUTPUTPUT', cartId, quantity)
@@ -97,6 +112,7 @@ const initialState = {
 
 export default function cartReducer(state = initialState, action) {
     const newState = {...state}
+    newState.products = {...state.products}
     switch(action.type){
         case LOAD_CART: {
             // console.log("!!!!!!!!!!!!!!!",action.cart)
@@ -112,8 +128,11 @@ export default function cartReducer(state = initialState, action) {
             delete newState.products[action.cart]
             return newState
         }
+        case DELETE_CART :{
+            newState.products = {}
+            return newState
+        }
         case EDIT_QUANTITY : {
-            console.log("$#!@$#@!,", action.cart)
             newState[action.cart.id] = action.cart
             return newState
         }

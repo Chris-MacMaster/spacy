@@ -1,12 +1,8 @@
 // import { csrfFetch } from './csrf'
 const LOAD_PRODUCTS = "products/LOAD"
-
 const LOAD_PRODUCT = "product/LOAD"
 const LOAD_USER_PRODUCTS = 'products/LOAD_USER_PRODUCTS'
-
 const POST_PRODUCT = "products/POST"
-
-
 
 //**Actions */
 export const actionLoadProducts = (products) => {

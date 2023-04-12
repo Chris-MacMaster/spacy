@@ -5,15 +5,37 @@ from app.forms import CartForm, SignUpForm
 
 cart_routes = Blueprint('/cart', __name__)
 
+@cart_routes.route('/empty', methods=['DELETE'])
+def checkout():
+    pass
+    # send user id and delete all carts associated with that id.
+    #
+    carts_to_delete = Cart.query.filter(Cart.user_id == current_user.id).all()
+    for i in carts_to_delete:
+        db.session.delete(i)
+    db.session.commit()
+    return {"message": "Checkout Complete"}, 204
+    #
+    #
 
+    # req_data = request.get_json()
+    # cart_id = req_data["cart_id"]
+    # print(cart_id)
+    # item_to_delete = Cart.query.get(cart_id)
+    # print(item_to_delete)
+    # db.session.delete(item_to_delete)
+    # db.session.commit()
+    # return {"message": "Product removed from cart"}, 204
 
 @cart_routes.route('/', methods=['GET','POST', 'PUT', 'DELETE'])
 # @login_required
 def return_cart():
     """
-    Query for all products associated with the user's cart and returns them in a list of dictionaries
+    Allows Users to get their current cart, add items to cart, delete items
     """
-    # form = CartForm()
+
+    if current_user.is_anonymous:
+        return {}, 200
 
     if request.method == "POST":
         form = CartForm()
@@ -55,15 +77,10 @@ def return_cart():
         form['csrf_token'].data = request.cookies['csrf_token']
         if form.validate_on_submit():
             req_data = request.get_json()
-            print(req_data)
             cart_id = request.get_json()["cart_id"]
             new_quantity = form.data["quantity"]
             cart_to_edit = Cart.query.get(cart_id)
-            print(cart_to_edit.quantity)
-            print(new_quantity)
             cart_to_edit.quantity = new_quantity
-
-            print("~~~~~~~~~~~~", cart_to_edit.quantity)
             db.session.commit()
             return cart_to_edit.to_dict(), 200
 
