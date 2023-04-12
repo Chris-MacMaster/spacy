@@ -11,6 +11,7 @@ import ProductsIndex from "./components/Products/ProductsIndex.js";
 import UserProducts from "./components/Products/UserProducts.js"
 import ProductDetail from "./components/Products/ProductDetail";
 import ReviewForm from "./components/Forms/ProductCreate";
+import ShopDetails from "./components/ShopDetails";
 
 function App() {
   const dispatch = useDispatch();
@@ -23,8 +24,7 @@ function App() {
     <>
     <Header isLoaded={isLoaded} />
     <Switch>
-      <Route path='/' component={Landing} isLoaded={isLoaded} exact={true}>
-      </Route>
+      <Route path='/' component={Landing} isLoaded={isLoaded} exact={true} />
       <Route path='/products' exact={true}>
         <ProductsIndex />
       </Route>
@@ -36,6 +36,8 @@ function App() {
       </Route>
       <Route path='/products/forms/create-product' exact={true}>
         <ReviewForm />
+      </Route>
+      <Route path='/shops/:shopId' exact={true} component={ShopDetails}>
       </Route>
     </Switch>
       {/* <Navigation isLoaded={isLoaded} />
