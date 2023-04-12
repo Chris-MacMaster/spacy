@@ -58,8 +58,8 @@ export default function ShopDetails () {
                 <p><i className="fa-solid fa-message"></i> Contact</p>
             </div>
         </div>
-        <div className='favorite-shop'>
-        <i className="fa-regular fa-heart shop-heart"></i>Follow Shop</div>
+        <button className='favorite-shop'>
+        <i className="fa-regular fa-heart shop-heart"></i>Follow Shop</button>
 
             <div className='items-section'>
             <div className='item-category-sidebar'>

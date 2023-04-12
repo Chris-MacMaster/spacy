@@ -31,12 +31,12 @@ function Header({ isLoaded }) {
         <div className='search-bar'>
 
         <form onSubmit={handleSubmit}>
-        <input className='header-search' type='text' value={parameters}
+        <input className='header-search' id='header-search' type='text' value={parameters}
         onChange={(e) => setParameters(e.target.value)}
         placeholder='Search for anything in the universe'></input>
         </form>
 
-        
+
         <div className='telescope-search'>
         <i className="fa-solid fa-magnifying-glass"></i>
 
