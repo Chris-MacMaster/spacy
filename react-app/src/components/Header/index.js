@@ -17,9 +17,10 @@ function Header({ isLoaded }) {
         placeholder='Search for anything in the universe'></input>
         <div className='telescope-search'>
         <i className="fa-solid fa-magnifying-glass"></i>
-        </div>
-        </div>
 
+        </div>
+        </div>
+        <div className='shop-manager'><i className="fa-solid fa-store"></i></div>
         <Navigation isLoaded={isLoaded} />
             {isLoaded && (
                 <Switch>
