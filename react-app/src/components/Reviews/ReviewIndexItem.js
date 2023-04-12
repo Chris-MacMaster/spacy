@@ -25,14 +25,20 @@ const ReviewIndexItem = ({ review }) => {
                     </div>
                     
                     <div className='rev-author-info'>
-                        {review.userId} (review author id, for author name)
-                        {review.createdAt} (needs formatting)
+                        {review.userId} 
+                        {review.createdAt} 
+                        {/* (review author id, for author name) */}
+                        {/* (needs formatting) */}
                     </div>
                 </div>
                 <div className='rev-col-b'>
+                    {review.ReviewImages ? 
+                    
                     <div className='rev-img'>
                         <img src={review.ReviewImages.url} alt='not loaded' />
                     </div>
+                    
+                    : ''}
                 </div>
             </div>
         </li>

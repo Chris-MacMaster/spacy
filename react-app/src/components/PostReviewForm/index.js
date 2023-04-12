@@ -34,13 +34,15 @@ export default function PostReviewForm() {
     return (
         <>
         <h1>Review Form</h1>
+        <div className="formParent">
         <form onSubmit={handleSubmit} className='wholeForm'>
             <div className='headerAndReview'>
-                <div className='topText'>{`How did you like ${product.name}?`}</div>
-                <textarea name='review' className='reviewText' value={review} onChange={(e) => setReview(e.target.value)}/>
+                <div className='productPic'>
+                    <img src={product.ProductImages[0].url}/>
+                    <p>{product.name}</p>
+                </div>
             </div>
             <div>
-                Stars
                 <div className="rate">
                   <input type="radio" id="star5" name="rate" value='5' onChange={(e) => setStars(Number(e.target.value))} />
                   <label htmlFor="star5" title="text">5 stars</label>
@@ -54,10 +56,14 @@ export default function PostReviewForm() {
                   <label htmlFor="star1" title="text">1 star</label>
                 </div>
             </div>
+            <div>
+                <textarea name='review' className='reviewText' value={review} onChange={(e) => setReview(e.target.value)}/>
+            </div>
             <div className='submitButtonParent'>
                 <button type='submit' className='submitButton' disabled={review.length < 10 || stars < 1}>Submit Your Review</button>
             </div>
         </form>
+        </div>
         </>
     )
 }

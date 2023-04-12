@@ -70,7 +70,7 @@ export const createProductReview = (productId, review, stars) => async dispatch 
 
 export const getOneReview = (reviewId) => async dispatch => {
     console.log('thunk hit')
-    const res = await fetch(`/api/product-reviews/${reviewId}`)
+    const res = await fetch(`/api/product-reviews/search/${reviewId}`)
 
     if (res.ok) {
         console.log('res ok')

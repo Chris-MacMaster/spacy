@@ -46,7 +46,8 @@ def get_reviews_of_product(product_id):
     reviews = ProductReview.query.filter(ProductReview.product_id == product_id).all()
     def review_image(review_id):
         review_image = ReviewImage.query.filter(ReviewImage.review_id==review_id).first()
-        return review_image.to_dict()
+        if review_image:
+            return review_image.to_dict()
 
     reviewcopy = [review.to_dict() for review in reviews]
     for review in reviewcopy:
