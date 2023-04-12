@@ -13,25 +13,26 @@ function EditReviewForm() {
         dispatch(getOneReview(reviewId))
     }, [])
     
-    let reviewToEdit = useSelector((state) => state.reviews.singleReviewGet['32'])
-    console.log('edit review', reviewToEdit)
+    let reviewToEdit = useSelector((state) => state.reviews.singleReviewGet)
+    // console.log('edit review', reviewToEdit)
 
-    
 
     const [review, setReview] = useState(reviewToEdit.review)
     const [stars, setStars] = useState(reviewToEdit.stars)
 
-    console.log('review value',review)
+    // console.log('review value',review)
 
     useEffect(() => {
-        setReview(reviewToEdit.review)
-        setStars(reviewToEdit.stars)
+        if (Object.values(reviewToEdit).length) {
+            setReview(reviewToEdit.review)
+            setStars(reviewToEdit.stars)
+        }
     }, [reviewToEdit])
 
     const handleSubmit = async (e) => {
         e.preventDefault()
 
-        dispatch(editReview(reviewId. review, stars))
+        dispatch(editReview(reviewId, review, stars))
     }
 
     return (

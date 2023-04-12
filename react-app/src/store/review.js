@@ -132,7 +132,7 @@ export default function reviewReducer(state = initialState, action) {
         case LOAD_ONE_REVIEW: {
             const newState3 = {...state, productReviews: {...state.productReviews}, singleReviewPost: {...state.singleReviewPost}, singleReviewGet: {...state.singleReviewGet}}
 
-            newState3.singleReviewGet[action.review.id] = {...action.review}
+            newState3.singleReviewGet = {...action.review}
 
             return newState3
         }

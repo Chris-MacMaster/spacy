@@ -102,10 +102,11 @@ def post_review(product_id):
 def edit_review(review_id):
     """edit a product review"""
     review_to_edit = ProductReview.query.filter(ProductReview.product_id == review_id and ProductReview.user_id == current_user.id).one()
+    
+    form = EditReviewForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
 
     if review_to_edit:
-        form = EditReviewForm()
-        form['csrf_token'].data = request.cookies['csrf_token']
         if form.validate_on_submit:
             review_to_edit['review'] = request.data['review']
             review_to_edit['stars'] = request.data['stars']
