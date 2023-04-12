@@ -140,7 +140,7 @@ export default function reviewReducer(state = initialState, action) {
             const newState4 = {...state, productReviews: {...state.productReviews}, singleReviewPost: {...state.singleReviewPost}, singleReviewGet: {...state.singleReviewGet}}
 
             newState4.editedReview = {}
-            newState4.editedReview[action.editedReview.id] = {...action.editedReview}
+            newState4.editedReview = {...action.editedReview}
 
             return newState4
         }
