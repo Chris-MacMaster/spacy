@@ -15,7 +15,7 @@
 .shop-card-logo {
     width: 3rem;
     height: 3rem;
-    border-radius: 2rem;
+    border-radius: .4rem;
     margin-left: .5rem;
     margin-top: 1rem;
 }
@@ -34,6 +34,7 @@
 .landing-shop-stars {
     font-size: .6rem;
     margin: 0rem;
+    padding:0rem;
 }
 .shop-card-heart {
     align-items: end;

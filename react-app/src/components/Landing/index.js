@@ -77,13 +77,13 @@ function Landing({ isLoaded }) {
                     <p className='sponsored'>Sponsored <i className="fa-solid fa-question"></i></p>
                 </div>
 
-                {data.map(product => (
+                {/* {data.map(product => (
                     // <img src={`${product.ProductImages[0].url}`} />
                 product.ProductImages[0].url ? (<ProductCard product={product}
                 key={`${product.id}`}/>) : null
 
 
-                ))}
+                ))} */}
 
                 <div className='from-etzy-closing'>Fun fact: behind every sponsored item there is an intelligent lifeform hoping you'll check out their shop</div>
             </div>
@@ -95,7 +95,7 @@ function Landing({ isLoaded }) {
                 </div>
 
                 {shops.allShops && shops.allShops[0] ? ( Object.values(shops.allShops).map(s=> (<ShopCard shop={s} />) )) : null }
-                
+
             </div>
             <div className='what-is-etzy'>
                 <h1>What is Spacey</h1>
