@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react"
+import React, { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { fetchCart, editCartItemThunk } from "../../store/cart"
 
 export default function ChangeQuantity({cartId, quantity, productId}){
-    const [user, itemProperty] = useSelector(state => [state.session.user])
+    const user = useSelector(state => state.session.user)
     const dispatch = useDispatch()
 
     useEffect(() => {

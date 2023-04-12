@@ -30,7 +30,7 @@ export default function DisplayCart(){
                         <RemoveItemButton cartId={cart[i].id}/>
                         </div>
                         <div>
-                        <img src={product.productImage}/>
+                        <img src={product.productImage} alt='preview'/>
                         </div>
                     </li>
                 ))}

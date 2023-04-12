@@ -38,7 +38,7 @@ function App() {
       <Route path='/products/forms/create-product' exact={true}>
         <ReviewForm />
       </Route>
-      <Route path='/cart'>
+      <Route path='/cart' exact={true}>
         <DisplayCart/>
       </Route>
       <Route path='/shops/:shopId' exact={true} component={ShopDetails}>
