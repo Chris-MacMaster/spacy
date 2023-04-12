@@ -9,18 +9,18 @@ function EditReviewForm() {
     
     const dispatch = useDispatch()
     const {reviewId} = useParams()
+    
+    let reviewToEdit = useSelector((state) => state.reviews.singleReviewGet)
     useEffect(() => {
         dispatch(getOneReview(reviewId))
     }, [])
-    
-    let reviewToEdit = useSelector((state) => state.reviews.singleReviewGet)
-    // console.log('edit review', reviewToEdit)
+    console.log('edit review', reviewToEdit)
 
 
-    const [review, setReview] = useState(reviewToEdit.review)
-    const [stars, setStars] = useState(reviewToEdit.stars)
+    const [review, setReview] = useState(reviewToEdit.review || '')
+    const [stars, setStars] = useState(reviewToEdit.stars || '')
 
-    // console.log('review value',review)
+    console.log('review value',review)
 
     useEffect(() => {
         if (Object.values(reviewToEdit).length) {
@@ -35,12 +35,14 @@ function EditReviewForm() {
         dispatch(editReview(reviewId, review, stars))
     }
 
+    if (!Object.values(reviewToEdit).length) return null
+
     return (
         <>
         <h1>Edit Review Form</h1>
         <form onSubmit={handleSubmit} className='wholeForm'>
             <div className='headerAndReview'>
-                <div className='topText'>{`Edit your review`}</div>
+                <div className='topText'>{`Edit your review of ${reviewToEdit.product.name}`}</div>
                 <textarea name='review' className='reviewText' value={review} onChange={(e) => setReview(e.target.value)}/>
             </div>
             <div>
@@ -59,7 +61,7 @@ function EditReviewForm() {
                 </div>
             </div>
             <div className='submitButtonParent'>
-                <button type='submit' className='submitButton'>Submit Your Review</button>
+                <button type='submit' className='submitButton' disabled={review.length < 10 || stars < 1}>Submit Your Review</button>
             </div>
         </form>
         </>

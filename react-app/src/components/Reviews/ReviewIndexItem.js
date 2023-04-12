@@ -1,17 +1,23 @@
 import React from 'react';
 import './ReviewIndexItem.css'
-
-// import { useDispatch } from "react-redux"
+import { useSelector } from 'react-redux';
+import { deleteReview } from '../../store/review';
+import { useDispatch } from "react-redux"
+import OpenModalButton from '../OpenModalButton'
 // import { useHistory } from 'react-router-dom';
+
+import DeleteReviewModal from '../DeleteReviewModal/DeleteReview';
 
 const ReviewIndexItem = ({ review }) => {
     // const history = useHistory()
-    // const dispatch = useDispatch()
+    const dispatch = useDispatch()
+    let user = useSelector((state) => state.session.user)
 
     const handleClick = (e) => {
         e.preventDefault()
 
     }
+
 
     return (
         <li onClick={handleClick} className='reviewIndexItem'>
@@ -25,14 +31,23 @@ const ReviewIndexItem = ({ review }) => {
                     </div>
                     
                     <div className='rev-author-info'>
-                        {review.userId} (review author id, for author name)
-                        {review.createdAt} (needs formatting)
+                        {review.userId} 
+                        {review.createdAt} 
+                        {/* (review author id, for author name) */}
+                        {/* (needs formatting) */}
                     </div>
+                {user && review.userId == user.id ? 
+                <OpenModalButton modalComponent={<DeleteReviewModal reviewId={review.id}/>} buttonText={'Delete'}/>
+                : ''}
                 </div>
                 <div className='rev-col-b'>
+                    {review.ReviewImages ? 
+                    
                     <div className='rev-img'>
                         <img src={review.ReviewImages.url} alt='not loaded' />
                     </div>
+                    
+                    : ''}
                 </div>
             </div>
         </li>

@@ -16,7 +16,11 @@ def get_review(review_id):
     review = ProductReview.query.filter(ProductReview.id == review_id).one()
     print(review.to_dict())
     if review:
-        return review.to_dict()
+        product = Product.query.get(review.product_id)
+        review_dict = review.to_dict()
+        review_dict['product'] = product.to_dict()
+        print('Review Product', review_dict)
+        return review_dict
     
     return {'Review Not Found'}, 404
 
@@ -42,14 +46,15 @@ def get_reviews_of_product(product_id):
     reviews = ProductReview.query.filter(ProductReview.product_id == product_id).all()
     def review_image(review_id):
         review_image = ReviewImage.query.filter(ReviewImage.review_id==review_id).first()
-        return review_image.to_dict()
+        if review_image:
+            return review_image.to_dict()
 
     reviewcopy = [review.to_dict() for review in reviews]
     for review in reviewcopy:
         review['ReviewImages'] = review_image(review['id'])
     return reviewcopy, 200
 
-@product_review_routes.route('/<int:review_id>', methods=['DELETE'])
+@product_review_routes.route('/<int:review_id>/delete', methods=['DELETE'])
 @login_required
 def delete_review_by_id(review_id):
     """delete a review by id if the owner is signed in"""
@@ -60,7 +65,7 @@ def delete_review_by_id(review_id):
         if review.user_id == current_user.id:
             db.session.delete(review)
             db.session.commit()
-            return review.to_dict()
+            return {'Message': 'Review Deleted'}
         elif review.user_id != current_user.id:
             return {"error": "Only the owner of the review may delete it"}
     else:
@@ -90,7 +95,7 @@ def post_review(product_id):
 
         print('new review', new_review.to_dict())
 
-        return {'New Review': new_review.to_dict()}
+        return new_review.to_dict()
 
 
     return {'Error': 'Validation Error'}, 401
