@@ -18,11 +18,11 @@ def return_cart():
     if request.method == "POST":
         form = CartForm()
         form['csrf_token'].data = request.cookies['csrf_token']
-        print(form.data)
         if form.validate_on_submit():
 
-            item_already_in_cart = Cart.query.filter(Cart.user_id == form.data["user_id"] and Cart.product_id == form.data["product_id"]).first()
-
+            item_already_in_cart = Cart.query.filter((Cart.user_id == form.data["user_id"])\
+                                                  & (Cart.product_id == form.data["product_id"])).first()
+            print(item_already_in_cart)
             if item_already_in_cart:
                 item_already_in_cart.quantity += 1
                 db.session.commit()
@@ -37,44 +37,31 @@ def return_cart():
                 db.session.commit()
                 return new_item.to_dict(), 201
 
-
+    # print(request.get_data)
     if request.method == "DELETE":
-        return {"Success": "Failure"}
 
+        req_data = request.get_json()
+        cart_id = req_data["cart_id"]
+        print(cart_id)
+        item_to_delete = Cart.query.get(cart_id)
+        print(item_to_delete)
+        db.session.delete(item_to_delete)
+        db.session.commit()
+        return {"message": "Product removed from cart"}, 204
 
-    # the_cart = Cart.query.filter_by(user_id=current_user.id).all()
-    #print("*#!*#!*#!*#!*", the_cart[0].to_dict())
-    cart_items = Product.query\
-    .join(Cart)\
-    .outerjoin(ProductImage)\
-    .filter(Cart.user_id == current_user.id)\
-    .all()
+    user_cart = Cart.query\
+    .join(Product)\
+    .filter(Cart.user_id == current_user.id).all()
 
     cart = {}
+    for i in user_cart:
+        product = i.product.to_dict()
+        print(i.id)
+        cart[i.id] = product
+        cart[i.id]["id"] = i.id
+        cart[i.id]["quantity"] = i.quantity
+        cart[i.id]["shopName"] = i.product.shops.name
+        cart[i.id]["productImage"] = i.product.product_images[0].url
+        cart[i.id]["shopImage"] = i.product.shops.shop_images[0].url
 
-    for item in cart_items:
-        product = item.to_dict()
-        print("@!@!@!@!@!", item.shops.id)
-        cart[item.id] = product
-        cart[item.id]["quantity"] = item.carts[0].quantity
-        cart[item.id]["shopName"] = item.shops.name
-        cart[item.id]["productImage"] = item.product_images[0].url
-        shop_image = ShopImage.query.filter_by(shop_id=item.shops.id).first()
-        cart[item.id]["shopImage"] = shop_image.url
-
-    #print (cart)
-
-    return cart , 200
-# @cart_routes.route('/', methods=['POST'])
-# @login_required
-# def put_cart():
-#     print(request.get_json())
-#     print(request.cookies['csrf_token'])
-#     # form = CartForm([{"quantity": "1", "product_id": 1, "user_id": 1, "csrf_token": request.cookies['csrf_token']}])
-#     form = CartForm()
-#     form.data["quantity"] = 1
-#     print(form.data)
-#     if form.validate_on_submit():
-#         print(form.data)
-
-#     return {"okay": "okay"}, 200
+    return cart, 200
