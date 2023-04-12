@@ -28,13 +28,29 @@ div.top-banner-suggestions > p {
     font-family: 'Marcellus', serif;
     font-weight: 200;
     text-align: center;
+
 }
 .by-etzy-header {
+    margin: .25rem;
+    width: 15rem;
+    height: 15rem;
+    border-radius: .5rem;
+}
+/* .by-etzy-title {
+    margin-top: 15rem;
+} */
+.from-etzy-sellers {
     display: grid;
     grid-template-columns: auto auto auto auto;
-    gap: 1rem;
-    max-width: 60rem;
-    margin-left: .5rem;
+    margin-left: 2rem;
+    justify-content: center;
+}
+.from-etzy-closing {
+    margin: .25rem;
+    width: 15rem;
+    height: 15rem;
+    border-radius: .5rem;
+    margin-top: 5rem;
 }
 .shops-youll-love {
     max-width: 60rem;
@@ -89,6 +105,24 @@ h3.shops-youll-love-title {
 .shops-youll-love {
     display: grid;
     grid-template-columns: auto auto auto auto;
-    max-width: 60rem;
+    /* max-width: 90rem;
+    justify-content: center;
+    margin-left: 10vw; */
+}
+
+@media only screen and (max-width: 85rem){
+    .shops-youll-love {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        justify-content: center;
+    }
+
+}
+@media only screen and (max-width: 70rem){
+    .shops-youll-love {
+        display: grid;
+        grid-template-columns: auto auto;
+        justify-content: center;
+    }
 
 }

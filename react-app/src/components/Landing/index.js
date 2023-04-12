@@ -74,16 +74,15 @@ function Landing({ isLoaded }) {
 
             <div className='from-etzy-sellers'>
                 <div className='by-etsy-header'>
+                    <h2 className='by-etsy-title'>By Spacey Sellers</h2>
                     <p className='sponsored'>Sponsored <i className="fa-solid fa-question"></i></p>
                 </div>
 
-                {/* {data.map(product => (
+                {data.map(product => (
                     // <img src={`${product.ProductImages[0].url}`} />
                 product.ProductImages[0].url ? (<ProductCard product={product}
                 key={`${product.id}`}/>) : null
-
-
-                ))} */}
+                ))}
 
                 <div className='from-etzy-closing'>Fun fact: behind every sponsored item there is an intelligent lifeform hoping you'll check out their shop</div>
             </div>
