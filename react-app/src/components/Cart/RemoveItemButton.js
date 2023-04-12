@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { fetchCart } from "../../store/cart"
-import { addCartItemThunk } from "../../store/cart"
+import { fetchCart, removeCartItemThunk } from "../../store/cart"
 
-export default function RemoveFromCart({product}){
+export default function RemoveItemButton({cartId}){
 
     const dispatch = useDispatch()
 
@@ -13,15 +12,14 @@ export default function RemoveFromCart({product}){
         dispatch(fetchCart())
     },[dispatch, user])
 
-    const addItem = (e) => {
-        // console.log("!!!!!", product)
-
-        return dispatch(addCartItemThunk(product.id, user.id))
+    const removeItem = (e) => {
+        console.log(cartId)
+        return dispatch(removeCartItemThunk(cartId))
     }
-    console.log(cart)
+
 
     return (
-        <button onClick={addItem} className="remove-from-cart-button">
+        <button onClick={removeItem} className="remove-from-cart-button">
             Remove
         </button>
     )

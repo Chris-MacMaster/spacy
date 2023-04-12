@@ -28,6 +28,13 @@ export const removeFromCart = cart => {
         cart
     }
 }
+
+export const editItemQuantity = cart => {
+    return {
+        type: EDIT_QUANTITY,
+        cart
+    }
+}
 //THUNKS
 
 export const fetchCart = () => async dispatch => {
@@ -36,7 +43,7 @@ export const fetchCart = () => async dispatch => {
     // console.log(res)
     if(response.ok) {
         const cart = await response.json()
-        // console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~", cart)
+        console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~", cart)
         return dispatch(loadCart(cart))
     }
 }
@@ -55,18 +62,34 @@ export const addCartItemThunk = (itemId, userId) => async dispatch => {
     }
 }
 
-export const removeCartItemThunk = itemId => async dispatch => {
+export const removeCartItemThunk = (cartId) => async dispatch => {
+    console.log(cartId)
     const response = await fetch('/api/cart/', {
         method: 'DELETE',
-        heander: {"Content-Type": "application/json"},
-        body: JSON.stringify({"product_id": itemId})
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({"cart_id": cartId})
     })
     if (response.ok){
-        const ans = await response.json()
+        console.log("Whaddup thug?")
 
-        return dispatch(removeCartItemThunk)
+        return dispatch(removeFromCart(cartId))
     }
 }
+
+export const editCartItemThunk = (cartId, quantity) =>  async dispatch =>{
+    const response = await fetch('/api/cart/', {
+        method: 'PUT',
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({"cart_id": cartId, "quantity": quantity})
+    })
+    if (response.ok){
+        console.log("Oh me, oh my!")
+
+        const cart = await response.json()
+        return dispatch(editItemQuantity(cart))
+    }
+}
+
 
 const initialState = {
     products: {}
@@ -86,7 +109,11 @@ export default function cartReducer(state = initialState, action) {
             return newState
         }
         case REMOVE_FROM_CART: {
-            newState.products = action.cart
+            delete newState.products[action.cart]
+            return newState
+        }
+        case EDIT_QUANTITY : {
+            console.log("$#!@$#@!,", action.cart)
             return newState
         }
         default: return state
