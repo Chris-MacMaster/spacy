@@ -24,8 +24,8 @@ def seed():
         # the schema name (see comment in users.py undo_users function).
         # Make sure to add all your other model's undo functions below
         undo_users()
-        undo_products()
         undo_shops()
+        undo_products()
         undo_shop_images()
         undo_product_images()
         undo_product_reviews()
@@ -33,8 +33,8 @@ def seed():
         undo_carts()
         undo_follows()
     seed_users()
-    seed_products()
     seed_shops()
+    seed_products()
     seed_shop_images()
     seed_product_images()
     seed_product_reviews()
@@ -49,8 +49,8 @@ def seed():
 def undo():
     # Add other undo functions here
     undo_users()
-    undo_products()
     undo_shops()
+    undo_products()
     undo_shop_images()
     undo_product_images()
     undo_product_reviews()
