@@ -9,7 +9,11 @@ import Header from "./components/Header";
 import Landing from "./components/Landing";
 import ProductsIndex from "./components/Products/ProductsIndex.js";
 import UserProducts from "./components/Products/UserProducts.js"
+
+import SearchResults from "./components/SearchResults";
 import ProductDetail from "./components/Products/ProductDetail";
+import PostReviewForm from "./components/PostReviewForm";
+import EditReviewForm from './components/EditReviewForm'
 import ReviewForm from "./components/Forms/ProductCreate";
 import DisplayCart from "./components/Cart";
 import ShopDetails from "./components/ShopDetails";
@@ -32,6 +36,9 @@ function App() {
       <Route path='/products/current' exact={true}>
         <UserProducts />
       </Route>
+      <Route path='/search/:parameters'>
+        <SearchResults />
+      </Route>
       <Route path='/products/:productId' exact={true}>
         <ProductDetail />
       </Route>
@@ -42,6 +49,12 @@ function App() {
         <DisplayCart/>
       </Route>
       <Route path='/shops/:shopId' exact={true} component={ShopDetails}>
+      </Route>
+      <Route path='/product-reviews/:productId/new'>
+        <PostReviewForm />
+      </Route>
+      <Route path='/product-reviews/:reviewId/edit'>
+        <EditReviewForm />
       </Route>
     </Switch>
       {/* <Navigation isLoaded={isLoaded} />

@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify, redirect, request
 from app.models import db, Product, Shop, ProductImage, ProductReview
 from flask_login import current_user, login_required
 import copy
+from datetime import datetime
 from app.forms import CreateProductForm
 
 product_routes = Blueprint('/products', __name__)
@@ -155,3 +156,55 @@ def get_one_product(product_id):
 
 #DEMO POST
 # @product_routes.route('/')
+
+# marc
+# @product_routes.route('/<int:id>/reviews')
+# def get_product_reviews(id):
+#     """gets product reviews"""
+#     reviews = ProductReview.query.filter(ProductReview.product_id == id).all()
+#     return [review.to_dict() for review in reviews]
+
+# @product_routes.route('/<int:id>/reviews', methods=['POST'])
+# @login_required
+# def post_product_review(id):
+#     """post a new product review"""
+#     product = Product.query.filter(Product.id == id).all()
+
+#     new_review = ProductReview(
+#         review =  request.data['review'],
+#         product_id =  product['id'], 
+#         user_id =  current_user['id'],
+#         stars =  request.data['stars'],
+#         created_at =  datetime.now(),
+#         updated_at = datetime.now()
+#     )
+
+#     db.session.add(new_review)
+#     db.session.commit()
+
+#     return new_review.to_dict()
+
+# @product_routes.route('/<int:id>/reviews', methods=['PUT'])
+# @login_required
+# def edit_review(id):
+#     """edit a product review"""
+#     review_to_edit = ProductReview.query.filter(ProductReview.product_id == id and ProductReview.user_id == current_user.id).one()
+
+#     review_to_edit['review'] = request.data['review']
+#     review_to_edit['stars'] = request.data['stars']
+#     review_to_edit['updated_at'] = datetime.now()
+
+#     db.session.commit()
+
+#     return review_to_edit.to_dict()
+
+# @product_routes.route('/<int:id>/reviews', methods=['DELETE'])
+# @login_required
+# def delete_review(id):
+#     """deletes review"""
+#     review_to_delete = ProductReview.query.filter(ProductReview.product_id == id and ProductReview.user_id == current_user.id).one()
+
+#     db.session.delete(review_to_delete)
+#     db.session.commit()
+
+#     return {'review deleted'}, 200

@@ -1,8 +1,26 @@
-from flask import Blueprint
+from flask import Blueprint, request, render_template, jsonify
 from app.models import db, Product, ProductReview, ReviewImage
 import copy
 from flask_login import current_user, login_required
+from datetime import datetime
+from app.forms.post_review import ReviewForm
+from app.forms.edit_review import EditReviewForm
+
 product_review_routes = Blueprint('/product-reviews', __name__)
+
+
+@product_review_routes.route('/<int:review_id>')
+def get_review(review_id):
+    """get a single review by id"""
+    print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+    review = ProductReview.query.filter(ProductReview.id == review_id).one()
+    print(review.to_dict())
+    if review:
+        return review.to_dict()
+    
+    return {'Review Not Found'}, 404
+
+
 
 @product_review_routes.route('/')
 def get_all_reviews():
@@ -48,3 +66,66 @@ def delete_review_by_id(review_id):
     else:
         {"error": "Please sign in to delete a review"}
 
+@product_review_routes.route('/<int:product_id>/new', methods=['POST'])
+@login_required
+def post_review(product_id):
+    # declare form here
+    form = ReviewForm()
+
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        print('validating')
+        data = form.data
+        new_review = ProductReview(
+            review = data['review'],
+            product_id = product_id,
+            user_id = current_user.id,
+            stars = data['stars'],
+            created_at = datetime.now(),
+            updated_at = None
+        )
+
+        db.session.add(new_review)
+        db.session.commit()
+
+        print('new review', new_review.to_dict())
+
+        return {'New Review': new_review.to_dict()}
+
+
+    return {'Error': 'Validation Error'}, 401
+
+@product_review_routes.route('/<int:review_id>/edit', methods=['PUT'])
+@login_required
+def edit_review(review_id):
+    """edit a product review"""
+    review_to_edit = ProductReview.query.get(review_id)
+    
+    form = EditReviewForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if review_to_edit:
+        if form.validate_on_submit:
+            review_to_edit.review = form.data['review']
+            review_to_edit.stars = form.data['stars']
+            review_to_edit.updated_at = datetime.now()
+            db.session.commit()
+            return review_to_edit.to_dict()
+        
+    return {'Review does not exist or user did not write this review'}
+
+
+# @product_review_routes.route('/<int:review_id>')
+# def get_review(review_id):
+#     """get a single review by id"""
+#     print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+#     review = ProductReview.query.filter(ProductReview.id == review_id).one()
+#     print(review.to_dict())
+#     if review:
+#         review_dict = review.to_dict()
+#         # review_dict['product'] = review.products()
+#         review = review_dict
+#         print('review backend',review)
+#         return {review}
+    
+#     return {'Review Not Found'}, 404

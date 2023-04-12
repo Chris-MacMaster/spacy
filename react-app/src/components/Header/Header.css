@@ -2,6 +2,8 @@
 font-family: 'Mulish', sans-serif;
 font-family: 'Orbitron', sans-serif;
 font-family: 'Special Elite', cursive;*/
+/* .header-container {
+    border-bottom: 1px solid #ccc; */
 .header-container {
     border-bottom: 1px solid #ccc;
     display: flex;
