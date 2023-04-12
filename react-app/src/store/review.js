@@ -35,7 +35,7 @@ export const actionEditReview = (editedReview) => {
 //PRODUCTS HOME PAGE
 export const fetchProductReviews = (productId) => async dispatch => {
     console.log("REVIEWS route TRIGGERED")
-    const response = await fetch(`/api/product-reviews/${productId}`)
+    // const response = await fetch(`/api/product-reviews/${productId}`)
     const response = await fetch(`/api/product-reviews/${productId}`)
     const reviews = await response.json()
     if (response.ok) {

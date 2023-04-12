@@ -8,17 +8,13 @@ import cartReducer from './cart';
 import shopReducer from './shops';
 import reviewReducer from './review';
 
-
-import reviewReducer from './review';
 const rootReducer = combineReducers({
   session,
   products: productReducer,
   cartReducer,
   shops: shopReducer,
   reviews: reviewReducer,
-  search: searchReducer,
-  shops: shopReducer,
-  reviews: reviewReducer
+  search: searchReducer
 });
 
 
