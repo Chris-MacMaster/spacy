@@ -160,8 +160,8 @@ hr {
 }
 .user-icon {
     object-fit: cover;
-    width: 4rem;
-    height: 4rem;
+    width: 5vw;
+    height: 5vw;
     border-radius: 5rem;
     position: absolute;
     left: 15vw;
@@ -190,4 +190,14 @@ hr {
 .review-header {
     display: flex;
     flex-direction: row;
+}
+.product-reviewed {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+}
+.reviewed-item-name{
+    margin-left: 10vw;
+    margin-top: 3rem;
+    align-items: center;
 }

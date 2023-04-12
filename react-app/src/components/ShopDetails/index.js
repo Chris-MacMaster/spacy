@@ -115,7 +115,7 @@ export default function ShopDetails () {
                             className='product-ref-img'
                             alt='productreviewed'
                             key={`productreviewedimg${i}`}></img>
-                            <div className='reviewed-item'
+                            <div className='reviewed-item-name'
                             key={`revieweditem${i}`}>{shop.Products.filter(p=>p.id === r.productId)[0].name}</div>
                             </div>
                        </div>
