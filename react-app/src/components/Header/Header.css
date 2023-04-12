@@ -45,7 +45,6 @@ font-family: 'Special Elite', cursive;*/
     width: 40vw;
     border: none;
     background-color: white;
-    margin-left: 1rem;
 }
 .search-bar {
     display: flex;
