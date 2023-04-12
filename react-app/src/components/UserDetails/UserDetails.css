@@ -1,0 +1,43 @@
+.user-manage-details {
+    margin: 2rem;
+}
+.user-manage-item-field {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    max-width: 190rem;
+    gap: 1rem;
+    left: 16rem;
+}
+.user-manage-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.user-manage-shop-owners {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    font-family: 'Mulish', sans-serif;
+}
+.user-manage-icon {
+    width: 5vw;
+    height: 5vw;
+    border-radius: 5vw;
+    margin: 0;
+}
+.shop-owner-text {
+    color: grey;
+    font-weight: bolder;
+}
+.user-manage-contact-user {
+    margin: 0rem;
+}
+.user-manage-shop-policies {
+    width: 15rem;
+}
+.user-manage-footer {
+    font-family: 'Mulish', sans-serif;
+}
+/* p.user-manage-business-cards {
+} */

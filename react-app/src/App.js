@@ -17,6 +17,7 @@ import EditReviewForm from './components/EditReviewForm'
 import ReviewForm from "./components/Forms/ProductCreate";
 import DisplayCart from "./components/Cart";
 import ShopDetails from "./components/ShopDetails";
+import UserDetails from "./components/UserDetails";
 
 function App() {
   const dispatch = useDispatch();
@@ -45,11 +46,11 @@ function App() {
       <Route path='/products/forms/create-product' exact={true}>
         <ReviewForm />
       </Route>
-      <Route path='/cart'>
+      <Route path='/cart' exact={true}>
         <DisplayCart/>
       </Route>
-      <Route path='/shops/:shopId' exact={true} component={ShopDetails}>
-      </Route>
+      <Route path='/shops/:shopId' exact={true} component={ShopDetails}/>
+      <Route path='/users/:userId' exact={true} component={UserDetails}/>
       <Route path='/product-reviews/:productId/new'>
         <PostReviewForm />
       </Route>
