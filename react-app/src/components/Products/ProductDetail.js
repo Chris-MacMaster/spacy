@@ -30,7 +30,7 @@ const ProductDetail = () => {
     const product = productState?.singleProduct
     const productReviews = reviewState?.productReviews
     if (!product.Shop) return null
-    if (!productReviews.length) return null
+    // if (!productReviews.length) return null
 
     return (
         <div className='product-detail-div'>
@@ -44,9 +44,9 @@ const ProductDetail = () => {
                         {/* product.ProductImages[0].url */}
                     </div>
                     {/* reviews... */}
-                    {productReviews.map(review => (
+                    {productReviews.length > 0 ? productReviews.map(review => (
                         <ReviewIndexItem review={review} key={review.id}/>
-                    ))}
+                    )): ''}
                     <div className='reviewIndex' >
                         {}
                     </div>
