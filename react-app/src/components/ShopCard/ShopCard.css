@@ -11,6 +11,7 @@
     height: 8rem;
     margin-left: .2rem;
     margin-top: .2rem;
+    object-fit: cover;
 }
 .shop-image-grid {
     margin-left: .8rem;
