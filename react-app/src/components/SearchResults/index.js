@@ -73,10 +73,11 @@ function SearchResults() {
     return (
         <>
         <h1>Results:</h1>
+        <div className="productsDisplay">
         {Object.values(products).map(product => (<Link to={`/products/${product.id}`}>
-            <div>
+            <div className="productCard">
                 <div><img style={{width: 300, height: 320}} src={product.ProductImages[0].url}/></div>
-                <div>{product.name}</div>
+                <div className="productName">{product.name}</div>
                 {/* <div className="productRating">Stars: {product.avgRating}</div> */}
                 <div>
                 {product.avgRating ? new Array(Math.floor(product.avgRating)).fill(null).map(() => (
@@ -88,6 +89,7 @@ function SearchResults() {
             </div>
         </Link>
         ))}
+        </div>
         </>
     )
 }

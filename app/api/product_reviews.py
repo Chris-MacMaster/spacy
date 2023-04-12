@@ -54,7 +54,7 @@ def get_reviews_of_product(product_id):
         review['ReviewImages'] = review_image(review['id'])
     return reviewcopy, 200
 
-@product_review_routes.route('/<int:review_id>', methods=['DELETE'])
+@product_review_routes.route('/<int:review_id>/delete', methods=['DELETE'])
 @login_required
 def delete_review_by_id(review_id):
     """delete a review by id if the owner is signed in"""
@@ -65,7 +65,7 @@ def delete_review_by_id(review_id):
         if review.user_id == current_user.id:
             db.session.delete(review)
             db.session.commit()
-            return review.to_dict()
+            return {'Message': 'Review Deleted'}
         elif review.user_id != current_user.id:
             return {"error": "Only the owner of the review may delete it"}
     else:

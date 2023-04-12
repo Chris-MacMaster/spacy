@@ -2,6 +2,7 @@ const LOAD_REVIEWS = "reviews/LOAD"
 const POST_REVIEW = 'reviews/POST'
 const LOAD_ONE_REVIEW = 'reviews/LOAD_ONE'
 const EDIT_REVIEW = 'reviews/EDIT'
+const DELETE_REVIEW = 'reviews/DELETE'
 //**Actions */
 export const actionLoadReviews = (reviews) => {
     return {
@@ -28,6 +29,13 @@ export const actionEditReview = (editedReview) => {
     return {
         type: EDIT_REVIEW,
         editedReview
+    }
+}
+
+const actionDeleteReview = (reviewId) => {
+    return {
+        type: DELETE_REVIEW,
+        reviewId
     }
 }
 //**Thunks */
@@ -96,6 +104,16 @@ export const editReview = (reviewId, review, stars) => async dispatch => {
     }
 }
 
+export const deleteReview = (reviewId) => async dispatch => {
+    const res = await fetch(`api/product-reviews/${reviewId}/delete`, {
+        method: 'DELETE',
+        headers: {'Content-Type': 'application/json'}
+    })
+
+    if (res.ok) {
+        await dispatch(actionDeleteReview(reviewId))
+    }
+}
 
 const initialState = {
     productReviews: {},
@@ -144,6 +162,15 @@ export default function reviewReducer(state = initialState, action) {
             newState4.editedReview = {...action.editedReview}
 
             return newState4
+        }
+        case DELETE_REVIEW: {
+            const newState5 = {...state, productReviews: {...state.productReviews}, singleReviewPost: {...state.singleReviewPost}, singleReviewGet: {...state.singleReviewGet}}
+
+            newState5.singleReviewGet = {...state.singleReviewGet}
+            delete newState5.productReviews[state.singleReviewGet.id]
+            delete newState5.singleReviewGet
+
+            return newState5
         }
         default: return state
     }
