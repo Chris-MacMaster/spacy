@@ -1,8 +1,8 @@
 .product-card {
-    display: grid auto;
-    flex-direction: row;
+    /* display: grid auto;
+    flex-direction: row; */
     /* height: 15rem; */
-    border-radius: 1rem;
+    margin: .25rem;
     /* flex-wrap: row; */
     /* position: relative; */
     border-radius: 1rem;

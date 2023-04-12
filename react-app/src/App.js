@@ -14,6 +14,9 @@ import SearchResults from "./components/SearchResults";
 import ProductDetail from "./components/Products/ProductDetail";
 import PostReviewForm from "./components/PostReviewForm";
 import EditReviewForm from './components/EditReviewForm'
+import ReviewForm from "./components/Forms/ProductCreate";
+import DisplayCart from "./components/Cart";
+import ShopDetails from "./components/ShopDetails";
 
 function App() {
   const dispatch = useDispatch();
@@ -26,8 +29,7 @@ function App() {
     <>
     <Header isLoaded={isLoaded} />
     <Switch>
-      <Route path='/' component={Landing} isLoaded={isLoaded} exact={true}>
-      </Route>
+      <Route path='/' component={Landing} isLoaded={isLoaded} exact={true} />
       <Route path='/products' exact={true}>
         <ProductsIndex />
       </Route>
@@ -39,6 +41,14 @@ function App() {
       </Route>
       <Route path='/products/:productId' exact={true}>
         <ProductDetail />
+      </Route>
+      <Route path='/products/forms/create-product' exact={true}>
+        <ReviewForm />
+      </Route>
+      <Route path='/cart'>
+        <DisplayCart/>
+      </Route>
+      <Route path='/shops/:shopId' exact={true} component={ShopDetails}>
       </Route>
       <Route path='/product-reviews/:productId/new'>
         <PostReviewForm />

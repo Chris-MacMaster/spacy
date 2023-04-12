@@ -22,6 +22,7 @@ class Shop(db.Model):
     created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
     updated_at = db.Column(db.DateTime(timezone=True), onupdate=func.now())
     products = db.relationship("Product", back_populates="shops", cascade="all, delete")
+    shop_images = db.relationship("ShopImage", backref="shop", cascade="all, delete")
 
     def to_dict(self):
         return {

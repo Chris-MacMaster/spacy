@@ -1,3 +1,26 @@
 .product-detail-div {
     margin-top: 120px;
 }
+
+.product-grid-div {
+    border: 2px solid grey;
+    display: flex;
+}
+
+.product-grid-div-col-a {
+    border: 2px solid red
+}
+
+.product-grid-div-col-b {
+    border: 2px solid blue
+}
+
+img {
+    width: 30px;
+    height: 30px;
+}
+
+.review-card-div {
+    display: flex;
+}
+
