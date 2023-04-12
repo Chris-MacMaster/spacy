@@ -120,7 +120,7 @@ export default function reviewReducer(state = initialState, action) {
             console.log('reducer')
             // const newState2 = {}
             const newState2 = {...state, productReviews: {...state.productReviews}, singleReviewPost: {...state.singleReviewPost}, singleReviewGet: {...state.singleReviewGet}}
-
+            newState2.productReviews[action.newReview.id] = {...action.newReview}
 
             console.log('revew id', action.newReview.id)
         
