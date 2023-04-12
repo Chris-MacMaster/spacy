@@ -11,6 +11,7 @@ import ProductsIndex from "./components/Products/ProductsIndex.js";
 import UserProducts from "./components/Products/UserProducts.js"
 import ProductDetail from "./components/Products/ProductDetail";
 import ReviewForm from "./components/Forms/ProductCreate";
+import DisplayCart from "./components/Cart";
 
 function App() {
   const dispatch = useDispatch();
@@ -36,6 +37,9 @@ function App() {
       </Route>
       <Route path='/products/forms/create-product' exact={true}>
         <ReviewForm />
+      </Route>
+      <Route path='/cart'>
+        <DisplayCart/>
       </Route>
     </Switch>
       {/* <Navigation isLoaded={isLoaded} />
