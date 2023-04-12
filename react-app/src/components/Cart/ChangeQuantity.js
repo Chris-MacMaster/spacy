@@ -6,10 +6,6 @@ export default function ChangeQuantity({cartId, quantity, productId}){
     const user = useSelector(state => state.session.user)
     const dispatch = useDispatch()
 
-    useEffect(() => {
-        dispatch(fetchCart())
-    }, [dispatch])
-
     const options = []
     for (let i = 1; i <= 200; i++){
         options.push({value: i})
