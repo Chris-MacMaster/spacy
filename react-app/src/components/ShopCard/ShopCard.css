@@ -1,5 +1,5 @@
 .landing-shop-card {
-    width: 18rem;
+    width: 22rem;
     height: 23rem;
     border: solid lightgray 2px;
     border-radius: 1rem;
@@ -7,10 +7,14 @@
     justify-content: center;
 }
 .shop-image-grid-image {
-    width:8rem;
+    width:10rem;
     height: 8rem;
-    margin-left: .5rem;
-    margin-top: .5rem;
+    margin-left: .2rem;
+    margin-top: .2rem;
+}
+.shop-image-grid {
+    margin-left: .8rem;
+    margin-top: .8rem;
 }
 .shop-card-logo {
     width: 3rem;

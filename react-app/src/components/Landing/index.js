@@ -18,7 +18,7 @@ function Landing({ isLoaded }) {
     const products = useSelector(state => state.products.allProducts)
     const shops = useSelector(state => state.shops)
     const user = useSelector(state => state.session.user)
-    console.log('STATE', shops)
+    console.log('STATE', products)
     if (!products || !shops) return null
 
     const data = Object.values(products).sort((a,b) => Date.parse(b.createdAt) - Date.parse(a.createdAt)).slice(0, 6)

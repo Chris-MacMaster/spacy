@@ -43,8 +43,7 @@ export default function ShopCard({ shop }) {
                 ) : (
                     <i class="fa-solid fa-star blank-star landing-shop-stars"></i>
                 )
-                ))} </p>
-            <p>{filteredProducts.length} items</p>
+                ))} {filteredProducts.length} items</p>
             </div>
             <div className='shop-card-heart'><i className="fa-regular fa-heart landing-shop-heart"></i></div>
             </div>
