@@ -18,7 +18,7 @@ function Header({ isLoaded }) {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        // const results = dispatch(getSearchResults(parameters))
+        const results = dispatch(getSearchResults(parameters))
         // console.log('results', results)
         history.push(`/search/${parameters}`)
     }
