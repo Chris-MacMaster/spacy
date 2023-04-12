@@ -13,6 +13,7 @@ import ProductDetail from "./components/Products/ProductDetail";
 import ReviewForm from "./components/Forms/ProductCreate";
 import DisplayCart from "./components/Cart";
 import ShopDetails from "./components/ShopDetails";
+import UserDetails from "./components/UserDetails";
 
 function App() {
   const dispatch = useDispatch();
@@ -41,8 +42,8 @@ function App() {
       <Route path='/cart'>
         <DisplayCart/>
       </Route>
-      <Route path='/shops/:shopId' exact={true} component={ShopDetails}>
-      </Route>
+      <Route path='/shops/:shopId' exact={true} component={ShopDetails}/>
+      <Route path='/users/:userId' exact={true} component={UserDetails}/>
     </Switch>
       {/* <Navigation isLoaded={isLoaded} />
       {isLoaded && (

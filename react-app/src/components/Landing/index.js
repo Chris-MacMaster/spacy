@@ -6,6 +6,7 @@ import { authenticate } from '../../store/session'
 import { fetchOneShop, fetchShops } from '../../store/shops'
 import ProductCard from '../ProductCard'
 import ShopCard from '../ShopCard'
+import { NavLink } from 'react-router-dom'
 
 function Landing({ isLoaded }) {
     const dispatch = useDispatch()
@@ -18,7 +19,8 @@ function Landing({ isLoaded }) {
     const products = useSelector(state => state.products.allProducts)
     const shops = useSelector(state => state.shops)
     const user = useSelector(state => state.session.user)
-    console.log('STATE', products)
+
+    console.log('STATE', shops)
     if (!products || !shops) return null
 
     const data = Object.values(products).sort((a,b) => Date.parse(b.createdAt) - Date.parse(a.createdAt)).slice(0, 6)
@@ -79,8 +81,12 @@ function Landing({ isLoaded }) {
                 </div>
 
                 {data.map(product => (
-                product.ProductImages[0].url ? (<ProductCard product={product}
-                key={`${product.id}`}/>) : null
+                product.ProductImages[0].url ? (
+                <NavLink to={`/products/${product.id}`}>
+                    <ProductCard product={product}
+                    key={`${product.id}`}/>
+                </NavLink>
+                ) : null
                 ))}
 
                 <div className='from-etzy-closing'>Fun fact: behind every sponsored item there is an intelligent lifeform hoping you'll check out their shop</div>
@@ -92,7 +98,11 @@ function Landing({ isLoaded }) {
                     <h3 className='shops-youll-love-title'>Based on your recent activity</h3>
                 </div>
 
-                {shops.allShops && shops.allShops[0] ? ( Object.values(shops.allShops).map(s=> (<ShopCard shop={s} />) )) : null }
+                {shops.allShops && shops.allShops[0] ? ( Object.values(shops.allShops).map(s=> (
+                <NavLink to={`/shops/${s.id}`}>
+                    <ShopCard shop={s} />
+                </NavLink>
+                ) )) : null }
 
             </div>
             <div className='what-is-etzy'>

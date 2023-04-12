@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom'
+import { NavLink, useParams } from 'react-router-dom'
 import './ShopDetails.css'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -109,6 +109,7 @@ export default function ShopDetails () {
                             key={`reviewimage${i}`}></img>
                             ) : null}
                         <p key={`review${i}`}>{r.review}</p>
+                        <NavLink to={`/products/${r.productId}`}>
                         <div className='product-reviewed'
                         key={`productreviewed${i}`}>
                             <img src={`${shop.Products.filter(p=>p.id===r.productId)[0].ProductImages[0].url}`}
@@ -118,6 +119,7 @@ export default function ShopDetails () {
                             <div className='reviewed-item-name'
                             key={`revieweditem${i}`}>{shop.Products.filter(p=>p.id === r.productId)[0].name}</div>
                             </div>
+                </NavLink>
                        </div>
                        <div className='feedback'
                        key={`feedback${i}`}>
