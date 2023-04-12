@@ -90,7 +90,7 @@ def post_review(product_id):
 
         print('new review', new_review.to_dict())
 
-        return {'New Review': new_review.to_dict()}
+        return new_review.to_dict()
 
 
     return {'Error': 'Validation Error'}, 401

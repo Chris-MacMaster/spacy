@@ -10,6 +10,7 @@ export default function PostReviewForm() {
     let user = useSelector((state) => state.session.user)
 
     const dispatch = useDispatch()
+    const history = useHistory()
     const {productId} = useParams()
     useEffect(() => {
         dispatch(fetchOneProduct(productId))
@@ -23,6 +24,7 @@ export default function PostReviewForm() {
 
         const res = await dispatch(createProductReview(product.id, review, stars))
         console.log('res', res)
+        history.push(`/products/${productId}`)
     }
 
     if (!user) {
