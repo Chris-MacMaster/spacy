@@ -10,16 +10,17 @@ function Header({ isLoaded }) {
     return (
         <div className='header-container'>
         <div className='header'>
-        <Link to={`/`}><span className='logo'>Spacey</span></Link>
+        <Link to={`/`}><span className='logo'>spacey</span></Link>
 
         <div className='search-bar'>
         <input className='header-search' type='text'
         placeholder='Search for anything in the universe'></input>
         <div className='telescope-search'>
-        <i className="fa-solid fa-telescope"></i>
-        </div>
-        </div>
+        <i className="fa-solid fa-magnifying-glass"></i>
 
+        </div>
+        </div>
+        <div className='shop-manager'><i className="fa-solid fa-store"></i></div>
         <Navigation isLoaded={isLoaded} />
             {isLoaded && (
                 <Switch>
