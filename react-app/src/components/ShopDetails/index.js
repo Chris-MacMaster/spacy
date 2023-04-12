@@ -25,17 +25,31 @@ export default function ShopDetails () {
             <img src={`${shop.ShopImages.url}`} alt='shoplogo' className='shoplogo'></img>
             <div className='shop-businesscard-info'>
                 <h2 className='businesscard-title'>{shop.name}</h2>
-                <p className='sanserif-text'>{shop.description}</p>
-                <p className='sanserif-text'>{shop.state}, {shop.country}</p>
-                <p className='sanserif-text'>{Math.floor(Math.random()*20000)} Sales | {shop.avgReview} </p>
+                <p className='sanserif-text-description sanserif-text'>{shop.description}</p>
+                <p className='sanserif-text-location sanserif-text'>{shop.state}, {shop.country}</p>
+                <p className='sanserif-text'>
+                    <span className='starseller'><i className="fa-solid fa-certificate starseller"></i>Star seller! | </span>{Math.floor(Math.random()*20000)} <span className='shop-details-sales'>Sales {shop.avgReview}  </span></p>
 
             </div>
             </div>
 
-            <div>
-                <p className='shipping-info'><span className='bold-text'><i className="fa-solid fa-truck"></i>Smooth shipping</span> Has a history of shipping on time with tracking.</p>
+            <div className='accolades'>
+                <p><i className="fa-solid fa-truck purple-icon"></i>
+                </p>
+                <p className='bold-text'> Smooth shipping</p>
+                <p>Has a history of shipping on time with tracking.</p>
             </div>
 
+            <div className='speedy-replies accolades'>
+                <p><i class="fa-solid fa-envelope purple-icon"></i></p>
+                <p className='bold-text'>Speedy Replies</p>
+                <p>Has a history of replying to messages quickly.</p>
+            </div>
+            <div className='rave-reviews accolades'>
+                <p><i className="fa-solid fa-comments purple-icon"></i></p>
+                <p className='bold-text'>Rave Reviews</p>
+                <p>Average review rating is 4.8 or higher</p>
+            </div>
             <div className='shop-owner'>
                 <img className='shop-owner-img'
                 src={`${shop.ShopImages.url}`}
