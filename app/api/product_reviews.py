@@ -1,4 +1,4 @@
-from flask import Blueprint, request, render_template
+from flask import Blueprint, request, render_template, jsonify
 from app.models import db, Product, ProductReview, ReviewImage
 import copy
 from flask_login import current_user, login_required
@@ -7,6 +7,20 @@ from app.forms.post_review import ReviewForm
 from app.forms.edit_review import EditReviewForm
 
 product_review_routes = Blueprint('/product-reviews', __name__)
+
+
+@product_review_routes.route('/<int:review_id>')
+def get_review(review_id):
+    """get a single review by id"""
+    print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+    review = ProductReview.query.filter(ProductReview.id == review_id).one()
+    print(review.to_dict())
+    if review:
+        return review.to_dict()
+    
+    return {'Review Not Found'}, 404
+
+
 
 @product_review_routes.route('/')
 def get_all_reviews():
@@ -102,16 +116,17 @@ def edit_review(review_id):
     return {'Review does not exist or user did not write this review'}
 
 
-@product_review_routes.route('/<int:review_id>')
-def get_review(review_id):
-    """get a single review by id"""
-    review = ProductReview.query.filter(ProductReview.id == review_id).one()
+# @product_review_routes.route('/<int:review_id>')
+# def get_review(review_id):
+#     """get a single review by id"""
+#     print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+#     review = ProductReview.query.filter(ProductReview.id == review_id).one()
+#     print(review.to_dict())
+#     if review:
+#         review_dict = review.to_dict()
+#         # review_dict['product'] = review.products()
+#         review = review_dict
+#         print('review backend',review)
+#         return {review}
     
-    if review:
-        review_dict = review.to_dict()
-        review_dict['product'] = review.products()
-        review = review_dict
-        print(review)
-        return {review}
-    
-    return {'Review Not Found'}, 404
+#     return {'Review Not Found'}, 404
