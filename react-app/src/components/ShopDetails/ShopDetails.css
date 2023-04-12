@@ -139,3 +139,65 @@ hr {
     margin: 2rem;
     color: gray;
 }
+.review-title {
+    margin-left: 20vw;
+}
+.fa-flag, .fa-thumbs-up {
+    font-size: .7rem;
+}
+.feedback {
+    display: flex;
+    flex-direction: row;
+}
+
+.report {
+    margin-left: 10rem;
+}
+.mapping-reviews {
+    width: 60vw;
+    margin-left: 20vw;
+    font-family: 'Mulish', sans-serif;
+}
+.user-icon {
+    object-fit: cover;
+    width: 5vw;
+    height: 5vw;
+    border-radius: 5rem;
+    position: absolute;
+    left: 15vw;
+}
+.product-ref-img{
+    object-fit: cover;
+    height: 8rem;
+    width: 8rem;
+    border-radius: .5rem;
+}
+.review-image {
+    object-fit: cover;
+    height: 18rem;
+    width: 18rem;
+    margin-top: 1rem;
+}
+.gold-star, .blank-star {
+    font-size: 1rem;
+}
+.gold-star {
+    color: goldenrod
+}
+.blank-star {
+    color: grey
+}
+.review-header {
+    display: flex;
+    flex-direction: row;
+}
+.product-reviewed {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+}
+.reviewed-item-name{
+    margin-left: 10vw;
+    margin-top: 3rem;
+    align-items: center;
+}

@@ -7,9 +7,9 @@ Full CRUD
 --Shops
 ✅get all shops
 ✅get all of users shops
-🔲create a shop
 ✅delete a shop
 ✅get shop by id
+🔲create a shop
 🔲update shop
 
 
@@ -17,15 +17,15 @@ Full CRUD
 ✅get all products
 ✅get user products
 ✅get product by id
-🔲UPDATE PRODUCT
 ✅DELETE PRODUCT BY ID
+🔲UPDATE PRODUCT
 🔲CREATE PRODUCT
 
 --Reviews
 ✅get all reviews
 ✅get reviews by id
-🔲create review
 ✅delete review
+🔲create review
 🔲update review
 
 --Cart
@@ -58,10 +58,11 @@ API
 --
 
 FONTS
+font-family: 'Libre Baskerville', serif;
 font-family: 'Marcellus', serif;
 font-family: 'Mulish', sans-serif;
 font-family: 'Orbitron', sans-serif;
-font-family: 'Special Elite', cursive;
+font-family: 'Thasadith', sans-serif;
 
 MONDAY
 -Chrism Product Details

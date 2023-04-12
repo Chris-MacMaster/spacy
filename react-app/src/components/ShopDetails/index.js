@@ -15,10 +15,11 @@ export default function ShopDetails () {
     const shop = useSelector(state => state.shops.singleShop)
     console.log('STATE OF SHOP', shop)
     if (!shop || !Object.entries(shop).length) return null
+    const allReviews = shop.Products.map(p=>p.Reviews).flat()
 
+    console.log('REVIEWS FOR ALL PRODUCTS', allReviews)
     return (
         <div className='shop-page'>
-
         <div className='shop-header'>
             <div className='shop-businesscard'>
             <img src={`${shop.ShopImages.url}`} alt='shoplogo' className='shoplogo'></img>
@@ -74,13 +75,66 @@ export default function ShopDetails () {
                     <ShopProductCard product={product}
                     key={`product${product.id}`}/>
                 ))}
-
                 </div>
             </div>
             </div>
             <hr></hr>
             <div className='review-section' >
                 <h3 className='review-title'>Reviews</h3>
+
+                <div className='mapping-reviews'>
+                    {allReviews.map((r,i)=> (
+                    <>
+                    <div className='review-header'
+                    key={`reviewdivheader${i}`}>
+
+                    <img src='https://i.imgur.com/mMEwXsu.png' alt='usericon'
+                    className='user-icon'></img>
+                    <p className='username'
+                    key={`username${i}`}>{r.Reviewer.firstName} on {r.createdAt.slice(0, -12)}</p>
+                    </div>
+                        {new Array(5).fill(1).map((s,j)=> (
+                            j <= r.stars ? (
+                                <i class="fa-solid fa-star gold-star"></i>
+                            ) : (
+                                <i class="fa-solid fa-star blank-star"></i>
+                            )
+                        ))}
+                       <div className='iterated-review'
+                       key={`div${i}`}>
+                        {r.ReviewImages && r.ReviewImages.url ? (
+                            <img className='review-image'
+                            src={`${r.ReviewImages.url}`}
+                            alt='reviewimg'
+                            key={`reviewimage${i}`}></img>
+                            ) : null}
+                        <p key={`review${i}`}>{r.review}</p>
+                        <div className='product-reviewed'
+                        key={`productreviewed${i}`}>
+                            <img src={`${shop.Products.filter(p=>p.id===r.productId)[0].ProductImages[0].url}`}
+                            className='product-ref-img'
+                            alt='productreviewed'
+                            key={`productreviewedimg${i}`}></img>
+                            <div className='reviewed-item-name'
+                            key={`revieweditem${i}`}>{shop.Products.filter(p=>p.id === r.productId)[0].name}</div>
+                            </div>
+                       </div>
+                       <div className='feedback'
+                       key={`feedback${i}`}>
+                        <p className='helpful'
+                        key={`helpful${i}`}>
+                            <i className="fa-solid fa-thumbs-up"
+                            key={`thumb${i}`}></i>
+                        Is this review helpful?</p>
+                        <p className='report'
+                        key={`report${i}`}>
+                            <i className="fa-solid fa-flag"
+                            key={`flag${i}`}></i>
+                        Report this review</p></div>
+                        <hr key={`hr${i}`}></hr>
+                        </>
+                    ))}
+                </div>
             </div>
         </div>
     )

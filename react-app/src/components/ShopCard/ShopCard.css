@@ -1,0 +1,54 @@
+.landing-shop-card {
+    width: 22rem;
+    height: 23rem;
+    border: solid lightgray 2px;
+    border-radius: 1rem;
+    grid-template-columns: auto auto;
+    justify-content: center;
+}
+.shop-image-grid-image {
+    width:10rem;
+    height: 8rem;
+    margin-left: .2rem;
+    margin-top: .2rem;
+    object-fit: cover;
+}
+.shop-image-grid {
+    margin-left: .8rem;
+    margin-top: .8rem;
+}
+.shop-card-logo {
+    width: 3rem;
+    height: 3rem;
+    border-radius: .4rem;
+    margin-left: .5rem;
+    margin-top: 1rem;
+}
+.shop-card-text {
+    font-family: 'Mulish', sans-serif;
+    line-height: .4rem;
+    font-size: .8rem;
+    padding: .3rem;
+    width: 10rem;
+}
+.landing-shops-business-card {
+    margin-top: .2rem;
+    display: flex;
+    flex-direction: row;
+}
+.landing-shop-stars {
+    font-size: .6rem;
+    margin: 0rem;
+    padding:0rem;
+}
+.shop-card-heart {
+    align-items: end;
+    margin-top: 2rem;
+    /* border: solid lightgray 2px;
+    border-radius: 2rem; */
+    /* width: 2rem;
+    height: 2rem; */
+}
+.landing-shop-heart {
+    font-size: .8rem;
+}

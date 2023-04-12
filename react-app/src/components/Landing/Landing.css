@@ -28,13 +28,51 @@ div.top-banner-suggestions > p {
     font-family: 'Marcellus', serif;
     font-weight: 200;
     text-align: center;
+
 }
 .by-etzy-header {
+    margin: .25rem;
+    width: 15rem;
+    height: 15rem;
+    border-radius: .5rem;
+}
+p.sponsored {
+    margin-top: 5rem;
+}
+.by-etsy-title {
+    font-family: 'Mulish', sans-serif;
+}
+.from-etzy-sellers {
     display: grid;
     grid-template-columns: auto auto auto auto;
-    /* margin-top: 7rem; */
+    margin-left: 2rem;
+    justify-content: center;
+}
+.from-etzy-closing {
+    margin: .25rem;
+    width: 15rem;
+    height: 15rem;
+    border-radius: .5rem;
+    margin-top: 5rem;
+}
+.shops-youll-love {
     max-width: 60rem;
-    gap: .5rem
+    gap: 2rem;
+    margin-top: 8rem;
+    margin-bottom: 8rem;
+}
+h1.shops-youll-love-title{
+    font-family: 'Mulish', sans-serif;
+    font-weight: 500;
+}
+h3.shops-youll-love-title {
+    font-family: 'Thasadith', sans-serif;
+    font-size: 1.2rem;
+}
+.shops-youll-love-text {
+    height: 12em;
+    width: 22rem;
+    margin-left: 2rem;
 }
 .what-is-etzy > h1 {
     font-family: 'Marcellus', serif;
@@ -57,7 +95,6 @@ div.top-banner-suggestions > p {
     /* margin-left: 2rem;
     margin-right: 2rem; */
 }
-
 .column-title {
     margin-bottom: 3rem;
 }
@@ -67,4 +104,28 @@ div.top-banner-suggestions > p {
 }
 .fa-question {
     font-size: 1rem;
+}
+.shops-youll-love {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    /* max-width: 90rem;
+    justify-content: center;
+    margin-left: 10vw; */
+}
+
+@media only screen and (max-width: 85rem){
+    .shops-youll-love {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        justify-content: center;
+    }
+
+}
+@media only screen and (max-width: 70rem){
+    .shops-youll-love {
+        display: grid;
+        grid-template-columns: auto auto;
+        justify-content: center;
+    }
+
 }
