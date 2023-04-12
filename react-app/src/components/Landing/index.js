@@ -79,7 +79,6 @@ function Landing({ isLoaded }) {
                 </div>
 
                 {data.map(product => (
-                    // <img src={`${product.ProductImages[0].url}`} />
                 product.ProductImages[0].url ? (<ProductCard product={product}
                 key={`${product.id}`}/>) : null
                 ))}
