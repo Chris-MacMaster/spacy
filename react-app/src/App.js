@@ -11,6 +11,7 @@ import ProductsIndex from "./components/Products/ProductsIndex.js";
 import UserProducts from "./components/Products/UserProducts.js"
 import ProductDetail from "./components/Products/ProductDetail";
 import ShopDetails from "./components/ShopDetails";
+import DisplayCart from './components/Cart'
 
 function App() {
   const dispatch = useDispatch();
@@ -36,6 +37,9 @@ function App() {
       </Route>
       <Route path='/shops/:shopId'>
         <ShopDetails />
+      </Route>
+      <Route path='/cart' exact={true}>
+        <DisplayCart />
       </Route>
     </Switch>
       {/* <Navigation isLoaded={isLoaded} />
