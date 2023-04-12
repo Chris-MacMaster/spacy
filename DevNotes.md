@@ -58,10 +58,10 @@ API
 --
 
 FONTS
-font-family: 'Marcellus', serif;
-font-family: 'Mulish', sans-serif;
-font-family: 'Orbitron', sans-serif;
-font-family: 'Special Elite', cursive;
+    font-family: 'Libre Baskerville', serif;
+    font-family: 'Marcellus', serif;
+    font-family: 'Mulish', sans-serif;
+    font-family: 'Orbitron', sans-serif;
 
 MONDAY
 -Chrism Product Details
