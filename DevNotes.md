@@ -18,8 +18,8 @@ Full CRUD
 ✅get user products
 ✅get product by id
 ✅DELETE PRODUCT BY ID
-🔲UPDATE PRODUCT
-🔲CREATE PRODUCT
+🔲UPDATE PRODUCT -CHRIS MAC
+🔲CREATE PRODUCT -CHRIS MAC
 
 --Reviews
 ✅get all reviews
@@ -29,10 +29,15 @@ Full CRUD
 🔲update review
 
 --Cart
+✅delete cart
+✅create cart
+✅update cart
+🔲checkout/empty cart
+
 
 Partial CRUD
 --Product Images [C]
-🔲Create Product image
+✅Create Product image
 
 --Review Image [C]
 🔲Create Review Image
@@ -44,6 +49,28 @@ Partial CRUD
 🔲Follow a user
 🔲unfollow user
 ✅get following relationships
+
+
+FRONT END
+
+Navigate
+✅Landing
+✅Shop Details
+--🔲Policies Modal
+🔲user details
+🔲product details
+🔲product search results
+🔲user cart
+
+FORMS
+🔲delete cart
+🔲create cart
+🔲update cart
+
+🔲create product
+🔲update product
+🔲create review
+🔲update review
 
 
 Do we want to have a user page, where we view user data (shops, products)? Maybe something like the Manage Spots from AirBNB project?

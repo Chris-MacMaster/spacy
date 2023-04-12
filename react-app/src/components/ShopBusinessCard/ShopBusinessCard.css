@@ -1,0 +1,38 @@
+.shop-business-card {
+    display: flex;
+    flex-direction: row;
+    font-family: 'Mulish', sans-serif;
+    text-decoration: none;
+
+}
+.user-manage-shop-pic {
+    width: 8rem;
+    height: 8rem;
+    border-radius: .3rem;
+    object-fit: cover;
+}
+.user-manage-business-text {
+    margin-left: 1rem;
+}
+.user-manage-shop-name{
+    margin-bottom: 0rem;
+}
+.user-manage-button {
+    border: solid grey 2px;
+    border-radius: 0rem;
+    padding: .2rem;
+    margin-right: .5rem;
+    margin-top: .5rem;
+    font-family: 'Mulish', sans-serif;
+}
+.user-manage-button i {
+    font-size: .7rem;
+}
+.user-manage-edit-shop {
+    background-color: rgb(51, 51, 51);
+    color: white;
+    padding: .4rem;
+}
+.user-manage-edit-shop i {
+    color: white;
+}
