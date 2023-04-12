@@ -36,9 +36,12 @@ div.top-banner-suggestions > p {
     height: 15rem;
     border-radius: .5rem;
 }
-/* .by-etzy-title {
-    margin-top: 15rem;
-} */
+p.sponsored {
+    margin-top: 5rem;
+}
+.by-etsy-title {
+    font-family: 'Mulish', sans-serif;
+}
 .from-etzy-sellers {
     display: grid;
     grid-template-columns: auto auto auto auto;

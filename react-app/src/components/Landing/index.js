@@ -74,8 +74,8 @@ function Landing({ isLoaded }) {
 
             <div className='from-etzy-sellers'>
                 <div className='by-etsy-header'>
-                    <h2 className='by-etsy-title'>By Spacey Sellers</h2>
                     <p className='sponsored'>Sponsored <i className="fa-solid fa-question"></i></p>
+                    <h2 className='by-etsy-title'>By Spacey Sellers</h2>
                 </div>
 
                 {data.map(product => (
