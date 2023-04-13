@@ -11,6 +11,9 @@ function EditReviewForm() {
     const {reviewId} = useParams()
     
     let reviewToEdit = useSelector((state) => state.reviews.singleReviewGet)
+    let user = useSelector((state) => state.session.user)
+
+
     useEffect(() => {
         dispatch(getOneReview(reviewId))
     }, [])
@@ -35,7 +38,12 @@ function EditReviewForm() {
         dispatch(editReview(reviewId, review, stars))
     }
 
-    if (!Object.values(reviewToEdit).length) return null
+    if (!Object.values(reviewToEdit).length 
+        || !user 
+        || !Object.keys(reviewToEdit.product).includes('ProductImages')
+        || !Object.keys(reviewToEdit.product).includes('Shop')) {
+        return null
+    } 
 
     return (
         <>

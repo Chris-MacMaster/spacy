@@ -21,8 +21,13 @@ def get_review(review_id):
         shop = Shop.query.get(product.shop_id)
         review_dict = review.to_dict()
         review_dict['product'] = product.to_dict()
-        review_dict['product']['ProductImages'] = [image.to_dict() for image in product_images]
-        review_dict['product']['Shop'] = shop.to_dict()
+        
+        if product_images:
+            review_dict['product']['ProductImages'] = [image.to_dict() for image in product_images]
+        
+        if shop:
+            review_dict['product']['Shop'] = shop.to_dict()
+        
         print('Review Product', review_dict)
         return review_dict
     

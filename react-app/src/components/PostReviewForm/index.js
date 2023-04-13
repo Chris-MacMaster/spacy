@@ -4,16 +4,23 @@ import { Redirect, useHistory, useParams } from "react-router-dom";
 import { fetchOneProduct } from "../../store/product";
 import { createProductReview } from "../../store/review";
 import './ReviewForm.css'
+import { fetchOneShop } from "../../store/shops";
 
 export default function PostReviewForm() {
-    let product = useSelector((state) => state.products.singleProduct)
-    let user = useSelector((state) => state.session.user)
-
+    
     const dispatch = useDispatch()
     const history = useHistory()
     const {productId} = useParams()
+    
+    
+    let product = useSelector((state) => state.products.singleProduct)
+    // let shop = useSelector((state) => state.shops.singleShop)
+    let user = useSelector((state) => state.session.user)
+    
     useEffect(() => {
         dispatch(fetchOneProduct(productId))
+        let res = dispatch(fetchOneShop(product.shopId))
+        console.log('state shop', res)
     }, [])
 
     const [review, setReview] = useState('')
@@ -27,7 +34,9 @@ export default function PostReviewForm() {
         history.push(`/products/${productId}`)
     }
 
-    if (!user) {
+    //  || !product.ProductImages.length || !Object.values(product.Shop).length
+
+    if (!user || !Object.keys(product).includes('ProductImages') || !Object.keys(product).includes('Shop')) {
         return null
     }
 
@@ -37,7 +46,9 @@ export default function PostReviewForm() {
         <form onSubmit={handleSubmit} className='wholeForm'>
             <div className='headerAndReview'>
                 <div className='productPic'>
+                    {product.ProductImages.length > 0 ? 
                     <img src={product.ProductImages[0].url}/>
+                    : ''}
                     <div className="productName">
                      <p>{product.Shop.name}</p>   
                     <p style={{fontWeight:'bolder', fontSize:'larger'}}>{product.name}</p>
