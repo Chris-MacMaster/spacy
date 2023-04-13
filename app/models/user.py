@@ -4,6 +4,7 @@ from flask_login import UserMixin
 # from app.models.follows import following_users
 from .following_users import FollowingUsers
 from sqlalchemy.sql import func
+from sqlalchemy.orm import validates
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
@@ -24,17 +25,6 @@ class User(db.Model, UserMixin):
     shops = db.relationship('Shop', backref='users')
     product_reviews = db.relationship('ProductReview', backref='users')
 
-    # followers = db.relationship(
-    #     'User',
-    #     secondary=FollowingUsers.__table__,
-    #     primaryjoin=(FollowingUsers.follower_id == id),
-    #     secondaryjoin=(FollowingUsers.followed_id == id),
-    #     backref=db.backref('following', lazy='dynamic'),
-    #     lazy='dynamic'
-    # )
-    # this relationship allows you to access both the collectino of following_users
-    # that follow a given user(with user.followers), and the collection
-    # of users that a user follows (with user.following)
 
     @property
     def password(self):
@@ -58,3 +48,15 @@ class User(db.Model, UserMixin):
             'createdAt': self.created_at,
             'updatedAt': self.updated_at
         }
+
+    # followers = db.relationship(
+    #     'User',
+    #     secondary=FollowingUsers.__table__,
+    #     primaryjoin=(FollowingUsers.follower_id == id),
+    #     secondaryjoin=(FollowingUsers.followed_id == id),
+    #     backref=db.backref('following', lazy='dynamic'),
+    #     lazy='dynamic'
+    # )
+    # this relationship allows you to access both the collectino of following_users
+    # that follow a given user(with user.followers), and the collection
+    # of users that a user follows (with user.following)
