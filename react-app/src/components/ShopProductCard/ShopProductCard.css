@@ -1,14 +1,33 @@
 .shop-product-preview-image {
     object-fit: cover;
-    height: 12em;
-    width: 14rem;
+    height: 14em;
+    width: 16rem;
     border-radius: .3rem;
+    margin-top: 0rem;
+    object-fit: cover;
 }
 .shop-product-card {
+    display: flex;
+    flex-direction: column;
+    /* align-items: start; */
     font-family: 'Mulish', sans-serif;
     line-height: 1.2rem;
-    height: 16rem;
+    height: 17rem;
+    width: 16rem;
+    transition: .2s ease-in-out;
+    position: sticky;
+    border-radius: .5rem;
+    position: relative;
+    overflow: hidden;
 }
 .shop-product-price {
     font-weight: bolder;
 }
+a.product-name, a.shop-product-price {
+    text-decoration: none;
+}
+.shop-product-card:hover {
+    box-shadow: 0rem 0rem 1rem grey;
+    border: white solid 1px;
+}
+
