@@ -24,9 +24,10 @@
     margin-left: .5rem;
     margin-top: 1rem;
 }
+
 .shop-card-text {
     font-family: 'Mulish', sans-serif;
-    line-height: .4rem;
+    line-height: 1.4rem;
     font-size: .8rem;
     padding: .3rem;
     width: 10rem;

@@ -1,3 +1,14 @@
+.login-modal {
+    margin: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+.submit-login {
+    width: 15rem;
+    height: 2rem;
+    border-radius: 5rem;
+    border: solid grey .2rem;
+}
 .demo-user{
     display: flex;
     justify-content: center;

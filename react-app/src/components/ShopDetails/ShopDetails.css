@@ -76,8 +76,9 @@
     /* font-size: .8rem; */
     font-family: 'Mulish', sans-serif;
     padding: .5rem;
-    margin-left: 10rem;
     box-shadow: 0rem 0rem .5rem lightslategray;
+    margin: 1rem;
+    margin-left: 10rem;
 }
 h3 {
     font-family: 'Mulish', sans-serif;
