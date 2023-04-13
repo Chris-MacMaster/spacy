@@ -25,7 +25,6 @@ export const groupItemsByStore = (cart) =>{
 export const totalCost = cart => {
     let totalCost = 0
     for (const i in cart) totalCost += (cart[i].quantity * cart[i].price)
-    // for (const i in cart) console.log("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW", cart[i])
     return totalCost.toFixed(2)
 }
 
