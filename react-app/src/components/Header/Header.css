@@ -23,8 +23,8 @@ font-family: 'Special Elite', cursive;*/
     justify-content: space-between;
     align-items: center;
     width: 100%;
-  }
-  .header-tabs {
+}
+.header-tabs {
     display: flex;
     flex-direction: row;
     gap: 1rem;
@@ -32,8 +32,8 @@ font-family: 'Special Elite', cursive;*/
     margin-right: 2rem;
     font-family: 'Mulish', sans-serif;
     font-size: .8rem;
-  }
-  .logo {
+}
+.logo {
     font-family: 'Libre Baskerville', serif;
     font-size: 2.5rem;
     font-size: 3rem;
@@ -81,11 +81,11 @@ font-family: 'Special Elite', cursive;*/
     right: 20vw;
     transition: .6s;
 }
-.header-search:focus-within +.telescope-search {
+input.header-search:focus-within +.telescope-search {
     background-color: rgb(27, 25, 25);
     color: white;
 }
-.header-search:focus-within +.telescope-search > .fa-magnifying-glass {
+input.header-search:focus-within +.telescope-search > .fa-magnifying-glass {
     /* background-color: rgb(27, 25, 25); */
     color: white;
 }

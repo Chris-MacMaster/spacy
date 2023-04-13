@@ -15,7 +15,6 @@ export default function AddToCart({product}){
 
     const addItem = (e) => {
         // console.log("!!!!!", product)
-
         return dispatch(addCartItemThunk(product.id, user.id))
     }
     console.log(cart)

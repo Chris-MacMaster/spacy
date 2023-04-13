@@ -57,8 +57,8 @@ Navigate
 ✅Landing
 ✅Shop Details
 --🔲Policies Modal
-🔲user details
-🔲product details
+✅user details
+✅product details
 🔲product search results
 🔲user cart
 

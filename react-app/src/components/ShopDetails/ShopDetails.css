@@ -40,7 +40,7 @@
     font-family: 'Mulish', sans-serif;
     font-size: .8rem;
     max-width: 20rem;
-    margin-top: 2rem;
+    margin: 2rem;
 }
 .purple-icon {
     color: rgb(130, 52, 149);
@@ -76,11 +76,15 @@
     /* font-size: .8rem; */
     font-family: 'Mulish', sans-serif;
     padding: .5rem;
-    margin-left: 10rem;
     box-shadow: 0rem 0rem .5rem lightslategray;
+    margin: 1rem;
+    margin-left: 10rem;
 }
 h3 {
     font-family: 'Mulish', sans-serif;
+}
+.mapped-categories-title {
+    margin-left: 2rem;
 }
 .featured-items {
     margin-bottom: 0rem;
@@ -147,6 +151,8 @@ hr {
 }
 .review-title {
     margin-left: 20vw;
+    font-size: 2rem;
+    margin-bottom: 2rem;
 }
 .fa-flag, .fa-thumbs-up {
     font-size: .7rem;
@@ -170,19 +176,24 @@ hr {
     height: 5vw;
     border-radius: 5rem;
     position: absolute;
-    left: 15vw;
+    left: 12vw;
+}
+.review-paragraph {
+    margin-top: 2rem;
 }
 .product-ref-img{
     object-fit: cover;
     height: 8rem;
     width: 8rem;
     border-radius: .5rem;
+    margin: 2rem;
 }
 .review-image {
     object-fit: cover;
     height: 18rem;
     width: 18rem;
     margin-top: 1rem;
+    margin: 2rem;
 }
 .gold-star, .blank-star {
     font-size: 1rem;

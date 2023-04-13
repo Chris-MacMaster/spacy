@@ -4,7 +4,8 @@ import { fetchCart } from "../../store/cart"
 import RemoveItemButton from "./RemoveItemButton"
 import CheckoutCart from "./Checkout"
 import ChangeQuantity from "./ChangeQuantity"
-import { groupItemsByStore } from "./helper"
+import { groupItemsByStore, totalCost } from "./_helpers"
+import './Cart.css'
 
 export default function DisplayCart(){
 
@@ -18,32 +19,55 @@ export default function DisplayCart(){
     if(!Object.values(cart).length) return <h2>You have no items in your cart, don't you want to buy something?</h2>
 
     const itemsByStore = groupItemsByStore(cart)
-    // console.log( Object.values(itemsByStore))
-    // for (const i of Object.values(itemsByStore)) console.log(typeof i)
-    return (
-        <div>
-            <ul>
-                {Object.values(cart).map((product, i )=> (
-                    <li key={product.id}>
-                        <div>
-                        {product.name} {product.price}~~{product.quantity}
-                        </div>
-                        <div>
-                        <ChangeQuantity cartId={product.id} quantity={product.quantity} productId={product.id}/>
-                        </div>
-                        <div>
-                        <RemoveItemButton cartId={product.id}/>
-                        <CheckoutCart />
-                        </div>
-                        <div>
-                        <img src={product.productImage} alt='preview'/>
-                        </div>
-                    </li>
-                ))}
-                {/* {itemsByStore.map((i) =>(
-                   <> {console.log(i)} </>
-                ))} */}
-            </ul>
+    const checkoutPrice = totalCost(cart)
+    console.log(Object.values(cart).length)
+
+    return(
+    <div className="order-page">
+      <div className="shopping-bar">
+          <h2>{Object.values(cart).length} items in your cart</h2>
+          <h4>Keep shopping</h4>
         </div>
+      <div className="cart-content">
+        <div className="names-are-hard">
+        {Object.keys(itemsByStore).map((storeName) => (
+            <div key={storeName} className="shop-info">
+              <div className="contact-us-bar">
+                <div className="shop-title-and-image">
+                <img src={itemsByStore[storeName][0].shopImage} alt="preview" className="cart-shop-icon"/>
+                <h3>{storeName}</h3>
+                </div>
+                <div>
+                <h4>Contact Shop</h4>
+                </div>
+              </div>
+              <ul>
+                {itemsByStore[storeName].map((product, index) => (
+                  <li key={index} className="cart-product">
+                    <div className="cart-product-image-div">
+                    <img src={product.productImage} alt="preview" className="cart-product-image"/>
+                    </div>
+                    <div className="cart-product-info">
+                    {console.log(product)}
+                    {product.name}. {product.description}
+                    <ChangeQuantity cartId={product.cartId} quantity={product.quantity} productId={product.productId}/>
+                    <RemoveItemButton cartId={product.cartId}/>
+
+                    ${(product.price * product.quantity).toFixed(2)}
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+          </div>
+          <div className="checkout-div">
+            <h3>How you'll pay</h3>
+            <h3>We're sorry to inform you that the only way you can pay currently is with depleted uranium</h3>
+            <p>Item(s) total: ${totalCost(cart)}</p>
+            <CheckoutCart />
+          </div>
+        </div>
+    </div>
     )
 }
