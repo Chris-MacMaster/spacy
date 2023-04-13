@@ -200,7 +200,7 @@ export default function reviewReducer(state = initialState, action) {
             console.log('newState5', newState5)
 
             // newState5.productReviews[state.singleReviewGet.id] = {...action.singleReviewGet}
-            delete newState5.productReviews[state.singleReviewGet.id]
+            // delete newState5.productReviews[state.singleReviewGet.id]
             delete newState5.singleReviewGet
 
             return newState5

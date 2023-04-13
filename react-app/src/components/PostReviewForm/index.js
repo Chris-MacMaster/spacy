@@ -33,7 +33,7 @@ export default function PostReviewForm() {
 
         const res = await dispatch(createProductReview(product.id, review, stars, imageURL))
         console.log('res', res)
-        // history.push(`/products/${productId}`)
+        history.push(`/products/${productId}`)
     }
 
     //  || !product.ProductImages.length || !Object.values(product.Shop).length
