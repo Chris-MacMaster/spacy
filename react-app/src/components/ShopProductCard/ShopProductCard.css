@@ -19,6 +19,7 @@
     border-radius: .5rem;
     position: relative;
     overflow: hidden;
+    /* margin: 3px; */
 }
 .shop-product-price {
     font-weight: bolder;
@@ -28,6 +29,8 @@ a.product-name, a.shop-product-price {
 }
 .shop-product-card:hover {
     box-shadow: 0rem 0rem 1rem grey;
-    border: white solid 1px;
+    outline: 1px solid transparent;
 }
-
+.shop-product-name, .shop-product-price {
+    margin-top: 0;
+}

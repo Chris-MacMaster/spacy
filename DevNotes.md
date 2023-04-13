@@ -58,18 +58,19 @@ Navigate
 ✅Shop Details
 --🔲Policies Modal
 ✅user details
-✅product details
+🔲product details
 🔲product search results
 🔲user cart
 
 FORMS
-🔲delete cart
-🔲create cart
-🔲update cart
+✅delete cart
+✅create cart
+✅update cart
 
 🔲create product
 🔲update product
-🔲create review
+✅create review
+--🔲add url field to create review
 🔲update review
 
 

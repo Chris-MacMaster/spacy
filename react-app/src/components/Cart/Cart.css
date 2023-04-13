@@ -7,7 +7,7 @@
 .shopping-bar{
     display: flex;
     justify-content: space-between;
-    margin: 0 5em;
+    margin: 0 5rem;
 }
 .shop-info{
     border: 1px solid green
@@ -18,7 +18,7 @@
 .cart-product{
     border: 1px dotted purple;
     display: flex;
-    margin-top: 2.5em;
+    margin-top: 2.5rem;
 }
 .cart-product-image-div{
     height:100%;

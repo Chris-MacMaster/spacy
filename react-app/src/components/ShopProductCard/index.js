@@ -12,7 +12,7 @@ export default function ShopProductCard({ product }) {
         <img src={`${product.ProductImages[0].url}`}
         alt='preview'
         className='shop-product-preview-image'/>
-        <p className='product-name'>
+        <p className='shop-product-name'>
             {product.name}
         </p>
         <p className='shop-product-price'>

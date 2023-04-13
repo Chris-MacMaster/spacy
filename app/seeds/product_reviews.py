@@ -100,8 +100,106 @@ def seed_product_reviews():
         review = "It's an astronaut. What more can you want?",
         stars = 5
     )
+    review15 = ProductReview(
+        # shop and product tied to user 2, degrasse tyson
+        user_id = 6,
+        product_id = 11,
+        review = "As an avid camper, I've tried my fair share of MREs, but these's are by far the best I've had. The taste is surprisingly good, and the portion sizes are perfect for a hearty meal. Plus, the packaging is incredibly durable, ensuring that the food stays fresh for a long time. I would definitely recommend thsese MREs to any outdoor enthusiast",
+        stars = 5
+    )
+    review16 = ProductReview(
+        # shop and product tied to user 2, degrasse tyson
+        user_id = 1,
+        product_id = 11,
+        review = "I'm super pleased that these MREs come in vegan, vegetarian, gluten free, and keto varieties! I super recommend these to anyone who is currently on a diet! ",
+        stars = 5
+    )
+    review17 = ProductReview(
+        # shop and product tied to user 2, degrasse tyson
+        user_id = 3,
+        product_id = 11,
+        review = "As a space rogue, adventurer, and jack of all trades, I've had my fair share of struggle meals. I've got to say though, after all the years of hearing horror stories, the bad reputation that MREs have gotten are undeserved, at least when we're talking about these MREs. They are surprisingly good, and I appreciate that they are nutritionally balanced, especially when I'm in the middle of dead space without hope of restock.",
+        stars = 5
+    )
+    review18 = ProductReview(
+        # shop and product tied to user 2, degrasse tyson
+        user_id = 4,
+        product_id = 11,
+        review = "On a recent mission, I forgot to bring my own supplies and these MREs were what the employer had on hand. Being in zero gravity can really mess with your appetite, but even then these are pretty neutral on the palette. A must have, but a soft recommend.",
+        stars = 3
+    )
+    review19 = ProductReview(
+        # shop and product tied to user 2, degrasse tyson
+        user_id = 1,
+        product_id = 12,
+        review = "I heard a rumor that these are spiced with THE spice, you know the one. The one that is worth more republic credits than you can carry. After trying them, I understand the rumors. These are amazing, perfect for following the bland MREs that so many of us have become accustomed to.",
+        stars = 5
+    )
+    review20 = ProductReview(
+        # shop and product tied to user 2, degrasse tyson
+        user_id = 3,
+        product_id = 12,
+        review = "I'm not usually a fan of deserts but these were amazing. The textures and flavors a perfect match, very apparent that whomever made them is incredibly skilled. One complaint though. The spice, something about the spice makes my lips burn.",
+        stars = 5
+    )
+    review21 = ProductReview(
+        # shop and product tied to user 2, degrasse tyson
+        user_id = 4,
+        product_id = 12,
+        review = "As a self-proclaimed foodie, I'm super pleased that these are gluten free! It's so hard to find gluten free things that taste and feel like a big bite of styrofoam.",
+        stars = 5
+    )
+    review22 = ProductReview(
+        # shop and product tied to user 2, degrasse tyson
+        user_id = 5,
+        product_id = 12,
+        review = "I ordered these macaroons for a party, I was too busy that week preparing for the next mission. And they were a huge hit! I ordered a few dozen. Something about them is strangely filling, I wasn't hungry for the rest of the day, super bizarre. I don't usually try new foods so I'm super pleased that I loved these.",
+        stars = 5
+    )
+    review23 = ProductReview(
+        # shop and product tied to user 2, degrasse tyson
+        user_id = 1,
+        product_id = 13,
+        review = "I once got stranded in the orbit of a far off strange planet. How? My got-danged TANG escaped the pouch I was drinking from and fried my navigation console. Some bounty hunters took me in and rescued me but that's another story. Can't believe there's finally a solution to drinking in space!",
+        stars = 5
+    )
+    review24 = ProductReview(
+        # shop and product tied to user 2, degrasse tyson
+        user_id = 3,
+        product_id = 13,
+        review = "Nothing is scarier than trying to chase down a boiling ball of coffee as it floats through the office, cant wait to show my cabin mates the new mug I got! And the best part is, those who stream our missions down on Earth don't know what I'm drinking 😏😉.",
+        stars = 5
+    )
+    review25 = ProductReview(
+        # shop and product tied to user 2, degrasse tyson
+        user_id = 6,
+        product_id = 13,
+        review = "I was skeptical at first, but this mug really works! I've used it on several zero-gravity flights and it keeps my coffee contained and easy to drink. The quality is top-notch, and the NASA logo adds a nice touch. Great gift for any space enthusiast",
+        stars = 5
+    )
+    review26 = ProductReview(
+        # shop and product tied to user 2, degrasse tyson
+        user_id = 1,
+        product_id = 13,
+        review = "If you're looking for the ultimate coffee mug for space travel, look no further. The NASA zero-gravity coffee mug is the real deal. It's lightweight, durable, and the perfect size for a morning cup of coffee. I love the way it feels in my hand, and the special design keeps my coffee from spilling all over the place. A must-have for any serious astronaut.",
+        stars = 5
+    )
+    # review24 = ProductReview(
+    #     # shop and product tied to user 2, degrasse tyson
+    #     user_id = 1,
+    #     product_id = 14,
+    #     review = "",
+    #     stars = 5
+    # )
+    # review24 = ProductReview(
+    #     # shop and product tied to user 2, degrasse tyson
+    #     user_id = 1,
+    #     product_id = 14,
+    #     review = "",
+    #     stars = 5
+    # )
 
-    db.session.add_all([review01, review02, review03, review04, review05, review06, review07, review08, review09, review10, review11, review12, review13, review14])
+    db.session.add_all([review01, review02, review03, review04, review05, review06, review07, review08, review09, review10, review11, review12, review13, review14, review14, review15, review16, review17, review18, review19, review20, review21, review22, review23, review24, review25, review26])
     db.session.commit()
 
 # Uses a raw SQL query to TRUNCATE or DELETE the users table. SQLAlchemy doesn't

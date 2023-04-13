@@ -31,10 +31,10 @@ export default function UserDetails() {
             <div className='user-manage-header'>
                 <div className='user-manage-business-cards'>
                 {userShops ? userShops.map((shop, i) => (
-                    <NavLink to={`/shops/${shop.id}`} >
+
                     <ShopBusinessCard shopId={shop.id}
                     key={`shopbusicardcomp${i}`}/>
-                </NavLink>
+
                 )) : null}
                 </div>
                 <div className='user-manage-shop-owners'>
