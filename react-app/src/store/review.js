@@ -105,7 +105,7 @@ export const editReview = (reviewId, review, stars) => async dispatch => {
 }
 
 export const deleteReview = (reviewId) => async dispatch => {
-    const res = await fetch(`api/product-reviews/${reviewId}/delete`, {
+    const res = await fetch(`/api/product-reviews/${reviewId}/delete`, {
         method: 'DELETE',
         headers: {'Content-Type': 'application/json'}
     })
@@ -167,6 +167,7 @@ export default function reviewReducer(state = initialState, action) {
             const newState5 = {...state, productReviews: {...state.productReviews}, singleReviewPost: {...state.singleReviewPost}, singleReviewGet: {...state.singleReviewGet}}
 
             newState5.singleReviewGet = {...state.singleReviewGet}
+            newState5.productReviews[state.singleReviewGet.id] = {...action.singleReviewGet}
             delete newState5.productReviews[state.singleReviewGet.id]
             delete newState5.singleReviewGet
 

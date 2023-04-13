@@ -4,16 +4,23 @@ import { Redirect, useHistory, useParams } from "react-router-dom";
 import { fetchOneProduct } from "../../store/product";
 import { createProductReview } from "../../store/review";
 import './ReviewForm.css'
+import { fetchOneShop } from "../../store/shops";
 
 export default function PostReviewForm() {
-    let product = useSelector((state) => state.products.singleProduct)
-    let user = useSelector((state) => state.session.user)
-
+    
     const dispatch = useDispatch()
     const history = useHistory()
     const {productId} = useParams()
+    
+    
+    let product = useSelector((state) => state.products.singleProduct)
+    // let shop = useSelector((state) => state.shops.singleShop)
+    let user = useSelector((state) => state.session.user)
+    
     useEffect(() => {
         dispatch(fetchOneProduct(productId))
+        let res = dispatch(fetchOneShop(product.shopId))
+        console.log('state shop', res)
     }, [])
 
     const [review, setReview] = useState('')
@@ -27,21 +34,30 @@ export default function PostReviewForm() {
         history.push(`/products/${productId}`)
     }
 
-    if (!user) {
+    //  || !product.ProductImages.length || !Object.values(product.Shop).length
+
+    if (!user || !Object.keys(product).includes('ProductImages') || !Object.keys(product).includes('Shop')) {
         return null
     }
 
     return (
         <>
-        <h1>Review Form</h1>
         <div className="formParent">
         <form onSubmit={handleSubmit} className='wholeForm'>
             <div className='headerAndReview'>
                 <div className='productPic'>
+                    {product.ProductImages.length > 0 ? 
                     <img src={product.ProductImages[0].url}/>
-                    <p>{product.name}</p>
+                    : ''}
+                    <div className="productName">
+                     <p>{product.Shop.name}</p>   
+                    <p style={{fontWeight:'bolder', fontSize:'larger'}}>{product.name}</p>
+                    </div>
                 </div>
             </div>
+            <h2>My review</h2>
+            <p>What did you like about this product?</p>
+            <p>Help others by sending your feedback.</p>
             <div>
                 <div className="rate">
                   <input type="radio" id="star5" name="rate" value='5' onChange={(e) => setStars(Number(e.target.value))} />
@@ -60,7 +76,7 @@ export default function PostReviewForm() {
                 <textarea name='review' className='reviewText' value={review} onChange={(e) => setReview(e.target.value)}/>
             </div>
             <div className='submitButtonParent'>
-                <button type='submit' className='submitButton' disabled={review.length < 10 || stars < 1}>Submit Your Review</button>
+                <button type='submit' className='submitButton' disabled={review.length < 10 || stars < 1}>Post Your Review</button>
             </div>
         </form>
         </div>

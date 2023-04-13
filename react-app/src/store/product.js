@@ -45,8 +45,8 @@ export const fetchProducts = () => async dispatch => {
 
 export const fetchOneProduct = (id) => async dispatch => {
     const response = await fetch(`/api/products/${id}`)
-    const product = await response.json()
     if (response.ok) {
+        const product = await response.json()
         dispatch(actionLoadProduct(product))
     }
 }
@@ -103,8 +103,8 @@ export default function productReducer(state = initialState, action) {
             return newState
         }
         case LOAD_PRODUCT: {
-            let newState = { ...state }
-            newState.singleProduct = action.payload
+            let newState = { ...state, singleProduct: {...state.singleProduct} }
+            newState.singleProduct = {...action.payload}
             return newState
         }
         case LOAD_USER_PRODUCTS: {
