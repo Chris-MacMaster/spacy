@@ -24,7 +24,7 @@ def seed_products():
     )
 
     product3 = Product(
-                # item belongs to Carl Sagan
+        # item belongs to Carl Sagan
 
         shop_id='1',
         name='Planet Coasters',
@@ -111,16 +111,35 @@ def seed_products():
         price=24.99
     )
 
-    db.session.add(product1)
-    db.session.add(product2)
-    db.session.add(product3)
-    db.session.add(product4)
-    db.session.add(product5)
-    db.session.add(product6)
-    db.session.add(product7)
-    db.session.add(product8)
-    db.session.add(product9)
-    db.session.add(product10)
+    product11 = Product(
+        shop_id='2',
+        name='Space MREs',
+        description="Here's the thing about space food. While it might seem exotic to people here on Earth — to people who live in some relative proximity to a farm or a grocery store — space food is awesome only in the sense that it is eaten in space. Otherwise, the stuff is not at all awesome. Space food tends to be dry. Or else slimy. Or else just weird: different enough from the product it's trying to emulate that it serves only as a sad reminder of what it is not. Space food — when actually consumed, rather than bought at a gift shop — is pretty horrendous.",
+        category='Foodstuffs',
+        available=750,
+        free_shipping=False,
+        price=14.99
+    )
+    product12 = Product(
+        shop_id='2',
+        name='Space Macaroons',
+        description="The space macaroon is a delectable dessert that is popular among space travelers and those who reside in distant colonies on other planets. This futuristic treat consists of a light and fluffy pastry shell made with a special blend of space flour and enriched with a variety of vitamins and minerals. The shell is then filled with a creamy and flavorful space frosting that is infused with exotic spices and extracts from distant planets.",
+        category='Foodstuffs',
+        available=75,
+        free_shipping=False,
+        price=20.99
+    )
+    product13 = Product(
+        shop_id='2',
+        name='Space Coffee Cup',
+        description="Over the past few years, NASA has been working on a space cup that keeps liquid in its place, even with an open top. The technology is improving life for astronauts living in the weightless environment aboard the International Space Station while giving scientists new insights into how to design other plumbing systems in space. The cup functions just like cups here on Earth, but instead of relying on gravity, it uses a combination of surface tension, wetting and cup geometry to keep the liquids in place. The use of this special cup will allow astronauts to drink a variety of liquids while they are in space, from simple ones like water and juice to more “complex” fluids like cocoa, coffees, espressos and fruit smoothies. Apart from making life easier for astronauts, this technology could also potentially help reduce the volume and weight of drinking bags that need to be sent to space.",
+        category='Dishware',
+        available=75,
+        free_shipping=False,
+        price=24.99
+    )
+    db.session.add_all([product1, product2, product3, product4, product5, product6, product7, product8, product9, product10, product11, product12, product13])
+
 
     db.session.commit()
 
