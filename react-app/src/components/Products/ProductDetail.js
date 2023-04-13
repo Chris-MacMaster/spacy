@@ -7,11 +7,14 @@ import { fetchOneProduct } from '../../store/product';
 import { fetchProductReviews } from '../../store/review';
 import ReviewIndexItem from '../Reviews/ReviewIndexItem';
 import AddToCart from '../Cart/AddToCart';
+import { useHistory } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import "./ProductDetail.css"
 
 const ProductDetail = () => {
     const dispatch = useDispatch()
+    const history = useHistory()
     const productState = useSelector(state => state.products)
     const reviewState = useSelector(state => state.reviews)
     const [imgCount, setImgCount] = useState(0)
@@ -93,6 +96,11 @@ const ProductDetail = () => {
                         <p className='review-p review-stars'>
                             <i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i> <i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i> <i className="fa-solid fa-star"></i>
                         </p>
+                    <div>
+                        <NavLink to={`/product-reviews/${productId}/new`}>
+                        <button>Post a Review</button>
+                        </NavLink>
+                    </div>
                     </div>
                     {/* reviews... */}
                     {productReviews.length > 0 ? productReviews.map(review => (
