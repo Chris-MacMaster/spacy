@@ -12,8 +12,8 @@ div.top-banner-suggestions > p {
     font-weight: bold;
 }
 .suggest-image-div {
-    width: 12vw;
-    height: 12vw;
+    width: 10rem;
+    height: 10rem;
     /* border: white solid 2px; */
     border-radius: 12vw;
     overflow: hidden;
@@ -21,14 +21,14 @@ div.top-banner-suggestions > p {
 .suggest-image {
     object-fit: cover;
     box-sizing: border-box;
-    width: 12vw;
-    height: 12vw;
+    width: 10rem;
+    height: 10rem;
 }
 .welcome-title {
     font-family: 'Marcellus', serif;
     font-weight: 200;
     text-align: center;
-
+    margin: 2rem;
 }
 .by-etzy-header {
     margin: .25rem;
