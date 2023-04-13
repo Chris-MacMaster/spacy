@@ -11,14 +11,20 @@ function LoginFormModal() {
   const [errors, setErrors] = useState([]);
   const { closeModal } = useModal();
 
+	const validate = () => {
+		const err = []
+		if (!email.includes('@') || !email.includes('.')) err.push('Please enter a valid email.')
+		if (password.length < 6 || !password) err.push('Passwords must be at least 6 characters')
+		setErrors(err)
+	}
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    validate()
     const data = await dispatch(login(email, password));
-    if (data) {
-      setErrors(data);
-    } else {
-        closeModal()
-    }
+    if (errors.length) return
+    else if (data) setErrors(data);
+    else closeModal()
   };
 
   const demoUser = async (e) => {
@@ -39,11 +45,7 @@ function LoginFormModal() {
       <h1 className="login-title">Log In</h1>
       <form onSubmit={handleSubmit}
       className="login-form">
-        <ul>
-          {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
-          ))}
-        </ul>
+
         <label className="login-label">Email</label>
           <input
             type="text"
@@ -70,6 +72,11 @@ function LoginFormModal() {
         </form>
       </div>
       <p className="login-trouble">Trouble Signing In?</p>
+      {errors?.map((error, idx) => (
+            <p
+            classNames='errors'
+            key={`${idx}error`} >{error}</p>
+            ))}
       <hr></hr>
     </div>
   );

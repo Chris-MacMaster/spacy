@@ -6,6 +6,8 @@ import { createProductReview, editReview, getOneReview } from "../../store/revie
 import '../PostReviewForm/ReviewForm.css'
 
 function EditReviewForm() {
+
+    const history = useHistory()
     
     const dispatch = useDispatch()
     const {reviewId} = useParams()
@@ -35,7 +37,9 @@ function EditReviewForm() {
     const handleSubmit = async (e) => {
         e.preventDefault()
 
-        dispatch(editReview(reviewId, review, stars))
+        await dispatch(editReview(reviewId, review, stars))
+
+        history.push(`/products/${reviewToEdit.product.id}`)
     }
 
     if (!Object.values(reviewToEdit).length 

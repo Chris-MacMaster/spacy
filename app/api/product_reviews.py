@@ -98,10 +98,28 @@ def post_review(product_id):
             created_at = datetime.now(),
             updated_at = None
         )
+
         db.session.add(new_review)
         db.session.commit()
-        print('new review', new_review.to_dict())
-        return new_review.to_dict()
+        # review_image
+        if data['image']:
+            print('image', data['image'])
+            review_image = ReviewImage(
+                url = data['image'],
+                created_at = datetime.now(),
+                review_id = new_review.id
+            )
+            db.session.add(review_image)
+            db.session.commit()
+        
+        review_dict = new_review.to_dict()
+
+        image = ReviewImage.query.filter(ReviewImage.review_id == new_review.id).one()
+
+        review_dict['ReviewImages'] = image.to_dict()
+
+        print('new review', review_dict)
+        return review_dict
     return {'error': 'Validation Error'}, 401
 
 @product_review_routes.route('/<int:review_id>/edit', methods=['PUT'])
@@ -122,6 +140,24 @@ def edit_review(review_id):
             return review_to_edit.to_dict()
 
     return {"error": 'Review does not exist or user did not write this review'}
+
+@product_review_routes.route('/<int:review_id>/add-image', methods=['PUT'])
+@login_required
+def add_image_to_review(review_id):
+    review = ProductReview.query.get(review_id)
+
+    form = ReviewForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if review:
+        if form.validate_on_submit:
+            review.image = form.data['image']
+            print('review with image',review.to_dict())
+            return {review.to_dict()}
+        
+    return {'No review'}
+
+
 
 
 # @product_review_routes.route('/<int:review_id>')

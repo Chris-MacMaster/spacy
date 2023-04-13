@@ -1,12 +1,16 @@
 .landing-div {
     margin-left: 2rem;
 }
+.landing-header {
+    justify-content: center;
+}
 .top-banner-suggest {
     display: flex;
     justify-content: space-between;
     gap: 2rem;
     margin-left: 5vw;
     margin-right: 5vw;
+    max-width: 87rem;
 }
 div.top-banner-suggestions > p {
     font-family: 'Mulish', sans-serif;
@@ -14,8 +18,8 @@ div.top-banner-suggestions > p {
     font-weight: bold;
 }
 .suggest-image-div {
-    width: 10rem;
-    height: 10rem;
+    width: 12vw;
+    height: 12vw;
     /* border: white solid 2px; */
     border-radius: 12vw;
     overflow: hidden;
@@ -23,8 +27,8 @@ div.top-banner-suggestions > p {
 .suggest-image {
     object-fit: cover;
     box-sizing: border-box;
-    width: 10rem;
-    height: 10rem;
+    width: 12vw;
+    height: 12vw;
 }
 .welcome-title {
     font-family: 'Marcellus', serif;

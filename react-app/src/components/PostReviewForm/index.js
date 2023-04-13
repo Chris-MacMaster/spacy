@@ -16,6 +16,8 @@ export default function PostReviewForm() {
     let product = useSelector((state) => state.products.singleProduct)
     // let shop = useSelector((state) => state.shops.singleShop)
     let user = useSelector((state) => state.session.user)
+
+    const [imageURL, setImageURL] = useState('')
     
     useEffect(() => {
         dispatch(fetchOneProduct(productId))
@@ -29,7 +31,7 @@ export default function PostReviewForm() {
     const handleSubmit = async (e) => {
         e.preventDefault()
 
-        const res = await dispatch(createProductReview(product.id, review, stars))
+        const res = await dispatch(createProductReview(product.id, review, stars, imageURL))
         console.log('res', res)
         history.push(`/products/${productId}`)
     }
@@ -74,6 +76,15 @@ export default function PostReviewForm() {
             </div>
             <div>
                 <textarea name='review' className='reviewText' value={review} onChange={(e) => setReview(e.target.value)}/>
+            </div>
+            <div>
+                <div className="imageURLdiv">
+                <label >Image URL
+                </label>
+                </div>
+                <div className="imageURLinput">
+                <input type='text' id='imageURL' value={imageURL} onChange={(e) => setImageURL(e.target.value)}></input>
+                </div>
             </div>
             <div className='submitButtonParent'>
                 <button type='submit' className='submitButton' disabled={review.length < 10 || stars < 1}>Post Your Review</button>

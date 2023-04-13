@@ -57,7 +57,7 @@ export default function ShopDetails () {
                 src={`${shop.ShopImages.url}`}
                 alt='user'></img>
                 <p>{shop.Owner.firstName}</p>
-                <p><i className="fa-solid fa-message"></i> Contact</p>
+                <p className='contact-shop-owner'><i className="fa-solid fa-message"></i> Contact</p>
             </div>
         </div>
 

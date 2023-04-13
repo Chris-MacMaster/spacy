@@ -13,10 +13,13 @@ def seed_review_images():
     rimg9 = ReviewImage(url ='https://i.imgur.com/yiDlUpN.jpg', review_id =12 )
     rimg10 = ReviewImage(url ='https://i.imgur.com/jeCkJ9F.png', review_id =10 )
     rimg11 = ReviewImage(url ='https://i.imgur.com/7Icp2QW.jpg', review_id =11 )
+    rimg12 = ReviewImage(url ='https://i.imgur.com/Pl7ckl6.jpg', review_id =17 )
+    rimg13 = ReviewImage(url ='https://i.imgur.com/T7YqvtB.jpg', review_id =16 )
+    rimg13 = ReviewImage(url ='https://i.imgur.com/762sA1z.jpg', review_id =20 )
 
 
 
-    db.session.add_all([rimg1, rimg2, rimg3, rimg4, rimg5, rimg6, rimg7, rimg8, rimg9, rimg10, rimg11])
+    db.session.add_all([rimg1, rimg2, rimg3, rimg4, rimg5, rimg6, rimg7, rimg8, rimg9, rimg10, rimg11, rimg12, rimg13])
     db.session.commit()
 
 # Uses a raw SQL query to TRUNCATE or DELETE the users table. SQLAlchemy doesn't
