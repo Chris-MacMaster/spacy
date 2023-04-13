@@ -12,15 +12,12 @@ product_review_routes = Blueprint('/product-reviews', __name__)
 @product_review_routes.route('/search/<int:review_id>')
 def get_review(review_id):
     """get a single review by id"""
-    print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+    # print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
     review = ProductReview.query.filter(ProductReview.id == review_id).one()
     print(review.to_dict())
     if review:
         return review.to_dict()
-    
-    return {'Review Not Found'}, 404
-
-
+    return {'error': 'Review Not Found'}, 404
 
 @product_review_routes.route('/')
 def get_all_reviews():
@@ -84,23 +81,18 @@ def post_review(product_id):
             created_at = datetime.now(),
             updated_at = None
         )
-
         db.session.add(new_review)
         db.session.commit()
-
         print('new review', new_review.to_dict())
-
         return {'New Review': new_review.to_dict()}
-
-
-    return {'Error': 'Validation Error'}, 401
+    return {'error': 'Validation Error'}, 401
 
 @product_review_routes.route('/<int:review_id>/edit', methods=['PUT'])
 @login_required
 def edit_review(review_id):
     """edit a product review"""
     review_to_edit = ProductReview.query.get(review_id)
-    
+
     form = EditReviewForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
@@ -111,8 +103,8 @@ def edit_review(review_id):
             review_to_edit.updated_at = datetime.now()
             db.session.commit()
             return review_to_edit.to_dict()
-        
-    return {'Review does not exist or user did not write this review'}
+
+    return {"error": 'Review does not exist or user did not write this review'}
 
 
 # @product_review_routes.route('/<int:review_id>')
@@ -127,5 +119,5 @@ def edit_review(review_id):
 #         review = review_dict
 #         print('review backend',review)
 #         return {review}
-    
+
 #     return {'Review Not Found'}, 404
