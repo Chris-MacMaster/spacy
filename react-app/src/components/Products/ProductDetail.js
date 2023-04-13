@@ -17,6 +17,7 @@ const ProductDetail = () => {
     const history = useHistory()
     const productState = useSelector(state => state.products)
     const reviewState = useSelector(state => state.reviews)
+    const user = useSelector((state) => state.session.user)
     const [imgCount, setImgCount] = useState(0)
 
     let { productId } = useParams()
@@ -52,9 +53,19 @@ const ProductDetail = () => {
     }
 
     const product = productState?.singleProduct
+    console.log('product', product)
     const productReviews = reviewState?.productReviews
     if (!product.Shop) return null
     // if (!productReviews.length) return null
+    // console.log('product reviews', productReviews)
+    let reviewUserIds = []
+    if (productReviews.length) {
+        for (let review of productReviews) {
+            reviewUserIds.push(review.userId)
+        }
+    }
+
+    console.log('review user IDs', reviewUserIds)
 
     return (
         <div className='product-detail-div'>
@@ -96,11 +107,13 @@ const ProductDetail = () => {
                         <p className='review-p review-stars'>
                             <i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i> <i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i> <i className="fa-solid fa-star"></i>
                         </p>
-                    <div>
+                        {user && !reviewUserIds.includes(user.id) && product.Shop?.ownerId !== user.id ?                        
+                 (   <div>
                         <NavLink to={`/product-reviews/${productId}/new`}>
                         <button>Post a Review</button>
                         </NavLink>
-                    </div>
+                    </div>)
+                        :null}
                     </div>
                     {/* reviews... */}
                     {productReviews.length > 0 ? productReviews.map(review => (
