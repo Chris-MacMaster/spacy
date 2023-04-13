@@ -31,36 +31,19 @@ function App() {
     <Header isLoaded={isLoaded} />
     <Switch>
       <Route path='/' component={Landing} isLoaded={isLoaded} exact={true} />
-      <Route path='/products' exact={true}>
-        <ProductsIndex />
-      </Route>
-      <Route path='/products/current' exact={true}>
-        <UserProducts />
-      </Route>
-      <Route path='/search/:parameters'>
-        <SearchResults />
-      </Route>
-      <Route path='/products/:productId' exact={true}>
-        <ProductDetail />
-      </Route>
-      <Route path='/products/forms/create-product/:shopId' exact={true}>
-        <ReviewForm />
-      </Route>
-      <Route path='/cart' exact={true}>
-        <DisplayCart/>
-      </Route>
+      <Route path='/products' exact={true} component={ProductsIndex}/>
+      <Route path='/products/current' exact={true} component={UserProducts}/>
+      <Route path='/search/:parameters' component={SearchResults}/>
+      <Route path='/products/:productId' exact={true} component={ProductDetail}/>
+      <Route path='/products/forms/create-product/:shopId' exact={true} component={ReviewForm}/>
+      <Route path='/cart' exact={true} component={DisplayCart} />
       <Route path='/shops/:shopId' exact={true} component={ShopDetails}/>
       <Route path='/users/:userId' exact={true} component={UserDetails}/>
-      <Route path='/product-reviews/:productId/new'>
-        <PostReviewForm />
-      </Route>
-      <Route path='/product-reviews/:reviewId/edit'>
-        <EditReviewForm />
-      </Route>
+      <Route path='/product-reviews/:productId/new' component={PostReviewForm}/>
+      <Route path='/product-reviews/:reviewId/edit' component={EditReviewForm}/>
     </Switch>
     </>
   );
 }
 
 export default App;
-
