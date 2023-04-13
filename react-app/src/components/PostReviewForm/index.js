@@ -31,9 +31,9 @@ export default function PostReviewForm() {
     const handleSubmit = async (e) => {
         e.preventDefault()
 
-        const res = await dispatch(createProductReview(product.id, review, stars, ...imageURL))
+        const res = await dispatch(createProductReview(product.id, review, stars, imageURL))
         console.log('res', res)
-        history.push(`/products/${productId}`)
+        // history.push(`/products/${productId}`)
     }
 
     //  || !product.ProductImages.length || !Object.values(product.Shop).length

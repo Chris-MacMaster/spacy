@@ -103,6 +103,7 @@ def post_review(product_id):
         db.session.commit()
         # review_image
         if data['image']:
+            print('image', data['image'])
             review_image = ReviewImage(
                 url = data['image'],
                 created_at = datetime.now(),
@@ -111,10 +112,14 @@ def post_review(product_id):
             db.session.add(review_image)
             db.session.commit()
         
-        print('review image', review_image.to_dict())
+        review_dict = new_review.to_dict()
 
-        print('new review', new_review.to_dict())
-        return new_review.to_dict()
+        image = ReviewImage.query.filter(ReviewImage.review_id == new_review.id).one()
+
+        review_dict['ReviewImages'] = image.to_dict()
+
+        print('new review', review_dict)
+        return review_dict
     return {'error': 'Validation Error'}, 401
 
 @product_review_routes.route('/<int:review_id>/edit', methods=['PUT'])
