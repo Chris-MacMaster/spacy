@@ -1,5 +1,5 @@
 from flask import Blueprint, request, render_template, jsonify
-from app.models import db, Product, ProductReview, ReviewImage, ProductImage, Shop
+from app.models import db, Product, ProductReview, ReviewImage, ProductImage, Shop, User
 import copy
 from flask_login import current_user, login_required
 from datetime import datetime
@@ -61,6 +61,12 @@ def get_reviews_of_product(product_id):
     reviewcopy = [review.to_dict() for review in reviews]
     for review in reviewcopy:
         review['ReviewImages'] = review_image(review['id'])
+
+    for review in reviewcopy:
+        review_user = User.query.get(review['userId'])
+        review['author_first'] = review_user.first_name
+        review['author_last'] = review_user.last_name
+
     return reviewcopy, 200
 
 @product_review_routes.route('/<int:review_id>/delete', methods=['DELETE'])

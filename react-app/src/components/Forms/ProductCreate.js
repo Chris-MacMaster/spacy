@@ -28,41 +28,50 @@ const ReviewForm = () => {
     const [freeShipping, setFreeShipping] = useState(false)
     const [price, setPrice] = useState(0)
 
+    const [url1, setUrl1] = useState("")
+    const [url2, setUrl2] = useState("")
+    const [url3, setUrl3] = useState("")
+    const [url4, setUrl4] = useState("")
+    const [url5, setUrl5] = useState("")
+    const [url6, setUrl6] = useState("")
+    const [url7, setUrl7] = useState("")
+    const [url8, setUrl8] = useState("")
+    const [url9, setUrl9] = useState("")
+
     // shopId
 
     //validation
     const [errors, setErrors] = useState({})
     const [hasSubmitted, setHasSubmitted] = useState(false);
 
-
-
-    useEffect(() => {
-        // setActiveRating(stars)
-        // console.log("FREE SHIPPING: ", freeShipping)
-    }, [])
-
-
     useEffect(() => {
         let e = {}
         setErrors(e)
-        // if (!review) e.noReview = "Must submit a review"
-        // if (review.length < 10) e.reviewLength = "Review must be at least 10 characters"
-        // if (!stars) e.stars = "Must submit a star rating"
-
-    }, [])
+        // console.log(category)
+        if (!name) e.name = "Must submit a name"
+        if (!available) e.available = "Must submit a value for available."
+        if (!price) e.price = "Must submit a price."
+        if (!category) e.category = "Must submit a category"
+        if (!description) e.description = "Must submit a description"
+        if (!url1) e.url1 = "Must submit at least 1 url, in the first input line."
+    }, [name, available, price, category, description, url1])
 
     const handleSubmit = (e) => {
         e.preventDefault();
         setHasSubmitted(true)
-        //trying to be careful about data types
-
+        console.log("ERRORS", errors)
         if (Object.values(errors).length) {
-            // window.alert("Cannot Submit, See Errors Listed")
             return
         }
         const newReview = {
-          
+          name,
+          available,
+          price,
+          category,
+          description,
+          url1
         }
+        console.log("SUBMITTED!")
     };
 
     const reset = () => {
@@ -102,11 +111,11 @@ const ReviewForm = () => {
                             onChange={(e) => setName(e.target.value)}
                             placeholder='Name' />
                     </label>
-                    {/* {hasSubmitted && errorsObj.country && (
+                    {hasSubmitted && errors.name && (
                         <div className='error'>
-                            * {errorsObj.country}
+                            * {errors.name}
                         </div>
-                    )} */}
+                    )}
                 </div>
 
                 <div className='product-available-div'>
@@ -117,56 +126,48 @@ const ReviewForm = () => {
                             onChange={(e) => setAvailable(e.target.value)}
                             placeholder='Available' />
                     </label>
-                    {/* {hasSubmitted && errorsObj.country && (
+                    {hasSubmitted && errors.available && (
                         <div className='error'>
-                            * {errorsObj.country}
+                            * {errors.available}
                         </div>
-                    )} */}
-                </div>
-
-                <div className='product-avg-rating-div'>
-                    <label className='product-label' >
-                        Average Rating
-                        <input className='product-input' type="number"
-                            value={avgRating}
-                            onChange={(e) => setAvgRating(e.target.value)}
-                            placeholder='Average Rating' />
-                    </label>
-                    {/* {hasSubmitted && errorsObj.country && (
-                        <div className='error'>
-                            * {errorsObj.country}
-                        </div>
-                    )} */}
+                    )}
                 </div>
 
                 <div className='product-price-div'>
                     <label className='product-label' >
                         Price
                         <input className='product-input' type="number"
-                            value={avgRating}
+                            value={price}
                             onChange={(e) => setPrice(e.target.value)}
                             placeholder='Price' />
                     </label>
-                    {/* {hasSubmitted && errorsObj.country && (
+                    {hasSubmitted && errors.price && (
                         <div className='error'>
-                            * {errorsObj.country}
+                            * {errors.price}
                         </div>
-                    )} */}
+                    )}
                 </div>
 
                 <div className='product-category-div'>
                     <label className='product-label' >
                         Category
-                        <input className='product-input' type="text"
-                            value={category}
-                            onChange={(e) => setCategory(e.target.value)}
-                            placeholder='Category' />
+                        <select name='category' onChange={(e) => setCategory(e.target.value)}>
+                            <option value='' >--Please choose an option--</option>
+                            <option value='Accessories' >Accessories</option>
+                            <option value='Apparel' >Apparel</option>
+                            <option value='Collectibles' >Collectibles</option>
+                            <option value='Food' >Food</option>
+                            <option value='Home Decor' >Home Decor</option>
+                            <option value='Jewelry' >Jewelry</option>
+                            <option value='Lighting' >Lighting</option>
+                            <option value='Wall Art' >Wall Art</option>
+                        </select>
                     </label>
-                    {/* {hasSubmitted && errorsObj.country && (
+                    {hasSubmitted && errors.category && (
                         <div className='error'>
-                            * {errorsObj.country}
+                            * {errors.category}
                         </div>
-                    )} */}
+                    )}
                 </div>
 
                 <div className='product-description-div'>
@@ -177,11 +178,11 @@ const ReviewForm = () => {
                             onChange={(e) => setDescription(e.target.value)}
                             placeholder='Description' />
                     </label>
-                    {/* {hasSubmitted && errorsObj.country && (
+                    {hasSubmitted && errors.description && (
                         <div className='error'>
-                            * {errorsObj.country}
+                            * {errors.description}
                         </div>
-                    )} */}
+                    )}
                 </div>
 
                 <div className='product-shipping-div'>
@@ -192,15 +193,32 @@ const ReviewForm = () => {
                             onChange={handleCheck}
                             placeholder='Description' />
                     </label>
-                    {/* {hasSubmitted && errorsObj.country && (
+                    {hasSubmitted && errors.freeShipping && (
                         <div className='error'>
-                            * {errorsObj.country}
+                            * {errors.freeShipping}
                         </div>
-                    )} */}
+                    )}
+                </div>
+
+
+                <div className='product-img1-div'>
+                    <label className='product-label' >
+                        URL1: 
+                        <input className='product-input' type="text"
+                            value={url1}
+                            onChange={(e) => setUrl1(e.target.value)}
+                            placeholder='Url1' />
+                    </label>
+                    {hasSubmitted && errors.url1 && (
+                        <div className='error'>
+                            * {errors.url1}
+                        </div>
+                    )}
                 </div>
 
             </form>
 
+            <input onClick={handleSubmit} className='submit-button button modal-button form-create-button red-styling' type="submit" value="Create Spot" />
 
         </div>
     );
