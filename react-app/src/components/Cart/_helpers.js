@@ -28,3 +28,15 @@ export const totalCost = cart => {
     // for (const i in cart) console.log("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW", cart[i])
     return totalCost.toFixed(2)
 }
+
+
+export const urlChecka = url => {
+    const pattern = /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/
+    return pattern.test(url)
+}
+
+//      console.log(urlChecka("https://www.google.com")); // true
+// console.log(urlChecka("http://example.com/path/to/page.html")); // true
+// console.log(urlChecka("ftp://ftp.example.com")); // false
+// console.log(urlChecka("http://255.255.255.255:8080")); // true
+// console.log(urlChecka("invalid_url")); // false
