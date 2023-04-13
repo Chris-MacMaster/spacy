@@ -119,8 +119,7 @@ h3 {
     border-bottom: none;
 }
 .category:hover {
-    border-bottom: solid .2rem grey;
-
+    box-shadow: 0 .2rem 0 grey;
 }
 .items-section{
     display: flex;
