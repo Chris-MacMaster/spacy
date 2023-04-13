@@ -55,14 +55,20 @@ function Header({ isLoaded }) {
         </div>
         <div className='shop-manager'>
             {user && user.id && userShop ? (
+
                 <NavLink to={`/shops/${userShop.id}`} >
+                    <div className='header-tip'>Shop Manager</div>
                 <i className="fa-solid fa-store"></i>
 
                 </NavLink>
+
             ) : (
                 <i className="fa-solid fa-store"></i>
             )}
             </div>
+
+        <div className='navigation'>
+            <div className='header-tip'>User Details</div>
         <Navigation isLoaded={isLoaded} />
             {isLoaded && (
                 <Switch>
@@ -73,10 +79,17 @@ function Header({ isLoaded }) {
                     <SignupFormPage />
                 </Route>
                 </Switch>)}
-
-        <div className='cart'>
-        <i className="fa-solid fa-cart-shopping"></i></div>
         </div>
+
+            <div className='cart'>
+            <NavLink to='/cart'>
+                <div className='header-tip'>Cart</div>
+            <i className="fa-solid fa-cart-shopping"></i>
+            </NavLink>
+            </div>
+        </div>
+
+
         <div className='header-tabs'>
             <span className='header-tab'>Home Favorites</span>
             <span className='header-tab'>Jewelry & Accessories</span>
@@ -84,7 +97,6 @@ function Header({ isLoaded }) {
             <span className='header-tab'>Home & Living</span>
             <span className='header-tab'>Wedding & Party</span>
             <span className='header-tab'>Toys & Entertainment</span>
-            <span className='header-tab'>Art & Collectibles</span>
             <span className='header-tab'>Art & Collectibles</span>
             <span className='header-tab'>Craft Supplies</span>
             <span className='header-tab'>Gifts & Gift Cards</span>

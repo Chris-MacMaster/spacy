@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { deleteReview } from '../../store/review';
 import { useDispatch } from "react-redux"
 import OpenModalButton from '../OpenModalButton'
-// import { useHistory } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import DeleteReviewModal from '../DeleteReviewModal/DeleteReview';
 
@@ -49,8 +49,13 @@ const ReviewIndexItem = ({ review }) => {
                             {review.createdAt.slice(0, -12)} 
                         </div>
                     </div>
-                {user && review.userId === user.id ? 
-                <OpenModalButton modalComponent={<DeleteReviewModal reviewId={review.id}/>} buttonText={'Delete'}/>
+                {user && review.userId == user.id ? 
+                <div>
+                    <OpenModalButton modalComponent={<DeleteReviewModal reviewId={review.id}/>} buttonText={'Delete'}/>
+                    <NavLink to={`/product-reviews/${review.id}/edit`}>
+                    <button>Edit Review</button>
+                    </NavLink>
+                </div>
                 : ''}
                 </div>
                 <div className='rev-col-b'>

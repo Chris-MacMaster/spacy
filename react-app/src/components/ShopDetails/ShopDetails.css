@@ -4,6 +4,8 @@
     flex-direction: row;
     justify-content: space-around;
     background-color: rgb(242, 242, 242);
+    margin-left: 2rem;
+    margin-right: 2rem;
 }
 .shoplogo {
     object-fit: cover;
@@ -56,7 +58,10 @@
 .shop-owner {
     font-family: 'Mulish', sans-serif;
     text-align: center;
-    line-height: 1.5rem
+    line-height: 1.5rem;
+}
+.contact-shop-owner {
+    width: 7rem;
 }
 .shop-owner-img {
     border-radius: 5rem;
@@ -119,8 +124,7 @@ h3 {
     border-bottom: none;
 }
 .category:hover {
-    border-bottom: solid .2rem grey;
-
+    box-shadow: 0 .2rem 0 grey;
 }
 .items-section{
     display: flex;

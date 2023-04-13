@@ -55,17 +55,43 @@ export const getAllReviews = () => async dispatch => {
 
 }
 
-export const createProductReview = (productId, review, stars) => async dispatch => {
+
+// export const addImageToReview = (reviewId, imageUrl) => async dispatch => {
+//     const res = await fetch(`/api/product-reviews/${reviewId}/add-image`, {
+//         method: 'PUT',
+//         headers: {"Content-Type": "application/json"},
+//         body: JSON.stringify({
+//             'image': imageUrl
+//         })
+//     })
+// }
+
+
+export const createProductReview = (productId, review, stars, image) => async dispatch => {
     console.log('thunk hit')
+    console.log('thunk image', image)
     console.log(productId)
-    const res = await fetch(`/api/product-reviews/${productId}/new`, {
-        method: 'POST',
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({
-            'review': review,
-            'stars': stars
+    let res
+    if (image) {
+        res = await fetch(`/api/product-reviews/${productId}/new`, {
+            method: 'POST',
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({
+                'review': review,
+                'stars': stars,
+                'image': image
+            })
         })
-    })
+    } else {
+        res = await fetch(`/api/product-reviews/${productId}/new`, {
+            method: 'POST',
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({
+                'review': review,
+                'stars': stars
+            })
+        })
+    }
 
     if (res.ok) {
         console.log('res ok')
@@ -164,11 +190,17 @@ export default function reviewReducer(state = initialState, action) {
             return newState4
         }
         case DELETE_REVIEW: {
-            const newState5 = {...state, productReviews: {...state.productReviews}, singleReviewPost: {...state.singleReviewPost}, singleReviewGet: {...state.singleReviewGet}}
+            console.log('reducer')
+            const newState5 = {...state, singleReviewPost: {...state.singleReviewPost}, singleReviewGet: {...state.singleReviewGet}}
 
-            newState5.singleReviewGet = {...state.singleReviewGet}
-            newState5.productReviews[state.singleReviewGet.id] = {...action.singleReviewGet}
-            delete newState5.productReviews[state.singleReviewGet.id]
+            // newState5.singleReviewGet = {...state.singleReviewGet}
+
+            state.productReviews.map(review => (newState5.productReviews[review.id] = review ))
+
+            console.log('newState5', newState5)
+
+            // newState5.productReviews[state.singleReviewGet.id] = {...action.singleReviewGet}
+            // delete newState5.productReviews[state.singleReviewGet.id]
             delete newState5.singleReviewGet
 
             return newState5
