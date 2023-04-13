@@ -148,6 +148,8 @@ hr {
 }
 .review-title {
     margin-left: 20vw;
+    font-size: 2rem;
+    margin-bottom: 2rem;
 }
 .fa-flag, .fa-thumbs-up {
     font-size: .7rem;
@@ -171,7 +173,7 @@ hr {
     height: 5vw;
     border-radius: 5rem;
     position: absolute;
-    left: 15vw;
+    left: 12vw;
 }
 .product-ref-img{
     object-fit: cover;
