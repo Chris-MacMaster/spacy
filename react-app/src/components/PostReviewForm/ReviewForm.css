@@ -44,8 +44,24 @@ h1 {
     display: flex;
     justify-content: center;
 }
+
+h2 {
+    margin-top: 1em;
+}
+
+p {
+    margin: 0.4em;
+}
+
+textarea {
+    border-radius: 15px;
+    padding-bottom: 15em;
+}
+
 .formParent{
+    margin-top: 15em;
     display: flex;
+    /* flex-direction: column; */
     justify-content: center;
 }
 .wholeForm {
@@ -60,6 +76,22 @@ h1 {
     /* border-radius: 20px; */
 }
 
+.productPic {
+    display: flex;
+    flex-direction: row;
+}
+
+.productName {
+    margin-top: 3em;
+    margin-left: 1em;
+}
+
+.productPic img{
+    margin-top: 3em;
+    width: 5em;
+    height: 5em;
+}
+
 
 .reviewText {
     /* border: 3px solid red; */
@@ -72,14 +104,15 @@ h1 {
     display: flex;
 }
 .submitButton {
-    background-color: white;
-    color: lightgray;
-    padding-left: 6.5em;
-    padding-right:6.5em;
+    background-color: black;
+    color: white;
+    /* padding-left: 6.5em;
+    padding-right:6.5em; */
     padding-top: 1em;
     padding-bottom: 1em;
     margin-left: 0.1em;
     font-weight: bold;
+    border-radius: 15px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.19), 0px 1px 0px rgba(0, 0, 0, 0.23);
 }
 .submitButton:hover {

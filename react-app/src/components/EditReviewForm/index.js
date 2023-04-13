@@ -39,14 +39,21 @@ function EditReviewForm() {
 
     return (
         <>
-        <h1>Edit Review Form</h1>
+        <div className="formParent">
         <form onSubmit={handleSubmit} className='wholeForm'>
             <div className='headerAndReview'>
-                <div className='topText'>{`Edit your review of ${reviewToEdit.product.name}`}</div>
-                <textarea name='review' className='reviewText' value={review} onChange={(e) => setReview(e.target.value)}/>
+                <div className='productPic'>
+                    <img src={reviewToEdit.product.ProductImages[0].url}/>
+                    <div className="productName">
+                     <p>{reviewToEdit.product.Shop.name}</p>   
+                    <p style={{fontWeight:'bolder', fontSize:'larger'}}>{reviewToEdit.product.name}</p>
+                    </div>
+                </div>
             </div>
+            <h2>My review</h2>
+            <p>What did you like about this product?</p>
+            <p>Help others by sending your feedback.</p>
             <div>
-                Stars
                 <div className="rate">
                   <input type="radio" id="star5" name="rate" value='5' onChange={(e) => setStars(Number(e.target.value))} />
                   <label htmlFor="star5" title="text">5 stars</label>
@@ -60,10 +67,14 @@ function EditReviewForm() {
                   <label htmlFor="star1" title="text">1 star</label>
                 </div>
             </div>
+            <div>
+                <textarea name='review' className='reviewText' value={review} onChange={(e) => setReview(e.target.value)}/>
+            </div>
             <div className='submitButtonParent'>
-                <button type='submit' className='submitButton' disabled={review.length < 10 || stars < 1}>Submit Your Review</button>
+                <button type='submit' className='submitButton' disabled={review.length < 10 || stars < 1}>Post Your Review</button>
             </div>
         </form>
+        </div>
         </>
     )
 }

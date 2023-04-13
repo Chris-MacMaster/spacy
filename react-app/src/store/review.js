@@ -105,7 +105,7 @@ export const editReview = (reviewId, review, stars) => async dispatch => {
 }
 
 export const deleteReview = (reviewId) => async dispatch => {
-    const res = await fetch(`api/product-reviews/${reviewId}/delete`, {
+    const res = await fetch(`/api/product-reviews/${reviewId}/delete`, {
         method: 'DELETE',
         headers: {'Content-Type': 'application/json'}
     })

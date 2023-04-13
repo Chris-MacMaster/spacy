@@ -1,5 +1,5 @@
 from flask import Blueprint, request, render_template, jsonify
-from app.models import db, Product, ProductReview, ReviewImage
+from app.models import db, Product, ProductReview, ReviewImage, ProductImage, Shop
 import copy
 from flask_login import current_user, login_required
 from datetime import datetime
@@ -17,8 +17,12 @@ def get_review(review_id):
     print(review.to_dict())
     if review:
         product = Product.query.get(review.product_id)
+        product_images = ProductImage.query.filter(ProductImage.product_id == product.id).all()
+        shop = Shop.query.get(product.shop_id)
         review_dict = review.to_dict()
         review_dict['product'] = product.to_dict()
+        review_dict['product']['ProductImages'] = [image.to_dict() for image in product_images]
+        review_dict['product']['Shop'] = shop.to_dict()
         print('Review Product', review_dict)
         return review_dict
     
