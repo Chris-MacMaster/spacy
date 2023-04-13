@@ -413,10 +413,55 @@ def seed_product_images():
         url= 'https://i.imgur.com/pvXoTZD.png',
         product_id= 13
     )
+    productimage98 = ProductImage(
+        #slurm
+        url= 'https://i.imgur.com/jY4YAcJ.jpg',
+        product_id= 13
+    )
+    productimage99 = ProductImage(
+        #slurm
+        url= 'https://i.imgur.com/FNvF0WS.jpg',
+        product_id= 13
+    )
+    productimage100 = ProductImage(
+        #slurm
+        url= 'https://i.imgur.com/vHp4cOV.jpg',
+        product_id= 13
+    )
+    productimage101 = ProductImage(
+        #slurm
+        url= 'https://i.imgur.com/qUwLp7N.jpg',
+        product_id= 13
+    )
+    productimage102 = ProductImage(
+        #slurm
+        url= 'https://i.imgur.com/eDzBWxO.png',
+        product_id= 13
+    )
+    productimage103 = ProductImage(
+        #slurm
+        url= 'https://i.imgur.com/B0E432O.png',
+        product_id= 13
+    )
+    productimage104 = ProductImage(
+        #slurm
+        url= 'https://i.imgur.com/y7E8hre.jpg',
+        product_id= 13
+    )
+    productimage105 = ProductImage(
+        #slurm
+        url= 'https://i.imgur.com/aeK095X.png',
+        product_id= 13
+    )
+    productimage106 = ProductImage(
+        #slurm
+        url= 'https://i.imgur.com/jXPnsiO.jpg',
+        product_id= 13
+    )
 
 
 
-    db.session.add_all([productimage1, productimage2, productimage3, productimage4, productimage5, productimage6, productimage7, productimage8, productimage9, productimage10, productimage11, productimage12, productimage13, productimage14, productimage15, productimage16, productimage17, productimage18, productimage19, productimage20, productimage21, productimage22, productimage23, productimage24, productimage25, productimage26, productimage27, productimage28, productimage29, productimage30, productimage31, productimage32, productimage33, productimage34, productimage35, productimage36, productimage37, productimage38, productimage39, productimage40, productimage41, productimage42, productimage43, productimage44, productimage45, productimage46, productimage47, productimage48, productimage49, productimage50, productimage51, productimage52, productimage53, productimage54, productimage55, productimage56, productimage57, productimage58, productimage59, productimage60, productimage61, productimage62, productimage63, productimage64, productimage65, productimage66, productimage67, productimage68, productimage69, productimage70, productimage71, productimage72, productimage73, productimage74, productimage75, productimage76, productimage77, productimage78, productimage79, productimage80, productimage81, productimage82, productimage83, productimage84, productimage85, productimage86, productimage87, productimage88, productimage89, productimage90, productimage91, productimage92, productimage93, productimage94, productimage95, productimage96, productimage97])
+    db.session.add_all([productimage1, productimage2, productimage3, productimage4, productimage5, productimage6, productimage7, productimage8, productimage9, productimage10, productimage11, productimage12, productimage13, productimage14, productimage15, productimage16, productimage17, productimage18, productimage19, productimage20, productimage21, productimage22, productimage23, productimage24, productimage25, productimage26, productimage27, productimage28, productimage29, productimage30, productimage31, productimage32, productimage33, productimage34, productimage35, productimage36, productimage37, productimage38, productimage39, productimage40, productimage41, productimage42, productimage43, productimage44, productimage45, productimage46, productimage47, productimage48, productimage49, productimage50, productimage51, productimage52, productimage53, productimage54, productimage55, productimage56, productimage57, productimage58, productimage59, productimage60, productimage61, productimage62, productimage63, productimage64, productimage65, productimage66, productimage67, productimage68, productimage69, productimage70, productimage71, productimage72, productimage73, productimage74, productimage75, productimage76, productimage77, productimage78, productimage79, productimage80, productimage81, productimage82, productimage83, productimage84, productimage85, productimage86, productimage87, productimage88, productimage89, productimage90, productimage91, productimage92, productimage93, productimage94, productimage95, productimage96, productimage97, productimage98, productimage99, productimage100, productimage101, productimage102, productimage103, productimage104, productimage105, productimage106])
     db.session.commit()
 
 # Uses a raw SQL query to TRUNCATE or DELETE the users table. SQLAlchemy doesn't
