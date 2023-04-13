@@ -164,10 +164,16 @@ export default function reviewReducer(state = initialState, action) {
             return newState4
         }
         case DELETE_REVIEW: {
-            const newState5 = {...state, productReviews: {...state.productReviews}, singleReviewPost: {...state.singleReviewPost}, singleReviewGet: {...state.singleReviewGet}}
+            console.log('reducer')
+            const newState5 = {...state, singleReviewPost: {...state.singleReviewPost}, singleReviewGet: {...state.singleReviewGet}}
 
-            newState5.singleReviewGet = {...state.singleReviewGet}
-            newState5.productReviews[state.singleReviewGet.id] = {...action.singleReviewGet}
+            // newState5.singleReviewGet = {...state.singleReviewGet}
+
+            state.productReviews.map(review => (newState5.productReviews[review.id] = review ))
+
+            console.log('newState5', newState5)
+
+            // newState5.productReviews[state.singleReviewGet.id] = {...action.singleReviewGet}
             delete newState5.productReviews[state.singleReviewGet.id]
             delete newState5.singleReviewGet
 
