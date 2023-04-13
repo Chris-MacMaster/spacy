@@ -12,12 +12,12 @@ product_review_routes = Blueprint('/product-reviews', __name__)
 @product_review_routes.route('/search/<int:review_id>')
 def get_review(review_id):
     """get a single review by id"""
-    print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+    # print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
     review = ProductReview.query.filter(ProductReview.id == review_id).one()
     print(review.to_dict())
     if review:
         return review.to_dict()
-    
+
     return {'Review Not Found'}, 404
 
 
@@ -42,14 +42,15 @@ def get_reviews_of_product(product_id):
     reviews = ProductReview.query.filter(ProductReview.product_id == product_id).all()
     def review_image(review_id):
         review_image = ReviewImage.query.filter(ReviewImage.review_id==review_id).first()
-        return review_image.to_dict()
+        if review_image:
+            return review_image.to_dict()
 
     reviewcopy = [review.to_dict() for review in reviews]
     for review in reviewcopy:
         review['ReviewImages'] = review_image(review['id'])
     return reviewcopy, 200
 
-@product_review_routes.route('/<int:review_id>', methods=['DELETE'])
+@product_review_routes.route('/<int:review_id>/delete', methods=['DELETE'])
 @login_required
 def delete_review_by_id(review_id):
     """delete a review by id if the owner is signed in"""
@@ -60,7 +61,7 @@ def delete_review_by_id(review_id):
         if review.user_id == current_user.id:
             db.session.delete(review)
             db.session.commit()
-            return review.to_dict()
+            return {'Message': 'Review Deleted'}
         elif review.user_id != current_user.id:
             return {"error": "Only the owner of the review may delete it"}
     else:
@@ -84,23 +85,18 @@ def post_review(product_id):
             created_at = datetime.now(),
             updated_at = None
         )
-
         db.session.add(new_review)
         db.session.commit()
-
         print('new review', new_review.to_dict())
-
-        return {'New Review': new_review.to_dict()}
-
-
-    return {'Error': 'Validation Error'}, 401
+        return new_review.to_dict()
+    return {'error': 'Validation Error'}, 401
 
 @product_review_routes.route('/<int:review_id>/edit', methods=['PUT'])
 @login_required
 def edit_review(review_id):
     """edit a product review"""
     review_to_edit = ProductReview.query.get(review_id)
-    
+
     form = EditReviewForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
@@ -111,8 +107,8 @@ def edit_review(review_id):
             review_to_edit.updated_at = datetime.now()
             db.session.commit()
             return review_to_edit.to_dict()
-        
-    return {'Review does not exist or user did not write this review'}
+
+    return {"error": 'Review does not exist or user did not write this review'}
 
 
 # @product_review_routes.route('/<int:review_id>')
@@ -127,5 +123,5 @@ def edit_review(review_id):
 #         review = review_dict
 #         print('review backend',review)
 #         return {review}
-    
+
 #     return {'Review Not Found'}, 404

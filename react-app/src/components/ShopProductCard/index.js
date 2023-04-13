@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom'
 import './ShopProductCard.css'
 
 export default function ShopProductCard({ product }) {
@@ -5,8 +6,9 @@ export default function ShopProductCard({ product }) {
 
     return (
         <div className='shop-product-card'>
-        <div className='product-tooltip-heart product-tool-tips'>
-        <i className="fa-regular fa-heart"></i></div>
+            <NavLink to={`/products/${product.id}`}>
+        {/* <div className='product-tooltip-heart product-tool-tips'>
+        <i className="fa-regular fa-heart"></i></div> */}
         <img src={`${product.ProductImages[0].url}`}
         alt='preview'
         className='shop-product-preview-image'/>
@@ -16,6 +18,7 @@ export default function ShopProductCard({ product }) {
         <p className='shop-product-price'>
             ${product.price}
         </p>
+        </NavLink>
         </div>
     )
 }

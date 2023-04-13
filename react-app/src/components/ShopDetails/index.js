@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom'
+import { NavLink, useParams } from 'react-router-dom'
 import './ShopDetails.css'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -25,16 +25,32 @@ export default function ShopDetails () {
             <img src={`${shop.ShopImages.url}`} alt='shoplogo' className='shoplogo'></img>
             <div className='shop-businesscard-info'>
                 <h2 className='businesscard-title'>{shop.name}</h2>
-                <p className='sanserif-text'>{shop.description}</p>
-                <p className='sanserif-text'>{shop.state}, {shop.country}</p>
-                <p className='sanserif-text'>{Math.floor(Math.random()*20000)} Sales | {shop.avgReview} </p>
+                <p className='sanserif-text-description sanserif-text'>{shop.description}</p>
+                <p className='sanserif-text-location sanserif-text'>{shop.state}, {shop.country}</p>
+                <p className='sanserif-text'>
+                    <span className='starseller'><i className="fa-solid fa-certificate starseller"></i>Star seller! </span> | {Math.floor(Math.random()*20000)}  <span className='shop-details-sales'>| Sales {shop.avgReview}  </span></p>
 
             </div>
             </div>
 
-            <div>
-                <p className='shipping-info'><span className='bold-text'><i className="fa-solid fa-truck"></i>Smooth shipping</span> Has a history of shipping on time with tracking.</p>
+            <div className='accolades'>
+                <p><i className="fa-solid fa-truck purple-icon"></i>
+                </p>
+                <p className='bold-text'> Smooth shipping</p>
+                <p>Has a history of shipping on time with tracking.</p>
             </div>
+
+            <div className='speedy-replies accolades'>
+                <p><i class="fa-solid fa-envelope purple-icon"></i></p>
+                <p className='bold-text'>Speedy Replies</p>
+                <p>Has a history of replying to messages quickly.</p>
+            </div>
+            <div className='rave-reviews accolades'>
+                <p><i className="fa-solid fa-comments purple-icon"></i></p>
+                <p className='bold-text'>Rave Reviews</p>
+                <p>Average review rating is 4.8 or higher</p>
+            </div>
+
 
             <div className='shop-owner'>
                 <img className='shop-owner-img'
@@ -44,15 +60,17 @@ export default function ShopDetails () {
                 <p><i className="fa-solid fa-message"></i> Contact</p>
             </div>
         </div>
-        <div className='favorite-shop'>
-        <i className="fa-regular fa-heart shop-heart"></i>Follow Shop</div>
+
+
+        <button className='favorite-shop'>
+        <i className="fa-regular fa-heart shop-heart"></i>Follow Shop</button>
 
             <div className='items-section'>
             <div className='item-category-sidebar'>
-                <h3>Items</h3>
+                <h3 className='mapped-categories-title'>Items</h3>
                 <div className='mapped-categories'>
 
-            {shop.Products.map((p, i) => (
+            {shop.Products ? shop.Products.map((p, i) => (
                 <div className='category'>
                 <span className='category-list'
                 key={`catp${i}`}>{p.category}</span>
@@ -60,7 +78,7 @@ export default function ShopDetails () {
                 key={`catn${i}`}>{Math.floor(Math.random()*100)}</span>
 
                 </div>
-            ))}
+            )) : null}
             </div>
             <div className='category-column-buttons'>
 
@@ -71,10 +89,10 @@ export default function ShopDetails () {
             <div className='item-card-display'>
                 <h3 className='featured-items'>Featured Items</h3>
                 <div className='item-cards'>
-                {shop.Products.map(product => (
+                {shop.Products ? shop.Products.map(product => (
                     <ShopProductCard product={product}
                     key={`product${product.id}`}/>
-                ))}
+                )) : null}
                 </div>
             </div>
             </div>
@@ -83,7 +101,7 @@ export default function ShopDetails () {
                 <h3 className='review-title'>Reviews</h3>
 
                 <div className='mapping-reviews'>
-                    {allReviews.map((r,i)=> (
+                    {allReviews ? allReviews.map((r,i)=> (
                     <>
                     <div className='review-header'
                     key={`reviewdivheader${i}`}>
@@ -108,7 +126,9 @@ export default function ShopDetails () {
                             alt='reviewimg'
                             key={`reviewimage${i}`}></img>
                             ) : null}
-                        <p key={`review${i}`}>{r.review}</p>
+                        <p className='review-paragraph'
+                        key={`review${i}`}>{r.review}</p>
+                        <NavLink to={`/products/${r.productId}`}>
                         <div className='product-reviewed'
                         key={`productreviewed${i}`}>
                             <img src={`${shop.Products.filter(p=>p.id===r.productId)[0].ProductImages[0].url}`}
@@ -118,6 +138,7 @@ export default function ShopDetails () {
                             <div className='reviewed-item-name'
                             key={`revieweditem${i}`}>{shop.Products.filter(p=>p.id === r.productId)[0].name}</div>
                             </div>
+                </NavLink>
                        </div>
                        <div className='feedback'
                        key={`feedback${i}`}>
@@ -133,7 +154,7 @@ export default function ShopDetails () {
                         Report this review</p></div>
                         <hr key={`hr${i}`}></hr>
                         </>
-                    ))}
+                    )) : null}
                 </div>
             </div>
         </div>

@@ -15,6 +15,8 @@ i {
 }
 .fa-user-circle {
     font-size: 1.5rem;
+    color: #A0A7B2
+
 }
 .hidden {
     display: none;
@@ -28,7 +30,11 @@ i {
     right: 7rem;
     background: white;
     padding: 2rem;
-    line-height: .5rem;
+    line-height: 2rem;
+    font-family: 'Mulish', sans-serif;
+}
+.subtext {
+    line-height: 1.3rem;
 }
 .popout-profile-header {
     display: flex;

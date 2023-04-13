@@ -58,10 +58,12 @@ function ProfileButton({ user }) {
           <div>
             <i className="fas fa-user-circle" />
           </div>
-          <div>
+
+          <NavLink to={`/users/${user.id}`}><div>
             <p>{user.firstName} {user.lastName}</p>
             <p className="subtext">View your profile</p>
           </div>
+          </NavLink>
           </div>
             <p><i className="fa-solid fa-clipboard-list"></i>
             Purchases and reviews</p>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { fetchCart } from "../../store/cart"
 import { addCartItemThunk } from "../../store/cart"
@@ -15,7 +15,6 @@ export default function AddToCart({product}){
 
     const addItem = (e) => {
         // console.log("!!!!!", product)
-
         return dispatch(addCartItemThunk(product.id, user.id))
     }
     console.log(cart)

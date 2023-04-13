@@ -38,3 +38,52 @@
 .rate > label:hover ~ input:checked ~ label {
     color: #c59b08;
 }
+
+/* everything besides stars below */
+h1 {
+    display: flex;
+    justify-content: center;
+}
+.formParent{
+    display: flex;
+    justify-content: center;
+}
+.wholeForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 20em;
+    height: 20.5em;
+    padding-bottom: 1em;
+    /* border: 3px solid black; */
+    /* border-radius: 20px; */
+}
+
+
+.reviewText {
+    /* border: 3px solid red; */
+    height: 150px;
+    width: 280px;
+    margin: 1em;
+}
+
+.submitButtonParent {
+    display: flex;
+}
+.submitButton {
+    background-color: white;
+    color: lightgray;
+    padding-left: 6.5em;
+    padding-right:6.5em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    margin-left: 0.1em;
+    font-weight: bold;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.19), 0px 1px 0px rgba(0, 0, 0, 0.23);
+}
+.submitButton:hover {
+    cursor: pointer;
+    background-color: lightgray;
+    color: black;
+}

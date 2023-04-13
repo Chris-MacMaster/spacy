@@ -51,7 +51,7 @@ const ProductDetail = () => {
     const product = productState?.singleProduct
     const productReviews = reviewState?.productReviews
     if (!product.Shop) return null
-    if (!productReviews.length) return null
+    // if (!productReviews.length) return null
 
     return (
         <div className='product-detail-div'>
@@ -94,12 +94,11 @@ const ProductDetail = () => {
                             <i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i> <i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i> <i className="fa-solid fa-star"></i>
                         </p>
                     </div>
-                    <div className='mapping-div'>
-                        {productReviews.map(review => (
-                            <ReviewIndexItem review={review} key={review.id}/>
-                        ))}
-                    </div>
-                    {/* <div className='reviewIndex' >
+                    {/* reviews... */}
+                    {productReviews.length > 0 ? productReviews.map(review => (
+                        <ReviewIndexItem review={review} key={review.id}/>
+                    )): ''}
+                    <div className='reviewIndex' >
                         {}
                     </div> */}
                 </div>

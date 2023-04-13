@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getSearchResults } from "../../store/search"
-import { useLocation, useParams } from "react-router-dom"
+import { Link, useLocation, useParams } from "react-router-dom"
 
 import './SearchResults.css'
 
@@ -54,7 +54,7 @@ function SearchResults() {
         dispatch(getSearchResults(parameters))
         // console.log('search results', searchResults)
         // setProducts(searchResults)
-    }, [products])
+    }, [])
     // useEffect(() =>  {
     //     let searchResults;
     //     async function search (parameters) {
@@ -73,10 +73,11 @@ function SearchResults() {
     return (
         <>
         <h1>Results:</h1>
-        {Object.values(products).map(product => (
-            <div>
+        <div className="productsDisplay">
+        {Object.values(products).map(product => (<Link to={`/products/${product.id}`}>
+            <div className="productCard">
                 <div><img style={{width: 300, height: 320}} src={product.ProductImages[0].url}/></div>
-                <div>{product.name}</div>
+                <div className="productName">{product.name}</div>
                 {/* <div className="productRating">Stars: {product.avgRating}</div> */}
                 <div>
                 {product.avgRating ? new Array(Math.floor(product.avgRating)).fill(null).map(() => (
@@ -86,7 +87,9 @@ function SearchResults() {
                 <div className="productPrice">${product.price}</div>
                 <div className="productSeller">Sold by: {product.shop.name}</div>
             </div>
+        </Link>
         ))}
+        </div>
         </>
     )
 }
