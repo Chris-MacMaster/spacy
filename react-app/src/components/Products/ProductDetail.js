@@ -1,5 +1,5 @@
 import React from 'react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { useParams } from 'react-router-dom';
@@ -14,6 +14,7 @@ const ProductDetail = () => {
     const dispatch = useDispatch()
     const productState = useSelector(state => state.products)
     const reviewState = useSelector(state => state.reviews)
+    const [imgCount, setImgCount] = useState(0)
 
     let { productId } = useParams()
 
@@ -27,6 +28,26 @@ const ProductDetail = () => {
         return null
     }
 
+    const handleBackward = () => {
+        if (imgCount === 0) {
+            setImgCount(8)
+        }
+        else {
+            const imgDecrement = imgCount-1
+            setImgCount(imgDecrement)
+        }
+    }
+
+    const handleForward = () => {
+        if (imgCount === 8) {
+            setImgCount(9)
+        }
+        else {
+            const imgIncrement = imgCount + 1
+            setImgCount(imgIncrement)
+        }
+    }
+
     const product = productState?.singleProduct
     const productReviews = reviewState?.productReviews
     if (!product.Shop) return null
@@ -35,51 +56,89 @@ const ProductDetail = () => {
     return (
         <div className='product-detail-div'>
             <div className='product-grid-div'>
-
                 <div className='product-grid-div-col-a'>
-                    <div className='product-images-div'>
-
-                        <p >(proudct images data placeholder...)</p>
-                        <img src={product.ProductImages[0].url} alt='no found' />
-                        {/* product.ProductImages[0].url */}
+                    <div className='product-subimages-div'>
+                        <div className='both-images-div'>
+                            <div className='subimage-div'>
+                                <img className='product-image product-subimage' src={product.ProductImages[0].url} alt='no found' />
+                                <img className='product-image product-subimage' src={product.ProductImages[1].url} alt='no found' />
+                                <img className='product-image product-subimage' src={product.ProductImages[2].url} alt='no found' />
+                                <img className='product-image product-subimage' src={product.ProductImages[3].url} alt='no found' />
+                                <img className='product-image product-subimage' src={product.ProductImages[4].url} alt='no found' />
+                                <img className='product-image product-subimage' src={product.ProductImages[5].url} alt='no found' />
+                                <img className='product-image product-subimage' src={product.ProductImages[6].url} alt='no found' />
+                                <img className='product-image product-subimage' src={product.ProductImages[7].url} alt='no found' />
+                                <img className='product-image product-subimage' src={product.ProductImages[8].url} alt='no found' />
+                            </div>
+                            <div className='product-arrow less-than'>
+                                <p className='greater-less-p'>
+                                    &lt;
+                                </p>
+                            </div>
+                            <div className='product-images-div'>
+                                <img className='product-image' src={product.ProductImages[0].url} alt='no found' />
+                                {/* product.ProductImages[0].url */}
+                            </div>
+                            <div className='product-arrow greater-than'>
+                                <p className='greater-less-p'>
+                                    &gt;
+                                </p>
+                            </div>
+                        </div>
                     </div>
-                    {/* reviews... */}
-                    {productReviews.map(review => (
-                        <ReviewIndexItem review={review} key={review.id}/>
-                    ))}
-                    <div className='reviewIndex' >
+                    <div className='review-info-div'>
+                        <p className='review-p reviews-text'>
+                            {productReviews.length} Reviews 
+                        </p>
+                        <p className='review-p review-stars'>
+                            <i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i> <i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i> <i className="fa-solid fa-star"></i>
+                        </p>
+                    </div>
+                    <div className='mapping-div'>
+                        {productReviews.map(review => (
+                            <ReviewIndexItem review={review} key={review.id}/>
+                        ))}
+                    </div>
+                    {/* <div className='reviewIndex' >
                         {}
-                    </div>
+                    </div> */}
                 </div>
 
                 <div className='product-grid-div-col-b'>
                     <div className='product-info-a'>
-                        <div >
+                        <div className='prod-price'>
                             {product.price}
                         </div>
-                        <div >
-                            applicable search categories go here
+                        <div className='prod-search'>
+                            {product.name}
                         </div>
 
                     </div>
                     <div className='store-info'>
-                        <div>
-                            {product.Shop.name}
+                        <div className='name-follows'>
+                            <div className='store-name'>
+                                {product.Shop.name}
+                            </div>
+                            <div className='store-follows'>
+                                <i className="fa-solid fa-heart"></i> Follow
+                                {/* feature incoming */}
+                            </div>
                         </div>
-                        <div >
+                        <div className='store-sales'>
                             {product.Shop.sales} sales
                         </div>
                     </div>
                     <div className='purchase-buttons'>
-                        <AddToCart product={product}/>
                         <button className='button buy-it-button'>Buy it now</button>
+                        <AddToCart className='button add-cart-button' product={product}/>
 
                     </div>
                     <div className='product-info-b'>
-                        <div >
-                            {product.freeShipping === true ? "Hooray this product has free shipping!" : "This product does not have free shipping."}
+                        <div className='free-shipping-div'>
+                            {product.freeShipping === true ? <div className='shipping-div'><i className="fa-solid fa-truck"></i><p id='p-icon'>Hooray this product has free shipping!</p></div> : "This product does not have free shipping."}
                         </div>
-                        <div >
+                        <div className='prod-description'>
+                            <p className='prod-description-p'>Description</p>
                             {product.description}
                         </div>
                     </div>

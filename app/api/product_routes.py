@@ -102,8 +102,9 @@ def delete_product_by_id(product_id):
     else:
         {"error": "Please sign in to delete one of your products."}
 
+
 # add other details to response
-@product_routes.route('/<int:product_id>', methods=['GET', 'DELETE'])
+@product_routes.route('/<int:product_id>', methods=['GET', 'DELETE', 'PUT'])
 def get_one_product(product_id):
     """returns one product with the specified id"""
     if request.method == 'GET':
@@ -115,6 +116,7 @@ def get_one_product(product_id):
         productcopy['Shop'] = shop.to_dict()
 
         return productcopy, 200
+    #this delete isn't getting hit because of route above right?
     elif request.method == 'DELETE':
         if current_user.is_authenticated:
             product = Product.query.filter_by(id=product_id).first()
@@ -126,6 +128,33 @@ def get_one_product(product_id):
                 db.session.commit()
                 return product.to_dict(), 200
         return { 'errors': 'Not authenticated'}
+    elif request.method == 'PUT':
+        if current_user.is_authenticated:
+            product = Product.query.get(product_id)
+            print("query passed ---------------------")
+            form = CreateProductForm() # make edit form
+            print("form created --------------------")
+            form['csrf_token'].data = request.cookies['csrf_token']
+            print('csrf passed -------------------------')
+            if form.validate_on_submit():
+                product.shop_id = form.data["shop_id"]
+                product.name = form.data["name"]
+                product.description = form.data["description"]
+                product.category = form.data["category"]
+                product.available = form.data["available"]
+                product.free_shipping = form.data["free_shipping"]
+                product.price = form.data["price"]
+                db.session.commit()
+                # addnig an associated image for the newly created product
+                product_image = ProductImage.query.get(product_id)
+                product_image.url = form.data["img_1"]
+                db.session.commit()
+                return product.to_dict(), 201
+            print('validations failed! ----------------')
+
+
+
+
 
 
 
