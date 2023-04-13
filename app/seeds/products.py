@@ -138,7 +138,16 @@ def seed_products():
         free_shipping=False,
         price=24.99
     )
-    db.session.add_all([product1, product2, product3, product4, product5, product6, product7, product8, product9, product10, product11, product12, product13])
+    product14 = Product(
+        shop_id='2',
+        name='Slurm!',
+        description="Introducing Slurm, the newest craze in carbonated beverages! This neon green drink packs a sweet and tangy punch that will leave your taste buds buzzing with excitement. Made from a secret blend of the finest ingredients, Slurm is the ultimate thirst quencher for the adventurous drinker. With its bubbly texture and unique flavor profile, Slurm is perfect for any occasion. Whether you're partying with friends, powering through a long day at work, or exploring the depths of space, Slurm is the perfect companion. But what sets Slurm apart from other drinks on the market is its unique origin story. Made from the excretions of a rare alien worm, Slurm is the perfect blend of science and nature. And despite its unusual origins, Slurm is a completely safe and legal beverage, tested and approved by the most rigorous safety standards in the galaxy. So if you're looking for a drink that's out of this world, look no further than Slurm. With its eye-catching color, unique taste, and fascinating backstory, Slurm is sure to be the next big thing in the beverage industry.",
+        category='Soft Drink',
+        available=75,
+        free_shipping=False,
+        price=24.99
+    )
+    db.session.add_all([product1, product2, product3, product4, product5, product6, product7, product8, product9, product10, product11, product12, product13, product14])
 
 
     db.session.commit()
