@@ -298,10 +298,125 @@ def seed_product_images():
         url= 'https://i.imgur.com/AVb1lTK.png',
         product_id= 10
     )
+    productimage75 = ProductImage(
+        # space mres
+        url= 'https://i.imgur.com/LIkQtnr.jpg',
+        product_id= 11
+    )
+    productimage76 = ProductImage(
+        # space mres
+        url= 'https://i.imgur.com/fv4UKR0.png',
+        product_id= 11
+    )
+    productimage77 = ProductImage(
+        # space mres
+        url= 'https://i.imgur.com/xgBszOx.jpg',
+        product_id= 11
+    )
+    productimage78 = ProductImage(
+        # space mres
+        url= 'https://i.imgur.com/DorOGU2.png',
+        product_id= 11
+    )
+    productimage79 = ProductImage(
+        # space mres
+        url= 'https://i.imgur.com/kPkfrhT.jpg',
+        product_id= 11
+    )
+    productimage80 = ProductImage(
+        # space mres
+        url= 'https://i.imgur.com/o8Ewo4x.jpg',
+        product_id= 11
+    )
+    productimage81 = ProductImage(
+        # space mres
+        url= 'https://i.imgur.com/Tpxlfgf.jpg',
+        product_id= 11
+    )
+    productimage82 = ProductImage(
+        # space mres
+        url= 'https://i.imgur.com/9nzHU4D.jpg',
+        product_id= 11
+    )
+    productimage83 = ProductImage(
+        #space macaroons
+        url= 'https://i.imgur.com/fwVTZ1H.jpg',
+        product_id= 12
+    )
+    productimage84 = ProductImage(
+        #space macaroons
+        url= 'https://i.imgur.com/OQJgiav.jpg',
+        product_id= 12
+    )
+    productimage85 = ProductImage(
+        #space macaroons
+        url= 'https://i.imgur.com/9ncET1g.jpg',
+        product_id= 12
+    )
+    productimage86 = ProductImage(
+        #space macaroons
+        url= 'https://i.imgur.com/fErg9HH.jpg',
+        product_id= 12
+    )
+    productimage87 = ProductImage(
+        #space macaroons
+        url= 'https://i.imgur.com/762sA1z.jpg',
+        product_id= 12
+    )
+    productimage88 = ProductImage(
+        #space macaroons
+        url= 'https://i.imgur.com/7c9nn0G.jpg',
+        product_id= 12
+    )
+    productimage89 = ProductImage(
+        #nasa space cup
+        url= 'https://i.imgur.com/q01QNF7.png',
+        product_id= 13
+    )
+    productimage90 = ProductImage(
+        #nasa space cup
+        url= 'https://i.imgur.com/O1gSTZp.jpg',
+        product_id= 13
+    )
+    productimage91 = ProductImage(
+        #nasa space cup
+        url= 'https://i.imgur.com/f2bxHfQ.png',
+        product_id= 13
+    )
+    productimage92 = ProductImage(
+        #nasa space cup
+        url= 'https://i.imgur.com/cPz4oDJ.jpg',
+        product_id= 13
+    )
+    productimage93 = ProductImage(
+        #nasa space cup
+        url= 'https://i.imgur.com/ZfZ4ydr.jpg',
+        product_id= 13
+    )
+    productimage94 = ProductImage(
+        #nasa space cup
+        url= 'https://i.imgur.com/skKPS6c.png',
+        product_id= 13
+    )
+    productimage95 = ProductImage(
+        #nasa space cup
+        url= 'https://i.imgur.com/mmoM4DL.jpg',
+        product_id= 13
+    )
+    productimage96 = ProductImage(
+        #nasa space cup
+        url= 'https://i.imgur.com/kHxkjaa.png',
+        product_id= 13
+    )
+    productimage97 = ProductImage(
+        #nasa space cup
+        url= 'https://i.imgur.com/pvXoTZD.png',
+        product_id= 13
+    )
 
 
 
-    db.session.add_all([productimage1, productimage2, productimage3, productimage4, productimage5, productimage6, productimage7, productimage8, productimage9, productimage10, productimage11, productimage12, productimage13, productimage14, productimage15, productimage16, productimage17, productimage18, productimage19, productimage20, productimage21, productimage22, productimage23, productimage24, productimage25, productimage26, productimage27, productimage28, productimage29, productimage30, productimage31, productimage32, productimage33, productimage34, productimage35, productimage36, productimage37, productimage38, productimage39, productimage40, productimage41, productimage42, productimage43, productimage44, productimage45, productimage46, productimage47, productimage48, productimage49, productimage50, productimage51, productimage52, productimage53, productimage54, productimage55, productimage56, productimage57, productimage58, productimage59, productimage60, productimage61, productimage62, productimage63, productimage64, productimage65, productimage66, productimage67, productimage68, productimage69, productimage70, productimage71, productimage72, productimage73, productimage74])
+    db.session.add_all([productimage1, productimage2, productimage3, productimage4, productimage5, productimage6, productimage7, productimage8, productimage9, productimage10, productimage11, productimage12, productimage13, productimage14, productimage15, productimage16, productimage17, productimage18, productimage19, productimage20, productimage21, productimage22, productimage23, productimage24, productimage25, productimage26, productimage27, productimage28, productimage29, productimage30, productimage31, productimage32, productimage33, productimage34, productimage35, productimage36, productimage37, productimage38, productimage39, productimage40, productimage41, productimage42, productimage43, productimage44, productimage45, productimage46, productimage47, productimage48, productimage49, productimage50, productimage51, productimage52, productimage53, productimage54, productimage55, productimage56, productimage57, productimage58, productimage59, productimage60, productimage61, productimage62, productimage63, productimage64, productimage65, productimage66, productimage67, productimage68, productimage69, productimage70, productimage71, productimage72, productimage73, productimage74, productimage75, productimage76, productimage77, productimage78, productimage79, productimage80, productimage81, productimage82, productimage83, productimage84, productimage85, productimage86, productimage87, productimage88, productimage89, productimage90, productimage91, productimage92, productimage93, productimage94, productimage95, productimage96, productimage97])
     db.session.commit()
 
 # Uses a raw SQL query to TRUNCATE or DELETE the users table. SQLAlchemy doesn't
