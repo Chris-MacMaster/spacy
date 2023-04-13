@@ -100,7 +100,7 @@ const ProductDetail = () => {
                     )): ''}
                     <div className='reviewIndex' >
                         {}
-                    </div> */}
+                    </div> 
                 </div>
 
                 <div className='product-grid-div-col-b'>
