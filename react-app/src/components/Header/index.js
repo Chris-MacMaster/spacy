@@ -74,9 +74,14 @@ function Header({ isLoaded }) {
                 </Route>
                 </Switch>)}
 
-        <div className='cart'>
-        <i className="fa-solid fa-cart-shopping"></i></div>
+            <div className='cart'>
+            <NavLink to='/cart'>
+            <i className="fa-solid fa-cart-shopping"></i>
+            </NavLink>
+            </div>
         </div>
+
+
         <div className='header-tabs'>
             <span className='header-tab'>Home Favorites</span>
             <span className='header-tab'>Jewelry & Accessories</span>
