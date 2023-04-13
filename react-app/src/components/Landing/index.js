@@ -111,11 +111,14 @@ function Landing({ isLoaded }) {
 
 
         {[rand1, rand2, rand3, rand4, under30].map((rand,i) => (
-                <div className='selection-card'>
+                <div className='selection-card'
+                key={`div${i}`}>
                 <img src={`${rand.ProductImages[0].url}`}
                         alt='selection-im'
+                        key={`img${i}`}
                         className='shop-our-select-img'></img>
-                <h3 className='selection-subtitle'>{title[i]}</h3>
+                <h3 key={`h3${i}`}
+                className='selection-subtitle'>{title[i]}</h3>
                 </div>
                     ))}
 
@@ -129,9 +132,10 @@ function Landing({ isLoaded }) {
                     <h3 className='shops-youll-love-title'>Based on your recent activity</h3>
                 </div>
 
-                {shops.allShops && shops.allShops[0] ? (Object.values(shops.allShops).map(s=> (
+                {shops.allShops && shops.allShops[0] ? (Object.values(shops.allShops).map((s, i)=> (
                 <NavLink to={`/shops/${s.id}`}>
-                    <ShopCard shop={s} />
+                    <ShopCard shop={s}
+                    key={`shopkey${i}`}/>
                 </NavLink>
                 ) )) : null }
 
