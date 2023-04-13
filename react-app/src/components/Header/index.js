@@ -79,7 +79,8 @@ function Header({ isLoaded }) {
                     <SignupFormPage />
                 </Route>
                 </Switch>)}
-            </div>
+        </div>
+
             <div className='cart'>
             <NavLink to='/cart'>
                 <div className='header-tip'>Cart</div>
