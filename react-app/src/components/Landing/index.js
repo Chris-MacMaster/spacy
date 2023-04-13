@@ -33,6 +33,7 @@ function Landing({ isLoaded }) {
     console.log('SHOPS', shops)
     return (
         <div className='landing-div'>
+        <div className='landing-header'>
         { !user ? <h1 className='welcome-title'>Incredible style and decor, plus one-of-a-kind gifts right this way</h1> : <h1 className='welcome-title'>Welcome back {user.firstName}</h1>}
         <div className='top-banner-suggest'>
             <div className='top-banner-suggestions'>
@@ -80,7 +81,7 @@ function Landing({ isLoaded }) {
                 </div>
                 <p>On Sale</p></div>
             </div>
-
+            </div>
             <div className='from-etzy-sellers'>
                 <div className='by-etsy-header'>
                     <p className='sponsored'>Sponsored <i className="fa-solid fa-question"></i></p>
@@ -107,7 +108,7 @@ function Landing({ isLoaded }) {
 
                 <div className='shop-our-mapped'>
 
-                    
+
         {[rand1, rand2, rand3, rand4, under30].map((rand,i) => (
                 <div className='selection-card'>
                 <img src={`${rand.ProductImages[0].url}`}
