@@ -24,6 +24,13 @@ const ReviewIndexItem = ({ review }) => {
             <div className='product-card-div, review-card-div' >
                 <div className='rev-col-a'>
                     <div className='rev-stars'>
+                        {Array(5).fill(1).map((s, i) => (
+                            i < review.stars ? (
+                                <i className="fa-solid fa-star gold-star landing-shop-stars"></i>
+                            ) : (
+                                <i className="fa-solid fa-star blank-star landing-shop-stars"></i>
+                            )
+                        ))}
                         {review.stars} (stars)
                     </div>
                     <div className='rev-review'>
@@ -31,12 +38,18 @@ const ReviewIndexItem = ({ review }) => {
                     </div>
                     
                     <div className='rev-author-info'>
-                        {review.userId} 
-                        {review.createdAt} 
-                        {/* (review author id, for author name) */}
-                        {/* (needs formatting) */}
+                        <div className='author-names'>
+                            <img id='detail-review-icon' src='https://i.imgur.com/mMEwXsu.png' alt='usericon'
+                                className='user-icon detail-icon'></img>
+                            <div className='author-subdiv-names'>
+                                {review.author_first} {review.author_last}
+                            </div>
+                        </div>
+                        <div className='review-created'>
+                            {review.createdAt.slice(0, -12)} 
+                        </div>
                     </div>
-                {user && review.userId == user.id ? 
+                {user && review.userId === user.id ? 
                 <OpenModalButton modalComponent={<DeleteReviewModal reviewId={review.id}/>} buttonText={'Delete'}/>
                 : ''}
                 </div>
@@ -44,7 +57,7 @@ const ReviewIndexItem = ({ review }) => {
                     {review.ReviewImages ? 
                     
                     <div className='rev-img'>
-                        <img src={review.ReviewImages.url} alt='not loaded' />
+                        <img className='review-image-detail' src={review.ReviewImages.url} alt='not loaded' />
                     </div>
                     
                     : ''}
