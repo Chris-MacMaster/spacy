@@ -93,7 +93,8 @@ def return_cart():
         product = i.product.to_dict()
         print(i.id)
         cart[i.id] = product
-        cart[i.id]["id"] = i.id
+        cart[i.id]["cartId"] = i.id
+        cart[i.id]["productId"] = i.product.id
         cart[i.id]["quantity"] = i.quantity
         cart[i.id]["shopName"] = i.product.shops.name
         cart[i.id]["productImage"] = i.product.product_images[0].url
