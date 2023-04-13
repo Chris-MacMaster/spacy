@@ -30,6 +30,7 @@ function Landing({ isLoaded }) {
     const rand3 = others[Math.floor(Math.random()*others.length)]
     const rand4 = others[Math.floor(Math.random()*others.length)]
     const data = Object.values(products).sort((a,b) => Date.parse(b.createdAt) - Date.parse(a.createdAt)).slice(0, 6)
+    console.log('SHOPS', shops)
     return (
         <div className='landing-div'>
         { !user ? <h1 className='welcome-title'>Incredible style and decor, plus one-of-a-kind gifts right this way</h1> : <h1 className='welcome-title'>Welcome back {user.firstName}</h1>}

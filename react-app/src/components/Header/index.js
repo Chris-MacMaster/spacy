@@ -1,5 +1,5 @@
 import './Header.css'
-import { Link, useHistory } from 'react-router-dom'
+import { Link, NavLink, useHistory } from 'react-router-dom'
 import Navigation from '../Navigation'
 import { Switch, Route } from 'react-router-dom'
 import LoginFormPage from '../LoginFormPage'
@@ -7,7 +7,10 @@ import SignupFormPage from '../SignupFormPage'
 
 import { getSearchResults } from '../../store/search'
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { useEffect } from 'react'
+import { fetchShops } from '../../store/shops'
+import { authenticate } from '../../store/session'
 
 function Header({ isLoaded }) {
 
@@ -22,7 +25,15 @@ function Header({ isLoaded }) {
         // console.log('results', results)
         history.push(`/search/${parameters}`)
     }
+    useEffect(() => {
+        dispatch(fetchShops())
+        dispatch(authenticate())
+    }, [dispatch])
 
+    const shops = useSelector(state=> state.shops.allShops)
+    const user = useSelector(state => state.session.user)
+    if (!shops) return null
+    const userShop = user ? Object.values(shops).filter(s=> s.ownerId ===user.id) : null
     return (
         <div className='header-container'>
         <div className='header'>
@@ -42,7 +53,16 @@ function Header({ isLoaded }) {
 
         </div>
         </div>
-        <div className='shop-manager'><i className="fa-solid fa-store"></i></div>
+        <div className='shop-manager'>
+            {user && user.id && userShop ? (
+                <NavLink to={`/shops/${userShop.id}`} >
+                <i className="fa-solid fa-store"></i>
+
+                </NavLink>
+            ) : (
+                <i className="fa-solid fa-store"></i>
+            )}
+            </div>
         <Navigation isLoaded={isLoaded} />
             {isLoaded && (
                 <Switch>
