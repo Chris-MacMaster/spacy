@@ -55,17 +55,42 @@ export const getAllReviews = () => async dispatch => {
 
 }
 
-export const createProductReview = (productId, review, stars) => async dispatch => {
+
+// export const addImageToReview = (reviewId, imageUrl) => async dispatch => {
+//     const res = await fetch(`/api/product-reviews/${reviewId}/add-image`, {
+//         method: 'PUT',
+//         headers: {"Content-Type": "application/json"},
+//         body: JSON.stringify({
+//             'image': imageUrl
+//         })
+//     })
+// }
+
+
+export const createProductReview = (productId, review, stars, ...image) => async dispatch => {
     console.log('thunk hit')
     console.log(productId)
-    const res = await fetch(`/api/product-reviews/${productId}/new`, {
-        method: 'POST',
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({
-            'review': review,
-            'stars': stars
+    let res
+    if (image) {
+        res = await fetch(`/api/product-reviews/${productId}/new`, {
+            method: 'POST',
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({
+                'review': review,
+                'stars': stars,
+                'image': image
+            })
         })
-    })
+    } else {
+        res = await fetch(`/api/product-reviews/${productId}/new`, {
+            method: 'POST',
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({
+                'review': review,
+                'stars': stars
+            })
+        })
+    }
 
     if (res.ok) {
         console.log('res ok')

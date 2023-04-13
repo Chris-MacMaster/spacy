@@ -12,6 +12,7 @@ class ReviewForm(FlaskForm):
         
     review = StringField('Review', validators=[DataRequired()])
     stars = IntegerField('Stars', validators=[DataRequired(), InputRequired(), validate_stars])
+    image = StringField('Image')
     # user = User.objects.get(pk=request.session['userid'])
     # user_id = current_user.id
 
