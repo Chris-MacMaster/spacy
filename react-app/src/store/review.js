@@ -167,6 +167,7 @@ export default function reviewReducer(state = initialState, action) {
             const newState5 = {...state, productReviews: {...state.productReviews}, singleReviewPost: {...state.singleReviewPost}, singleReviewGet: {...state.singleReviewGet}}
 
             newState5.singleReviewGet = {...state.singleReviewGet}
+            newState5.productReviews[state.singleReviewGet.id] = {...action.singleReviewGet}
             delete newState5.productReviews[state.singleReviewGet.id]
             delete newState5.singleReviewGet
 
