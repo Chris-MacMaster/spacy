@@ -1,4 +1,6 @@
-
+.landing-div {
+    margin-left: 2rem;
+}
 .top-banner-suggest {
     display: flex;
     justify-content: space-between;
@@ -54,6 +56,44 @@ p.sponsored {
     height: 15rem;
     border-radius: .5rem;
     margin-top: 5rem;
+}
+.shop-our-title {
+color: black;
+}
+h2.shop-our-title {
+    font-family: 'Mulish', sans-serif;
+    font-size: 2rem;
+}
+h3.shop-our-title {
+    font-family: 'Thasadith', sans-serif;
+    font-size: 1.3rem;
+}
+.shop-our-mapped {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.selection-card {
+    width: 16rem;
+    height: 16rem;
+    border: lightgray solid .1rem;
+    border-radius: 1rem;
+    overflow: hidden;
+    margin: 1rem;
+}
+.shop-our-select-img {
+    width: 16rem;
+    height: 12rem;
+    border-radius: .5rem;
+    object-fit: cover;
+}
+.selection-subtitle {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-content: center;
+    font-size: 1.3rem;
+    margin-top: .5rem;
 }
 .shops-youll-love {
     max-width: 60rem;

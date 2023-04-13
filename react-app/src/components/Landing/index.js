@@ -19,10 +19,16 @@ function Landing({ isLoaded }) {
     const products = useSelector(state => state.products.allProducts)
     const shops = useSelector(state => state.shops)
     const user = useSelector(state => state.session.user)
+    const under30 = Object.values(products).find(p=> parseInt(p.price) < 30)
+    const others = Object.values(products).filter(p=> p !== under30)
+    const title = ['Creating Change...', 'Gifts for Her', 'Gifts for Him', 'Gifts for Kids', 'Gifts Under $30']
 
-    console.log('STATE', shops)
-    if (!products || !shops) return null
+    if (!products || !shops || !under30 || !others) return null
 
+    const rand1 = others[Math.floor(Math.random()*others.length)]
+    const rand2 = others[Math.floor(Math.random()*others.length)]
+    const rand3 = others[Math.floor(Math.random()*others.length)]
+    const rand4 = others[Math.floor(Math.random()*others.length)]
     const data = Object.values(products).sort((a,b) => Date.parse(b.createdAt) - Date.parse(a.createdAt)).slice(0, 6)
     return (
         <div className='landing-div'>
@@ -91,6 +97,26 @@ function Landing({ isLoaded }) {
 
                 <div className='from-etzy-closing'>Fun fact: behind every sponsored item there is an intelligent lifeform hoping you'll check out their shop</div>
             </div>
+
+            <div className='shop-our-selections'>
+
+                <h2 className='shop-our-title'>Shop our selections <i className="fa-solid fa-arrow-right shop-our-title"></i></h2>
+                <h3 className='shop-our-title'>Curated hand-picked by spacey editors</h3>
+
+
+                <div className='shop-our-mapped'>
+                    {[rand1, rand2, rand3, rand4, under30].map((rand,i) => (
+                <div className='selection-card'>
+                <img src={`${rand.ProductImages[0].url}`}
+                        alt='selection-im'
+                        className='shop-our-select-img'></img>
+                <h3 className='selection-subtitle'>{title[i]}</h3>
+                </div>
+                    ))}
+
+
+                </div>
+            </div>
             <div className='shops-youll-love'>
                 <div className='shops-youll-love-text'>
                     <h1 className='shops-youll-love-title'>Shops we think you'll love
@@ -98,7 +124,7 @@ function Landing({ isLoaded }) {
                     <h3 className='shops-youll-love-title'>Based on your recent activity</h3>
                 </div>
 
-                {shops.allShops && shops.allShops[0] ? ( Object.values(shops.allShops).map(s=> (
+                {shops.allShops && shops.allShops[0] ? (Object.values(shops.allShops).map(s=> (
                 <NavLink to={`/shops/${s.id}`}>
                     <ShopCard shop={s} />
                 </NavLink>
