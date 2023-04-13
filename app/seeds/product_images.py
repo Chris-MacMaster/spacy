@@ -416,47 +416,47 @@ def seed_product_images():
     productimage98 = ProductImage(
         #slurm
         url= 'https://i.imgur.com/jY4YAcJ.jpg',
-        product_id= 13
+        product_id= 14
     )
     productimage99 = ProductImage(
         #slurm
         url= 'https://i.imgur.com/FNvF0WS.jpg',
-        product_id= 13
+        product_id= 14
     )
     productimage100 = ProductImage(
         #slurm
         url= 'https://i.imgur.com/vHp4cOV.jpg',
-        product_id= 13
+        product_id= 14
     )
     productimage101 = ProductImage(
         #slurm
         url= 'https://i.imgur.com/qUwLp7N.jpg',
-        product_id= 13
+        product_id= 14
     )
     productimage102 = ProductImage(
         #slurm
         url= 'https://i.imgur.com/eDzBWxO.png',
-        product_id= 13
+        product_id= 14
     )
     productimage103 = ProductImage(
         #slurm
         url= 'https://i.imgur.com/B0E432O.png',
-        product_id= 13
+        product_id= 14
     )
     productimage104 = ProductImage(
         #slurm
         url= 'https://i.imgur.com/y7E8hre.jpg',
-        product_id= 13
+        product_id= 14
     )
     productimage105 = ProductImage(
         #slurm
         url= 'https://i.imgur.com/aeK095X.png',
-        product_id= 13
+        product_id= 14
     )
     productimage106 = ProductImage(
         #slurm
         url= 'https://i.imgur.com/jXPnsiO.jpg',
-        product_id= 13
+        product_id= 14
     )
 
 
