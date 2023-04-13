@@ -106,7 +106,9 @@ function Landing({ isLoaded }) {
 
 
                 <div className='shop-our-mapped'>
-                    {[rand1, rand2, rand3, rand4, under30].map((rand,i) => (
+
+                    
+        {[rand1, rand2, rand3, rand4, under30].map((rand,i) => (
                 <div className='selection-card'>
                 <img src={`${rand.ProductImages[0].url}`}
                         alt='selection-im'
