@@ -83,6 +83,9 @@
 h3 {
     font-family: 'Mulish', sans-serif;
 }
+.mapped-categories-title {
+    margin-left: 2rem;
+}
 .featured-items {
     margin-bottom: 0rem;
 }
@@ -175,17 +178,22 @@ hr {
     position: absolute;
     left: 12vw;
 }
+.review-paragraph {
+    margin-top: 2rem;
+}
 .product-ref-img{
     object-fit: cover;
     height: 8rem;
     width: 8rem;
     border-radius: .5rem;
+    margin: 2rem;
 }
 .review-image {
     object-fit: cover;
     height: 18rem;
     width: 18rem;
     margin-top: 1rem;
+    margin: 2rem;
 }
 .gold-star, .blank-star {
     font-size: 1rem;
