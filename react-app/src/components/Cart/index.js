@@ -18,32 +18,17 @@ export default function DisplayCart(){
     if(!Object.values(cart).length) return <h2>You have no items in your cart, don't you want to buy something?</h2>
 
     const itemsByStore = groupItemsByStore(cart)
-    // console.log( Object.values(itemsByStore))
-    // for (const i of Object.values(itemsByStore)) console.log(typeof i)
-    return (
-        <div>
-            <ul>
-                {Object.values(cart).map((product, i )=> (
-                    <li key={product.id}>
-                        <div>
-                        {product.name} {product.price}~~{product.quantity}
-                        </div>
-                        <div>
-                        <ChangeQuantity cartId={product.id} quantity={product.quantity} productId={product.id}/>
-                        </div>
-                        <div>
-                        <RemoveItemButton cartId={product.id}/>
-                        <CheckoutCart />
-                        </div>
-                        <div>
-                        <img src={product.productImage} alt='preview'/>
-                        </div>
-                    </li>
-                ))}
-                {/* {itemsByStore.map((i) =>(
-                   <> {console.log(i)} </>
-                ))} */}
-            </ul>
+
+    return Object.keys(itemsByStore).map((storeName) => (
+        <div key={storeName}>
+          <h2>{storeName}</h2>
+          <ul>
+            {itemsByStore[storeName].map((product, index) => (
+              <li key={`${storeName}-product-${index}`}>
+                {product.name}, {}
+              </li>
+            ))}
+          </ul>
         </div>
-    )
+      ));
 }
