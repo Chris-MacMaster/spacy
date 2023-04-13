@@ -18,6 +18,7 @@ function SignupFormModal() {
 
 	const validate = () => {
 		const err = []
+		if (!email.includes('@') || !email.includes('.')) err.push('Please enter a valid email.')
 		if (password.length < 6 || !password) err.push('Passwords must be at least 6 characters')
 		if (username.length < 4) err.push('Usernames must be at least 4 characters')
 		if (confirmPassword !== password || confirmPassword.length < 6) err.push('ConfirmPassword must be 6 characters and match password')
@@ -31,7 +32,9 @@ function SignupFormModal() {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		if (password === confirmPassword) {
+		validate()
+		if (errors.length) return
+		if (password === confirmPassword && !errors.length) {
 			const data = await dispatch(signUp(username, email, password));
 			if (data) setErrors(data);
 			else closeModal();
@@ -47,11 +50,7 @@ function SignupFormModal() {
 			<h1 className="signup-title">Sign Up</h1>
 			<form onSubmit={handleSubmit}
 			className="signup-form">
-				<ul>
-					{errors.map((error, idx) => (
-						<li key={idx}>{error}</li>
-					))}
-				</ul>
+
 				<label className="signup-label">
 					Email
 				</label>
@@ -93,7 +92,7 @@ function SignupFormModal() {
 						className="signup-input"
 					/>
 		<ul>
-          {errors?.map((error, idx) => <li key={idx}>{error}</li>)}
+          {errors?.map((error, idx) => <li key={idx} className="errors">{error}</li>)}
         </ul>
 				<button type="submit"
 				id='register-button'>Register</button>
