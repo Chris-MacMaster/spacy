@@ -3,9 +3,12 @@ import { useDispatch } from 'react-redux';
 import { useModal } from '../../context/Modal';
 
 import { deleteReview } from '../../store/review';
+import { fetchOneProduct } from '../../store/product';
 
-export default function DeleteReviewModal({reviewId}) {
+export default function DeleteReviewModal({reviewId, product}) {
     const {closeModal} = useModal()
+
+    console.log('product in modal', product)
 
     const dispatch = useDispatch()
 
@@ -13,6 +16,7 @@ export default function DeleteReviewModal({reviewId}) {
         e.preventDefault()
         dispatch(deleteReview(reviewId))
         .then(closeModal)
+        .then(dispatch(fetchOneProduct(product.id)))
     }
 
     return (

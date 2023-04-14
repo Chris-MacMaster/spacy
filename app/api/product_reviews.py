@@ -21,16 +21,16 @@ def get_review(review_id):
         shop = Shop.query.get(product.shop_id)
         review_dict = review.to_dict()
         review_dict['product'] = product.to_dict()
-        
+
         if product_images:
             review_dict['product']['ProductImages'] = [image.to_dict() for image in product_images]
-        
+
         if shop:
             review_dict['product']['Shop'] = shop.to_dict()
-        
+
         print('Review Product', review_dict)
         return review_dict
-    
+
     return {'Review Not Found'}, 404
 
 
@@ -57,6 +57,7 @@ def get_reviews_of_product(product_id):
         review_image = ReviewImage.query.filter(ReviewImage.review_id==review_id).first()
         if review_image:
             return review_image.to_dict()
+    
 
     reviewcopy = [review.to_dict() for review in reviews]
     for review in reviewcopy:
@@ -73,6 +74,20 @@ def get_reviews_of_product(product_id):
 @login_required
 def delete_review_by_id(review_id):
     """delete a review by id if the owner is signed in"""
+    print("")
+    print("")
+    print("")
+    print("")
+    print("")
+    print("")
+    print("hit backend")
+    print("")
+    print("")
+    print("")
+    print("")
+    print("")
+    print("")
+    print("")
     if current_user.is_authenticated:
         review = ProductReview.query.filter(ProductReview.id == review_id).first()
         if review == None:
@@ -117,7 +132,7 @@ def post_review(product_id):
             )
             db.session.add(review_image)
             db.session.commit()
-        
+
         review_dict = new_review.to_dict()
 
         image = ReviewImage.query.filter(ReviewImage.review_id == new_review.id).one()
@@ -160,7 +175,7 @@ def add_image_to_review(review_id):
             review.image = form.data['image']
             print('review with image',review.to_dict())
             return {review.to_dict()}
-        
+
     return {'No review'}
 
 
