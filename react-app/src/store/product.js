@@ -80,7 +80,7 @@ export const makeProduct = (productBody) => async dispatch => {
     // console.log("RESPONSE", response)
     //testing
     if (response.ok){
-        return product 
+        return product
         //so your backend has to return product
     }
 
@@ -101,7 +101,7 @@ export const editProduct = (productBody, productId) => async dispatch => {
     })
     const options = { method, headers, body }
     console.log('EDIT TRIGGERED')
-    const response = await fetch(`/api/products/${productId}`, options)
+    const response = await fetch(`/api/products/${productId}/`, options)
     const product = await response.json()
     // console.log("RESPONSE", response)
     //testing

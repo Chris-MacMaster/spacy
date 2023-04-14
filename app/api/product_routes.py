@@ -7,6 +7,83 @@ from app.forms import CreateProductForm
 
 product_routes = Blueprint('/products', __name__)
 
+@product_routes.route('/<int:product_id>/', methods=['PUT'])
+def edit(product_id):
+    if current_user.is_authenticated:
+            product = Product.query.get(product_id)
+            print("query passed ---------------------")
+            form = CreateProductForm() # make edit form
+            print(request.get_json())
+            form['csrf_token'].data = request.cookies['csrf_token']
+            print('csrf passed -------------------------')
+            if form.validate_on_submit():
+                product.shop_id = form.data["shop_id"]
+                product.name = form.data["name"]
+                product.description = form.data["description"]
+                product.category = form.data["category"]
+                product.available = form.data["available"]
+                product.free_shipping = form.data["free_shipping"]
+                product.price = form.data["price"]
+                db.session.commit()
+                # addnig an associated image for the newly created product
+                product_image = ProductImage.query.get(product_id)
+                product_image.url = form.data["img_1"]
+                db.session.commit()
+                return product.to_dict(), 201
+            print('validations failed! ----------------')
+
+@product_routes.route('/<int:product_id>', methods=['GET', 'DELETE', 'PUT'])
+def get_one_product(product_id):
+    """returns one product with the specified id"""
+
+    if request.method == 'GET':
+        product = Product.query.filter_by(id=product_id).first()
+        productcopy = product.to_dict()
+        shop = Shop.query.filter_by(id=product.shop_id).first()
+        images = ProductImage.query.filter(ProductImage.product_id==product_id).all()
+        productcopy['ProductImages'] = [image.to_dict() for image in images]
+        productcopy['Shop'] = shop.to_dict()
+
+        return productcopy, 200
+    #this delete isn't getting hit because of route above right?
+    elif request.method == 'DELETE':
+        if current_user.is_authenticated:
+            product = Product.query.filter_by(id=product_id).first()
+            if product == None:
+                return { 'errors': "Cannot find product with specified id"}
+            #insert owner validation or front end conditional displays?
+            else:
+                db.session.delete(product)
+                db.session.commit()
+                return product.to_dict(), 200
+        return { 'errors': 'Not authenticated'}
+    elif request.method == 'PUT':
+        if current_user.is_authenticated:
+            product = Product.query.get(product_id)
+            print("query passed ---------------------")
+            form = CreateProductForm() # make edit form
+            print("form created --------------------")
+            form['csrf_token'].data = request.cookies['csrf_token']
+            print('csrf passed -------------------------')
+            if form.validate_on_submit():
+                product.shop_id = form.data["shop_id"]
+                product.name = form.data["name"]
+                product.description = form.data["description"]
+                product.category = form.data["category"]
+                product.available = form.data["available"]
+                product.free_shipping = form.data["free_shipping"]
+                product.price = form.data["price"]
+                db.session.commit()
+                # addnig an associated image for the newly created product
+                product_image = ProductImage.query.get(product_id)
+                product_image.url = form.data["img_1"]
+                db.session.commit()
+                return product.to_dict(), 201
+            print('validations failed! ----------------')
+
+
+
+
 @product_routes.route('/', methods=['GET', 'POST'])
 def get_all_products():
     """returns all products regardless of session"""
@@ -65,7 +142,7 @@ def get_all_products():
 
 
 
-        
+
 
 # @product_routes.route('/current')
 # @login_required
@@ -108,56 +185,6 @@ def get_all_products():
 
 
 # add other details to response
-@product_routes.route('/<int:product_id>', methods=['GET', 'DELETE', 'PUT'])
-def get_one_product(product_id):
-    """returns one product with the specified id"""
-    if request.method == 'GET':
-        product = Product.query.filter_by(id=product_id).first()
-        productcopy = product.to_dict()
-        shop = Shop.query.filter_by(id=product.shop_id).first()
-        images = ProductImage.query.filter(ProductImage.product_id==product_id).all()
-        productcopy['ProductImages'] = [image.to_dict() for image in images]
-        productcopy['Shop'] = shop.to_dict()
-
-        return productcopy, 200
-    #this delete isn't getting hit because of route above right?
-    elif request.method == 'DELETE':
-        if current_user.is_authenticated:
-            product = Product.query.filter_by(id=product_id).first()
-            if product == None:
-                return { 'errors': "Cannot find product with specified id"}
-            #insert owner validation or front end conditional displays?
-            else:
-                db.session.delete(product)
-                db.session.commit()
-                return product.to_dict(), 200
-        return { 'errors': 'Not authenticated'}
-    elif request.method == 'PUT':
-        if current_user.is_authenticated:
-            product = Product.query.get(product_id)
-            print("query passed ---------------------")
-            form = CreateProductForm() # make edit form
-            print("form created --------------------")
-            form['csrf_token'].data = request.cookies['csrf_token']
-            print('csrf passed -------------------------')
-            if form.validate_on_submit():
-                product.shop_id = form.data["shop_id"]
-                product.name = form.data["name"]
-                product.description = form.data["description"]
-                product.category = form.data["category"]
-                product.available = form.data["available"]
-                product.free_shipping = form.data["free_shipping"]
-                product.price = form.data["price"]
-                db.session.commit()
-                # addnig an associated image for the newly created product
-                product_image = ProductImage.query.get(product_id)
-                product_image.url = form.data["img_1"]
-                db.session.commit()
-                return product.to_dict(), 201
-            print('validations failed! ----------------')
-        
-            
-
 
 
 
@@ -207,7 +234,7 @@ def get_one_product(product_id):
 
 #     new_review = ProductReview(
 #         review =  request.data['review'],
-#         product_id =  product['id'], 
+#         product_id =  product['id'],
 #         user_id =  current_user['id'],
 #         stars =  request.data['stars'],
 #         created_at =  datetime.now(),
