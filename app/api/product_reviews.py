@@ -73,6 +73,20 @@ def get_reviews_of_product(product_id):
 @login_required
 def delete_review_by_id(review_id):
     """delete a review by id if the owner is signed in"""
+    print("")
+    print("")
+    print("")
+    print("")
+    print("")
+    print("")
+    print("hit backend")
+    print("")
+    print("")
+    print("")
+    print("")
+    print("")
+    print("")
+    print("")
     if current_user.is_authenticated:
         review = ProductReview.query.filter(ProductReview.id == review_id).first()
         if review == None:

@@ -7,9 +7,13 @@ import OpenModalButton from '../OpenModalButton'
 import { NavLink } from 'react-router-dom';
 
 import DeleteReviewModal from '../DeleteReviewModal/DeleteReview';
+// import { deleteReview } from '../../store/review';
 
-const ReviewIndexItem = ({ review }) => {
+
+const ReviewIndexItem = ({ review , product}) => {
     // const history = useHistory()
+
+    console.log('product in reviews', product)
     const dispatch = useDispatch()
     let user = useSelector((state) => state.session.user)
 
@@ -18,6 +22,12 @@ const ReviewIndexItem = ({ review }) => {
 
     }
 
+    const handleDeleteClick = (e) => {
+        e.preventDefault()
+        dispatch(deleteReview(review.id))
+    }
+
+    if (!Object.values(review).length || !product) return null
 
     return (
         <li onClick={handleClick} className='reviewIndexItem'>
@@ -46,12 +56,16 @@ const ReviewIndexItem = ({ review }) => {
                             </div>
                         </div>
                         <div className='review-created'>
-                            {review.createdAt.slice(0, -12)} 
+                            {Object.values(review).length && review.createdAt ? (<p>
+
+                                {review.createdAt.slice(0, -12)} 
+                            </p>): null}
                         </div>
                     </div>
-                {user && review.userId === user.id ? 
+                {user && Object.values(review).length > 0 && review.userId === user.id ? 
                 <div>
-                    <OpenModalButton modalComponent={<DeleteReviewModal reviewId={review.id}/>} buttonText={'Delete'}/>
+                    {/* <OpenModalButton modalComponent={<DeleteReviewModal reviewId={review.id} product={product}/>} buttonText={'Delete'}/> */}
+                    <button onClick={handleDeleteClick}>delete review</button>
                     <NavLink to={`/product-reviews/${review.id}/edit`}>
                     <button>Edit Review</button>
                     </NavLink>
