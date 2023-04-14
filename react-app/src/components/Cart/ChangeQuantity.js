@@ -7,7 +7,7 @@ export default function ChangeQuantity({cartId, quantity, productId, available})
     const dispatch = useDispatch()
 
     const options = []
-    for (let i = 1; i < available; i++){
+    for (let i = 1; i <= available; i++){
         options.push({value: i})
     }
 

@@ -59,10 +59,6 @@ def get_all_products():
 
             return new_product.to_dict(), 201
 
-
-
-        
-
 @product_routes.route('/current')
 @login_required
 def current_users_products():
@@ -201,7 +197,7 @@ def get_one_product(product_id):
 
 #     new_review = ProductReview(
 #         review =  request.data['review'],
-#         product_id =  product['id'], 
+#         product_id =  product['id'],
 #         user_id =  current_user['id'],
 #         stars =  request.data['stars'],
 #         created_at =  datetime.now(),
