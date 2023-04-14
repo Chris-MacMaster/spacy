@@ -1,24 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect, useHistory, useParams } from "react-router-dom";
-import { fetchOneProduct } from "../../store/product";
-import { createProductReview, editReview, getOneReview } from "../../store/review";
+import { useHistory, useParams } from "react-router-dom";
+import { editReview, getOneReview } from "../../store/review";
 import '../PostReviewForm/ReviewForm.css'
 
 function EditReviewForm() {
 
     const history = useHistory()
-    
+
     const dispatch = useDispatch()
     const {reviewId} = useParams()
-    
+
     let reviewToEdit = useSelector((state) => state.reviews.singleReviewGet)
     let user = useSelector((state) => state.session.user)
 
 
     useEffect(() => {
         dispatch(getOneReview(reviewId))
-    }, [])
+    }, [dispatch])
     console.log('edit review', reviewToEdit)
 
 
@@ -42,12 +41,12 @@ function EditReviewForm() {
         history.push(`/products/${reviewToEdit.product.id}`)
     }
 
-    if (!Object.values(reviewToEdit).length 
-        || !user 
+    if (!Object.values(reviewToEdit).length
+        || !user
         || !Object.keys(reviewToEdit.product).includes('ProductImages')
         || !Object.keys(reviewToEdit.product).includes('Shop')) {
         return null
-    } 
+    }
 
     return (
         <>
@@ -57,7 +56,7 @@ function EditReviewForm() {
                 <div className='productPic'>
                     <img src={reviewToEdit.product.ProductImages[0].url}/>
                     <div className="productName">
-                     <p>{reviewToEdit.product.Shop.name}</p>   
+                     <p>{reviewToEdit.product.Shop.name}</p>
                     <p style={{fontWeight:'bolder', fontSize:'larger'}}>{reviewToEdit.product.name}</p>
                     </div>
                 </div>

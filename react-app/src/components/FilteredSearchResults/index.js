@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { getSearchResults } from "../../store/search"
-import { Link, useLocation, useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 
 import { getFilteredSearchResults } from "../../store/search"
 

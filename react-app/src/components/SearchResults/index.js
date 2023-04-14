@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getSearchResults } from "../../store/search"
-import { Link, useLocation, useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 
 import './SearchResults.css'
 
@@ -10,14 +10,14 @@ function SearchResults() {
     // const location = useLocation()
     // // const parameters = new URLSearchParams(location.search).get('query')
     // const searchResults = useSelector((state) => state.search.searchResults)
-    
+
     // const {parameters} = useParams()
 
-    
+
     // const dispatch = useDispatch()
 
     // const altSearchResults = dispatch(getSearchResults(parameters))
-    
+
     // console.log('search results', searchResults)
     // useEffect(() => {
     //     // dispatch(getSearchResults(parameters))
@@ -26,7 +26,7 @@ function SearchResults() {
     // }, [dispatch])
 
     // useEffect(() => {
-    //     dispatch(getSearchResults(parameters))   
+    //     dispatch(getSearchResults(parameters))
     //  }, [])
 
     // if (Object.values(searchResults).length < 1) {

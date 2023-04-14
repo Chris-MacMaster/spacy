@@ -44,6 +44,7 @@ const actionDeleteReview = (reviewId) => {
 export const fetchProductReviews = (productId) => async dispatch => {
     // console.log("REVIEWS route TRIGGERED")
     // const response = await fetch(`/api/product-reviews/${productId}`)
+    if (!productId) return
     const response = await fetch(`/api/product-reviews/${productId}`)
     const reviews = await response.json()
     if (response.ok) {
@@ -167,11 +168,11 @@ export default function reviewReducer(state = initialState, action) {
             newState2.productReviews[action.newReview.id] = {...action.newReview}
 
             console.log('revew id', action.newReview.id)
-        
-            newState2.singleReviewPost[action.newReview.id] = {...action.newReview} 
+
+            newState2.singleReviewPost[action.newReview.id] = {...action.newReview}
 
             console.log('newState2', newState2)
-            
+
             return newState2
         }
         case LOAD_ONE_REVIEW: {

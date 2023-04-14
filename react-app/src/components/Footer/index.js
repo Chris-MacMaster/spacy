@@ -24,7 +24,7 @@ export default function Footer() {
             <h3 className='footer-title'>About the creators of Spacey</h3>
             <div className='about-creators'>
                 {devs.map((d,i)=> (
-            <div className='footer-person'>
+            <div className='footer-person' key={`footer `+ i}>
                 <p className='dev-name'>{devs[i][0]}</p>
                 <Link to={`${d[1]}`}>
                 <img src='https://i.imgur.com/RqO5mlh.png'

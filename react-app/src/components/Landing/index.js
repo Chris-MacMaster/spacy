@@ -95,7 +95,9 @@ function Landing({ isLoaded }) {
                 {data.map(product => (
                 product.ProductImages[0].url ? (
                 <NavLink to={`/products/${product.id}`}
-                style={{ textDecoration: 'none' }}>
+                style={{ textDecoration: 'none' }}
+                key={`navlink`+product.id}
+                >
                     <ProductCard product={product}
                     key={`${product.id}`}/>
                 </NavLink>
@@ -115,7 +117,7 @@ function Landing({ isLoaded }) {
 
 
         {[rand1, rand2, rand3, rand4, under30].map((rand,i) => (
-            <NavLink to={`/search/filtered-search/${title[i]}`}>
+            <NavLink to={`/search/filtered-search/${title[i]}`} key={i}>
                 <div className='selection-card'
                 // onClick={history.push(`/search/${rand.category}`)}
                 key={`div${i}`}>
@@ -141,7 +143,8 @@ function Landing({ isLoaded }) {
 
                 {shops.allShops && shops.allShops[0] ? (Object.values(shops.allShops).map((s, i)=> (
                 <NavLink to={`/shops/${s.id}`}
-                style={{ textDecoration: 'none' }}>
+                style={{ textDecoration: 'none' }}
+                key={i}>
                     <ShopCard shop={s}
                     key={`shopkey${i}`}/>
                 </NavLink>
