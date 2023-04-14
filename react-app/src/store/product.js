@@ -74,9 +74,9 @@ export const makeProduct = (productBody) => async dispatch => {
         img_1
     })
     const options = { method, headers, body }
-    const response = await fetch('/products', options)
+    const response = await fetch('/api/products/', options)
     const product = await response.json()
-    console.log("RESPONSE", response)
+    // console.log("RESPONSE", response)
     //testing
     if (response.ok){
         return product 
