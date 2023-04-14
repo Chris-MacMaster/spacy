@@ -169,7 +169,6 @@ const ProductDetail = () => {
                     <div className='purchase-buttons'>
                         <button className='button buy-it-button'>Buy it now</button>
                         <AddToCart className='button add-cart-button' product={product}/>
-
                     </div>
                     <div className='product-info-b'>
                         <div className='free-shipping-div'>
@@ -180,13 +179,14 @@ const ProductDetail = () => {
                             {product.description}
                         </div>
                         {/* <button onClick={openMenu}>EXPERIMENT</button> */}
-                            <button className='shop-pol-modal'>
+                        <div  className='shop-pol-modal' >
                             <OpenModalButton
                             buttonText='View Shop Policies'
                             onClick={openMenu}
+                            className='shop-pol-modal'
                             onItemClick={closeMenu}
                             modalComponent={<ShopPoliciesModal shop={product.Shop}/>} />
-                            </button>
+                            </div>
                     </div>
                 </div>
             </div>

@@ -37,7 +37,28 @@
 .shop-policies-payments{
     margin-bottom: 1rem;
 }
+.shop-pol-modal > button,
 .shop-pol-modal {
     width: 10rem;
+    height: 2.5rem;
     border-radius: 5rem;
+    /* border: black solid 2px; */
+    transition: .2s ease-in-out;
+    font-family: 'Mulish', sans-serif;
+    font-weight: 600;
+}
+.shop-pol-modal > button:hover,
+.shop-pol-modal {
+    /* background-color: transparent; */
+    background-color: radial-gradient(circle, black,0%);
+    /* background-position: center; */
+    /* background-size: 150%; */
+    box-shadow: 0rem 0rem .5rem black;
+}
+.shop-pol-modal {
+    box-shadow: none;
+}
+.shop-pol-modal,
+.shop-pol-modal > button:active {
+    background-color: gray;
 }
