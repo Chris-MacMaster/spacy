@@ -2,15 +2,17 @@ import { NavLink, useHistory } from 'react-router-dom'
 import './ShopProductCard.css'
 import { useDispatch } from 'react-redux'
 import { deleteProduct } from '../../store/product'
+import { fetchOneShop } from '../../store/shops'
 
 export default function ShopProductCard({ product }) {
     const dispatch = useDispatch()
     const history = useHistory()
     
     const handleDelete = (e) => {
-        console.log("button clicked")
+        // console.log("button clicked")
         e.preventDefault()
         dispatch(deleteProduct(product.id))
+        dispatch(fetchOneShop(product.shopId))
     }
 
     const handleEdit = (e) => {
@@ -18,7 +20,7 @@ export default function ShopProductCard({ product }) {
         history.push(`/products/forms/edit-product/${product.id}`)
     }
 
-    if (!product.ProductImages[0].url) return null
+    if (!product.ProductImages[0]?.url) return null
 
     return (
         <div className='shop-product-card'>

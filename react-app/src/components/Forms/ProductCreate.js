@@ -267,4 +267,4 @@ const ProductCreateForm = () => {
     );
 }
 
-export default ReviewForm;
+export default ProductCreateForm;
