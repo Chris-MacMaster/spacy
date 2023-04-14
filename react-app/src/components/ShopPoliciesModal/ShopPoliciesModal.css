@@ -1,0 +1,39 @@
+.shop-polices {
+    width: 20rem;
+    margin: 2rem;
+}
+#shop-pol-title {
+    width: 20rem;
+    margin-top: 1rem;
+    font-family: 'Marcellus', serif;
+
+}
+.credit-cards-img {
+    width: 20rem;
+}
+.credit-cards,
+.shop-polices,
+#shop-pol-title,
+#shop-pol-text,
+.shop-polices-payments,
+.shop-policies-cancellations,
+.shop-policies-payments {
+    width: 25rem;
+    margin-left:2rem;
+    margin-right: 2rem;
+    margin-top: 1rem;
+}
+.lock-icon {
+    margin-left: 2rem;
+}
+.shop-policies-sharing {
+    margin-bottom: 2rem;
+    font-size: .8rem;
+    color: rgb(64, 64, 64);
+}
+.shop-policies-gift-cards{
+    color: rgb(64, 64, 64);
+}
+.shop-policies-payments{
+    margin-bottom: 1rem;
+}
