@@ -102,3 +102,31 @@ def search(parameters):
                 return jsonify({'products': list_2})
         else:    
             return {'result': 'No items found'}
+
+
+@search_route.route('/filtered-search/<category>')
+def filtered_search(category):
+    products = None
+    if category == 'Gifts for Her':
+            products = Product.query.filter(or_(Product.category.ilike('Jewelry') or
+                                                Product.category.ilike('Home Decor') or
+                                                Product.category.ilike('Wall Art'))).all()
+    elif category == 'Gifts for Him':
+            products = Product.query.filter(or_(Product.category.ilike('Apparel') or
+                                                Product.category.ilike('Foodstuffs'))).all()
+            
+    elif category == 'Gifts for Kids':
+            products = Product.query.filter(or_(Product.category.ilike('Collectibles')) or
+                                                Product.category.ilike('Food') or
+                                                Product.category.ilike('Soft Drink')).all()
+    elif category == 'Gifts Under $30':
+            products = Product.query.filter(Product.price < 30).all()
+
+    else:
+            products = Product.query.all()
+
+    print('filtered products', products)
+    return {'Hello!'}
+        
+
+    

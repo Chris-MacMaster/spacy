@@ -18,6 +18,7 @@ import ReviewForm from "./components/Forms/ProductCreate";
 import DisplayCart from "./components/Cart";
 import ShopDetails from "./components/ShopDetails";
 import UserDetails from "./components/UserDetails";
+import FilteredSearchResults from "./components/FilteredSearchResults";
 
 function App() {
   const dispatch = useDispatch();
@@ -37,8 +38,11 @@ function App() {
       <Route path='/products/current' exact={true}>
         <UserProducts />
       </Route>
-      <Route path='/search/:parameters'>
+      <Route path='/search/:parameters' exact={true}>
         <SearchResults />
+      </Route>
+      <Route path='/search/filtered-search/:category' exact={true}>
+        <FilteredSearchResults />
       </Route>
       <Route path='/products/:productId' exact={true}>
         <ProductDetail />
