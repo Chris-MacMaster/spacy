@@ -63,7 +63,7 @@ export default function DisplayCart(){
                     <div className="cart-product-info">
                     {console.log(product)}
                     {product.name}. {product.description}
-                    <ChangeQuantity cartId={product.cartId} quantity={product.quantity} productId={product.productId}/>
+                    <ChangeQuantity cartId={product.cartId} quantity={product.quantity} productId={product.productId} available={product.available}/>
                     <RemoveItemButton cartId={product.cartId}/>
                     ${(product.price * product.quantity).toFixed(2)}
                     </div>
