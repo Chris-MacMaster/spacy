@@ -3,8 +3,9 @@ import './ShopProductCard.css'
 import { useDispatch } from 'react-redux'
 import { deleteProduct } from '../../store/product'
 import { fetchOneShop } from '../../store/shops'
+// import { authenticate } from '../../store/session'
 
-export default function ShopProductCard({ product }) {
+export default function ShopProductCard({ product, user, shop }) {
     const dispatch = useDispatch()
     const history = useHistory()
 
@@ -38,10 +39,13 @@ export default function ShopProductCard({ product }) {
                         ${product.price}
                     </p>
                 </div>
+                {user && user.id === shop.ownerId ? (
+
                 <div className='shop-product-buttons'>
-                    <button id='shop-delete-button' onClick={handleDelete} className='favorite-shop'>Delete Product</button>
-                    <button id='shop-edit-button' onClick={handleEdit} className='favorite-shop'>Edit Product</button>
+                    <button id='shop-delete-button' onClick={handleDelete} className='user-delete-product'>Delete</button>
+                    <button id='shop-edit-button' onClick={handleEdit} className='user-edit-product'>Edit</button>
                 </div>
+                ) : null}
             </div>
             </NavLink>
         </div>

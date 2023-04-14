@@ -107,7 +107,9 @@ export default function ShopDetails () {
                 <div className='item-cards'>
                 {shop.Products ? shop.Products.map(product => (
                     <ShopProductCard product={product}
-                    key={`product${product.id}`}/>
+                    key={`product${product.id}`}
+                    shop={shop}
+                    user={user}/>
                 )) : null}
                 </div>
             </div>

@@ -21,6 +21,9 @@
     /* overflow: hidden; */
     /* margin: 3px; */
 }
+.shop-product-name {
+    margin-top: 0rem;
+}
 .shop-product-price {
     font-weight: bolder;
 }
@@ -33,19 +36,38 @@ a.product-name, a.shop-product-price {
 }
 .shop-product-name, .shop-product-price {
     margin-top: 0;
+    font-size: .9rem;
 }
 
 .shop-product-buttons {
     display: flex;
-    justify-content: center;
+    flex-direction: row;
+    align-items: flex-end;
 }
-
-#shop-delete-button {
-    margin: 0;
-    text-decoration: none;
+.shop-product-bottom {
+    display: flex;
+    flex-direction: row;
 }
-
+#shop-delete-button,
 #shop-edit-button {
+    padding: .2rem;
     margin: 0;
     text-decoration: none;
+    border: grey .1rem solid;
+    color: white;
+    font-weight: 600;
+    font-size: .8rem;
+    border-radius: .3rem;
+    margin-bottom: .4rem;
+    margin-left: .4rem;
 }
+#shop-delete-button {
+    background-color: rgb(185, 28, 28);
+}
+#shop-edit-button {
+    background-color: rgb(22, 22, 142);
+}
+/* #shop-edit-button {
+    margin: 0;
+    text-decoration: none;
+} */
