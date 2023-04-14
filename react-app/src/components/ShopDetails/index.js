@@ -137,7 +137,8 @@ export default function ShopDetails () {
                             ) : null}
                         <p className='review-paragraph'
                         key={`review${i}`}>{r.review}</p>
-                        <NavLink to={`/products/${r.productId}`}>
+                        <NavLink to={`/products/${r.productId}`}
+                        style={{ textDecoration: 'none' }}>
                         <div className='product-reviewed'
                         key={`productreviewed${i}`}>
                             <img src={`${shop.Products.filter(p=>p.id===r.productId)[0].ProductImages[0].url}`}

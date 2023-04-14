@@ -91,7 +91,8 @@ function Landing({ isLoaded }) {
 
                 {data.map(product => (
                 product.ProductImages[0].url ? (
-                <NavLink to={`/products/${product.id}`}>
+                <NavLink to={`/products/${product.id}`}
+                style={{ textDecoration: 'none' }}>
                     <ProductCard product={product}
                     key={`${product.id}`}/>
                 </NavLink>
@@ -133,7 +134,8 @@ function Landing({ isLoaded }) {
                 </div>
 
                 {shops.allShops && shops.allShops[0] ? (Object.values(shops.allShops).map((s, i)=> (
-                <NavLink to={`/shops/${s.id}`}>
+                <NavLink to={`/shops/${s.id}`}
+                style={{ textDecoration: 'none' }}>
                     <ShopCard shop={s}
                     key={`shopkey${i}`}/>
                 </NavLink>

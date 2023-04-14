@@ -6,7 +6,8 @@ export default function ShopProductCard({ product }) {
 
     return (
         <div className='shop-product-card'>
-        <NavLink to={`/products/${product.id}`}>
+        <NavLink to={`/products/${product.id}`}
+        style={{ textDecoration: 'none' }}>
         {/* <div className='product-tooltip-heart product-tool-tips'>
         <i className="fa-regular fa-heart"></i></div> */}
         <img src={`${product.ProductImages[0].url}`}

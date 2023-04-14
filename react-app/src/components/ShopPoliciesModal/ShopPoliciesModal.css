@@ -49,10 +49,7 @@
 }
 .shop-pol-modal > button:hover,
 .shop-pol-modal {
-    /* background-color: transparent; */
-    background-color: radial-gradient(circle, black,0%);
-    /* background-position: center; */
-    /* background-size: 150%; */
+
     box-shadow: 0rem 0rem .5rem black;
 }
 .shop-pol-modal {

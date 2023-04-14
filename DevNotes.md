@@ -25,7 +25,7 @@ Full CRUD
 ✅get all reviews
 ✅get reviews by id
 ✅delete review
-🔲create review
+✅create review
 🔲update review
 
 --Cart
@@ -56,11 +56,11 @@ FRONT END
 Navigate
 ✅Landing
 ✅Shop Details
---🔲Policies Modal
+--✅Policies Modal
 ✅user details
-🔲product details
-🔲product search results
-🔲user cart
+✅product details
+✅product search results
+✅user cart
 
 FORMS
 ✅delete cart
