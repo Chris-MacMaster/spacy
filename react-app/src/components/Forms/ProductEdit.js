@@ -1,8 +1,9 @@
 //src/components/SpotForm/CreateSpot.js
 import { useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-import { useDispatch } from "react-redux"
-import { makeProduct } from '../../store/product';
+import { useDispatch, useSelector } from "react-redux"
+import { editProduct, fetchOneProduct, makeProduct } from '../../store/product';
+import { render } from 'react-dom';
 // import { editSpot, makeSpot } from '../../store/spot';
 // import { fetchOneSpot } from '../../store/spot';
 
@@ -12,11 +13,16 @@ import { makeProduct } from '../../store/product';
 
 
 
-const ReviewForm = () => {
+const ProductEditForm = () => {
     const history = useHistory();
     const dispatch = useDispatch()
 
-    const { shopId } = useParams()
+    const { productId } = useParams()
+    const productState = useSelector(state => state.products.singleProduct)
+    
+
+    const [rendered, setRendered] = useState(false)
+
 
 
     // const { closeModal } = useModal()
@@ -24,22 +30,14 @@ const ReviewForm = () => {
 
     const [name, setName] = useState("")
     const [available, setAvailable] = useState(0)
-    const [avgRating, setAvgRating] = useState(0)
+    const [shopId, setShopId] = useState("")
 
     const [category, setCategory] = useState("")
     const [description, setDescription] = useState("")
     const [freeShipping, setFreeShipping] = useState(false)
     const [price, setPrice] = useState(0)
 
-    const [url1, setUrl1] = useState("")
-    const [url2, setUrl2] = useState("")
-    const [url3, setUrl3] = useState("")
-    const [url4, setUrl4] = useState("")
-    const [url5, setUrl5] = useState("")
-    const [url6, setUrl6] = useState("")
-    const [url7, setUrl7] = useState("")
-    const [url8, setUrl8] = useState("")
-    const [url9, setUrl9] = useState("")
+    const product = productState
 
     // shopId
 
@@ -56,8 +54,25 @@ const ReviewForm = () => {
         if (!price) e.price = "Must submit a price."
         if (!category) e.category = "Must submit a category"
         if (!description) e.description = "Must submit a description"
-        if (!url1) e.url1 = "Must submit at least 1 url, in the first input line."
-    }, [name, available, price, category, description, url1])
+    }, [name, available, price, category, description])
+
+    //prepopulate form
+    useEffect(() => {
+        console.log("ENTER USE EFFECT")
+        const fillFields = async () => {
+            console.log("ENTER FILL FIELDS")
+            dispatch(fetchOneProduct(productId))
+            setName(product?.name)
+            setShopId(product?.shopId)
+            setDescription(product?.description)
+            setCategory(product?.category)
+            setAvailable(product?.available)
+            setFreeShipping(product?.freeShipping)
+            setPrice(product?.price)
+        }
+        fillFields()
+    },[dispatch])
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -66,44 +81,34 @@ const ReviewForm = () => {
         if (Object.values(errors).length) {
             return
         }
-        const newProduct = {
+        const editedProduct = {
             name,
             shop_id: shopId,
             description,
             category,
             available,
-            freeShipping,
+            free_shipping: freeShipping,
             price,
-            img_1: url1
         }
-        dispatch(makeProduct(newProduct))
-        console.log("SUBMITTED!")
+        dispatch(editProduct(editedProduct, productId))
+        reset()
+        history.push(`/products/${productId}`)
+        // console.log("SUBMITTED!")
     };
 
     const reset = () => {
-
-    };
-
-
-    const CreateTest = (e) => {
-        e.preventDefault();
-
-        const newProduct = {
-            name,
-            available,
-            category,
-            description,
-            free_shipping: freeShipping,
-            price,
-            shop_id: 1
-        }
-        // history.push(`/spots`);
-
+        setName("")
+        setAvailable("")
+        setPrice("")
+        setCategory("")
+        setDescription("")
     };
 
     const handleCheck = (e) => {
         freeShipping === true ? setFreeShipping(false) : setFreeShipping(true)
     }
+
+    if (!Object.values(product).length) return null
 
     return (
         <div>
@@ -206,22 +211,6 @@ const ReviewForm = () => {
                     )}
                 </div>
 
-
-                <div className='product-img1-div'>
-                    <label className='product-label' >
-                        URL1:
-                        <input className='product-input' type="text"
-                            value={url1}
-                            onChange={(e) => setUrl1(e.target.value)}
-                            placeholder='Url1' />
-                    </label>
-                    {hasSubmitted && errors.url1 && (
-                        <div className='error'>
-                            * {errors.url1}
-                        </div>
-                    )}
-                </div>
-
             </form>
 
             <input onClick={handleSubmit} className='submit-button button modal-button form-create-button red-styling' type="submit" value="Create Spot" />
@@ -230,4 +219,4 @@ const ReviewForm = () => {
     );
 }
 
-export default ReviewForm;
+export default ProductEditForm;

@@ -12,7 +12,7 @@ import { makeProduct } from '../../store/product';
 
 
 
-const ReviewForm = () => {
+const ProductCreateForm = () => {
     const history = useHistory();
     const dispatch = useDispatch()
 
@@ -77,28 +77,17 @@ const ReviewForm = () => {
           img_1: url1
         }
         dispatch(makeProduct(newProduct))
-        console.log("SUBMITTED!")
+        reset()
+        history.push(`/shops/${shopId}`)
     };
 
     const reset = () => {
-   
-    };
-
-
-    const CreateTest = (e) => {
-        e.preventDefault();
-
-        const newProduct = {
-            name,
-            available,
-            category,
-            description,
-            free_shipping: freeShipping,
-            price,
-            shop_id: 1
-        }
-        // history.push(`/spots`);
-
+        setName("")
+        setAvailable("")
+        setPrice("")
+        setCategory("")
+        setDescription("")
+        setUrl1("")
     };
 
     const handleCheck = (e) => {
@@ -230,4 +219,4 @@ const ReviewForm = () => {
     );
 }
 
-export default ReviewForm;
+export default ProductCreateForm;

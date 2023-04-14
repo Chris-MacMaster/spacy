@@ -14,10 +14,11 @@ import SearchResults from "./components/SearchResults";
 import ProductDetail from "./components/Products/ProductDetail";
 import PostReviewForm from "./components/PostReviewForm";
 import EditReviewForm from './components/EditReviewForm'
-import ReviewForm from "./components/Forms/ProductCreate";
 import DisplayCart from "./components/Cart";
 import ShopDetails from "./components/ShopDetails";
 import UserDetails from "./components/UserDetails";
+import ProductCreateForm from "./components/Forms/ProductCreate";
+import ProductEditForm from "./components/Forms/ProductEdit";
 
 function App() {
   const dispatch = useDispatch();
@@ -35,7 +36,8 @@ function App() {
       <Route path='/products/current' exact={true} component={UserProducts}/>
       <Route path='/search/:parameters' component={SearchResults}/>
       <Route path='/products/:productId' exact={true} component={ProductDetail}/>
-      <Route path='/products/forms/create-product/:shopId' exact={true} component={ReviewForm}/>
+      <Route path='/products/forms/create-product/:shopId' exact={true} component={ProductCreateForm} />
+      <Route path='/products/forms/edit-product/:productId' exact={true} component={ProductEditForm} />
       <Route path='/cart' exact={true} component={DisplayCart} />
       <Route path='/shops/:shopId' exact={true} component={ShopDetails}/>
       <Route path='/users/:userId' exact={true} component={UserDetails}/>

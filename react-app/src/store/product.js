@@ -85,6 +85,31 @@ export const makeProduct = (productBody) => async dispatch => {
 
 }
 
+export const editProduct = (productBody, productId) => async dispatch => {
+    const { name, shop_id, description, category, available, free_shipping, price } = productBody
+    const method = "PUT"
+    const headers = { "Content-Type": "application/json" }
+    const body = JSON.stringify({
+        name,
+        shop_id,
+        description,
+        category,
+        available,
+        free_shipping,
+        price,
+    })
+    const options = { method, headers, body }
+    const response = await fetch(`/api/products/${productId}`, options)
+    const product = await response.json()
+    // console.log("RESPONSE", response)
+    //testing
+    if (response.ok) {
+        return product
+        //so your backend has to return product
+    }
+
+}
+
 const initialState = {
     allProducts: {},
     singleProduct: {},
