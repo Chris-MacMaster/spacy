@@ -51,6 +51,12 @@ def get_one_product(product_id):
                 db.session.commit()
                 # addnig an associated image for the newly created product
                 product_image = ProductImage.query.get(product_id)
+                print("HERE ------------------------------------")
+                print("HERE ------------------------------------")
+                print("HERE ------------------------------------")
+                print("HERE ------------------------------------")
+                print(product_image)
+                print(product_image.url)
                 product_image.url = form.data["img_1"]
                 db.session.commit()
                 return product.to_dict(), 201

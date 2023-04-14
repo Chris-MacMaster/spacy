@@ -95,7 +95,7 @@ export const makeProduct = (productBody) => async dispatch => {
 }
 
 export const editProduct = (productBody, productId) => async dispatch => {
-    const { name, shop_id, description, category, available, free_shipping, price } = productBody
+    const { name, shop_id, description, category, available, free_shipping, price, img_1 } = productBody
     const method = "PUT"
     const headers = { "Content-Type": "application/json" }
     const body = JSON.stringify({
@@ -106,6 +106,7 @@ export const editProduct = (productBody, productId) => async dispatch => {
         available,
         free_shipping,
         price,
+        img_1
     })
     const options = { method, headers, body }
     console.log('EDIT TRIGGERED')

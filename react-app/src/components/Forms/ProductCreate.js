@@ -38,8 +38,6 @@ export default function ProductCreateForm() {
     // const [url8, setUrl8] = useState("")
     // const [url9, setUrl9] = useState("")
 
-    // shopId
-
     //validation
     const [errors, setErrors] = useState({})
     const [hasSubmitted, setHasSubmitted] = useState(false);
@@ -53,7 +51,7 @@ export default function ProductCreateForm() {
         if (!price) e.price = "Must submit a price."
         if (!category) e.category = "Must submit a category"
         if (!description) e.description = "Must submit a description"
-        if (!url1) e.url1 = "Must submit at least 1 url, in the first input line."
+        if (!url1) e.url1 = "Must submit a URL."
     }, [name, available, price, category, description, url1])
 
     const handleSubmit = (e) => {
@@ -82,22 +80,6 @@ export default function ProductCreateForm() {
 
     };
 
-
-    const CreateTest = (e) => {
-        e.preventDefault();
-
-        const newProduct = {
-            name,
-            available,
-            category,
-            description,
-            free_shipping: freeShipping,
-            price,
-            shop_id: 1
-        }
-        // history.push(`/spots`);
-
-    };
 
     const handleCheck = (e) => {
         freeShipping === true ? setFreeShipping(false) : setFreeShipping(true)

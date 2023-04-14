@@ -37,6 +37,9 @@ const ProductEditForm = () => {
     const [freeShipping, setFreeShipping] = useState(false)
     const [price, setPrice] = useState(0)
 
+    const [url1, setUrl1] = useState("")
+
+
     const product = productState
 
     // shopId
@@ -44,6 +47,8 @@ const ProductEditForm = () => {
     //validation
     const [errors, setErrors] = useState({})
     const [hasSubmitted, setHasSubmitted] = useState(false);
+
+    const initialUrl = (productState.ProductImages && productState.ProductImages.length) ? productState.ProductImages[0].url : ""
 
     useEffect(() => {
         let e = {}
@@ -54,7 +59,8 @@ const ProductEditForm = () => {
         if (!price) e.price = "Must submit a price."
         if (!category) e.category = "Must submit a category"
         if (!description) e.description = "Must submit a description"
-    }, [name, available, price, category, description])
+        if (!url1) e.url1 = "Must submit a URL."
+    }, [name, available, price, category, description, url1])
 
     useEffect(() => {
         dispatch(fetchOneProduct(productId));
@@ -69,7 +75,8 @@ const ProductEditForm = () => {
         setDescription(productState?.description || "");
         setFreeShipping(productState?.freeShipping || false);
         setPrice(productState?.price || 0);
-      }, [productState]);
+        setUrl1(initialUrl || "");
+      }, [productState, initialUrl]);
 
 
     const handleSubmit = (e) => {
@@ -87,6 +94,7 @@ const ProductEditForm = () => {
             available,
             free_shipping: freeShipping,
             price,
+            img_1: url1
         }
         dispatch(editProduct(editedProduct, productId))
         reset()
@@ -107,6 +115,7 @@ const ProductEditForm = () => {
     }
 
     if (!Object.values(product).length) return null
+    
 
     return (
         <div className='edit-product-container cp-container'>
@@ -196,8 +205,7 @@ const ProductEditForm = () => {
                         )}
                     </div>
                 </div>
-
-     <div className='category-shipping-div'>
+                <div className='category-shipping-div'>
                     <div className='product-category-div'>
                         <label className='product-label q-text' >
                             Category
@@ -240,6 +248,25 @@ const ProductEditForm = () => {
                         )}
                         </div>
                     </div>
+                </div>
+
+
+                <div className='product-img1-div'>
+                    <label className='product-label q-text' >
+                        URL1:
+                    </label>
+                    <p className='cp-grey-text sub-q-text'>
+                        Provide a url, pictures are necessary! Nobody wants to buy something sight unseen!
+                    </p>
+                    <input className='product-input' type="text"
+                        value={url1}
+                        onChange={(e) => setUrl1(e.target.value)}
+                        placeholder='Url1' />
+                    {hasSubmitted && errors.url1 && (
+                        <div className='error'>
+                            * {errors.url1}
+                        </div>
+                    )}
                 </div>
 
             </form>

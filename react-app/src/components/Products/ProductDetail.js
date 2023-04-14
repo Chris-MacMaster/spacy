@@ -92,7 +92,7 @@ const ProductDetail = () => {
                     <div className='product-subimages-div'>
                         <div className='both-images-div'>
                             <div className='subimage-div'>
-                                <img className='product-image product-subimage' src={product.ProductImages[0]?.url} alt='no found' />
+                                {/* <img className='product-image product-subimage' src={product.ProductImages[0]?.url} alt='no found' />
                                 <img className='product-image product-subimage' src={product.ProductImages[1]?.url} alt='no found' />
                                 <img className='product-image product-subimage' src={product.ProductImages[2]?.url} alt='no found' />
                                 <img className='product-image product-subimage' src={product.ProductImages[3]?.url} alt='no found' />
@@ -100,21 +100,21 @@ const ProductDetail = () => {
                                 <img className='product-image product-subimage' src={product.ProductImages[5]?.url} alt='no found' />
                                 <img className='product-image product-subimage' src={product.ProductImages[6]?.url} alt='no found' />
                                 <img className='product-image product-subimage' src={product.ProductImages[7]?.url} alt='no found' />
-                                <img className='product-image product-subimage' src={product.ProductImages[8]?.url} alt='no found' />
+                                <img className='product-image product-subimage' src={product.ProductImages[8]?.url} alt='no found' /> */}
                             </div>
                             <div className='product-arrow less-than'>
-                                <p className='greater-less-p'>
+                                {/* <p className='greater-less-p'>
                                     &lt;
-                                </p>
+                                </p> */}
                             </div>
                             <div className='product-images-div'>
                                 <img className='product-image' src={product.ProductImages[0].url} alt='no found' />
                                 {/* product.ProductImages[0].url */}
                             </div>
                             <div className='product-arrow greater-than'>
-                                <p className='greater-less-p'>
+                                {/* <p className='greater-less-p'>
                                     &gt;
-                                </p>
+                                </p> */}
                             </div>
                         </div>
                     </div>
@@ -167,7 +167,7 @@ const ProductDetail = () => {
                         </div>
                     </div>
                     <div className='purchase-buttons'>
-                        <button className='button buy-it-button'>Buy it now</button>
+                        {/* <button className='button buy-it-button'>Buy it now</button> */}
 
                         {product.available > 0 ? <AddToCart className='button add-cart-button' product={product}/>
 
