@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 export default function PaymentMethods({totalCost}){
-    const [paymentMethod, setPaymentMethod] = useState("Federal Credits")
+    const [paymentMethod, setPaymentMethod] = useState("Imperial Credits")
 
 
     const handlePaymentChange = (event) => {
