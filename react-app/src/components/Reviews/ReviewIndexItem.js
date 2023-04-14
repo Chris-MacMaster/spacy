@@ -1,7 +1,7 @@
 import React from 'react';
 import './ReviewIndexItem.css'
 import { useSelector } from 'react-redux';
-import { deleteReview } from '../../store/review';
+import { deleteReview, fetchProductReviews } from '../../store/review';
 import { useDispatch } from "react-redux"
 import OpenModalButton from '../OpenModalButton'
 import { NavLink } from 'react-router-dom';
@@ -25,6 +25,7 @@ const ReviewIndexItem = ({ review , product}) => {
     const handleDeleteClick = (e) => {
         e.preventDefault()
         dispatch(deleteReview(review.id))
+        dispatch(fetchProductReviews(product.id))
     }
 
     if (!Object.values(review).length || !product) return null
@@ -46,7 +47,7 @@ const ReviewIndexItem = ({ review , product}) => {
                     <div className='rev-review'>
                         {review.review}
                     </div>
-                    
+
                     <div className='rev-author-info'>
                         <div className='author-names'>
                             <img id='detail-review-icon' src='https://i.imgur.com/mMEwXsu.png' alt='usericon'
@@ -58,11 +59,11 @@ const ReviewIndexItem = ({ review , product}) => {
                         <div className='review-created'>
                             {Object.values(review).length && review.createdAt ? (<p>
 
-                                {review.createdAt.slice(0, -12)} 
+                                {review.createdAt.slice(0, -12)}
                             </p>): null}
                         </div>
                     </div>
-                {user && Object.values(review).length > 0 && review.userId === user.id ? 
+                {user && Object.values(review).length > 0 && review.userId === user.id ?
                 <div>
                     {/* <OpenModalButton modalComponent={<DeleteReviewModal reviewId={review.id} product={product}/>} buttonText={'Delete'}/> */}
                     <button onClick={handleDeleteClick}>delete review</button>
@@ -73,12 +74,12 @@ const ReviewIndexItem = ({ review , product}) => {
                 : ''}
                 </div>
                 <div className='rev-col-b'>
-                    {review.ReviewImages ? 
-                    
+                    {review.ReviewImages ?
+
                     <div className='rev-img'>
                         <img className='review-image-detail' src={review.ReviewImages.url} alt='not loaded' />
                     </div>
-                    
+
                     : ''}
                 </div>
             </div>

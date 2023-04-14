@@ -17,10 +17,8 @@ import ShopPoliciesModal from '../ShopPoliciesModal';
 const ProductDetail = () => {
     const dispatch = useDispatch()
     const history = useHistory()
-    
-    const productState = useSelector(state => state.products)
-    const reviewState = useSelector(state => state.reviews)
-    
+
+
     const user = useSelector((state) => state.session.user)
     const [showMenu, setShowMenu] = useState(false); //for opening modal
     const [imgCount, setImgCount] = useState(0)
@@ -41,21 +39,11 @@ const ProductDetail = () => {
         }
         document.addEventListener('click', closeMenu)
     }, [showMenu])
-    const closeMenu = () => setShowMenu(false)
-    useEffect(() => {
-        // console.log("TRIGGERED")
-        dispatch(fetchOneProduct(productId))
-        dispatch(fetchProductReviews(productId))
-    }, [dispatch, productId])
 
-    if (!Object.values(productState).length) {
-        return null
-    }
+    const closeMenu = () => setShowMenu(false)
 
     const handleBackward = () => {
-        if (imgCount === 0) {
-            setImgCount(8)
-        }
+        if (imgCount === 0)  setImgCount(8)
         else {
             const imgDecrement = imgCount-1
             setImgCount(imgDecrement)
@@ -63,33 +51,27 @@ const ProductDetail = () => {
     }
 
     const handleForward = () => {
-        if (imgCount === 8) {
-            setImgCount(9)
-        }
+        if (imgCount === 8) setImgCount(9)
         else {
             const imgIncrement = imgCount + 1
             setImgCount(imgIncrement)
         }
     }
 
-    if (!productState) return null
 
-    const product = productState?.singleProduct
-    // console.log('product', product)
-    // const productReviews = reviewState.productReviews.fill(null).filter(r => r !== null)
-    const productReviews = reviewState.productReviews && reviewState.productReviews.length ? Object.entries(reviewState.productReviews): null 
+    //dispatching state
+    useEffect(() => {
+        dispatch(fetchOneProduct(productId))
+        dispatch(fetchProductReviews(productId))
+    }, [dispatch, productId])
+
+    const product = useSelector(state => state.products.singleProduct)
+    const productReviews = useSelector(state => state.reviews.productReviews)
+    if (!Object.values(product).length) return null
+
     console.log('product reviews', productReviews)
-    if (!product.Shop) return null
-    // if (!productReviews.length) return null
-    // console.log('product reviews', productReviews)
-    let reviewUserIds = []
-    if (productReviews) {
-        for (let review of productReviews) {
-            reviewUserIds.push(review.userId)
-        }
-    }
 
-    // console.log('review user IDs', reviewUserIds)
+    if (!product.Shop) return null
 
     return (
         <div className='product-detail-div'>
@@ -115,7 +97,6 @@ const ProductDetail = () => {
                             </div>
                             <div className='product-images-div'>
                                 <img className='product-image' src={product.ProductImages[0].url} alt='no found' />
-                                {/* product.ProductImages[0].url */}
                             </div>
                             <div className='product-arrow greater-than'>
                                 <p className='greater-less-p'>
@@ -126,12 +107,11 @@ const ProductDetail = () => {
                     </div>
                     <div className='review-info-div'>
                         <p className='review-p reviews-text'>
-                            {/* {productReviews && productReviews.length} Reviews */}
                         </p>
                         <p className='review-p review-stars'>
                             <i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i> <i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i> <i className="fa-solid fa-star"></i>
                         </p>
-                        {user && !reviewUserIds.includes(user.id) && product.Shop?.ownerId !== user.id ?
+                        {user && product.Shop?.ownerId !== user.id ?
                  (   <div>
                         <NavLink to={`/product-reviews/${productId}/new`}>
                         <button>Post a Review</button>
@@ -142,9 +122,9 @@ const ProductDetail = () => {
                     {/* reviews... */}
                     {productReviews && productReviews.length > 0 ? productReviews.map(review => (
                         <ReviewIndexItem review={review} key={review.id} product={product}/>
-                    )): ''}
+                    )): null}
                     <div className='reviewIndex' >
-                        {}
+
                     </div>
                 </div>
 
