@@ -107,7 +107,7 @@ const ProductEditForm = () => {
         }
         dispatch(editProduct(editedProduct, productId))
         reset()
-        // history.push(`/products/${productId}`)
+        history.push(`/products/${productId}`)
         // console.log("SUBMITTED!")
     };
 
