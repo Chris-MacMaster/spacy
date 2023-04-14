@@ -7,41 +7,7 @@ from app.forms import CreateProductForm
 
 product_routes = Blueprint('/products', __name__)
 
-@product_routes.route('/<int:product_id>/', methods=['PUT'])
-def edit(product_id):
-    if current_user.is_authenticated:
-            product = Product.query.get(product_id)
-            print("query passed ---------------------")
-            form = CreateProductForm() # make edit form
-            print(request.get_json())
-            form['csrf_token'].data = request.cookies['csrf_token']
-            print('csrf passed -------------------------')
-            if form.validate_on_submit():
-                product.shop_id = form.data["shop_id"]
-                product.name = form.data["name"]
-                product.description = form.data["description"]
-                product.category = form.data["category"]
-                product.available = form.data["available"]
-                print()
-                print()
-                print()
-                print()
-                print()
-                print()
-                print()
-                print(form.data['free_shipping'])
-                product.free_shipping = form.data["free_shipping"]
-                product.price = form.data["price"]
-                db.session.commit()
-                # addnig an associated image for the newly created product
-                product_image = ProductImage.query.get(product_id)
-                if form.data["img_1"]:
-                    product_image.url = form.data["img_1"]
-                db.session.commit()
-                return product.to_dict(), 201
-            print('validations failed! ----------------')
-
-@product_routes.route('/<int:product_id>', methods=['GET', 'DELETE', 'PUT'])
+@product_routes.route('/<int:product_id>/', methods=['GET', 'DELETE', 'PUT'])
 def get_one_product(product_id):
     """returns one product with the specified id"""
 
@@ -69,11 +35,11 @@ def get_one_product(product_id):
     elif request.method == 'PUT':
         if current_user.is_authenticated:
             product = Product.query.get(product_id)
-            print("query passed ---------------------")
+            # print("query passed ---------------------")
             form = CreateProductForm() # make edit form
-            print("form created --------------------")
+            # print("form created --------------------")
             form['csrf_token'].data = request.cookies['csrf_token']
-            print('csrf passed -------------------------')
+            # print('csrf passed -------------------------')
             if form.validate_on_submit():
                 product.shop_id = form.data["shop_id"]
                 product.name = form.data["name"]
@@ -88,7 +54,7 @@ def get_one_product(product_id):
                 product_image.url = form.data["img_1"]
                 db.session.commit()
                 return product.to_dict(), 201
-            print('validations failed! ----------------')
+            # print('validations failed! ----------------')
 
 
 
