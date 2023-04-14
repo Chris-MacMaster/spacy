@@ -27,10 +27,9 @@ export const removeFromCart = cart => {
     }
 }
 
-export const checkoutCart = cart => {
+export const checkoutCart = () => {
     return {
-        type: DELETE_CART,
-        cart
+        type: DELETE_CART
     }
 }
 export const editItemQuantity = cart => {
@@ -43,8 +42,6 @@ export const editItemQuantity = cart => {
 
 export const fetchCart = () => async dispatch => {
     const response = await fetch('/api/cart/')
-
-    // console.log(res)
     if(response.ok) {
         const cart = await response.json()
         // console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~", cart)
@@ -60,7 +57,6 @@ export const addCartItemThunk = (itemId, userId) => async dispatch => {
     })
     if (response.ok){
         const item = await response.json()
-        console.log("VVVVVVVVVVVVVVVV", item)
         dispatch(addCartItem(item))
         return(item)
     }
@@ -74,23 +70,21 @@ export const removeCartItemThunk = (cartId) => async dispatch => {
         body: JSON.stringify({"cart_id": cartId})
     })
     if (response.ok){
-        console.log("Whaddup thug?")
-
         return dispatch(removeFromCart(cartId))
     }
 }
-export const checkoutCartThunk = (cart) => async dispatch => {
+export const checkoutCartThunk = () => async dispatch => {
     const response = await fetch('/api/cart/empty', {
         method: 'DELETE',
         headers: {"Content-Type": "application/json"},
+        body: JSON.stringify()
     })
     if (response.ok){
-        return dispatch(checkoutCart(cart))
+        return dispatch(checkoutCart())
     }
 }
 
 export const editCartItemThunk = (cartId, quantity, userId, productId) =>  async dispatch =>{
-    console.log('PUTPUTPUTPUTPUT', cartId, quantity)
     const response = await fetch('/api/cart/', {
         method: 'PUT',
         headers: {"Content-Type": "application/json"},
@@ -115,12 +109,10 @@ export default function cartReducer(state = initialState, action) {
     newState.products = {...state.products}
     switch(action.type){
         case LOAD_CART: {
-            // console.log("!!!!!!!!!!!!!!!",action.cart)
             newState.products = action.cart
             return newState
         }
         case ADD_TO_CART: {
-            // console.log(action)
             newState.products = action.cart
             return newState
         }

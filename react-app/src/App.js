@@ -20,6 +20,7 @@ import UserDetails from "./components/UserDetails";
 import Footer from "./components/Footer";
 import ProductCreateForm from "./components/Forms/ProductCreate";
 import ProductEditForm from "./components/Forms/ProductEdit";
+import FilteredSearchResults from "./components/FilteredSearchResults";
 
 function App() {
   const dispatch = useDispatch();
@@ -44,6 +45,7 @@ function App() {
       <Route path='/users/:userId' exact={true} component={UserDetails}/>
       <Route path='/product-reviews/:productId/new' component={PostReviewForm}/>
       <Route path='/product-reviews/:reviewId/edit' component={EditReviewForm}/>
+      <Route path='/search/filtered-search/:category' exact={true} component={FilteredSearchResults}/>
     </Switch>
     <Footer />
     </>
