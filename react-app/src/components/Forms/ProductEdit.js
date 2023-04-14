@@ -177,7 +177,7 @@ const ProductEditForm = () => {
                 <div className='product-category-div'>
                     <label className='product-label' >
                         Category
-                        <select name='category' onChange={(e) => setCategory(e.target.value)}>
+                        <select name='category' onChange={(e) => setCategory(e.target.value)} value={category}>
                             <option value='' >--Please choose an option--</option>
                             <option value='Accessories' >Accessories</option>
                             <option value='Apparel' >Apparel</option>
