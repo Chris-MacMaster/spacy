@@ -78,7 +78,7 @@ export default function DisplayCart(){
             <h3>We're sorry to inform you that the only way you can pay currently is with depleted uranium</h3>
             <p>Item(s) total: ${totalCost(cart)}</p> */}
             <PaymentMethod totalCost={totalCost(cart)}/>
-            <CheckoutCart />
+            <CheckoutCart cart={cart}/>
           </div>
         </div>
     </div>

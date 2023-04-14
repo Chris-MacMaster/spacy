@@ -15,7 +15,6 @@ export default function CheckoutCart(){
         return dispatch(checkoutCartThunk())
     }
 
-
     return (
         <button onClick={checkout} className="checkout-cart-button">
             Checkout!
