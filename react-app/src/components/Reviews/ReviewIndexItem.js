@@ -1,15 +1,19 @@
 import React from 'react';
 import './ReviewIndexItem.css'
 import { useSelector } from 'react-redux';
-import { deleteReview } from '../../store/review';
+import { deleteReview, fetchProductReviews } from '../../store/review';
 import { useDispatch } from "react-redux"
 import OpenModalButton from '../OpenModalButton'
 import { NavLink } from 'react-router-dom';
 
 import DeleteReviewModal from '../DeleteReviewModal/DeleteReview';
+// import { deleteReview } from '../../store/review';
 
-const ReviewIndexItem = ({ review }) => {
+
+const ReviewIndexItem = ({ review , product}) => {
     // const history = useHistory()
+
+    console.log('product in reviews', product)
     const dispatch = useDispatch()
     let user = useSelector((state) => state.session.user)
 
@@ -18,6 +22,13 @@ const ReviewIndexItem = ({ review }) => {
 
     }
 
+    const handleDeleteClick = (e) => {
+        e.preventDefault()
+        dispatch(deleteReview(review.id))
+        dispatch(fetchProductReviews(product.id))
+    }
+
+    if (!Object.values(review).length || !product) return null
 
     return (
         <li onClick={handleClick} className='reviewIndexItem'>
@@ -36,7 +47,7 @@ const ReviewIndexItem = ({ review }) => {
                     <div className='rev-review'>
                         {review.review}
                     </div>
-                    
+
                     <div className='rev-author-info'>
                         <div className='author-names'>
                             <img id='detail-review-icon' src='https://i.imgur.com/mMEwXsu.png' alt='usericon'
@@ -46,12 +57,16 @@ const ReviewIndexItem = ({ review }) => {
                             </div>
                         </div>
                         <div className='review-created'>
-                            {review.createdAt.slice(0, -12)} 
+                            {Object.values(review).length && review.createdAt ? (<p>
+
+                                {review.createdAt.slice(0, -12)}
+                            </p>): null}
                         </div>
                     </div>
-                {user && review.userId === user.id ? 
+                {user && Object.values(review).length > 0 && review.userId === user.id ?
                 <div>
-                    <OpenModalButton modalComponent={<DeleteReviewModal reviewId={review.id}/>} buttonText={'Delete'}/>
+                    {/* <OpenModalButton modalComponent={<DeleteReviewModal reviewId={review.id} product={product}/>} buttonText={'Delete'}/> */}
+                    <button onClick={handleDeleteClick}>delete review</button>
                     <NavLink to={`/product-reviews/${review.id}/edit`}>
                     <button>Edit Review</button>
                     </NavLink>
@@ -59,12 +74,12 @@ const ReviewIndexItem = ({ review }) => {
                 : ''}
                 </div>
                 <div className='rev-col-b'>
-                    {review.ReviewImages ? 
-                    
+                    {review.ReviewImages ?
+
                     <div className='rev-img'>
                         <img className='review-image-detail' src={review.ReviewImages.url} alt='not loaded' />
                     </div>
-                    
+
                     : ''}
                 </div>
             </div>

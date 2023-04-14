@@ -30,7 +30,7 @@ export default function UserDetails() {
         <div className='user-manage-details'>
             <div className='user-manage-header'>
                 <div className='user-manage-business-cards'>
-                {userShops ? userShops.map((shop, i) => (
+                {userShops.length ? userShops.map((shop, i) => (
 
                     <ShopBusinessCard shopId={shop.id}
                     key={`shopbusicardcomp${i}`}/>
@@ -65,7 +65,7 @@ export default function UserDetails() {
             <div className='user-manage-footer'>
                 <div className='user-manage-shop-policies'>
                     <h3>Shop Policies</h3>
-                    <p>{userShops[0].policies}</p>
+                    {userShops.length ? <p>{userShops[0].policies}</p>: null}
                 </div>
                 <div className='accepted-payments'></div>
             </div>
