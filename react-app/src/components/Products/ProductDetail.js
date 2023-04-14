@@ -180,15 +180,13 @@ const ProductDetail = () => {
                             {product.description}
                         </div>
                         {/* <button onClick={openMenu}>EXPERIMENT</button> */}
+                            <button className='shop-pol-modal'>
                             <OpenModalButton
                             buttonText='View Shop Policies'
                             onClick={openMenu}
                             onItemClick={closeMenu}
-                            modalComponent={
-                            <ShopPoliciesModal shop={product.Shop}/>}
-
-                            />
-
+                            modalComponent={<ShopPoliciesModal shop={product.Shop}/>} />
+                            </button>
                     </div>
                 </div>
             </div>

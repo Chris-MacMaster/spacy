@@ -37,3 +37,7 @@
 .shop-policies-payments{
     margin-bottom: 1rem;
 }
+.shop-pol-modal {
+    width: 10rem;
+    border-radius: 5rem;
+}
