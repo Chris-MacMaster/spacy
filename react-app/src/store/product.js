@@ -48,6 +48,7 @@ export const fetchOneProduct = (id) => async dispatch => {
     if (response.ok) {
         const product = await response.json()
         dispatch(actionLoadProduct(product))
+        return product
     }
 }
 export const fetchUserProducts = () => async dispatch => {
