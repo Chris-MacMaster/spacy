@@ -151,7 +151,8 @@ const ProductDetail = () => {
                     <div className='purchase-buttons'>
                         <button className='button buy-it-button'>Buy it now</button>
 
-                        {product.available ? <AddToCart className='button add-cart-button' product={product}/>
+                        {product.available > 0 ? <AddToCart className='button add-cart-button' product={product}/>
+
                         :
                         <button className='button cant-add-cart-button'>Out of stock</button>
                         }

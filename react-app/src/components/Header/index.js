@@ -55,13 +55,10 @@ function Header({ isLoaded }) {
         </div>
         <div className='shop-manager'>
             {user && user.id && userShop ? (
-
-                <NavLink to={`/shops/${userShop.id}`} >
+                <NavLink to={`/shops/${userShop[0].id}`} >
                     <div className='header-tip'>Shop Manager</div>
                 <i className="fa-solid fa-store"></i>
-
                 </NavLink>
-
             ) : (
                 <i className="fa-solid fa-store"></i>
             )}
