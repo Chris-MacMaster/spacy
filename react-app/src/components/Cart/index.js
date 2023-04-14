@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { fetchCart } from "../../store/cart"
 import RemoveItemButton from "./RemoveItemButton"
@@ -10,12 +10,13 @@ import PaymentMethod from "./PaymentMethods"
 import './Cart.css'
 
 export default function DisplayCart(){
+  const [user, cart] = useSelector(state => [state.session.user, state.cartReducer.products ?? null])
 
     const dispatch = useDispatch()
-    const [user, cart] = useSelector(state => [state.session.user, state.cartReducer.products])
-
+    const [loaded, setLoaded] = useState(false)
     useEffect(() =>{
-        dispatch(fetchCart())
+      dispatch(fetchCart())
+      .then(() => setLoaded(true))
     },[dispatch, user])
 
     if(!user) return (
@@ -23,13 +24,25 @@ export default function DisplayCart(){
     <h1>Due to recent cart theft by space pirates, only verified users are permitted a cart</h1>
     </div>
     )
-    if(!Object.values(cart).length) return <h2>You have no items in your cart, don't you want to buy something?</h2>
+
+    if(!loaded) return <h2 className="loading-cart">Loading Cart...</h2>
+
+    if (!Object.values(cart).length && loaded) {
+      console.log(Object.values(cart))
+      return <h2>You have no items in your cart, don't you want to buy something?</h2>
+    }
+
+    // if(loaded && !Object.values(cart).length === 0) return <h2>You have no items in your cart, don't you want to buy something?</h2>
 
     const itemsByStore = groupItemsByStore(cart)
     // const checkoutPrice = totalCost(cart)
     console.log(Object.values(cart).length)
 
     return(
+     <>
+    {/* <>{(!cart) ? 4 : (
+      <></>
+    )}</> */}
     <div className="order-page">
       <div className="shopping-bar">
           <div className="cart-quantity">
@@ -61,7 +74,7 @@ export default function DisplayCart(){
                     <img src={product.productImage} alt="preview" className="cart-product-image"/>
                     </div>
                     <div className="cart-product-info">
-                    {console.log(product)}
+
                     {product.name}. {product.description}
                     <ChangeQuantity cartId={product.cartId} quantity={product.quantity} productId={product.productId} available={product.available}/>
                     <RemoveItemButton cartId={product.cartId}/>
@@ -82,5 +95,6 @@ export default function DisplayCart(){
           </div>
         </div>
     </div>
+    </>
     )
 }
