@@ -1,3 +1,37 @@
 .review-card-div {
-    background-color: yellow;
+    background-color: blue;
+}
+
+.rev-author-info {
+    display: flex;
+}
+
+.detail-icon {
+    display: inline-block;
+    position: static;
+}
+
+#detail-review-icon {
+    position: static;
+    width: 35px;
+    height: 35px;
+    margin-right: 8px;
+}
+
+.author-names {
+    display: flex;
+}
+
+.author-subdiv-names, .review-created {
+    position: relative;
+    top: 7px;
+}
+
+.author-subdiv-names {
+    margin-right: 8px;
+}
+
+.review-image-detail {
+    height: 185px;
+    width: 185px;
 }

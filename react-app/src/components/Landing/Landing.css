@@ -54,10 +54,7 @@ p.sponsored {
     margin-left: 2rem;
     justify-content: center;
 
-    display: flex;
-    flex-direction: row;
-    flex-wrap: row;
-    justify-content: center;
+
 }
 .from-etzy-closing {
     margin: .25rem;
@@ -161,15 +158,15 @@ h3.shops-youll-love-title {
     /* max-width: 90rem;
     justify-content: center;
     margin-left: 10vw; */
+
 }
 
-/* @media only screen and (max-width: 85rem){
+@media only screen and (max-width: 90rem){
     .shops-youll-love {
         display: grid;
         grid-template-columns: auto auto auto;
         justify-content: center;
     }
-
 }
 @media only screen and (max-width: 70rem){
     .shops-youll-love {
@@ -177,5 +174,4 @@ h3.shops-youll-love-title {
         grid-template-columns: auto auto;
         justify-content: center;
     }
-
-} */
+}

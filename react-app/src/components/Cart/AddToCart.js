@@ -14,10 +14,12 @@ export default function AddToCart({product}){
     },[dispatch, user])
 
     const addItem = (e) => {
-        // console.log("!!!!!", product)
+        if(!user) return (
+            alert("We are woefully sorry to inform you that due to recent attacks by space pirates we can only allow logged in users to add items to cart!")
+        )
         return dispatch(addCartItemThunk(product.id, user.id))
     }
-    console.log(cart)
+    // console.log(cart)
 
     return (
         <button onClick={addItem} className="add-to-cart-button">

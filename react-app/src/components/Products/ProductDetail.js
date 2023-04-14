@@ -1,5 +1,5 @@
 import React from 'react';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { useParams } from 'react-router-dom';
@@ -11,6 +11,8 @@ import { useHistory } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 
 import "./ProductDetail.css"
+import OpenModalButton from '../OpenModalButton';
+import ShopPoliciesModal from '../ShopPoliciesModal';
 
 const ProductDetail = () => {
     const dispatch = useDispatch()
@@ -18,12 +20,28 @@ const ProductDetail = () => {
     const productState = useSelector(state => state.products)
     const reviewState = useSelector(state => state.reviews)
     const user = useSelector((state) => state.session.user)
+    const [showMenu, setShowMenu] = useState(false); //for opening modal
     const [imgCount, setImgCount] = useState(0)
-
+    const ulRef = useRef(); //for modal
     let { productId } = useParams()
 
+    //modal components
+    const openMenu = () => {
+        if (showMenu) return
+        setShowMenu(true)
+    }
     useEffect(() => {
-        console.log("TRIGGERED")
+        if (!showMenu) return;
+        const closeMenu = e => {
+            if (!ulRef.current.contains(e.target)) {
+             setShowMenu(false);
+            }
+        }
+        document.addEventListener('click', closeMenu)
+    }, [showMenu])
+    const closeMenu = () => setShowMenu(false)
+    useEffect(() => {
+        // console.log("TRIGGERED")
         dispatch(fetchOneProduct(productId))
         dispatch(fetchProductReviews(productId))
     }, [dispatch, productId])
@@ -53,7 +71,7 @@ const ProductDetail = () => {
     }
 
     const product = productState?.singleProduct
-    console.log('product', product)
+    // console.log('product', product)
     const productReviews = reviewState?.productReviews
     if (!product.Shop) return null
     // if (!productReviews.length) return null
@@ -65,7 +83,7 @@ const ProductDetail = () => {
         }
     }
 
-    console.log('review user IDs', reviewUserIds)
+    // console.log('review user IDs', reviewUserIds)
 
     return (
         <div className='product-detail-div'>
@@ -74,7 +92,7 @@ const ProductDetail = () => {
                     <div className='product-subimages-div'>
                         <div className='both-images-div'>
                             <div className='subimage-div'>
-                                <img className='product-image product-subimage' src={product.ProductImages[0].url} alt='no found' />
+                                <img className='product-image product-subimage' src={product.ProductImages[0]?.url} alt='no found' />
                                 <img className='product-image product-subimage' src={product.ProductImages[1]?.url} alt='no found' />
                                 <img className='product-image product-subimage' src={product.ProductImages[2]?.url} alt='no found' />
                                 <img className='product-image product-subimage' src={product.ProductImages[3]?.url} alt='no found' />
@@ -102,12 +120,12 @@ const ProductDetail = () => {
                     </div>
                     <div className='review-info-div'>
                         <p className='review-p reviews-text'>
-                            {productReviews.length} Reviews 
+                            {productReviews.length} Reviews
                         </p>
                         <p className='review-p review-stars'>
                             <i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i> <i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i> <i className="fa-solid fa-star"></i>
                         </p>
-                        {user && !reviewUserIds.includes(user.id) && product.Shop?.ownerId !== user.id ?                        
+                        {user && !reviewUserIds.includes(user.id) && product.Shop?.ownerId !== user.id ?
                  (   <div>
                         <NavLink to={`/product-reviews/${productId}/new`}>
                         <button>Post a Review</button>
@@ -121,7 +139,7 @@ const ProductDetail = () => {
                     )): ''}
                     <div className='reviewIndex' >
                         {}
-                    </div> 
+                    </div>
                 </div>
 
                 <div className='product-grid-div-col-b'>
@@ -151,7 +169,6 @@ const ProductDetail = () => {
                     <div className='purchase-buttons'>
                         <button className='button buy-it-button'>Buy it now</button>
                         <AddToCart className='button add-cart-button' product={product}/>
-
                     </div>
                     <div className='product-info-b'>
                         <div className='free-shipping-div'>
@@ -161,6 +178,15 @@ const ProductDetail = () => {
                             <p className='prod-description-p'>Description</p>
                             {product.description}
                         </div>
+                        {/* <button onClick={openMenu}>EXPERIMENT</button> */}
+                        <div  className='shop-pol-modal' >
+                            <OpenModalButton
+                            buttonText='View Shop Policies'
+                            onClick={openMenu}
+                            className='shop-pol-modal'
+                            onItemClick={closeMenu}
+                            modalComponent={<ShopPoliciesModal shop={product.Shop}/>} />
+                            </div>
                     </div>
                 </div>
             </div>

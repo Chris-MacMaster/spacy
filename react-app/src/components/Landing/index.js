@@ -29,10 +29,10 @@ function Landing({ isLoaded }) {
 
     if (!products || !shops || !under30 || !others) return null
 
-    const rand1 = others[Math.floor(Math.random()*others.length)]
-    const rand2 = others[Math.floor(Math.random()*others.length)]
-    const rand3 = others[Math.floor(Math.random()*others.length)]
-    const rand4 = others[Math.floor(Math.random()*others.length)]
+    const rand1 = products[13] ? products[13] : others[Math.floor(Math.random()*others.length)]
+    const rand2 = products[7] ? products[7] : others[Math.floor(Math.random()*others.length)]
+    const rand3 = products[2] ? products[2] : others[Math.floor(Math.random()*others.length)]
+    const rand4 = products[14] ? products[14] : others[Math.floor(Math.random()*others.length)]
     const data = Object.values(products).sort((a,b) => Date.parse(b.createdAt) - Date.parse(a.createdAt)).slice(0, 6)
     console.log('SHOPS', shops)
     return (
@@ -94,7 +94,8 @@ function Landing({ isLoaded }) {
 
                 {data.map(product => (
                 product.ProductImages[0].url ? (
-                <NavLink to={`/products/${product.id}`}>
+                <NavLink to={`/products/${product.id}`}
+                style={{ textDecoration: 'none' }}>
                     <ProductCard product={product}
                     key={`${product.id}`}/>
                 </NavLink>
@@ -139,7 +140,8 @@ function Landing({ isLoaded }) {
                 </div>
 
                 {shops.allShops && shops.allShops[0] ? (Object.values(shops.allShops).map((s, i)=> (
-                <NavLink to={`/shops/${s.id}`}>
+                <NavLink to={`/shops/${s.id}`}
+                style={{ textDecoration: 'none' }}>
                     <ShopCard shop={s}
                     key={`shopkey${i}`}/>
                 </NavLink>
