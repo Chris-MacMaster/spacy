@@ -14,9 +14,10 @@ export default function ShopBusinessCard({ shopId }) {
     const shop = useSelector(state => state.shops.singleShop)
 
 
-    // const handleCreate = (shopId) => {
-    //     history.push(`/products/forms/create-product/${shopId}`)
-    // }
+    const handleCreate = (e) => {
+        e.preventDefault()
+        history.push(`/products/forms/create-product/${shopId}`)
+    }
 
     if (!shop) return null
     return (
@@ -34,7 +35,7 @@ export default function ShopBusinessCard({ shopId }) {
         <div className='user-manage-buttons'>
             <button className='user-manage-button user-manage-edit-shop'><i className="fa-solid fa-pen"></i>Edit Shop</button>
             <button className='user-manage-button user-manage-fav-shop'><i className="fa-regular fa-heart"></i>Favorite shop</button>
-            {/* <button onClick={handleCreate} className='user-manage-button user-manage-fav-shop'><i className="fa-regular fa-heart"></i>Create Product</button> */}
+            <button onClick={handleCreate} className='user-manage-button user-manage-fav-shop'><i className="fa-regular fa-heart"></i>Create Product</button>
         </div>
     </div>
 </div>

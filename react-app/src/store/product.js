@@ -60,7 +60,7 @@ export const fetchUserProducts = () => async dispatch => {
 }
 
 export const makeProduct = (productBody) => async dispatch => {
-    const { name, shop_id, description, category, available, free_shipping, price } = productBody
+    const { name, shop_id, description, category, available, free_shipping, price, img_1 } = productBody
     const method = "POST"
     const headers = { "Content-Type" : "application/json"}
     const body = JSON.stringify({
@@ -70,16 +70,16 @@ export const makeProduct = (productBody) => async dispatch => {
         category,
         available,
         free_shipping,
-        price
+        price,
+        img_1
     })
     const options = { method, headers, body }
-    const response = await fetch('', options)
+    const response = await fetch('/products', options)
     const product = await response.json()
-
+    console.log("RESPONSE", response)
     //testing
     if (response.ok){
-        // make product image
-        return product
+        return product 
         //so your backend has to return product
     }
 
@@ -109,7 +109,7 @@ export default function productReducer(state = initialState, action) {
         }
         case LOAD_USER_PRODUCTS: {
             const newState = {...state}
-            console.log("FDASFDSAFAD", action.payload)
+            // console.log("FDASFDSAFAD", action.payload)
             newState.userProducts = {...action.payload}
             return newState
         }

@@ -1,7 +1,8 @@
 //src/components/SpotForm/CreateSpot.js
 import { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch } from "react-redux"
+import { makeProduct } from '../../store/product';
 // import { editSpot, makeSpot } from '../../store/spot';
 // import { fetchOneSpot } from '../../store/spot';
 
@@ -15,7 +16,9 @@ const ReviewForm = () => {
     const history = useHistory();
     const dispatch = useDispatch()
 
-    // const params = useParams()
+    const {shopId} = useParams()
+
+
     // const { closeModal } = useModal()
 
 
@@ -59,18 +62,21 @@ const ReviewForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         setHasSubmitted(true)
-        console.log("ERRORS", errors)
+        // console.log("ERRORS", errors)
         if (Object.values(errors).length) {
             return
         }
-        const newReview = {
+        const newProduct = {
           name,
-          available,
-          price,
-          category,
+          shop_id: shopId,
           description,
-          url1
+          category,
+          available,
+          freeShipping,
+          price,
+          img_1: url1
         }
+        dispatch(makeProduct(newProduct))
         console.log("SUBMITTED!")
     };
 

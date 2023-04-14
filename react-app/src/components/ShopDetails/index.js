@@ -1,4 +1,4 @@
-import { NavLink, useParams } from 'react-router-dom'
+import { NavLink, useParams, useHistory } from 'react-router-dom'
 import './ShopDetails.css'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -8,6 +8,7 @@ import ShopProductCard from '../ShopProductCard'
 export default function ShopDetails () {
     const {shopId} = useParams()
     const dispatch = useDispatch()
+    const history = useHistory()
     useEffect(() => {
         dispatch(fetchOneShop(shopId))
         dispatch(fetchShops())
@@ -18,6 +19,11 @@ export default function ShopDetails () {
     const allReviews = shop.Products.map(p=>p.Reviews).flat()
 
     console.log('REVIEWS FOR ALL PRODUCTS', allReviews)
+
+    const handleCreate = (e) => {
+        e.preventDefault()
+        history.push(`/products/forms/create-product/${shopId}`)
+    }
     return (
         <div className='shop-page'>
         <div className='shop-header'>
@@ -64,6 +70,9 @@ export default function ShopDetails () {
 
         <button className='favorite-shop'>
         <i className="fa-regular fa-heart shop-heart"></i>Follow Shop</button>
+
+        <button onClick={handleCreate} className='favorite-shop'>
+        Create Product</button>
 
             <div className='items-section'>
             <div className='item-category-sidebar'>
