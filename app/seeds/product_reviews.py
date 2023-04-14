@@ -184,6 +184,12 @@ def seed_product_reviews():
         review = "If you're looking for the ultimate coffee mug for space travel, look no further. The NASA zero-gravity coffee mug is the real deal. It's lightweight, durable, and the perfect size for a morning cup of coffee. I love the way it feels in my hand, and the special design keeps my coffee from spilling all over the place. A must-have for any serious astronaut.",
         stars = 5
     )
+    review27 = ProductReview(
+        user_id = 2,
+        product_id = 14,
+        review = "Slurm! I'm highly addictive!",
+        stars = 5
+    )
     # review24 = ProductReview(
     #     # shop and product tied to user 2, degrasse tyson
     #     user_id = 1,

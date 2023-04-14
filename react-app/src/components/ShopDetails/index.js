@@ -14,11 +14,11 @@ export default function ShopDetails () {
         dispatch(fetchShops())
     }, [dispatch])
     const shop = useSelector(state => state.shops.singleShop)
-    console.log('STATE OF SHOP', shop)
+    // console.log('STATE OF SHOP', shop)
     if (!shop || !Object.entries(shop).length) return null
     const allReviews = shop.Products.map(p=>p.Reviews).flat()
 
-    console.log('REVIEWS FOR ALL PRODUCTS', allReviews)
+    // console.log('REVIEWS FOR ALL PRODUCTS', allReviews)
 
     const handleCreate = (e) => {
         e.preventDefault()
