@@ -4,19 +4,17 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchOneShop, fetchShops } from '../../store/shops'
 import ShopProductCard from '../ShopProductCard'
-import { fetchProducts } from '../../store/product'
 
 export default function ShopDetails () {
     const {shopId} = useParams()
     const dispatch = useDispatch()
     const history = useHistory()
     const shop = useSelector(state => state.shops.singleShop)
-    const products = useSelector(state => state.products.allProducts)
 
     useEffect(() => {
         dispatch(fetchOneShop(shopId))
         dispatch(fetchShops())
-    }, [dispatch, products])
+    }, [dispatch])
     // console.log('STATE OF SHOP', shop)
     if (!shop || !Object.entries(shop).length) return null
     const allReviews = shop.Products.map(p=>p.Reviews).flat()
