@@ -214,8 +214,9 @@ const ProductEditForm = () => {
                 <div className='product-shipping-div'>
                     <label className='product-label' >
                         Free Shipping
-                        <input className='product-input' type="checkbox"
-                            value={freeShipping}
+                        <input className='product-input'
+                            type="checkbox"
+                            checked={freeShipping}
                             onChange={handleCheck}
                             placeholder='Description' />
                     </label>

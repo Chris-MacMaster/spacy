@@ -22,12 +22,21 @@ def edit(product_id):
                 product.description = form.data["description"]
                 product.category = form.data["category"]
                 product.available = form.data["available"]
+                print()
+                print()
+                print()
+                print()
+                print()
+                print()
+                print()
+                print(form.data['free_shipping'])
                 product.free_shipping = form.data["free_shipping"]
                 product.price = form.data["price"]
                 db.session.commit()
                 # addnig an associated image for the newly created product
                 product_image = ProductImage.query.get(product_id)
-                product_image.url = form.data["img_1"]
+                if form.data["img_1"]:
+                    product_image.url = form.data["img_1"]
                 db.session.commit()
                 return product.to_dict(), 201
             print('validations failed! ----------------')
