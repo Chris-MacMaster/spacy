@@ -4,22 +4,21 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchOneShop, fetchShops } from '../../store/shops'
 import ShopProductCard from '../ShopProductCard'
+import { authenticate } from '../../store/session'
 
 export default function ShopDetails () {
     const {shopId} = useParams()
     const dispatch = useDispatch()
     const history = useHistory()
-    const shop = useSelector(state => state.shops.singleShop)
-
     useEffect(() => {
         dispatch(fetchOneShop(shopId))
         dispatch(fetchShops())
+        dispatch(authenticate())
     }, [dispatch])
-    // console.log('STATE OF SHOP', shop)
-    if (!shop || !Object.entries(shop).length) return null
+    const shop = useSelector(state => state.shops.singleShop)
+    const user = useSelector(state => state.session.user)
+    if (!shop || !Object.entries(shop).length ||!user) return null
     const allReviews = shop.Products.map(p=>p.Reviews).flat()
-
-    // console.log('REVIEWS FOR ALL PRODUCTS', allReviews)
 
     const handleCreate = (e) => {
         e.preventDefault()
@@ -68,12 +67,16 @@ export default function ShopDetails () {
             </div>
         </div>
 
+        {user && user.id === shop.ownerId ? (
+        <button onClick={handleCreate} className='favorite-shop'>
+        Create Product</button>
 
+        ) : (
         <button className='favorite-shop'>
         <i className="fa-regular fa-heart shop-heart"></i>Follow Shop</button>
 
-        <button onClick={handleCreate} className='favorite-shop'>
-        Create Product</button>
+        )}
+
 
             <div className='items-section'>
             <div className='item-category-sidebar'>
