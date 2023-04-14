@@ -26,13 +26,14 @@ function FilteredSearchResults() {
     }
 
     return (
+        // <h1>nothing</h1>
         // <h1>Filtered Search Results</h1>
         <>
         <h1>Results:</h1>
         <div className="productsDisplay">
         {Object.values(products).map(product => (<Link to={`/products/${product.id}`}>
             <div className="productCard">
-                <div><img style={{width: 300, height: 320}} src={product.ProductImages[0].url}/></div>
+                <div><img style={{width: 300, height: 320}} src={product.ProductImages[0]?.url}/></div>
                 <div className="productName">{product.name}</div>
                 {/* <div className="productRating">Stars: {product.avgRating}</div> */}
                 <div>

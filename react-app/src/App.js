@@ -36,7 +36,7 @@ function App() {
       <Route path='/' component={Landing} isLoaded={isLoaded} exact={true} />
       <Route path='/products' exact={true} component={ProductsIndex}/>
       <Route path='/products/current' exact={true} component={UserProducts}/>
-      <Route path='/search/:parameters' component={SearchResults}/>
+      <Route path='/search/:parameters' exact={true} component={SearchResults}/>
       <Route path='/products/:productId' exact={true} component={ProductDetail}/>
       <Route path='/products/forms/create-product/:shopId' exact={true} component={ProductCreateForm} />
       <Route path='/products/forms/edit-product/:productId' exact={true} component={ProductEditForm} />

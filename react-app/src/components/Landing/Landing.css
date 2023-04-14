@@ -79,6 +79,7 @@ h3.shop-our-title {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    flex-wrap: wrap;
 }
 .selection-card {
     width: 16rem;
@@ -103,7 +104,10 @@ h3.shop-our-title {
     margin-top: .5rem;
 }
 .shops-youll-love {
-    max-width: 60rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 2rem;
     margin-top: 8rem;
     margin-bottom: 8rem;
@@ -119,7 +123,7 @@ h3.shops-youll-love-title {
 .shops-youll-love-text {
     height: 12em;
     width: 22rem;
-    margin-left: 2rem;
+    /* margin-left: 2rem; */
 }
 .what-is-etzy > h1 {
     font-family: 'Marcellus', serif;
@@ -152,16 +156,12 @@ h3.shops-youll-love-title {
 .fa-question {
     font-size: 1rem;
 }
-.shops-youll-love {
+/* .shops-youll-love {
     display: grid;
     grid-template-columns: auto auto auto auto;
-    /* max-width: 90rem;
-    justify-content: center;
-    margin-left: 10vw; */
+} */
 
-}
-
-@media only screen and (max-width: 90rem){
+/* @media only screen and (max-width: 90rem){
     .shops-youll-love {
         display: grid;
         grid-template-columns: auto auto auto;
@@ -174,4 +174,4 @@ h3.shops-youll-love-title {
         grid-template-columns: auto auto;
         justify-content: center;
     }
-}
+} */

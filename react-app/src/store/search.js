@@ -45,6 +45,7 @@ export const getSearchResults = (parameters) => async (dispatch) => {
 }
 
 export const getFilteredSearchResults = (searchCategory) => async (dispatch) => {
+    // const res = await fetch(`/api/search/filtered-search/${searchCategory}`)
     const res = await fetch(`/api/search/filtered-search/${searchCategory}`)
 
     if (res.ok) {
