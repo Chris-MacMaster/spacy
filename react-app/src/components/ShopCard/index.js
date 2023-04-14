@@ -37,11 +37,11 @@ export default function ShopCard({ shop }) {
 
             <div className='shop-card-text'>
             <p>{shop.name}</p>
-            <p>{Array(5).fill(1).map(s => (
+            <p>{Array(5).fill(1).map((s,i)=> (
                 s <= shopRating ? (
-                    <i class="fa-solid fa-star gold-star landing-shop-stars"></i>
+                    <i className="fa-solid fa-star gold-star landing-shop-stars" key={i}></i>
                 ) : (
-                    <i class="fa-solid fa-star blank-star landing-shop-stars"></i>
+                    <i className="fa-solid fa-star blank-star landing-shop-stars" key={i}></i>
                 )
                 ))} {filteredProducts.length} items</p>
             </div>

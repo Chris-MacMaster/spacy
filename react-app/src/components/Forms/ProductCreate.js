@@ -9,7 +9,7 @@ import { makeProduct } from '../../store/product';
 import './ProductCreate.css'
 
 
-const ProductCreateForm = () => {
+export default function ProductCreateForm() {
     const history = useHistory();
     const dispatch = useDispatch()
 
@@ -21,7 +21,7 @@ const ProductCreateForm = () => {
 
     const [name, setName] = useState("")
     const [available, setAvailable] = useState(0)
-    const [avgRating, setAvgRating] = useState(0)
+    // // const [avgRating, setAvgRating] = useState(0)
 
     const [category, setCategory] = useState("")
     const [description, setDescription] = useState("")
@@ -29,14 +29,14 @@ const ProductCreateForm = () => {
     const [price, setPrice] = useState(0)
 
     const [url1, setUrl1] = useState("")
-    const [url2, setUrl2] = useState("")
-    const [url3, setUrl3] = useState("")
-    const [url4, setUrl4] = useState("")
-    const [url5, setUrl5] = useState("")
-    const [url6, setUrl6] = useState("")
-    const [url7, setUrl7] = useState("")
-    const [url8, setUrl8] = useState("")
-    const [url9, setUrl9] = useState("")
+    // const [url2, setUrl2] = useState("")
+    // const [url3, setUrl3] = useState("")
+    // const [url4, setUrl4] = useState("")
+    // const [url5, setUrl5] = useState("")
+    // const [url6, setUrl6] = useState("")
+    // const [url7, setUrl7] = useState("")
+    // const [url8, setUrl8] = useState("")
+    // const [url9, setUrl9] = useState("")
 
     // shopId
 
@@ -266,5 +266,3 @@ const ProductCreateForm = () => {
         </div>
     );
 }
-
-export default ProductCreateForm;

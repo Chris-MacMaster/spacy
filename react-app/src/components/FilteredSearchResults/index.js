@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { getSearchResults } from "../../store/search"
-import { Link, useLocation, useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 
 import { getFilteredSearchResults } from "../../store/search"
 
@@ -27,13 +26,14 @@ function FilteredSearchResults() {
     }
 
     return (
+        // <h1>nothing</h1>
         // <h1>Filtered Search Results</h1>
         <>
         <h1>Results:</h1>
         <div className="productsDisplay">
         {Object.values(products).map(product => (<Link to={`/products/${product.id}`}>
             <div className="productCard">
-                <div><img style={{width: 300, height: 320}} src={product.ProductImages[0].url}/></div>
+                <div><img style={{width: 300, height: 320}} src={product.ProductImages[0]?.url}/></div>
                 <div className="productName">{product.name}</div>
                 {/* <div className="productRating">Stars: {product.avgRating}</div> */}
                 <div>

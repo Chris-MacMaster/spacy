@@ -19,6 +19,12 @@
     align-items: center;
     width: 100%;
 }
+.logoim {
+    object-fit: cover;
+    height: 5rem;
+    width: 5rem;
+    margin-left: 2rem;
+}
 .header-tabs {
     display: flex;
     flex-direction: row;
