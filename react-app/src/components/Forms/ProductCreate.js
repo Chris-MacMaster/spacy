@@ -9,7 +9,7 @@ import { makeProduct } from '../../store/product';
 import './ProductCreate.css'
 
 
-const ProductCreateForm = () => {
+export default function ProductCreateForm() {
     const history = useHistory();
     const dispatch = useDispatch()
 
@@ -267,4 +267,3 @@ const ProductCreateForm = () => {
     );
 }
 
-export default ReviewForm;
