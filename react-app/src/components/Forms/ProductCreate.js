@@ -106,15 +106,15 @@ const ProductCreateForm = () => {
     return (
         <div className='cp-container'>
             <h1 className='cp-title'>Listing details</h1>
-            <p className='cp-grey-text'>Tell the world all about your item and why they'll love it</p>
+            <p className='cp-grey-text sub-q-text'>Tell the world all about your item and why they'll love it</p>
             <form className='sp-form' onSubmit={handleSubmit} >
 
                 <div className='product-name-div'>
                     <div>
-                    <label className='cp-form-label cp-title' >
-                        Title *
+                    <label className='cp-form-label cp-title q-text' >
+                        Title 
                     </label>
-                    <p className='cp-grey-text'>Incldue keywords that buyer would use to search for your item</p>
+                    {/* <p className='cp-grey-text sub-q-text'>Incldue keywords that buyer would use to search for your item</p> */}
                     </div>
                     <div className='cp-field-div'>
                         <input className='product-input' type="text"
@@ -130,21 +130,18 @@ const ProductCreateForm = () => {
                 </div>
 
                 <div className='product-description-div'>
-                    <div>
-                    <label className='cp-form-label cp-description' >
-                        Description *
+                    <label className='cp-form-label cp-description q-text' >
+                        Description 
                     </label>
-                        <p className='cp-grey-text'>
+                        <p className='cp-grey-text sub-q-text'>
                             Start with a brief overview that describes your item's findes feature. Shopper will only see the first few lines of your description at first, so make it count!
                         </p>
-                        <p className='cp-grey-text'>
+                        <p className='cp-grey-text sub-q-text'>
                             Not sure what else to say? Shoppers also like hearing about your process, and the story behind the item!
                         </p>
                     </div>
-                    </div>
-
                 <div className='cp-field-div'>
-                        <input className='product-input' type="text"
+                        <input className='product-input' type="text-area"
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
                             placeholder='Description' />
@@ -156,11 +153,12 @@ const ProductCreateForm = () => {
                 </div>
 
 
+
                 <div className='product-available-div'>
-                    <label className='cp-form-label cp-available' >
-                        Available *
+                    <label className='cp-form-label cp-available q-text' >
+                        Available 
                     </label>
-                    <p className='cp-grey-text'>
+                    <p className='cp-grey-text sub-q-text'>
                         How many do you currently have in stock?
                     </p>
                     <div className='cp-field-div'>
@@ -177,10 +175,10 @@ const ProductCreateForm = () => {
                 </div>
 
                 <div className='product-price-div'>
-                    <label className='cp-form-label cp-price' >
-                        Price *
+                    <label className='cp-form-label cp-price q-text' >
+                        Price
                     </label>
-                    <p className='cp-form-label'>
+                    <p className='cp-form-label sub-q-text'>
                         Please dont use denominations other than Empire or New Republic Credits
                     </p>
                     <div className='cp-form-field'>
@@ -196,56 +194,58 @@ const ProductCreateForm = () => {
                     </div>
                 </div>
 
-                <div className='product-category-div'>
-                    <label className='product-label' >
-                        Category
-                    </label>
-                    <p className='cp-grey-text'>Type a one word description of your item to get category suggestions that will help more shoppers find it.</p>
-                    <div className='cp-field-div'>
-                        <select name='category' onChange={(e) => setCategory(e.target.value)}>
-                            <option value='' >--Please choose an option--</option>
-                            <option value='Accessories' >Accessories</option>
-                            <option value='Apparel' >Apparel</option>
-                            <option value='Collectibles' >Collectibles</option>
-                            <option value='Food' >Food</option>
-                            <option value='Home Decor' >Home Decor</option>
-                            <option value='Jewelry' >Jewelry</option>
-                            <option value='Lighting' >Lighting</option>
-                            <option value='Wall Art' >Wall Art</option>
-                        </select>
-                    {hasSubmitted && errors.category && (
-                        <div className='error'>
-                            * {errors.category}
+                <div className='category-shipping-div'>
+                    <div className='product-category-div'>
+                        <label className='product-label q-text' >
+                            Category
+                        </label>
+                        <p className='cp-grey-text sub-q-text'>Type a one word description of your item to get category suggestions that will help more shoppers find it.</p>
+                        <div className='cp-field-div'>
+                            <select name='category' onChange={(e) => setCategory(e.target.value)}>
+                                <option value='' >--Please choose an option--</option>
+                                <option value='Accessories' >Accessories</option>
+                                <option value='Apparel' >Apparel</option>
+                                <option value='Collectibles' >Collectibles</option>
+                                <option value='Food' >Food</option>
+                                <option value='Home Decor' >Home Decor</option>
+                                <option value='Jewelry' >Jewelry</option>
+                                <option value='Lighting' >Lighting</option>
+                                <option value='Wall Art' >Wall Art</option>
+                            </select>
+                        {hasSubmitted && errors.category && (
+                            <div className='error'>
+                                * {errors.category}
+                            </div>
+                        )}
                         </div>
-                    )}
+                    </div>
+
+                    <div className='product-shipping-div'>
+                        <label className='product-label q-text' >
+                            Free Shipping?
+                        </label>
+                        {/* <p className='cp-grey-text'>Either true or false</p> */}
+                        <div className='cp-field-div'>
+                            <input className='product-input' type="checkbox"
+                                value={freeShipping}
+                                onChange={handleCheck}
+                                placeholder='Description' />
+                        {hasSubmitted && errors.freeShipping && (
+                            <div className='error'>
+                                * {errors.freeShipping}
+                            </div>
+                        )}
+                        </div>
                     </div>
                 </div>
 
-
-                <div className='product-shipping-div'>
-                    <label className='product-label' >
-                        Free Shipping
-                    </label>
-                    <p className='cp-grey-text'>Either true or false</p>
-                    <div className='cp-field-div'>
-                        <input className='product-input' type="checkbox"
-                            value={freeShipping}
-                            onChange={handleCheck}
-                            placeholder='Description' />
-                    {hasSubmitted && errors.freeShipping && (
-                        <div className='error'>
-                            * {errors.freeShipping}
-                        </div>
-                    )}
-                    </div>
-                </div>
 
 
                 <div className='product-img1-div'>
-                    <label className='product-label' >
+                    <label className='product-label q-text' >
                         URL1:
                     </label>
-                    <p className='cp-grey-text'>
+                    <p className='cp-grey-text sub-q-text'>
                         Provide a url, pictures are necessary! Nobody wants to buy something sight unseen!
                     </p>
                         <input className='product-input' type="text"
@@ -261,7 +261,7 @@ const ProductCreateForm = () => {
 
             </form>
 
-            <input onClick={handleSubmit} className='submit-button form-create-button red-styling' type="submit" value="Create Spot" />
+            <input onClick={handleSubmit} className='submit-button form-create-button red-styling' type="submit" value="Create Product" />
 
         </div>
     );
