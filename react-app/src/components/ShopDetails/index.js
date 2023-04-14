@@ -17,7 +17,9 @@ export default function ShopDetails () {
     }, [dispatch])
     const shop = useSelector(state => state.shops.singleShop)
     const user = useSelector(state => state.session.user)
-    if (!shop || !Object.entries(shop).length ||!user) return null
+    const featureAlert = () => alert('Feature coming soon')
+
+    if (!shop || !Object.entries(shop).length) return null
     const allReviews = shop.Products.map(p=>p.Reviews).flat()
 
     const handleCreate = (e) => {
@@ -72,9 +74,10 @@ export default function ShopDetails () {
         Create Product</button>
 
         ) : (
-        <button className='favorite-shop'>
-        <i className="fa-regular fa-heart shop-heart"></i>Follow Shop</button>
-
+        <button className='favorite-shop'
+        onClick={featureAlert}>
+        <i className="fa-regular fa-heart shop-heart"
+       ></i>Follow Shop</button>
         )}
 
 

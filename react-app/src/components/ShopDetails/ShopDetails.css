@@ -84,6 +84,12 @@
     box-shadow: 0rem 0rem .5rem lightslategray;
     margin: 1rem;
     margin-left: 10rem;
+    transition: .1s ease-in-out;
+}
+
+.favorite-shop:hover {
+    background-color: darkgray;
+    /* box-shadow: 0rem 0rem 2rem black; */
 }
 h3 {
     font-family: 'Mulish', sans-serif;
