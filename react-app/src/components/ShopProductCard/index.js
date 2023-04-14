@@ -7,7 +7,7 @@ import { fetchOneShop } from '../../store/shops'
 export default function ShopProductCard({ product }) {
     const dispatch = useDispatch()
     const history = useHistory()
-    
+
     const handleDelete = (e) => {
         // console.log("button clicked")
         e.preventDefault()
