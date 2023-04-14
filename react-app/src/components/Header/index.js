@@ -37,6 +37,7 @@ function Header({ isLoaded }) {
     return (
         <div className='header-container'>
         <div className='header'>
+        <img src='https://i.imgur.com/nJxi8TL.png' alt='logoim' className='logoim'></img>
         <Link to={`/`}><span className='logo'>spacey</span></Link>
 
         <div className='search-bar'>
