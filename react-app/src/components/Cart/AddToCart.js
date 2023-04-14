@@ -19,7 +19,7 @@ export default function AddToCart({product}){
         )
         return dispatch(addCartItemThunk(product.id, user.id))
     }
-    console.log(cart)
+    // console.log(cart)
 
     return (
         <button onClick={addItem} className="add-to-cart-button">

@@ -6,9 +6,12 @@ import { authenticate } from '../../store/session'
 import { fetchOneShop, fetchShops } from '../../store/shops'
 import ProductCard from '../ProductCard'
 import ShopCard from '../ShopCard'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useHistory } from 'react-router-dom'
 
 function Landing({ isLoaded }) {
+
+    const history = useHistory()
+
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(fetchProducts())
@@ -91,7 +94,8 @@ function Landing({ isLoaded }) {
 
                 {data.map(product => (
                 product.ProductImages[0].url ? (
-                <NavLink to={`/products/${product.id}`}>
+                <NavLink to={`/products/${product.id}`}
+                style={{ textDecoration: 'none' }}>
                     <ProductCard product={product}
                     key={`${product.id}`}/>
                 </NavLink>
@@ -111,7 +115,9 @@ function Landing({ isLoaded }) {
 
 
         {[rand1, rand2, rand3, rand4, under30].map((rand,i) => (
+            <NavLink to={`/search/filtered-search/${title[i]}`}>
                 <div className='selection-card'
+                // onClick={history.push(`/search/${rand.category}`)}
                 key={`div${i}`}>
                 <img src={`${rand.ProductImages[0].url}`}
                         alt='selection-im'
@@ -120,6 +126,7 @@ function Landing({ isLoaded }) {
                 <h3 key={`h3${i}`}
                 className='selection-subtitle'>{title[i]}</h3>
                 </div>
+            </NavLink>
                     ))}
 
 
@@ -133,7 +140,8 @@ function Landing({ isLoaded }) {
                 </div>
 
                 {shops.allShops && shops.allShops[0] ? (Object.values(shops.allShops).map((s, i)=> (
-                <NavLink to={`/shops/${s.id}`}>
+                <NavLink to={`/shops/${s.id}`}
+                style={{ textDecoration: 'none' }}>
                     <ShopCard shop={s}
                     key={`shopkey${i}`}/>
                 </NavLink>

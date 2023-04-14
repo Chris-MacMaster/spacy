@@ -44,6 +44,7 @@ export const fetchCart = () => async dispatch => {
     const response = await fetch('/api/cart/')
     if(response.ok) {
         const cart = await response.json()
+        // console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~", cart)
         return dispatch(loadCart(cart))
     }
 }

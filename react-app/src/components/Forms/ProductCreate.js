@@ -1,21 +1,21 @@
 //src/components/SpotForm/CreateSpot.js
 import { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch } from "react-redux"
+import { makeProduct } from '../../store/product';
 // import { editSpot, makeSpot } from '../../store/spot';
 // import { fetchOneSpot } from '../../store/spot';
-
-// import "./CreateSpot.css"
-// import "./EditSpot.css"
 // import { actionResetReviews } from '../../store/review';
+import './ProductCreate.css'
 
 
-
-const ReviewForm = () => {
+const ProductCreateForm = () => {
     const history = useHistory();
     const dispatch = useDispatch()
 
-    // const params = useParams()
+    const {shopId} = useParams()
+
+
     // const { closeModal } = useModal()
 
 
@@ -59,23 +59,27 @@ const ReviewForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         setHasSubmitted(true)
-        console.log("ERRORS", errors)
+        // console.log("ERRORS", errors)
         if (Object.values(errors).length) {
             return
         }
-        const newReview = {
+        const newProduct = {
           name,
-          available,
-          price,
-          category,
+          shop_id: shopId,
           description,
-          url1
+          category,
+          available,
+          freeShipping,
+          price,
+          img_1: url1
         }
-        console.log("SUBMITTED!")
+        dispatch(makeProduct(newProduct))
+        reset()
+        history.push(`/shops/${shopId}`)
     };
 
     const reset = () => {
-   
+
     };
 
 
@@ -100,57 +104,104 @@ const ReviewForm = () => {
     }
 
     return (
-        <div>
-            <form className='login-form' onSubmit={handleSubmit} >
+        <div className='cp-container'>
+            <h1 className='cp-title'>Listing details</h1>
+            <p className='cp-grey-text'>Tell the world all about your item and why they'll love it</p>
+            <form className='sp-form' onSubmit={handleSubmit} >
 
                 <div className='product-name-div'>
-                    <label className='product-label' >
-                        Name
+                    <div>
+                    <label className='cp-form-label cp-title' >
+                        Title *
+                    </label>
+                    <p className='cp-grey-text'>Incldue keywords that buyer would use to search for your item</p>
+                    </div>
+                    <div className='cp-field-div'>
                         <input className='product-input' type="text"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                             placeholder='Name' />
-                    </label>
                     {hasSubmitted && errors.name && (
                         <div className='error'>
                             * {errors.name}
                         </div>
                     )}
+                    </div>
                 </div>
 
+                <div className='product-description-div'>
+                    <div>
+                    <label className='cp-form-label cp-description' >
+                        Description *
+                    </label>
+                        <p className='cp-grey-text'>
+                            Start with a brief overview that describes your item's findes feature. Shopper will only see the first few lines of your description at first, so make it count!
+                        </p>
+                        <p className='cp-grey-text'>
+                            Not sure what else to say? Shoppers also like hearing about your process, and the story behind the item!
+                        </p>
+                    </div>
+                    </div>
+
+                <div className='cp-field-div'>
+                        <input className='product-input' type="text"
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
+                            placeholder='Description' />
+                    {hasSubmitted && errors.description && (
+                        <div className='error'>
+                            * {errors.description}
+                        </div>
+                    )}
+                </div>
+
+
                 <div className='product-available-div'>
-                    <label className='product-label' >
-                        Available
+                    <label className='cp-form-label cp-available' >
+                        Available *
+                    </label>
+                    <p className='cp-grey-text'>
+                        How many do you currently have in stock?
+                    </p>
+                    <div className='cp-field-div'>
                         <input className='product-input' type="number"
                             value={available}
                             onChange={(e) => setAvailable(e.target.value)}
                             placeholder='Available' />
-                    </label>
                     {hasSubmitted && errors.available && (
                         <div className='error'>
                             * {errors.available}
                         </div>
                     )}
+                    </div>
                 </div>
 
                 <div className='product-price-div'>
-                    <label className='product-label' >
-                        Price
+                    <label className='cp-form-label cp-price' >
+                        Price *
+                    </label>
+                    <p className='cp-form-label'>
+                        Please dont use denominations other than Empire or New Republic Credits
+                    </p>
+                    <div className='cp-form-field'>
                         <input className='product-input' type="number"
                             value={price}
                             onChange={(e) => setPrice(e.target.value)}
                             placeholder='Price' />
-                    </label>
                     {hasSubmitted && errors.price && (
                         <div className='error'>
                             * {errors.price}
                         </div>
                     )}
+                    </div>
                 </div>
 
                 <div className='product-category-div'>
                     <label className='product-label' >
                         Category
+                    </label>
+                    <p className='cp-grey-text'>Type a one word description of your item to get category suggestions that will help more shoppers find it.</p>
+                    <div className='cp-field-div'>
                         <select name='category' onChange={(e) => setCategory(e.target.value)}>
                             <option value='' >--Please choose an option--</option>
                             <option value='Accessories' >Accessories</option>
@@ -162,53 +213,45 @@ const ReviewForm = () => {
                             <option value='Lighting' >Lighting</option>
                             <option value='Wall Art' >Wall Art</option>
                         </select>
-                    </label>
                     {hasSubmitted && errors.category && (
                         <div className='error'>
                             * {errors.category}
                         </div>
                     )}
+                    </div>
                 </div>
 
-                <div className='product-description-div'>
-                    <label className='product-label' >
-                        Description
-                        <input className='product-input' type="text"
-                            value={description}
-                            onChange={(e) => setDescription(e.target.value)}
-                            placeholder='Description' />
-                    </label>
-                    {hasSubmitted && errors.description && (
-                        <div className='error'>
-                            * {errors.description}
-                        </div>
-                    )}
-                </div>
 
                 <div className='product-shipping-div'>
                     <label className='product-label' >
                         Free Shipping
+                    </label>
+                    <p className='cp-grey-text'>Either true or false</p>
+                    <div className='cp-field-div'>
                         <input className='product-input' type="checkbox"
                             value={freeShipping}
                             onChange={handleCheck}
                             placeholder='Description' />
-                    </label>
                     {hasSubmitted && errors.freeShipping && (
                         <div className='error'>
                             * {errors.freeShipping}
                         </div>
                     )}
+                    </div>
                 </div>
 
 
                 <div className='product-img1-div'>
                     <label className='product-label' >
-                        URL1: 
+                        URL1:
+                    </label>
+                    <p className='cp-grey-text'>
+                        Provide a url, pictures are necessary! Nobody wants to buy something sight unseen!
+                    </p>
                         <input className='product-input' type="text"
                             value={url1}
                             onChange={(e) => setUrl1(e.target.value)}
                             placeholder='Url1' />
-                    </label>
                     {hasSubmitted && errors.url1 && (
                         <div className='error'>
                             * {errors.url1}
@@ -218,10 +261,10 @@ const ReviewForm = () => {
 
             </form>
 
-            <input onClick={handleSubmit} className='submit-button button modal-button form-create-button red-styling' type="submit" value="Create Spot" />
+            <input onClick={handleSubmit} className='submit-button form-create-button red-styling' type="submit" value="Create Spot" />
 
         </div>
     );
 }
 
-export default ReviewForm;
+export default ProductCreateForm;

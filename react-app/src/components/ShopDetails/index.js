@@ -1,4 +1,4 @@
-import { NavLink, useParams } from 'react-router-dom'
+import { NavLink, useParams, useHistory } from 'react-router-dom'
 import './ShopDetails.css'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -8,16 +8,23 @@ import ShopProductCard from '../ShopProductCard'
 export default function ShopDetails () {
     const {shopId} = useParams()
     const dispatch = useDispatch()
+    const history = useHistory()
+    const shop = useSelector(state => state.shops.singleShop)
+
     useEffect(() => {
         dispatch(fetchOneShop(shopId))
         dispatch(fetchShops())
     }, [dispatch])
-    const shop = useSelector(state => state.shops.singleShop)
     // console.log('STATE OF SHOP', shop)
     if (!shop || !Object.entries(shop).length) return null
     const allReviews = shop.Products.map(p=>p.Reviews).flat()
 
     // console.log('REVIEWS FOR ALL PRODUCTS', allReviews)
+
+    const handleCreate = (e) => {
+        e.preventDefault()
+        history.push(`/products/forms/create-product/${shopId}`)
+    }
     return (
         <div className='shop-page'>
         <div className='shop-header'>
@@ -64,6 +71,9 @@ export default function ShopDetails () {
 
         <button className='favorite-shop'>
         <i className="fa-regular fa-heart shop-heart"></i>Follow Shop</button>
+
+        <button onClick={handleCreate} className='favorite-shop'>
+        Create Product</button>
 
             <div className='items-section'>
             <div className='item-category-sidebar'>
@@ -128,7 +138,8 @@ export default function ShopDetails () {
                             ) : null}
                         <p className='review-paragraph'
                         key={`review${i}`}>{r.review}</p>
-                        <NavLink to={`/products/${r.productId}`}>
+                        <NavLink to={`/products/${r.productId}`}
+                        style={{ textDecoration: 'none' }}>
                         <div className='product-reviewed'
                         key={`productreviewed${i}`}>
                             <img src={`${shop.Products.filter(p=>p.id===r.productId)[0].ProductImages[0].url}`}

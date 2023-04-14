@@ -18,7 +18,7 @@
     position: sticky;
     border-radius: .5rem;
     position: relative;
-    overflow: hidden;
+    /* overflow: hidden; */
     /* margin: 3px; */
 }
 .shop-product-price {
@@ -33,4 +33,19 @@ a.product-name, a.shop-product-price {
 }
 .shop-product-name, .shop-product-price {
     margin-top: 0;
+}
+
+.shop-product-buttons {
+    display: flex;
+    justify-content: center;
+}
+
+#shop-delete-button {
+    margin: 0;
+    text-decoration: none;
+}
+
+#shop-edit-button {
+    margin: 0;
+    text-decoration: none;
 }

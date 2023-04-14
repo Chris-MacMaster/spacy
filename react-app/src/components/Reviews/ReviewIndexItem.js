@@ -49,7 +49,7 @@ const ReviewIndexItem = ({ review }) => {
                             {review.createdAt.slice(0, -12)} 
                         </div>
                     </div>
-                {user && review.userId == user.id ? 
+                {user && review.userId === user.id ? 
                 <div>
                     <OpenModalButton modalComponent={<DeleteReviewModal reviewId={review.id}/>} buttonText={'Delete'}/>
                     <NavLink to={`/product-reviews/${review.id}/edit`}>

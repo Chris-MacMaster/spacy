@@ -42,7 +42,7 @@ const actionDeleteReview = (reviewId) => {
 
 //PRODUCTS HOME PAGE
 export const fetchProductReviews = (productId) => async dispatch => {
-    console.log("REVIEWS route TRIGGERED")
+    // console.log("REVIEWS route TRIGGERED")
     // const response = await fetch(`/api/product-reviews/${productId}`)
     const response = await fetch(`/api/product-reviews/${productId}`)
     const reviews = await response.json()
@@ -153,8 +153,8 @@ export default function reviewReducer(state = initialState, action) {
         case LOAD_REVIEWS: {
             let newState;
             newState = { ...state }
-            console.log('newState', newState)
-            console.log('payload', action.payload)
+            // console.log('newState', newState)
+            // console.log('payload', action.payload)
             newState.productReviews = action.payload
             // resets product details when going to allreviews page
 

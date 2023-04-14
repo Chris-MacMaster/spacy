@@ -3,6 +3,7 @@ const LOAD_PRODUCTS = "products/LOAD"
 const LOAD_PRODUCT = "product/LOAD"
 const LOAD_USER_PRODUCTS = 'products/LOAD_USER_PRODUCTS'
 const POST_PRODUCT = "products/POST"
+const DELETE_PRODUCT = "products/DELETE"
 
 //**Actions */
 export const actionLoadProducts = (products) => {
@@ -30,6 +31,13 @@ export const actionPostProduct = (product) => {
         payload: product
     }
 }
+
+export const actionDeleteProduct = (id) => {
+    return {
+        type: DELETE_PRODUCT,
+        payload: id
+    }
+}
 //**Thunks */
 
 //PRODUCTS HOME PAGE
@@ -48,6 +56,7 @@ export const fetchOneProduct = (id) => async dispatch => {
     if (response.ok) {
         const product = await response.json()
         dispatch(actionLoadProduct(product))
+        return product
     }
 }
 export const fetchUserProducts = () => async dispatch => {
@@ -60,7 +69,7 @@ export const fetchUserProducts = () => async dispatch => {
 }
 
 export const makeProduct = (productBody) => async dispatch => {
-    const { name, shop_id, description, category, available, free_shipping, price } = productBody
+    const { name, shop_id, description, category, available, free_shipping, price, img_1 } = productBody
     const method = "POST"
     const headers = { "Content-Type" : "application/json"}
     const body = JSON.stringify({
@@ -70,17 +79,58 @@ export const makeProduct = (productBody) => async dispatch => {
         category,
         available,
         free_shipping,
-        price
+        price,
+        img_1
     })
     const options = { method, headers, body }
-    const response = await fetch('', options)
+    const response = await fetch('/api/products/', options)
     const product = await response.json()
-
+    // console.log("RESPONSE", response)
     //testing
     if (response.ok){
-        // make product image
         return product
         //so your backend has to return product
+    }
+
+}
+
+export const editProduct = (productBody, productId) => async dispatch => {
+    const { name, shop_id, description, category, available, free_shipping, price } = productBody
+    const method = "PUT"
+    const headers = { "Content-Type": "application/json" }
+    const body = JSON.stringify({
+        name,
+        shop_id,
+        description,
+        category,
+        available,
+        free_shipping,
+        price,
+    })
+    const options = { method, headers, body }
+    console.log('EDIT TRIGGERED')
+    const response = await fetch(`/api/products/${productId}/`, options)
+    const product = await response.json()
+    // console.log("RESPONSE", response)
+    //testing
+    if (response.ok) {
+        return product
+        //so your backend has to return product
+    }
+
+}
+
+export const deleteProduct = (id) => async dispatch => {
+    console.log('FIRED DISPATCH')
+    const method = "DELETE"
+    const headers = { "Content-Type": "application/json" }
+    const options = { method, headers }
+    const response = await fetch(`/api/products/${id}/`, options)
+    const deleteData = await response.json()
+
+    if (response.ok) {
+        dispatch(actionDeleteProduct(id))
+        return deleteData
     }
 
 }
@@ -109,13 +159,19 @@ export default function productReducer(state = initialState, action) {
         }
         case LOAD_USER_PRODUCTS: {
             const newState = {...state}
-            console.log("FDASFDSAFAD", action.payload)
+            // console.log("FDASFDSAFAD", action.payload)
             newState.userProducts = {...action.payload}
             return newState
         }
         case POST_PRODUCT: {
             const newState = { ...state }
             newState.singleProduct = action.payload
+            return newState
+        }
+
+        case DELETE_PRODUCT: {
+            const newState = { ...state }
+            delete newState.allProducts[action.payload]
             return newState
         }
         default: return state

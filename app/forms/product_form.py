@@ -14,5 +14,6 @@ class CreateProductForm(FlaskForm):
     available = IntegerField('available', validators=[DataRequired()])
     free_shipping = BooleanField('free_shipping')
     price = IntegerField('price', validators=[DataRequired()])
-    img_1 = StringField('img_1', validators=[DataRequired()])
+    # img_1 = StringField('img_1', validators=[DataRequired()])
+    img_1 = StringField('img_1')
     #URL()
