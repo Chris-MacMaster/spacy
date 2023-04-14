@@ -80,7 +80,9 @@ FORMS
 -delete review should redirect to product page
 ---bottom margin on create review is overlapping footer
 -confirm delete modal on delete product
--
+-after deleting reviews, reviews are duplicated
+---page redirects to 404
+
 
 FONTS
 font-family: 'Libre Baskerville', serif;

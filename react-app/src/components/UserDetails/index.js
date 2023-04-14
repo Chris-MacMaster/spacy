@@ -30,7 +30,7 @@ export default function UserDetails() {
         <div className='user-manage-details'>
             <div className='user-manage-header'>
                 <div className='user-manage-business-cards'>
-                {userShops ? userShops.map((shop, i) => (
+                {userShops.length ? userShops.map((shop, i) => (
 
                     <ShopBusinessCard shopId={shop.id}
                     key={`shopbusicardcomp${i}`}/>
