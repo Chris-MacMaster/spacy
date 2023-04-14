@@ -21,7 +21,7 @@ export default function ProductCreateForm() {
 
     const [name, setName] = useState("")
     const [available, setAvailable] = useState(0)
-    const [avgRating, setAvgRating] = useState(0)
+    // const [avgRating, setAvgRating] = useState(0)
 
     const [category, setCategory] = useState("")
     const [description, setDescription] = useState("")
@@ -266,4 +266,3 @@ export default function ProductCreateForm() {
         </div>
     );
 }
-
