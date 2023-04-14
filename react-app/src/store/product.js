@@ -100,6 +100,7 @@ export const editProduct = (productBody, productId) => async dispatch => {
         price,
     })
     const options = { method, headers, body }
+    console.log('EDIT TRIGGERED')
     const response = await fetch(`/api/products/${productId}`, options)
     const product = await response.json()
     // console.log("RESPONSE", response)

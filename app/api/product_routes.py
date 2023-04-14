@@ -67,44 +67,44 @@ def get_all_products():
 
         
 
-@product_routes.route('/current')
-@login_required
-def current_users_products():
-    """returns a list of all products of current user"""
-    # print('THE ROUTE IS BEING HIT')
+# @product_routes.route('/current')
+# @login_required
+# def current_users_products():
+#     """returns a list of all products of current user"""
+#     # print('THE ROUTE IS BEING HIT')
 
-    if current_user.is_authenticated:
-        shops = Shop.query.filter_by(owner_id=current_user.id).all()
-        products = [Product.query.filter_by(shop_id=shop.id).all() for shop in shops]
+#     if current_user.is_authenticated:
+#         shops = Shop.query.filter_by(owner_id=current_user.id).all()
+#         products = [Product.query.filter_by(shop_id=shop.id).all() for shop in shops]
 
-       # return { 'Products': {product.id: product.to_dict() for product in products } }, 200
-        # payload = {  product.id: product.to_dict() for product in productcopy }
+#        # return { 'Products': {product.id: product.to_dict() for product in products } }, 200
+#         # payload = {  product.id: product.to_dict() for product in productcopy }
 
-        #for i in products[0]:
-        #    print(i.to_dict())
+#         #for i in products[0]:
+#         #    print(i.to_dict())
 
-        return {product.id: product.to_dict() for product in products[0]}, 200
+#         return {product.id: product.to_dict() for product in products[0]}, 200
 
-    return '<h1>Please create an account</h1>'
+#     return '<h1>Please create an account</h1>'
 
-@product_routes.route('/<int:product_id>', methods=['DELETE'])
-@login_required
-def delete_product_by_id(product_id):
-    """delete a product by id only if the user is authenticated"""
-    if current_user.is_authenticated:
-        product = Product.query.filter(Product.id==product_id).first()
-        if product == None:
-            return {"error": "Product with that id does not exist"}
-        shop = Shop.query.filter(Shop.id==product.shop_id).first()
+# @product_routes.route('/<int:product_id>', methods=['DELETE'])
+# @login_required
+# def delete_product_by_id(product_id):
+#     """delete a product by id only if the user is authenticated"""
+#     if current_user.is_authenticated:
+#         product = Product.query.filter(Product.id==product_id).first()
+#         if product == None:
+#             return {"error": "Product with that id does not exist"}
+#         shop = Shop.query.filter(Shop.id==product.shop_id).first()
 
-        if shop.owner_id == current_user.id:
-            db.session.delete(product)
-            db.session.commit()
-            return product.to_dict(), 200
-        elif shop.owner_id != current_user.id:
-            return {"error": "Only the owner of a product may delete it."}
-    else:
-        {"error": "Please sign in to delete one of your products."}
+#         if shop.owner_id == current_user.id:
+#             db.session.delete(product)
+#             db.session.commit()
+#             return product.to_dict(), 200
+#         elif shop.owner_id != current_user.id:
+#             return {"error": "Only the owner of a product may delete it."}
+#     else:
+#         {"error": "Please sign in to delete one of your products."}
 
 
 # add other details to response
@@ -155,6 +155,8 @@ def get_one_product(product_id):
                 db.session.commit()
                 return product.to_dict(), 201
             print('validations failed! ----------------')
+        
+            
 
 
 

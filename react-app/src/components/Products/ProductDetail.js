@@ -23,7 +23,7 @@ const ProductDetail = () => {
     let { productId } = useParams()
 
     useEffect(() => {
-        console.log("TRIGGERED")
+        // console.log("TRIGGERED")
         dispatch(fetchOneProduct(productId))
         dispatch(fetchProductReviews(productId))
     }, [dispatch, productId])
@@ -53,7 +53,7 @@ const ProductDetail = () => {
     }
 
     const product = productState?.singleProduct
-    console.log('product', product)
+    // console.log('product', product)
     const productReviews = reviewState?.productReviews
     if (!product.Shop) return null
     // if (!productReviews.length) return null
@@ -65,7 +65,7 @@ const ProductDetail = () => {
         }
     }
 
-    console.log('review user IDs', reviewUserIds)
+    // console.log('review user IDs', reviewUserIds)
 
     return (
         <div className='product-detail-div'>
