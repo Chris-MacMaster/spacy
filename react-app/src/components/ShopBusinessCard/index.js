@@ -26,9 +26,10 @@ export default function ShopBusinessCard({ shopId }) {
     <img className='user-manage-shop-pic'
     src={`${shop.ShopImages.url ? shop.ShopImages.url : 'https://i.imgur.com/bdSjZyV.png'}`}
     alt='user-manage-shop-pic'></img>
-        </NavLink>
+    </NavLink>
     <div className='user-manage-business-text'>
-    <NavLink to={`/shops/${shop.id}`} >
+    <NavLink to={`/shops/${shop.id}`}
+    style={{ textDecoration: 'none' }}>
         <h3 className='user-manage-shop-name'>{shop.name}</h3>
         <span>{shop.sales} | </span><span>On Spacey since {shop.createdAt.slice(0, -12)}</span>
     </NavLink>

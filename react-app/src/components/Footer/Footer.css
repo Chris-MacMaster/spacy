@@ -1,0 +1,31 @@
+.footer-container {
+    margin-top: 10rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
+}
+.footer-title {
+    text-align: center;
+}
+.about-creators {
+    display: flex;
+    flex-direction: row;
+    margin-top: 3rem;
+    justify-content: center;
+    align-items: space-between;
+    margin-bottom: 10rem;
+}
+.dev-name {
+    font-weight: bold;
+    margin-left: 3rem;
+}
+.github-icon,
+.linkedin-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-left: .5rem;
+    align-items: center;
+}
+.footer-person {
+    display: flex;
+    flex-direction: row;
+}

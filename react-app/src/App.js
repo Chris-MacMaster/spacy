@@ -17,6 +17,7 @@ import EditReviewForm from './components/EditReviewForm'
 import DisplayCart from "./components/Cart";
 import ShopDetails from "./components/ShopDetails";
 import UserDetails from "./components/UserDetails";
+import Footer from "./components/Footer";
 import ProductCreateForm from "./components/Forms/ProductCreate";
 import ProductEditForm from "./components/Forms/ProductEdit";
 
@@ -44,6 +45,7 @@ function App() {
       <Route path='/product-reviews/:productId/new' component={PostReviewForm}/>
       <Route path='/product-reviews/:reviewId/edit' component={EditReviewForm}/>
     </Switch>
+    <Footer />
     </>
   );
 }
