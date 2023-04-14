@@ -22,6 +22,10 @@ function FilteredSearchResults() {
     }, [])
     console.log('products',products)
 
+    if (!products) {
+        return null
+    }
+
     return (
         // <h1>Filtered Search Results</h1>
         <>

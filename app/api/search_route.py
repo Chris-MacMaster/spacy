@@ -171,11 +171,11 @@ def filtered_search(search_category):
         for review in reviews:
                 review_sum += review.stars
                 prod['avgRating'] = round(review_sum / len(reviews), 1) if len(reviews) > 0 else 'New!'
-                prod['reviews'] = [review.to_dict() for review in reviews]
+        prod['reviews'] = [review.to_dict() for review in reviews]
 
 
-                shop = get_shop(prod['shopId'])
-                prod['shop'] = shop.to_dict()
+        shop = get_shop(prod['shopId'])
+        prod['shop'] = shop.to_dict()
 
 #     print('filtered products', [product.to_dict() for product in products])
     return prod_list
