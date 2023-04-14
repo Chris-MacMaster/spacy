@@ -18,6 +18,7 @@ import ReviewForm from "./components/Forms/ProductCreate";
 import DisplayCart from "./components/Cart";
 import ShopDetails from "./components/ShopDetails";
 import UserDetails from "./components/UserDetails";
+import Footer from "./components/Footer";
 
 function App() {
   const dispatch = useDispatch();
@@ -42,6 +43,7 @@ function App() {
       <Route path='/product-reviews/:productId/new' component={PostReviewForm}/>
       <Route path='/product-reviews/:reviewId/edit' component={EditReviewForm}/>
     </Switch>
+    <Footer />
     </>
   );
 }
