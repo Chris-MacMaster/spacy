@@ -19,10 +19,11 @@ const ProductEditForm = () => {
 
     const { productId } = useParams()
     const productState = useSelector(state => state.products.singleProduct)
-    
+
 
     const [rendered, setRendered] = useState(false)
 
+    console.log(productState)
 
 
     // const { closeModal } = useModal()
@@ -31,7 +32,6 @@ const ProductEditForm = () => {
     const [name, setName] = useState("")
     const [available, setAvailable] = useState(0)
     const [shopId, setShopId] = useState("")
-
     const [category, setCategory] = useState("")
     const [description, setDescription] = useState("")
     const [freeShipping, setFreeShipping] = useState(false)
@@ -57,21 +57,36 @@ const ProductEditForm = () => {
     }, [name, available, price, category, description])
 
     //prepopulate form
+    // useEffect(() => {
+    //     console.log("ENTER USE EFFECT")
+    //     const fillFields = async () => {
+    //         console.log("ENTER FILL FIELDS")
+    //         dispatch(fetchOneProduct(productId))
+    //         setName(product?.name)
+    //         setShopId(product?.shopId)
+    //         setDescription(product?.description)
+    //         setCategory(product?.category)
+    //         setAvailable(product?.available)
+    //         setFreeShipping(product?.freeShipping)
+    //         setPrice(product?.price)
+    //     }
+    //     fillFields()
+    // },[dispatch])
+
     useEffect(() => {
-        console.log("ENTER USE EFFECT")
-        const fillFields = async () => {
-            console.log("ENTER FILL FIELDS")
-            await dispatch(fetchOneProduct(productId))
-            setName(product.name)
-            setShopId(product.shopId)
-            setDescription(product.description)
-            setCategory(product.category)
-            setAvailable(product.available)
-            setFreeShipping(product.freeShipping)
-            setPrice(product.price)
-        }
-        fillFields()
-    },[dispatch])
+        dispatch(fetchOneProduct(productId));
+      }, [dispatch, productId]);
+
+      // prepopulate form
+      useEffect(() => {
+        setName(productState?.name || "");
+        setAvailable(productState?.available || 0);
+        setShopId(productState?.shopId || "");
+        setCategory(productState?.category || "");
+        setDescription(productState?.description || "");
+        setFreeShipping(productState?.freeShipping || false);
+        setPrice(productState?.price || 0);
+      }, [productState]);
 
 
     const handleSubmit = (e) => {
