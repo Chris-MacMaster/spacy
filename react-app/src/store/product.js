@@ -3,6 +3,7 @@ const LOAD_PRODUCTS = "products/LOAD"
 const LOAD_PRODUCT = "product/LOAD"
 const LOAD_USER_PRODUCTS = 'products/LOAD_USER_PRODUCTS'
 const POST_PRODUCT = "products/POST"
+const DELETE_PRODUCT = "products/DELETE"
 
 //**Actions */
 export const actionLoadProducts = (products) => {
@@ -28,6 +29,13 @@ export const actionPostProduct = (product) => {
     return {
         type: POST_PRODUCT,
         payload: product
+    }
+}
+
+export const actionDeleteProduct = (id) => {
+    return {
+        type: DELETE_PRODUCT,
+        payload: id
     }
 }
 //**Thunks */
@@ -112,6 +120,21 @@ export const editProduct = (productBody, productId) => async dispatch => {
 
 }
 
+export const deleteProduct = (id) => async dispatch => {
+    console.log('FIRED DISPATCH')
+    const method = "DELETE"
+    const headers = { "Content-Type": "application/json" }
+    const options = { method, headers }
+    const response = await fetch(`/api/products/${id}/`, options)
+    const deleteData = await response.json()
+
+    if (response.ok) {
+        dispatch(actionDeleteProduct(id))
+        return deleteData
+    }
+
+}
+
 const initialState = {
     allProducts: {},
     singleProduct: {},
@@ -143,6 +166,12 @@ export default function productReducer(state = initialState, action) {
         case POST_PRODUCT: {
             const newState = { ...state }
             newState.singleProduct = action.payload
+            return newState
+        }
+
+        case DELETE_PRODUCT: {
+            const newState = { ...state }
+            delete newState.allProducts[action.payload]
             return newState
         }
         default: return state
