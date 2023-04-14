@@ -82,6 +82,18 @@ FORMS
 -confirm delete modal on delete product
 -after deleting reviews, reviews are duplicated
 ---page redirects to 404
+--conditional statement on
+
+Dylan ----Buy it Now Feature coming soon
+      ----cart errors on first navigation
+
+Christopher ---edit product creation url
+
+ChrisL ---custom README
+       ---CSSS
+       ---create shop
+Marc
+        --EDIT&Delete Prod Reviews
 
 
 FONTS
