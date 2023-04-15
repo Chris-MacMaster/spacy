@@ -47,3 +47,9 @@
 }
 /* p.user-manage-business-cards {
 } */
+.user-manage-create {
+    transition: .2s ease-in-out;
+}
+.user-manage-create:hover {
+    box-shadow: 0rem 0rem .5rem black;
+}

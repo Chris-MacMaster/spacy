@@ -32,7 +32,7 @@ export default function UserDetails() {
                 <div className='user-manage-business-cards'>
                 {userShops && userShops.length ? userShops.map((s, i) => (
 
-                    <ShopBusinessCard shopId={s}
+                    <ShopBusinessCard shop={s}
 
                     key={`shopbusicardcomp${i}`}/>
 
@@ -45,7 +45,7 @@ export default function UserDetails() {
                     alt='usericon'></img>
                     <p className='user-manage-username'></p>
                     <p className='user-manage-contact-user'>
-                        <i className="fa-solid fa-message"></i>Contact</p>
+                        <i className="fa-solid fa-message"></i>You!</p>
                 </div>
             </div>
 
