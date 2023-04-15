@@ -58,6 +58,7 @@ export default function ProductCreateForm() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        // console.log("SUBMITTED")
         setHasSubmitted(true)
         // console.log("ERRORS", errors)
         if (Object.values(errors).length) {
@@ -82,22 +83,6 @@ export default function ProductCreateForm() {
 
     };
 
-
-    const CreateTest = (e) => {
-        e.preventDefault();
-
-        const newProduct = {
-            name,
-            available,
-            category,
-            description,
-            free_shipping: freeShipping,
-            price,
-            shop_id: 1
-        }
-        // history.push(`/spots`);
-
-    };
 
     const handleCheck = (e) => {
         freeShipping === true ? setFreeShipping(false) : setFreeShipping(true)

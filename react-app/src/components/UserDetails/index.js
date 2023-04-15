@@ -1,4 +1,4 @@
-import { NavLink, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import './UserDetails.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'

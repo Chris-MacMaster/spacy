@@ -14,7 +14,7 @@ export default function ShopDetails () {
         dispatch(fetchOneShop(shopId))
         dispatch(fetchShops())
         dispatch(authenticate())
-    }, [dispatch])
+    }, [dispatch, shopId])
     const shop = useSelector(state => state.shops.singleShop)
     const user = useSelector(state => state.session.user)
     const featureAlert = () => alert('Feature coming soon')

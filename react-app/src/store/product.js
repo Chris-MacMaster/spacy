@@ -52,7 +52,7 @@ export const fetchProducts = () => async dispatch => {
 }
 
 export const fetchOneProduct = (id) => async dispatch => {
-    const response = await fetch(`/api/products/${id}`)
+    const response = await fetch(`/api/products/${id}/`)
     if (response.ok) {
         const product = await response.json()
         dispatch(actionLoadProduct(product))

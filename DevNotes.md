@@ -84,16 +84,14 @@ FORMS
 ---page redirects to 404
 --conditional statement on
 
-Dylan ----Buy it Now Feature coming soon
-      ----cart errors on first navigation
+Dylan ----redirect after item added to cart
 
 Christopher ---edit product creation url
+-review form error messages
 
 ChrisL ---custom README
        ---CSSS
        ---create shop
-Marc
-        --EDIT&Delete Prod Reviews
 
 
 FONTS

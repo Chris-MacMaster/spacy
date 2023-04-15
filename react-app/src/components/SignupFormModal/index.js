@@ -22,8 +22,11 @@ function SignupFormModal() {
 	const validate = () => {
 		const err = []
 		if (!email.includes('@') || !email.includes('.')) err.push('Please enter a valid email.')
-		if (password.length < 6 || !password) err.push('Passwords must be at least 6 characters')
-		if (username.length < 4) err.push('Usernames must be at least 4 characters')
+		if (password.length < 6 || !password) err.push('Passwords must be at least 6 characters.')
+		if (username.length < 4) err.push('Usernames must be at least 4 characters.')
+		if (firstName.length < 3) err.push('Please enter a valid first name.')
+		if (lastName.length < 3) err.push('Please enter a valid last name.')
+		if (bio.length < 20) err.push('Please enter a short bio.')
 		if (confirmPassword !== password || confirmPassword.length < 6) err.push('ConfirmPassword must be 6 characters and match password')
 		setErrors(err)
 	}
@@ -38,8 +41,8 @@ function SignupFormModal() {
 		validate()
 		if (errors.length) return
 		if (password === confirmPassword && !errors.length) {
-			const data = await dispatch(signUp(username, 
-				email, 
+			const data = await dispatch(signUp(username,
+				email,
 				password,
 				firstName,
 				lastName,
@@ -120,7 +123,7 @@ function SignupFormModal() {
 				<label className="signup-label"></label>
 
 
-				
+
 				<label className="signup-label">
 					Password
 				</label>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect, useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { fetchOneProduct } from "../../store/product";
 import { createProductReview } from "../../store/review";
 import './ReviewForm.css'
@@ -21,15 +21,41 @@ export default function PostReviewForm() {
     
     useEffect(() => {
         dispatch(fetchOneProduct(productId))
-        let res = dispatch(fetchOneShop(product.shopId))
-        console.log('state shop', res)
-    }, [])
+        dispatch(fetchOneShop(product.shopId))
+        // console.log('state shop', res)
+    }, [dispatch, productId, product.shopId])
 
     const [review, setReview] = useState('')
-    const [stars, setStars] = useState(1)
+    const [stars, setStars] = useState(0)
+
+    const [errors, setErrors] = useState({})
+    const [hasSubmitted, setHasSubmitted] = useState(false);
+
+    useEffect(() => {
+        let e = {}
+        setErrors(e)
+        if (!review) e.review = "Must submit a review"
+        if (review.length < 40) e.reviewLength = "Review must be at least 40 characters"
+        if (!stars) e.stars = "Must submit a value for stars."
+        if(!imageURL) e.imageURL = "Must submit an image URL."
+    }, [review, stars, imageURL])
+
+    const testSub = (e) => {
+        console.log("TESTING WORKS")
+        console.log(errors)
+    }
 
     const handleSubmit = async (e) => {
+        // console.log("SUBMITTED")
         e.preventDefault()
+        // console.log("SUBMITTED")
+        setHasSubmitted(true)
+
+        if (Object.values(errors).length) {
+            // console.log("FOUND ERRORS!")
+            return
+        }
+        
 
         const res = await dispatch(createProductReview(product.id, review, stars, imageURL))
         console.log('res', res)
@@ -45,21 +71,21 @@ export default function PostReviewForm() {
     return (
         <>
         <div className="formParent">
-        <form onSubmit={handleSubmit} className='wholeForm'>
+        <form onSubmit={testSub} className='wholeForm'>
             <div className='headerAndReview'>
                 <div className='productPic'>
-                    {product.ProductImages.length > 0 ? 
-                    <img src={product.ProductImages[0].url}/>
-                    : ''}
+                    {product.ProductImages.length > 0 ?  <img src={product.ProductImages[0].url} alt='not loading'/> : null}
                     <div className="productName">
                      <p>{product.Shop.name}</p>   
                     <p style={{fontWeight:'bolder', fontSize:'larger'}}>{product.name}</p>
                     </div>
                 </div>
             </div>
-            <h2>My review</h2>
+
+            <p id="review-h2">My review</p>
             <p>What did you like about this product?</p>
             <p>Help others by sending your feedback.</p>
+
             <div>
                 <div className="rate">
                   <input type="radio" id="star5" name="rate" value='5' onChange={(e) => setStars(Number(e.target.value))} />
@@ -74,9 +100,29 @@ export default function PostReviewForm() {
                   <label htmlFor="star1" title="text">1 star</label>
                 </div>
             </div>
+
+            {hasSubmitted && errors.stars && (
+                <div className='error'>
+                    * {errors.stars}
+                </div>
+            )}
+
             <div>
                 <textarea name='review' className='reviewText' value={review} onChange={(e) => setReview(e.target.value)}/>
             </div>
+
+            {hasSubmitted && errors.review && (
+                <div className='error'>
+                    * {errors.review}
+                </div>
+            )}
+
+            {hasSubmitted && errors.reviewLength && (
+                <div className='error'>
+                    * {errors.reviewLength}
+                </div>
+            )}
+
             <div>
                 <div className="imageURLdiv">
                 <label >Image URL
@@ -86,8 +132,16 @@ export default function PostReviewForm() {
                 <input type='text' id='imageURL' value={imageURL} onChange={(e) => setImageURL(e.target.value)}></input>
                 </div>
             </div>
+
+            {hasSubmitted && errors.imageURL && (
+                <div className='error'>
+                    * {errors.imageURL}
+                </div>
+            )}
+
             <div className='submitButtonParent'>
-                <button type='submit' className='submitButton' disabled={review.length < 10 || stars < 1}>Post Your Review</button>
+                {/* <button type='submit' className='submitButton'>Post Your Review</button> */}
+                <input onClick={handleSubmit} className='submit-button form-create-button red-styling edit-review-button' type="submit" value="Post Your Review" />
             </div>
         </form>
         </div>

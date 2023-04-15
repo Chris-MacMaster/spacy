@@ -10,7 +10,7 @@ export default function ShopBusinessCard({ shopId }) {
     const history = useHistory()
     useEffect(() => {
         dispatch(fetchOneShop(shopId))
-    }, [dispatch])
+    }, [dispatch, shopId])
     const shop = useSelector(state => state.shops.singleShop)
 
 
