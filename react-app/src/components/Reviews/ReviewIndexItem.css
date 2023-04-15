@@ -37,3 +37,20 @@ margin-top: 2rem;
     height: 185px;
     width: 185px;
 }
+.delete-review-button,
+.edit-review-button {
+    border: .1rem solid grey;
+    transition: .2s ease-in-out;
+    font-weight: bolder;
+    border-radius: .4rem;
+    margin: 1rem;
+    font-family: 'Marcellus', serif;
+    font-weight: bold;
+}
+.delete-review-button {
+    /* background-color: rgb(222, 103, 6); */
+}
+.delete-review-button:hover,
+.edit-review-button:hover {
+    box-shadow: 0rem 0rem .5rem black;
+}

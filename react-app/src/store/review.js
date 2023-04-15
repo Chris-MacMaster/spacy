@@ -52,11 +52,6 @@ export const fetchProductReviews = (productId) => async dispatch => {
     }
 }
 
-export const getAllReviews = () => async dispatch => {
-
-}
-
-
 // export const addImageToReview = (reviewId, imageUrl) => async dispatch => {
 //     const res = await fetch(`/api/product-reviews/${reviewId}/add-image`, {
 //         method: 'PUT',
@@ -69,9 +64,7 @@ export const getAllReviews = () => async dispatch => {
 
 
 export const createProductReview = (productId, review, stars, image) => async dispatch => {
-    // console.log('thunk hit')
-    // console.log('thunk image', image)
-    // console.log(productId)
+
     let res
     if (image) {
         res = await fetch(`/api/product-reviews/${productId}/new`, {
@@ -152,58 +145,43 @@ const initialState = {
 export default function reviewReducer(state = initialState, action) {
     switch (action.type) {
         case LOAD_REVIEWS: {
-            let newState;
-            newState = { ...state }
-            // console.log('newState', newState)
-            // console.log('payload', action.payload)
+            let newState = { ...state }
             newState.productReviews = action.payload
-            // resets product details when going to allreviews page
-
             return newState
         }
         case POST_REVIEW: {
             console.log('reducer')
-            // const newState2 = {}
-            const newState2 = {...state, productReviews: {...state.productReviews}, singleReviewPost: {...state.singleReviewPost}, singleReviewGet: {...state.singleReviewGet}}
+            const newState2 = {...state,
+                productReviews: {...state.productReviews},
+                singleReviewPost: {...state.singleReviewPost},
+                singleReviewGet: {...state.singleReviewGet}}
             newState2.productReviews[action.newReview.id] = {...action.newReview}
-
-            console.log('revew id', action.newReview.id)
-
             newState2.singleReviewPost[action.newReview.id] = {...action.newReview}
-
-            console.log('newState2', newState2)
-
             return newState2
         }
         case LOAD_ONE_REVIEW: {
-            const newState3 = {...state, productReviews: {...state.productReviews}, singleReviewPost: {...state.singleReviewPost}, singleReviewGet: {...state.singleReviewGet}}
-
+            const newState3 = {...state,
+                productReviews: {...state.productReviews},
+                singleReviewPost: {...state.singleReviewPost},
+                singleReviewGet: {...state.singleReviewGet}}
             newState3.singleReviewGet = {...action.review}
-
             return newState3
         }
         case EDIT_REVIEW: {
-            const newState4 = {...state, productReviews: {...state.productReviews}, singleReviewPost: {...state.singleReviewPost}, singleReviewGet: {...state.singleReviewGet}}
-
+            const newState4 = {...state,
+                productReviews: {...state.productReviews},
+                singleReviewPost: {...state.singleReviewPost},
+                singleReviewGet: {...state.singleReviewGet}}
             newState4.editedReview = {}
             newState4.editedReview = {...action.editedReview}
-
             return newState4
         }
         case DELETE_REVIEW: {
             console.log('reducer')
             const newState5 = {...state, singleReviewPost: {...state.singleReviewPost}, singleReviewGet: {...state.singleReviewGet}}
-
-            // newState5.singleReviewGet = {...state.singleReviewGet}
-
             state.productReviews.map(review => (newState5.productReviews[review.id] = review ))
-
             console.log('newState5', newState5)
-
-            // newState5.productReviews[state.singleReviewGet.id] = {...action.singleReviewGet}
-            // delete newState5.productReviews[state.singleReviewGet.id]
             delete newState5.singleReviewGet
-
             return newState5
         }
         default: return state
