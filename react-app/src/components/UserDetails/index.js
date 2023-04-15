@@ -25,14 +25,15 @@ export default function UserDetails() {
     const userShopsIds = shops ? Object.values(shops).filter(s=>parseInt(s.ownerId) === parseInt(user.id)).map(s=>s.id) : null
     const userShops = Object.values(shops).filter(s => parseInt(s.ownerId) === parseInt(userId))
     const userProducts = Object.values(products).filter(p=> userShopsIds.includes(p.shopId))
-    console.log('USERSHOPS', shops)
+    console.log('USERSHOPS', userShops)
     return (
         <div className='user-manage-details'>
             <div className='user-manage-header'>
                 <div className='user-manage-business-cards'>
-                {userShops.length ? userShops.map((shop, i) => (
+                {userShops && userShops.length ? userShops.map((s, i) => (
 
-                    <ShopBusinessCard shopId={shop.id}
+                    <ShopBusinessCard shopId={s}
+
                     key={`shopbusicardcomp${i}`}/>
 
                 )) : null}
