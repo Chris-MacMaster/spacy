@@ -26,7 +26,7 @@ def get_one_product(product_id):
         for r in reviews:
             sum += r['stars']
         productcopy['Reviews'] = reviews
-        productcopy['avgRating'] = round(sum / len(reviews), 1)
+        productcopy['avgRating'] = round(sum / len(reviews), 1) if len(reviews) else "New"
 
         return productcopy, 200
     #this delete isn't getting hit because of route above right?

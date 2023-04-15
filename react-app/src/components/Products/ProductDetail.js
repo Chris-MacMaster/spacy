@@ -44,6 +44,7 @@ const ProductDetail = () => {
 
     //dispatching state
     useEffect(() => {
+        console.log("FIRE DISPATCH ----------------------------")
         dispatch(fetchOneProduct(productId))
         dispatch(fetchProductReviews(productId))
     }, [dispatch, productId])
@@ -52,8 +53,9 @@ const ProductDetail = () => {
     const productReviews = useSelector(state => state.reviews.productReviews)
     if (!Object.values(product).length) return null
 
-    const avgRating = productReviews.reduce((acc, r) => typeof r.stars === 'number' ? acc + r.stars : acc +0,0) / productReviews.length
-    console.log('avg reviews', avgRating)
+
+    // const avgRating = productReviews.reduce((acc, r) => typeof r.stars === 'number' ? acc + r.stars : acc +0,0) / productReviews.length
+    // console.log('avg reviews', avgRating)
     const handleClick = () => history.push(`/product-reviews/${productId}/new`)
     if (!product.Shop) return null
 
@@ -64,22 +66,22 @@ const ProductDetail = () => {
                     <div className='product-subimages-div'>
                         <div className='both-images-div'>
                             <div className='subimage-div'>
-                                {product && product.ProductImages ? product.ProductImages.map((p,i) => (
+                                {/* {product && product.ProductImages && product.productImages.length ? product.ProductImages.map((p,i) => (
                                     <img className='product-image product-subimage' src={`${p.url}`} alt='no found' key={`mapped${i}`}/>
-                                )) : null}
+                                )) : null} */}
                             </div>
                             <div className='product-arrow less-than'>
-                                <p className='greater-less-p'>
+                                {/* <p className='greater-less-p'>
                                     &lt;
-                                </p>
+                                </p> */}
                             </div>
                             <div className='product-images-div'>
                                 <img className='product-image' src={product.ProductImages[0].url} alt='no found' />
                             </div>
                             <div className='product-arrow greater-than'>
-                                <p className='greater-less-p'>
+                                {/* <p className='greater-less-p'>
                                     &gt;
-                                </p>
+                                </p> */}
                             </div>
                         </div>
                     </div>
@@ -89,8 +91,8 @@ const ProductDetail = () => {
                         <p className='review-p review-stars'>
                         {productReviews && productReviews.length ?
                             <p className='review-num-title'>{productReviews.length} Reviews
-                            {Array(5).fill(1).map((s,i)=> (
-                            i < avgRating ? (
+                            { Array(5).fill(1).map((s,i)=> (
+                            i < product.avgRating ? (
                                 <i className="fa-solid fa-star gold-star gold-star-product-deets landing-shop-stars" key={i}></i>
                             ) : (
                                 <i className="fa-solid fa-star blank-star blank-star-product-deets landing-shop-stars" key={i}></i>
