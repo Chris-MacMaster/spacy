@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import './ShopPoliciesModal.css'
 import { useEffect } from 'react'
 import { fetchShops } from '../../store/shops'

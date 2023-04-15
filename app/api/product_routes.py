@@ -12,12 +12,21 @@ def get_one_product(product_id):
     """returns one product with the specified id"""
 
     if request.method == 'GET':
-        product = Product.query.filter_by(id=product_id).first()
+        product = Product.query.get(product_id)
         productcopy = product.to_dict()
-        shop = Shop.query.filter_by(id=product.shop_id).first()
+        shop = Shop.query.get(product.shop_id)
         images = ProductImage.query.filter(ProductImage.product_id==product_id).all()
         productcopy['ProductImages'] = [image.to_dict() for image in images]
         productcopy['Shop'] = shop.to_dict()
+        def get_reviews(id):
+            reviews = ProductReview.query.filter(ProductReview.product_id == id).all()
+            return [r.to_dict() for r in reviews]
+        reviews = get_reviews(productcopy['id'])
+        sum =0
+        for r in reviews:
+            sum += r['stars']
+        productcopy['Reviews'] = reviews
+        productcopy['avgRating'] = round(sum / len(reviews), 1) if len(reviews) else "New"
 
         return productcopy, 200
     #this delete isn't getting hit because of route above right?
@@ -86,7 +95,7 @@ def get_all_products():
         return  payload, 200
     #POSTS NEW PRODUCT
     elif request.method == "POST":
-        print('PAST METHOD CHECKER ------------------------------')
+        # print('PAST METHOD CHECKER ------------------------------')
         form = CreateProductForm()
         form['csrf_token'].data = request.cookies['csrf_token']
         if not form.validate_on_submit():

@@ -1,4 +1,4 @@
-import { NavLink, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import './UserDetails.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
@@ -25,14 +25,15 @@ export default function UserDetails() {
     const userShopsIds = shops ? Object.values(shops).filter(s=>parseInt(s.ownerId) === parseInt(user.id)).map(s=>s.id) : null
     const userShops = Object.values(shops).filter(s => parseInt(s.ownerId) === parseInt(userId))
     const userProducts = Object.values(products).filter(p=> userShopsIds.includes(p.shopId))
-    // console.log('USERSHOPS', userProducts)
+    console.log('USERSHOPS', userShops)
     return (
         <div className='user-manage-details'>
             <div className='user-manage-header'>
                 <div className='user-manage-business-cards'>
-                {userShops.length ? userShops.map((shop, i) => (
+                {userShops && userShops.length ? userShops.map((s, i) => (
 
-                    <ShopBusinessCard shopId={shop.id}
+                    <ShopBusinessCard shop={s}
+
                     key={`shopbusicardcomp${i}`}/>
 
                 )) : null}
@@ -44,7 +45,7 @@ export default function UserDetails() {
                     alt='usericon'></img>
                     <p className='user-manage-username'></p>
                     <p className='user-manage-contact-user'>
-                        <i className="fa-solid fa-message"></i>Contact</p>
+                        <i className="fa-solid fa-message"></i>You!</p>
                 </div>
             </div>
 

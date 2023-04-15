@@ -6,12 +6,9 @@ import { authenticate } from '../../store/session'
 import { fetchOneShop, fetchShops } from '../../store/shops'
 import ProductCard from '../ProductCard'
 import ShopCard from '../ShopCard'
-import { NavLink, useHistory } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 function Landing({ isLoaded }) {
-
-    const history = useHistory()
-
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(fetchProducts())

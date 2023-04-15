@@ -52,7 +52,7 @@ export const fetchProducts = () => async dispatch => {
 }
 
 export const fetchOneProduct = (id) => async dispatch => {
-    const response = await fetch(`/api/products/${id}`)
+    const response = await fetch(`/api/products/${id}/`)
     if (response.ok) {
         const product = await response.json()
         dispatch(actionLoadProduct(product))
@@ -108,7 +108,7 @@ export const editProduct = (productBody, productId) => async dispatch => {
         price,
     })
     const options = { method, headers, body }
-    console.log('EDIT TRIGGERED')
+    // console.log('EDIT TRIGGERED')
     const response = await fetch(`/api/products/${productId}/`, options)
     const product = await response.json()
     // console.log("RESPONSE", response)

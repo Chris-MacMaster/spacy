@@ -3,6 +3,8 @@ from app.models import db, Product, Shop, ShopImage, ProductImage, User, Product
 from flask_login import current_user, login_required
 import copy
 shop_routes = Blueprint('/shops', __name__)
+from app.forms import CreateShopForm
+
 
 @shop_routes.route('/', methods=['GET', 'POST'])
 def get_all_shops():
@@ -24,26 +26,38 @@ def get_all_shops():
         return shopcopy, 200
     """posts a new shop"""
     if request.method == 'POST' and current_user.is_authenticated:
-        # shop = request.data
-        # return shop
-        print("REQUEST NAME ------------------", request)
-        # data = request.get_json()
-        new_shop = Shop(
-            name = request.data['name'],
-            owner_id = current_user.get_id(),
-            street_address = request.data['streetAddress'],
-            city = request.data['city'],
-            state = request.data['state'],
-            country = request.data['country'],
-            description = request.data['description'],
-            category = request.data['category'],
-            policies = request.data['policies'],
-        )
-        # print("NEW SHOP __________________========", new_shop, "TYPE ", type(new_shop))
-
-        db.session.add(new_shop)
-        db.session.commit()
-        return new_shop.to_dict()
+        form = CreateShopForm()
+        form['csrf_token'].data = request.cookies['csrf_token']
+        form.validate_on_submit()
+        if not form.validate_on_submit():
+            print(form.errors)
+            return {'error': 'The provided data could not be validated'}
+        if form.validate_on_submit():
+            new_shop = Shop(
+                name = form.data['name'],
+                owner_id = current_user.get_id(),
+                street_address = form.data['street_address'],
+                city = form.data['city'],
+                state = form.data['state'],
+                country = form.data['country'],
+                description = form.data['description'],
+                category = form.data['category'],
+                policies = form.data['policies'],
+                sales = 0,
+            )
+            print(new_shop)
+            db.session.add(new_shop)
+            db.session.commit()
+            recentshop = db.session.query(Shop).order_by(Shop.id.desc()).first()
+            print(recentshop)
+            # created_shop = shop_list[-1]
+            new_shop_img = ShopImage(
+                url = form.data['url'],
+                shop_id = recentshop.id
+            )
+            db.session.add(new_shop_img)
+            db.session.commit()
+            return new_shop.to_dict(), 201
 
 @shop_routes.route('/<int:shop_id>', methods=['DELETE'])
 @login_required

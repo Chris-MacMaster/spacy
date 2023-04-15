@@ -7,7 +7,7 @@ export default function AddToCart({product}){
 
     const dispatch = useDispatch()
 
-    const [user, cart] = useSelector(state => [state.session.user, Object.values(state.cartReducer.products)])
+    const [user] = useSelector(state => [state.session.user, Object.values(state.cartReducer.products)])
 
     useEffect(() =>{
         dispatch(fetchCart())
@@ -19,7 +19,6 @@ export default function AddToCart({product}){
         )
         return dispatch(addCartItemThunk(product.id, user.id))
     }
-    // console.log(cart)
 
     return (
         <button onClick={addItem} className="add-to-cart-button">

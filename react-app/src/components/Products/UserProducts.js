@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react"
-import { useHistory } from "react-router-dom";
+import React, { useEffect } from "react"
+// import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux"
 import { fetchUserProducts } from '../../store/product'
 
 function UserProducts(){
-    const history = useHistory()
+    // const history = useHistory()
     const dispatch = useDispatch();
     const [user, products] = useSelector(state => {
         console.log(state)

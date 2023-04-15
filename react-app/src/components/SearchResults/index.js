@@ -1,69 +1,19 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getSearchResults } from "../../store/search"
-import { Link, useParams } from "react-router-dom"
+import { NavLink, useParams } from "react-router-dom"
 
 import './SearchResults.css'
 
 function SearchResults() {
-    // const [products, setProducts] = useState({})
-    // const location = useLocation()
-    // // const parameters = new URLSearchParams(location.search).get('query')
-    // const searchResults = useSelector((state) => state.search.searchResults)
-
-    // const {parameters} = useParams()
-
-
-    // const dispatch = useDispatch()
-
-    // const altSearchResults = dispatch(getSearchResults(parameters))
-
-    // console.log('search results', searchResults)
-    // useEffect(() => {
-    //     // dispatch(getSearchResults(parameters))
-    //     setProducts(searchResults)
-    //     // setProducts(altSearchResults)
-    // }, [dispatch])
-
-    // useEffect(() => {
-    //     dispatch(getSearchResults(parameters))
-    //  }, [])
-
-    // if (Object.values(searchResults).length < 1) {
-    //     return (
-    //         <h1>No Results</h1>
-    //     )
-    // }
-
-
-
-    // alternate
-
     const {parameters} = useParams()
     const dispatch = useDispatch()
-    console.log(parameters)
-
-    // const [products, setProducts] = useState({})
+    // console.log(parameters)
     const products = useSelector((state) => state.search.searchResults)
-    console.log('products', products)
-
-    // const searchResults = dispatch(getSearchResults(parameters))
-
-    // console.log('searchResults', searchResults)
-
     useEffect(() => {
         dispatch(getSearchResults(parameters))
-        // console.log('search results', searchResults)
-        // setProducts(searchResults)
-    }, [])
-    // useEffect(() =>  {
-    //     let searchResults;
-    //     async function search (parameters) {
-    //         searchResults = await dispatch(getSearchResults(parameters))
-    //     }
-    //     search(parameters)
-    //     // setloading(!loading)
-    // }, [])
+    }, [dispatch, parameters])
+
 
     if (!Object.values(products).length) {
         return (
@@ -72,26 +22,44 @@ function SearchResults() {
     }
 
     return (
-        <>
-        <h1>Results:</h1>
-        <div className="productsDisplay">
-        {Object.values(products).map(product => (<Link to={`/products/${product.id}`}>
-            <div className="productCard">
-                <div><img style={{width: 300, height: 320}} src={product.ProductImages[0].url}/></div>
-                <div className="productName">{product.name}</div>
-                {/* <div className="productRating">Stars: {product.avgRating}</div> */}
-                <div>
-                {product.avgRating ? new Array(Math.floor(product.avgRating)).fill(null).map(() => (
-                    <i class="fas fa-star"/>
-                )): 'No Reviews'} {`(${product.reviews.length})`}
+        <div className="search-results-div">
+        <div className="est-arrival">
+            <span className="est-arrival-time">Esitmated Arrival Time </span>
+            <span className="est-arrival-any">Any time</span>
+        </div>
+        <div className="search-result-display">
+        {Object.values(products).map(product => (
+        <NavLink to={`/products/${product.id}`}
+        style={{ textDecoration: 'none' }}>
+            <div className="search-product-card">
+                <div className="search-result-image-div"><img className='search-result-img' src={product.ProductImages[0].url} alt='not found'/></div>
+
+                <div className="search-product-text">
+                    <p className="search-product-name">{product.name}</p>
+                    <p className='search-results-stars'>
+                    {typeof product.avgRating === 'number'?
+                             Array(5).fill(1).map((s,i)=> (
+                            i < product.avgRating ? (
+                                <i className="fa-solid fa-star search-results-stars-gold search-stars"
+                                key={i}></i>
+                            ) : (
+                                <i className="fa-solid fa-star search-results-stars-black grey-search-stars" key={i}></i>
+                            )
+                            ) ) : (
+                                <span className="search-new-product">New! <i className="fa-solid fa-star gold-star search-results-stars"/> </span>
+                            )} {product.sales}
+                            <span className="search-star-seller"><i className="fa-solid fa-certificate search-badge"></i>Star Seller</span></p>
+
+                <p className="search-result-price">${product.price}</p>
+                <p className="search-result-shop">{product.shop.name}</p>
+                <p className="search-more-like">More Like This <i className="fa-solid fa-arrow-right search-more-like"></i></p>
+
                 </div>
-                <div className="productPrice">${product.price}</div>
-                <div className="productSeller">Sold by: {product.shop.name}</div>
             </div>
-        </Link>
+        </NavLink>
         ))}
         </div>
-        </>
+        </div>
     )
 }
 

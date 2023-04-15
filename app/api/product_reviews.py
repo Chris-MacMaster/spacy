@@ -12,7 +12,6 @@ product_review_routes = Blueprint('/product-reviews', __name__)
 @product_review_routes.route('/search/<int:review_id>')
 def get_review(review_id):
     """get a single review by id"""
-    # print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
     review = ProductReview.query.filter(ProductReview.id == review_id).one()
     print(review.to_dict())
     if review:
@@ -50,14 +49,14 @@ def get_all_reviews():
 
 @product_review_routes.route('/<int:product_id>')
 def get_reviews_of_product(product_id):
-    """returns one reviews of the specified productid"""
+    """returns reviews of the specified productid"""
     print('reviews back end here --------------------------')
     reviews = ProductReview.query.filter(ProductReview.product_id == product_id).all()
     def review_image(review_id):
         review_image = ReviewImage.query.filter(ReviewImage.review_id==review_id).first()
         if review_image:
             return review_image.to_dict()
-    
+
 
     reviewcopy = [review.to_dict() for review in reviews]
     for review in reviewcopy:

@@ -17,14 +17,17 @@ function EditReviewForm() {
 
     useEffect(() => {
         dispatch(getOneReview(reviewId))
-    }, [dispatch])
-    console.log('edit review', reviewToEdit)
+    }, [dispatch, reviewId])
+    // console.log('edit review', reviewToEdit)
 
 
     const [review, setReview] = useState(reviewToEdit.review || '')
     const [stars, setStars] = useState(reviewToEdit.stars || '')
 
-    console.log('review value',review)
+    const [errors, setErrors] = useState({})
+    const [hasSubmitted, setHasSubmitted] = useState(false);
+
+    // console.log('review value',review)
 
     useEffect(() => {
         if (Object.values(reviewToEdit).length) {
@@ -33,8 +36,22 @@ function EditReviewForm() {
         }
     }, [reviewToEdit])
 
+    useEffect(() => {
+        let e = {}
+        setErrors(e)
+        if (!review) e.review = "Must submit a review"
+        if (review.length < 40) e.reviewLength = "Review must be at least 40 characters"
+        if (!stars) e.stars = "Must submit a value for stars."
+        // if (!imageURL) e.imageURL = "Must submit an image URL."
+    }, [review, stars])
+
     const handleSubmit = async (e) => {
         e.preventDefault()
+        setHasSubmitted(true)
+        if (Object.values(errors).length) {
+            console.log("ERRORS!")
+            return
+        }
 
         await dispatch(editReview(reviewId, review, stars))
 
@@ -54,7 +71,7 @@ function EditReviewForm() {
         <form onSubmit={handleSubmit} className='wholeForm'>
             <div className='headerAndReview'>
                 <div className='productPic'>
-                    <img src={reviewToEdit.product.ProductImages[0].url}/>
+                    <img src={reviewToEdit.product.ProductImages[0].url} alt='not found'/>
                     <div className="productName">
                      <p>{reviewToEdit.product.Shop.name}</p>
                     <p style={{fontWeight:'bolder', fontSize:'larger'}}>{reviewToEdit.product.name}</p>
@@ -78,11 +95,31 @@ function EditReviewForm() {
                   <label htmlFor="star1" title="text">1 star</label>
                 </div>
             </div>
+
+            {hasSubmitted && errors.stars && (
+                <div className='error'>
+                    * {errors.stars}
+                </div>
+            )}
+
             <div>
                 <textarea name='review' className='reviewText' value={review} onChange={(e) => setReview(e.target.value)}/>
             </div>
+
+            {hasSubmitted && errors.review && (
+                <div className='error'>
+                    * {errors.review}
+                </div>
+            )}
+
+            {hasSubmitted && errors.reviewLength && (
+                <div className='error'>
+                    * {errors.reviewLength}
+                </div>
+            )}
+
             <div className='submitButtonParent'>
-                <button type='submit' className='submitButton' disabled={review.length < 10 || stars < 1}>Post Your Review</button>
+                <input onClick={handleSubmit} className='submit-button form-create-button red-styling edit-review-button' type="submit" value="Edit Your Review" />
             </div>
         </form>
         </div>

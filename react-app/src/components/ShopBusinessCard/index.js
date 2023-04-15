@@ -1,22 +1,21 @@
 import { useDispatch, useSelector } from 'react-redux'
 import './ShopBusinessCard.css'
 import { useEffect } from 'react'
-import { fetchOneShop } from '../../store/shops'
+import { fetchOneShop, fetchShops } from '../../store/shops'
 import { NavLink } from 'react-router-dom'
 import { useHistory } from 'react-router-dom'
 
-export default function ShopBusinessCard({ shopId }) {
+export default function ShopBusinessCard({ shop }) {
     const dispatch = useDispatch()
     const history = useHistory()
     useEffect(() => {
-        dispatch(fetchOneShop(shopId))
-    }, [dispatch])
-    const shop = useSelector(state => state.shops.singleShop)
-
+        dispatch(fetchOneShop(shop))
+    }, [dispatch, shop])
+    const shops = useSelector(state => state.shops.allShops)
 
     const handleCreate = (e) => {
         e.preventDefault()
-        history.push(`/products/forms/create-product/${shopId}`)
+        history.push(`/products/forms/create-product/${shop.id}`)
     }
 
     if (!shop) return null
@@ -24,7 +23,7 @@ export default function ShopBusinessCard({ shopId }) {
 <div className='shop-business-card'>
     <NavLink to={`/shops/${shop.id}`} >
     <img className='user-manage-shop-pic'
-    src={`${shop.ShopImages.url ? shop.ShopImages.url : 'https://i.imgur.com/bdSjZyV.png'}`}
+    src={`${shop && shop.ShopImage && shop.ShopImage.url ? shop.ShopImage.url : 'https://i.imgur.com/bdSjZyV.png'}`}
     alt='user-manage-shop-pic'></img>
     </NavLink>
     <div className='user-manage-business-text'>
@@ -35,8 +34,10 @@ export default function ShopBusinessCard({ shopId }) {
     </NavLink>
         <div className='user-manage-buttons'>
             <button className='user-manage-button user-manage-edit-shop'><i className="fa-solid fa-pen"></i>Edit Shop</button>
-            <button className='user-manage-button user-manage-fav-shop'><i className="fa-regular fa-heart"></i>Favorite shop</button>
-            <button onClick={handleCreate} className='user-manage-button user-manage-fav-shop'><i className="fa-regular fa-heart"></i>Create Product</button>
+            {/* <button className='user-manage-button user-manage-fav-shop'><i className="fa-regular fa-heart"></i>Favorite shop</button> */}
+            <button onClick={handleCreate} className='user-manage-button user-manage-create'>
+            <i class="fa-solid fa-screwdriver-wrench create-product-icon"></i>
+                Create Product</button>
         </div>
     </div>
 </div>
