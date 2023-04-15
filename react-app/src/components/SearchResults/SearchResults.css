@@ -14,7 +14,7 @@
 
 .productsDisplay {
     display: flex;
-    width: 1175px;
+    /* width: 150em; */
     flex-wrap: wrap;
     /* width: 100vw; */
     justify-content: center;
