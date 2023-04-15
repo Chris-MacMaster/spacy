@@ -27,6 +27,7 @@ const ProductEditForm = () => {
     const [description, setDescription] = useState("")
     const [freeShipping, setFreeShipping] = useState(false)
     const [price, setPrice] = useState(0)
+    const [url1, setUrl1] = useState("")
 
     const product = productState
 
@@ -51,8 +52,11 @@ const ProductEditForm = () => {
         dispatch(fetchOneProduct(productId));
       }, [dispatch, productId]);
 
+
+
+
       // prepopulate form
-      useEffect(() => {
+    useEffect(() => {
         setName(productState?.name || "");
         setAvailable(productState?.available || 0);
         setShopId(productState?.shopId || "");
@@ -60,7 +64,10 @@ const ProductEditForm = () => {
         setDescription(productState?.description || "");
         setFreeShipping(productState?.freeShipping || false);
         setPrice(productState?.price || 0);
-      }, [productState]);
+        
+        setUrl1(productState && productState.ProductImages && productState.ProductImages.length ? productState.ProductImages[0].url : "");
+        // setUrl1(productState.ProductImages.length ? productState?.ProductImages[0]?.url || "" : "");
+    }, [productState]);
 
 
     const handleSubmit = (e) => {
@@ -231,6 +238,25 @@ const ProductEditForm = () => {
                         )}
                         </div>
                     </div>
+                </div>
+
+
+                <div className='product-img1-div'>
+                    <label className='product-label q-text' >
+                        URL1:
+                    </label>
+                    <p className='cp-grey-text sub-q-text'>
+                        Provide a url, pictures are necessary! Nobody wants to buy something sight unseen!
+                    </p>
+                    <input className='product-input' type="text"
+                        value={url1}
+                        onChange={(e) => setUrl1(e.target.value)}
+                        placeholder='Url1' />
+                    {hasSubmitted && errors.url1 && (
+                        <div className='error'>
+                            * {errors.url1}
+                        </div>
+                    )}
                 </div>
 
             </form>
