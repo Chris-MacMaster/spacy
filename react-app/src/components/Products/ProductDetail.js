@@ -104,13 +104,15 @@ const ProductDetail = () => {
                         <p className='review-p reviews-text'>
                         </p>
                         <p className='review-p review-stars'>
-                        {avgRating > 1 ? Array(5).fill(1).map((s,i)=> (
+                        {avgRating > 1 && productReviews.length?
+                            <h2 className='review-num-title'>{productReviews.length} Reviews
+                            {Array(5).fill(1).map((s,i)=> (
                             i < avgRating ? (
                                 <i className="fa-solid fa-star gold-star gold-star-product-deets landing-shop-stars" key={i}></i>
                             ) : (
                                 <i className="fa-solid fa-star blank-star blank-star-product-deets landing-shop-stars" key={i}></i>
                             )
-                            )) : (
+                            ) ) } </h2> : (
                                 <h2>New! <i className="fa-solid fa-star gold-star gold-star-product-deets landing-shop-stars"/> </h2>
                             )}                        </p>
                         {user && product.Shop?.ownerId !== user.id ?

@@ -179,6 +179,9 @@ img {
     align-items: center;
     justify-content: center;
 }
+.review-num-title {
+    font-family: 'Marcellus', serif;
+}
 .post-item-review {
     border: .1rem solid slategrey;
     border-radius: .3rem;

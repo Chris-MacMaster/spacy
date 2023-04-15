@@ -1,5 +1,5 @@
 .review-card-div {
-    background-color: blue;
+margin-top: 2rem;
 }
 
 .rev-author-info {
@@ -10,7 +10,9 @@
     display: inline-block;
     position: static;
 }
-
+.rev-stars {
+    margin: 1rem;
+}
 #detail-review-icon {
     position: static;
     width: 35px;
