@@ -104,7 +104,7 @@ const ProductDetail = () => {
                         <p className='review-p reviews-text'>
                         </p>
                         <p className='review-p review-stars'>
-                        {avgRating > 1 && productReviews.length?
+                        {productReviews && productReviews.length ?
                             <h2 className='review-num-title'>{productReviews.length} Reviews
                             {Array(5).fill(1).map((s,i)=> (
                             i < avgRating ? (

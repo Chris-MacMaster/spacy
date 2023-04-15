@@ -188,6 +188,7 @@ img {
     font-weight: bold;
     transition: .2s ease-in-out;
     margin: 1rem;
+    font-family: 'Marcellus', serif;
 }
 .post-item-review:hover {
     box-shadow: 0rem 0rem .5rem grey;
