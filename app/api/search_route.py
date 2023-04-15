@@ -104,7 +104,8 @@ def search(parameters):
         elif shop_results and not products_results:
                 return jsonify({'products': list_2})
         else:    
-            return {'result': 'No items found'}
+            # return {'result': 'No items found'}
+            return None
 
 
 @search_route.route('/filtered-search/<search_category>')

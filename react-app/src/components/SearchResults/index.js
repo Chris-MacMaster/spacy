@@ -45,6 +45,7 @@ function SearchResults() {
 
     // const [products, setProducts] = useState({})
     const products = useSelector((state) => state.search.searchResults)
+    console.log('products', products)
 
     // const searchResults = dispatch(getSearchResults(parameters))
 
@@ -64,11 +65,11 @@ function SearchResults() {
     //     // setloading(!loading)
     // }, [])
 
-    // if (Object.values(products).length < 1) {
-    //     return (
-    //         <h1>No Results</h1>
-    //     )
-    // }
+    if (!Object.values(products).length) {
+        return (
+            <h1>No Results</h1>
+        )
+    }
 
     return (
         <>
