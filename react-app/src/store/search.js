@@ -1,5 +1,4 @@
-import { csrfFetch } from "./csrf"
-
+// import { csrfFetch } from "./csrf"
 const GET_SEARCH_RESULTS = 'search/getResults'
 const GET_FILTERED_SEARCH = 'search/filteredSearch'
 

@@ -8,11 +8,11 @@ import './SearchResults.css'
 function SearchResults() {
     const {parameters} = useParams()
     const dispatch = useDispatch()
-    console.log(parameters)
+    // console.log(parameters)
     const products = useSelector((state) => state.search.searchResults)
     useEffect(() => {
         dispatch(getSearchResults(parameters))
-    }, [dispatch])
+    }, [dispatch, parameters])
 
     return (
         <div className="search-results-div">
@@ -23,7 +23,7 @@ function SearchResults() {
         <div className="productsDisplay">
         {Object.values(products).map(product => (<Link to={`/products/${product.id}`}>
             <div className="productCard">
-                <div><img style={{width: 300, height: 320}} src={product.ProductImages[0].url}/></div>
+                <div><img style={{width: 300, height: 320}} src={product.ProductImages[0].url} alt='not found'/></div>
                 <div className="productName">{product.name}</div>
                 {/* <div className="productRating">Stars: {product.avgRating}</div> */}
                 <div>

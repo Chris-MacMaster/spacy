@@ -2,8 +2,8 @@
 import { useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux"
-import { editProduct, fetchOneProduct, makeProduct } from '../../store/product';
-import { render } from 'react-dom';
+import { editProduct, fetchOneProduct } from '../../store/product';
+// import { render } from 'react-dom';
 // import { editSpot, makeSpot } from '../../store/spot';
 // import { fetchOneSpot } from '../../store/spot';
 
@@ -19,15 +19,6 @@ const ProductEditForm = () => {
 
     const { productId } = useParams()
     const productState = useSelector(state => state.products.singleProduct)
-
-
-    const [rendered, setRendered] = useState(false)
-
-    console.log(productState)
-
-
-    // const { closeModal } = useModal()
-
 
     const [name, setName] = useState("")
     const [available, setAvailable] = useState(0)

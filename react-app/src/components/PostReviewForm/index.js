@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect, useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { fetchOneProduct } from "../../store/product";
 import { createProductReview } from "../../store/review";
 import './ReviewForm.css'
@@ -21,9 +21,9 @@ export default function PostReviewForm() {
     
     useEffect(() => {
         dispatch(fetchOneProduct(productId))
-        let res = dispatch(fetchOneShop(product.shopId))
+        dispatch(fetchOneShop(product.shopId))
         // console.log('state shop', res)
-    }, [dispatch])
+    }, [dispatch, productId, product.shopId])
 
     const [review, setReview] = useState('')
     const [stars, setStars] = useState(0)

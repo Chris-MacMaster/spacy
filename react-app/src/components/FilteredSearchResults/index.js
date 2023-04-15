@@ -18,7 +18,7 @@ function FilteredSearchResults() {
 
     useEffect(() => {
         dispatch(getFilteredSearchResults(category))
-    }, [])
+    }, [dispatch, category])
     console.log('products',products)
 
     if (!products) {
@@ -33,7 +33,7 @@ function FilteredSearchResults() {
         <div className="productsDisplay">
         {Object.values(products).map(product => (<Link to={`/products/${product.id}`}>
             <div className="productCard">
-                <div><img style={{width: 300, height: 320}} src={product.ProductImages[0]?.url}/></div>
+                <div><img style={{width: 300, height: 320}} src={product.ProductImages[0]?.url} alt='not found'/></div>
                 <div className="productName">{product.name}</div>
                 {/* <div className="productRating">Stars: {product.avgRating}</div> */}
                 <div>

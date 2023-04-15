@@ -17,8 +17,8 @@ function EditReviewForm() {
 
     useEffect(() => {
         dispatch(getOneReview(reviewId))
-    }, [dispatch])
-    console.log('edit review', reviewToEdit)
+    }, [dispatch, reviewId])
+    // console.log('edit review', reviewToEdit)
 
 
     const [review, setReview] = useState(reviewToEdit.review || '')
@@ -27,7 +27,7 @@ function EditReviewForm() {
     const [errors, setErrors] = useState({})
     const [hasSubmitted, setHasSubmitted] = useState(false);
 
-    console.log('review value',review)
+    // console.log('review value',review)
 
     useEffect(() => {
         if (Object.values(reviewToEdit).length) {

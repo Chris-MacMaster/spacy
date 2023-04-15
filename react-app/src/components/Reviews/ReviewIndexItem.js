@@ -3,10 +3,10 @@ import './ReviewIndexItem.css'
 import { useSelector } from 'react-redux';
 import { deleteReview, fetchProductReviews } from '../../store/review';
 import { useDispatch } from "react-redux"
-import OpenModalButton from '../OpenModalButton'
+// import OpenModalButton from '../OpenModalButton'
 import { NavLink } from 'react-router-dom';
 
-import DeleteReviewModal from '../DeleteReviewModal/DeleteReview';
+// import DeleteReviewModal from '../DeleteReviewModal/DeleteReview';
 // import { deleteReview } from '../../store/review';
 
 
