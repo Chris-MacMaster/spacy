@@ -12,9 +12,9 @@ def get_one_product(product_id):
     """returns one product with the specified id"""
 
     if request.method == 'GET':
-        product = Product.query.filter_by(id=product_id).first()
+        product = Product.query.get(product_id)
         productcopy = product.to_dict()
-        shop = Shop.query.filter_by(id=product.shop_id).first()
+        shop = Shop.query.get(product.shop_id)
         images = ProductImage.query.filter(ProductImage.product_id==product_id).all()
         productcopy['ProductImages'] = [image.to_dict() for image in images]
         productcopy['Shop'] = shop.to_dict()
