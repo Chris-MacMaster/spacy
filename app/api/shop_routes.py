@@ -6,6 +6,7 @@ shop_routes = Blueprint('/shops', __name__)
 from app.forms import CreateShopForm
 
 
+
 @shop_routes.route('/', methods=['GET', 'POST'])
 def get_all_shops():
     """returns all shops regardless of session"""
@@ -13,6 +14,12 @@ def get_all_shops():
         shops = Shop.query.all()
         print("SHOPS", shops)
         shopcopy = [shop.to_dict() for shop in shops]
+        def shop_products(id):
+            products = Product.query.filter(Product.shop_id == id).all()
+            return [product.to_dict() for product in products]
+        def get_images(id):
+            images = ProductImage.query.filter(ProductImage.product_id == id).all()
+            return [image.to_dict() for image in images]
         def get_shop_images(id):
             image = ShopImage.query.filter(ShopImage.shop_id == id).first()
             if image:
@@ -23,6 +30,9 @@ def get_all_shops():
                 shop['ShopImage'] = shopimage
             else:
                 shop['ShopImage'] = 'shopImage not available'
+            shop['Products'] = shop_products(shop['id'])
+            for product in shop['Products']:
+                product['ProductImages'] = get_images(product['id'])
         return shopcopy, 200
     """posts a new shop"""
     if request.method == 'POST' and current_user.is_authenticated:

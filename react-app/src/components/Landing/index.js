@@ -114,7 +114,9 @@ function Landing({ isLoaded }) {
 
 
         {[rand1, rand2, rand3, rand4, under30].map((rand,i) => (
-            <NavLink to={`/search/filtered-search/${title[i]}`} key={i}>
+            <NavLink to={`/search/filtered-search/${title[i]}`}
+                    style={{ textDecoration: 'none' }}
+                    key={i}>
                 <div className='selection-card'
                 // onClick={history.push(`/search/${rand.category}`)}
                 key={`div${i}`}>
@@ -138,7 +140,7 @@ function Landing({ isLoaded }) {
                     <h3 className='shops-youll-love-title'>Based on your recent activity</h3>
                 </div>
 
-                {shops.allShops && shops.allShops[0] ? (Object.values(shops.allShops).map((s, i)=> (
+                {shops.allShops && shops.allShops[0] ? (Object.values(shops.allShops).filter(s=> s.Products.length > 3).map((s, i)=> (
                 <NavLink to={`/shops/${s.id}`}
                 style={{ textDecoration: 'none' }}
                 key={i}>
