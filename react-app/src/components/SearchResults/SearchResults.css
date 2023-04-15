@@ -36,8 +36,10 @@
     color: black;
     font-size: .9rem;
 }
-.grey-search-stars {
+.grey-search-stars,
+.search-new-product {
     font-size: .9rem;
+    margin: 0rem;
 }
 .search-results-stars{
     margin: 0rem;
