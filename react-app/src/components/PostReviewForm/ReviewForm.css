@@ -129,3 +129,8 @@ textarea {
 .imageURLinput {
     margin-bottom: 1rem;
 }
+
+
+.edit-review-button {
+    z-index: 5;
+}
