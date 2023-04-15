@@ -21,8 +21,6 @@ export default function ProductCreateForm() {
 
     const [name, setName] = useState("")
     const [available, setAvailable] = useState(0)
-    // // const [avgRating, setAvgRating] = useState(0)
-
     const [category, setCategory] = useState("")
     const [description, setDescription] = useState("")
     const [freeShipping, setFreeShipping] = useState(false)
@@ -75,12 +73,7 @@ export default function ProductCreateForm() {
           img_1: url1
         }
         dispatch(makeProduct(newProduct))
-        reset()
         history.push(`/shops/${shopId}`)
-    };
-
-    const reset = () => {
-
     };
 
 
@@ -97,7 +90,7 @@ export default function ProductCreateForm() {
                 <div className='product-name-div'>
                     <div>
                     <label className='cp-form-label cp-title q-text' >
-                        Title 
+                        Title
                     </label>
                     {/* <p className='cp-grey-text sub-q-text'>Incldue keywords that buyer would use to search for your item</p> */}
                     </div>
@@ -116,7 +109,7 @@ export default function ProductCreateForm() {
 
                 <div className='product-description-div'>
                     <label className='cp-form-label cp-description q-text' >
-                        Description 
+                        Description
                     </label>
                         <p className='cp-grey-text sub-q-text'>
                             Start with a brief overview that describes your item's findes feature. Shopper will only see the first few lines of your description at first, so make it count!
@@ -141,7 +134,7 @@ export default function ProductCreateForm() {
 
                 <div className='product-available-div'>
                     <label className='cp-form-label cp-available q-text' >
-                        Available 
+                        Available
                     </label>
                     <p className='cp-grey-text sub-q-text'>
                         How many do you currently have in stock?

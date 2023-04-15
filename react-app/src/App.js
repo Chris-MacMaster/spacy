@@ -21,6 +21,7 @@ import Footer from "./components/Footer";
 import ProductCreateForm from "./components/Forms/ProductCreate";
 import ProductEditForm from "./components/Forms/ProductEdit";
 import FilteredSearchResults from "./components/FilteredSearchResults";
+import PostShopForm from "./components/PostShopForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -41,6 +42,7 @@ function App() {
       <Route path='/products/forms/create-product/:shopId' exact={true} component={ProductCreateForm} />
       <Route path='/products/forms/edit-product/:productId' exact={true} component={ProductEditForm} />
       <Route path='/cart' exact={true} component={DisplayCart} />
+      <Route path='/shops/new' exact={true} component={PostShopForm} />
       <Route path='/shops/:shopId' exact={true} component={ShopDetails}/>
       <Route path='/users/:userId' exact={true} component={UserDetails}/>
       <Route path='/product-reviews/:productId/new' component={PostReviewForm}/>

@@ -95,7 +95,7 @@ def get_all_products():
         return  payload, 200
     #POSTS NEW PRODUCT
     elif request.method == "POST":
-        print('PAST METHOD CHECKER ------------------------------')
+        # print('PAST METHOD CHECKER ------------------------------')
         form = CreateProductForm()
         form['csrf_token'].data = request.cookies['csrf_token']
         if not form.validate_on_submit():
