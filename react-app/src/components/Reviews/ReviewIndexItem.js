@@ -31,7 +31,7 @@ const ReviewIndexItem = ({ review , product}) => {
     if (!Object.values(review).length || !product) return null
 
     return (
-        <li onClick={handleClick} className='reviewIndexItem'>
+        <div onClick={handleClick} className='reviewIndexItem'>
             <div className='product-card-div, review-card-div' >
                 <div className='rev-col-a'>
                     <div className='rev-stars'>
@@ -83,7 +83,7 @@ const ReviewIndexItem = ({ review , product}) => {
                     : ''}
                 </div>
             </div>
-        </li>
+        </div>
     );
 };
 
