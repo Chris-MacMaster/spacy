@@ -69,9 +69,9 @@ export const getAllReviews = () => async dispatch => {
 
 
 export const createProductReview = (productId, review, stars, image) => async dispatch => {
-    console.log('thunk hit')
-    console.log('thunk image', image)
-    console.log(productId)
+    // console.log('thunk hit')
+    // console.log('thunk image', image)
+    // console.log(productId)
     let res
     if (image) {
         res = await fetch(`/api/product-reviews/${productId}/new`, {

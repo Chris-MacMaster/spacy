@@ -55,6 +55,7 @@ export default function PostReviewForm() {
             // console.log("FOUND ERRORS!")
             return
         }
+        
 
         const res = await dispatch(createProductReview(product.id, review, stars, imageURL))
         console.log('res', res)
