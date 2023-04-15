@@ -18,7 +18,11 @@ def get_one_product(product_id):
         images = ProductImage.query.filter(ProductImage.product_id==product_id).all()
         productcopy['ProductImages'] = [image.to_dict() for image in images]
         productcopy['Shop'] = shop.to_dict()
+        def get_reviews(id):
+            return ProductReview.query.filter(ProductReview.product_id == id).all()
 
+        productcopy['Reviews'] = get_reviews(productcopy['id'])
+        
         return productcopy, 200
     #this delete isn't getting hit because of route above right?
     elif request.method == 'DELETE':
