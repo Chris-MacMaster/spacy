@@ -31,8 +31,8 @@ function Header({ isLoaded }) {
         dispatch(fetchShops())
         dispatch(authenticate())
     }, [dispatch])
-    // const cart = useSelector(state => state.cartReducer.products)
-    // const cartTotal = Object.values(cart).reduce((acc, p) =>p.quantity + acc, 0)
+    const cart = useSelector(state => state.cartReducer.products)
+    const cartTotal = Object.values(cart).reduce((acc, p) =>p.quantity + acc, 0)
     // console.log('CART TOTAL', cartTotal)
     const shops = useSelector(state=> state.shops.allShops)
     const user = useSelector(state => state.session.user)
@@ -84,7 +84,9 @@ function Header({ isLoaded }) {
         </div>
 
             <div className='cart'>
-                {/* <div className='number-in-cart'></div> */}
+                {cartTotal && cartTotal > 0 ? (
+                <div className='number-in-cart'>{cartTotal}</div>
+                ) : null}
             <NavLink to='/cart'>
                 <div className='header-tip'>Cart</div>
             <i className="fa-solid fa-cart-shopping"></i>
