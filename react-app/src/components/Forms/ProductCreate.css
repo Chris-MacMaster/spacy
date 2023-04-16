@@ -7,12 +7,13 @@
 .sp-form {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     max-width: 600px;
 }
 
 .q-text {
-    font-size: 24px;
+    /* font-size: 24px; */
+    font-weight: 700;
 }
 
 .sub-q-text {
@@ -22,13 +23,13 @@
 .product-description-div, .product-name-div, .product-available-div, .product-price-div, .product-img1-div {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     margin-bottom: 5px;
 }
 
 .category-shipping-div {
-    display: flex;
-    justify-content: space-between;
+    /* display: flex;
+    justify-content: space-between; */
 }
 
 .product-category-div, .product-shipping-div {
@@ -38,4 +39,91 @@
 .error {
     font-size: 14px;
     color: red;
+}
+
+
+.product-name-div, .product-available-div, .product-price-div, .product-img1-div { 
+    /* justify-content: flex-start; */
+    align-items: center;
+    flex-direction: row;
+}
+
+.create-shop-grey {
+    font-size: .8rem;
+    color: rgb(68, 68, 68);
+    width: 20rem;
+}
+
+.form-title {
+    font-family: 'Libre Baskerville', serif;
+    margin-top: 5rem;
+    justify-content: center;
+    /* position: absolute; */
+}
+
+.form-sub {
+    font-family: 'Libre Baskerville', serif;
+    /* margin-top: 5rem; */
+    justify-content: center;
+    /* position: absolute; */
+}
+
+
+.product-description-div {
+    flex-direction: row;
+}
+
+.input-field {
+    height: 1.3rem;
+    border-radius: 0.3rem;
+}
+
+
+.product-name-div, .product-description-div {
+    align-items: center;
+}
+
+.description-text {
+    width: 100%;
+}
+
+/* .description-text {
+    height: 1.3rem;
+    border-radius: 0.3rem;
+} */
+
+.description-input {
+    height: 100px;
+    min-height: min-content;
+    padding-bottom: 30px;
+    /* border: 2px solid black; */
+    border-width: 2px;
+    border-style: inset;
+    border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+    /* border-image: initial; */
+    
+    /* margin-top: 15px; */
+    /* height: 130px; */
+
+    /* width: max-content; */
+}
+
+.description-title-sub-text {
+    position: relative;
+    bottom: 9px;
+}
+
+.product-category-div {
+    margin-bottom: 10px;
+}
+
+.product-category-select {
+    /* box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #0af;
+    background-color: #000;
+    color: green;
+    border: none; */
+}
+
+.create-product-button {
+    margin-left: 16px;
 }

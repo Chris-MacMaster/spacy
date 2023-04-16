@@ -42,11 +42,7 @@ def get_one_product(product_id):
                 return product.to_dict(), 200
         return { 'errors': 'Not authenticated'}
     elif request.method == 'PUT':
-        print('made to put ------------------------')
-        print('made to put ------------------------')
-        print('made to put ------------------------')
-        print('made to put ------------------------')
-        print('made to put ------------------------')
+
         if current_user.is_authenticated:
             product = Product.query.get(product_id)
             # print("query passed ---------------------")
@@ -67,9 +63,9 @@ def get_one_product(product_id):
                 product_image = ProductImage.query.filter(ProductImage.product_id == product_id).all()
                 first_img = product_image[0]
                 for img in product_image:
-                    if img.id < first_img.id: 
+                    if img.id < first_img.id:
                         first_img = img
-                    
+
                 # print("product image =========================", product_image.to_dict())
                 # print("product image =========================", product_image.to_dict())
                 # print("product image =========================", product_image.to_dict())
