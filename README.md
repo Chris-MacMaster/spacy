@@ -1,148 +1,152 @@
-# Flask React Project
 
-This is the starter for the Flask React project.
+## WHAT IS SPACEY?
 
-## Getting started
-1. Clone this repository (only this branch)
-
-2. Install dependencies
-
-      ```bash
-      pipenv install -r requirements.txt
-      ```
-
-3. Create a **.env** file based on the example with proper settings for your
-   development environment
-
-4. Make sure the SQLite3 database connection URL is in the **.env** file
-
-5. This starter organizes all tables inside the `flask_schema` schema, defined
-   by the `SCHEMA` environment variable.  Replace the value for
-   `SCHEMA` with a unique name, **making sure you use the snake_case
-   convention**.
-
-6. Get into your pipenv, migrate your database, seed your database, and run your Flask app
-
-   ```bash
-   pipenv shell
-   ```
-
-   ```bash
-   flask db upgrade
-   ```
-
-   ```bash
-   flask seed all
-   ```
-
-   ```bash
-   flask run
-   ```
-
-7. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
+### ABOUT
+Spacey is an etsy clone with a space/science-fiction theme to keep things interesting. We though it rhymed, the more we programmed, the more it didn't actually rhyme at all. Prices for jetpacks, phasers, and NASA supplies are at all all time low. Spacey is like the army surplus for space adventurers and scoundrels.
 
 
-## Deployment through Render.com
+https://spacy-t6mf.onrender.com/
 
-First, refer to your Render.com deployment articles for more detailed
-instructions about getting started with [Render.com], creating a production
-database, and deployment debugging tips.
 
-From the [Dashboard], click on the "New +" button in the navigation bar, and
-click on "Web Service" to create the application that will be deployed.
+### TECHNOLOGIES
 
-Look for the name of the application you want to deploy, and click the "Connect"
-button to the right of the name.
+Technologies we've used for our app include
 
-Now, fill out the form to configure the build and start commands, as well as add
-the environment variables to properly deploy the application.
+click = "==8.1.3"
+gunicorn = "==20.1.0"
+itsdangerous = "==2.1.2"
+python-dotenv = "*"
+six = "==1.16.0"
+alembic = "*"
+python-dateutil = "==2.8.2"
+python-editor = "==1.0.4"
+greenlet = "==2.0.1"
+flask = "*"
+flask-cors = "==3.0.10"
+flask-login = "==0.6.2"
+flask-migrate = "*"
+flask-sqlalchemy = "*"
+flask-wtf = "*"
+jinja2 = "==3.1.2"
+mako = "==1.2.4"
+markupsafe = "==2.1.2"
+sqlalchemy = "*"
+werkzeug = "==2.2.2"
+wtforms = "*"
+pytest = "*"
+pycodestyle = "*"
+pylint = "*"
+rope = "*"
+@testing-library/jest-dom": "^5.14.1
+@testing-library/react": "^11.2.7
+@testing-library/user-event": "^12.8.3
+http-proxy-middleware": "^1.0.5
+js-cookie": "^3.0.1
+react": "^17.0.2
+react-dom": "^17.0.2
+react-redux": "^7.2.4
+react-router-dom": "^5.2.0
+react-scripts": "^4.0.3
+redux": "^4.1.0
+redux-logger": "^3.0.6
+redux-thunk": "^2.3.0"
 
-### Part A: Configure the Start and Build Commands
+### LAUNCHING APP
 
-Start by giving your application a name.
+To launch the app locally open two terminals.
+In the first enter in the terminal 'flask run' to initiate the backend server.
 
-Leave the root directory field blank. By default, Render will run commands from
-the root directory.
+In the second terminal cd into the 'react-app' directory and enter 'npm start' in the terminal to begin the front end server. This will get the app hosted locally.
 
-Make sure the Environment field is set set to "Python 3", the Region is set to
-the location closest to you, and the Branch is set to "main".
+Otherwise, you can use the app at
+https://spacy-t6mf.onrender.com/
 
-Next, add your Build command. This is a script that should include everything
-that needs to happen _before_ starting the server.
+### BACKEND ROUTES
 
-For your Flask project, enter the following command into the Build field, all in
-one line:
+Authentication
+-logout
+-login
+-unauthorized
 
-```shell
-# build command - enter all in one line
-npm install --prefix react-app &&
-npm run build --prefix react-app &&
-pip install -r requirements.txt &&
-pip install psycopg2 &&
-flask db upgrade &&
-flask seed all
+Cart
+-Delete cart
+-Get cart
+-Put cart
+
+Following Users
+-Get Followers, Following
+
+Product Reviews
+-Get by Review Id
+-Get all reviews
+-Get by product id
+-Delete by review id
+-Post review
+-Put review
+-Post review image
+
+Products
+-Get by product id
+-Delete by product id
+-Put by product id
+-Get all products
+-Post new product
+
+Search
+-Get by parameters
+-Filtered get by common categories
+
+Shops
+-Get all shops
+-Post new shop
+-Get Shop by id
+-Delete shop by id
+-Get shops of current user
+
+User
+-Login required
+
+### REDUX STATE SHAPE
 ```
+{
+    session: {
+        user
+    },
+    products: {
+        allProducts: {},
+        singleProducts: {}
+    },
+    shops: {
+        allShops: {},
+        singleShop: {}
+    },
+    reviews: {
+        allReviews: {}
+    },
+    search: {
+        searchResults: {}
+    },
 
-This script will install dependencies for the frontend, and run the build
-command in the __package.json__ file for the frontend, which builds the React
-application. Then, it will install the dependencies needed for the Python
-backend, and run the migration and seed files.
-
-Now, add your start command in the Start field:
-
-```shell
-# start script
-gunicorn app:app
+}
 ```
+### ABOUT THE CREATORS
 
-_If you are using websockets, use the following start command instead for increased performance:_
+To learn more about the developers please reach out and network with us. We look forward to programming with you!
+```
+        ['Christian Ludwell',
+        'https://www.linkedin.com/in/christian-ludwell-047b18247/',
+        'https://github.com/cludwell'],
 
-`gunicorn --worker-class eventlet -w 1 app:app`
+        ['Dylan Godeck',
+        'https://www.linkedin.com/in/dylan-godeck-188622252/',
+        'https://github.com/DylanJG01'],
 
-### Part B: Add the Environment Variables
+        ['Christopher MacMaster',
+        'https://www.linkedin.com/in/christopher-macmaster-9b05b3113/',
+        'https://github.com/Chris-MacMaster'],
 
-Click on the "Advanced" button at the bottom of the form to configure the
-environment variables your application needs to access to run properly. In the
-development environment, you have been securing these variables in the __.env__
-file, which has been removed from source control. In this step, you will need to
-input the keys and values for the environment variables you need for production
-into the Render GUI.
-
-Click on "Add Environment Variable" to start adding all of the variables you
-need for the production environment.
-
-Add the following keys and values in the Render GUI form:
-
-- SECRET_KEY (click "Generate" to generate a secure secret for production)
-- FLASK_ENV production
-- FLASK_APP app
-- SCHEMA (your unique schema name, in snake_case)
-- REACT_APP_BASE_URL (use render.com url, located at top of page, similar to
-  https://this-application-name.onrender.com)
-
-In a new tab, navigate to your dashboard and click on your Postgres database
-instance.
-
-Add the following keys and values:
-
-- DATABASE_URL (copy value from Internal Database URL field)
-
-_Note: Add any other keys and values that may be present in your local __.env__
-file. As you work to further develop your project, you may need to add more
-environment variables to your local __.env__ file. Make sure you add these
-environment variables to the Render GUI as well for the next deployment._
-
-Next, choose "Yes" for the Auto-Deploy field. This will re-deploy your
-application every time you push to main.
-
-Now, you are finally ready to deploy! Click "Create Web Service" to deploy your
-project. The deployment process will likely take about 10-15 minutes if
-everything works as expected. You can monitor the logs to see your build and
-start commands being executed, and see any errors in the build process.
-
-When deployment is complete, open your deployed site and check to see if you
-successfully deployed your Flask application to Render! You can find the URL for
-your site just below the name of the Web Service at the top of the page.
-
-[Render.com]: https://render.com/
-[Dashboard]: https://dashboard.render.com/
+        ['Marc Guggenheim',
+        'coming-soon',
+        'https://github.com/MarcGugg'
+        ]
+```
