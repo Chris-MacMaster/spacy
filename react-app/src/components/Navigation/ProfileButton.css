@@ -1,8 +1,6 @@
 button {
     background-color: white;
     border: none;
-    /* border-radius: 3rem;
-    border: solid grey; */
     padding: .3rem;
     justify-content: center;
 }
@@ -16,7 +14,6 @@ i {
 .fa-user-circle {
     font-size: 1.5rem;
     color: #A0A7B2
-
 }
 .hidden {
     display: none;
@@ -51,4 +48,7 @@ i {
 }
 .subtext {
     font-size: .8rem;
+}
+.profileburger {
+    cursor: pointer;
 }

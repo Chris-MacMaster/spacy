@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { fetchCart } from "../../store/cart"
 import RemoveItemButton from "./RemoveItemButton"
@@ -10,12 +10,13 @@ import PaymentMethod from "./PaymentMethods"
 import './Cart.css'
 
 export default function DisplayCart(){
+  const [user, cart] = useSelector(state => [state.session.user, state.cart.products ?? null])
 
     const dispatch = useDispatch()
-    const [user, cart] = useSelector(state => [state.session.user, state.cartReducer.products])
-
+    const [loaded, setLoaded] = useState(false)
     useEffect(() =>{
-        dispatch(fetchCart())
+      dispatch(fetchCart())
+      .then(() => setLoaded(true))
     },[dispatch, user])
 
     if(!user) return (
@@ -23,22 +24,39 @@ export default function DisplayCart(){
     <h1>Due to recent cart theft by space pirates, only verified users are permitted a cart</h1>
     </div>
     )
-    if(!Object.values(cart).length) return <h2>You have no items in your cart, don't you want to buy something?</h2>
+
+    if(!loaded) return <h2 className="loading-cart">Loading Cart...</h2>
+
+    if (!Object.values(cart).length && loaded) {
+      console.log(Object.values(cart))
+      return <h2>You have no items in your cart, don't you want to buy something?</h2>
+    }
+
+    // if(loaded && !Object.values(cart).length === 0) return <h2>You have no items in your cart, don't you want to buy something?</h2>
+
 
     const itemsByStore = groupItemsByStore(cart)
     // const checkoutPrice = totalCost(cart)
-    console.log(Object.values(cart).length)
+    // console.log('CART', Object.values(cart))
 
     return(
+     <>
+    {/* <>{(!cart) ? 4 : (
+      <></>
+    )}</> */}
     <div className="order-page">
       <div className="shopping-bar">
-          <div className="cart-quantity">
-            <h2>{Object.values(cart).length} items in your cart</h2>
-          </div>
-          <div>
-          <h4>Keep shopping</h4>
-          </div>
+        <div className="cart-quantity">
+          <h2>{Object.values(cart).length} items in your cart</h2>
         </div>
+        <div>
+        <h4>Keep shopping</h4>
+        </div>
+      </div>
+      <div className="purchase-protection">
+      <i className="fa-regular fa-handshake"></i>
+        <p className="etsy-purchase-protection">Etsy purchase protection:</p> <p>Shop confidently knowing if something goes wrong, we've got your back!</p>
+      </div>
       <div className="cart-content">
         <div className="names-are-hard">
         {Object.keys(itemsByStore).map((storeName) => (
@@ -54,22 +72,35 @@ export default function DisplayCart(){
                   </NavLink>
                 </div>
               </div>
-              <ul>
+              {itemsByStore[storeName].freeShipping ? (
+                <>
+                <p className="cart-grey-text">You did it! Free shipping on this order.</p>
+                  <hr className="cart-divider"></hr>
+                </>
+              ) : null}
+
                 {itemsByStore[storeName].map((product, index) => (
                   <li key={index} className="cart-product">
+                    <NavLink to={`/products/${product.productId}`}>
                     <div className="cart-product-image-div">
                     <img src={product.productImage} alt="preview" className="cart-product-image"/>
                     </div>
+                    </NavLink>
                     <div className="cart-product-info">
-                    {console.log(product)}
-                    {product.name}. {product.description}
+                    {/* {console.log(product)} */}
+                  <div className="cart-product-info-top">
+                    <NavLink to={`/products/${product.id}`}
+                      style={{ textDecoration: "none"}}>{product.name}</NavLink>
+                    <span className="cart-product-price">${(product.price * product.quantity).toFixed(2)}</span>
+                  </div>
                     <ChangeQuantity cartId={product.cartId} quantity={product.quantity} productId={product.productId} available={product.available}/>
+                    <p></p>
                     <RemoveItemButton cartId={product.cartId}/>
-                    ${(product.price * product.quantity).toFixed(2)}
+
                     </div>
                   </li>
                 ))}
-              </ul>
+
             </div>
           ))}
           </div>
@@ -82,5 +113,6 @@ export default function DisplayCart(){
           </div>
         </div>
     </div>
+    </>
     )
 }

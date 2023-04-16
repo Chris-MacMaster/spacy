@@ -48,7 +48,7 @@
     width: 40vw;
     border: none;
     background-color: white;
-    
+
     /* marc */
     height: 1.8rem;
 }
@@ -120,7 +120,6 @@ input:focus, text:focus .header-search {
     left:50%;
     transform: translate(-50%);
     font-size: 1rem;
-
 }
 .shop-manager:hover .header-tip {
     visibility: visible;
@@ -148,4 +147,25 @@ input:focus, text:focus .header-search {
 }
 div.navigation:hover {
     cursor: pointer;
+}
+/* .fa-cart-shopping {
+    z-index: 0;
+} */
+.number-in-cart {
+    position: absolute;
+    background-color: rgb(180, 33, 33, .9);
+    color: white;
+    font-size: .8rem;
+    font-weight: bolder;
+    width: fit-content;
+    height: 1rem;
+    padding: .2rem;
+    border-radius: 3rem;
+    z-index: 100;
+    left:.3rem;
+    top: -.3rem
+}
+.cart-total {
+    z-index: 101;
+    position: absolute;
 }

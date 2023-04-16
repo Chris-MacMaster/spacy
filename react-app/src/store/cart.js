@@ -109,8 +109,7 @@ export default function cartReducer(state = initialState, action) {
     newState.products = {...state.products}
     switch(action.type){
         case LOAD_CART: {
-            newState.products = action.cart
-            return newState
+            return {...newState, products: action.cart}
         }
         case ADD_TO_CART: {
             newState.products = action.cart

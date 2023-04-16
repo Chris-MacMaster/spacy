@@ -3,6 +3,8 @@
 }
 .landing-header {
     justify-content: center;
+    background-color: peachpuff;
+    margin-right: 2rem;
 }
 .top-banner-suggest {
     display: flex;

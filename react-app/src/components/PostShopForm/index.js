@@ -57,6 +57,7 @@ export default function PostShopForm() {
 
         <div className='post-shop-grid' >
         <form onSubmit={handleSubmit}
+        id='post-shop'
         className='post-shop-form'>
 
         <div className='create-shop-name create-shop-label' >
