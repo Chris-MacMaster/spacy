@@ -27,6 +27,7 @@ const ProductEditForm = () => {
     const [description, setDescription] = useState("")
     const [freeShipping, setFreeShipping] = useState(false)
     const [price, setPrice] = useState(0)
+    const [url, setUrl] = useState("")
 
     const product = productState
 
@@ -45,14 +46,18 @@ const ProductEditForm = () => {
         if (!price) e.price = "Must submit a price."
         if (!category) e.category = "Must submit a category"
         if (!description) e.description = "Must submit a description"
-    }, [name, available, price, category, description])
+        if (!url) e.url = "Must submit a url"
+    }, [name, available, price, category, description, url])
 
     useEffect(() => {
         dispatch(fetchOneProduct(productId));
       }, [dispatch, productId]);
 
+
+
+
       // prepopulate form
-      useEffect(() => {
+    useEffect(() => {
         setName(productState?.name || "");
         setAvailable(productState?.available || 0);
         setShopId(productState?.shopId || "");
@@ -60,7 +65,10 @@ const ProductEditForm = () => {
         setDescription(productState?.description || "");
         setFreeShipping(productState?.freeShipping || false);
         setPrice(productState?.price || 0);
-      }, [productState]);
+        
+        setUrl(productState && productState.ProductImages && productState.ProductImages.length ? productState.ProductImages[0].url : "");
+        // setUrl1(productState.ProductImages.length ? productState?.ProductImages[0]?.url || "" : "");
+    }, [productState]);
 
 
     const handleSubmit = (e) => {
@@ -78,8 +86,10 @@ const ProductEditForm = () => {
             available,
             free_shipping: freeShipping,
             price,
+            url
         }
         dispatch(editProduct(editedProduct, productId))
+        dispatch(fetchOneProduct(productId));
         reset()
         history.push(`/products/${productId}`)
         // console.log("SUBMITTED!")
@@ -231,6 +241,25 @@ const ProductEditForm = () => {
                         )}
                         </div>
                     </div>
+                </div>
+
+
+                <div className='product-img1-div'>
+                    <label className='product-label q-text' >
+                        URL1:
+                    </label>
+                    <p className='cp-grey-text sub-q-text'>
+                        Provide a url, pictures are necessary! Nobody wants to buy something sight unseen!
+                    </p>
+                    <input className='product-input' type="text"
+                        value={url}
+                        onChange={(e) => setUrl(e.target.value)}
+                        placeholder='Url' />
+                    {hasSubmitted && errors.url && (
+                        <div className='error'>
+                            * {errors.url}
+                        </div>
+                    )}
                 </div>
 
             </form>

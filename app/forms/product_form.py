@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField, BooleanField, URLField
 from wtforms.validators import DataRequired, URL
-from app.models import User
+from app.models import  User
 
 
 
@@ -15,5 +15,5 @@ class CreateProductForm(FlaskForm):
     free_shipping = BooleanField('free_shipping')
     price = IntegerField('price', validators=[DataRequired()])
     # img_1 = StringField('img_1', validators=[DataRequired()])
-    img_1 = StringField('img_1')
+    url = StringField('url')
     #URL()

@@ -44,7 +44,7 @@ const ProductDetail = () => {
 
     //dispatching state
     useEffect(() => {
-        console.log("FIRE DISPATCH ----------------------------")
+        // console.log("FIRE DISPATCH ----------------------------")
         dispatch(fetchOneProduct(productId))
         dispatch(fetchProductReviews(productId))
     }, [dispatch, productId])

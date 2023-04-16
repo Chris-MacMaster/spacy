@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import './PostShopForm.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { createShop } from '../../store/shops'
@@ -15,7 +15,7 @@ export default function PostShopForm() {
     const [policies, setPolicies] = useState('')
     const [url, setUrl] = useState('')
     const [errors, setErrors] = useState({})
-    // const user = useSelector(state => state.session.user)
+    const user = useSelector(state => state.session.user)
     const history = useHistory()
     const dispatch = useDispatch()
     const validate = () => {
@@ -48,44 +48,103 @@ export default function PostShopForm() {
             url
         }
         dispatch(createShop(newShop))
-        // history.push(`/users/${user.id}`)
+        history.push(`/users/${user.id}`)
     }
     console.log("WE'RE REACHING THE ROUTE")
     return (
-        <div className='post-shop-form'>
-            <h1>Post New Shop</h1>
-        <form onSubmit={handleSubmit}>
+        <div className='post-shop-div'>
+            <h1 className='post-shop-title'>Post New Shop</h1>
 
+        <div className='post-shop-grid' >
+        <form onSubmit={handleSubmit}
+        className='post-shop-form'>
+
+        <div className='create-shop-name create-shop-label' >
         <label className='create-shop-label'>Name</label>
-        <input type='text' value={name} onChange={e => setName(e.target.value)}></input>
+        <p className='create-shop-grey'>Choose a welcoming name for your shop</p>
+        </div>
+        <div className='create-shop-input'>
+            <input type='text' value={name}
+            className='create-shop-input-field' onChange={e => setName(e.target.value)}></input>
+            <p className='errors'>{errors.name}</p>
+        </div>
 
         <label className='create-shop-label'>Street Address</label>
-        <input type='text' value={streetAddress} onChange={e => setStreetAddress(e.target.value)}></input>
+
+        <div className='create-shop-input'>
+        <input className='create-shop-input-field' type='text' value={streetAddress} onChange={e => setStreetAddress(e.target.value)}></input>
+        <p className='errors'>{errors.streetAddress}</p>
+        </div>
+
 
         <label className='create-shop-label'>City</label>
-        <input type='text' value={city} onChange={e => setCity(e.target.value)}></input>
 
-        <label className='create-shop-label' >State</label>
-        <input type='text' value={state} onChange={e => setState(e.target.value)} ></input>
+        <div className='create-shop-input'>
+        <input className='create-shop-input-field' type='text' value={city} onChange={e => setCity(e.target.value)}></input>
+        <p className='errors'>{errors.city}</p>
+        </div>
+
+        <label className='create-shop-label'>State</label>
+
+        <div className='create-shop-input'>
+
+        <input className='create-shop-input-field' type='text' value={state} onChange={e => setState(e.target.value)} ></input>
+        <p className='errors'>{errors.state}</p>
+
+        </div>
 
         <label className='create-shop-label'>Country</label>
-        <input type='text' value={country} onChange={e => setCountry(e.target.value)}></input>
 
+        <div className='create-shop-input'>
+        <input type='text' value={country} className='create-shop-input-field' onChange={e => setCountry(e.target.value)}></input>
+        <p className='errors'>{errors.country}</p>
+        </div>
+
+        <div className='create-shop-label-grid create-shop-description'>
         <label className='create-shop-label'>Description</label>
-        <input type='text-area' value={description} onChange={e => setDescription(e.target.value)}></input>
+        <p className='create-shop-grey'>State building you brand by giving a brief description of your shop and what you're known for.</p>
+        </div>
 
-        <label className='create-shop-label'>Category</label>
-        <input type='text' value={category} onChange={e => setCategory(e.target.value)}></input>
+        <div className='create-shop-input'>
+        <textarea className='create-shop-input-field' type='textarea' value={description} onChange={e => setDescription(e.target.value)}></textarea>
+        <p className='errors'>{errors.description}</p>
+        </div>
 
+        <div className='create-shop-label-grid create-shop-category'>
+        <label className='create-shop-label '>Category</label>
+        <p className='create-shop-grey'>Providing a category helps you get shown in search results!</p>
+        </div>
+
+        <div className='create-shop-input'>
+        <input type='text' value={category}
+        className='create-shop-input-field'
+        onChange={e => setCategory(e.target.value)}></input>
+        <p className='errors'>{errors.category}</p>
+        </div>
+
+        <div className='create-shop-label-grid'>
         <label className='create-shop-label'>Policies</label>
-        <input type='text' value={policies} onChange={e => setPolicies(e.target.value)}></input>
+        <p className='create-shop-grey'>Give your customers an idea of the sort of service they can expect from you.</p>
+        </div>
 
+        <div className='create-shop-input'>
+        <input className='create-shop-input-field' type='text' value={policies} onChange={e => setPolicies(e.target.value)}></input>
+        <p className='errors'>{errors.policies}</p>
+        </div>
+
+        <div className='create-shop-label-grid'>
         <label className='create-shop-label'>Image URL</label>
-        <input type='url' value={url} onChange={e => setUrl(e.target.value)} ></input>
+        <p className='create-shop-grey'>Images are mandatory, show off your logo or a good representation of your business!</p>
+        </div>
 
-        <button type='submit'>Submit Shop</button>
+        <div className='create-shop-input'>
+        <input className='create-shop-input-field' type='url' value={url} onChange={e => setUrl(e.target.value)} ></input>
+        <p className='errors'>{errors.url}</p>
+        </div>
 
+        <button type='submit' className='favorite-shop submit-create-shop'>Submit Shop</button>
         </form>
+        </div>
         </div>
     )
 }

@@ -70,7 +70,7 @@ export default function ProductCreateForm() {
           available,
           freeShipping,
           price,
-          img_1: url1
+          url: url1
         }
         dispatch(makeProduct(newProduct))
         history.push(`/shops/${shopId}`)

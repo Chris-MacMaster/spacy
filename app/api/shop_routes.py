@@ -6,6 +6,7 @@ shop_routes = Blueprint('/shops', __name__)
 from app.forms import CreateShopForm
 
 
+
 @shop_routes.route('/', methods=['GET', 'POST'])
 def get_all_shops():
     """returns all shops regardless of session"""
@@ -13,6 +14,12 @@ def get_all_shops():
         shops = Shop.query.all()
         print("SHOPS", shops)
         shopcopy = [shop.to_dict() for shop in shops]
+        def shop_products(id):
+            products = Product.query.filter(Product.shop_id == id).all()
+            return [product.to_dict() for product in products]
+        def get_images(id):
+            images = ProductImage.query.filter(ProductImage.product_id == id).all()
+            return [image.to_dict() for image in images]
         def get_shop_images(id):
             image = ShopImage.query.filter(ShopImage.shop_id == id).first()
             if image:
@@ -23,6 +30,9 @@ def get_all_shops():
                 shop['ShopImage'] = shopimage
             else:
                 shop['ShopImage'] = 'shopImage not available'
+            shop['Products'] = shop_products(shop['id'])
+            for product in shop['Products']:
+                product['ProductImages'] = get_images(product['id'])
         return shopcopy, 200
     """posts a new shop"""
     if request.method == 'POST' and current_user.is_authenticated:
@@ -59,12 +69,13 @@ def get_all_shops():
             db.session.commit()
             return new_shop.to_dict(), 201
 
-@shop_routes.route('/<int:shop_id>', methods=['DELETE'])
+@shop_routes.route('/<int:shop_id>', methods=['DELETE', 'PUT'])
 @login_required
 def delete_one_shop(shop_id):
     """deletes one shop according to id"""
-    if current_user.is_authenticated:
-        shop = Shop.query.filter_by(id=shop_id).first()
+    shop = Shop.query.get(shop_id)
+    shop_image = ShopImage.query.get(shop_id)
+    if current_user.is_authenticated and request.method == 'DELETE':
         # cart_items = Cart.query.filter_by(user_id=current_user.id).all()
         if shop == None:
             return {"errors": "Cannot find Shop with specified id"}
@@ -74,6 +85,24 @@ def delete_one_shop(shop_id):
             return shop.to_dict(), 200
         elif shop.owner_id != current_user.id:
             return {"errors": "Only owner may delete their own shop"}
+    elif current_user.is_authenticated and request.method == 'PUT':
+        form = CreateShopForm()
+        form['csrf_token'].data = request.cookies['csrf_token']
+        if form.validate_on_submit():
+            shop.name = form.data['name']
+            shop.street_address = form.data['street_address']
+            shop.city = form.data['city']
+            shop.state = form.data['state']
+            shop.country = form.data['country']
+            shop.description = form.data['description']
+            shop.category = form.data['category']
+            shop.policies = form.data['policies']
+
+            shop_image.url = form.data['url']
+            db.session.commit()
+            return shop.to_dict, 201
+
+
 
 
 @shop_routes.route('/<int:shop_id>')
