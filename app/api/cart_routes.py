@@ -7,24 +7,6 @@ cart_routes = Blueprint('/cart', __name__)
 
 @cart_routes.route('/empty', methods=['DELETE'])
 def checkout():
-    print('')
-    print('')
-    print('')
-    print('')
-    print('')
-    print('')
-    print('')
-    print('')
-    print('')
-    print('')
-    print('')
-    print('')
-    print('')
-    print('')
-    print('')
-    print('')
-    print('')
-
     # send user id and delete all carts associated with that id.
     #
     carts_to_delete = Cart.query.filter(Cart.user_id == current_user.id).all()
