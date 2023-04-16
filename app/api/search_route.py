@@ -13,7 +13,7 @@ search_route = Blueprint('/search', __name__)
 #         products_results = Product.query().filter(Product.name.like("%{parameters}%")
 #                                 or Product.category == parameters
 #                                 or [Shop.name == parameters for Product.shops.name in Product.shops]).all()
-    
+
 #         if products_results:
 #             return jsonify(products_results), 200
 #         return {'No results match those terms'}, 404
@@ -27,7 +27,7 @@ def search(parameters):
             return ProductReview.query.filter(ProductReview.product_id == id).all()
         def get_shop(id):
               return Shop.query.filter(Shop.id == id).one()
-        
+
         print(parameters)
 
         shop_results = db.session.query(Shop).filter(Shop.name.like(parameters)).all()
@@ -38,23 +38,12 @@ def search(parameters):
         products_results = db.session.query(Product).filter(or_(Product.name.ilike(f'%{parameters}%'),
                                                                 Product.category.ilike(parameters)
                                                                 )).all()
-        
+
         for product in products_results:
             #   product['reviews'] = []
             #   for review in product.product_reviews:
             #         product['reviews'].append(review.to_dict())
               print('reviews', len(product.product_reviews))
-              print('')
-              print('')
-              print('')
-              print('')
-              print('')
-              print('')
-              print('')
-              print('')
-              print('')
-              print('')
-
 
         list_1 = [product.to_dict() for product in products_results]
 
@@ -64,11 +53,11 @@ def search(parameters):
         for shop in shop_results:
                 for product in shop.products:
                         list_2.append(product.to_dict())
-                
+
         for product in list_1:
             product_images = get_images(product['id'])
             product['ProductImages'] = [image.to_dict() for image in product_images]
-            
+
             review_sum = 0
             reviews = get_reviews(product['id'])
             for review in reviews:
@@ -95,7 +84,7 @@ def search(parameters):
             product['shop'] = shop.to_dict()
 
 
-        full_list = list_1 + list_2         
+        full_list = list_1 + list_2
         print('results backend', full_list) #to dict
         if products_results and shop_results:
                 return jsonify({'products': full_list})
@@ -103,7 +92,7 @@ def search(parameters):
                 return jsonify(list_1)
         elif shop_results and not products_results:
                 return jsonify({'products': list_2})
-        else:    
+        else:
             return {'result': 'No items found'}
 
 
@@ -118,25 +107,6 @@ def filtered_search(search_category):
     def get_shop(id):
         return Shop.query.filter(Shop.id == id).one()
 
-    print('')
-    print('')
-    print('')
-    print('')
-    print('')
-    print('')
-    print('')
-    print('')
-    print(search_replace)
-    print('')
-    print('')
-    print('')
-    print('')
-    print('')
-    print('')
-    print('')
-    print('')
-    print('')
-    print('')
     products = None
 
 
@@ -147,7 +117,7 @@ def filtered_search(search_category):
     elif search_replace == 'Gifts for Him':
             products = Product.query.filter(or_((Product.category == 'Apparel') |
                                                 (Product.category =='Foodstuffs'))).all()
-            
+
     elif search_replace == 'Gifts for Kids':
             products = Product.query.filter(or_((Product.category =='Collectibles') |
                                                 (Product.category == 'Food') |
@@ -165,7 +135,7 @@ def filtered_search(search_category):
     for prod in prod_list:
         product_images = get_images(prod['id'])
         prod['ProductImages'] = [image.to_dict() for image in product_images]
-            
+
         review_sum = 0
         reviews = get_reviews(prod['id'])
         for review in reviews:
@@ -179,6 +149,3 @@ def filtered_search(search_category):
 
 #     print('filtered products', [product.to_dict() for product in products])
     return prod_list
-        
-
-    

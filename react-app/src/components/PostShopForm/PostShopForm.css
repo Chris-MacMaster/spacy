@@ -1,0 +1,48 @@
+.post-shop-div {
+    margin: 4rem;
+
+}
+h1.post-shop-title {
+    font-family: 'Libre Baskerville', serif;
+    margin-top: 5rem;
+    justify-content: center;
+    /* position: absolute; */
+}
+.post-shop-form {
+    display: grid;
+    grid-template-columns: auto auto;
+    margin-top: 5rem;
+    max-width: 40rem;
+    box-shadow: 0rem 0rem .5 grey;
+}
+
+.post-shop-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.create-shop-label {
+    font-weight: 700;
+}
+.create-shop-grey {
+    font-size: .8rem;
+    color: rgb(68, 68, 68);
+    width: 20rem;
+}
+.create-shop-input {
+    margin-bottom: 1rem;
+}
+.submit-create-shop {
+    font-size: 1rem;
+    font-weight: bolder;
+}
+.create-shop-input-field {
+    height: 1.3rem;
+    border-radius: .3rem;
+}
+
+.shop-create-description {
+    border-width: 2px;
+    border-style: inset;
+    border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+}

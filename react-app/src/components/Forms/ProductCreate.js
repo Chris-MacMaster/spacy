@@ -21,24 +21,12 @@ export default function ProductCreateForm() {
 
     const [name, setName] = useState("")
     const [available, setAvailable] = useState(0)
-    // // const [avgRating, setAvgRating] = useState(0)
-
     const [category, setCategory] = useState("")
     const [description, setDescription] = useState("")
     const [freeShipping, setFreeShipping] = useState(false)
     const [price, setPrice] = useState(0)
 
     const [url1, setUrl1] = useState("")
-    // const [url2, setUrl2] = useState("")
-    // const [url3, setUrl3] = useState("")
-    // const [url4, setUrl4] = useState("")
-    // const [url5, setUrl5] = useState("")
-    // const [url6, setUrl6] = useState("")
-    // const [url7, setUrl7] = useState("")
-    // const [url8, setUrl8] = useState("")
-    // const [url9, setUrl9] = useState("")
-
-    // shopId
 
     //validation
     const [errors, setErrors] = useState({})
@@ -47,13 +35,13 @@ export default function ProductCreateForm() {
     useEffect(() => {
         let e = {}
         setErrors(e)
-        // console.log(category)
         if (!name) e.name = "Must submit a name"
         if (!available) e.available = "Must submit a value for available."
         if (!price) e.price = "Must submit a price."
         if (!category) e.category = "Must submit a category"
         if (!description) e.description = "Must submit a description"
-        if (!url1) e.url1 = "Must submit at least 1 url, in the first input line."
+        if (!url1) e.url1 = "Must submit a url."
+        if (!urlCheck(url1)) e.urlCheck = "Must submit a valid url. We accept urls ending in any of the following: jpeg, jpg, svg, png, gif, bmp."
     }, [name, available, price, category, description, url1])
 
     const handleSubmit = (e) => {
@@ -72,15 +60,10 @@ export default function ProductCreateForm() {
           available,
           freeShipping,
           price,
-          img_1: url1
+          url: url1
         }
         dispatch(makeProduct(newProduct))
-        reset()
         history.push(`/shops/${shopId}`)
-    };
-
-    const reset = () => {
-
     };
 
 
@@ -88,66 +71,85 @@ export default function ProductCreateForm() {
         freeShipping === true ? setFreeShipping(false) : setFreeShipping(true)
     }
 
+    // const urlCheck = (url) => {
+    //     return url.endsWith("jpeg") ||
+    //         url.endsWith("jpg") ||
+    //         url.endsWith("svg") ||
+    //         url.endsWith("png") ||
+    //         url.endsWith('gif') ||
+    //         url.endsWith("bmp")
+    // }
+
+
     return (
         <div className='cp-container'>
-            <h1 className='cp-title'>Listing details</h1>
-            <p className='cp-grey-text sub-q-text'>Tell the world all about your item and why they'll love it</p>
+            <h1 className='cp-title form-title'>Listing details</h1>
+            <p className='cp-grey-text sub-q-text form-sub'>Tell the world all about your item and why they'll love it</p>
             <form className='sp-form' onSubmit={handleSubmit} >
 
                 <div className='product-name-div'>
                     <div>
-                    <label className='cp-form-label cp-title q-text' >
-                        Title 
-                    </label>
-                    {/* <p className='cp-grey-text sub-q-text'>Incldue keywords that buyer would use to search for your item</p> */}
+                        <label className='cp-form-label cp-title q-text' >
+                            Title
+                        </label>
+                        <p className='create-shop-grey'>
+                            Choose a name for your product. Incldue keywords that a buyer would use to search for your item.
+                        </p>
+                        {/* <p className='cp-grey-text sub-q-text'>Incldue keywords that buyer would use to search for your item</p> */}
                     </div>
-                    <div className='cp-field-div'>
-                        <input className='product-input' type="text"
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
-                            placeholder='Name' />
-                    {hasSubmitted && errors.name && (
-                        <div className='error'>
-                            * {errors.name}
+                    <div className='input-div'>
+                        <div className='cp-field-div'>
+                            <input className='product-input input-field' type="text"
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                                placeholder='Title' />
+                        {hasSubmitted && errors.name && (
+                            <div className='error'>
+                                * {errors.name}
+                            </div>
+                        )}
                         </div>
-                    )}
                     </div>
+
                 </div>
 
                 <div className='product-description-div'>
-                    <label className='cp-form-label cp-description q-text' >
-                        Description 
-                    </label>
-                        <p className='cp-grey-text sub-q-text'>
-                            Start with a brief overview that describes your item's findes feature. Shopper will only see the first few lines of your description at first, so make it count!
-                        </p>
-                        <p className='cp-grey-text sub-q-text'>
-                            Not sure what else to say? Shoppers also like hearing about your process, and the story behind the item!
-                        </p>
-                    </div>
-                <div className='cp-field-div'>
-                        <input className='product-input' type="text-area"
-                            value={description}
-                            onChange={(e) => setDescription(e.target.value)}
-                            placeholder='Description' />
-                    {hasSubmitted && errors.description && (
-                        <div className='error'>
-                            * {errors.description}
+                    <div className='description-title-sub-text'>
+                        <label className='cp-form-label cp-description q-text' >
+                            Description
+                        </label>
+                        <p className='cp-grey-text sub-q-text create-shop-grey'>
+                                Start with a brief overview that describes your item's findes feature. Shopper will only see the first few lines of your description at first, so make it count!
+                            </p>
+                        <p className='cp-grey-text sub-q-text create-shop-grey'>
+                                Not sure what else to say? Shoppers also like hearing about your process, and the story behind the item!
+                            </p>
                         </div>
-                    )}
+                    <div className='cp-field-div description-text'>
+                        <textarea className='product-input input-field description-input' type="text-area"
+                                    value={description}
+                                    onChange={(e) => setDescription(e.target.value)}
+                                    placeholder='' />
+                            {hasSubmitted && errors.description && (
+                                <div className='error'>
+                                    * {errors.description}
+                                </div>
+                            )}
+                    </div>
                 </div>
 
 
-
                 <div className='product-available-div'>
-                    <label className='cp-form-label cp-available q-text' >
-                        Available 
-                    </label>
-                    <p className='cp-grey-text sub-q-text'>
-                        How many do you currently have in stock?
-                    </p>
+                    <div >
+                        <label className='cp-form-label cp-available q-text' >
+                            Available
+                        </label>
+                        <p className='cp-grey-text sub-q-text create-shop-grey'>
+                            How many do you currently have in stock?
+                        </p>
+                    </div>
                     <div className='cp-field-div'>
-                        <input className='product-input' type="number"
+                        <input className='product-input input-field' type="number"
                             value={available}
                             onChange={(e) => setAvailable(e.target.value)}
                             placeholder='Available' />
@@ -160,14 +162,16 @@ export default function ProductCreateForm() {
                 </div>
 
                 <div className='product-price-div'>
-                    <label className='cp-form-label cp-price q-text' >
-                        Price
-                    </label>
-                    <p className='cp-form-label sub-q-text'>
-                        Please dont use denominations other than Empire or New Republic Credits
-                    </p>
+                    <div >
+                        <label className='cp-form-label cp-price q-text' >
+                            Price
+                        </label>
+                        <p className='cp-form-label sub-q-text create-shop-grey'>
+                            Please dont use denominations other than Empire or New Republic Credits
+                        </p>
+                    </div>
                     <div className='cp-form-field'>
-                        <input className='product-input' type="number"
+                        <input className='product-input input-field' type="number"
                             value={price}
                             onChange={(e) => setPrice(e.target.value)}
                             placeholder='Price' />
@@ -181,13 +185,15 @@ export default function ProductCreateForm() {
 
                 <div className='category-shipping-div'>
                     <div className='product-category-div'>
-                        <label className='product-label q-text' >
-                            Category
-                        </label>
-                        <p className='cp-grey-text sub-q-text'>Type a one word description of your item to get category suggestions that will help more shoppers find it.</p>
+                        <div >
+                            <label className='product-label q-text' >
+                                Category
+                            </label>
+                            <p className='cp-grey-text sub-q-text create-shop-grey'>Select a category from the options below.</p>
+                        </div>
                         <div className='cp-field-div'>
-                            <select name='category' onChange={(e) => setCategory(e.target.value)}>
-                                <option value='' >--Please choose an option--</option>
+                            <select className='product-category-select' name='category' onChange={(e) => setCategory(e.target.value)}>
+                                <option value='' >--Please choose a category--</option>
                                 <option value='Accessories' >Accessories</option>
                                 <option value='Apparel' >Apparel</option>
                                 <option value='Collectibles' >Collectibles</option>
@@ -207,8 +213,11 @@ export default function ProductCreateForm() {
 
                     <div className='product-shipping-div'>
                         <label className='product-label q-text' >
-                            Free Shipping?
+                            Free Shipping
                         </label>
+                        <p className='cp-form-label sub-q-text create-shop-grey'>
+                            Check the box to indicate whether or not your product is shipped for free.
+                        </p>
                         {/* <p className='cp-grey-text'>Either true or false</p> */}
                         <div className='cp-field-div'>
                             <input className='product-input' type="checkbox"
@@ -227,27 +236,44 @@ export default function ProductCreateForm() {
 
 
                 <div className='product-img1-div'>
-                    <label className='product-label q-text' >
-                        URL1:
-                    </label>
-                    <p className='cp-grey-text sub-q-text'>
-                        Provide a url, pictures are necessary! Nobody wants to buy something sight unseen!
-                    </p>
-                        <input className='product-input' type="text"
+                    <div >
+                        <label className='product-label q-text' >
+                            Image URL
+                        </label>
+                        <p className='cp-grey-text sub-q-text create-shop-grey'>
+                            Provide a url, pictures are necessary! Nobody wants to buy something sight unseen!
+                        </p>
+                    </div>
+                    <input className='product-input input-field' type="text"
                             value={url1}
                             onChange={(e) => setUrl1(e.target.value)}
-                            placeholder='Url1' />
+                            placeholder='URL' />
                     {hasSubmitted && errors.url1 && (
                         <div className='error'>
                             * {errors.url1}
                         </div>
                     )}
                 </div>
+                    {hasSubmitted && errors.urlCheck && (
+                        <div className='error'>
+                            * {errors.urlCheck}
+                        </div>
+                    )}
 
             </form>
 
-            <input onClick={handleSubmit} className='submit-button form-create-button red-styling' type="submit" value="Create Product" />
+            <input onClick={handleSubmit} className='submit-button form-create-button favorite-shop submit-create-shop create-product-button' type="submit" value="Create Product" />
 
         </div>
     );
+}
+
+
+export const urlCheck = (url) => {
+    return url.endsWith("jpeg") ||
+        url.endsWith("jpg") ||
+        url.endsWith("svg") ||
+        url.endsWith("png") ||
+        url.endsWith('gif') ||
+        url.endsWith("bmp")
 }

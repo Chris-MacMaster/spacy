@@ -54,3 +54,10 @@ margin-top: 2rem;
 .edit-review-button:hover {
     box-shadow: 0rem 0rem .5rem black;
 }
+.rev-col-a {
+    margin:1rem;
+}
+.review-num-title,
+.review-index-stars {
+    font-size: 2rem;
+}

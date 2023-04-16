@@ -10,7 +10,7 @@ product_routes = Blueprint('/products', __name__)
 @product_routes.route('/<int:product_id>/', methods=['GET', 'DELETE', 'PUT'])
 def get_one_product(product_id):
     """returns one product with the specified id"""
-
+    print("made to get one product -----------------------------")
     if request.method == 'GET':
         product = Product.query.get(product_id)
         productcopy = product.to_dict()
@@ -42,6 +42,7 @@ def get_one_product(product_id):
                 return product.to_dict(), 200
         return { 'errors': 'Not authenticated'}
     elif request.method == 'PUT':
+
         if current_user.is_authenticated:
             product = Product.query.get(product_id)
             # print("query passed ---------------------")
@@ -59,8 +60,18 @@ def get_one_product(product_id):
                 product.price = form.data["price"]
                 db.session.commit()
                 # addnig an associated image for the newly created product
-                product_image = ProductImage.query.get(product_id)
-                product_image.url = form.data["img_1"]
+                product_image = ProductImage.query.filter(ProductImage.product_id == product_id).all()
+                first_img = product_image[0]
+                for img in product_image:
+                    if img.id < first_img.id:
+                        first_img = img
+
+                # print("product image =========================", product_image.to_dict())
+                # print("product image =========================", product_image.to_dict())
+                # print("product image =========================", product_image.to_dict())
+                # print("product image =========================", product_image.to_dict())
+                # print("product image =========================", product_image.to_dict())
+                first_img.url = form.data["url"]
                 db.session.commit()
                 return product.to_dict(), 201
             # print('validations failed! ----------------')
@@ -95,7 +106,7 @@ def get_all_products():
         return  payload, 200
     #POSTS NEW PRODUCT
     elif request.method == "POST":
-        print('PAST METHOD CHECKER ------------------------------')
+        # print('PAST METHOD CHECKER ------------------------------')
         form = CreateProductForm()
         form['csrf_token'].data = request.cookies['csrf_token']
         if not form.validate_on_submit():
@@ -116,7 +127,7 @@ def get_all_products():
             new_product_list = Product.query.all()
             new_product = new_product_list[-1]
             new_product_img = ProductImage(
-                url = form.data["img_1"],
+                url = form.data["url"],
                 product_id = new_product.id,
             )
             db.session.add(new_product_img)

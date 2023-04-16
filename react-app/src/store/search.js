@@ -22,7 +22,7 @@ const filteredSearch = (filteredSearchResults) => {
 //         headers: {'Content-Type': 'application/json'},
 //         body: JSON.stringify(parameters)
 //     })
-    
+
 //     if (res.ok) {
 //         const currSearchResults = await res.json()
 //         dispatch(search(currSearchResults))
@@ -34,7 +34,7 @@ export const getSearchResults = (parameters) => async (dispatch) => {
     // const res = await fetch(`api/search/${parameters}`)
 
     const res = await fetch(`/api/search/${parameters}`)
-    
+
     if (res.ok) {
         console.log('res ok')
         const currSearchResults = await res.json()
@@ -61,21 +61,15 @@ export default function searchReducer(state=initialState, action) {
         case GET_SEARCH_RESULTS: {
             console.log('thunk hit')
             const newState = {...state, searchResults: {...state.searchResults}}
-            console.log('reducer data', action.currSearchResults)
-            // Object.values(action.currSearchResults).map(result => newState.searchResults[result.id] = result)
             newState.searchResults = {...action.currSearchResults}
             console.log('newState', newState)
             return newState
         }
         case GET_FILTERED_SEARCH: {
             const newState2 = {...state, searchResults: {...state.searchResults}}
-
             newState2.filteredSearch = {}
-
             action.filteredSearchResults.map(result => (newState2.filteredSearch[result.id] = result))
-
             return newState2
-
         }
         default:
             return state

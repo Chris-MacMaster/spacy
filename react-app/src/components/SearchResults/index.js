@@ -14,6 +14,13 @@ function SearchResults() {
         dispatch(getSearchResults(parameters))
     }, [dispatch, parameters])
 
+
+    if (!Object.values(products).length) {
+        return (
+            <h1>No Results</h1>
+        )
+    }
+
     return (
         <div className="search-results-div">
         <div className="est-arrival">

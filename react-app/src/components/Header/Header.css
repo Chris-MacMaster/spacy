@@ -48,6 +48,9 @@
     width: 40vw;
     border: none;
     background-color: white;
+    
+    /* marc */
+    height: 1.8rem;
 }
 .search-bar {
     display: flex;
@@ -67,6 +70,13 @@
     padding-right: .5rem;
     border-radius: 0% 1rem 1rem 0%;
 }
+
+/* marc */
+.telescope-search:hover{
+    cursor: pointer;
+}
+
+
 .cart {
     margin-right: 2rem;
     font-size: 1.5rem;
@@ -110,7 +120,6 @@ input:focus, text:focus .header-search {
     left:50%;
     transform: translate(-50%);
     font-size: 1rem;
-
 }
 .shop-manager:hover .header-tip {
     visibility: visible;
@@ -139,3 +148,21 @@ input:focus, text:focus .header-search {
 div.navigation:hover {
     cursor: pointer;
 }
+/* .fa-cart-shopping {
+    position: absolute;
+    z-index: 0;
+}
+.number-in-cart {
+    background-color: rgb(180, 33, 33);
+    color: white;
+    font-size: .8rem;
+    font-weight: bolder;
+    width: fit-content;
+    padding: .1rem;
+    border-radius: 1rem;
+    z-index: 100;
+} 
+.cart-total {
+    z-index: 101;
+    position: absolute;
+} */

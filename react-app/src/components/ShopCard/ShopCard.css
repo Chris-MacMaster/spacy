@@ -1,7 +1,8 @@
 .landing-shop-card {
     width: 22rem;
     height: 23rem;
-    border: solid lightgray 2px;
+    /* border: solid lightgray 2px; */
+    box-shadow: 0rem 0rem .5rem grey;
     border-radius: 1rem;
     grid-template-columns: auto auto;
     justify-content: center;
