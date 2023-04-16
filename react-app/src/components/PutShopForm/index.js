@@ -42,14 +42,14 @@ export default function PutShopForm() {
     }
 
     useEffect(() => {
-        setName(shopState.name ? shopState.name : '')
-        setStreetAddress(shopState.streetAddress ? shopState.streetAddress : '')
-        setCity(shopState.city ? shopState.city : '')
-        setState(shopState.state ? shopState.state : '')
-        setCountry(shopState.country ? shopState.country : '')
-        setDescription(shopState.description ? shopState.description : '')
-        setCategory(shopState.category ? shopState.category : '')
-        setPolicies(shopState.policies ? shopState.policies : '')
+        setName(shopState && shopState.name ? shopState.name : '')
+        setStreetAddress(shopState && shopState.streetAddress ? shopState.streetAddress : '')
+        setCity(shopState && shopState.city ? shopState.city : '')
+        setState(shopState && shopState.state ? shopState.state : '')
+        setCountry(shopState && shopState.country ? shopState.country : '')
+        setDescription(shopState && shopState.description ? shopState.description : '')
+        setCategory(shopState && shopState.category ? shopState.category : '')
+        setPolicies(shopState && shopState.policies ? shopState.policies : '')
         setUrl(shopState && shopState.ShopImages && shopState.ShopImages.url ? shopState.ShopImages.url : '')
     }, [shopState])
 
@@ -72,6 +72,7 @@ export default function PutShopForm() {
         dispatch(fetchOneShop(shopId))
         history.push(`/users/${user.id}`)
     }
+    if (shopState && user.id !== shopState.ownerId) return null
     console.log("WE'RE REACHING THE ROUTE")
     return (
         <div className='post-shop-div'>
