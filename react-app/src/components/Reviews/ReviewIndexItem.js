@@ -37,9 +37,9 @@ const ReviewIndexItem = ({ review , product}) => {
                     <div className='rev-stars'>
                         {Array(5).fill(1).map((s, i) => (
                             i < review.stars ? (
-                                <i className="fa-solid fa-star gold-star landing-shop-stars"></i>
+                                <i className="fa-solid fa-star gold-stargit  review-index-stars"></i>
                             ) : (
-                                <i className="fa-solid fa-star blank-star landing-shop-stars"></i>
+                                <i className="fa-solid fa-star blank-star review-index-stars"></i>
                             )
                         ))}
                         {review.stars} (stars)
@@ -57,10 +57,10 @@ const ReviewIndexItem = ({ review , product}) => {
                             </div>
                         </div>
                         <div className='review-created'>
-                            {Object.values(review).length && review.createdAt ? (<p>
+                            {Object.values(review).length && review.createdAt ? (<>
 
                                 {review.createdAt.slice(0, -12)}
-                            </p>): null}
+                            </>): null}
                         </div>
                     </div>
                 {user && Object.values(review).length > 0 && review.userId === user.id ?

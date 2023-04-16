@@ -54,7 +54,7 @@ textarea {
     padding-bottom: 15em;
 }
 
-.formParent{
+.formParent {
     margin-top: 15em;
     display: flex;
     /* flex-direction: column; */
@@ -91,13 +91,14 @@ textarea {
 
 .reviewText {
     /* border: 3px solid red; */
-    height: 150px;
-    width: 280px;
+    height: 8rem;
+    width: 25rem;
     margin: 1em;
 }
 
 .submitButtonParent {
     display: flex;
+    margin-bottom: 7rem;
 }
 .submitButton {
     background-color: black;
@@ -125,8 +126,6 @@ textarea {
 .imageURLinput {
     margin-bottom: 1rem;
 }
-
-
 .edit-review-button {
     z-index: 5;
 }
