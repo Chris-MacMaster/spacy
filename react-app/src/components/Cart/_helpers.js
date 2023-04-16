@@ -10,7 +10,8 @@
 //return object
 export const groupItemsByStore = (cart) =>{
     const itemsByStore = {}
-    console.log(cart)
+    console.log('FIXING BUGS', cart)
+    if (!cart) return null
     for (const i in cart){
         if (!itemsByStore[cart[i].shopName]){
             itemsByStore[cart[i].shopName] = [cart[i]]
