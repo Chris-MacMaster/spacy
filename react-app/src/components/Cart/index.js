@@ -25,9 +25,10 @@ export default function DisplayCart(){
     )
     if(!Object.values(cart).length) return <h2>You have no items in your cart, don't you want to buy something?</h2>
 
+
     const itemsByStore = groupItemsByStore(cart)
     // const checkoutPrice = totalCost(cart)
-    console.log(Object.values(cart).length)
+    console.log('CART', Object.values(cart))
 
     return(
     <div className="order-page">
@@ -54,6 +55,13 @@ export default function DisplayCart(){
                   </NavLink>
                 </div>
               </div>
+              {/* {console.log(storeName)} */}
+              {storeName? (
+                <>
+                <p className="cart-grey-text">You did it! Free shipping on this order.</p>
+                  <hr className="cart-divider"></hr>
+                </>
+              ) : null}
               <ul>
                 {itemsByStore[storeName].map((product, index) => (
                   <li key={index} className="cart-product">
@@ -61,11 +69,18 @@ export default function DisplayCart(){
                     <img src={product.productImage} alt="preview" className="cart-product-image"/>
                     </div>
                     <div className="cart-product-info">
-                    {console.log(product)}
-                    {product.name}. {product.description}
+                    {/* {console.log(product)} */}
+                  <div className="cart-product-info-top">
+                    <NavLink to={`/products/${product.id}`}
+                      style={{ "text-decoration": "none"}}>{product.name}</NavLink>
+
+                    <span></span>
+                    <span>${(product.price * product.quantity).toFixed(2)}</span>
+                  </div>
                     <ChangeQuantity cartId={product.cartId} quantity={product.quantity} productId={product.productId} available={product.available}/>
+                    <p></p>
                     <RemoveItemButton cartId={product.cartId}/>
-                    ${(product.price * product.quantity).toFixed(2)}
+
                     </div>
                   </li>
                 ))}

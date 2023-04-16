@@ -13,7 +13,9 @@ h1.post-shop-title {
     grid-template-columns: auto auto;
     margin-top: 5rem;
     max-width: 40rem;
+    box-shadow: 0rem 0rem .5 grey;
 }
+
 .post-shop-grid {
     display: flex;
     justify-content: center;
