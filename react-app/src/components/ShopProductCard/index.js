@@ -39,11 +39,13 @@ export default function ShopProductCard({ product, user, shop }) {
                         ${product.price}
                     </p>
                 </div>
+                {user && user.id === shop.ownerId ? (
 
                 <div className='shop-product-buttons'>
                     <button id='shop-delete-button' onClick={handleDelete} className='user-delete-product'>Delete</button>
                     <button id='shop-edit-button' onClick={handleEdit} className='user-edit-product'>Edit</button>
                 </div>
+                ) : null}
             </div>
             </NavLink>
         </div>
