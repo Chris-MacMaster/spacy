@@ -46,7 +46,7 @@ function SearchResults() {
                                 <i className="fa-solid fa-star search-results-stars-black grey-search-stars" key={i}></i>
                             )
                             ) ) : (
-                                <span className="search-new-product">New! <i className="fa-solid fa-star gold-star search-results-stars"/> </span>
+                                <span className="search-new-product">New! <i className="fa-solid fa-star search-results-stars"/> </span>
                             )} {product.sales}
                             <span className="search-star-seller"><i className="fa-solid fa-certificate search-badge"></i>Star Seller</span></p>
 

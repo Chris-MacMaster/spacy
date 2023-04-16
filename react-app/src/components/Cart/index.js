@@ -49,8 +49,10 @@ export default function DisplayCart(){
         <div className="cart-quantity">
           <h2>{Object.values(cart).length} items in your cart</h2>
         </div>
-        <div>
-        <h4>Keep shopping</h4>
+        <div className="keep-shopping-div">
+        <NavLink to='/' className='keep-shopping-link'>
+        <h4 className="keep-shopping-text">Keep shopping</h4>
+        </NavLink>
         </div>
       </div>
       <div className="purchase-protection">
@@ -63,8 +65,8 @@ export default function DisplayCart(){
             <div key={storeName} className="shop-info">
               <div className="contact-us-bar">
                 <div className="shop-title-and-image">
-                <img src={itemsByStore[storeName][0].shopImage} alt="preview" className="cart-shop-icon"/>
-                <h3>{storeName}</h3>
+                  <img src={itemsByStore[storeName][0].shopImage} alt="preview" className="cart-shop-icon"/>
+                  <h3>{storeName}</h3>
                 </div>
                 <div className="contact-shop">
                   <NavLink to={`/shops/${itemsByStore[storeName][0].shopId}`} className="contact-shop">
@@ -74,8 +76,8 @@ export default function DisplayCart(){
               </div>
               {itemsByStore[storeName].freeShipping ? (
                 <>
-                <p className="cart-grey-text">You did it! Free shipping on this order.</p>
-                  <hr className="cart-divider"></hr>
+                <p className="cart-grey-text"> Free shipping on this order.</p>
+                  {/* <hr className="cart-divider"></hr> */}
                 </>
               ) : null}
 
@@ -86,17 +88,27 @@ export default function DisplayCart(){
                     <img src={product.productImage} alt="preview" className="cart-product-image"/>
                     </div>
                     </NavLink>
-                    <div className="cart-product-info">
-                    {/* {console.log(product)} */}
-                  <div className="cart-product-info-top">
-                    <NavLink to={`/products/${product.id}`}
-                      style={{ textDecoration: "none"}}>{product.name}</NavLink>
-                    <span className="cart-product-price">${(product.price * product.quantity).toFixed(2)}</span>
-                  </div>
-                    <ChangeQuantity cartId={product.cartId} quantity={product.quantity} productId={product.productId} available={product.available}/>
-                    <p></p>
-                    <RemoveItemButton cartId={product.cartId}/>
-
+                    <div className="placeholder-name">
+                      <div className="cart-product-info">
+                        {/* {console.log(product)} */}
+                        <div className="cart-product-info-top">
+                          <NavLink to={`/products/${product.id}`}
+                            style={{ "text-decoration": "none"}}>{product.name}</NavLink>
+                        </div>
+                        <ChangeQuantity cartId={product.cartId} quantity={product.quantity} productId={product.productId} available={product.available}/>
+                        <p></p>
+                        <RemoveItemButton cartId={product.cartId}/>
+                      </div>
+                      <div>
+                      <div className="item-description"><p>{product.description}</p></div>
+                      {/* <div><p>...</p></div> */}
+                      </div>
+                      <div className="cost-block">
+                        <span>${(product.price * product.quantity).toFixed(2)}</span>
+                        <div className="total-item-cost">
+                        {product.quantity > 1 ? `(${product.price}) each`: null}
+                        </div>
+                      </div>
                     </div>
                   </li>
                 ))}
