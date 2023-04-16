@@ -51,6 +51,8 @@ const ProductDetail = () => {
 
     const product = useSelector(state => state.products.singleProduct)
     const productReviews = useSelector(state => state.reviews.productReviews)
+    const shop = useSelector(state => state.products?.singleProduct.Shop)
+    const shopId = shop?.id
     if (!Object.values(product).length) return null
 
     console.log('reviews', productReviews)
@@ -69,6 +71,11 @@ const ProductDetail = () => {
     // console.log('avg reviews', avgRating)
     const handleClick = () => history.push(`/product-reviews/${productId}/new`)
     if (!product.Shop) return null
+
+    const handleShopRedirect = (e) => {
+        e.preventDefault()
+        history.push(`/shops/${shopId}`)
+    }
 
     return (
         <div className='product-detail-div'>
@@ -134,7 +141,7 @@ const ProductDetail = () => {
                 <div className='product-grid-div-col-b'>
                     <div className='product-info-a'>
                         <div className='prod-price'>
-                            {product.price}
+                            ${product.price}
                         </div>
                         <div className='prod-search'>
                             {product.name}
@@ -143,12 +150,15 @@ const ProductDetail = () => {
                     </div>
                     <div className='store-info'>
                         <div className='name-follows'>
-                            <NavLink to={`{shops/${product.Shop.id}}`} >
+                            <p className='shop-name' onClick={handleShopRedirect}>
+                                {product.Shop.name}
+                            </p>
+                            {/* <NavLink to={`{shops/${product.Shop.id}}`} >
                             <div className='store-name'>
                                 {product.Shop.name}
                             </div>
 
-                            </NavLink>
+                            </NavLink> */}
 
                             <div className='store-follows'>
                                 <i className="fa-solid fa-heart"></i> Follow
@@ -178,8 +188,9 @@ const ProductDetail = () => {
                             {product.description}
                         </div>
                         {/* <button onClick={openMenu}>EXPERIMENT</button> */}
-                        <div  className='shop-pol-modal' >
+                        <div className='shop-pol-modal' >
                             <OpenModalButton
+                            id='shop-policy-button'
                             buttonText='View Shop Policies'
                             onClick={openMenu}
                             className='shop-pol-modal'
