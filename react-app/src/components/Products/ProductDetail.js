@@ -53,6 +53,17 @@ const ProductDetail = () => {
     const productReviews = useSelector(state => state.reviews.productReviews)
     if (!Object.values(product).length) return null
 
+    console.log('reviews', productReviews)
+
+    let userIds = []
+
+    if (productReviews.length) {
+        for (let review of productReviews) {
+            userIds.push(review.userId)
+        }
+    }
+
+    console.log('user IDs', userIds)
 
     // const avgRating = productReviews.reduce((acc, r) => typeof r.stars === 'number' ? acc + r.stars : acc +0,0) / productReviews.length
     // console.log('avg reviews', avgRating)
@@ -100,7 +111,7 @@ const ProductDetail = () => {
                             ) ) } </p> : (
                                 <p>New! <i className="fa-solid fa-star gold-star gold-star-product-deets landing-shop-stars"/> </p>
                             )}                        </p>
-                        {user && product.Shop?.ownerId !== user.id ?
+                        {user && product.Shop?.ownerId !== user.id && !userIds.includes(user.id) ?
                  (   <div>
                         {/* <NavLink to={`/product-reviews/${productId}/new`}> */}
                         <button className='post-item-review'
