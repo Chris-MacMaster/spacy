@@ -208,3 +208,15 @@ img {
     padding-left: 0px;
     padding-right: 0px;
 }
+
+
+.shop-name {
+    margin: 0;
+    color: rgb(130, 52, 149);
+    text-decoration: underline;
+}
+
+.shop-name:hover, .shop-policy-button {
+    cursor: pointer;
+}
+
