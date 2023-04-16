@@ -9,7 +9,6 @@ import { fetchCart } from '../../store/cart';
 import ReviewIndexItem from '../Reviews/ReviewIndexItem';
 import AddToCart from '../Cart/AddToCart';
 import { useHistory } from 'react-router-dom';
-import { NavLink } from 'react-router-dom';
 
 import "./ProductDetail.css"
 import OpenModalButton from '../OpenModalButton';

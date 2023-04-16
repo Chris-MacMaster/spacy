@@ -1,23 +1,23 @@
 import { useDispatch, useSelector } from 'react-redux'
 import './ShopBusinessCard.css'
-import { useEffect } from 'react'
-import { fetchOneShop, fetchShops } from '../../store/shops'
+import { fetchOneShop } from '../../store/shops'
 import { NavLink } from 'react-router-dom'
 import { useHistory } from 'react-router-dom'
 
 export default function ShopBusinessCard({ shop }) {
     const dispatch = useDispatch()
     const history = useHistory()
-    useEffect(() => {
-        dispatch(fetchOneShop(shop))
-    }, [dispatch, shop])
-    const shops = useSelector(state => state.shops.allShops)
+
+    // const shops = useSelector(state => state.shops.allShops)
 
     const handleCreate = (e) => {
         e.preventDefault()
         history.push(`/products/forms/create-product/${shop.id}`)
     }
-
+    const onClickEditShop = async (id) => {
+        dispatch(fetchOneShop(shop.id))
+        history.push(`/shops/edit/${shop.id}`)
+    }
     if (!shop) return null
     return (
 <div className='shop-business-card'>
@@ -33,7 +33,8 @@ export default function ShopBusinessCard({ shop }) {
         <span>{shop.sales} | </span><span>On Spacey since {shop.createdAt.slice(0, -12)}</span>
     </NavLink>
         <div className='user-manage-buttons'>
-            <button className='user-manage-button user-manage-edit-shop'><i className="fa-solid fa-pen"></i>Edit Shop</button>
+            <button className='user-manage-button user-manage-edit-shop'
+            onClick={onClickEditShop}><i className="fa-solid fa-pen"></i>Edit Shop</button>
             {/* <button className='user-manage-button user-manage-fav-shop'><i className="fa-regular fa-heart"></i>Favorite shop</button> */}
             <button onClick={handleCreate} className='user-manage-button user-manage-create'>
             <i class="fa-solid fa-screwdriver-wrench create-product-icon"></i>
