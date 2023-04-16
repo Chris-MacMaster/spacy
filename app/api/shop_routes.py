@@ -72,7 +72,7 @@ def get_all_shops():
 @shop_routes.route('/<int:shop_id>', methods=['DELETE', 'PUT'])
 @login_required
 def delete_one_shop(shop_id):
-    """deletes one shop according to id"""
+    """deletes one shop according to id, or posts edits according to id"""
     shop = Shop.query.get(shop_id)
     shop_image = ShopImage.query.get(shop_id)
     if current_user.is_authenticated and request.method == 'DELETE':
@@ -86,6 +86,7 @@ def delete_one_shop(shop_id):
         elif shop.owner_id != current_user.id:
             return {"errors": "Only owner may delete their own shop"}
     elif current_user.is_authenticated and request.method == 'PUT':
+        shop = Shop.query.get(shop_id)
         form = CreateShopForm()
         form['csrf_token'].data = request.cookies['csrf_token']
         if form.validate_on_submit():
@@ -98,6 +99,7 @@ def delete_one_shop(shop_id):
             shop.category = form.data['category']
             shop.policies = form.data['policies']
 
+            shop_image = ShopImage.query.filter(ShopImage.shop_id == shop_id).first()
             shop_image.url = form.data['url']
             db.session.commit()
             return shop.to_dict, 201

@@ -1,23 +1,32 @@
 import { useState } from 'react'
-import './PostShopForm.css'
 import { useDispatch, useSelector } from 'react-redux'
-import { createShop } from '../../store/shops'
-import { useHistory } from 'react-router-dom'
+import { editShop, fetchOneShop } from '../../store/shops'
+import { useHistory, useParams } from 'react-router-dom'
+import { useEffect } from 'react'
 
-export default function PostShopForm() {
-    const [name, setName] = useState('')
-    const [streetAddress, setStreetAddress] = useState('')
-    const [city, setCity] = useState('')
-    const [state, setState] = useState('')
-    const [country, setCountry] = useState('')
-    const [description, setDescription] = useState('')
-    const [category, setCategory] = useState('')
-    const [policies, setPolicies] = useState('')
-    const [url, setUrl] = useState('')
-    const [errors, setErrors] = useState({})
-    const user = useSelector(state => state.session.user)
-    const history = useHistory()
+export default function PutShopForm() {
     const dispatch = useDispatch()
+    const { shopId } = useParams()
+
+    //data
+    const [name, setName] = useState('');
+    const [streetAddress, setStreetAddress] = useState('');
+    const [city, setCity] = useState('');
+    const [state, setState] = useState('');
+    const [country, setCountry] = useState('');
+    const [description, setDescription] = useState('');
+    const [category, setCategory] = useState('');
+    const [policies, setPolicies] = useState('');
+    const [url, setUrl] = useState('');
+    const [errors, setErrors] = useState({});
+    const user = useSelector(state => state.session.user);
+    const history = useHistory();
+
+
+
+    const shopState = useSelector(state => state.shops.singleShop)
+    // const shop = shopState;
+
     const validate = () => {
         const err = {}
         if (!name || name.length < 4) err.name = 'Please enter a valid name'
@@ -32,11 +41,23 @@ export default function PostShopForm() {
         setErrors(err)
     }
 
-    const handleSubmit = async e => {
+    useEffect(() => {
+        setName(shopState.name ? shopState.name : '')
+        setStreetAddress(shopState.streetAddress ? shopState.streetAddress : '')
+        setCity(shopState.city ? shopState.city : '')
+        setState(shopState.state ? shopState.state : '')
+        setCountry(shopState.country ? shopState.country : '')
+        setDescription(shopState.description ? shopState.description : '')
+        setCategory(shopState.category ? shopState.category : '')
+        setPolicies(shopState.policies ? shopState.policies : '')
+        setUrl(shopState && shopState.ShopImages && shopState.ShopImages.url ? shopState.ShopImages.url : '')
+    }, [shopState])
+
+    const handleSubmit = e => {
         e.preventDefault();
         validate()
-        if (Object.values(errors).length )return
-        const newShop = {
+        if (Object.values(errors).length ) return;
+        const data = {
             name,
             street_address: streetAddress,
             city,
@@ -47,12 +68,14 @@ export default function PostShopForm() {
             policies,
             url
         }
-        await dispatch(createShop(newShop))
+        dispatch(editShop(data, shopId))
+        dispatch(fetchOneShop(shopId))
         history.push(`/users/${user.id}`)
     }
+    console.log("WE'RE REACHING THE ROUTE")
     return (
         <div className='post-shop-div'>
-            <h1 className='post-shop-title'>Create New Shop</h1>
+            <h1 className='post-shop-title'>Edit Your Shop</h1>
 
         <div className='post-shop-grid' >
         <form onSubmit={handleSubmit}
