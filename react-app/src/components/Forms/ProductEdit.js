@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux"
 import { editProduct, fetchOneProduct } from '../../store/product';
+import { urlCheck } from './ProductCreate';
 // import { render } from 'react-dom';
 // import { editSpot, makeSpot } from '../../store/spot';
 // import { fetchOneSpot } from '../../store/spot';
@@ -47,6 +48,7 @@ const ProductEditForm = () => {
         if (!category) e.category = "Must submit a category"
         if (!description) e.description = "Must submit a description"
         if (!url) e.url = "Must submit a url"
+        if (!urlCheck(url)) e.urlCheck = "Must submit a valid url. We accept urls ending in any of the following: jpeg, jpg, svg, png, gif, bmp."
     }, [name, available, price, category, description, url])
 
     useEffect(() => {
@@ -261,6 +263,11 @@ const ProductEditForm = () => {
                         </div>
                     )}
                 </div>
+                {hasSubmitted && errors.urlCheck && (
+                    <div className='error'>
+                        * {errors.urlCheck}
+                    </div>
+                )}
 
             </form>
 
