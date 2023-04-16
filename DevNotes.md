@@ -90,8 +90,9 @@ Christopher ---edit product creation url
 -review form error messages
 
 ChrisL ---custom README
-       ---CSSS
-       ---create shop
+       ---create product form
+       ---post a review
+       
 
 
 FONTS
