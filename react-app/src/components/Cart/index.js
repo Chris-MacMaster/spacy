@@ -62,9 +62,9 @@ export default function DisplayCart(){
                   <hr className="cart-divider"></hr>
                 </>
               ) : null}
-              <ul>
+
                 {itemsByStore[storeName].map((product, index) => (
-                  <li key={index} className="cart-product">
+                  <div key={index} className="cart-product">
                     <div className="cart-product-image-div">
                     <img src={product.productImage} alt="preview" className="cart-product-image"/>
                     </div>
@@ -72,19 +72,17 @@ export default function DisplayCart(){
                     {/* {console.log(product)} */}
                   <div className="cart-product-info-top">
                     <NavLink to={`/products/${product.id}`}
-                      style={{ "text-decoration": "none"}}>{product.name}</NavLink>
-
-                    <span></span>
-                    <span>${(product.price * product.quantity).toFixed(2)}</span>
+                      style={{ textDecoration: "none"}}>{product.name}</NavLink>
+                    <span className="cart-product-price">${(product.price * product.quantity).toFixed(2)}</span>
                   </div>
                     <ChangeQuantity cartId={product.cartId} quantity={product.quantity} productId={product.productId} available={product.available}/>
                     <p></p>
                     <RemoveItemButton cartId={product.cartId}/>
 
                     </div>
-                  </li>
+                  </div>
                 ))}
-              </ul>
+
             </div>
           ))}
           </div>

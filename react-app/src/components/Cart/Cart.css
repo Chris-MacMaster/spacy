@@ -50,7 +50,7 @@
     margin-right: 2rem;
 }
 .cart-select-quantity {
-    width: 3rem;
+    width: 4rem;
     height: 3rem;
     font-size: 1.3rem;
     font-weight: bold;
@@ -155,4 +155,7 @@
 .order-page {
     display: flex;
     flex-direction: column;
+}
+.cart-product-info-top .cart-product-price {
+    float: right;
 }
