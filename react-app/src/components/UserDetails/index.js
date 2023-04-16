@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 import './UserDetails.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
@@ -11,7 +11,7 @@ import ShopBusinessCard from '../ShopBusinessCard'
 export default function UserDetails() {
     const {userId} = useParams()
     const dispatch = useDispatch()
-
+    const history = useHistory()
     useEffect(() => {
         dispatch(authenticate())
         dispatch(fetchShops())
@@ -26,14 +26,14 @@ export default function UserDetails() {
     const userShops = Object.values(shops).filter(s => parseInt(s.ownerId) === parseInt(userId))
     const userProducts = Object.values(products).filter(p=> userShopsIds.includes(p.shopId))
     console.log('USERSHOPS', userShops)
+    const onClick = () => history.push('/shops/new')
+
     return (
         <div className='user-manage-details'>
             <div className='user-manage-header'>
                 <div className='user-manage-business-cards'>
                 {userShops && userShops.length ? userShops.map((s, i) => (
-
                     <ShopBusinessCard shop={s}
-
                     key={`shopbusicardcomp${i}`}/>
 
                 )) : null}
@@ -48,6 +48,12 @@ export default function UserDetails() {
                         <i className="fa-solid fa-message"></i>You!</p>
                 </div>
             </div>
+            
+            <button className='favorite-shop'
+                    onClick={onClick}>
+                        <i class="fa-solid fa-screwdriver-wrench create-shop-icon"></i>
+                    Create Shop
+            </button>
 
             <div className='user-manage-items'>
                 <div className='user-manage-item-sidebar'>

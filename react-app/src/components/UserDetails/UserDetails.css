@@ -53,3 +53,6 @@
 .user-manage-create:hover {
     box-shadow: 0rem 0rem .5rem black;
 }
+.create-shop-icon {
+    color: rgb(74, 74, 74);
+}
