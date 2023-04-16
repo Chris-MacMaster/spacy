@@ -69,7 +69,7 @@ export const fetchUserProducts = () => async dispatch => {
 }
 
 export const makeProduct = (productBody) => async dispatch => {
-    const { name, shop_id, description, category, available, free_shipping, price, img_1 } = productBody
+    const { name, shop_id, description, category, available, free_shipping, price, url } = productBody
     const method = "POST"
     const headers = { "Content-Type" : "application/json"}
     const body = JSON.stringify({
@@ -80,7 +80,7 @@ export const makeProduct = (productBody) => async dispatch => {
         available,
         free_shipping,
         price,
-        img_1
+        url
     })
     const options = { method, headers, body }
     const response = await fetch('/api/products/', options)
@@ -95,7 +95,7 @@ export const makeProduct = (productBody) => async dispatch => {
 }
 
 export const editProduct = (productBody, productId) => async dispatch => {
-    const { name, shop_id, description, category, available, free_shipping, price } = productBody
+    const { name, shop_id, description, category, available, free_shipping, price, url } = productBody
     const method = "PUT"
     const headers = { "Content-Type": "application/json" }
     const body = JSON.stringify({
@@ -106,9 +106,10 @@ export const editProduct = (productBody, productId) => async dispatch => {
         available,
         free_shipping,
         price,
+        url
     })
     const options = { method, headers, body }
-    // console.log('EDIT TRIGGERED')
+    console.log('EDIT TRIGGERED')
     const response = await fetch(`/api/products/${productId}/`, options)
     const product = await response.json()
     // console.log("RESPONSE", response)

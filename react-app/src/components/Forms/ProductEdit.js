@@ -27,7 +27,7 @@ const ProductEditForm = () => {
     const [description, setDescription] = useState("")
     const [freeShipping, setFreeShipping] = useState(false)
     const [price, setPrice] = useState(0)
-    const [url1, setUrl1] = useState("")
+    const [url, setUrl] = useState("")
 
     const product = productState
 
@@ -46,7 +46,8 @@ const ProductEditForm = () => {
         if (!price) e.price = "Must submit a price."
         if (!category) e.category = "Must submit a category"
         if (!description) e.description = "Must submit a description"
-    }, [name, available, price, category, description])
+        if (!url) e.url = "Must submit a url"
+    }, [name, available, price, category, description, url])
 
     useEffect(() => {
         dispatch(fetchOneProduct(productId));
@@ -65,7 +66,7 @@ const ProductEditForm = () => {
         setFreeShipping(productState?.freeShipping || false);
         setPrice(productState?.price || 0);
         
-        setUrl1(productState && productState.ProductImages && productState.ProductImages.length ? productState.ProductImages[0].url : "");
+        setUrl(productState && productState.ProductImages && productState.ProductImages.length ? productState.ProductImages[0].url : "");
         // setUrl1(productState.ProductImages.length ? productState?.ProductImages[0]?.url || "" : "");
     }, [productState]);
 
@@ -85,8 +86,10 @@ const ProductEditForm = () => {
             available,
             free_shipping: freeShipping,
             price,
+            url
         }
         dispatch(editProduct(editedProduct, productId))
+        dispatch(fetchOneProduct(productId));
         reset()
         history.push(`/products/${productId}`)
         // console.log("SUBMITTED!")
@@ -249,12 +252,12 @@ const ProductEditForm = () => {
                         Provide a url, pictures are necessary! Nobody wants to buy something sight unseen!
                     </p>
                     <input className='product-input' type="text"
-                        value={url1}
-                        onChange={(e) => setUrl1(e.target.value)}
-                        placeholder='Url1' />
-                    {hasSubmitted && errors.url1 && (
+                        value={url}
+                        onChange={(e) => setUrl(e.target.value)}
+                        placeholder='Url' />
+                    {hasSubmitted && errors.url && (
                         <div className='error'>
-                            * {errors.url1}
+                            * {errors.url}
                         </div>
                     )}
                 </div>
