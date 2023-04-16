@@ -68,11 +68,8 @@ const ProductDetail = () => {
     }
 
     console.log('Product', product)
-
-    // const avgRating = productReviews.reduce((acc, r) => typeof r.stars === 'number' ? acc + r.stars : acc +0,0) / productReviews.length
-    // console.log('avg reviews', avgRating)
-    console.log("$#@!$@!$#@!#$@!$#@!#$@!$#@!",  product)
-    const handleClick = () => history.push(`/product-reviews/${productId}/new`)
+    const handleClick = () =>
+    history.push(`/product-reviews/${productId}/new`)
     if (!product.Shop) return null
 
     const handleShopRedirect = (e) => {
