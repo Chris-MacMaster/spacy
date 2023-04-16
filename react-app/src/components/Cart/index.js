@@ -105,9 +105,9 @@ export default function DisplayCart(){
                       </div>
                       <div className="cost-block">
                         <span>${(product.price * product.quantity).toFixed(2)}</span>
-                        <div className="total-item-cost">
-                        {product.quantity > 1 ? `(${product.price}) each`: null}
-                        </div>
+                        <span className="single-item-cost">
+                        {product.quantity > 1 ? `(${product.price} each)`: null}
+                        </span>
                       </div>
                     </div>
                   </li>
