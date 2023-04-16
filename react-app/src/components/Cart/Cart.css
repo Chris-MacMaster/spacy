@@ -1,3 +1,6 @@
+.bld {
+    font-family: bold;
+}
 .cart-content{
     display: flex;
     /* flex-direction: column; */
@@ -156,7 +159,28 @@
     display: flex;
     flex-direction: column;
 }
+.purchase-protection {
+    display: flex;
+    /* justify-content: center; */
+    margin: 0 7rem;
+    border-radius: 12px;
+    background-color: rgb(221, 233, 237);
+    padding: .5rem 0;
+}
+.purchase-protection > * {
+    font-size: 13px;
+}
 
+.etsy-purchase-protection {
+    margin-right: .25rem;
+    font-weight: 600;
+}
+
+.fa-handshake {
+    font-size: 30px;
+    color: rgb(119, 119, 209);
+    margin-left: .5rem;
+}
 .show {
     color: red;
 }

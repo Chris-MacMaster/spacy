@@ -33,7 +33,7 @@ export default function AddToCart({cart, product}){
         let x;
         for (const i in cart.products) {
             console.log(cart.products[i])
-            if (product.id = cart.products[i].id) {
+            if (product.id === cart.products[i]?.id) {
                 console.log(product.available)
                 console.log(cart.products[i].quantity)
             }

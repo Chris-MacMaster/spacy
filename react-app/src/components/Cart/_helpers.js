@@ -10,7 +10,6 @@
 //return object
 export const groupItemsByStore = (cart) =>{
     const itemsByStore = {}
-    console.log('FIXING BUGS', cart)
     if (!cart) return null
     for (const i in cart){
         if (!itemsByStore[cart[i].shopName]){
@@ -18,6 +17,7 @@ export const groupItemsByStore = (cart) =>{
         } else {
             itemsByStore[cart[i].shopName].push(cart[i])
         }
+        if (cart[i].freeShipping) itemsByStore[cart[i].shopName].freeShipping = true
     }
     return itemsByStore
 }

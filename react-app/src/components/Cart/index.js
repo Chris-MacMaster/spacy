@@ -46,13 +46,17 @@ export default function DisplayCart(){
     )}</> */}
     <div className="order-page">
       <div className="shopping-bar">
-          <div className="cart-quantity">
-            <h2>{Object.values(cart).length} items in your cart</h2>
-          </div>
-          <div>
-          <h4>Keep shopping</h4>
-          </div>
+        <div className="cart-quantity">
+          <h2>{Object.values(cart).length} items in your cart</h2>
         </div>
+        <div>
+        <h4>Keep shopping</h4>
+        </div>
+      </div>
+      <div className="purchase-protection">
+      <i className="fa-regular fa-handshake"></i>
+        <p className="etsy-purchase-protection">Etsy purchase protection:</p> <p>Shop confidently knowing if something goes wrong, we've got your back!</p>
+      </div>
       <div className="cart-content">
         <div className="names-are-hard">
         {Object.keys(itemsByStore).map((storeName) => (
@@ -68,8 +72,7 @@ export default function DisplayCart(){
                   </NavLink>
                 </div>
               </div>
-              {/* {console.log(storeName)} */}
-              {storeName? (
+              {itemsByStore[storeName].freeShipping ? (
                 <>
                 <p className="cart-grey-text">You did it! Free shipping on this order.</p>
                   <hr className="cart-divider"></hr>
