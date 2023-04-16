@@ -53,7 +53,7 @@ export default function PostShopForm() {
     console.log("WE'RE REACHING THE ROUTE")
     return (
         <div className='post-shop-div'>
-            <h1 className='post-shop-title'>Post New Shop</h1>
+            <h1 className='post-shop-title'>Create New Shop</h1>
 
         <div className='post-shop-grid' >
         <form onSubmit={handleSubmit}
@@ -107,7 +107,7 @@ export default function PostShopForm() {
         </div>
 
         <div className='create-shop-input'>
-        <textarea className='create-shop-input-field' type='textarea' value={description} onChange={e => setDescription(e.target.value)}></textarea>
+        <textarea className='create-shop-input-field shop-create-description' type='textarea' value={description} onChange={e => setDescription(e.target.value)}></textarea>
         <p className='errors'>{errors.description}</p>
         </div>
 

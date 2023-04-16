@@ -51,7 +51,7 @@ function Header({ isLoaded }) {
 
 
         <div className='telescope-search'>
-        <i className="fa-solid fa-magnifying-glass"></i>
+        <i className="fa-solid fa-magnifying-glass" onClick={handleSubmit}></i>
 
         </div>
         </div>
