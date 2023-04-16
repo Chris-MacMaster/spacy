@@ -10,7 +10,7 @@ import PaymentMethod from "./PaymentMethods"
 import './Cart.css'
 
 export default function DisplayCart(){
-  const [user, cart] = useSelector(state => [state.session.user, state.cartReducer.products ?? null])
+  const [user, cart] = useSelector(state => [state.session.user, state.cart.products ?? null])
 
     const dispatch = useDispatch()
     const [loaded, setLoaded] = useState(false)
@@ -70,9 +70,11 @@ export default function DisplayCart(){
               <ul>
                 {itemsByStore[storeName].map((product, index) => (
                   <li key={index} className="cart-product">
+                    <NavLink to={`/products/${product.productId}`}>
                     <div className="cart-product-image-div">
                     <img src={product.productImage} alt="preview" className="cart-product-image"/>
                     </div>
+                    </NavLink>
                     <div className="cart-product-info">
 
                     {product.name}. {product.description}

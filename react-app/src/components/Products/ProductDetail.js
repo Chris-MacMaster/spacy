@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { fetchOneProduct } from '../../store/product';
 import { fetchProductReviews } from '../../store/review';
+import { fetchCart } from '../../store/cart';
 import ReviewIndexItem from '../Reviews/ReviewIndexItem';
 import AddToCart from '../Cart/AddToCart';
 import { useHistory } from 'react-router-dom';
@@ -19,7 +20,7 @@ const ProductDetail = () => {
     const history = useHistory()
 
 
-    const user = useSelector((state) => state.session.user)
+    const [user, cart] = useSelector((state) =>[state.session.user, state.cart])
     const [showMenu, setShowMenu] = useState(false); //for opening modal
     const ulRef = useRef(); //for modal
     let { productId } = useParams()
@@ -47,6 +48,7 @@ const ProductDetail = () => {
         console.log("FIRE DISPATCH ----------------------------")
         dispatch(fetchOneProduct(productId))
         dispatch(fetchProductReviews(productId))
+        dispatch(fetchCart())
     }, [dispatch, productId])
 
     const product = useSelector(state => state.products.singleProduct)
@@ -56,6 +58,7 @@ const ProductDetail = () => {
 
     // const avgRating = productReviews.reduce((acc, r) => typeof r.stars === 'number' ? acc + r.stars : acc +0,0) / productReviews.length
     // console.log('avg reviews', avgRating)
+    console.log("$#@!$@!$#@!#$@!$#@!#$@!$#@!",  product)
     const handleClick = () => history.push(`/product-reviews/${productId}/new`)
     if (!product.Shop) return null
 
@@ -151,7 +154,7 @@ const ProductDetail = () => {
                     <div className='purchase-buttons'>
                         <button className='button buy-it-button'>Buy it now</button>
 
-                        {product.available > 0 ? <AddToCart className='button add-cart-button' product={product}/>
+                        {product.available > 0 ? <AddToCart className='button add-cart-button' product={product} cart={cart}/>
 
                         :
                         <button className='button cant-add-cart-button'>Out of stock</button>

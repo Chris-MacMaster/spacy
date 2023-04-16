@@ -11,7 +11,7 @@ import reviewReducer from './review';
 const rootReducer = combineReducers({
   session,
   products: productReducer,
-  cartReducer,
+  cart: cartReducer,
   shops: shopReducer,
   reviews: reviewReducer,
   search: searchReducer
