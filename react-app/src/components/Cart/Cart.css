@@ -142,9 +142,9 @@
     display: flex;
     flex-direction: column;
 }
-.payment-methods > h2 {
+/* .payment-methods > h2 {
 
-}
+} */
 .contact-shop {
     text-decoration: none;
     color: grey;

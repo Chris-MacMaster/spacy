@@ -28,7 +28,7 @@ export default function DisplayCart(){
 
     const itemsByStore = groupItemsByStore(cart)
     // const checkoutPrice = totalCost(cart)
-    console.log('CART', Object.values(cart))
+    // console.log('CART', Object.values(cart))
 
     return(
     <div className="order-page">
