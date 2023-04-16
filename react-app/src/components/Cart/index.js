@@ -98,7 +98,7 @@ export default function DisplayCart(){
                     <RemoveItemButton cartId={product.cartId}/>
 
                     </div>
-                  </div>
+                  </li>
                 ))}
 
             </div>

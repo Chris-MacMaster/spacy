@@ -31,8 +31,9 @@ function Header({ isLoaded }) {
         dispatch(fetchShops())
         dispatch(authenticate())
     }, [dispatch])
-    const cart = useSelector(state => state.cartReducer.products)
-    const cartTotal = Object.values(cart).reduce((acc, p) =>p.quantity + acc, 0)
+
+    const cart = useSelector(state => state.cart && state.cart.products ? state.cart.products : null)
+    const cartTotal = Object.values(cart).reduce((acc, p) => p.quantity + acc, 0)
     // console.log('CART TOTAL', cartTotal)
     const shops = useSelector(state=> state.shops.allShops)
     const user = useSelector(state => state.session.user)
