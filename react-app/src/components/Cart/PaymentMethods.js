@@ -42,7 +42,7 @@ export default function PaymentMethods({totalCost}){
         value="Imperial Credits"
         checked={paymentMethod === 'Imperial Credits'}
         onChange={handlePaymentChange} />
-        <img className="imperial-credit" src='https://www.deviantart.com/sandara/art/Hades-and-Persephone-coins-438574490' />
+        {/* <img className="imperial-credit" src='https://www.deviantart.com/sandara/art/Hades-and-Persephone-coins-438574490' /> */}
         Imperial Credits
       </label>
       <label className="payment-type">
