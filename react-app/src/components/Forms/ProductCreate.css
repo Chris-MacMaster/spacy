@@ -127,3 +127,25 @@
 .create-product-button {
     margin-left: 16px;
 }
+
+textarea, option, select {
+    font-family: 'Mulish', sans-serif;
+}
+
+.category-shipping-div {
+    display: flex;
+    flex-direction: row;
+}
+
+.check-box-text {
+    max-width: fit-content;
+    white-space: wrap;
+        /* prevent the text from wrapping */
+}
+
+.check-box {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+}

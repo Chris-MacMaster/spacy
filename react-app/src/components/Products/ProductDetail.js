@@ -169,7 +169,7 @@ const ProductDetail = () => {
                         </div>
                     </div>
                     <div className='purchase-buttons'>
-                        <button className='button buy-it-button'>Buy it now</button>
+                        {/* <button className='button buy-it-button'>Buy it now</button> */}
 
                         {product.available > 0 ? <AddToCart className='button add-cart-button' product={product} cart={cart}/>
 

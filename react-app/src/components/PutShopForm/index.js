@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { editShop, fetchOneShop } from '../../store/shops'
 import { useHistory, useParams } from 'react-router-dom'
 import { useEffect } from 'react'
+import "../PostShopForm/PostShopForm.css"
 
 export default function PutShopForm() {
     const dispatch = useDispatch()
@@ -23,23 +24,25 @@ export default function PutShopForm() {
     const history = useHistory();
 
 
+    const [hasSubmitted, setHasSubmitted] = useState(false);
+
 
     const shopState = useSelector(state => state.shops.singleShop)
     // const shop = shopState;
 
-    const validate = () => {
+    useEffect(() => {
         const err = {}
-        if (!name || name.length < 4) err.name = 'Please enter a valid name'
-        if (!streetAddress || streetAddress.length < 6) err.streetAddress = 'Please enter a valid street address'
-        if (!city || city.length < 4) err.city = 'Please enter a valid city'
+        if (!name || name.length < 4) err.name = 'Please enter a valid name, at least 4 characters.'
+        if (!streetAddress || streetAddress.length < 6) err.streetAddress = 'Please enter a valid street address, at least 6 characters'
+        if (!city || city.length < 4) err.city = 'Please enter a valid city, at least 4 characters'
         if (!state) err.state = 'Please enter a valid state'
         if (!country) err.country = 'Please enter a valid country'
-        if (!description || description.length < 20) err.name = 'Please enter a longer shop description'
-        if (!category || category.length <3) err.category = 'Please enter a shop category'
+        if (!description || description.length < 20) err.description = 'Please enter a valid shop description, at least 20 characters'
+        if (!category || category.length < 3) err.category = 'Please enter a shop category'
         if (!policies || policies.length < 30) err.policies = 'Please enter shop policies about returns or shipping'
         if (!url || url.length < 20) err.url = 'Please enter a shop image to represent your shop'
         setErrors(err)
-    }
+    }, [name, streetAddress, city, state, country, description, category, policies, url])
 
     useEffect(() => {
         setName(shopState && shopState.name ? shopState.name : '')
@@ -55,7 +58,9 @@ export default function PutShopForm() {
 
     const handleSubmit = e => {
         e.preventDefault();
-        validate()
+
+        setHasSubmitted(true)
+        
         if (Object.values(errors).length ) return;
         const data = {
             name,
@@ -73,7 +78,7 @@ export default function PutShopForm() {
         history.push(`/users/${user.id}`)
     }
     if (shopState && user.id !== shopState.ownerId) return null
-    console.log("WE'RE REACHING THE ROUTE")
+    // console.log("WE'RE REACHING THE ROUTE")
     return (
         <div className='post-shop-div'>
             <h1 className='post-shop-title'>Edit Your Shop</h1>
@@ -90,14 +95,22 @@ export default function PutShopForm() {
         <div className='create-shop-input'>
             <input type='text' value={name}
             className='create-shop-input-field' onChange={e => setName(e.target.value)}></input>
-            <p className='errors'>{errors.name}</p>
+            {hasSubmitted && errors.name && (
+                <div className='error'>
+                    * {errors.name}
+                </div>
+            )}
         </div>
 
         <label className='create-shop-label'>Street Address</label>
 
         <div className='create-shop-input'>
         <input className='create-shop-input-field' type='text' value={streetAddress} onChange={e => setStreetAddress(e.target.value)}></input>
-        <p className='errors'>{errors.streetAddress}</p>
+        {hasSubmitted && errors.streetAddress && (
+            <div className='error'>
+                * {errors.streetAddress}
+            </div>
+        )}
         </div>
 
 
@@ -105,7 +118,11 @@ export default function PutShopForm() {
 
         <div className='create-shop-input'>
         <input className='create-shop-input-field' type='text' value={city} onChange={e => setCity(e.target.value)}></input>
-        <p className='errors'>{errors.city}</p>
+        {hasSubmitted && errors.city && (
+            <div className='error'>
+                * {errors.city}
+            </div>
+        )}
         </div>
 
         <label className='create-shop-label'>State</label>
@@ -113,7 +130,11 @@ export default function PutShopForm() {
         <div className='create-shop-input'>
 
         <input className='create-shop-input-field' type='text' value={state} onChange={e => setState(e.target.value)} ></input>
-        <p className='errors'>{errors.state}</p>
+        {hasSubmitted && errors.state && (
+            <div className='error'>
+                * {errors.state}
+            </div>
+        )}
 
         </div>
 
@@ -121,7 +142,11 @@ export default function PutShopForm() {
 
         <div className='create-shop-input'>
         <input type='text' value={country} className='create-shop-input-field' onChange={e => setCountry(e.target.value)}></input>
-        <p className='errors'>{errors.country}</p>
+        {hasSubmitted && errors.country && (
+            <div className='error'>
+                * {errors.country}
+            </div>
+        )}
         </div>
 
         <div className='create-shop-label-grid create-shop-description'>
@@ -131,7 +156,11 @@ export default function PutShopForm() {
 
         <div className='create-shop-input'>
         <textarea className='create-shop-input-field shop-create-description' type='textarea' value={description} onChange={e => setDescription(e.target.value)}></textarea>
-        <p className='errors'>{errors.description}</p>
+        {hasSubmitted && errors.description && (
+            <div className='error'>
+                * {errors.description}
+            </div>
+        )}
         </div>
 
         <div className='create-shop-label-grid create-shop-category'>
@@ -143,7 +172,11 @@ export default function PutShopForm() {
         <input type='text' value={category}
         className='create-shop-input-field'
         onChange={e => setCategory(e.target.value)}></input>
-        <p className='errors'>{errors.category}</p>
+        {hasSubmitted && errors.category && (
+            <div className='error'>
+                * {errors.category}
+            </div>
+        )}
         </div>
 
         <div className='create-shop-label-grid'>
@@ -152,8 +185,12 @@ export default function PutShopForm() {
         </div>
 
         <div className='create-shop-input'>
-        <input className='create-shop-input-field' type='text' value={policies} onChange={e => setPolicies(e.target.value)}></input>
-        <p className='errors'>{errors.policies}</p>
+                        <textarea className='create-shop-input-field policies-inpu shop-create-description' type='text' value={policies} onChange={e => setPolicies(e.target.value)}></textarea>
+        {hasSubmitted && errors.policies && (
+            <div className='error'>
+                * {errors.policies}
+            </div>
+        )}
         </div>
 
         <div className='create-shop-label-grid'>
@@ -163,10 +200,17 @@ export default function PutShopForm() {
 
         <div className='create-shop-input'>
         <input className='create-shop-input-field' type='url' value={url} onChange={e => setUrl(e.target.value)} ></input>
-        <p className='errors'>{errors.url}</p>
+        {hasSubmitted && errors.url && (
+            <div className='error'>
+                * {errors.url}
+            </div>
+        )}
         </div>
 
-        <button type='submit' className='favorite-shop submit-create-shop'>Submit Shop</button>
+        <div className='create-shop-div'>
+            <input onClick={handleSubmit} className='submit-button form-create-button favorite-shop submit-create-shop create-product-button' type="submit" value="Edit Shop" />
+        </div>
+        {/* <button type='submit' className='favorite-shop submit-create-shop'>Submit Shop</button> */}
         </form>
         </div>
         </div>
