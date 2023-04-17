@@ -26,10 +26,10 @@ export default function AddToCart({cart, product}){
             alert("We are woefully sorry to inform you that due to recent attacks by space pirates we can only allow logged in users to add items to cart!")
         )
 
-        let theCart = productCart(Object.values(cart.products))
-        if(theCart.quantity === product.available) {
-            return alert("Every available item already in cart.")
-        }
+        // let theCart = productCart(Object.values(cart.products))
+        // if(theCart.quantity === product.available) {
+        //     return alert("Every available item already in cart.")
+        // }
         setBtnEndabled(true)
         await dispatch(addCartItemThunk(product.id, user.id))
         await dispatch(fetchCart())
