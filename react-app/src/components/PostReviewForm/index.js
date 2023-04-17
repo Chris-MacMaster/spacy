@@ -5,20 +5,21 @@ import { fetchOneProduct } from "../../store/product";
 import { createProductReview } from "../../store/review";
 import './ReviewForm.css'
 import { fetchOneShop } from "../../store/shops";
+import { urlChecka } from "../Cart/_helpers";
 
 export default function PostReviewForm() {
-    
+
     const dispatch = useDispatch()
     const history = useHistory()
     const {productId} = useParams()
-    
-    
+
+
     let product = useSelector((state) => state.products.singleProduct)
     // let shop = useSelector((state) => state.shops.singleShop)
     let user = useSelector((state) => state.session.user)
 
     const [imageURL, setImageURL] = useState('')
-    
+
     useEffect(() => {
         dispatch(fetchOneProduct(productId))
         dispatch(fetchOneShop(product.shopId))
@@ -37,7 +38,7 @@ export default function PostReviewForm() {
         if (!review) e.review = "Must submit a review"
         if (review.length < 40) e.reviewLength = "Review must be at least 40 characters"
         if (!stars) e.stars = "Must submit a value for stars."
-        if(!imageURL) e.imageURL = "Must submit an image URL."
+        if(!urlChecka(imageURL) || imageURL !== '') e.imageURL = "Must submit an image URL."
     }, [review, stars, imageURL])
 
     const testSub = (e) => {
@@ -55,7 +56,7 @@ export default function PostReviewForm() {
             // console.log("FOUND ERRORS!")
             return
         }
-        
+
 
         const res = await dispatch(createProductReview(product.id, review, stars, imageURL))
         console.log('res', res)
@@ -76,7 +77,7 @@ export default function PostReviewForm() {
                 <div className='productPic'>
                     {product.ProductImages.length > 0 ?  <img src={product.ProductImages[0].url} alt='not loading'/> : null}
                     <div className="productName">
-                     <p>{product.Shop.name}</p>   
+                     <p>{product.Shop.name}</p>
                     <p style={{fontWeight:'bolder', fontSize:'larger'}}>{product.name}</p>
                     </div>
                 </div>
