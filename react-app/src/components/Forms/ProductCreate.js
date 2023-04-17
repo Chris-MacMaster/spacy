@@ -3,9 +3,7 @@ import { useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch } from "react-redux"
 import { makeProduct } from '../../store/product';
-// import { editSpot, makeSpot } from '../../store/spot';
-// import { fetchOneSpot } from '../../store/spot';
-// import { actionResetReviews } from '../../store/review';
+import { fetchShops } from '../../store/shops';
 import './ProductCreate.css'
 
 
@@ -63,6 +61,7 @@ export default function ProductCreateForm() {
           url: url1
         }
         dispatch(makeProduct(newProduct))
+        dispatch(fetchShops())
         history.push(`/shops/${shopId}`)
     };
 
