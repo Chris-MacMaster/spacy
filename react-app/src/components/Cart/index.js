@@ -41,9 +41,6 @@ export default function DisplayCart(){
 
     return(
      <>
-    {/* <>{(!cart) ? 4 : (
-      <></>
-    )}</> */}
     <div className="order-page">
       <div className="shopping-bar">
         <div className="cart-quantity">

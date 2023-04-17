@@ -44,6 +44,12 @@
 .search-results-stars{
     margin: 0rem;
 }
+.search-results-stars-gold {
+    color: black;
+}
+.search-results-stars-black {
+    color: grey;
+}
 .search-badge {
 color: rgb(130, 52, 149);
 font-size: 1.1rem;

@@ -107,7 +107,7 @@ const ProductDetail = () => {
                         </p>
                         <p className='review-p review-stars'>
                         {productReviews && productReviews.length ?
-                            <p className='review-num-title'>{productReviews.length} Reviews
+                            <p className='review-num-title'>{productReviews.length === 1 ? <div>{'1 Review'}</div> : productReviews.length > 1 ? <div>{productReviews.length} Reviews</div> : null}
                             { Array(5).fill(1).map((s,i)=> (
                             i < product.avgRating ? (
                                 <i className="fa-solid fa-star gold-star gold-star-product-deets landing-shop-stars" key={i}></i>
@@ -169,7 +169,7 @@ const ProductDetail = () => {
                         </div>
                     </div>
                     <div className='purchase-buttons'>
-                        <button className='button buy-it-button'>Buy it now</button>
+                        {/* <button className='button buy-it-button'>Buy it now</button> */}
 
                         {product.available > 0 ? <AddToCart className='button add-cart-button' product={product} cart={cart}/>
 

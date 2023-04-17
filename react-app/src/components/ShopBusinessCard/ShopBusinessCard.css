@@ -32,6 +32,14 @@
     background-color: rgb(51, 51, 51);
     color: white;
     padding: .4rem;
+    font-weight: bolder;
+    transition: ease-in-out .3s;
+}
+.user-manage-edit-shop:hover {
+    box-shadow: 0rem 0rem .5rem black;
+}
+.user-manage-edit-shop:active {
+    background-color: rgb(103, 103, 103);
 }
 .user-manage-edit-shop i {
     color: white;

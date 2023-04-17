@@ -4,13 +4,13 @@ button {
     padding: .3rem;
     justify-content: center;
 }
-i {
+/* i {
     display: inline-block;
     vertical-align: middle;
     padding-inline: .3rem;
     font-size: 1.5rem;
     color: #A0A7B2
-}
+} */
 .fa-user-circle {
     font-size: 1.5rem;
     color: #A0A7B2
@@ -32,6 +32,10 @@ i {
 }
 .subtext {
     line-height: 1.3rem;
+}
+.drop-down-icons {
+    font-size: 1.5rem;
+    color: #A0A7B2;
 }
 .popout-profile-header {
     display: flex;

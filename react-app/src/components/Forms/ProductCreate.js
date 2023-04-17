@@ -36,8 +36,8 @@ export default function ProductCreateForm() {
         let e = {}
         setErrors(e)
         if (!name) e.name = "Must submit a name"
-        if (!available) e.available = "Must submit a value for available."
-        if (!price) e.price = "Must submit a price."
+        if (!available || available < 0) e.available = "Must submit a value for available."
+        if (!price || price < 0) e.price = "Must submit a price."
         if (!category) e.category = "Must submit a category"
         if (!description) e.description = "Must submit a description"
         if (!url1) e.url1 = "Must submit a url."
@@ -70,15 +70,6 @@ export default function ProductCreateForm() {
     const handleCheck = (e) => {
         freeShipping === true ? setFreeShipping(false) : setFreeShipping(true)
     }
-
-    // const urlCheck = (url) => {
-    //     return url.endsWith("jpeg") ||
-    //         url.endsWith("jpg") ||
-    //         url.endsWith("svg") ||
-    //         url.endsWith("png") ||
-    //         url.endsWith('gif') ||
-    //         url.endsWith("bmp")
-    // }
 
 
     return (
@@ -193,7 +184,7 @@ export default function ProductCreateForm() {
                         </div>
                         <div className='cp-field-div'>
                             <select className='product-category-select' name='category' onChange={(e) => setCategory(e.target.value)}>
-                                <option value='' >--Please choose a category--</option>
+                                {/* <option value='' >--Please choose a category--</option> */}
                                 <option value='Accessories' >Accessories</option>
                                 <option value='Apparel' >Apparel</option>
                                 <option value='Collectibles' >Collectibles</option>
@@ -211,54 +202,56 @@ export default function ProductCreateForm() {
                         </div>
                     </div>
 
-                    <div className='product-shipping-div'>
-                        <label className='product-label q-text' >
-                            Free Shipping
-                        </label>
-                        <p className='cp-form-label sub-q-text create-shop-grey'>
-                            Check the box to indicate whether or not your product is shipped for free.
-                        </p>
-                        {/* <p className='cp-grey-text'>Either true or false</p> */}
-                        <div className='cp-field-div'>
-                            <input className='product-input' type="checkbox"
-                                value={freeShipping}
-                                onChange={handleCheck}
-                                placeholder='Description' />
-                        {hasSubmitted && errors.freeShipping && (
-                            <div className='error'>
-                                * {errors.freeShipping}
+                    <div className='shipping-img-div'>
+                        <div className='product-shipping-div'>
+                                <label className='product-label q-text' >
+                                    Free Shipping
+                                </label>
+                                <p className='cp-form-label sub-q-text create-shop-grey check-box-text'>
+                                    Check the box to indicate whether or not your product is shipped for free.
+                                </p>
+                                {/* <p className='cp-grey-text'>Either true or false</p> */}
+                                <div className='cp-field-div'>
+                                <input className='product-input input-field check-box' type="checkbox"
+                                        value={freeShipping}
+                                        onChange={handleCheck}
+                                        placeholder='Description' />
+                                {hasSubmitted && errors.freeShipping && (
+                                    <div className='error'>
+                                        * {errors.freeShipping}
+                                    </div>
+                                )}
+                                </div>
                             </div>
-                        )}
                         </div>
+
+
                     </div>
-                </div>
-
-
-
-                <div className='product-img1-div'>
-                    <div >
-                        <label className='product-label q-text' >
-                            Image URL
-                        </label>
-                        <p className='cp-grey-text sub-q-text create-shop-grey'>
-                            Provide a url, pictures are necessary! Nobody wants to buy something sight unseen!
-                        </p>
-                    </div>
-                    <input className='product-input input-field' type="text"
-                            value={url1}
-                            onChange={(e) => setUrl1(e.target.value)}
-                            placeholder='URL' />
-                    {hasSubmitted && errors.url1 && (
-                        <div className='error'>
-                            * {errors.url1}
+                        <div className='product-img1-div'>
+                            <div >
+                                <label className='product-label q-text' >
+                                    Image URL
+                                </label>
+                                <p className='cp-grey-text sub-q-text create-shop-grey'>
+                                    Provide a url, pictures are necessary! Nobody wants to buy something sight unseen!
+                                </p>
+                            </div>
+                            <input className='product-input input-field' type="text"
+                                    value={url1}
+                                    onChange={(e) => setUrl1(e.target.value)}
+                                    placeholder='URL' />
+                            {hasSubmitted && errors.url1 && (
+                                <div className='error'>
+                                    * {errors.url1}
+                                </div>
+                            )}
                         </div>
-                    )}
-                </div>
-                    {hasSubmitted && errors.urlCheck && (
-                        <div className='error'>
-                            * {errors.urlCheck}
-                        </div>
-                    )}
+                            {hasSubmitted && errors.urlCheck && (
+                                <div className='error'>
+                                    * {errors.urlCheck}
+                                </div>
+                            )}
+
 
             </form>
 

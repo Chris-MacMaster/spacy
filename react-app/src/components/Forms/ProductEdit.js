@@ -4,6 +4,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux"
 import { editProduct, fetchOneProduct } from '../../store/product';
 import { urlCheck } from './ProductCreate';
+import "./ProductCreate.css"
 // import { render } from 'react-dom';
 // import { editSpot, makeSpot } from '../../store/spot';
 // import { fetchOneSpot } from '../../store/spot';
@@ -43,8 +44,8 @@ const ProductEditForm = () => {
         setErrors(e)
         // console.log(category)
         if (!name) e.name = "Must submit a name"
-        if (!available) e.available = "Must submit a value for available."
-        if (!price) e.price = "Must submit a price."
+        if (!available || available < 0) e.available = "Must submit a value for available."
+        if (!price || price < 0) e.price = "Must submit a price."
         if (!category) e.category = "Must submit a category"
         if (!description) e.description = "Must submit a description"
         if (!url) e.url = "Must submit a url"
@@ -67,7 +68,7 @@ const ProductEditForm = () => {
         setDescription(productState?.description || "");
         setFreeShipping(productState?.freeShipping || false);
         setPrice(productState?.price || 0);
-        
+
         setUrl(productState && productState.ProductImages && productState.ProductImages.length ? productState.ProductImages[0].url : "");
         // setUrl1(productState.ProductImages.length ? productState?.ProductImages[0]?.url || "" : "");
     }, [productState]);
@@ -113,8 +114,8 @@ const ProductEditForm = () => {
 
     return (
         <div className='edit-product-container cp-container'>
-            <h1 className='cp-title'>Listing details</h1>
-            <p className='cp-grey-text sub-q-text'>Tell the world all about your item and why they'll love it</p>
+            <h1 className='cp-title form-title'>Listing details</h1>
+            <p className='cp-grey-text sub-q-text form-sub'>Tell the world all about your item and why they'll love it</p>
             <form className='login-form sp-form' onSubmit={handleSubmit} >
 
                 <div className='product-name-div'>
@@ -122,10 +123,12 @@ const ProductEditForm = () => {
                         <label className='cp-form-label cp-title q-text' >
                             Title
                         </label>
-                        {/* <p className='cp-grey-text sub-q-text'>Incldue keywords that buyer would use to search for your item</p> */}
+                        <p className='create-shop-grey'>
+                            Choose a name for your product. Incldue keywords that a buyer would use to search for your item.
+                        </p>
                     </div>
                     <div className='cp-field-div'>
-                        <input className='product-input' type="text"
+                        <input className='product-input input-field' type="text"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                             placeholder='Name' />
@@ -137,38 +140,44 @@ const ProductEditForm = () => {
                     </div>
                 </div>
 
-                <div className='product-description-div'>
-                    <label className='cp-form-label cp-description q-text' >
-                        Description
-                    </label>
-                    <p className='cp-grey-text sub-q-text'>
-                        Start with a brief overview that describes your item's findes feature. Shopper will only see the first few lines of your description at first, so make it count!
-                    </p>
-                    <p className='cp-grey-text sub-q-text'>
-                        Not sure what else to say? Shoppers also like hearing about your process, and the story behind the item!
-                    </p>
-                </div>
+                <div className='product-description-div sub-text-flex'>
+                    <div className='description-title-sub-text'>
+                        <label className='cp-form-label cp-description q-text' >
+                            Description
+                        </label>
+                        <p className='cp-grey-text sub-q-text create-shop-grey'>
+                            Start with a brief overview that describes your item's findes feature. Shopper will only see the first few lines of your description at first, so make it count!
+                        </p>
+                        <p className='cp-grey-text sub-q-text create-shop-grey'>
+                            Not sure what else to say? Shoppers also like hearing about your process, and the story behind the item!
+                        </p>
+                    </div>
+                    <div className='cp-field-div description-text'>
+                        <textarea className='product-input input-field description-input' type="text-area"
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
+                            placeholder='Description' />
+                        {hasSubmitted && errors.description && (
+                            <div className='error'>
+                                * {errors.description}
+                            </div>
+                        )}
+                    </div>
+                    </div>
                 <div className='cp-field-div'>
-                    <input className='product-input' type="text-area"
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
-                        placeholder='Description' />
-                    {hasSubmitted && errors.description && (
-                        <div className='error'>
-                            * {errors.description}
-                        </div>
-                    )}
                 </div>
 
                 <div className='product-available-div'>
-                    <label className='cp-form-label cp-available q-text' >
-                        Available
-                    </label>
-                    <p className='cp-grey-text sub-q-text'>
-                        How many do you currently have in stock?
-                    </p>
+                    <div >
+                        <label className='cp-form-label cp-available q-text' >
+                            Available
+                        </label>
+                        <p className='cp-grey-text sub-q-text create-shop-grey'>
+                            How many do you currently have in stock?
+                        </p>
+                    </div>
                     <div className='cp-field-div'>
-                        <input className='product-input' type="number"
+                        <input className='product-input input-field' type="number"
                             value={available}
                             onChange={(e) => setAvailable(e.target.value)}
                             placeholder='Available' />
@@ -181,14 +190,16 @@ const ProductEditForm = () => {
                 </div>
 
                 <div className='product-price-div'>
-                    <label className='cp-form-label cp-price q-text' >
-                        Price
-                    </label>
-                    <p className='cp-form-label sub-q-text'>
-                        Please dont use denominations other than Empire or New Republic Credits
-                    </p>
+                    <div >
+                        <label className='cp-form-label cp-price q-text' >
+                            Price
+                        </label>
+                        <p className='cp-form-label sub-q-text create-shop-grey'>
+                            Please dont use denominations other than Empire or New Republic Credits
+                        </p>
+                    </div>
                     <div className='cp-form-field'>
-                        <input className='product-input' type="number"
+                        <input className='product-input input-field' type="number"
                             value={price}
                             onChange={(e) => setPrice(e.target.value)}
                             placeholder='Price' />
@@ -205,10 +216,10 @@ const ProductEditForm = () => {
                         <label className='product-label q-text' >
                             Category
                         </label>
-                        <p className='cp-grey-text sub-q-text'>Type a one word description of your item to get category suggestions that will help more shoppers find it.</p>
+                        <p className='cp-grey-text sub-q-text create-shop-grey'>Select a category from the options below.</p>
                         <div className='cp-field-div'>
                             <select name='category' onChange={(e) => setCategory(e.target.value)}>
-                                <option value='' >--Please choose an option--</option>
+                                {/* <option value='' >--Please choose an option--</option> */}
                                 <option value='Accessories' >Accessories</option>
                                 <option value='Apparel' >Apparel</option>
                                 <option value='Collectibles' >Collectibles</option>
@@ -225,35 +236,41 @@ const ProductEditForm = () => {
                         )}
                         </div>
                     </div>
-
-                    <div className='product-shipping-div'>
-                        <label className='product-label q-text' >
-                            Free Shipping?
-                        </label>
-                        {/* <p className='cp-grey-text'>Either true or false</p> */}
-                        <div className='cp-field-div'>
-                            <input className='product-input' type="checkbox"
-                                value={freeShipping}
-                                onChange={handleCheck}
-                                placeholder='Description' />
-                        {hasSubmitted && errors.freeShipping && (
-                            <div className='error'>
-                                * {errors.freeShipping}
-                            </div>
-                        )}
+                    <div className='shipping-img-div'>
+                        <div className='product-shipping-div'>
+                            <label className='product-label q-text' >
+                                Free Shipping
+                            </label>
+                            <p className='cp-form-label sub-q-text create-shop-grey check-box-text'>
+                                Check the box to indicate whether or not your product is shipped for free.
+                            </p>
+                            {/* <p className='cp-grey-text'>Either true or false</p> */}
+                            <div className='cp-field-div'>
+                                <input className='product-input input-field check-box' type="checkbox"
+                                    value={freeShipping}
+                                    onChange={handleCheck}
+                                    placeholder='Description' />
+                            {hasSubmitted && errors.freeShipping && (
+                                <div className='error'>
+                                    * {errors.freeShipping}
+                                </div>
+                            )}
+                    </div>
                         </div>
                     </div>
                 </div>
 
 
                 <div className='product-img1-div'>
-                    <label className='product-label q-text' >
-                        URL1:
-                    </label>
-                    <p className='cp-grey-text sub-q-text'>
-                        Provide a url, pictures are necessary! Nobody wants to buy something sight unseen!
-                    </p>
-                    <input className='product-input' type="text"
+                    <div >
+                        <label className='product-label q-text' >
+                            Image URL
+                        </label>
+                        <p className='cp-grey-text sub-q-text create-shop-grey'>
+                            Provide a url, pictures are necessary! Nobody wants to buy something sight unseen!
+                        </p>
+                    </div>
+                    <input className='product-input input-field' type="text"
                         value={url}
                         onChange={(e) => setUrl(e.target.value)}
                         placeholder='Url' />
@@ -271,7 +288,7 @@ const ProductEditForm = () => {
 
             </form>
 
-            <input onClick={handleSubmit} className='submit-button button modal-button form-create-button red-styling' type="submit" value="Edit Product" />
+            <input onClick={handleSubmit} className='submit-button form-create-button favorite-shop submit-create-shop create-product-button' type="submit" value="Edit Product" />
 
         </div>
     );
