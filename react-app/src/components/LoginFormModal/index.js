@@ -3,6 +3,7 @@ import { login } from "../../store/session";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import "./LoginForm.css";
+import { fetchCart } from "../../store/cart";
 
 function LoginFormModal() {
   const dispatch = useDispatch();
@@ -25,6 +26,7 @@ function LoginFormModal() {
     if (errors.length) return
     else if (data) setErrors(data);
     else closeModal()
+    await dispatch(fetchCart())
   };
 
   const demoUser = async (e) => {
@@ -37,6 +39,7 @@ function LoginFormModal() {
     } else {
         closeModal()
     }
+    await dispatch(fetchCart())
   };
 
 

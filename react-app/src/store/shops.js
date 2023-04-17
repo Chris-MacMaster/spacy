@@ -3,6 +3,7 @@ const LOAD_SHOPS = 'shops/LOAD'
 // const DELETE_SHOP = 'shops/DELETE_SHOP'
 const LOAD_ONE_SHOP = 'shops/LOAD_ONE_SHOP'
 const POST_SHOP = 'shops/POST_SHOP'
+const EDIT_SHOP = 'shops/EDIT_SHOP'
 //actions
 export const actionLoadShops = shops => {
     return {
@@ -20,6 +21,12 @@ export const postShop = (newShop) => {
     return {
         type: POST_SHOP,
         newShop
+    }
+}
+export const editAShop = edittedShop => {
+    return {
+        type: EDIT_SHOP,
+        edittedShop
     }
 }
 //shops for landing page
@@ -58,7 +65,23 @@ export const createShop = (data) => async dispatch => {
     })})
     const newShop = await response.json()
     if (response.ok) {
+        dispatch(postShop(newShop))
         return newShop
+    }
+}
+//put shop
+export const editShop = (data, id) => async dispatch => {
+    const { name, street_address, city, state, country, description, category, policies, url} = data
+    const response = await fetch(`/api/shops/${id}`,
+    {"method": "PUT",
+    "headers": {"Content-Type": "application/json"},
+    "body": JSON.stringify({
+        id, name, street_address, city, state, country, description, category, policies, url
+    })})
+    const edittedShop = await response.json()
+    if (response.ok) {
+        dispatch(editAShop(edittedShop))
+        return edittedShop
     }
 }
 
@@ -76,6 +99,8 @@ export default function shopReducer(state = initialState, action) {
             return beforeOneShop
         case POST_SHOP:
             return {...state, ...action.newShop}
+        case EDIT_SHOP:
+            return {...state, ...action.edittedShop}
         default: return state
     }
 }

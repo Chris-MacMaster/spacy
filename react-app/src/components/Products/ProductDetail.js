@@ -9,7 +9,6 @@ import { fetchCart } from '../../store/cart';
 import ReviewIndexItem from '../Reviews/ReviewIndexItem';
 import AddToCart from '../Cart/AddToCart';
 import { useHistory } from 'react-router-dom';
-import { NavLink } from 'react-router-dom';
 
 import "./ProductDetail.css"
 import OpenModalButton from '../OpenModalButton';
@@ -68,11 +67,8 @@ const ProductDetail = () => {
     }
 
     console.log('Product', product)
-
-    // const avgRating = productReviews.reduce((acc, r) => typeof r.stars === 'number' ? acc + r.stars : acc +0,0) / productReviews.length
-    // console.log('avg reviews', avgRating)
-    console.log("$#@!$@!$#@!#$@!$#@!#$@!$#@!",  product)
-    const handleClick = () => history.push(`/product-reviews/${productId}/new`)
+    const handleClick = () =>
+    history.push(`/product-reviews/${productId}/new`)
     if (!product.Shop) return null
 
     const handleShopRedirect = (e) => {
@@ -173,7 +169,7 @@ const ProductDetail = () => {
                         </div>
                     </div>
                     <div className='purchase-buttons'>
-                        <button className='button buy-it-button'>Buy it now</button>
+                        {/* <button className='button buy-it-button'>Buy it now</button> */}
 
                         {product.available > 0 ? <AddToCart className='button add-cart-button' product={product} cart={cart}/>
 

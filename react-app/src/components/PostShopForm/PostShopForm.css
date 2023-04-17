@@ -46,3 +46,11 @@ h1.post-shop-title {
     border-style: inset;
     border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
 }
+
+.category-input {
+    margin-top: 15px;
+}
+
+.create-shop-div {
+    margin-left: 120px;
+}

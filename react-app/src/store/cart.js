@@ -113,7 +113,7 @@ export default function cartReducer(state = initialState, action) {
         }
         case ADD_TO_CART: {
             newState.products = action.cart
-            return newState
+            return {...newState, products: {...newState.products}}
         }
         case REMOVE_FROM_CART: {
             delete newState.products[action.cart]

@@ -45,11 +45,8 @@ def get_one_product(product_id):
 
         if current_user.is_authenticated:
             product = Product.query.get(product_id)
-            # print("query passed ---------------------")
             form = CreateProductForm() # make edit form
-            # print("form created --------------------")
             form['csrf_token'].data = request.cookies['csrf_token']
-            # print('csrf passed -------------------------')
             if form.validate_on_submit():
                 product.shop_id = form.data["shop_id"]
                 product.name = form.data["name"]
@@ -66,15 +63,9 @@ def get_one_product(product_id):
                     if img.id < first_img.id:
                         first_img = img
 
-                # print("product image =========================", product_image.to_dict())
-                # print("product image =========================", product_image.to_dict())
-                # print("product image =========================", product_image.to_dict())
-                # print("product image =========================", product_image.to_dict())
-                # print("product image =========================", product_image.to_dict())
                 first_img.url = form.data["url"]
                 db.session.commit()
                 return product.to_dict(), 201
-            # print('validations failed! ----------------')
 
 
 

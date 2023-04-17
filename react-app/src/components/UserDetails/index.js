@@ -25,8 +25,8 @@ export default function UserDetails() {
     const userShopsIds = shops ? Object.values(shops).filter(s=>parseInt(s.ownerId) === parseInt(user.id)).map(s=>s.id) : null
     const userShops = Object.values(shops).filter(s => parseInt(s.ownerId) === parseInt(userId))
     const userProducts = Object.values(products).filter(p=> userShopsIds.includes(p.shopId))
-    console.log('USERSHOPS', userShops)
-    const onClick = () => history.push('/shops/new')
+    const onClickCreateShop = () => history.push('/shops/new')
+    const featureAlert = () => alert('Feature coming soon')
 
     return (
         <div className='user-manage-details'>
@@ -48,9 +48,9 @@ export default function UserDetails() {
                         <i className="fa-solid fa-message"></i>You!</p>
                 </div>
             </div>
-            
+
             <button className='favorite-shop'
-                    onClick={onClick}>
+                    onClick={onClickCreateShop}>
                         <i class="fa-solid fa-screwdriver-wrench create-shop-icon"></i>
                     Create Shop
             </button>
@@ -72,7 +72,12 @@ export default function UserDetails() {
             <div className='user-manage-footer'>
                 <div className='user-manage-shop-policies'>
                     <h3>Shop Policies</h3>
-                    {userShops.length ? <p>{userShops[0].policies}</p>: null}
+                    {userShops.length ? userShops.map(s=> (
+                <>
+                    <h3>{s.name}</h3>
+                    <p>{s.policies}</p>
+                </>
+                    )) : null}
                 </div>
                 <div className='accepted-payments'></div>
             </div>
