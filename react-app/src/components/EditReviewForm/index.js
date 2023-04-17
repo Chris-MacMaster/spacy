@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { editReview, getOneReview } from "../../store/review";
 import '../PostReviewForm/ReviewForm.css'
-import { urlChecka } from "../Cart/_helpers"
 
 function EditReviewForm() {
 
