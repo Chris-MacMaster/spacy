@@ -98,8 +98,10 @@ export default function ShopDetails () {
             </div>
             <div className='category-column-buttons'>
 
-            <button className='column-buttons'><i className="fa-solid fa-clipboard-list"></i> Request Custom Order</button>
-            <button className='column-buttons'><i className="fa-solid fa-message"></i> Contact shop owner</button>
+            <button className='column-buttons'
+            onClick={featureAlert}><i className="fa-solid fa-clipboard-list"></i> Request Custom Order</button>
+            <button className='column-buttons'
+            onClick={featureAlert}><i className="fa-solid fa-message"></i> Contact shop owner</button>
             </div>
             </div>
             <div className='item-card-display'>

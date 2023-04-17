@@ -61,6 +61,15 @@ a.product-name, a.shop-product-price {
     margin-bottom: .4rem;
     margin-left: .4rem;
     cursor: pointer;
+    transition: ease-in-out .3s;
+}
+#shop-delete-button:hover,
+#shop-edit-button:hover {
+    box-shadow: 0rem 0rem .5rem black;
+}
+#shop-delete-button:active,
+#shop-edit-button:active {
+    background-color: red;
 }
 /* #shop-delete-button {
     background-color: rgb(185, 28, 28);
