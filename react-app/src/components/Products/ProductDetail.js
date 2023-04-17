@@ -58,13 +58,13 @@ const ProductDetail = () => {
 
     console.log('reviews', productReviews)
 
-    let userIds = []
+    let userIds = productReviews && productReviews.length ? productReviews.map(r => r.userId) : null
 
-    if (productReviews.length) {
-        for (let review of productReviews) {
-            userIds.push(review.userId)
-        }
-    }
+    // if (productReviews.length) {
+    //     for (let review of productReviews) {
+    //         userIds.push(review.userId)
+    //     }
+    // }
 
     console.log('Product', product)
     const handleClick = () =>
@@ -117,7 +117,7 @@ const ProductDetail = () => {
                             ) ) } </p> : (
                                 <p>New! <i className="fa-solid fa-star gold-star gold-star-product-deets landing-shop-stars"/> </p>
                             )}                        </p>
-                        {user && product.Shop?.ownerId !== user.id && !userIds.includes(user.id) ?
+                        {user && product.Shop?.ownerId !== user.id ?
                  (   <div>
                         {/* <NavLink to={`/product-reviews/${productId}/new`}> */}
                         <button className='post-item-review'

@@ -22,10 +22,10 @@ const ReviewIndexItem = ({ review , product}) => {
 
     }
 
-    const handleDeleteClick = (e) => {
+    const handleDeleteClick = async (e) => {
         e.preventDefault()
-        dispatch(deleteReview(review.id))
-        dispatch(fetchProductReviews(product.id))
+        await dispatch(deleteReview(review.id))
+        await dispatch(fetchProductReviews(product.id))
     }
 
     if (!Object.values(review).length || !product) return null

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { editReview, getOneReview } from "../../store/review";
 import '../PostReviewForm/ReviewForm.css'
+import { urlChecka } from "../Cart/_helpers"
 
 function EditReviewForm() {
 
@@ -23,6 +24,7 @@ function EditReviewForm() {
 
     const [review, setReview] = useState(reviewToEdit.review || '')
     const [stars, setStars] = useState(reviewToEdit.stars || '')
+    // const [imageURL, setImageURL] = useState('')
 
     const [errors, setErrors] = useState({})
     const [hasSubmitted, setHasSubmitted] = useState(false);
@@ -42,6 +44,7 @@ function EditReviewForm() {
         if (!review) e.review = "Must submit a review"
         if (review.length < 40) e.reviewLength = "Review must be at least 40 characters"
         if (!stars) e.stars = "Must submit a value for stars."
+        // if (!urlChecka(imageURL)) e.imageURL = "Must submit an image URL."
         // if (!imageURL) e.imageURL = "Must submit an image URL."
     }, [review, stars])
 
@@ -82,7 +85,15 @@ function EditReviewForm() {
             <p>What did you like about this product?</p>
             <p>Help others by sending your feedback.</p>
             <div>
-                <div className="rate">
+                {[1, 2, 3, 4, 5].map((ele, i) => (
+                    <span className={`review-span`}
+
+                        onClick={() => setStars(ele)}
+                        key={'star' + ele} >
+                        <i className={`fa-solid fa-star ${stars >= ele ? `review-filled` : `review-empty`}`} key={ele}></i>
+                    </span>
+                ))}
+                {/* <div className="rate">
                   <input type="radio" id="star5" name="rate" value='5' onChange={(e) => setStars(Number(e.target.value))} />
                   <label htmlFor="star5" title="text">5 stars</label>
                   <input type="radio" id="star4" name="rate" value='4' onChange={(e) => setStars(Number(e.target.value))} />
@@ -93,7 +104,7 @@ function EditReviewForm() {
                   <label htmlFor="star2" title="text">2 stars</label>
                   <input type="radio" id="star1" name="rate" value='1' onChange={(e) => setStars(Number(e.target.value))} />
                   <label htmlFor="star1" title="text">1 star</label>
-                </div>
+                </div> */}
             </div>
 
             {hasSubmitted && errors.stars && (
