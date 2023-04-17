@@ -124,7 +124,7 @@ export default function cartReducer(state = initialState, action) {
             return newState
         }
         case EDIT_QUANTITY : {
-            newState[action.cart.id] = action.cart
+            newState.products[action.cart.id] = action.cart
             return newState
         }
         default: return state
