@@ -27,7 +27,7 @@ export default function AddToCart({cart, product}){
         )
 
         let theCart = productCart(Object.values(cart.products))
-        if(theCart.quantity === product.available) {
+        if(theCart?.quantity === product.available) {
             return alert("Every available item already in cart.")
         }
         setBtnEndabled(true)
