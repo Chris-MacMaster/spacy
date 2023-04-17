@@ -61,3 +61,6 @@ margin-top: 2rem;
 .review-index-stars {
     font-size: 2rem;
 }
+.gold-star.review-index-stars {
+    color: goldenrod;
+}

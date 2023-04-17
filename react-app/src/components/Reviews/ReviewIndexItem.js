@@ -37,7 +37,7 @@ const ReviewIndexItem = ({ review , product}) => {
                     <div className='rev-stars'>
                         {Array(5).fill(1).map((s, i) => (
                             i < review.stars ? (
-                                <i className="fa-solid fa-star gold-stargit  review-index-stars"></i>
+                                <i className="fa-solid fa-star gold-star  review-index-stars"></i>
                             ) : (
                                 <i className="fa-solid fa-star blank-star review-index-stars"></i>
                             )
