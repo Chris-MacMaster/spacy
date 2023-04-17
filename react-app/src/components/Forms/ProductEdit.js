@@ -44,8 +44,8 @@ const ProductEditForm = () => {
         setErrors(e)
         // console.log(category)
         if (!name) e.name = "Must submit a name"
-        if (!available) e.available = "Must submit a value for available."
-        if (!price) e.price = "Must submit a price."
+        if (!available || available < 0) e.available = "Must submit a value for available."
+        if (!price || price < 0) e.price = "Must submit a price."
         if (!category) e.category = "Must submit a category"
         if (!description) e.description = "Must submit a description"
         if (!url) e.url = "Must submit a url"
@@ -68,7 +68,7 @@ const ProductEditForm = () => {
         setDescription(productState?.description || "");
         setFreeShipping(productState?.freeShipping || false);
         setPrice(productState?.price || 0);
-        
+
         setUrl(productState && productState.ProductImages && productState.ProductImages.length ? productState.ProductImages[0].url : "");
         // setUrl1(productState.ProductImages.length ? productState?.ProductImages[0]?.url || "" : "");
     }, [productState]);

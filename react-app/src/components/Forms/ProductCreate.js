@@ -36,8 +36,8 @@ export default function ProductCreateForm() {
         let e = {}
         setErrors(e)
         if (!name) e.name = "Must submit a name"
-        if (!available) e.available = "Must submit a value for available."
-        if (!price) e.price = "Must submit a price."
+        if (!available || available < 0) e.available = "Must submit a value for available."
+        if (!price || price < 0) e.price = "Must submit a price."
         if (!category) e.category = "Must submit a category"
         if (!description) e.description = "Must submit a description"
         if (!url1) e.url1 = "Must submit a url."
