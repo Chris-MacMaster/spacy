@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch } from "react-redux"
-import { makeProduct } from '../../store/product';
+import { fetchOneProduct, fetchProducts, makeProduct } from '../../store/product';
 import { fetchShops } from '../../store/shops';
 import './ProductCreate.css'
 
@@ -62,6 +62,7 @@ export default function ProductCreateForm() {
         }
         dispatch(makeProduct(newProduct))
         dispatch(fetchShops())
+        // dispatch(fetchProducts())
         history.push(`/shops/${shopId}`)
     };
 
@@ -183,7 +184,7 @@ export default function ProductCreateForm() {
                         </div>
                         <div className='cp-field-div'>
                             <select className='product-category-select' name='category' onChange={(e) => setCategory(e.target.value)}>
-                                {/* <option value='' >--Please choose a category--</option> */}
+                                <option value='' >--Please choose a category--</option>
                                 <option value='Accessories' >Accessories</option>
                                 <option value='Apparel' >Apparel</option>
                                 <option value='Collectibles' >Collectibles</option>

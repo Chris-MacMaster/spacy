@@ -49,7 +49,7 @@ function EditReviewForm() {
         e.preventDefault()
         setHasSubmitted(true)
         if (Object.values(errors).length) {
-            console.log("ERRORS!")
+            // console.log("ERRORS!")
             return
         }
 
