@@ -65,23 +65,23 @@ function ProfileButton({ user }) {
           </div>
           </NavLink>
           </div>
-            <p><i className="fa-solid fa-clipboard-list"></i>
+            <p><i className="fa-solid fa-clipboard-list drop-down-icons"></i>
             Purchases and reviews</p>
-            <p><i className="fa-solid fa-gift"></i>
+            <p><i className="fa-solid fa-gift drop-down-icons"></i>
               Gift card balance: $0.00</p>
-            <p><i className="fa-solid fa-message"></i>
+            <p><i className="fa-solid fa-message drop-down-icons"></i>
             Messages</p>
-            <p><i className="fa-solid fa-tag"></i>
+            <p><i className="fa-solid fa-tag drop-down-icons"></i>
             Your offers</p>
-            <p><i className="fa-solid fa-leaf"></i>
+            <p><i className="fa-solid fa-leaf drop-down-icons"></i>
             Your impact</p>
-            <p><i className="fa-solid fa-gear"></i>
+            <p><i className="fa-solid fa-gear drop-down-icons"></i>
             Account Settings</p>
-            <p><i className="fa-solid fa-store"></i>
+            <p><i className="fa-solid fa-store drop-down-icons"></i>
             Sell on Etsy</p>
             {/* <p><NavLink exact to={`/currentuser`}>User Details</NavLink></p> */}
             <p>
-              <button onClick={logout}><i className="fa-solid fa-right-from-bracket"></i>Sign Out</button>
+              <button onClick={logout}><i className="fa-solid fa-right-from-bracket drop-down-icons"></i>Sign Out</button>
             </p>
           </>
         ) : (
