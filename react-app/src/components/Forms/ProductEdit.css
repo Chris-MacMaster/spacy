@@ -4,3 +4,21 @@
     align-items: center;
 }
 
+.favorite-shop-button {
+    border: black solid 0.15rem;
+    border-radius: 5rem;
+    width: 13rem;
+    text-align: center;
+    /* font-size: .8rem; */
+    font-family: 'Mulish', sans-serif;
+    padding: 0.5rem;
+    box-shadow: 0rem 0rem 0.5rem lightslategray;
+    margin: 1rem;
+    margin-left: 10rem;
+    transition: .1s ease-in-out;
+}
+
+.sub-text-flex {
+    display: flex;
+    flex-direction: row;
+}
