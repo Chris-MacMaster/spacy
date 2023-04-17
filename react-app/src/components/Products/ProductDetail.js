@@ -107,7 +107,7 @@ const ProductDetail = () => {
                         </p>
                         <p className='review-p review-stars'>
                         {productReviews && productReviews.length ?
-                            <p className='review-num-title'>{productReviews.length === 1 ? <div>{'1 Review'}</div> : productReviews.length > 1 ? <div>{productReviews.length} Reviews</div> : null}
+                            <p className='review-num-title'>{productReviews.length === 1 ? <div>{'1 Review'}</div> : productReviews.length > 1 ? <> {productReviews.length} Reviews</>  : null}
                             { Array(5).fill(1).map((s,i)=> (
                             i < product.avgRating ? (
                                 <i className="fa-solid fa-star gold-star gold-star-product-deets landing-shop-stars" key={i}></i>
