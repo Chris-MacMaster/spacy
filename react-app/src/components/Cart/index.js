@@ -57,7 +57,7 @@ export default function DisplayCart(){
       </div>
       <div className="purchase-protection">
       <i className="fa-regular fa-handshake"></i>
-        <p className="etsy-purchase-protection">Etsy purchase protection:</p> <p>Shop confidently knowing if something goes wrong, we've got your back!</p>
+        <p className="etsy-purchase-protection">Spacey purchase protection:</p> <p>Shop confidently knowing if something goes wrong, we've got your back!</p>
       </div>
       <div className="cart-content">
         <div className="names-are-hard">
