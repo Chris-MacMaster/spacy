@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import './ShopBusinessCard.css'
 import { fetchOneShop } from '../../store/shops'
 import { NavLink } from 'react-router-dom'
