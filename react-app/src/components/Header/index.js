@@ -86,7 +86,10 @@ function Header({ isLoaded }) {
 
             <div className='cart'>
                 {user && cartTotal && cartTotal > 0 ? (
+                <NavLink to='/cart'
+                style={{textDecoration: "none"}}>
                 <div className='number-in-cart'>{cartTotal}</div>
+                </NavLink>
                 ) : null}
             <NavLink to='/cart'>
                 <div className='header-tip'>Cart</div>

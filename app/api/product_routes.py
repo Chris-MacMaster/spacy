@@ -74,7 +74,6 @@ def get_one_product(product_id):
 def get_all_products():
     """returns all products regardless of session"""
     # get products
-    print('HITS ROUTE ---------------------------')
     if request.method == "GET":
         products = Product.query.all()
 
@@ -101,7 +100,8 @@ def get_all_products():
         form = CreateProductForm()
         form['csrf_token'].data = request.cookies['csrf_token']
         if not form.validate_on_submit():
-            print("NOT VALIDATED --------------------------------")
+            # pass
+            raise ValueError("Failed flask form validation")
         if form.validate_on_submit():
             new_product = Product(
                 shop_id = form.data["shop_id"],

@@ -38,7 +38,7 @@ export default function PostReviewForm() {
         if (!review) e.review = "Must submit a review"
         if (review.length < 40) e.reviewLength = "Review must be at least 40 characters"
         if (!stars) e.stars = "Must submit a value for stars."
-        if(!urlChecka(imageURL) || imageURL !== '') e.imageURL = "Must submit an image URL."
+        if(!urlChecka(imageURL) && imageURL !== "") e.imageURL = "Submitted urls must be valid."
     }, [review, stars, imageURL])
 
     const testSub = (e) => {
