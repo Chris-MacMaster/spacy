@@ -72,7 +72,7 @@ function Landing({ isLoaded }) {
                 alt='product'
                 className='suggest-image'></img>
                 </div>
-                <p>Something Else!</p>
+                <p>Adventure Outfitting!</p>
             </div>
             <div className='top-banner-suggestions'>
                 <div className='suggest-image-div'>
