@@ -13,7 +13,7 @@ function SearchResults() {
     useEffect(() => {
         dispatch(getSearchResults(parameters))
     }, [dispatch, parameters])
-
+    // put products in dependency array to fix search bar bug
 
     if (!Object.values(products).length) {
         return (
