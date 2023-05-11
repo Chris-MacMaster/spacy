@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch } from "react-redux"
-import { fetchOneProduct, fetchProducts, makeProduct } from '../../store/product';
+import { makeProduct } from '../../store/product';
 import { fetchShops } from '../../store/shops';
 import './ProductCreate.css'
 
