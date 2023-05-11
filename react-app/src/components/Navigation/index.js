@@ -9,7 +9,6 @@ function Navigation({ isLoaded }){
 
 	return (
 		<>
-
 			{isLoaded && (
 					<ProfileButton user={sessionUser} />
 			)}

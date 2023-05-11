@@ -7,28 +7,20 @@ import '../PostReviewForm/ReviewForm.css'
 function EditReviewForm() {
 
     const history = useHistory()
-
     const dispatch = useDispatch()
     const {reviewId} = useParams()
-
-    let reviewToEdit = useSelector((state) => state.reviews.singleReviewGet)
-    let user = useSelector((state) => state.session.user)
+    const reviewToEdit = useSelector((state) => state.reviews.singleReviewGet)
+    const user = useSelector((state) => state.session.user)
 
 
     useEffect(() => {
         dispatch(getOneReview(reviewId))
     }, [dispatch, reviewId])
-    // console.log('edit review', reviewToEdit)
-
 
     const [review, setReview] = useState(reviewToEdit.review || '')
     const [stars, setStars] = useState(reviewToEdit.stars || '')
-    // const [imageURL, setImageURL] = useState('')
-
     const [errors, setErrors] = useState({})
     const [hasSubmitted, setHasSubmitted] = useState(false);
-
-    // console.log('review value',review)
 
     useEffect(() => {
         if (Object.values(reviewToEdit).length) {
@@ -38,20 +30,18 @@ function EditReviewForm() {
     }, [reviewToEdit])
 
     useEffect(() => {
-        let e = {}
+        const e = {}
         setErrors(e)
         if (!review) e.review = "Must submit a review"
         if (review.length < 40) e.reviewLength = "Review must be at least 40 characters"
         if (!stars) e.stars = "Must submit a value for stars."
-        // if (!urlChecka(imageURL)) e.imageURL = "Must submit an image URL."
-        // if (!imageURL) e.imageURL = "Must submit an image URL."
+
     }, [review, stars])
 
     const handleSubmit = async (e) => {
         e.preventDefault()
         setHasSubmitted(true)
         if (Object.values(errors).length) {
-            // console.log("ERRORS!")
             return
         }
 
@@ -92,18 +82,7 @@ function EditReviewForm() {
                         <i className={`fa-solid fa-star ${stars >= ele ? `review-filled` : `review-empty`}`} key={ele}></i>
                     </span>
                 ))}
-                {/* <div className="rate">
-                  <input type="radio" id="star5" name="rate" value='5' onChange={(e) => setStars(Number(e.target.value))} />
-                  <label htmlFor="star5" title="text">5 stars</label>
-                  <input type="radio" id="star4" name="rate" value='4' onChange={(e) => setStars(Number(e.target.value))} />
-                  <label htmlFor="star4" title="text">4 stars</label>
-                  <input type="radio" id="star3" name="rate" value='3' onChange={(e) => setStars(Number(e.target.value))} />
-                  <label htmlFor="star3" title="text">3 stars</label>
-                  <input type="radio" id="star2" name="rate" value='2' onChange={(e) => setStars(Number(e.target.value))} />
-                  <label htmlFor="star2" title="text">2 stars</label>
-                  <input type="radio" id="star1" name="rate" value='1' onChange={(e) => setStars(Number(e.target.value))} />
-                  <label htmlFor="star1" title="text">1 star</label>
-                </div> */}
+
             </div>
 
             {hasSubmitted && errors.stars && (

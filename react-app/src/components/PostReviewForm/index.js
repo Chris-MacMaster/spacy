@@ -12,23 +12,17 @@ export default function PostReviewForm() {
     const dispatch = useDispatch()
     const history = useHistory()
     const {productId} = useParams()
-
-
-    let product = useSelector((state) => state.products.singleProduct)
-    // let shop = useSelector((state) => state.shops.singleShop)
-    let user = useSelector((state) => state.session.user)
-
+    const product = useSelector((state) => state.products.singleProduct)
+    const user = useSelector((state) => state.session.user)
     const [imageURL, setImageURL] = useState('')
 
     useEffect(() => {
         dispatch(fetchOneProduct(productId))
         dispatch(fetchOneShop(product.shopId))
-        // console.log('state shop', res)
     }, [dispatch, productId, product.shopId])
 
     const [review, setReview] = useState('')
     const [stars, setStars] = useState(0)
-
     const [errors, setErrors] = useState({})
     const [hasSubmitted, setHasSubmitted] = useState(false);
 
@@ -41,38 +35,22 @@ export default function PostReviewForm() {
         if(!urlChecka(imageURL) && imageURL !== "") e.imageURL = "Submitted urls must be valid."
     }, [review, stars, imageURL])
 
-    const testSub = (e) => {
-        console.log("TESTING WORKS")
-        console.log(errors)
-    }
-
     const handleSubmit = async (e) => {
-        // console.log("SUBMITTED")
         e.preventDefault()
-        // console.log("SUBMITTED")
         setHasSubmitted(true)
-
-        if (Object.values(errors).length) {
-            // console.log("FOUND ERRORS!")
-            return
-        }
-
-
-        const res = await dispatch(createProductReview(product.id, review, stars, imageURL))
-        console.log('res', res)
+        if (Object.values(errors).length) return;
+        await dispatch(createProductReview(product.id, review, stars, imageURL))
         history.push(`/products/${productId}`)
     }
 
-    //  || !product.ProductImages.length || !Object.values(product.Shop).length
 
-    if (!user || !Object.keys(product).includes('ProductImages') || !Object.keys(product).includes('Shop')) {
-        return null
-    }
+    if (!user || !Object.keys(product).includes('ProductImages') || !Object.keys(product).includes('Shop')) return null
+
 
     return (
         <>
         <div className="formParent">
-        <form onSubmit={testSub} className='wholeForm'>
+        <form className='wholeForm'>
             <div className='headerAndReview'>
                 <div className='productPic'>
                     {product.ProductImages.length > 0 ?  <img src={product.ProductImages[0].url} alt='not loading'/> : null}
@@ -141,7 +119,6 @@ export default function PostReviewForm() {
             )}
 
             <div className='submitButtonParent'>
-                {/* <button type='submit' className='submitButton'>Post Your Review</button> */}
                 <input onClick={handleSubmit} className='submit-button form-create-button red-styling edit-review-button' type="submit" value="Post Your Review" />
             </div>
         </form>

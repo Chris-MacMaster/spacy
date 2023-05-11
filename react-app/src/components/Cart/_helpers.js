@@ -35,9 +35,3 @@ export const urlChecka = url => {
     if (!pattern.test(url)) return false
     if (["img","jpg","jpeg"].includes(url.split(".").pop())) return true
 }
-
-//      console.log(urlChecka("https://www.google.com")); // true
-// console.log(urlChecka("http://example.com/path/to/page.html")); // true
-// console.log(urlChecka("ftp://ftp.example.com")); // false
-// console.log(urlChecka("http://255.255.255.255:8080")); // true
-// console.log(urlChecka("invalid_url")); // false

@@ -18,17 +18,6 @@ def checkout():
         db.session.delete(i)
     db.session.commit()
     return {"message": "Checkout Complete"}, 204
-    #
-    #
-
-    # req_data = request.get_json()
-    # cart_id = req_data["cart_id"]
-    # print(cart_id)
-    # item_to_delete = Cart.query.get(cart_id)
-    # print(item_to_delete)
-    # db.session.delete(item_to_delete)
-    # db.session.commit()
-    # return {"message": "Product removed from cart"}, 204
 
 @cart_routes.route('/', methods=['GET','POST', 'PUT', 'DELETE'])
 # @login_required

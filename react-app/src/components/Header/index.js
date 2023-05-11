@@ -4,7 +4,6 @@ import Navigation from '../Navigation'
 import { Switch, Route } from 'react-router-dom'
 import LoginFormPage from '../LoginFormPage'
 import SignupFormPage from '../SignupFormPage'
-
 import { getSearchResults } from '../../store/search'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -14,12 +13,9 @@ import { authenticate } from '../../store/session'
 import { fetchCart } from '../../store/cart'
 
 function Header({ isLoaded }) {
-
     const [parameters, setParameters] = useState('')
-
     const dispatch = useDispatch()
     const history = useHistory()
-
     const handleSubmit = async (e) => {
         e.preventDefault()
         setParameters('')
@@ -34,7 +30,6 @@ function Header({ isLoaded }) {
 
     const cart = useSelector(state => state.cart && state.cart.products ? state.cart.products : null)
     const cartTotal = Object.values(cart).reduce((acc, p) => p?.quantity ? p.quantity + acc : acc + 0, 0)
-    // console.log('CART TOTAL', cartTotal)
     const shops = useSelector(state=> state.shops.allShops)
     const user = useSelector(state => state.session.user)
     if (!shops) return null

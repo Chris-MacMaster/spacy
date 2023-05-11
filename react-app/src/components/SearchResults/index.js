@@ -8,18 +8,13 @@ import './SearchResults.css'
 function SearchResults() {
     const {parameters} = useParams()
     const dispatch = useDispatch()
-    // console.log(parameters)
     const products = useSelector((state) => state.search.searchResults)
     useEffect(() => {
         dispatch(getSearchResults(parameters))
     }, [dispatch, parameters])
     // put products in dependency array to fix search bar bug
 
-    if (!Object.values(products).length) {
-        return (
-            <h1>No Results</h1>
-        )
-    }
+    if (!Object.values(products).length) return <h1>No Results</h1>
 
     return (
         <div className="search-results-div">

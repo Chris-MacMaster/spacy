@@ -8,8 +8,6 @@ import { urlChecka } from '../Cart/_helpers'
 export default function PostShopForm() {
     const history = useHistory()
     const dispatch = useDispatch()
-
-
     const [name, setName] = useState('')
     const [streetAddress, setStreetAddress] = useState('')
     const [city, setCity] = useState('')
@@ -20,10 +18,7 @@ export default function PostShopForm() {
     const [policies, setPolicies] = useState('')
     const [url, setUrl] = useState('')
     const [errors, setErrors] = useState({})
-
     const [hasSubmitted, setHasSubmitted] = useState(false);
-
-
     const user = useSelector(state => state.session.user)
 
     useEffect(() => {
@@ -45,11 +40,7 @@ export default function PostShopForm() {
         e.preventDefault();
 
         setHasSubmitted(true)
-
-
-        if (Object.values(errors).length) {
-            return
-        }
+        if (Object.values(errors).length) return;
 
         const newShop = {
             name,

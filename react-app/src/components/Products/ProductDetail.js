@@ -83,22 +83,15 @@ const ProductDetail = () => {
                     <div className='product-subimages-div'>
                         <div className='both-images-div'>
                             <div className='subimage-div'>
-                                {/* {product && product.ProductImages && product.productImages.length ? product.ProductImages.map((p,i) => (
-                                    <img className='product-image product-subimage' src={`${p.url}`} alt='no found' key={`mapped${i}`}/>
-                                )) : null} */}
+
                             </div>
                             <div className='product-arrow less-than'>
-                                {/* <p className='greater-less-p'>
-                                    &lt;
-                                </p> */}
+
                             </div>
                             <div className='product-images-div'>
                                 <img className='product-image' src={product.ProductImages[0].url} alt='no found' />
                             </div>
                             <div className='product-arrow greater-than'>
-                                {/* <p className='greater-less-p'>
-                                    &gt;
-                                </p> */}
                             </div>
                         </div>
                     </div>
@@ -156,13 +149,6 @@ const ProductDetail = () => {
                             <p className='shop-name' onClick={handleShopRedirect}>
                                 {product.Shop.name}
                             </p>
-                            {/* <NavLink to={`{shops/${product.Shop.id}}`} >
-                            <div className='store-name'>
-                                {product.Shop.name}
-                            </div>
-
-                            </NavLink> */}
-
                             <div className='store-follows'>
                                 <i className="fa-solid fa-heart"></i> Follow
                                 {/* feature incoming */}
@@ -173,7 +159,6 @@ const ProductDetail = () => {
                         </div>
                     </div>
                     <div className='purchase-buttons'>
-                        {/* <button className='button buy-it-button'>Buy it now</button> */}
 
                         {product.available > 0 ? <AddToCart className='button add-cart-button' product={product} cart={cart}/>
 
@@ -190,7 +175,6 @@ const ProductDetail = () => {
                             <p className='prod-description-p'>Description</p>
                             {product.description}
                         </div>
-                        {/* <button onClick={openMenu}>EXPERIMENT</button> */}
                         <div className='shop-pol-modal' >
                             <OpenModalButton
                             id='shop-policy-button'

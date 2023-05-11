@@ -48,3 +48,6 @@
     font-family: 'Mulish', sans-serif;
     font-size: 1.3rem;
 }
+.submit {
+    cursor: pointer;
+}
