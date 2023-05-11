@@ -76,7 +76,6 @@ def delete_one_shop(shop_id):
     shop = Shop.query.get(shop_id)
     shop_image = ShopImage.query.get(shop_id)
     if current_user.is_authenticated and request.method == 'DELETE':
-        # cart_items = Cart.query.filter_by(user_id=current_user.id).all()
         if shop == None:
             return {"errors": "Cannot find Shop with specified id"}
         elif shop.owner_id == current_user.id:
