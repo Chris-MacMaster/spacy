@@ -16,7 +16,7 @@ export default function Footer() {
         'https://github.com/Chris-MacMaster'],
 
         ['Marc Guggenheim',
-        'coming-soon',
+        'https://www.linkedin.com/in/marc-guggenheim-270165275/',
         'https://github.com/MarcGugg'
         ]]
     return (
