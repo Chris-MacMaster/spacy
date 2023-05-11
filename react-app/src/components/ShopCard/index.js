@@ -13,7 +13,6 @@ export default function ShopCard({ shop }) {
     const products = useSelector(state=> state.products.allProducts)
     const reviews = useSelector(state=> state)
     if (!products || !reviews) return null
-    // console.log('REVIEWS', products)
     const filteredProducts = Object.values(products).filter(p=>p.shopId===shop.id)
     const reviewedProducts = filteredProducts.filter(p=> typeof p.avgRating != 'string')
     const shopRating = reviewedProducts.reduce((acc,p)=> typeof p.avgRating === 'string' ? acc + 0 :acc + p.avgRating,0)/reviewedProducts.length

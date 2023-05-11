@@ -1,7 +1,6 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import session from './session'
-// import product from './product'
 import productReducer from './product';
 import searchReducer from './search';
 import cartReducer from './cart';
@@ -16,7 +15,6 @@ const rootReducer = combineReducers({
   reviews: reviewReducer,
   search: searchReducer
 });
-
 
 let enhancer;
 

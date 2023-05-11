@@ -44,12 +44,9 @@ export default function ProductCreateForm() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // console.log("SUBMITTED")
         setHasSubmitted(true)
-        // console.log("ERRORS", errors)
-        if (Object.values(errors).length) {
-            return
-        }
+        if (Object.values(errors).length) return;
+
         const newProduct = {
           name,
           shop_id: shopId,
@@ -62,7 +59,6 @@ export default function ProductCreateForm() {
         }
         dispatch(makeProduct(newProduct))
         dispatch(fetchShops())
-        // dispatch(fetchProducts())
         history.push(`/shops/${shopId}`)
     };
 
@@ -86,7 +82,6 @@ export default function ProductCreateForm() {
                         <p className='create-shop-grey'>
                             Choose a name for your product. Incldue keywords that a buyer would use to search for your item.
                         </p>
-                        {/* <p className='cp-grey-text sub-q-text'>Incldue keywords that buyer would use to search for your item</p> */}
                     </div>
                     <div className='input-div'>
                         <div className='cp-field-div'>
@@ -210,7 +205,7 @@ export default function ProductCreateForm() {
                                 <p className='cp-form-label sub-q-text create-shop-grey check-box-text'>
                                     Check the box to indicate whether or not your product is shipped for free.
                                 </p>
-                                {/* <p className='cp-grey-text'>Either true or false</p> */}
+                                {/* Either true or false*/}
                                 <div className='cp-field-div'>
                                 <input className='product-input input-field check-box' type="checkbox"
                                         value={freeShipping}

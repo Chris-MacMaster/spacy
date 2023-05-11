@@ -26,7 +26,6 @@ export default function UserDetails() {
     const userShops = Object.values(shops).filter(s => parseInt(s.ownerId) === parseInt(userId))
     const userProducts = Object.values(products).filter(p=> userShopsIds.includes(p.shopId))
     const onClickCreateShop = () => history.push('/shops/new')
-    const featureAlert = () => alert('Feature coming soon')
 
     return (
         <div className='user-manage-details'>

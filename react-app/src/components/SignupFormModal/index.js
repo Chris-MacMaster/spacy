@@ -18,7 +18,6 @@ function SignupFormModal() {
 	const [ disable, setDisable] = useState(true)
 	const { closeModal } = useModal();
 
-
 	const validate = () => {
 		const err = []
 		if (!email.includes('@') || !email.includes('.')) err.push('Please enter a valid email.')

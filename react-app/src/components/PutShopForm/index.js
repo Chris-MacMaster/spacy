@@ -23,13 +23,8 @@ export default function PutShopForm() {
     const [errors, setErrors] = useState({});
     const user = useSelector(state => state.session.user);
     const history = useHistory();
-
-
     const [hasSubmitted, setHasSubmitted] = useState(false);
-
-
     const shopState = useSelector(state => state.shops.singleShop)
-    // const shop = shopState;
 
     useEffect(() => {
         const err = {}
@@ -79,7 +74,7 @@ export default function PutShopForm() {
         history.push(`/users/${user.id}`)
     }
     if (shopState && user.id !== shopState.ownerId) return null
-    // console.log("WE'RE REACHING THE ROUTE")
+    
     return (
         <div className='post-shop-div'>
             <h1 className='post-shop-title'>Edit Your Shop</h1>

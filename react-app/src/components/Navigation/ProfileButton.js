@@ -33,7 +33,6 @@ function ProfileButton({ user }) {
   }, [showMenu]);
 
   const closeMenu = () => setShowMenu(false);
-
   const logout = (e) => {
     e.preventDefault();
     dispatch(sessionActions.logout());

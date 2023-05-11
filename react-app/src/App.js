@@ -1,15 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
-// import SignupFormPage from "./components/SignupFormPage";
-// import LoginFormPage from "./components/LoginFormPage";
-// import Navigation from "./components/Navigation";
 import { authenticate } from "./store/session";
 import Header from "./components/Header";
 import Landing from "./components/Landing";
 import ProductsIndex from "./components/Products/ProductsIndex.js";
 import UserProducts from "./components/Products/UserProducts.js"
-
 import SearchResults from "./components/SearchResults";
 import ProductDetail from "./components/Products/ProductDetail";
 import PostReviewForm from "./components/PostReviewForm";

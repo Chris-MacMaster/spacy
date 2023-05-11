@@ -10,7 +10,6 @@ export default function ShopProductCard({ product, user, shop }) {
     const history = useHistory()
 
     const handleDelete = (e) => {
-        // console.log("button clicked")
         e.preventDefault()
         dispatch(deleteProduct(product.id))
         dispatch(fetchOneShop(product.shopId))
