@@ -42,7 +42,6 @@ function LoginFormModal() {
     await dispatch(fetchCart())
   };
 
-
   return (
     <div className="login-modal">
       <h1 className="login-title">Log In</h1>

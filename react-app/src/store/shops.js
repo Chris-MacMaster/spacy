@@ -63,8 +63,8 @@ export const createShop = (data) => async dispatch => {
         policies,
         url
     })})
-    const newShop = await response.json()
     if (response.ok) {
+        const newShop = await response.json()
         dispatch(postShop(newShop))
         return newShop
     }

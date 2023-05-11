@@ -52,17 +52,6 @@ export const fetchProductReviews = (productId) => async dispatch => {
     }
 }
 
-// export const addImageToReview = (reviewId, imageUrl) => async dispatch => {
-//     const res = await fetch(`/api/product-reviews/${reviewId}/add-image`, {
-//         method: 'PUT',
-//         headers: {"Content-Type": "application/json"},
-//         body: JSON.stringify({
-//             'image': imageUrl
-//         })
-//     })
-// }
-
-
 export const createProductReview = (productId, review, stars, image) => async dispatch => {
 
     let res

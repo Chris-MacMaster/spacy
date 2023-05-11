@@ -9,21 +9,16 @@ import '../SearchResults/SearchResults.css'
 function FilteredSearchResults() {
 
     const dispatch = useDispatch()
-
     const {category} = useParams()
-
-    console.log(category)
-
     const products = useSelector((state) => state.search.filteredSearch)
-
     useEffect(() => {
+
         dispatch(getFilteredSearchResults(category))
     }, [dispatch, category])
     console.log('products',products)
 
-    if (!products) {
-        return null
-    }
+    if (!products) return null
+
 
     return (
         <div className="search-results-div">

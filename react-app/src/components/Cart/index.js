@@ -32,12 +32,7 @@ export default function DisplayCart(){
       return <h2>You have no items in your cart, don't you want to buy something?</h2>
     }
 
-    // if(loaded && !Object.values(cart).length === 0) return <h2>You have no items in your cart, don't you want to buy something?</h2>
-
-
     const itemsByStore = groupItemsByStore(cart)
-    // const checkoutPrice = totalCost(cart)
-    // console.log('CART', Object.values(cart))
 
     return(
      <>

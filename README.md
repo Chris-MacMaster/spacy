@@ -12,44 +12,13 @@ https://spacy-t6mf.onrender.com/
 
 Technologies we've used for our app include
 
-click = "==8.1.3"
-gunicorn = "==20.1.0"
-itsdangerous = "==2.1.2"
-python-dotenv = "*"
-six = "==1.16.0"
-alembic = "*"
-python-dateutil = "==2.8.2"
-python-editor = "==1.0.4"
-greenlet = "==2.0.1"
-flask = "*"
-flask-cors = "==3.0.10"
-flask-login = "==0.6.2"
-flask-migrate = "*"
-flask-sqlalchemy = "*"
-flask-wtf = "*"
-jinja2 = "==3.1.2"
-mako = "==1.2.4"
-markupsafe = "==2.1.2"
-sqlalchemy = "*"
-werkzeug = "==2.2.2"
-wtforms = "*"
-pytest = "*"
-pycodestyle = "*"
-pylint = "*"
-rope = "*"
-@testing-library/jest-dom": "^5.14.1
-@testing-library/react": "^11.2.7
-@testing-library/user-event": "^12.8.3
-http-proxy-middleware": "^1.0.5
-js-cookie": "^3.0.1
-react": "^17.0.2
-react-dom": "^17.0.2
-react-redux": "^7.2.4
-react-router-dom": "^5.2.0
-react-scripts": "^4.0.3
-redux": "^4.1.0
-redux-logger": "^3.0.6
-redux-thunk": "^2.3.0"
+Python
+Flask
+SqlAlchemy
+WTForms
+Javascript
+React.js/Redux.js
+
 
 ### LAUNCHING APP
 

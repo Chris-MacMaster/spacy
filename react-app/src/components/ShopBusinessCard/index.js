@@ -8,8 +8,6 @@ export default function ShopBusinessCard({ shop }) {
     const dispatch = useDispatch()
     const history = useHistory()
 
-    // const shops = useSelector(state => state.shops.allShops)
-
     const handleCreate = (e) => {
         e.preventDefault()
         history.push(`/products/forms/create-product/${shop.id}`)

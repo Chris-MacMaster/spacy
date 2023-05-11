@@ -1,19 +1,9 @@
-//src/components/SpotForm/CreateSpot.js
 import { useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux"
 import { editProduct, fetchOneProduct } from '../../store/product';
 import { urlCheck } from './ProductCreate';
 import "./ProductCreate.css"
-// import { render } from 'react-dom';
-// import { editSpot, makeSpot } from '../../store/spot';
-// import { fetchOneSpot } from '../../store/spot';
-
-// import "./CreateSpot.css"
-// import "./EditSpot.css"
-// import { actionResetReviews } from '../../store/review';
-
-
 
 const ProductEditForm = () => {
     const history = useHistory();
@@ -30,10 +20,7 @@ const ProductEditForm = () => {
     const [freeShipping, setFreeShipping] = useState(false)
     const [price, setPrice] = useState(0)
     const [url, setUrl] = useState("")
-
     const product = productState
-
-    // shopId
 
     //validation
     const [errors, setErrors] = useState({})
@@ -56,9 +43,6 @@ const ProductEditForm = () => {
         dispatch(fetchOneProduct(productId));
       }, [dispatch, productId]);
 
-
-
-
       // prepopulate form
     useEffect(() => {
         setName(productState?.name || "");
@@ -68,16 +52,13 @@ const ProductEditForm = () => {
         setDescription(productState?.description || "");
         setFreeShipping(productState?.freeShipping || false);
         setPrice(productState?.price || 0);
-
         setUrl(productState && productState.ProductImages && productState.ProductImages.length ? productState.ProductImages[0].url : "");
-        // setUrl1(productState.ProductImages.length ? productState?.ProductImages[0]?.url || "" : "");
-    }, [productState]);
 
+    }, [productState]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
         setHasSubmitted(true)
-        // console.log("ERRORS", errors)
         if (Object.values(errors).length) {
             return
         }
@@ -95,7 +76,6 @@ const ProductEditForm = () => {
         dispatch(fetchOneProduct(productId));
         reset()
         history.push(`/products/${productId}`)
-        // console.log("SUBMITTED!")
     };
 
     const reset = () => {
@@ -244,7 +224,7 @@ const ProductEditForm = () => {
                             <p className='cp-form-label sub-q-text create-shop-grey check-box-text'>
                                 Check the box to indicate whether or not your product is shipped for free.
                             </p>
-                            {/* <p className='cp-grey-text'>Either true or false</p> */}
+                            {/* Either true or false*/}
                             <div className='cp-field-div'>
                                 <input className='product-input input-field check-box' type="checkbox"
                                     value={freeShipping}

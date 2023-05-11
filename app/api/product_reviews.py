@@ -50,7 +50,6 @@ def get_all_reviews():
 @product_review_routes.route('/<int:product_id>')
 def get_reviews_of_product(product_id):
     """returns reviews of the specified productid"""
-    print('reviews back end here --------------------------')
     reviews = ProductReview.query.filter(ProductReview.product_id == product_id).all()
     def review_image(review_id):
         review_image = ReviewImage.query.filter(ReviewImage.review_id==review_id).first()
@@ -163,21 +162,3 @@ def add_image_to_review(review_id):
             return {review.to_dict()}
 
     return {'No review'}
-
-
-
-
-# @product_review_routes.route('/<int:review_id>')
-# def get_review(review_id):
-#     """get a single review by id"""
-#     print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
-#     review = ProductReview.query.filter(ProductReview.id == review_id).one()
-#     print(review.to_dict())
-#     if review:
-#         review_dict = review.to_dict()
-#         # review_dict['product'] = review.products()
-#         review = review_dict
-#         print('review backend',review)
-#         return {review}
-
-#     return {'Review Not Found'}, 404

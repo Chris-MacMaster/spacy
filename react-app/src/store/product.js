@@ -42,9 +42,7 @@ export const actionDeleteProduct = (id) => {
 
 //PRODUCTS HOME PAGE
 export const fetchProducts = () => async dispatch => {
-    // console.log("TRIGGERED")
     const response = await fetch('/api/products')
-
     if (response.ok) {
         const products = await response.json()
         dispatch(actionLoadProducts(products))
@@ -84,12 +82,9 @@ export const makeProduct = (productBody) => async dispatch => {
     })
     const options = { method, headers, body }
     const response = await fetch('/api/products/', options)
-    const product = await response.json()
-    // console.log("RESPONSE", response)
-    //testing
     if (response.ok){
+        const product = await response.json()
         return product
-        //so your backend has to return product
     }
 
 }
@@ -109,14 +104,11 @@ export const editProduct = (productBody, productId) => async dispatch => {
         url
     })
     const options = { method, headers, body }
-    console.log('EDIT TRIGGERED')
     const response = await fetch(`/api/products/${productId}/`, options)
-    const product = await response.json()
-    // console.log("RESPONSE", response)
-    //testing
+
     if (response.ok) {
+        const product = await response.json()
         return product
-        //so your backend has to return product
     }
 
 }
