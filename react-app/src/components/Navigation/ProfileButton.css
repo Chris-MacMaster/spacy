@@ -33,6 +33,10 @@ button {
 .subtext {
     line-height: 1.3rem;
 }
+.drop-down-icons {
+    font-size: 1.5rem;
+    color: #A0A7B2;
+}
 .popout-profile-header {
     display: flex;
     flex-direction: row;

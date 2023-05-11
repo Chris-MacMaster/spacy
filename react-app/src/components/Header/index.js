@@ -63,10 +63,10 @@ function Header({ isLoaded }) {
             {user && user?.id && userShop.length ? (
                 <NavLink to={`/shops/${userShop[0].id}`} >
                     <div className='header-tip'>Shop Manager</div>
-                <i className="fa-solid fa-store"></i>
+                <i className="fa-solid fa-store header-icons"></i>
                 </NavLink>
             ) : (
-                <i className="fa-solid fa-store"></i>
+                <i className="fa-solid fa-store header-icons"></i>
             )}
             </div>
 
@@ -86,11 +86,14 @@ function Header({ isLoaded }) {
 
             <div className='cart'>
                 {user && cartTotal && cartTotal > 0 ? (
+                <NavLink to='/cart'
+                style={{textDecoration: "none"}}>
                 <div className='number-in-cart'>{cartTotal}</div>
+                </NavLink>
                 ) : null}
             <NavLink to='/cart'>
                 <div className='header-tip'>Cart</div>
-            <i className="fa-solid fa-cart-shopping"></i>
+            <i className="fa-solid fa-cart-shopping header-icons"></i>
             </NavLink>
             </div>
         </div>

@@ -65,7 +65,7 @@ export default function ShopDetails () {
                 src={`${shop.ShopImages.url}`}
                 alt='user'></img>
                 <p>{shop.Owner.firstName}</p>
-                <p className='contact-shop-owner'><i className="fa-solid fa-message"></i> Contact</p>
+                <button className='contact-shop-owner' onClick={() => alert("Feature Coming Soon!")}><i className="fa-solid fa-message"></i> Contact</button>
             </div>
         </div>
 

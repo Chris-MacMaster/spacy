@@ -4,6 +4,7 @@ import { editShop, fetchOneShop } from '../../store/shops'
 import { useHistory, useParams } from 'react-router-dom'
 import { useEffect } from 'react'
 import "../PostShopForm/PostShopForm.css"
+import { urlChecka } from '../Cart/_helpers'
 
 export default function PutShopForm() {
     const dispatch = useDispatch()
@@ -40,7 +41,7 @@ export default function PutShopForm() {
         if (!description || description.length < 20) err.description = 'Please enter a valid shop description, at least 20 characters'
         if (!category || category.length < 3) err.category = 'Please enter a shop category'
         if (!policies || policies.length < 30) err.policies = 'Please enter shop policies about returns or shipping'
-        if (!url || url.length < 20) err.url = 'Please enter a shop image to represent your shop'
+        if (!urlChecka(url) || !url) err.url = 'Please enter a shop image to represent your shop'
         setErrors(err)
     }, [name, streetAddress, city, state, country, description, category, policies, url])
 
@@ -60,7 +61,7 @@ export default function PutShopForm() {
         e.preventDefault();
 
         setHasSubmitted(true)
-        
+
         if (Object.values(errors).length ) return;
         const data = {
             name,
