@@ -9,7 +9,6 @@ import { fetchCart } from '../../store/cart';
 import ReviewIndexItem from '../Reviews/ReviewIndexItem';
 import AddToCart from '../Cart/AddToCart';
 import { useHistory } from 'react-router-dom';
-
 import "./ProductDetail.css"
 import OpenModalButton from '../OpenModalButton';
 import ShopPoliciesModal from '../ShopPoliciesModal';
@@ -17,8 +16,6 @@ import ShopPoliciesModal from '../ShopPoliciesModal';
 const ProductDetail = () => {
     const dispatch = useDispatch()
     const history = useHistory()
-
-
     const [user, cart] = useSelector((state) =>[state.session.user, state.cart])
     const [showMenu, setShowMenu] = useState(false); //for opening modal
     const ulRef = useRef(); //for modal
@@ -38,13 +35,10 @@ const ProductDetail = () => {
         }
         document.addEventListener('click', closeMenu)
     }, [showMenu])
-
     const closeMenu = () => setShowMenu(false)
-
 
     //dispatching state
     useEffect(() => {
-        // console.log("FIRE DISPATCH ----------------------------")
         dispatch(fetchOneProduct(productId))
         dispatch(fetchProductReviews(productId))
         dispatch(fetchCart())
@@ -60,13 +54,6 @@ const ProductDetail = () => {
 
     let userIds = productReviews && productReviews.length ? productReviews.map(r => r.userId) : null
 
-    // if (productReviews.length) {
-    //     for (let review of productReviews) {
-    //         userIds.push(review.userId)
-    //     }
-    // }
-
-    console.log('Product', product)
     const handleClick = () =>
     history.push(`/product-reviews/${productId}/new`)
     if (!product.Shop) return null
