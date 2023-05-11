@@ -23,7 +23,8 @@ export default function Footer() {
         <div className='footer-container'>
             <h3 className='footer-title'>About the creators of Spacey</h3>
             <div className='about-creators'>
-                {devs.map((d,i)=> (
+
+            {devs.map((d,i)=> (
             <div className='footer-person'
             key={`footerperson${i}`}>
                 <p className='dev-name'
@@ -45,9 +46,7 @@ export default function Footer() {
             </div>
 
                 ))}
-            <div className='footer-person'></div>
-            <div className='footer-person'></div>
-            <div className='footer-person'></div>
+
             </div>
             <p></p>
         </div>
