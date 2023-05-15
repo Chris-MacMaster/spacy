@@ -34,11 +34,8 @@ function LoginFormModal() {
     let email = "carlsagan@user.io"
     let password = "password"
     const data = await dispatch(login(email, password));
-    if (data) {
-      setErrors(data);
-    } else {
-        closeModal()
-    }
+    if (data) setErrors(data);
+    else closeModal()
     await dispatch(fetchCart())
   };
 
@@ -75,9 +72,7 @@ function LoginFormModal() {
       </div>
       <p className="login-trouble">Trouble Signing In?</p>
       {errors?.map((error, idx) => (
-            <p
-            classNames='errors'
-            key={`${idx}error`} >{error}</p>
+            <p classNames='errors' key={`${idx}error`} >{error}</p>
             ))}
       <hr></hr>
     </div>

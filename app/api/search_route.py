@@ -12,9 +12,6 @@ def search(parameters):
             return ProductReview.query.filter(ProductReview.product_id == id).all()
         def get_shop(id):
               return Shop.query.filter(Shop.id == id).one()
-
-        print(parameters)
-
         shop_results = db.session.query(Shop).filter(Shop.name.like(parameters)).all()
         products_results = db.session.query(Product).filter(or_(Product.name.ilike(f'%{parameters}%'),
             Product.category.ilike(parameters)
@@ -52,11 +49,8 @@ def search(parameters):
                 review_sum += review.stars
                 product['avgRating'] = round(review_sum / len(reviews), 1) if len(reviews) > 0 else 'New!'
             product['reviews'] = [review.to_dict() for review in reviews]
-
             shop = get_shop(product['shopId'])
             product['shop'] = shop.to_dict()
-
-
         full_list = list_1 + list_2
         print('results backend', full_list) #to dict
         if products_results and shop_results:
@@ -66,7 +60,6 @@ def search(parameters):
         elif shop_results and not products_results:
                 return jsonify({'products': list_2})
         else:
-            # return {'result': 'No items found'}
             return None
 
 
@@ -108,15 +101,12 @@ def filtered_search(search_category):
     for prod in prod_list:
         product_images = get_images(prod['id'])
         prod['ProductImages'] = [image.to_dict() for image in product_images]
-
         review_sum = 0
         reviews = get_reviews(prod['id'])
         for review in reviews:
                 review_sum += review.stars
                 prod['avgRating'] = round(review_sum / len(reviews), 1) if len(reviews) > 0 else 'New!'
         prod['reviews'] = [review.to_dict() for review in reviews]
-
-
         shop = get_shop(prod['shopId'])
         prod['shop'] = shop.to_dict()
     return prod_list

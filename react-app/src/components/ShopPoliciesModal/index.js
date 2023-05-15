@@ -22,8 +22,9 @@ export default function ShopPoliciesModal({ shop }) {
             <p className='shop-policies-cancellations'>Request a cancellation: before item has shipped</p>
             <h3 className='shop-policies-payments'>Payments</h3>
             <p className='shop-policies-lock'>
-                <i className="fa-solid fa-lock lock-icon">
-                    </i>Secure options</p>
+                <span className='shop-pol-lock'><i className="fa-solid fa-lock lock-icon" /></span>
+                <span className='shop-pol-lock-text'>Secure options</span>
+            </p>
             <div className='credit-cards'>
             <img src='https://i.imgur.com/QfGSupn.png'
             alt='credit-cards'

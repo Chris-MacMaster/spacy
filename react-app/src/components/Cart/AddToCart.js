@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { createSelectorHook, useDispatch, useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { fetchCart } from "../../store/cart"
 import { addCartItemThunk } from "../../store/cart"
 

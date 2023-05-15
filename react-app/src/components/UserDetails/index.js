@@ -1,27 +1,37 @@
 import { useHistory, useParams } from 'react-router-dom'
 import './UserDetails.css'
 import { useDispatch, useSelector } from 'react-redux'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { authenticate } from '../../store/session'
 import { fetchShops } from '../../store/shops'
 import { fetchProducts } from '../../store/product'
 import ShopProductCard from '../ShopProductCard'
 import ShopBusinessCard from '../ShopBusinessCard'
+import LoadingIcon from '../LoadingIcon'
 
 export default function UserDetails() {
     const {userId} = useParams()
     const dispatch = useDispatch()
     const history = useHistory()
+    const [ hasLoaded, setHasLoaded ] = useState(false)
+    
     useEffect(() => {
-        dispatch(authenticate())
-        dispatch(fetchShops())
-        dispatch(fetchProducts())
+        const loadData = async () => {
+            await dispatch(authenticate())
+            await dispatch(fetchShops())
+            await dispatch(fetchProducts())
+            return setHasLoaded(true)
+        }
+        loadData()
     }, [dispatch])
+
     const user = useSelector(state => state.session.user)
     const shops = useSelector(state => state.shops.allShops)
     const products = useSelector(state=> state.products.allProducts)
-    // console.log('USER', userId)
+
+    if (!hasLoaded) return <LoadingIcon />
     if (!user || parseInt(user.id) !== parseInt(userId) || !shops) return null
+
     const userShopsIds = shops ? Object.values(shops).filter(s=>parseInt(s.ownerId) === parseInt(user.id)).map(s=>s.id) : null
     const userShops = Object.values(shops).filter(s => parseInt(s.ownerId) === parseInt(userId))
     const userProducts = Object.values(products).filter(p=> userShopsIds.includes(p.shopId))

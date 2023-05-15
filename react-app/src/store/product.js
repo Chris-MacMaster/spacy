@@ -123,9 +123,8 @@ export const deleteProduct = (id) => async dispatch => {
     const headers = { "Content-Type": "application/json" }
     const options = { method, headers }
     const response = await fetch(`/api/products/${id}/`, options)
-    const deleteData = await response.json()
-
     if (response.ok) {
+        const deleteData = await response.json()
         dispatch(actionDeleteProduct(id))
         return deleteData
     }
@@ -156,7 +155,6 @@ export default function productReducer(state = initialState, action) {
         }
         case LOAD_USER_PRODUCTS: {
             const newState = {...state}
-            // console.log("FDASFDSAFAD", action.payload)
             newState.userProducts = {...action.payload}
             return newState
         }
@@ -165,7 +163,6 @@ export default function productReducer(state = initialState, action) {
             newState.singleProduct = action.payload
             return newState
         }
-
         case DELETE_PRODUCT: {
             const newState = { ...state }
             delete newState.allProducts[action.payload]
