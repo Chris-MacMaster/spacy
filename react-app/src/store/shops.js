@@ -91,8 +91,7 @@ export const editShop = (data, id) => async dispatch => {
 }
 //delete shop thunk
 export const deleteShopRequest = shopId => async dispatch => {
-    console.log('THUNK IS BEING HIT')
-    const response = await fetch(`/api/shops/${shopId}/`, {method: "DELETE", headers: {"Content-Type": "application/json"}})
+    const response = await fetch(`/api/shops/${shopId}`, {method: "DELETE", headers: {"Content-Type": "application/json"}})
     if (response.ok) {
         const deleted = await response.json()
         dispatch(deleteAShop(deleted))
