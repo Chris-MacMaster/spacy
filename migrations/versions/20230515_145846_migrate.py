@@ -87,7 +87,7 @@ def upgrade():
     sa.PrimaryKeyConstraint('id')
     )
     if environment == "production":
-        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE products SET SCHEMA {SCHEMA};")
 
     op.create_table('shop_images',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -99,7 +99,7 @@ def upgrade():
     sa.PrimaryKeyConstraint('id')
     )
     if environment == "production":
-        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE shop_images SET SCHEMA {SCHEMA};")
 
     op.create_table('carts',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -113,7 +113,7 @@ def upgrade():
     sa.PrimaryKeyConstraint('id')
     )
     if environment == "production":
-        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE carts SET SCHEMA {SCHEMA};")
 
     op.create_table('product_images',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -125,7 +125,7 @@ def upgrade():
     sa.PrimaryKeyConstraint('id')
     )
     if environment == "production":
-        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE product_images SET SCHEMA {SCHEMA};")
 
     op.create_table('product_reviews',
     sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
@@ -140,7 +140,7 @@ def upgrade():
     sa.PrimaryKeyConstraint('id')
     )
     if environment == "production":
-        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE product_reviews SET SCHEMA {SCHEMA};")
 
     op.create_table('purchases',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -155,7 +155,7 @@ def upgrade():
     sa.PrimaryKeyConstraint('id')
     )
     if environment == "production":
-        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE purchases SET SCHEMA {SCHEMA};")
 
     op.create_table('review_images',
     sa.Column('id', sa.Integer(), nullable=False),
