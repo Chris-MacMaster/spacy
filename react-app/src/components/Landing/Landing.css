@@ -14,7 +14,7 @@
 .top-banner-suggest {
     display: flex;
     flex-direction: row;
-    /* flex-wrap: wrap; */
+    flex-grow: inherit;
     justify-content: center;
     align-content: center;
     gap: 2rem;
