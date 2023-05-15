@@ -27,7 +27,7 @@ export default function ProductCreateForm() {
     const [price, setPrice] = useState(0)
 
     // const [url1, setUrl1] = useState("")
-    const [image, setImage] = useState(null)
+    const [url, setUrl] = useState(null)
 
     //validation
     const [errors, setErrors] = useState({})
@@ -63,7 +63,7 @@ export default function ProductCreateForm() {
         for (let key in newProduct) {
             formData.append(`${key}`, newProduct[key])
         }
-        formData.append("url", image); //aws
+        formData.append("image", url); //aws
 
         dispatch(makeProduct(formData))
         dispatch(fetchShops())
@@ -242,7 +242,7 @@ export default function ProductCreateForm() {
                             <input className='product-input input-field' type="file"
                                     accept = 'image/*'
                                     // value={image}
-                                    onChange={(e) => setImage(e.target.files[0])}
+                                    onChange={(e) => setUrl(e.target.files[0])}
                                     placeholder='URL' />
                             {hasSubmitted && errors.url1 && (
                                 <div className='error'>
