@@ -12,16 +12,16 @@ import LoadingIcon from "../LoadingIcon"
 
 export default function DisplayCart(){
   const [user, cart] = useSelector(state => [state.session.user, state.cart.products ?? null])
-
   const dispatch = useDispatch()
   const [hasLoaded, setHasLoaded] = useState(false)
+
   useEffect(() => {
     const loadData = async () => {
       await dispatch(fetchCart())
       return setHasLoaded(true)
     }
     loadData()
-  },[dispatch, user])
+  }, [dispatch, user])
 
   if(!user) return (
     <div className="no-user-no-cart">
@@ -32,7 +32,6 @@ export default function DisplayCart(){
     if(!hasLoaded) return <LoadingIcon />
 
     if (!Object.values(cart).length && hasLoaded) {
-      console.log(Object.values(cart))
       return <h2>You have no items in your cart, don't you want to buy something?</h2>
     }
 

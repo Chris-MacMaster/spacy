@@ -89,14 +89,10 @@ def delete_one_shop(shop_id):
             shop.description = form.data['description']
             shop.category = form.data['category']
             shop.policies = form.data['policies']
-
             shop_image = ShopImage.query.filter(ShopImage.shop_id == shop_id).first()
             shop_image.url = form.data['url']
             db.session.commit()
             return shop.to_dict, 201
-
-
-
 
 @shop_routes.route('/<int:shop_id>')
 def get_shop_by_id(shop_id):

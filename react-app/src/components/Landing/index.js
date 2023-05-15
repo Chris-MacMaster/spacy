@@ -31,6 +31,7 @@ function Landing({ isLoaded }) {
     const under30 = under30arr[Math.floor(Math.random()*under30arr.length)]
     const others = Object.values(products).filter(p=> p !== under30)
     const title = ['Creating Change...', 'Gifts for Her', 'Gifts for Him', 'Gifts for Kids', 'Gifts Under $30']
+
     if (!hasLoaded) return <LoadingIcon />
 
     const rand1 = products[13] ? products[13] : others[Math.floor(Math.random()*others.length)]
