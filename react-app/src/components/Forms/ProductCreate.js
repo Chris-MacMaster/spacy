@@ -41,9 +41,9 @@ export default function ProductCreateForm() {
         if (!price || price < 0) e.price = "Must submit a price."
         if (!category) e.category = "Must submit a category"
         if (!description) e.description = "Must submit a description"
-        if (!url1) e.url1 = "Must submit a url."
+        // if (!url1) e.url1 = "Must submit a url."
         // if (!urlCheck(url1)) e.urlCheck = "Must submit a valid url. We accept urls ending in any of the following: jpeg, jpg, svg, png, gif, bmp."
-    }, [name, available, price, category, description, url1])
+    }, [name, available, price, category, description])
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -241,7 +241,7 @@ export default function ProductCreateForm() {
                             </div>
                             <input className='product-input input-field' type="file"
                                     accept = 'image/*'
-                                    value={url1}
+                                    // value={image}
                                     onChange={(e) => setImage(e.target.files[0])}
                                     placeholder='URL' />
                             {hasSubmitted && errors.url1 && (

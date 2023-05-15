@@ -5,6 +5,8 @@ import copy
 from datetime import datetime
 from app.forms import CreateProductForm
 
+from app.api.AWS_helpers import get_unique_filename, upload_file_to_s3
+
 product_routes = Blueprint('/products', __name__)
 
 @product_routes.route('/<int:product_id>/', methods=['GET', 'DELETE', 'PUT'])
@@ -72,6 +74,7 @@ def get_one_product(product_id):
 def get_all_products():
     """returns all products regardless of session"""
     # get products
+    print('REQUEST DATA',request.data)
     if request.method == "GET":
         products = Product.query.all()
         productcopy = copy.deepcopy(products)
@@ -95,8 +98,44 @@ def get_all_products():
         form = CreateProductForm()
         form['csrf_token'].data = request.cookies['csrf_token']
         if not form.validate_on_submit():
+            print("")
+            print("")
+            print("")
+            print("")
+            print("")
+            print("FORM DATA", form.data)
+            print("")
+            print("")
+            print("")
+            print("")
+            print("")
             raise ValueError("Failed flask form validation")
         if form.validate_on_submit():
+            image = form.data["image"] #aws
+            image.filename = get_unique_filename(image.filename)
+            print('')
+            print('')
+            print('')
+            print('')
+            print('')
+            print('')
+            print('')
+            print('')
+            print('')
+            print('IMAGE FILENAME', image.filename)
+            print('')
+            print('')
+            print('')
+            print('')
+            print('')
+            print('')
+            print('')
+            print('')
+            upload = upload_file_to_s3(image)
+            img_url = None
+            if 'url' in upload:
+                img_url = upload['url']
+
             new_product = Product(
                 shop_id = form.data["shop_id"],
                 name = form.data["name"],
@@ -113,7 +152,7 @@ def get_all_products():
             new_product = new_product_list[-1]
             new_product_img = ProductImage(
                 # url = form.data["url"],
-                url = form.data["image"], #aws
+                url = img_url, #aws
                 product_id = new_product.id,
             )
             db.session.add(new_product_img)

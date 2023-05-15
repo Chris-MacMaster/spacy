@@ -20,5 +20,5 @@ class CreateProductForm(FlaskForm):
     
     # url = StringField('url')
     #URL()
-    image = FileField("Image File", validators=[FileRequired(), FileAllowed(list(ALLOWED_EXTENSIONS))])
+    image = FileField("image", validators=[FileRequired(), FileAllowed(list(ALLOWED_EXTENSIONS))])
 
