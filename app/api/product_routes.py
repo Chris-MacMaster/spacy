@@ -63,7 +63,8 @@ def get_one_product(product_id):
                     if img.id < first_img.id:
                         first_img = img
 
-                first_img.url = form.data["url"]
+                # first_img.url = form.data["url"]
+                first_img.url = form.data["image"] #aws
                 db.session.commit()
                 return product.to_dict(), 201
 
@@ -116,7 +117,8 @@ def get_all_products():
             new_product_list = Product.query.all()
             new_product = new_product_list[-1]
             new_product_img = ProductImage(
-                url = form.data["url"],
+                # url = form.data["url"],
+                url = form.data["image"], #aws
                 product_id = new_product.id,
             )
             db.session.add(new_product_img)
