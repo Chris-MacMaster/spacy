@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import current_user, login_required
-from app.models import Cart, Product, User, ProductImage, ShopImage, db
+from app.models import Cart, Product, Purchase, User, ProductImage, ShopImage, db
 from app.forms import CartForm, SignUpForm
 
 cart_routes = Blueprint('/cart', __name__)
@@ -9,11 +9,21 @@ cart_routes = Blueprint('/cart', __name__)
 def checkout():
     # send user id and delete all carts associated with that id.
     #
-    carts_to_delete = Cart.query.filter(Cart.user_id == current_user.id).all()
-    for i in carts_to_delete:
-        product = Product.query.get(i.product_id)
-        product.available -= i.quantity
-        db.session.delete(i)
+    carts_to_process = Cart.query.filter(Cart.user_id == current_user.id).all()
+
+    purchases = []
+
+    for cart in carts_to_process:
+        purchases.append(Purchase(
+            cart_id = cart.id,
+            user_id = cart.user_id,
+            quantity = cart.quantity,
+            product_id = cart.product_id
+            ))
+        product = Product.query.get(cart.product_id)
+        product.available -= cart.quantity
+        db.session.delete(cart)
+    [db.session.add(purchase) for purchase in purchases]
     db.session.commit()
     return {"message": "Checkout Complete"}, 204
 

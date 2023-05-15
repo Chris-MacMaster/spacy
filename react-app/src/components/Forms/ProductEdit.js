@@ -29,7 +29,6 @@ const ProductEditForm = () => {
     useEffect(() => {
         let e = {}
         setErrors(e)
-        // console.log(category)
         if (!name) e.name = "Must submit a name"
         if (!available || available < 0) e.available = "Must submit a value for available."
         if (!price || price < 0) e.price = "Must submit a price."

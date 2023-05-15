@@ -8,3 +8,4 @@ from .following_users import FollowingUsers
 from .shop import Shop
 from .shop_images import ShopImage
 from .review_images import ReviewImage
+from .purchases import Purchase

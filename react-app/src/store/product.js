@@ -114,7 +114,6 @@ export const editProduct = (productBody, productId) => async dispatch => {
 }
 
 export const deleteProduct = (id) => async dispatch => {
-    console.log('FIRED DISPATCH')
     const method = "DELETE"
     const headers = { "Content-Type": "application/json" }
     const options = { method, headers }
