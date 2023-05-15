@@ -6,7 +6,6 @@
     width: 20rem;
     margin-top: 1rem;
     font-family: 'Marcellus', serif;
-
 }
 .credit-cards-img {
     width: 20rem;
@@ -49,7 +48,6 @@
 }
 .shop-pol-modal > button:hover,
 .shop-pol-modal {
-
     box-shadow: 0rem 0rem .5rem black;
 }
 .shop-pol-modal {
@@ -58,4 +56,8 @@
 .shop-pol-modal,
 .shop-pol-modal > button:active {
     background-color: gray;
+}
+
+.shop-pol-lock {
+    margin-right: 1rem;
 }

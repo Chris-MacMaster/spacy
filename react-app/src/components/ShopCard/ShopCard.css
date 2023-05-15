@@ -1,7 +1,6 @@
 .landing-shop-card {
     width: 22rem;
     height: 23rem;
-    /* border: solid lightgray 2px; */
     box-shadow: 0rem 0rem .5rem grey;
     border-radius: 1rem;
     grid-template-columns: auto auto;
@@ -46,11 +45,35 @@
 .shop-card-heart {
     align-items: end;
     margin-top: 2rem;
-    /* border: solid lightgray 2px;
-    border-radius: 2rem; */
-    /* width: 2rem;
-    height: 2rem; */
 }
 .landing-shop-heart {
     font-size: .8rem;
+}
+@media only screen and (max-width: 1200px){
+    .landing-shop-card,
+    .shops-youll-love-text {
+        width: 16rem;
+        height: 16rem;
+    }
+    .shops-youll-love{
+        gap: .5rem;
+    }
+    .shop-image-grid-image {
+        width: 7rem;
+        height: 6rem;
+    }
+    .shop-card-text,
+    .shop-card-text > p,
+    .shop-card-logo {
+        margin: 0rem;
+        padding: 0rem;
+        margin-left: .5rem;
+    }
+    .landing-shops-business-card {
+        margin: 0rem;
+    }
+    .shop-card-heart {
+        margin-top: 1.5rem;
+    }
+
 }

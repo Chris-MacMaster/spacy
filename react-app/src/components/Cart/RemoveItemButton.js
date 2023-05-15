@@ -3,9 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { fetchCart, removeCartItemThunk } from "../../store/cart"
 
 export default function RemoveItemButton({cartId}){
-
     const dispatch = useDispatch()
-
     const [user] = useSelector(state => [state.session.user])
 
     useEffect(() =>{
@@ -13,10 +11,8 @@ export default function RemoveItemButton({cartId}){
     },[dispatch, user])
 
     const removeItem = (e) => {
-        console.log(cartId)
         return dispatch(removeCartItemThunk(cartId))
     }
-
 
     return (
         <button onClick={removeItem} className="remove-from-cart-button">

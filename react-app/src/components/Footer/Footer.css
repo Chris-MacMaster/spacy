@@ -7,30 +7,42 @@
     text-align: center;
 }
 .about-creators {
+    margin-top: 3rem;
     display: flex;
     flex-direction: row;
-    margin-top: 3rem;
+    flex-wrap: wrap;
     justify-content: center;
-    align-items: space-between;
     margin-bottom: 10rem;
 }
 .dev-name {
     font-weight: bold;
-    margin-left: 3rem;
+    /* margin-left: 3rem; */
 }
 .github-icon,
 .linkedin-icon {
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 2rem;
+    height: 2rem;
+    object-fit: contain;
     margin-left: .5rem;
     align-items: center;
+    border-radius: none;
+}
+.portfolio-svg {
+    margin-left: .5rem;
 }
 .footer-person {
     display: flex;
     flex-direction: row;
+    margin: 1rem;
 }
-@media only screen and (max-width: 90rem){
+@media only screen and (max-width: 768px){
     .dev-name {
-        margin-left: 2rem;
+        font-size: .8rem;
+    }
+    .github-icon,
+    .linkedin-icon,
+    #curriculum-vitae {
+    width: 1.5rem;
+    height: 1.5rem;
     }
 }

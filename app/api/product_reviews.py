@@ -20,16 +20,11 @@ def get_review(review_id):
         shop = Shop.query.get(product.shop_id)
         review_dict = review.to_dict()
         review_dict['product'] = product.to_dict()
-
         if product_images:
             review_dict['product']['ProductImages'] = [image.to_dict() for image in product_images]
-
         if shop:
             review_dict['product']['Shop'] = shop.to_dict()
-
-        print('Review Product', review_dict)
         return review_dict
-
     return {'Review Not Found'}, 404
 
 
@@ -55,24 +50,19 @@ def get_reviews_of_product(product_id):
         review_image = ReviewImage.query.filter(ReviewImage.review_id==review_id).first()
         if review_image:
             return review_image.to_dict()
-
-
     reviewcopy = [review.to_dict() for review in reviews]
     for review in reviewcopy:
         review['ReviewImages'] = review_image(review['id'])
-
     for review in reviewcopy:
         review_user = User.query.get(review['userId'])
         review['author_first'] = review_user.first_name
         review['author_last'] = review_user.last_name
-
     return reviewcopy, 200
 
 @product_review_routes.route('/<int:review_id>/delete', methods=['DELETE'])
 @login_required
 def delete_review_by_id(review_id):
     """delete a review by id if the owner is signed in"""
-
     if current_user.is_authenticated:
         review = ProductReview.query.filter(ProductReview.id == review_id).first()
         if review == None:
@@ -91,10 +81,8 @@ def delete_review_by_id(review_id):
 def post_review(product_id):
     # declare form here
     form = ReviewForm()
-
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        print('validating')
         data = form.data
         new_review = ProductReview(
             review = data['review'],
@@ -104,7 +92,6 @@ def post_review(product_id):
             created_at = datetime.now(),
             updated_at = None
         )
-
         db.session.add(new_review)
         db.session.commit()
         # review_image
@@ -117,14 +104,9 @@ def post_review(product_id):
             )
             db.session.add(review_image)
             db.session.commit()
-
         review_dict = new_review.to_dict()
-
         image = ReviewImage.query.filter(ReviewImage.review_id == new_review.id).one()
-
         review_dict['ReviewImages'] = image.to_dict()
-
-        print('new review', review_dict)
         return review_dict
     return {'error': 'Validation Error'}, 401
 
@@ -133,10 +115,8 @@ def post_review(product_id):
 def edit_review(review_id):
     """edit a product review"""
     review_to_edit = ProductReview.query.get(review_id)
-
     form = EditReviewForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-
     if review_to_edit:
         if form.validate_on_submit:
             review_to_edit.review = form.data['review']
@@ -144,21 +124,17 @@ def edit_review(review_id):
             review_to_edit.updated_at = datetime.now()
             db.session.commit()
             return review_to_edit.to_dict()
-
     return {"error": 'Review does not exist or user did not write this review'}
 
 @product_review_routes.route('/<int:review_id>/add-image', methods=['PUT'])
 @login_required
 def add_image_to_review(review_id):
     review = ProductReview.query.get(review_id)
-
     form = ReviewForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-
     if review:
         if form.validate_on_submit:
             review.image = form.data['image']
             print('review with image',review.to_dict())
             return {review.to_dict()}
-
     return {'No review'}

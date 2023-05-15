@@ -1,18 +1,24 @@
 .landing-div {
     margin-left: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 .landing-header {
     justify-content: center;
     background-color: peachpuff;
     margin-right: 2rem;
+    padding: 2rem;
 }
 .top-banner-suggest {
     display: flex;
-    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
     gap: 2rem;
-    margin-left: 5vw;
-    margin-right: 5vw;
-    max-width: 87rem;
+    max-width: 75rem;
 }
 div.top-banner-suggestions > p {
     font-family: 'Mulish', sans-serif;
@@ -20,17 +26,16 @@ div.top-banner-suggestions > p {
     font-weight: bold;
 }
 .suggest-image-div {
-    width: 12vw;
-    height: 12vw;
-    /* border: white solid 2px; */
-    border-radius: 12vw;
+    width: 10rem;
+    height: 10rem;
+    border-radius: 12rem;
     overflow: hidden;
 }
 .suggest-image {
     object-fit: cover;
     box-sizing: border-box;
-    width: 12vw;
-    height: 12vw;
+    width: 10rem;
+    height: 10rem;
 }
 .welcome-title {
     font-family: 'Marcellus', serif;
@@ -38,7 +43,7 @@ div.top-banner-suggestions > p {
     text-align: center;
     margin: 2rem;
 }
-.by-etzy-header {
+.by-etsy-header {
     margin: .25rem;
     width: 15rem;
     height: 15rem;
@@ -51,12 +56,13 @@ p.sponsored {
     font-family: 'Mulish', sans-serif;
 }
 .from-etzy-sellers {
-    display: grid;
-    grid-template-columns: auto auto auto auto;
-    margin-left: 2rem;
+    display: flex;
+    flex-direction: row;
     justify-content: center;
-
-
+    align-content: center;
+    flex-wrap: wrap;
+    max-width: 70rem;
+    gap: 1.5rem;
 }
 .from-etzy-closing {
     margin: .25rem;
@@ -72,16 +78,25 @@ h2.shop-our-title {
     font-family: 'Mulish', sans-serif;
     font-size: 2rem;
     margin-top: 4rem;
+
 }
 h3.shop-our-title {
     font-family: 'Thasadith', sans-serif;
     font-size: 1.3rem;
 }
+.shop-our-titles {
+    max-width: 94rem;
+    position: relative;
+    position: sticky;
+    width: 80vw;
+}
 .shop-our-mapped {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    align-content: center;
     flex-wrap: wrap;
+    max-width: 94rem;
 }
 .selection-card {
     width: 16rem;
@@ -91,6 +106,13 @@ h3.shop-our-title {
     overflow: hidden;
     margin: 1rem;
 }
+.shop-our-selections {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .shop-our-select-img {
     width: 16rem;
     height: 12rem;
@@ -158,22 +180,152 @@ h3.shops-youll-love-title {
 .fa-question {
     font-size: 1rem;
 }
-/* .shops-youll-love {
-    display: grid;
-    grid-template-columns: auto auto auto auto;
-} */
 
-/* @media only screen and (max-width: 90rem){
-    .shops-youll-love {
-        display: grid;
-        grid-template-columns: auto auto auto;
-        justify-content: center;
+
+@media only screen and (max-width: 1600px){
+    .suggest-image,
+    .suggest-image-div {
+        max-width: 8rem;
+        max-height: 8rem;
+    }
+    .top-banner-suggestions {
+        max-width: 8rem;
     }
 }
-@media only screen and (max-width: 70rem){
-    .shops-youll-love {
-        display: grid;
-        grid-template-columns: auto auto;
-        justify-content: center;
+@media only screen and (max-width: 1200px){
+    .suggest-image-text {
+        font-size: .8rem;
     }
-} */
+    .selection-card {
+        width: 12rem;
+        height: 12rem;
+        margin: .5rem;
+    }
+    .shop-our-select-img {
+        width: 12rem;
+        height: 9rem;
+    }
+    .column-container {
+        gap: 1rem;
+    }
+    .column-title {
+        font-size: 1.3rem;
+    }
+}
+@media only screen and (max-width: 1024px){
+    .welcome-title {
+        font-size: 1.7rem;
+        margin: 1.7rem;
+    }
+    .suggest-image-text {
+        font-size: .8rem;
+        overflow-wrap: anywhere;
+    }
+    .top-banner-suggest {
+        justify-content: space-between;
+        gap: .5rem;
+    }
+    .top-banner-suggestions {
+        width: 6rem;
+    }
+    .suggest-image,
+    .suggest-image-div {
+        width: 6rem;
+        height: 6rem;
+    }
+    .selection-card {
+        width: 8rem;
+        height: 8rem;
+        margin: .5rem;
+        border-radius: .3rem;
+    }
+    .shop-our-select-img {
+        width: 8rem;
+        height: 6rem;
+        border-radius: .3rem;
+    }
+    .selection-subtitle {
+        font-size: 1rem;
+    }
+    .column-container {
+        gap: 1rem;
+    }
+    .column-title {
+        font-size: 1.3rem;
+    }
+    .what-is-paragraph {
+        font-size: .8rem;
+        line-height: 1.3rem;
+    }
+    .column-title {
+        font-size: 1rem;
+    }
+    .logoim {
+        height: 3rem;
+        width: 3rem;
+        margin-left: .5rem;
+    }
+    .logo {
+        font-size: 2rem;
+        margin-left: .5rem;
+    }
+}
+@media only screen and (max-width: 768px){
+    .welcome-title {
+        font-size: 1rem;
+        margin: 1rem;
+    }
+    .top-banner-suggest {
+        gap: .3rem;
+    }
+    .header-tabs {
+        visibility: hidden;
+    }
+    .header-container {
+        height: 3.5rem;
+    }
+    .column-container {
+        display: flex;
+        flex-direction: column;
+    }
+    .column-title {
+        margin: 1rem;
+    }
+    .search-bar {
+        margin: 0rem;
+    }
+    h2.shop-our-title {
+        font-size: 1.5rem;
+    }
+    h3.shop-our-title {
+        font-size: 1rem;
+    }
+    .shops-youll-love{
+        font-size: .8rem;
+    }
+    .what-is-etzy > h1,
+    .have-questions {
+        font-size: 1.5rem;
+    }
+}
+@media only screen and (max-width: 480px){
+
+}
+
+/*
+@media only screen and (max-width: 1600px){
+
+}
+@media only screen and (max-width: 1200px){
+
+}
+@media only screen and (max-width: 1024px){
+
+}
+@media only screen and (max-width: 768px){
+
+}
+@media only screen and (max-width: 480px){
+
+}
+*/

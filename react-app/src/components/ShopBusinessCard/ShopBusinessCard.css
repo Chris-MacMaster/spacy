@@ -3,7 +3,7 @@
     flex-direction: row;
     font-family: 'Mulish', sans-serif;
     text-decoration: none;
-
+    margin: 1rem;
 }
 .user-manage-shop-pic {
     width: 8rem;
@@ -34,6 +34,10 @@
     padding: .4rem;
     font-weight: bolder;
     transition: ease-in-out .3s;
+    cursor: pointer;
+}
+.user-manage-create {
+    cursor: pointer;
 }
 .user-manage-edit-shop:hover {
     box-shadow: 0rem 0rem .5rem black;
@@ -46,4 +50,8 @@
 }
 .create-product-icon {
     color: rgb(81, 81, 81);
+}
+.fa-trash-can {
+    color: red;
+    margin-right: .5rem;
 }

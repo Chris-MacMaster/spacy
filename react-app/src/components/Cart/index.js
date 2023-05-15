@@ -8,26 +8,30 @@ import { groupItemsByStore, totalCost } from "./_helpers"
 import { NavLink } from "react-router-dom"
 import PaymentMethod from "./PaymentMethods"
 import './Cart.css'
+import LoadingIcon from "../LoadingIcon"
 
 export default function DisplayCart(){
   const [user, cart] = useSelector(state => [state.session.user, state.cart.products ?? null])
 
-    const dispatch = useDispatch()
-    const [loaded, setLoaded] = useState(false)
-    useEffect(() =>{
-      dispatch(fetchCart())
-      .then(() => setLoaded(true))
-    },[dispatch, user])
+  const dispatch = useDispatch()
+  const [hasLoaded, setHasLoaded] = useState(false)
+  useEffect(() => {
+    const loadData = async () => {
+      await dispatch(fetchCart())
+      return setHasLoaded(true)
+    }
+    loadData()
+  },[dispatch, user])
 
-    if(!user) return (
+  if(!user) return (
     <div className="no-user-no-cart">
     <h1>Due to recent cart theft by space pirates, only verified users are permitted a cart</h1>
     </div>
     )
 
-    if(!loaded) return <h2 className="loading-cart">Loading Cart...</h2>
+    if(!hasLoaded) return <LoadingIcon />
 
-    if (!Object.values(cart).length && loaded) {
+    if (!Object.values(cart).length && hasLoaded) {
       console.log(Object.values(cart))
       return <h2>You have no items in your cart, don't you want to buy something?</h2>
     }

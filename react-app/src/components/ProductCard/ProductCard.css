@@ -1,11 +1,8 @@
 .product-card {
-    /* display: grid auto;
-    flex-direction: row; */
-    /* height: 15rem; */
     margin: .25rem;
-    /* flex-wrap: row; */
-    /* position: relative; */
     border-radius: 1rem;
+    height: 15rem;
+    width: 15rem;
 }
 .product-card > img {
     width: 15rem;
@@ -28,10 +25,9 @@
     font-weight: 600;
 }
 .product-tooltip-heart {
-    /* justify-content: end; */
     top: 5rem;
     text-align: end;
-    left: 11rem;
+    left: 12rem;
 }
 .product-tooltip-price {
     top: 14em;
@@ -44,4 +40,38 @@
 .product-card:hover .product-tool-tips {
     visibility: visible;
     opacity: 1;
+}
+
+@media only screen and (max-width: 1200px){
+
+        .product-card,
+        .product-card > img,
+        .from-etzy-closing,
+        .by-etsy-header {
+            width: 10rem;
+            height: 10rem;
+        }
+        .by-etsy-title {
+            font-size: 1.3rem;
+            margin: .5rem;
+        }
+
+}
+@media only screen and (max-width: 768px){
+
+        .product-card,
+        .product-card > img,
+        .from-etzy-closing,
+        .by-etsy-header {
+            width: 6rem;
+            height: 6rem;
+        }
+        .by-etsy-title,
+        .sponsored {
+            font-size: 1rem;
+            margin: .3rem;
+        }
+        .from-etzy-closing {
+            font-size: .6rem;
+        }
 }

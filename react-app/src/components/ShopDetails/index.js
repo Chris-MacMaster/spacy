@@ -1,27 +1,34 @@
 import { NavLink, useParams, useHistory } from 'react-router-dom'
 import './ShopDetails.css'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchOneShop, fetchShops } from '../../store/shops'
 import ShopProductCard from '../ShopProductCard'
 import { authenticate } from '../../store/session'
+import LoadingIcon from '../LoadingIcon'
 
 export default function ShopDetails () {
     const {shopId} = useParams()
     const dispatch = useDispatch()
     const history = useHistory()
+    const [ hasLoaded, setHasLoaded ] = useState(false)
     useEffect(() => {
-        dispatch(fetchOneShop(shopId))
-        dispatch(fetchShops())
-        dispatch(authenticate())
+        const loadData = async () => {
+            await dispatch(fetchOneShop(shopId))
+            await dispatch(fetchShops())
+            await dispatch(authenticate())
+            return setHasLoaded(true)
+        }
+        loadData()
     }, [dispatch, shopId])
+
     const shop = useSelector(state => state.shops.singleShop)
     const user = useSelector(state => state.session.user)
     const featureAlert = () => alert('Feature coming soon')
 
-    if (!shop || !Object.entries(shop).length) return null
-    const allReviews = shop.Products.map(p=>p.Reviews).flat()
+    if (!hasLoaded) return <LoadingIcon />
 
+    const allReviews = shop.Products.map(p=>p.Reviews).flat()
     const handleCreate = (e) => {
         e.preventDefault()
         history.push(`/products/forms/create-product/${shopId}`)

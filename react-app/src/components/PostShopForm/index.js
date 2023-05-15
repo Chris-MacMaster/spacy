@@ -35,13 +35,10 @@ export default function PostShopForm() {
         setErrors(err)
     }, [name, streetAddress, city, state, country, description, category, policies, url])
 
-
     const handleSubmit = async e => {
         e.preventDefault();
-
         setHasSubmitted(true)
         if (Object.values(errors).length) return;
-
         const newShop = {
             name,
             street_address: streetAddress,
@@ -56,6 +53,7 @@ export default function PostShopForm() {
         await dispatch(createShop(newShop))
         history.push(`/users/${user.id}`)
     }
+
     return (
         <div className='post-shop-div'>
             <h1 className='post-shop-title'>Create New Shop</h1>

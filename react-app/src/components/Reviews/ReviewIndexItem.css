@@ -36,6 +36,8 @@ margin-top: 2rem;
 .review-image-detail {
     height: 185px;
     width: 185px;
+    object-fit: cover;
+    border-radius: .25rem;
 }
 .delete-review-button,
 .edit-review-button {
@@ -47,9 +49,7 @@ margin-top: 2rem;
     font-family: 'Marcellus', serif;
     font-weight: bold;
 }
-.delete-review-button {
-    /* background-color: rgb(222, 103, 6); */
-}
+
 .delete-review-button:hover,
 .edit-review-button:hover {
     box-shadow: 0rem 0rem .5rem black;

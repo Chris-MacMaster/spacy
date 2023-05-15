@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import './Landing.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchProducts } from '../../store/product'
@@ -7,15 +7,23 @@ import { fetchOneShop, fetchShops } from '../../store/shops'
 import ProductCard from '../ProductCard'
 import ShopCard from '../ShopCard'
 import { NavLink } from 'react-router-dom'
+import LoadingIcon from '../LoadingIcon'
 
 function Landing({ isLoaded }) {
     const dispatch = useDispatch()
+    const [ hasLoaded, setHasLoaded ] = useState(false)
+
     useEffect(() => {
-        dispatch(fetchProducts())
-        dispatch(authenticate())
-        dispatch(fetchShops())
-        dispatch(fetchOneShop(1))
+        const loadData = async () => {
+            await dispatch(fetchProducts())
+            await dispatch(authenticate())
+            await dispatch(fetchShops())
+            await dispatch(fetchOneShop(1))
+            return setHasLoaded(true)
+        }
+        loadData()
     }, [dispatch])
+
     const products = useSelector(state => state.products.allProducts)
     const shops = useSelector(state => state.shops)
     const user = useSelector(state => state.session.user)
@@ -23,15 +31,13 @@ function Landing({ isLoaded }) {
     const under30 = under30arr[Math.floor(Math.random()*under30arr.length)]
     const others = Object.values(products).filter(p=> p !== under30)
     const title = ['Creating Change...', 'Gifts for Her', 'Gifts for Him', 'Gifts for Kids', 'Gifts Under $30']
-
-    if (!products || !shops || !under30 || !others) return null
+    if (!hasLoaded) return <LoadingIcon />
 
     const rand1 = products[13] ? products[13] : others[Math.floor(Math.random()*others.length)]
     const rand2 = products[7] ? products[7] : others[Math.floor(Math.random()*others.length)]
     const rand3 = products[2] ? products[2] : others[Math.floor(Math.random()*others.length)]
     const rand4 = products[14] ? products[14] : others[Math.floor(Math.random()*others.length)]
     const data = Object.values(products).sort((a,b) => Date.parse(b.createdAt) - Date.parse(a.createdAt)).slice(0, 6)
-    // console.log('SHOPS', shops)
     return (
         <div className='landing-div'>
         <div className='landing-header'>
@@ -43,28 +49,28 @@ function Landing({ isLoaded }) {
                 alt='product'
                 className='suggest-image'></img>
                 </div>
-                <p>Jewelry</p></div>
+                <p className='suggest-image-text'>Jewelry</p></div>
             <div className='top-banner-suggestions'>
                 <div className='suggest-image-div'>
                 <img src='https://i.imgur.com/bKS0Vs5.jpg'
                 alt='product'
                 className='suggest-image'></img>
                 </div>
-                <p>Adventure Outfitting</p></div>
+                <p className='suggest-image-text'>Adventure Outfitting</p></div>
             <div className='top-banner-suggestions'>
                 <div className='suggest-image-div'>
                 <img src='https://i.imgur.com/WQ691xR.png'
                 alt='product'
                 className='suggest-image'></img>
                 </div>
-                <p>Rations and Foodstuffs</p></div>
+                <p className='suggest-image-text'>Rations and Foodstuffs</p></div>
             <div className='top-banner-suggestions'>
                 <div className='suggest-image-div'>
                 <img src='https://i.imgur.com/KWP0Qte.png'
                 alt='product'
                 className='suggest-image'></img>
                 </div>
-                <p>Furniture and Decor</p>
+                <p className='suggest-image-text'>Furniture and Decor</p>
             </div>
             <div className='top-banner-suggestions'>
                 <div className='suggest-image-div'>
@@ -72,7 +78,7 @@ function Landing({ isLoaded }) {
                 alt='product'
                 className='suggest-image'></img>
                 </div>
-                <p>Adventure Outfitting!</p>
+                <p className='suggest-image-text'>Adventure Outfitting!</p>
             </div>
             <div className='top-banner-suggestions'>
                 <div className='suggest-image-div'>
@@ -80,9 +86,10 @@ function Landing({ isLoaded }) {
                 alt='product'
                 className='suggest-image'></img>
                 </div>
-                <p>On Sale</p></div>
+                <p className='suggest-image-text'>On Sale</p></div>
             </div>
             </div>
+
             <div className='from-etzy-sellers'>
                 <div className='by-etsy-header'>
                     <p className='sponsored'>Sponsored <i className="fa-solid fa-question"></i></p>
@@ -105,9 +112,10 @@ function Landing({ isLoaded }) {
             </div>
 
             <div className='shop-our-selections'>
-
+                <div className='shop-our-titles'>
                 <h2 className='shop-our-title'>Shop our selections <i className="fa-solid fa-arrow-right shop-our-title"></i></h2>
                 <h3 className='shop-our-title'>Curated hand-picked by spacey editors</h3>
+                </div>
 
 
                 <div className='shop-our-mapped'>
@@ -120,7 +128,7 @@ function Landing({ isLoaded }) {
                 <div className='selection-card'
                 // onClick={history.push(`/search/${rand.category}`)}
                 key={`div${i}`}>
-                <img src={`${rand.ProductImages[0].url}`}
+                <img src={`${rand?.ProductImages[0]?.url}`}
                         alt='selection-im'
                         key={`img${i}`}
                         className='shop-our-select-img'></img>
@@ -140,7 +148,7 @@ function Landing({ isLoaded }) {
                     <h3 className='shops-youll-love-title'>Based on your recent activity</h3>
                 </div>
 
-                {shops.allShops && shops.allShops[0] ? (Object.values(shops.allShops).filter(s=> s.Products.length > 3).map((s, i)=> (
+                {shops.allShops && Object.values(shops.allShops).length ? (Object.values(shops.allShops).filter(s=> s.Products.length > 3).map((s, i)=> (
                 <NavLink to={`/shops/${s.id}`}
                 style={{ textDecoration: 'none' }}
                 key={i}>
@@ -166,7 +174,7 @@ function Landing({ isLoaded }) {
                     <p className='what-is-paragraph'> Who is out there? When we finally make contact, will they wish us harm? Coerce our labor in mining camps on a barely habitable moon? Your safety is the highest priority of our dedicated team. And if you ever need assistance, we are always ready to step in for support and mediate peace between waring galactic federations.</p>
                 </div>
                 </div>
-                <h2>Have a question? Well, we've got some answers.</h2>
+                <h2 className='have-questions'>Have a question? Well, we've got some answers.</h2>
             </div>
         </div>
     )

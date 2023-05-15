@@ -27,9 +27,7 @@ def get_one_product(product_id):
             sum += r['stars']
         productcopy['Reviews'] = reviews
         productcopy['avgRating'] = round(sum / len(reviews), 1) if len(reviews) else "New"
-
         return productcopy, 200
-    #this delete isn't getting hit because of route above right?
     elif request.method == 'DELETE':
         if current_user.is_authenticated:
             product = Product.query.filter_by(id=product_id).first()
@@ -42,7 +40,6 @@ def get_one_product(product_id):
                 return product.to_dict(), 200
         return { 'errors': 'Not authenticated'}
     elif request.method == 'PUT':
-
         if current_user.is_authenticated:
             product = Product.query.get(product_id)
             form = CreateProductForm() # make edit form
@@ -76,9 +73,7 @@ def get_all_products():
     # get products
     if request.method == "GET":
         products = Product.query.all()
-
         productcopy = copy.deepcopy(products)
-        # helper function to get associated images of each product
         def get_images(id):
             return ProductImage.query.filter(ProductImage.product_id == id).all()
         def get_reviews(id):

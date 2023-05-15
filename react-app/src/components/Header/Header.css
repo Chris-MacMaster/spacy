@@ -45,26 +45,25 @@
 }
 .header-search {
     background-color: none;
-    width: 40vw;
+    min-width: 40vw;
     border: none;
     background-color: white;
-
     /* marc */
     height: 1.8rem;
+    z-index: 1;
+    border-radius: 5rem;
 }
 .search-bar {
     display: flex;
-    justify-content: flex-end;
-    width: 60vw;
     border: darkslategray solid 2px;
     border-radius: 3rem;
     height: 2rem;
-    margin-left: 2rem;
-    margin-right: 2rem;
+    margin-left: .5rem;
+    margin-right: .5rem;
     transition: .6s;
+    z-index: 1;
 }
 .telescope-search{
-    /* align-items: flex-end; */
     padding-top: .4em;
     padding-left: .5rem;
     padding-right: .5rem;
@@ -78,13 +77,17 @@
 .telescope-search:hover{
     cursor: pointer;
 }
-
 .cart {
     margin-right: 2rem;
     font-size: 1.5rem;
 }
 .header a {
     text-decoration: none;
+}
+.search-bar-form {
+    display: flex;
+    flex-direction: row;
+    z-index: 0;
 }
 .fa-magnifying-glass{
     font-size: 1.3rem;
@@ -97,12 +100,12 @@ input.header-search:focus-within +.telescope-search {
     color: white;
 }
 input.header-search:focus-within +.telescope-search > .fa-magnifying-glass {
-    /* background-color: rgb(27, 25, 25); */
     color: white;
 }
 input:focus, text:focus .header-search {
     outline: none;
 }
+
 .shop-manager {
     position: relative;
 }
@@ -150,9 +153,6 @@ input:focus, text:focus .header-search {
 div.navigation:hover {
     cursor: pointer;
 }
-/* .fa-cart-shopping {
-    z-index: 0;
-} */
 .number-in-cart {
     position: absolute;
     background-color: rgb(180, 33, 33, .9);
@@ -164,8 +164,8 @@ div.navigation:hover {
     padding: .2rem;
     border-radius: 3rem;
     z-index: 100;
-    left:.3rem;
-    top: -.3rem
+    right:0rem;
+    top: -.8rem
 }
 .cart-total {
     z-index: 101;
