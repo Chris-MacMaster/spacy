@@ -15,7 +15,6 @@ function FilteredSearchResults() {
 
         dispatch(getFilteredSearchResults(category))
     }, [dispatch, category])
-    console.log('products',products)
 
     if (!products) return null
 

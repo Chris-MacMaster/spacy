@@ -62,7 +62,6 @@ export const addCartItemThunk = (itemId, userId) => async dispatch => {
 }
 
 export const removeCartItemThunk = (cartId) => async dispatch => {
-    console.log(cartId)
     const response = await fetch('/api/cart/', {
         method: 'DELETE',
         headers: {"Content-Type": "application/json"},
@@ -90,10 +89,7 @@ export const editCartItemThunk = (cartId, quantity, userId, productId) =>  async
         body: JSON.stringify({"quantity": quantity, "user_id": userId, "product_id": productId, "cart_id": cartId})
     })
     if (response.ok){
-        console.log("Oh me, oh my!")
-
         const cart = await response.json()
-        console.log(cart)
         return dispatch(editItemQuantity(cart))
     }
 }

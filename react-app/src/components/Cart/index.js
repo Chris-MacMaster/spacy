@@ -32,7 +32,6 @@ export default function DisplayCart(){
     if(!hasLoaded) return <LoadingIcon />
 
     if (!Object.values(cart).length && hasLoaded) {
-      console.log(Object.values(cart))
       return <h2>You have no items in your cart, don't you want to buy something?</h2>
     }
 
@@ -86,7 +85,6 @@ export default function DisplayCart(){
                     </NavLink>
                     <div className="placeholder-name">
                       <div className="cart-product-info">
-                        {/* {console.log(product)} */}
                         <div className="cart-product-info-top">
                           <NavLink to={`/products/${product.id}`}
                             style={{ "text-decoration": "none"}}>{product.name}</NavLink>

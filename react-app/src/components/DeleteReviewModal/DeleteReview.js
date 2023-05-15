@@ -8,8 +8,6 @@ import { fetchOneProduct } from '../../store/product';
 export default function DeleteReviewModal({reviewId, product}) {
     const {closeModal} = useModal()
 
-    console.log('product in modal', product)
-
     const dispatch = useDispatch()
 
     const handleClick = (e) => {
