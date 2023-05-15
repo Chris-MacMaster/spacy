@@ -1,20 +1,26 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getSearchResults } from "../../store/search"
 import { NavLink, useParams } from "react-router-dom"
 
 import './SearchResults.css'
+import LoadingIcon from "../LoadingIcon"
 
 function SearchResults() {
     const {parameters} = useParams()
     const dispatch = useDispatch()
+    const [ hasLoaded, setHasLoaded ] = useState(false)
     const products = useSelector((state) => state.search.searchResults)
     useEffect(() => {
-        dispatch(getSearchResults(parameters))
+        const loadData = async () => {
+            await dispatch(getSearchResults(parameters))
+            return setHasLoaded(true)
+        }
+        loadData()
     }, [dispatch, parameters])
     // put products in dependency array to fix search bar bug
 
-    if (!Object.values(products).length) return <h1>No Results</h1>
+    if (!hasLoaded) return <LoadingIcon />
 
     return (
         <div className="search-results-div">

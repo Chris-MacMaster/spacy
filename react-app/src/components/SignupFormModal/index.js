@@ -17,8 +17,9 @@ function SignupFormModal() {
 	const [errors, setErrors] = useState([]);
 	const [ disable, setDisable] = useState(true)
 	const { closeModal } = useModal();
+	const [ hasSubmitted, setHasSubmitted ] = useState(false)
 
-	const validate = () => {
+	useEffect(() => {
 		const err = []
 		if (!email.includes('@') || !email.includes('.')) err.push('Please enter a valid email.')
 		if (password.length < 6 || !password) err.push('Passwords must be at least 6 characters.')
@@ -28,7 +29,7 @@ function SignupFormModal() {
 		if (bio.length < 20) err.push('Please enter a short bio.')
 		if (confirmPassword !== password || confirmPassword.length < 6) err.push('ConfirmPassword must be 6 characters and match password')
 		setErrors(err)
-	}
+	}, [email, password, username, firstName, lastName, bio, confirmPassword])
 
 	useEffect(() =>{
 		if (!email || !username || !password || !confirmPassword || password.length < 6 || username.length < 4 || confirmPassword !== password) setDisable(true)
@@ -37,9 +38,8 @@ function SignupFormModal() {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		validate()
-		if (errors.length) return
-		if (password === confirmPassword && !errors.length) {
+		setHasSubmitted(true)
+		if (!errors.length) {
 			const data = await dispatch(signUp(username,
 				email,
 				password,
@@ -50,9 +50,7 @@ function SignupFormModal() {
 			if (data) setErrors(data);
 			else closeModal();
 		} else {
-			setErrors([
-				"Confirm Password field must be the same as the Password field",
-			]);
+			return alert('Please correct input errors')
 		}
 	};
 
@@ -62,89 +60,95 @@ function SignupFormModal() {
 			<form onSubmit={handleSubmit}
 			className="signup-form">
 
-				<label className="signup-label">
+				{/* <label className="signup-label">
 					Email
-				</label>
+				</label> */}
 					<input
 						type="text"
 						value={email}
 						onChange={(e) => setEmail(e.target.value)}
 						required
 						className="signup-input"
+						placeholder="Email"
 					/>
-				<label className="signup-label">
+				{/* <label className="signup-label">
 					Username
-				</label>
+				</label> */}
 					<input
 						type="text"
 						value={username}
 						onChange={(e) => setUsername(e.target.value)}
 						required
 						className="signup-input"
+						placeholder="Username"
 					/>
-
+{/*
 				<label className="signup-label">
 					First Name
-				</label>
+				</label> */}
 				<input
 					type="text"
 					value={firstName}
 					onChange={(e) => setFirstName(e.target.value)}
 					required
 					className="signup-input"
+					placeholder="First Name"
 				/>
-				<label className="signup-label"></label>
+				{/* <label className="signup-label"></label> */}
 
 
-				<label className="signup-label">
+				{/* <label className="signup-label">
 					Last Name
-				</label>
+				</label> */}
 				<input
 					type="text"
 					value={lastName}
 					onChange={(e) => setLastName(e.target.value)}
 					required
 					className="signup-input"
+					placeholder="Last Name"
 				/>
-				<label className="signup-label"></label>
-
+				{/* <label className="signup-label"></label>
 
 				<label className="signup-label">
 					Bio
-				</label>
-				<input
+				</label> */}
+				<textarea
 					type="text"
 					value={bio}
 					onChange={(e) => setBio(e.target.value)}
 					required
-					className="signup-input"
+					className="signup-input signup-bio"
+					placeholder="Please enter a short bio"
 				/>
-				<label className="signup-label"></label>
-
-
+				{/* <label className="signup-label"></label>
 
 				<label className="signup-label">
 					Password
-				</label>
+				</label> */}
 					<input
 						type="password"
 						value={password}
 						onChange={(e) => setPassword(e.target.value)}
 						required
 						className="signup-input"
+						placeholder="Password"
 					/>
-				<label className="signup-label">
+				{/* <label className="signup-label">
 					Confirm Password
-				</label>
+				</label> */}
 					<input
 						type="password"
 						value={confirmPassword}
 						onChange={(e) => setConfirmPassword(e.target.value)}
 						required
 						className="signup-input"
+						placeholder="Verify Password"
 					/>
 		<ul>
-          {errors?.map((error, idx) => <li key={idx} className="errors">{error}</li>)}
+          {hasSubmitted && errors.length && errors?.map((error, idx) =>(
+		  <li key={idx} className="errors">{error}</li>
+		  ))}
         </ul>
 				<button type="submit"
 				id='register-button'>Register</button>

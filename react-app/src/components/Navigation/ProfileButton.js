@@ -55,7 +55,7 @@ function ProfileButton({ user }) {
           <>
           <div className="popout-profile-header">
           <div>
-            <i className="fas fa-user-circle" />
+            <i className="fas fa-user-circle profile-drop-item" />
           </div>
 
           <NavLink to={`/users/${user.id}`}><div>
@@ -64,23 +64,52 @@ function ProfileButton({ user }) {
           </div>
           </NavLink>
           </div>
-            <p><i className="fa-solid fa-clipboard-list drop-down-icons"></i>
-            Purchases and reviews</p>
-            <p><i className="fa-solid fa-gift drop-down-icons"></i>
-              Gift card balance: $0.00</p>
-            <p><i className="fa-solid fa-message drop-down-icons"></i>
-            Messages</p>
-            <p><i className="fa-solid fa-tag drop-down-icons"></i>
-            Your offers</p>
-            <p><i className="fa-solid fa-leaf drop-down-icons"></i>
-            Your impact</p>
-            <p><i className="fa-solid fa-gear drop-down-icons"></i>
-            Account Settings</p>
-            <p><i className="fa-solid fa-store drop-down-icons"></i>
-            Sell on Etsy</p>
-            {/* <p><NavLink exact to={`/currentuser`}>User Details</NavLink></p> */}
             <p>
-              <button onClick={logout}><i className="fa-solid fa-right-from-bracket drop-down-icons"></i>Sign Out</button>
+              <span className="profile-drop-item" >
+                <i className="fa-solid fa-clipboard-list drop-down-icons"></i>
+                </span>
+              <span className="profile-drop-text">Purchases and reviews</span>
+            </p>
+            <p>
+              <span className="profile-drop-item" >
+                <i className="fa-solid fa-gift drop-down-icons"></i>
+              </span>
+              <span className="profile-drop-text">Gift card balance: $0.00</span>
+              </p>
+            <p>
+              <span className="profile-drop-item" >
+                <i className="fa-solid fa-message drop-down-icons"></i>
+              </span>
+              <span className="profile-drop-text">Messages</span>
+            </p>
+            <p>
+              <span className="profile-drop-item" >
+                <i className="fa-solid fa-tag drop-down-icons"></i>
+              </span>
+              <span className="profile-drop-text">Your offers</span>
+            </p>
+            <p>
+              <span className="profile-drop-item" >
+                <i className="fa-solid fa-leaf drop-down-icons"></i>
+              </span>
+              <span className="profile-drop-text">Your impact</span>
+            </p>
+            <p>
+              <span className="profile-drop-item" >
+                <i className="fa-solid fa-gear drop-down-icons"></i>
+              </span>
+              <span className="profile-drop-text">Account Settings</span>
+            </p>
+            <NavLink to={`/users/${user.id}`}>
+            <p>
+              <span className="profile-drop-item" >
+                <i className="fa-solid fa-store drop-down-icons"></i>
+              </span>
+          <span className="profile-drop-text">Sell on Spacey</span>
+            </p>
+            </NavLink>
+            <p>
+              <button onClick={logout}><i className="fa-solid fa-right-from-bracket drop-down-icons profile-drop-item" /><span className="signout-button" >Sign Out</span></button>
             </p>
           </>
         ) : (

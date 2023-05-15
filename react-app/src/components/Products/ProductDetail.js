@@ -12,6 +12,7 @@ import { useHistory } from 'react-router-dom';
 import "./ProductDetail.css"
 import OpenModalButton from '../OpenModalButton';
 import ShopPoliciesModal from '../ShopPoliciesModal';
+import LoadingIcon from '../LoadingIcon';
 
 const ProductDetail = () => {
     const dispatch = useDispatch()
@@ -19,8 +20,8 @@ const ProductDetail = () => {
     const [user, cart] = useSelector((state) =>[state.session.user, state.cart])
     const [showMenu, setShowMenu] = useState(false); //for opening modal
     const ulRef = useRef(); //for modal
-    let { productId } = useParams()
-
+    const { productId } = useParams()
+    const [ hasLoaded, setHasLoaded ] = useState(false)
     //modal components
     const openMenu = () => {
         if (showMenu) return
@@ -39,24 +40,23 @@ const ProductDetail = () => {
 
     //dispatching state
     useEffect(() => {
-        dispatch(fetchOneProduct(productId))
-        dispatch(fetchProductReviews(productId))
-        dispatch(fetchCart())
+        const loadData = async () => {
+            await dispatch(fetchOneProduct(productId))
+            await dispatch(fetchProductReviews(productId))
+            await dispatch(fetchCart())
+            return setHasLoaded(true)
+        }
+        loadData()
     }, [dispatch, productId])
 
     const product = useSelector(state => state.products.singleProduct)
     const productReviews = useSelector(state => state.reviews.productReviews)
     const shop = useSelector(state => state.products?.singleProduct.Shop)
     const shopId = shop?.id
-    if (!Object.values(product).length) return null
+    
+    if (!hasLoaded) return <LoadingIcon />
 
-    console.log('reviews', productReviews)
-
-    let userIds = productReviews && productReviews.length ? productReviews.map(r => r.userId) : null
-
-    const handleClick = () =>
-    history.push(`/product-reviews/${productId}/new`)
-    if (!product.Shop) return null
+    const handleClick = () => history.push(`/product-reviews/${productId}/new`)
 
     const handleShopRedirect = (e) => {
         e.preventDefault()

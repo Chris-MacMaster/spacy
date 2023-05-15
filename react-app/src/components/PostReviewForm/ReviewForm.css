@@ -49,10 +49,10 @@ p {
     margin: 0.4em;
 }
 
-textarea {
+/* textarea {
     border-radius: 15px;
     padding-bottom: 15em;
-}
+} */
 
 .formParent {
     margin-top: 15em;
@@ -68,8 +68,7 @@ textarea {
     width: 20em;
     height: 20.5em;
     padding-bottom: 1em;
-    /* border: 3px solid black; */
-    /* border-radius: 20px; */
+
 }
 
 .productPic {
@@ -90,7 +89,6 @@ textarea {
 
 
 .reviewText {
-    /* border: 3px solid red; */
     height: 8rem;
     width: 25rem;
     margin: 1em;

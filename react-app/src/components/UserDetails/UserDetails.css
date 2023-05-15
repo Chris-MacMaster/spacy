@@ -32,6 +32,9 @@
     border-radius: 5vw;
     margin: 0;
 }
+.favorite-shop {
+    cursor: pointer;
+}
 .shop-owner-text {
     color: grey;
     font-weight: bolder;
@@ -45,8 +48,7 @@
 .user-manage-footer {
     font-family: 'Mulish', sans-serif;
 }
-/* p.user-manage-business-cards {
-} */
+
 .user-manage-create {
     transition: .2s ease-in-out;
 }

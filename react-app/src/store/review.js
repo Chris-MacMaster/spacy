@@ -42,13 +42,12 @@ const actionDeleteReview = (reviewId) => {
 
 //PRODUCTS HOME PAGE
 export const fetchProductReviews = (productId) => async dispatch => {
-    // console.log("REVIEWS route TRIGGERED")
-    // const response = await fetch(`/api/product-reviews/${productId}`)
     if (!productId) return
     const response = await fetch(`/api/product-reviews/${productId}`)
-    const reviews = await response.json()
     if (response.ok) {
+        const reviews = await response.json()
         dispatch(actionLoadReviews(reviews))
+        return reviews
     }
 }
 
@@ -77,23 +76,18 @@ export const createProductReview = (productId, review, stars, image) => async di
     }
 
     if (res.ok) {
-        console.log('res ok')
-        let newReview = await res.json()
-        console.log('newReview json', newReview)
+        const newReview = await res.json()
         dispatch(actionPostReview(newReview))
-        // return newReview
+        return newReview
     }
 }
 
 export const getOneReview = (reviewId) => async dispatch => {
-    console.log('thunk hit')
     const res = await fetch(`/api/product-reviews/search/${reviewId}`)
-
     if (res.ok) {
-        console.log('res ok')
-        let review = await res.json()
-        console.log('review get json', review)
+        const review = await res.json()
         dispatch(actionLoadSingleReview(review))
+        return review
     }
 }
 
@@ -108,8 +102,9 @@ export const editReview = (reviewId, review, stars) => async dispatch => {
     })
 
     if (res.ok) {
-        let editedReview = await res.json()
+        const editedReview = await res.json()
         dispatch(actionEditReview(editedReview))
+        return editedReview
     }
 }
 
@@ -118,9 +113,10 @@ export const deleteReview = (reviewId) => async dispatch => {
         method: 'DELETE',
         headers: {'Content-Type': 'application/json'}
     })
-
     if (res.ok) {
+        const deleted = await res.json()
         await dispatch(actionDeleteReview(reviewId))
+        return deleted
     }
 }
 
@@ -134,12 +130,11 @@ const initialState = {
 export default function reviewReducer(state = initialState, action) {
     switch (action.type) {
         case LOAD_REVIEWS: {
-            let newState = { ...state }
+            const newState = { ...state }
             newState.productReviews = action.payload
             return newState
         }
         case POST_REVIEW: {
-            console.log('reducer')
             const newState2 = {...state,
                 productReviews: {...state.productReviews},
                 singleReviewPost: {...state.singleReviewPost},
@@ -166,10 +161,8 @@ export default function reviewReducer(state = initialState, action) {
             return newState4
         }
         case DELETE_REVIEW: {
-            console.log('reducer')
             const newState5 = {...state, singleReviewPost: {...state.singleReviewPost}, singleReviewGet: {...state.singleReviewGet}}
             state.productReviews.map(review => (newState5.productReviews[review.id] = review ))
-            console.log('newState5', newState5)
             delete newState5.singleReviewGet
             return newState5
         }

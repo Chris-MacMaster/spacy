@@ -22,7 +22,7 @@ export default function ShopCard({ shop }) {
                 {filteredProducts ?
                 filteredProducts.map((p,i)=> (
                     <img className='shop-image-grid-image'
-                    src={`${p.ProductImages[Math.floor(Math.random() * p.ProductImages.length)].url}}`}
+                    src={`${p.ProductImages[0].url}}`}
                     key={`im${i}`}
                     alt='shopcardimg'></img>
 

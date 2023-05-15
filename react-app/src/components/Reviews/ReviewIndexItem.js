@@ -3,23 +3,14 @@ import './ReviewIndexItem.css'
 import { useSelector } from 'react-redux';
 import { deleteReview, fetchProductReviews } from '../../store/review';
 import { useDispatch } from "react-redux"
-// import OpenModalButton from '../OpenModalButton'
 import { NavLink } from 'react-router-dom';
 
-// import DeleteReviewModal from '../DeleteReviewModal/DeleteReview';
-// import { deleteReview } from '../../store/review';
-
-
 const ReviewIndexItem = ({ review , product}) => {
-    // const history = useHistory()
-
-    console.log('product in reviews', product)
     const dispatch = useDispatch()
     let user = useSelector((state) => state.session.user)
 
     const handleClick = (e) => {
         e.preventDefault()
-
     }
 
     const handleDeleteClick = async (e) => {
@@ -75,13 +66,13 @@ const ReviewIndexItem = ({ review , product}) => {
                 : null}
                 </div>
                 <div className='rev-col-b'>
-                    {review.ReviewImages ?
+                    {review?.ReviewImages ? (
 
                     <div className='rev-img'>
-                        <img className='review-image-detail' src={review.ReviewImages.url} alt='not loaded' />
+                        <img className='review-image-detail' src={review.ReviewImages?.url} alt='not loaded' />
                     </div>
 
-                    : null}
+                    ) : null}
                 </div>
             </div>
         </div>

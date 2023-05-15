@@ -5,15 +5,12 @@ import copy
 shop_routes = Blueprint('/shops', __name__)
 from app.forms import CreateShopForm
 
-
-
 @shop_routes.route('/', methods=['GET', 'POST'])
 def get_all_shops():
-    """returns all shops regardless of session"""
+    """returns all shops regardless of session, or posts a new shop"""
     if request.method == 'GET':
         shops = Shop.query.all()
-        print("SHOPS", shops)
-        shopcopy = [shop.to_dict() for shop in shops]
+        shopcopy = { str(shop.id): shop.to_dict() for shop in shops}
         def shop_products(id):
             products = Product.query.filter(Product.shop_id == id).all()
             return [product.to_dict() for product in products]
@@ -23,24 +20,22 @@ def get_all_shops():
         def get_shop_images(id):
             image = ShopImage.query.filter(ShopImage.shop_id == id).first()
             if image:
-                    return image.to_dict()
+                return image.to_dict()
         for shop in shopcopy:
-            shopimage = get_shop_images(shop['id'])
+            shopimage = get_shop_images(shopcopy[shop]['id'])
             if shopimage:
-                shop['ShopImage'] = shopimage
+                shopcopy[shop]['ShopImage'] = shopimage
             else:
-                shop['ShopImage'] = 'shopImage not available'
-            shop['Products'] = shop_products(shop['id'])
-            for product in shop['Products']:
+                shopcopy[shop]['ShopImage'] = 'shopImage not available'
+            shopcopy[shop]['Products'] = shop_products(shopcopy[shop]['id'])
+            for product in shopcopy[shop]['Products']:
                 product['ProductImages'] = get_images(product['id'])
         return shopcopy, 200
-    """posts a new shop"""
     if request.method == 'POST' and current_user.is_authenticated:
         form = CreateShopForm()
         form['csrf_token'].data = request.cookies['csrf_token']
         form.validate_on_submit()
         if not form.validate_on_submit():
-            print(form.errors)
             return {'error': 'The provided data could not be validated'}
         if form.validate_on_submit():
             new_shop = Shop(
@@ -55,12 +50,9 @@ def get_all_shops():
                 policies = form.data['policies'],
                 sales = 0,
             )
-            print(new_shop)
             db.session.add(new_shop)
             db.session.commit()
             recentshop = db.session.query(Shop).order_by(Shop.id.desc()).first()
-            print(recentshop)
-            # created_shop = shop_list[-1]
             new_shop_img = ShopImage(
                 url = form.data['url'],
                 shop_id = recentshop.id

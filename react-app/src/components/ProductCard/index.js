@@ -9,7 +9,7 @@ export default function ProductCard({ product }) {
         <i className="fa-regular fa-heart"></i></div>
         <div className='product-tooltip-price product-tool-tips'>
         ${product.price}</div>
-        <img src={`${product.ProductImages[Math.floor(Math.random() * product.ProductImages.length)].url}`}
+        <img src={`${product.ProductImages[0].url}`}
         alt='preview'
         className='product-preview-image'/>
         </div>
