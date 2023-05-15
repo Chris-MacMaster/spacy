@@ -13,6 +13,7 @@ import "./ProductDetail.css"
 import OpenModalButton from '../OpenModalButton';
 import ShopPoliciesModal from '../ShopPoliciesModal';
 import LoadingIcon from '../LoadingIcon';
+import ProductImageSlider from './ProductImageSlider';
 
 const ProductDetail = () => {
     const dispatch = useDispatch()
@@ -22,6 +23,7 @@ const ProductDetail = () => {
     const ulRef = useRef(); //for modal
     const { productId } = useParams()
     const [ hasLoaded, setHasLoaded ] = useState(false)
+    const [ chosenImage, setChosenImage ] = useState(0)
     //modal components
     const openMenu = () => {
         if (showMenu) return
@@ -62,7 +64,7 @@ const ProductDetail = () => {
         e.preventDefault()
         history.push(`/shops/${shopId}`)
     }
-
+    console.log('CHOSEN IN PRODUCT DETAILS', chosenImage)
     return (
         <div className='product-detail-div'>
             <div className='product-grid-div'>
@@ -71,15 +73,16 @@ const ProductDetail = () => {
                         <div className='both-images-div'>
                             <div className='subimage-div'>
 
+                            {product && product.ProductImages && (product.ProductImages.map((img, i) =>
+                            <img className={chosenImage === i ? 'chosen-image product-preview-img' : 'product-preview-img'}
+                            alt='' key={i} src={img.url} onClick={e=> setChosenImage(i)}/>))}
+                            
                             </div>
-                            <div className='product-arrow less-than'>
 
-                            </div>
                             <div className='product-images-div'>
-                                <img className='product-image' src={product && product.ProductImages && product.ProductImages[0] && product.ProductImages[0].url} alt='no found' />
+                            <ProductImageSlider data={product.ProductImages} chosenImage={chosenImage}/>
                             </div>
-                            <div className='product-arrow greater-than'>
-                            </div>
+
                         </div>
                     </div>
                     <div className='review-info-div'>
