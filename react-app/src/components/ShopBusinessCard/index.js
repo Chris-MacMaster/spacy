@@ -42,7 +42,7 @@ export default function ShopBusinessCard({ shop }) {
                 <i className="fa-solid fa-trash-can"/>Delete
             </button>
             <button onClick={handleCreate} className='user-manage-button user-manage-create'>
-            <i class="fa-solid fa-screwdriver-wrench create-product-icon"></i>
+            <i className="fa-solid fa-screwdriver-wrench create-product-icon"></i>
                 Create Product</button>
         </div>
     </div>

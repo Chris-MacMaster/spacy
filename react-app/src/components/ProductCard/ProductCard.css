@@ -75,3 +75,21 @@
             font-size: .6rem;
         }
 }
+@media only screen and (max-width: 480px){
+
+        .product-card,
+        .product-card > img,
+        .from-etzy-closing,
+        .by-etsy-header {
+            width: 4rem;
+            height: 4rem;
+        }
+        .by-etsy-title,
+        .sponsored {
+            font-size: .7rem;
+            margin: .3rem;
+        }
+        .from-etzy-closing {
+            font-size: .4rem;
+        }
+}

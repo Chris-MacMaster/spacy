@@ -40,14 +40,14 @@ h1 {
     display: flex;
     justify-content: center;
 }
-
+/*
 h2 {
     margin-top: 1em;
-}
+} */
 
-p {
+/* p {
     margin: 0.4em;
-}
+} */
 
 /* textarea {
     border-radius: 15px;
@@ -68,7 +68,6 @@ p {
     width: 20em;
     height: 20.5em;
     padding-bottom: 1em;
-
 }
 
 .productPic {
@@ -86,7 +85,6 @@ p {
     width: 5em;
     height: 5em;
 }
-
 
 .reviewText {
     height: 8rem;
@@ -127,12 +125,9 @@ p {
 .edit-review-button {
     z-index: 5;
 }
-
-
 .review-filled {
     color: goldenrod;
 }
-
 .review {
     color: darkgray;
 }
