@@ -53,7 +53,7 @@ const ProductDetail = () => {
     const productReviews = useSelector(state => state.reviews.productReviews)
     const shop = useSelector(state => state.products?.singleProduct.Shop)
     const shopId = shop?.id
-    
+
     if (!hasLoaded) return <LoadingIcon />
 
     const handleClick = () => history.push(`/product-reviews/${productId}/new`)
@@ -76,7 +76,7 @@ const ProductDetail = () => {
 
                             </div>
                             <div className='product-images-div'>
-                                <img className='product-image' src={product.ProductImages[0].url} alt='no found' />
+                                <img className='product-image' src={product && product.ProductImages && product.ProductImages[0] && product.ProductImages[0].url} alt='no found' />
                             </div>
                             <div className='product-arrow greater-than'>
                             </div>
@@ -97,7 +97,7 @@ const ProductDetail = () => {
                             ) ) } </p> : (
                                 <p>New! <i className="fa-solid fa-star gold-star gold-star-product-deets landing-shop-stars"/> </p>
                             )}                        </p>
-                        {user && user.id !== product.Shop.ownerId && !productReviews.length ? (
+                        {user && user.id !== product?.Shop?.ownerId && !productReviews.length ? (
                        <div>
                             <button className='post-item-review'
                             onClick={handleClick}>
@@ -134,7 +134,7 @@ const ProductDetail = () => {
                     <div className='store-info'>
                         <div className='name-follows'>
                             <p className='shop-name' onClick={handleShopRedirect}>
-                                {product.Shop.name}
+                                {product && product.Shop && product.Shop.name}
                             </p>
                             <div className='store-follows'>
                                 <i className="fa-solid fa-heart"></i> Follow
@@ -142,7 +142,7 @@ const ProductDetail = () => {
                             </div>
                         </div>
                         <div className='store-sales'>
-                            {product.Shop.sales} sales
+                            {product && product.Shop && product.Shop.sales} sales
                         </div>
                     </div>
                     <div className='purchase-buttons'>
