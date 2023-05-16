@@ -11,7 +11,7 @@
     margin:  .2rem;
 }
 .product-grid-div {
-    max-width: 1400px;
+    max-width: 70rem;
     display: flex;
     justify-content: space-between;
 }
@@ -106,7 +106,7 @@
     margin-bottom: 2rem;
 }
 .product-images-div {
-    width: 60rem;
+    width: 45rem;
     margin-left: 2rem;
     margin-right: 2rem;
 }
