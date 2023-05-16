@@ -79,3 +79,43 @@
     font-weight: bold;
     margin: 0rem;
 }
+
+@media only screen and (max-width: 1024px){
+    .search-result-img {
+        height: 7rem;
+        width: 10rem;
+    }
+    .search-result-price,
+    .search-new-product,
+    .search-results-stars-gold,
+    .search-results-stars-black,
+    .search-more-like,
+    .search-product-name,
+    .search-star-seller {
+        font-size: .7rem;
+    }
+    .search-badge,
+    .search-result-shop  {
+        font-size: .9rem;
+    }
+}
+
+@media only screen and (max-width: 480px){
+    .search-result-img {
+        height: 5rem;
+        width: 8rem;
+    }
+    .search-result-price,
+    .search-new-product,
+    .search-results-stars-gold,
+    .search-results-stars-black,
+    .search-more-like,
+    .search-product-name,
+    .search-star-seller {
+        font-size: .5rem;
+    }
+    .search-badge,
+    .search-result-shop  {
+        font-size: .7rem;
+    }
+}
