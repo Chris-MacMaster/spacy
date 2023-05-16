@@ -40,26 +40,26 @@ export default function ShopDetails () {
             <img src={`${shop.ShopImages.url}`} alt='shoplogo' className='shoplogo'></img>
             <div className='shop-businesscard-info'>
                 <h2 className='businesscard-title'>{shop.name}</h2>
-                <p className='sanserif-text-description sanserif-text'>{shop.description}</p>
-                <p className='sanserif-text-location sanserif-text'>{shop.state}, {shop.country}</p>
-                <p className='sanserif-text'>
-                    <span className='starseller'><i className="fa-solid fa-certificate starseller"></i>Star seller! </span> | {Math.floor(Math.random()*20000)}  <span className='shop-details-sales'>| Sales {shop.avgReview}  </span></p>
+                <div className='sanserif-text-description sanserif-text'>{shop.description}</div>
+                <div className='sanserif-text-location sanserif-text'>{shop.state}, {shop.country}</div>
+                <div className='sanserif-text'>
+                    <span className='starseller'><i className="fa-solid fa-certificate starseller"></i>Star seller! </span> | {Math.floor(Math.random()*20000)}  <span className='shop-details-sales'>| Sales {shop.avgReview}  </span></div>
 
             </div>
             </div>
             <div className='accolades-container' >
             <div className='accolades'>
                 <div className='bold-text'><i className="fa-solid fa-truck purple-icon"/> Smooth shipping</div>
-                <span>Has a history of shipping on time with tracking.</span>
+                <span className='accolades-description'>Has a history of shipping on time with tracking.</span>
             </div>
 
             <div className='speedy-replies accolades'>
                 <div className='bold-text'><i class="fa-solid fa-envelope purple-icon"/>Speedy Replies</div>
-                <span>Has a history of replying to messages quickly.</span>
+                <span className='accolades-description'>Has a history of replying to messages quickly.</span>
             </div>
             <div className='rave-reviews accolades'>
                 <div className='bold-text'><i className="fa-solid fa-comments purple-icon"/>Rave Reviews</div>
-                <span>Average review rating is 4.8 or higher</span>
+                <span className='accolades-description'>Average review rating is 4.8 or higher</span>
             </div>
             </div>
 
@@ -67,7 +67,7 @@ export default function ShopDetails () {
                 <img className='shop-owner-img'
                 src={`${shop.ShopImages.url}`}
                 alt='user'></img>
-                <p>{shop.Owner.firstName}</p>
+                <p className='shop-owner-name'>{shop.Owner.firstName}</p>
                 <button className='contact-shop-owner' onClick={() => window.location = `mailto:${shop.Owner.email}`}><i className="fa-solid fa-message"></i> Contact</button>
             </div>
         </div>

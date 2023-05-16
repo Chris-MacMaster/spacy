@@ -1,11 +1,19 @@
 /* color: rgb(130, 52, 149); */
 .search-results-div {
     margin-left: 1rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* justify-content: center; */
+    align-content: center;
 }
 .search-result-display {
     display: flex;
     flex-direction: row;
+    width: 95vw;
     flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
 }
 .search-result-img {
     height: 11rem;

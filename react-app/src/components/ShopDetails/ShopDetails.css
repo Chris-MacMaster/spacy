@@ -12,14 +12,15 @@
 }
 .shoplogo {
     object-fit: cover;
-    height: 8em;
-    width: 8rem;
+    max-height: 8vw;
+    max-width: 8vw;
+    min-width: 2rem;
+    min-height: 2rem;
     border-radius: .5rem;
 }
 .shop-businesscard  {
     display: flex;
     flex-direction: row;
-    margin-left: 1rem;
 }
 .businesscard-title {
     font-family: 'Marcellus', serif;
@@ -90,13 +91,14 @@
 .favorite-shop {
     border: black solid .15rem;
     border-radius: 5rem;
-    width: 13rem;
+    width: 15vw;
+    min-width: 10rem;
     text-align: center;
     font-family: 'Mulish', sans-serif;
     padding: .5rem;
     box-shadow: 0rem 0rem .5rem lightslategray;
     margin: 1rem;
-    margin-left: 10rem;
+    /* margin-left: 10rem; */
     transition: .1s ease-in-out;
 }
 
@@ -205,15 +207,19 @@ hr {
 }
 .product-ref-img{
     object-fit: cover;
-    height: 8rem;
-    width: 8rem;
+    height: 17vw;
+    width: 17vw;
+    min-width: 5rem;
+    min-height: 5rem;
     border-radius: .5rem;
     margin: 2rem;
 }
 .review-image {
     object-fit: cover;
-    height: 18rem;
-    width: 18rem;
+    height: 23vw;
+    width: 23vw;
+    min-height: 5rem;
+    min-width: 5rem;
     margin-top: 1rem;
     margin: 2rem;
 }
@@ -264,6 +270,17 @@ hr {
         margin: 0rem;
         margin-top: 1rem;
     }
+    .businesscard-title {
+        font-size: 1rem;
+    }
+    .sanserif-text,
+    .bold-text,
+    .accolades-description,
+    .shop-owner-name,
+    .contact-shop-owner {
+        font-size: .7rem;
+    }
+
 }
 @media only screen and (max-width: 480px){
 

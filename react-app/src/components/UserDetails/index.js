@@ -14,7 +14,7 @@ export default function UserDetails() {
     const dispatch = useDispatch()
     const history = useHistory()
     const [ hasLoaded, setHasLoaded ] = useState(false)
-    
+
     useEffect(() => {
         const loadData = async () => {
             await dispatch(authenticate())
@@ -41,11 +41,11 @@ export default function UserDetails() {
         <div className='user-manage-details'>
             <div className='user-manage-header'>
                 <div className='user-manage-business-cards'>
-                {userShops && userShops.length ? userShops.map((s, i) => (
-                    <ShopBusinessCard shop={s}
-                    key={`shopbusicardcomp${i}`}/>
 
+                {userShops && userShops.length ? userShops.map((s, i) => (
+                    <ShopBusinessCard shop={s} key={`shopbusicardcomp${i}`}/>
                 )) : null}
+                
                 </div>
                 <div className='user-manage-shop-owners'>
                     <p className='shop-owner-text'>Shop Owner</p>
