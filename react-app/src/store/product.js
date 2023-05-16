@@ -122,7 +122,8 @@ export const deleteProduct = (id) => async dispatch => {
     // const headers = { "Content-Type": "application/json" }
     // const options = { method, headers }
     const response = await fetch(`/api/products/${id}/`, {
-        method: 'DELETE'
+        method: 'DELETE',
+        headers: {'Content-Type': 'application/json'}
     })
     if (response.ok) {
         const deleteData = await response.json()
