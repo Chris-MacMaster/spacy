@@ -84,6 +84,8 @@ const ProductDetail = () => {
 
                         </div>
                     </div>
+
+                    
                     <div className='review-info-div'>
                         <p className='review-p reviews-text'>
                         </p>

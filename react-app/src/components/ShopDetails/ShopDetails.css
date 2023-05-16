@@ -1,11 +1,14 @@
+.shop-page {
+    left: 0rem;
+    right: 0rem;
+}
 .shop-header {
-    margin-top: 2rem;
+    padding: 2rem;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     background-color: rgb(242, 242, 242);
-    margin-left: 2rem;
-    margin-right: 2rem;
+
 }
 .shoplogo {
     object-fit: cover;
@@ -21,10 +24,11 @@
 .businesscard-title {
     font-family: 'Marcellus', serif;
     line-height: 1.5;
+    margin: 0rem;
 }
 .shop-businesscard-info {
     margin-left: 1rem;
-    width: 20rem;
+    width: 17rem;
 }
 .sanserif-text {
     font-family: 'Mulish', sans-serif;
@@ -42,11 +46,16 @@
     font-family: 'Mulish', sans-serif;
     font-size: .8rem;
     max-width: 20rem;
-    margin: 2rem;
+    margin: .5rem;
+}
+.accolades-container {
+    display: flex;
+    flex-direction: row;
 }
 .purple-icon {
     color: rgb(130, 52, 149);
     font-size: 1.2rem;
+    margin-right: .5rem;
 }
 .fa-message {
     font-size: 1rem
@@ -83,7 +92,6 @@
     border-radius: 5rem;
     width: 13rem;
     text-align: center;
-    /* font-size: .8rem; */
     font-family: 'Mulish', sans-serif;
     padding: .5rem;
     box-shadow: 0rem 0rem .5rem lightslategray;
@@ -94,14 +102,11 @@
 
 .favorite-shop:hover {
     background-color: darkgray;
-    /* box-shadow: 0rem 0rem 2rem black; */
-}
-h3 {
-    font-family: 'Mulish', sans-serif;
 }
 .mapped-categories-title {
-    margin-left: 2rem;
+    font-family: 'Mulish', sans-serif;
 }
+
 .featured-items {
     margin-bottom: 0rem;
 }
@@ -109,15 +114,19 @@ h3 {
     font-family: 'Mulish', sans-serif;
 }
 .item-cards {
-    display: grid;
-    grid-template-columns: auto auto auto auto;
-    max-width: 190rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* max-width: 80vw; */
     gap: 1rem;
     left: 16rem;
 }
-.item-category-sidebar{
+.item-category-sidebar {
     width: 15rem;
+    margin-left: 2rem;
+    line-height: 2rem;
 }
+
 .mapped-categories {
     border-right: solid .2rem grey;
     padding-bottom: 1rem;
@@ -127,9 +136,7 @@ h3 {
     margin-right: .5rem;
 }
 .category{
-    margin-top: 1rem;
     transition: opacity 0.3s;
-    margin-left: 2rem;
 }
 .category::after {
     border-bottom: none;
@@ -232,4 +239,32 @@ hr {
     margin-left: 10vw;
     margin-top: 3rem;
     align-items: center;
+}
+
+@media only screen and (max-width: 1024px){
+    .shop-header {
+        padding: 1rem;
+    }
+    .accolades-container {
+        display: flex;
+        flex-direction: column;
+    }
+}
+@media only screen and (max-width: 768px){
+    .item-category-sidebar {
+        font-size: .8rem;
+        width: 8rem;
+    }
+    .category-column-buttons {
+        margin: 0rem;
+    }
+    .column-buttons {
+        width: 8rem;
+        font-size: .7rem;
+        margin: 0rem;
+        margin-top: 1rem;
+    }
+}
+@media only screen and (max-width: 480px){
+
 }
