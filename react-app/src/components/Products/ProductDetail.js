@@ -64,7 +64,6 @@ const ProductDetail = () => {
         e.preventDefault()
         history.push(`/shops/${shopId}`)
     }
-    console.log('CHOSEN IN PRODUCT DETAILS', chosenImage)
     return (
         <div className='product-detail-div'>
             <div className='product-grid-div'>
@@ -75,8 +74,8 @@ const ProductDetail = () => {
 
                             {product && product.ProductImages && (product.ProductImages.map((img, i) =>
                             <img className={chosenImage === i ? 'chosen-image product-preview-img' : 'product-preview-img'}
-                            alt='' key={i} src={img.url} onClick={e=> setChosenImage(i)}/>))}
-                            
+                            alt='' key={i} src={img.url} onClick={e=> setChosenImage(i)}/>).slice(0,8))}
+
                             </div>
 
                             <div className='product-images-div'>

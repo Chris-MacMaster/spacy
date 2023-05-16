@@ -15,15 +15,15 @@
     left: 1rem;
 }
 .slider-images {
-    width: 40rem;
-    height: 40rem;
+    width: 41rem;
+    height: 41rem;
     border-radius: .5rem;
     object-fit: cover;
 }
 .product-image-slider {
     position: relative;
-    width: 40rem;
-    height: 40rem;
+    width: 41rem;
+    height: 41rem;
     margin: 2rem;
 }
 .slide {

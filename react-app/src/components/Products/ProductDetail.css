@@ -8,6 +8,7 @@
     height: 5rem;
     object-fit: cover;
     border-radius: .3rem;
+    margin:  .2rem;
 }
 .product-grid-div {
     max-width: 1400px;
@@ -20,7 +21,7 @@
     padding-right: 2rem;
 }
 .chosen-image {
-    border: ridge aqua .3rem;
+    outline: ridge aqua .3rem;
 }
 .product-grid-div-col-b {
     width: 15rem;
