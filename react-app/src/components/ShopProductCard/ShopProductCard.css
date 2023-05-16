@@ -11,8 +11,8 @@
     flex-direction: column;
     font-family: 'Mulish', sans-serif;
     line-height: 1.2rem;
-    height: 17rem;
-    width: 16rem;
+    /* height: 17rem;
+    width: 16rem; */
     transition: .2s ease-in-out;
     position: sticky;
     border-radius: .5rem;
@@ -40,9 +40,9 @@ a.product-name, a.shop-product-price {
     margin-left: .5rem;
 }
 .shop-product-buttons {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-end;
+    position: absolute;
+    bottom: .1rem;
+    right: .1rem;
 }
 .shop-product-bottom {
     display: flex;
@@ -53,13 +53,12 @@ a.product-name, a.shop-product-price {
     padding: .2rem;
     margin: 0;
     text-decoration: none;
-    border: grey .2rem solid;
+    border: grey .1rem solid;
     color: black;
     font-weight: 600;
     font-size: .8rem;
     border-radius: .3rem;
-    margin-bottom: .4rem;
-    margin-left: .4rem;
+    margin-left: .2rem;
     cursor: pointer;
     transition: ease-in-out .3s;
 }
@@ -101,6 +100,12 @@ a.product-name, a.shop-product-price {
         height: 8rem;
         width: 10rem;
     }
+    #shop-delete-button,
+    #shop-edit-button,
+    .shop-product-name,
+    .shop-product-price {
+        font-size: .7rem;
+    }
 }
 @media only screen and (max-width: 768px){
     .shop-product-card {
@@ -113,9 +118,11 @@ a.product-name, a.shop-product-price {
         width: 8rem;
         border-radius: .2rem;
     }
+    #shop-delete-button,
+    #shop-edit-button,
     .shop-product-name,
     .shop-product-price {
-        font-size: .7rem;
+        font-size: .6rem;
     }
 }
 @media only screen and (max-width: 480px){

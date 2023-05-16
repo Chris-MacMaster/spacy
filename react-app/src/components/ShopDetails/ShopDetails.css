@@ -14,8 +14,8 @@
     object-fit: cover;
     max-height: 8vw;
     max-width: 8vw;
-    min-width: 2rem;
-    min-height: 2rem;
+    min-width: 3rem;
+    min-height: 3rem;
     border-radius: .5rem;
 }
 .shop-businesscard  {
@@ -29,7 +29,8 @@
 }
 .shop-businesscard-info {
     margin-left: 1rem;
-    width: 17rem;
+    width: 17vw;
+    min-width: 8rem;
 }
 .sanserif-text {
     font-family: 'Mulish', sans-serif;
@@ -121,10 +122,10 @@
     flex-wrap: wrap;
     /* max-width: 80vw; */
     gap: 1rem;
-    left: 16rem;
+    left: 16vw;
 }
 .item-category-sidebar {
-    width: 15rem;
+    width: 15vw;
     margin-left: 2rem;
     line-height: 2rem;
 }
@@ -154,10 +155,10 @@
 }
 .column-buttons {
     text-align: center;
-    width: 13rem;
+    width: 13vw;
     border: solid .1rem grey;
-    margin: 1rem;
     border-radius: .3rem;
+    margin-top: 1rem;
     transition: opacity 0.3s;
 }
 .column-buttons:hover {
@@ -221,7 +222,7 @@ hr {
     min-height: 5rem;
     min-width: 5rem;
     margin-top: 1rem;
-    margin: 2rem;
+    margin: 2vw;
 }
 .gold-star, .blank-star {
     font-size: 1rem;
@@ -255,20 +256,18 @@ hr {
         display: flex;
         flex-direction: column;
     }
+    .item-category-sidebar {
+        font-size: .8rem;
+        line-height: 1.3rem;
+    }
 }
 @media only screen and (max-width: 768px){
     .item-category-sidebar {
-        font-size: .8rem;
-        width: 8rem;
+        font-size: .6rem;
+        line-height: 1rem;
     }
     .category-column-buttons {
         margin: 0rem;
-    }
-    .column-buttons {
-        width: 8rem;
-        font-size: .7rem;
-        margin: 0rem;
-        margin-top: 1rem;
     }
     .businesscard-title {
         font-size: 1rem;
@@ -277,7 +276,9 @@ hr {
     .bold-text,
     .accolades-description,
     .shop-owner-name,
-    .contact-shop-owner {
+    .contact-shop-owner,
+    .column-buttons,
+    .fa-message {
         font-size: .7rem;
     }
 
