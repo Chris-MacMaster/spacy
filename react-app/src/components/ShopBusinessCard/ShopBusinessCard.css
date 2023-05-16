@@ -1,9 +1,9 @@
-.shop-business-card {
+.shop-businesscard {
     display: flex;
     flex-direction: row;
     font-family: 'Mulish', sans-serif;
     text-decoration: none;
-    margin: 1rem;
+    padding: 1rem;
 }
 .user-manage-shop-pic {
     width: 8rem;

@@ -47,32 +47,28 @@ export default function ShopDetails () {
 
             </div>
             </div>
-
+            <div className='accolades-container' >
             <div className='accolades'>
-                <p><i className="fa-solid fa-truck purple-icon"></i>
-                </p>
-                <p className='bold-text'> Smooth shipping</p>
-                <p>Has a history of shipping on time with tracking.</p>
+                <div className='bold-text'><i className="fa-solid fa-truck purple-icon"/> Smooth shipping</div>
+                <span>Has a history of shipping on time with tracking.</span>
             </div>
 
             <div className='speedy-replies accolades'>
-                <p><i class="fa-solid fa-envelope purple-icon"></i></p>
-                <p className='bold-text'>Speedy Replies</p>
-                <p>Has a history of replying to messages quickly.</p>
+                <div className='bold-text'><i class="fa-solid fa-envelope purple-icon"/>Speedy Replies</div>
+                <span>Has a history of replying to messages quickly.</span>
             </div>
             <div className='rave-reviews accolades'>
-                <p><i className="fa-solid fa-comments purple-icon"></i></p>
-                <p className='bold-text'>Rave Reviews</p>
-                <p>Average review rating is 4.8 or higher</p>
+                <div className='bold-text'><i className="fa-solid fa-comments purple-icon"/>Rave Reviews</div>
+                <span>Average review rating is 4.8 or higher</span>
             </div>
-
+            </div>
 
             <div className='shop-owner'>
                 <img className='shop-owner-img'
                 src={`${shop.ShopImages.url}`}
                 alt='user'></img>
                 <p>{shop.Owner.firstName}</p>
-                <button className='contact-shop-owner' onClick={() => alert("Feature Coming Soon!")}><i className="fa-solid fa-message"></i> Contact</button>
+                <button className='contact-shop-owner' onClick={() => window.location = `mailto:${shop.Owner.email}`}><i className="fa-solid fa-message"></i> Contact</button>
             </div>
         </div>
 
@@ -81,8 +77,7 @@ export default function ShopDetails () {
         Create Product</button>
 
         ) : (
-        <button className='favorite-shop'
-        onClick={featureAlert}>
+        <button className='favorite-shop' onClick={featureAlert}>
         <i className="fa-regular fa-heart shop-heart"
        ></i>Follow Shop</button>
         )}
@@ -108,7 +103,7 @@ export default function ShopDetails () {
             <button className='column-buttons'
             onClick={featureAlert}><i className="fa-solid fa-clipboard-list"></i> Request Custom Order</button>
             <button className='column-buttons'
-            onClick={featureAlert}><i className="fa-solid fa-message"></i> Contact shop owner</button>
+            onClick={featureAlert}><i className="fa-solid fa-message" /> Contact shop owner</button>
             </div>
             </div>
             <div className='item-card-display'>

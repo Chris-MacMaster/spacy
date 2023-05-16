@@ -31,12 +31,12 @@ export default function ShopProductCard({ product, user, shop }) {
             className='shop-product-preview-image'/>
             <div className='shop-product-bottom'>
                 <div className='shop-product-info'>
-                    <p className='shop-product-name'>
+                    <div className='shop-product-name'>
                         {product.name}
-                    </p>
-                    <p className='shop-product-price'>
+                    </div>
+                    <div className='shop-product-price'>
                         ${product.price}
-                    </p>
+                    </div>
                 </div>
                 {user && user.id === shop.ownerId ? (
 
