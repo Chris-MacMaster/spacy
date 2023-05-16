@@ -29,7 +29,7 @@
 }
 .shop-businesscard-info {
     margin-left: 1rem;
-    width: 17vw;
+    width: 22vw;
     min-width: 8rem;
 }
 .sanserif-text {
@@ -151,7 +151,7 @@
     display: flex;
     flex-direction: row;
     gap: 2rem;
-    margin-top: 3rem;
+    margin-top: 3vh;
 }
 .column-buttons {
     text-align: center;
@@ -269,7 +269,8 @@ hr {
     .category-column-buttons {
         margin: 0rem;
     }
-    .businesscard-title {
+    .businesscard-title,
+    .review-title {
         font-size: 1rem;
     }
     .sanserif-text,
