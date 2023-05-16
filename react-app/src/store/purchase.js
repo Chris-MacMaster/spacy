@@ -1,0 +1,2 @@
+const LOAD_USER_PURCHASES = 'purchase/USER_LOAD'
+const LOAD_STORE_PURCHASES = 'purchcase/STORE_LOAD'
