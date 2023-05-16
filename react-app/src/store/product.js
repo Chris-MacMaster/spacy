@@ -66,22 +66,26 @@ export const fetchUserProducts = () => async dispatch => {
     }
 }
 
-export const makeProduct = (productBody) => async dispatch => {
-    const { name, shop_id, description, category, available, free_shipping, price, url } = productBody
-    const method = "POST"
-    const headers = { "Content-Type" : "application/json"}
-    const body = JSON.stringify({
-        name,
-        shop_id,
-        description,
-        category,
-        available,
-        free_shipping,
-        price,
-        url
+export const makeProduct = (formData) => async dispatch => {
+    // const { name, shop_id, description, category, available, free_shipping, price, url } = productBody
+    // const method = "POST"
+    // const headers = { "Content-Type" : "application/json"}
+    // const body = JSON.stringify({
+    //     name,
+    //     shop_id,
+    //     description,
+    //     category,
+    //     available,
+    //     free_shipping,
+    //     price,
+    //     url
+    // })
+    // const options = { method, headers, body }
+    // const response = await fetch('/api/products/', options)
+    const response = await fetch('/api/products/', {
+        method: 'POST',
+        body: formData
     })
-    const options = { method, headers, body }
-    const response = await fetch('/api/products/', options)
     if (response.ok){
         const product = await response.json()
         return product
