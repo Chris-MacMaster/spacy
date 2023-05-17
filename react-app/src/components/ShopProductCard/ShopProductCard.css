@@ -54,7 +54,7 @@ a.product-name, a.shop-product-price {
     border: grey .1rem solid;
     color: black;
     font-weight: 600;
-    font-size: .8rem;
+    font-size: 1.5vmin;
     border-radius: .3rem;
     margin-left: .2rem;
     cursor: pointer;
@@ -62,7 +62,7 @@ a.product-name, a.shop-product-price {
 }
 #shop-delete-button:hover,
 #shop-edit-button:hover {
-    box-shadow: 0rem 0rem .5rem black;
+    box-shadow: 0rem 0rem 1vmin black;
 }
 #shop-delete-button:active,
 #shop-edit-button:active {

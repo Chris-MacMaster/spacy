@@ -3,20 +3,19 @@
     right: 0rem;
 }
 .shop-header {
-    padding: 2rem;
+    padding: 4vmin;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     background-color: rgb(242, 242, 242);
-
 }
 .shoplogo {
     object-fit: cover;
     max-height: 8vw;
     max-width: 8vw;
-    min-width: 3rem;
-    min-height: 3rem;
-    border-radius: .5rem;
+    min-width: 10vmin;
+    min-height: 10vmin;
+    border-radius: 1vmin;
 }
 .shop-businesscard  {
     display: flex;
@@ -24,21 +23,23 @@
 }
 .businesscard-title {
     font-family: 'Marcellus', serif;
-    line-height: 1.5;
-    margin: 0rem;
+    line-height: 3vmin;
+    margin-bottom: 2vmin;
+    font-size: 3vmin;
+    margin-top: 0rem;
 }
 .shop-businesscard-info {
-    margin-left: 1rem;
+    margin-left: 2vmin;
     width: 22vw;
     min-width: 8rem;
 }
 .sanserif-text {
     font-family: 'Mulish', sans-serif;
-    font-size: .8rem;
-    line-height: 1rem;
+    font-size: 1.5vmin;
+    line-height: 1.5vmin;
 }
 .sanserif-text-location {
-    margin-top: 1rem;
+    margin-top: 2vmin;
 }
 .starseller {
     color: rgb(130, 52, 149);
@@ -46,58 +47,60 @@
 }
 .accolades {
     font-family: 'Mulish', sans-serif;
-    font-size: .8rem;
-    max-width: 20rem;
     margin: .5rem;
 }
 .accolades-container {
+    font-size: 1.5vmin;
     display: flex;
     flex-direction: row;
 }
 .purple-icon {
+    font-size: 2vmin;
     color: rgb(130, 52, 149);
-    font-size: 1.2rem;
-    margin-right: .5rem;
+    margin-right: 1vmin;
 }
 .fa-message {
-    font-size: 1rem
+    font-size: 2vmin
 }
 .bold-text {
     font-weight: bolder;
-    font-size: .9rem;
+    font-size: 1.7vmin;
 }
 .shop-owner {
     font-family: 'Mulish', sans-serif;
     text-align: center;
     line-height: 1.5rem;
+    font-size: 2vmin;
 }
 .contact-shop-owner {
-    width: 7rem;
+    width: 14vmin;
     border: 1px solid black;
     border-radius: 5rem;
+    font-size: 2vmin;
 }
 .contact-shop-owner:hover {
     cursor: pointer;
 }
 .shop-owner-img {
-    border-radius: 5rem;
+    border-radius: 12vmin;
     object-fit: cover;
-    height: 4em;
-    width: 4rem;
+    height: 10vmin;
+    width: 10vmin;
 }
 .message-shop-owner {
     display: flex;
     flex-direction: row;
 }
 .favorite-shop {
-    border: black solid .15rem;
-    border-radius: 5rem;
+    border: black solid .2vmin;
+    border-radius: 12vmin;
     width: 15vw;
-    min-width: 10rem;
+    min-width: 7rem;
     text-align: center;
+    font-size: 2vmin;
     font-family: 'Mulish', sans-serif;
-    padding: .5vh;
-    box-shadow: 0rem 0rem .5rem lightslategray;
+    padding: .5vmin;
+    box-shadow: 0rem 0rem 1vmin lightslategray;
     margin: 3vh;
     transition: .1s ease-in-out;
 }
@@ -119,13 +122,13 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 1rem;
+    gap: 1vmin;
     left: 16vw;
 }
 .item-category-sidebar {
-    width: 15vw;
-    margin-left: 2rem;
-    line-height: 2rem;
+    width: 24vmin;
+    line-height: 4vmin;
+    font-size: 2vmin;
 }
 
 .mapped-categories {
@@ -145,18 +148,18 @@
 .category:hover {
     box-shadow: 0 .2rem 0 grey;
 }
-.items-section{
+.items-section {
     display: flex;
     flex-direction: row;
-    gap: 2rem;
+    gap: 2vmin;
     margin-top: 3vh;
 }
 .column-buttons {
     text-align: center;
     width: 13vw;
-    border: solid .1rem grey;
-    border-radius: .3rem;
-    margin-top: 1rem;
+    border: solid .1vmin grey;
+    border-radius: 1vmin;
+    margin-top: 2vmin;
     transition: opacity 0.3s;
     cursor: pointer;
     transition: .1s ease-in-out;
@@ -249,6 +252,12 @@ hr {
     align-items: center;
 }
 
+@media only screen and (max-width: 768px){
+    .accolades-container {
+        display: block;
+    }
+}
+/*
 @media only screen and (max-width: 1024px){
     .shop-header {
         padding: 1rem;
@@ -272,7 +281,7 @@ hr {
     }
     .businesscard-title,
     .review-title {
-        font-size: 1rem;
+        font-size: 3vmin;
     }
     .sanserif-text,
     .bold-text,
@@ -286,7 +295,7 @@ hr {
     .helpful,
     .report,
     .favorite-shop {
-        font-size: .7rem;
+        font-size: 2vmin;
     }
 
 }
@@ -317,4 +326,4 @@ hr {
         font-size: .6rem;
     }
 
-}
+} */
