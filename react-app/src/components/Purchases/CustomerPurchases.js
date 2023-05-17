@@ -26,23 +26,26 @@ export default function UserPurchases(){
                 <p className="purchase-date">{el.slice(0,25)}</p>
                     {console.log(sortedPurchases[el])}
                 {Object.values(sortedPurchases[el]).map(item => (
-                    <>
-                    <p className="purchase-shop-name"> {item[0].shopName}</p>
-                    <p>
-                    <span>Product</span>
-                    <span> Qty </span>
-                    <span>Price </span>
-                    <span>Product</span>
-                    </p>
-                    {item.map(el => (
-                        <div className="purchase-item-div">
-                           <div className="purchase-product-img-div"><img className="purchase-product-img" src={el.productImage} alt={`${el.productName} Image`}/></div>
-                           <p>{el.productName}</p>
-                           <p>{el.quality}</p>
-                           <p>{el.price}</p>
+                    <div className="purchase-shop-div">
+                        <div className="purchase-shop-name"> {item[0].shopName}</div>
+                        <div className="two">Product</div>
+                        <div className="three">Qty </div>
+                        <div className="four">Price</div>
+                        {/* <div className="item-map-div"> */}
+                            {item.map(el => (
+                                // <div className="purchase-item-div">
+                                <>
+                                <div className="purchase-product-img-div one"><img className="purchase-product-img one" src={el.productImage} alt={`${el.productName} Image`}/></div>
+                                <div className="two">{el.productName}</div>
+                                <div className="three">{el.quantity}</div>
+                                <div className="four">{el.price}</div>
+                                <div>{el.price * el.quantity}</div>
+                                {/* </div> */}
+                                </>
+
+                            ))}
                         </div>
-                    ))}
-                    </>
+                    // </div>
                 ))}
             </div>
         ))}

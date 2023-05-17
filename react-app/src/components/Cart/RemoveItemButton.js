@@ -7,7 +7,7 @@ export default function RemoveItemButton({cartId}){
     const [user] = useSelector(state => [state.session.user])
 
     useEffect(() =>{
-        dispatch(fetchCart())
+        // dispatch(fetchCart())
     },[dispatch, user])
 
     const removeItem = (e) => {
