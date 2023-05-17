@@ -146,8 +146,6 @@ const ProductDetail = () => {
 
 
             <div className='review-info-div'>
-                        <p className='review-p reviews-text'>
-                        </p>
                         <p className='review-p review-stars'>
                         {productReviews && productReviews.length ?
                             <p className='review-num-title'>{productReviews.length === 1 ? <span>{'1 Review'}</span> : productReviews.length > 1 ? <> {productReviews.length} Reviews</>  : null}

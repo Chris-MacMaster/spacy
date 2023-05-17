@@ -70,3 +70,6 @@
 .gold-star.review-index-stars {
     color: goldenrod;
 }
+.review-index-stars {
+    font-size: 2vmin;
+}
