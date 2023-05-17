@@ -1,16 +1,18 @@
 .signup-modal {
-    margin: 2rem;
+    margin: min(5vmin, 2rem);
     display: flex;
     flex-direction: column;
     font-family: 'Mulish', sans-serif;
-    font-size: .8rem;
+    font-size: min(2vmin, .8rem);
     display: flex;
     flex-direction: column;
     height: 70vh;
     margin-top: 0rem;
+    overflow: scroll;
 }
 .signup-title {
     font-family: 'Marcellus', serif;
+    font-size: min(8vmin, 2rem);
 }
 .signup-form {
     display: flex;
@@ -18,21 +20,16 @@
     justify-content: center;
 }
 .signup-input {
-    font-size: 1.4rem;
-    border-radius: .5rem;
+    font-size: min(6vmin, 1.4rem);
+    border-radius: min(2vmin, .5rem);
     border: grey solid .1rem;
     box-shadow: inset 0rem .2rem .05rem lightgrey;
-    width: 20rem;
+    width: min(80vmin, 20rem);
     align-items: center;
-    margin-top: 1.6rem;
-}
-.signup-label {
-    font-weight: bolder;
-    margin-top: 1rem;
-    margin-bottom: .2rem;
+    margin-top: min(5vmin, 1.6rem);
 }
 .signup-bio {
-    height: 10rem;
+    height: min(20vmin, 10rem);
 }
 #register-button {
     width: 20rem;
@@ -45,14 +42,14 @@
     height: 2.5rem;
     border-radius: 5rem;
     margin: 0rem;
-    margin-top: 3rem;
+    margin-top: (5vmin, 3rem);
     cursor: pointer;
 }
 .errors {
     color: red;
-    width: 20rem;
+    width: min(80vmin, 20rem);
     font-family: 'Mulish', sans-serif;
-    font-size: 1.3rem;
+    font-size: min(4vmin, 1.3rem);
 }
 .submit {
     cursor: pointer;
