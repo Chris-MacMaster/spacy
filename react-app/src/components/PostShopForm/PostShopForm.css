@@ -1,56 +1,59 @@
 .post-shop-div {
-    margin: 4rem;
-
+    margin: 6vmin;
 }
 h1.post-shop-title {
     font-family: 'Libre Baskerville', serif;
-    margin-top: 5rem;
+    margin-top: 0vmin;
     justify-content: center;
-    /* position: absolute; */
+    font-size: 5vmin
 }
 .post-shop-form {
     display: grid;
     grid-template-columns: auto auto;
-    margin-top: 5rem;
+    margin-top: 5vmin;
+    width: 80vmin;
     max-width: 40rem;
-    box-shadow: 0rem 0rem .5 grey;
+    box-shadow: 0rem 0rem 1vmin grey;
+    padding: 5vmin;
+    border-radius: 1vmin;
 }
-
 .post-shop-grid {
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.create-shop-label {
-    font-weight: 700;
-}
 .create-shop-grey {
-    font-size: .8rem;
+    font-size: 2vmin;
     color: rgb(68, 68, 68);
-    width: 20rem;
+    padding: 1vmin;
 }
 .create-shop-input {
-    margin-bottom: 1rem;
+    margin-bottom: 2vmin;
 }
 .submit-create-shop {
-    font-size: 1rem;
+    font-size: 2vmin;
     font-weight: bolder;
 }
 .create-shop-input-field {
-    height: 1.3rem;
-    border-radius: .3rem;
+    height: 3vmin;
+    width: 30vmin;
+    border-radius: 1vmin;
 }
-
+textarea.create-shop-input-field {
+    height: 15vmin;
+}
 .shop-create-description {
-    border-width: 2px;
+    border-width: min(.5vmin, 2px);
     border-style: inset;
     border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
 }
-
-.category-input {
-    margin-top: 15px;
+.create-shop-label {
+    font-size: 3vmin;
+    width: 20vmin;
 }
-
+.category-input {
+    margin-top: 2vmin;
+}
 .create-shop-div {
-    margin-left: 120px;
+    /* margin-left: 20vmin; */
 }
