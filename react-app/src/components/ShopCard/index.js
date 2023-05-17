@@ -35,14 +35,14 @@ export default function ShopCard({ shop }) {
             alt='shop-card-logo-alt'></img>
 
             <div className='shop-card-text'>
-            <p>{shop.name}</p>
-            <p>{Array(5).fill(1).map((s,i)=> (
+            <span className='shop-card-shop-name'>{shop.name}</span>
+            <div className='shop-card-stars'>{Array(5).fill(1).map((s,i)=> (
                 s <= shopRating ? (
                     <i className="fa-solid fa-star gold-star landing-shop-stars" key={i}></i>
                 ) : (
                     <i className="fa-solid fa-star blank-star landing-shop-stars" key={i}></i>
                 )
-                ))} {filteredProducts.length} items</p>
+                ))} {filteredProducts.length} items</div>
             </div>
             <div className='shop-card-heart'><i className="fa-regular fa-heart landing-shop-heart"></i></div>
             </div>
