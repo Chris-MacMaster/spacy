@@ -7,9 +7,9 @@
 }
 .purchase-date-div{
     border: 1px solid black;
+    background-color: yellowgreen;
 }
 .purchase-product-img-div{
-
     width: 30vw;
 }
 
@@ -24,5 +24,9 @@
 .purchase-date {
     font-weight: bold;
     text-align: center;
-    font-size: 3vw;
+}
+
+.purchase-shop-name {
+    font-weight: bold;
+    text-align: center;
 }

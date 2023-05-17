@@ -122,8 +122,10 @@
 }
 
 .checkout-cart-button:hover{
-    background-color: aqua;
-    outline: ridge aqua .3rem;
+    background-color: rgb(37, 219, 219);
+    /* outline: ridge aqua .3rem; */
+    cursor: pointer;
+    color: black;
 }
 .names-are-hard {
     width: 70vw;
