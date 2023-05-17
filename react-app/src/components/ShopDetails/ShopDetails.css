@@ -226,7 +226,7 @@ hr {
     margin: 2vw;
 }
 .gold-star, .blank-star {
-    font-size: 1rem;
+    font-size: 2.4vmin;
 }
 .gold-star {
     color: goldenrod

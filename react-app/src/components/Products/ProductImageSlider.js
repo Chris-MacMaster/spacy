@@ -1,15 +1,22 @@
 import { useEffect, useState } from "react";
 import './ProductImageSlider.css'
-export default function ProductImageSlider({ data, chosenImage }) {
+export default function ProductImageSlider({ data, chosenImage, setChosenImage }) {
     const [ current, setCurrent ] = useState(chosenImage ? chosenImage : 0)
-    const nextSlide = () => setCurrent(current === data.length - 1 ? 0 : current+1)
-    const prevSlide = () => setCurrent(current === 0 ? data.length - 1 : current-1)
-    
+    const nextSlide = () => {
+        setCurrent(current === data.length - 1 ? 0 : current+1)
+        setChosenImage(current === data.length - 1 ? 0 : current+1)
+    }
+    const prevSlide = () => {
+        setCurrent(current === 0 ? data.length - 1 : current-1)
+        setChosenImage(current === 0 ? data.length - 1 : current-1)
+    }
+
     useEffect(() => {
         setCurrent(chosenImage ? chosenImage
             : chosenImage === 0 ? 0 :
             current)
     }, [chosenImage])
+
     if (!data || !data.length) return null
     return (
         <div className="product-image-slider">

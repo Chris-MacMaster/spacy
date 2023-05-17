@@ -79,50 +79,15 @@ const ProductDetail = () => {
                             </div>
 
                             <div className='product-images-div'>
-                            <ProductImageSlider data={product.ProductImages} chosenImage={chosenImage}/>
+                            <ProductImageSlider data={product.ProductImages} chosenImage={chosenImage} setChosenImage={setChosenImage}/>
                             </div>
 
                         </div>
                     </div>
 
-                    
-                    <div className='review-info-div'>
-                        <p className='review-p reviews-text'>
-                        </p>
-                        <p className='review-p review-stars'>
-                        {productReviews && productReviews.length ?
-                            <p className='review-num-title'>{productReviews.length === 1 ? <div>{'1 Review'}</div> : productReviews.length > 1 ? <> {productReviews.length} Reviews</>  : null}
-                            { Array(5).fill(1).map((s,i)=> (
-                            i < product.avgRating ? (
-                                <i className="fa-solid fa-star gold-star gold-star-product-deets landing-shop-stars" key={i}></i>
-                            ) : (
-                                <i className="fa-solid fa-star blank-star blank-star-product-deets landing-shop-stars" key={i}></i>
-                            )
-                            ) ) } </p> : (
-                                <p>New! <i className="fa-solid fa-star gold-star gold-star-product-deets landing-shop-stars"/> </p>
-                            )}                        </p>
-                        {user && user.id !== product?.Shop?.ownerId && !productReviews.length ? (
-                       <div>
-                            <button className='post-item-review'
-                            onClick={handleClick}>
-                                Post a Review
-                                </button>
-                        </div>) : user && product.Shop?.ownerId !== user.id && !productReviews?.some(r => r.userId === user.id) ? (
-                            <div>
-                                <button className='post-item-review'
-                                    onClick={handleClick}>
-                                    Post a Review
-                                </button>
-                            </div>)
-                         : null }
-                    </div>
-                    {/* reviews... */}
-                    {productReviews && productReviews.length > 0 ? productReviews.map(review => (
-                        <ReviewIndexItem review={review} key={review.id} product={product}/>
-                    )): null}
-                    <div className='reviewIndex' >
 
-                    </div>
+
+
                 </div>
 
                 <div className='product-grid-div-col-b'>
@@ -137,13 +102,13 @@ const ProductDetail = () => {
                     </div>
                     <div className='store-info'>
                         <div className='name-follows'>
-                            <p className='shop-name' onClick={handleShopRedirect}>
+                            <span className='shop-name' onClick={handleShopRedirect}>
                                 {product && product.Shop && product.Shop.name}
-                            </p>
-                            <div className='store-follows'>
-                                <i className="fa-solid fa-heart"></i> Follow
+                            </span>
+                            <span className='store-follows'>
+                                <i className="fa-solid fa-heart"/> Follow
                                 {/* feature incoming */}
-                            </div>
+                            </span>
                         </div>
                         <div className='store-sales'>
                             {product && product.Shop && product.Shop.sales} sales
@@ -164,7 +129,7 @@ const ProductDetail = () => {
                         </div>
                         <div className='prod-description'>
                             <p className='prod-description-p'>Description</p>
-                            {product.description}
+                            <p className='prod-description-text'>{product.description}</p>
                         </div>
                         <div className='shop-pol-modal' >
                             <OpenModalButton
@@ -174,10 +139,46 @@ const ProductDetail = () => {
                             className='shop-pol-modal'
                             onItemClick={closeMenu}
                             modalComponent={<ShopPoliciesModal shop={product.Shop}/>} />
-                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+
+
+            <div className='review-info-div'>
+                        <p className='review-p review-stars'>
+                        {productReviews && productReviews.length ?
+                            <p className='review-num-title'>{productReviews.length === 1 ? <span>{'1 Review'}</span> : productReviews.length > 1 ? <> {productReviews.length} Reviews</>  : null}
+                            { Array(5).fill(1).map((s,i)=> (
+                            i < product.avgRating ? (
+                                <i className="fa-solid fa-star gold-star-product-deets" key={i}></i>
+                            ) : (
+                                <i className="fa-solid fa-star blank-star-product-deets" key={i}></i>
+                            )
+                            ) ) } </p> : (
+                                <p>New! <i className="fa-solid fa-star gold-star-product-deets"/> </p>
+                            )}                        </p>
+                        {user && user.id !== product?.Shop?.ownerId && !productReviews.length ? (
+                       <div>
+                            <button className='post-item-review'
+                            onClick={handleClick}>
+                                Post a Review
+                                </button>
+                        </div>) : user && product.Shop?.ownerId !== user.id && !productReviews?.some(r => r.userId === user.id) ? (
+                            <div>
+                                <button className='post-item-review'
+                                    onClick={handleClick}>
+                                    Post a Review
+                                </button>
+                            </div>)
+                         : null }
+                    </div>
+                    {/* reviews... */}
+                    <div className='product-deets-reviews'>
+                    {productReviews && productReviews.length > 0 ? productReviews.map(review => (
+                        <ReviewIndexItem review={review} key={review.id} product={product}/>
+                    )): null}
+                    </div>
         </div>
     );
 };
