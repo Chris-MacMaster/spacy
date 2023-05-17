@@ -1,6 +1,7 @@
 .shop-polices {
     width: 20rem;
     margin: 2rem;
+    z-index: 2;
 }
 #shop-pol-title {
     width: 20rem;
@@ -39,12 +40,13 @@
 .shop-pol-modal > button,
 .shop-pol-modal {
     width: 10rem;
-    height: 2.5rem;
+    height: 4vmin;
     border-radius: 5rem;
-    /* border: black solid 2px; */
+    font-size: 1.5vmin;
     transition: .2s ease-in-out;
     font-family: 'Mulish', sans-serif;
-    font-weight: 600;
+    font-weight: bolder;
+    border: solid darkgray .05rem;
 }
 .shop-pol-modal > button:hover,
 .shop-pol-modal {

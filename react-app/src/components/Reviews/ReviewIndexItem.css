@@ -1,9 +1,11 @@
 .review-card-div {
-margin-top: 2rem;
+    margin-top: 2vmin;
 }
 
 .rev-author-info {
     display: flex;
+    margin-top: 2vmin;
+    font-size: 2vmin;
 }
 
 .detail-icon {
@@ -15,9 +17,11 @@ margin-top: 2rem;
 }
 #detail-review-icon {
     position: static;
-    width: 35px;
-    height: 35px;
-    margin-right: 8px;
+    width: 8vmin;
+    max-width: 5rem;
+    height: 8vmin;
+    max-height: 5rem;
+    margin-right: 1vmin;
 }
 
 .author-names {
@@ -30,12 +34,12 @@ margin-top: 2rem;
 }
 
 .author-subdiv-names {
-    margin-right: 8px;
+    margin-right: 1vmin;
 }
 
 .review-image-detail {
-    height: 185px;
-    width: 185px;
+    height: 20vmin;
+    width: 20vmin;
     object-fit: cover;
     border-radius: .25rem;
 }
@@ -55,11 +59,13 @@ margin-top: 2rem;
     box-shadow: 0rem 0rem .5rem black;
 }
 .rev-col-a {
-    margin:1rem;
+    margin:2vmin;
+    font-size: 2vmin;
 }
-.review-num-title,
-.review-index-stars {
-    font-size: 2rem;
+.review-num-title {
+    font-size: 4vmin;
+    margin-top: 4vmin;
+    margin-bottom: 4vmin;
 }
 .gold-star.review-index-stars {
     color: goldenrod;
