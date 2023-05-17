@@ -98,7 +98,7 @@
     border: .2rem darkgrey solid;
     margin: 1rem;
 }
-.remove-from-cart-button:hover{
+.remove-from-cart-button:hover  {
     box-shadow: 0rem 0rem .5rem black;
 }
 .no-user-no-cart{
@@ -122,7 +122,8 @@
 }
 
 .checkout-cart-button:hover{
-    background-color: green;
+    background-color: aqua;
+    outline: ridge aqua .3rem;
 }
 .names-are-hard {
     width: 70vw;

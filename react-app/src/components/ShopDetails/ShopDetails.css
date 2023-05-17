@@ -12,14 +12,15 @@
 }
 .shoplogo {
     object-fit: cover;
-    height: 8em;
-    width: 8rem;
+    max-height: 8vw;
+    max-width: 8vw;
+    min-width: 3rem;
+    min-height: 3rem;
     border-radius: .5rem;
 }
 .shop-businesscard  {
     display: flex;
     flex-direction: row;
-    margin-left: 1rem;
 }
 .businesscard-title {
     font-family: 'Marcellus', serif;
@@ -28,7 +29,8 @@
 }
 .shop-businesscard-info {
     margin-left: 1rem;
-    width: 17rem;
+    width: 22vw;
+    min-width: 8rem;
 }
 .sanserif-text {
     font-family: 'Mulish', sans-serif;
@@ -90,18 +92,18 @@
 .favorite-shop {
     border: black solid .15rem;
     border-radius: 5rem;
-    width: 13rem;
+    width: 15vw;
+    min-width: 10rem;
     text-align: center;
     font-family: 'Mulish', sans-serif;
-    padding: .5rem;
+    padding: .5vh;
     box-shadow: 0rem 0rem .5rem lightslategray;
-    margin: 1rem;
-    margin-left: 10rem;
+    margin: 3vh;
     transition: .1s ease-in-out;
 }
 
 .favorite-shop:hover {
-    background-color: darkgray;
+    outline: .3rem ridge aqua;
 }
 .mapped-categories-title {
     font-family: 'Mulish', sans-serif;
@@ -117,12 +119,11 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    /* max-width: 80vw; */
     gap: 1rem;
-    left: 16rem;
+    left: 16vw;
 }
 .item-category-sidebar {
-    width: 15rem;
+    width: 15vw;
     margin-left: 2rem;
     line-height: 2rem;
 }
@@ -148,18 +149,21 @@
     display: flex;
     flex-direction: row;
     gap: 2rem;
-    margin-top: 3rem;
+    margin-top: 3vh;
 }
 .column-buttons {
     text-align: center;
-    width: 13rem;
+    width: 13vw;
     border: solid .1rem grey;
-    margin: 1rem;
     border-radius: .3rem;
+    margin-top: 1rem;
     transition: opacity 0.3s;
+    cursor: pointer;
+    transition: .1s ease-in-out;
+
 }
 .column-buttons:hover {
-    background-color: grey;
+    outline: .3rem ridge aqua;
 }
 .column-buttons::after {
     background-color: none;
@@ -201,21 +205,25 @@ hr {
     left: 12vw;
 }
 .review-paragraph {
-    margin-top: 2rem;
+    margin-top: 2vh;
 }
 .product-ref-img{
     object-fit: cover;
-    height: 8rem;
-    width: 8rem;
+    height: 17vw;
+    width: 17vw;
+    min-width: 5rem;
+    min-height: 5rem;
     border-radius: .5rem;
-    margin: 2rem;
+    margin: 2vw;
 }
 .review-image {
     object-fit: cover;
-    height: 18rem;
-    width: 18rem;
+    height: 23vw;
+    width: 23vw;
+    min-height: 5rem;
+    min-width: 5rem;
     margin-top: 1rem;
-    margin: 2rem;
+    margin: 2vw;
 }
 .gold-star, .blank-star {
     font-size: 1rem;
@@ -249,22 +257,64 @@ hr {
         display: flex;
         flex-direction: column;
     }
+    .item-category-sidebar {
+        font-size: .8rem;
+        line-height: 1.3rem;
+    }
 }
 @media only screen and (max-width: 768px){
     .item-category-sidebar {
-        font-size: .8rem;
-        width: 8rem;
+        font-size: .6rem;
+        line-height: 1rem;
     }
     .category-column-buttons {
         margin: 0rem;
     }
-    .column-buttons {
-        width: 8rem;
-        font-size: .7rem;
-        margin: 0rem;
-        margin-top: 1rem;
+    .businesscard-title,
+    .review-title {
+        font-size: 1rem;
     }
+    .sanserif-text,
+    .bold-text,
+    .accolades-description,
+    .shop-owner-name,
+    .contact-shop-owner,
+    .column-buttons,
+    .fa-message,
+    .review-paragraph,
+    .username,
+    .helpful,
+    .report,
+    .favorite-shop {
+        font-size: .7rem;
+    }
+
 }
 @media only screen and (max-width: 480px){
+    .item-category-sidebar {
+        font-size: .5rem;
+        line-height: .8rem;
+    }
+    .category-column-buttons {
+        margin: 0rem;
+    }
+    .businesscard-title,
+    .review-title {
+        font-size: 1rem;
+    }
+    .sanserif-text,
+    .bold-text,
+    .accolades-description,
+    .shop-owner-name,
+    .contact-shop-owner,
+    .column-buttons,
+    .fa-message,
+    .review-paragraph,
+    .username,
+    .helpful,
+    .report,
+    .favorite-shop {
+        font-size: .6rem;
+    }
 
 }

@@ -1,30 +1,31 @@
 .left-arrow,
 .right-arrow {
-    font-size: 3rem;
+    font-size: 4vw;
     color: white;
     opacity: .8;
     position: absolute;
-    top: 20rem;
+    top: 20vw;
     cursor: pointer;
     z-index: 1;
+   border-radius: 50%;
 }
 .right-arrow {
-    right: 1rem;
+    right: 1vw;
 }
 .left-arrow {
-    left: 1rem;
+    left: 1vw;
 }
 .slider-images {
-    width: 41rem;
-    height: 41rem;
+    width: 41vw;
+    height: 41vw;
     border-radius: .5rem;
     object-fit: cover;
 }
 .product-image-slider {
     position: relative;
-    width: 41rem;
-    height: 41rem;
-    margin: 2rem;
+    width: 41vw;
+    height: 41vw;
+    margin: 2vw;
 }
 .slide {
     opacity: 0;

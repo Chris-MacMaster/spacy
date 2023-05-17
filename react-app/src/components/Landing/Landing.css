@@ -14,7 +14,6 @@
 .top-banner-suggest {
     display: flex;
     flex-direction: row;
-    flex-grow: inherit;
     justify-content: center;
     align-content: center;
     gap: 2rem;
@@ -24,6 +23,7 @@ div.top-banner-suggestions > p {
     font-family: 'Mulish', sans-serif;
     text-align: center;
     font-weight: bold;
+    width: inherit;
 }
 .suggest-image-div {
     width: 10rem;

@@ -41,8 +41,8 @@ export default function ShopProductCard({ product, user, shop }) {
                 {user && user.id === shop.ownerId ? (
 
                 <div className='shop-product-buttons'>
-                    <button id='shop-delete-button' onClick={handleDelete} className='user-delete-product'>Delete</button>
-                    <button id='shop-edit-button' onClick={handleEdit} className='user-edit-product'>Edit</button>
+                    <button id='shop-delete-button' onClick={handleDelete} className='user-delete-product'><i class="fa-solid fa-trash-can"/></button>
+                    <button id='shop-edit-button' onClick={handleEdit} className='user-edit-product'><i class="fa-solid fa-pen-to-square"/></button>
                 </div>
                 ) : null}
             </div>
