@@ -52,6 +52,7 @@
     height: 1.8rem;
     z-index: 1;
     border-radius: 5rem;
+    padding-left: 1rem;
 }
 .search-bar {
     display: flex;
@@ -171,3 +172,13 @@ div.navigation:hover {
     z-index: 101;
     position: absolute;
 }
+
+@media only screen and (max-width: 480px) {
+    body {
+      background-color: lightblue;
+    }
+    .logo {
+        display: none;
+    }
+
+  }
