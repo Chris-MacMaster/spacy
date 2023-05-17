@@ -1,13 +1,17 @@
 .purchase-div {
     background-color: green;
-    /* display: flex; */
-    /* flex-direction: column;
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-self: center; */
+    justify-self: center;
 }
 .purchase-date-div{
     border: 1px solid black;
     background-color: yellowgreen;
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .purchase-product-img-div{
     /* width: 30vw; */
@@ -41,10 +45,10 @@
 .purchase-shop-div {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    /* gap: 10px; */
+    gap: 10px;
     grid-auto-rows: minmax(100px, auto);
     background-color: orange;
-    width: 50vw;
+    /* width: 50vw; */
 }
 .one{
     grid-column: 1;

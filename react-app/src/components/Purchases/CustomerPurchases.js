@@ -42,7 +42,6 @@ export default function UserPurchases(){
                                 <div>{el.price * el.quantity}</div>
                                 {/* </div> */}
                                 </>
-
                             ))}
                         </div>
                     // </div>
