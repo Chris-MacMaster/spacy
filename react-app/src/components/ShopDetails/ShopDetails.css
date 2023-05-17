@@ -181,11 +181,12 @@ hr {
 }
 .review-title {
     margin-left: 20vw;
-    font-size: 2rem;
-    margin-bottom: 2rem;
+    font-size: 4vmin;
+    margin-bottom: 4vh;
 }
 .fa-flag, .fa-thumbs-up {
     font-size: .7rem;
+    margin-right: .5rem;
 }
 .feedback {
     display: flex;
@@ -208,8 +209,8 @@ hr {
 .helpful,
 .report,
 .username,
-.review-paragraph {
-    font-size: min(2.5vmin) max(1.7rem);
+p.review-paragraph {
+    font-size: min(2.5vmin, 1.7rem);
 }
 .product-ref-img{
     object-fit: cover;
@@ -248,8 +249,9 @@ hr {
     text-align: center;
 }
 .reviewed-item-name{
-    margin-left: 10vw;
-    margin-top: 3rem;
+    margin-left: 10vmin;
+    margin-top: 5vmin;
+    font-size: min(2.5vmin, 1.7rem);
     align-items: center;
 }
 
@@ -258,73 +260,3 @@ hr {
         display: block;
     }
 }
-/*
-@media only screen and (max-width: 1024px){
-    .shop-header {
-        padding: 1rem;
-    }
-    .accolades-container {
-        display: flex;
-        flex-direction: column;
-    }
-    .item-category-sidebar {
-        font-size: .8rem;
-        line-height: 1.3rem;
-    }
-}
-@media only screen and (max-width: 768px){
-    .item-category-sidebar {
-        font-size: .6rem;
-        line-height: 1rem;
-    }
-    .category-column-buttons {
-        margin: 0rem;
-    }
-    .businesscard-title,
-    .review-title {
-        font-size: 3vmin;
-    }
-    .sanserif-text,
-    .bold-text,
-    .accolades-description,
-    .shop-owner-name,
-    .contact-shop-owner,
-    .column-buttons,
-    .fa-message,
-    .review-paragraph,
-    .username,
-    .helpful,
-    .report,
-    .favorite-shop {
-        font-size: 2vmin;
-    }
-
-}
-@media only screen and (max-width: 480px){
-    .item-category-sidebar {
-        font-size: .5rem;
-        line-height: .8rem;
-    }
-    .category-column-buttons {
-        margin: 0rem;
-    }
-    .businesscard-title,
-    .review-title {
-        font-size: 1rem;
-    }
-    .sanserif-text,
-    .bold-text,
-    .accolades-description,
-    .shop-owner-name,
-    .contact-shop-owner,
-    .column-buttons,
-    .fa-message,
-    .review-paragraph,
-    .username,
-    .helpful,
-    .report,
-    .favorite-shop {
-        font-size: .6rem;
-    }
-
-} */
