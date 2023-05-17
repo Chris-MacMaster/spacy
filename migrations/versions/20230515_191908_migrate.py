@@ -1,8 +1,8 @@
 """migrate
 
-Revision ID: 814c6ffcc9fc
+Revision ID: 96a93aa5ad56
 Revises:
-Create Date: 2023-05-15 14:58:46.180644
+Create Date: 2023-05-15 19:19:08.621758
 
 """
 from alembic import op
@@ -14,7 +14,7 @@ SCHEMA = os.environ.get("SCHEMA")
 
 
 # revision identifiers, used by Alembic.
-revision = '814c6ffcc9fc'
+revision = '96a93aa5ad56'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -50,7 +50,7 @@ def upgrade():
     sa.PrimaryKeyConstraint('id', 'follower_id', 'followed_id')
     )
     if environment == "production":
-        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE following_users SET SCHEMA {SCHEMA};")
 
     op.create_table('shops',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -70,7 +70,7 @@ def upgrade():
     sa.PrimaryKeyConstraint('id')
     )
     if environment == "production":
-        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE shops SET SCHEMA {SCHEMA};")
 
     op.create_table('products',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -148,9 +148,11 @@ def upgrade():
     sa.Column('quantity', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.Column('product_id', sa.Integer(), nullable=True),
+    sa.Column('shop_id', sa.Integer(), nullable=True),
     sa.Column('created_at', sa.DateTime(timezone=True), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True),
     sa.Column('updated_at', sa.DateTime(timezone=True), nullable=True),
     sa.ForeignKeyConstraint(['product_id'], ['products.id'], ),
+    sa.ForeignKeyConstraint(['shop_id'], ['shops.id'], ),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )

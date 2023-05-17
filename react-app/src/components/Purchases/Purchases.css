@@ -1,0 +1,28 @@
+.purchase-div {
+    background-color: green;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-self: center;
+}
+.purchase-date-div{
+    border: 1px solid black;
+}
+.purchase-product-img-div{
+
+    width: 30vw;
+}
+
+.purchase-product-img{
+    width: 10vw;
+}
+
+.purchase-item-div {
+    display: flex;
+}
+
+.purchase-date {
+    font-weight: bold;
+    text-align: center;
+    font-size: 3vw;
+}

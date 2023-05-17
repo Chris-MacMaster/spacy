@@ -94,7 +94,6 @@ export const editCartItemThunk = (cartId, quantity, userId, productId) =>  async
     }
 }
 
-
 const initialState = {
     products: {}
 }
