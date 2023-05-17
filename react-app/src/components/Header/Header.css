@@ -46,18 +46,18 @@
     min-width: 40vw;
     border: none;
     background-color: white;
-    /* marc */
-    height: 3vmin;
+    /* height: min(3vmin) max(1.5rem); */
     align-content: center;
     z-index: 1;
     border-radius: 5rem;
-    font-size: 2.5vmin;
+    font-size: min(1.5vmin, 1.5rem);
 }
 .search-bar {
     display: flex;
     border: darkslategray solid 2px;
     border-radius: 3rem;
-    height: 3.5vmin;
+    height: min(3vmin, 1.5rem);
+    /* font-size: min(3vmin, 1rem); */
     margin-left: .5rem;
     margin-right: .5rem;
     transition: .6s;
@@ -94,7 +94,7 @@
     z-index: 0;
 }
 .fa-magnifying-glass{
-    font-size: min(2.5vmin, 1.3rem);
+    font-size: min(2.5vmin, 1.2rem);
     text-align: right;
     align-content: center;
     right: 20vw;
