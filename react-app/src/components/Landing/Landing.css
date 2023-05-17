@@ -16,9 +16,8 @@
     justify-content: center;
     align-items: center;
     gap: 2vw;
-    width: 80vmin;
     max-width: 75rem;
-    /* margin: 0vmin; */
+    /* margin-left: 10vw; */
 }
 div.top-banner-suggestions > p {
     font-family: 'Mulish', sans-serif;

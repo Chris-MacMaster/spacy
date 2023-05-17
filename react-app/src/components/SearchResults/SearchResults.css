@@ -1,6 +1,6 @@
 /* color: rgb(130, 52, 149); */
 .search-results-div {
-    margin-left: 1rem;
+    margin-left: 1vmin;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -16,23 +16,23 @@
     align-content: center;
 }
 .search-result-img {
-    height: 11rem;
-    width: 15rem;
-    border-radius: .2rem;
+    height: 11vmin;
+    width: 15vmin;
+    border-radius: .5vmin;
     object-fit: cover;
 }
 .search-result-image-div {
-    max-width: 15rem;
-    max-height: 11rem;
+    /* width: 15rem;
+    height: 11rem; */
     object-fit: contain;
 }
 .est-arrival {
-    border-radius: 3rem;
+    border-radius: 7vmin;
     width: fit-content;
-    padding: .7rem;
+    padding: 1vmin;
     margin: 1rem;
     border: black solid .1rem;
-    font-size: .8rem;
+    font-size: 2vmin;
 }
 .est-arrival-time {
     font-weight: bolder;

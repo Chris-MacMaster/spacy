@@ -1,14 +1,14 @@
 
 .header-container {
-    border-bottom: 1px solid #ccc;
+    border-bottom: 2px solid #ccc;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     position: relative;
     background-color: white;
-    height: 7rem;
-    z-index: 100;
+    /* height: 7rem; */
+    z-index: 2;
     top: 0;
     left: 0;
     right: 0;
@@ -21,8 +21,8 @@
 }
 .logoim {
     object-fit: cover;
-    height: 5rem;
-    width: 5rem;
+    height: 7vmin;
+    width: 7vmin;
     margin-left: 2rem;
 }
 .header-tabs {
@@ -36,11 +36,9 @@
 }
 .logo {
     font-family: 'Libre Baskerville', serif;
-    font-size: 2.5rem;
-    font-size: 3rem;
+    font-size: 5vmin;
     align-self: center;
     color: rgb(222, 103, 6);
-    margin-left: 3rem;
     flex-grow: 1;
 }
 .header-search {
@@ -49,28 +47,34 @@
     border: none;
     background-color: white;
     /* marc */
-    height: 1.8rem;
+    height: 3vmin;
+    align-content: center;
     z-index: 1;
     border-radius: 5rem;
+    font-size: 2.5vmin;
 }
 .search-bar {
     display: flex;
     border: darkslategray solid 2px;
     border-radius: 3rem;
-    height: 2rem;
+    height: 3.5vmin;
     margin-left: .5rem;
     margin-right: .5rem;
     transition: .6s;
     z-index: 1;
 }
 .telescope-search{
-    padding-top: .4em;
-    padding-left: .5rem;
-    padding-right: .5rem;
+    /* padding-top: .5vmin; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    padding-right: 1vmin;
+    padding-left: 1vmin;
     border-radius: 0% 1rem 1rem 0%;
 }
 .header-icons {
-    font-size: 1.5rem;
+    font-size: 2.5vmin;
     color: #A0A7B2;
 }
 /* marc */
@@ -90,8 +94,9 @@
     z-index: 0;
 }
 .fa-magnifying-glass{
-    font-size: 1.3rem;
+    font-size: min(2.5vmin, 1.3rem);
     text-align: right;
+    align-content: center;
     right: 20vw;
     transition: .6s;
 }
@@ -164,10 +169,17 @@ div.navigation:hover {
     padding: .2rem;
     border-radius: 3rem;
     z-index: 100;
-    right:0rem;
+    right: 0rem;
     top: -.8rem
 }
+
 .cart-total {
     z-index: 101;
     position: absolute;
+}
+@media only screen and (max-width: 1024px){
+    .header-tabs {
+        display: none;
+        content: '';
+    }
 }
