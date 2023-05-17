@@ -82,7 +82,9 @@ def delete_one_shop(shop_id):
         if shop == None:
             return {"errors": "Cannot find Shop with specified id"}
         elif shop.owner_id == current_user.id:
+            aws_shop_image = copy.deepcopy(shop_image).to_dict()
             db.session.delete(shop)
+            remove_file_from_s3(aws_shop_image['url'])
             db.session.commit()
             return shop.to_dict(), 200
         elif shop.owner_id != current_user.id:
