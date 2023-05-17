@@ -184,7 +184,7 @@ h3.shops-youll-love-title {
 }
 .what-is-paragraph {
     font-size: 2vmin;
-    line-height: 3vmin;
+    line-height: 4vmin;
 }
 /*
 @media only screen and (max-width: 1600px){
@@ -397,11 +397,11 @@ h3.shops-youll-love-title {
 }
 */
 
-/* @media only screen and (max-width: 1024px){
+@media only screen and (max-width: 480px){
     .column-container {
         display: block;
-        text-align: center;
-        font-size: 2vmin;
-        line-height: 2vmin;
+        /* text-align: center; */
+        /* font-size: 2vmin;
+        line-height: 2vmin; */
     }
-} */
+}

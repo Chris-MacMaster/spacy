@@ -81,10 +81,6 @@
 .telescope-search:hover{
     cursor: pointer;
 }
-.cart {
-    margin-right: 2rem;
-    font-size: 1.5rem;
-}
 .header a {
     text-decoration: none;
 }
@@ -179,12 +175,9 @@ div.navigation:hover {
 }
 
 @media only screen and (max-width: 480px) {
-    body {
-      background-color: lightblue;
-    }
-    .logo {
+    /* .logo {
         display: none;
-    }
+    } */
 
   }
 @media only screen and (max-width: 1024px){
