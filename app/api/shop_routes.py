@@ -3,6 +3,8 @@ from app.models import db, Product, Shop, ShopImage, ProductImage, User, Product
 from flask_login import current_user, login_required
 import copy
 shop_routes = Blueprint('/shops', __name__)
+from app.api.AWS_helpers import get_unique_filename, upload_file_to_s3, remove_file_from_s3
+
 from app.forms import CreateShopForm
 
 @shop_routes.route('/', methods=['GET', 'POST'])
@@ -38,6 +40,14 @@ def get_all_shops():
         if not form.validate_on_submit():
             return {'error': 'The provided data could not be validated'}
         if form.validate_on_submit():
+
+            image = form.data["image"] #aws
+            image.filename = get_unique_filename(image.filename)
+            upload = upload_file_to_s3(image)
+            img_url = None
+            if 'url' in upload:
+                img_url = upload['url']
+            
             new_shop = Shop(
                 name = form.data['name'],
                 owner_id = current_user.get_id(),
@@ -54,7 +64,8 @@ def get_all_shops():
             db.session.commit()
             recentshop = db.session.query(Shop).order_by(Shop.id.desc()).first()
             new_shop_img = ShopImage(
-                url = form.data['url'],
+                # url = form.data['url'],
+                url = img_url, #aws
                 shop_id = recentshop.id
             )
             db.session.add(new_shop_img)

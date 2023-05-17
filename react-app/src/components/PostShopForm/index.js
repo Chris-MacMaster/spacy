@@ -21,6 +21,8 @@ export default function PostShopForm() {
     const [hasSubmitted, setHasSubmitted] = useState(false);
     const user = useSelector(state => state.session.user)
 
+    const formData = new FormData();
+
     useEffect(() => {
         const err = {}
         if (!name || name.length < 4) err.name = 'Please enter a valid name, at least 4 characters.'
@@ -31,7 +33,7 @@ export default function PostShopForm() {
         if (!description || description.length < 20) err.description = 'Please enter a valid shop description, at least 20 characters'
         if (!category || category.length <3) err.category = 'Please enter a shop category'
         if (!policies || policies.length < 30) err.policies = 'Please enter shop policies about returns or shipping'
-        if (!urlChecka(url) || !url) err.url = 'Please enter a shop image to represent your shop'
+        // if (!urlChecka(url) || !url) err.url = 'Please enter a shop image to represent your shop'
         setErrors(err)
     }, [name, streetAddress, city, state, country, description, category, policies, url])
 
@@ -48,9 +50,13 @@ export default function PostShopForm() {
             description,
             category,
             policies,
-            url
+            // url
         }
-        await dispatch(createShop(newShop))
+        formData.append('image', url)
+        for (let key in newShop) {
+            formData.append(`${key}`, newShop[key])
+        }
+        await dispatch(createShop(formData))
         history.push(`/users/${user.id}`)
     }
 
@@ -174,7 +180,9 @@ export default function PostShopForm() {
         </div>
 
         <div className='create-shop-input'>
-                        <input className='create-shop-input-field category-input' type='url' value={url} onChange={e => setUrl(e.target.value)} ></input>
+                        <input className='create-shop-input-field category-input' type='file' 
+                        // value={url} 
+                        onChange={e => setUrl(e.target.files[0])} ></input>
         {hasSubmitted && errors.url && (
             <div className='error'>
                 * {errors.url}

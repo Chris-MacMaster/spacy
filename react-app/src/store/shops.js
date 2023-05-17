@@ -52,22 +52,25 @@ export const fetchOneShop = id => async dispatch => {
     }
 }
 //post shop
-export const createShop = (data) => async dispatch => {
-    const { name, street_address, city, state, country, description, category, policies, url} = data
+export const createShop = (formData) => async dispatch => {
+    // const { name, street_address, city, state, country, description, category, policies, url} = data
     const response = await fetch('/api/shops/',
     {"method": "POST",
-    "headers": {"Content-Type": "application/json"},
-    "body": JSON.stringify({
-        name,
-        street_address,
-        city,
-        state,
-        country,
-        description,
-        category,
-        policies,
-        url
-    })})
+    // "headers": {"Content-Type": "application/json"},
+    // "body": JSON.stringify({
+    //     name,
+    //     street_address,
+    //     city,
+    //     state,
+    //     country,
+    //     description,
+    //     category,
+    //     policies,
+    //     url
+    // })
+    body: formData
+    }
+    )
     if (response.ok) {
         const newShop = await response.json()
         dispatch(postShop(newShop))
