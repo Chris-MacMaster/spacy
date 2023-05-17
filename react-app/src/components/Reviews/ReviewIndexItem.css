@@ -13,7 +13,7 @@
     position: static;
 }
 .rev-stars {
-    margin: 1rem;
+    margin-bottom: 2vmin;
 }
 #detail-review-icon {
     position: static;
@@ -42,6 +42,7 @@
     width: 20vmin;
     object-fit: cover;
     border-radius: .25rem;
+    margin-top: 5vmin;
 }
 .delete-review-button,
 .edit-review-button {
