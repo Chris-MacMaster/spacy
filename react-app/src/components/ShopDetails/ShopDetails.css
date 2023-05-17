@@ -94,7 +94,7 @@
 .favorite-shop {
     border: black solid .2vmin;
     border-radius: 12vmin;
-    width: 15vw;
+    width: 17vw;
     min-width: 7rem;
     text-align: center;
     font-size: 2vmin;
@@ -106,7 +106,7 @@
 }
 
 .favorite-shop:hover {
-    outline: .3rem ridge aqua;
+    outline: min( .5vmin, .3rem) ridge aqua;
 }
 .mapped-categories-title {
     font-family: 'Mulish', sans-serif;
@@ -163,10 +163,11 @@
     transition: opacity 0.3s;
     cursor: pointer;
     transition: .1s ease-in-out;
-
+    font-size: 2vmin;
 }
-.column-buttons:hover {
-    outline: .3rem ridge aqua;
+.column-buttons:hover,
+.contact-shop-owner:hover {
+    outline: min(.5vmin, .3rem) ridge aqua;
 }
 .column-buttons::after {
     background-color: none;
@@ -189,10 +190,7 @@ hr {
 .feedback {
     display: flex;
     flex-direction: row;
-}
-
-.report {
-    margin-left: 10rem;
+    justify-content: space-between;
 }
 .mapping-reviews {
     width: 60vw;
@@ -207,8 +205,11 @@ hr {
     position: absolute;
     left: 12vw;
 }
+.helpful,
+.report,
+.username,
 .review-paragraph {
-    margin-top: 2vh;
+    font-size: min(2.5vmin) max(1.7rem);
 }
 .product-ref-img{
     object-fit: cover;
