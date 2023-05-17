@@ -72,7 +72,7 @@ function LoginFormModal() {
       </div>
       <p className="login-trouble">Trouble Signing In?</p>
       {errors?.map((error, idx) => (
-            <p classNames='errors' key={`${idx}error`} >{error}</p>
+            <div className='errors' key={`${idx}error`} >{error}</div>
             ))}
       <hr></hr>
     </div>
