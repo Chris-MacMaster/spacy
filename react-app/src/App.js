@@ -19,6 +19,7 @@ import ProductEditForm from "./components/Forms/ProductEdit";
 import FilteredSearchResults from "./components/FilteredSearchResults";
 import PostShopForm from "./components/PostShopForm";
 import PutShopForm from "./components/PutShopForm";
+import CustomerPurchases from "./components/Purchases/CustomerPurchases"
 
 function App() {
   const dispatch = useDispatch();
@@ -46,6 +47,7 @@ function App() {
       <Route path='/product-reviews/:reviewId/edit' exact={true} component={EditReviewForm} />
       <Route path='/search/filtered-search/:category' exact={true} component={FilteredSearchResults} />
       <Route path='/shops/edit/:shopId' exact={true} component={PutShopForm} />
+      <Route path='/purchases' exact={true} component={CustomerPurchases} />
     </Switch>
     <Footer />
     </>

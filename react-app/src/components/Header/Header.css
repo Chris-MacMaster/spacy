@@ -49,6 +49,7 @@
     align-content: center;
     z-index: 1;
     border-radius: 5rem;
+    padding-left: 1rem;
     font-size: min(1.5vmin, 1.5rem);
 }
 .search-bar {
@@ -176,6 +177,16 @@ div.navigation:hover {
     z-index: 101;
     position: absolute;
 }
+
+@media only screen and (max-width: 480px) {
+    body {
+      background-color: lightblue;
+    }
+    .logo {
+        display: none;
+    }
+
+  }
 @media only screen and (max-width: 1024px){
     .header-tabs {
         display: none;
