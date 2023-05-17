@@ -13,6 +13,7 @@ import "./ProductDetail.css"
 import OpenModalButton from '../OpenModalButton';
 import ShopPoliciesModal from '../ShopPoliciesModal';
 import LoadingIcon from '../LoadingIcon';
+import ProductImageSlider from './ProductImageSlider';
 
 const ProductDetail = () => {
     const dispatch = useDispatch()
@@ -22,6 +23,7 @@ const ProductDetail = () => {
     const ulRef = useRef(); //for modal
     const { productId } = useParams()
     const [ hasLoaded, setHasLoaded ] = useState(false)
+    const [ chosenImage, setChosenImage ] = useState(0)
     //modal components
     const openMenu = () => {
         if (showMenu) return
@@ -53,7 +55,7 @@ const ProductDetail = () => {
     const productReviews = useSelector(state => state.reviews.productReviews)
     const shop = useSelector(state => state.products?.singleProduct.Shop)
     const shopId = shop?.id
-    
+
     if (!hasLoaded) return <LoadingIcon />
 
     const handleClick = () => history.push(`/product-reviews/${productId}/new`)
@@ -62,7 +64,6 @@ const ProductDetail = () => {
         e.preventDefault()
         history.push(`/shops/${shopId}`)
     }
-
     return (
         <div className='product-detail-div'>
             <div className='product-grid-div'>
@@ -71,17 +72,20 @@ const ProductDetail = () => {
                         <div className='both-images-div'>
                             <div className='subimage-div'>
 
-                            </div>
-                            <div className='product-arrow less-than'>
+                            {product && product.ProductImages && (product.ProductImages.map((img, i) =>
+                            <img className={chosenImage === i ? 'chosen-image product-preview-img' : 'product-preview-img'}
+                            alt='' key={i} src={img.url} onClick={e=> setChosenImage(i)}/>).slice(0,8))}
 
                             </div>
+
                             <div className='product-images-div'>
-                                <img className='product-image' src={product.ProductImages[0].url} alt='no found' />
+                            <ProductImageSlider data={product.ProductImages} chosenImage={chosenImage}/>
                             </div>
-                            <div className='product-arrow greater-than'>
-                            </div>
+
                         </div>
                     </div>
+
+                    
                     <div className='review-info-div'>
                         <p className='review-p reviews-text'>
                         </p>
@@ -97,7 +101,7 @@ const ProductDetail = () => {
                             ) ) } </p> : (
                                 <p>New! <i className="fa-solid fa-star gold-star gold-star-product-deets landing-shop-stars"/> </p>
                             )}                        </p>
-                        {user && user.id !== product.Shop.ownerId && !productReviews.length ? (
+                        {user && user.id !== product?.Shop?.ownerId && !productReviews.length ? (
                        <div>
                             <button className='post-item-review'
                             onClick={handleClick}>
@@ -134,7 +138,7 @@ const ProductDetail = () => {
                     <div className='store-info'>
                         <div className='name-follows'>
                             <p className='shop-name' onClick={handleShopRedirect}>
-                                {product.Shop.name}
+                                {product && product.Shop && product.Shop.name}
                             </p>
                             <div className='store-follows'>
                                 <i className="fa-solid fa-heart"></i> Follow
@@ -142,7 +146,7 @@ const ProductDetail = () => {
                             </div>
                         </div>
                         <div className='store-sales'>
-                            {product.Shop.sales} sales
+                            {product && product.Shop && product.Shop.sales} sales
                         </div>
                     </div>
                     <div className='purchase-buttons'>

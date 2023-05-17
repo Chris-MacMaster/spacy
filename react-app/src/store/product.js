@@ -66,22 +66,26 @@ export const fetchUserProducts = () => async dispatch => {
     }
 }
 
-export const makeProduct = (productBody) => async dispatch => {
-    const { name, shop_id, description, category, available, free_shipping, price, url } = productBody
-    const method = "POST"
-    const headers = { "Content-Type" : "application/json"}
-    const body = JSON.stringify({
-        name,
-        shop_id,
-        description,
-        category,
-        available,
-        free_shipping,
-        price,
-        url
+export const makeProduct = (formData) => async dispatch => {
+    // const { name, shop_id, description, category, available, free_shipping, price, url } = productBody
+    // const method = "POST"
+    // const headers = { "Content-Type" : "application/json"}
+    // const body = JSON.stringify({
+    //     name,
+    //     shop_id,
+    //     description,
+    //     category,
+    //     available,
+    //     free_shipping,
+    //     price,
+    //     url
+    // })
+    // const options = { method, headers, body }
+    // const response = await fetch('/api/products/', options)
+    const response = await fetch('/api/products/', {
+        method: 'POST',
+        body: formData
     })
-    const options = { method, headers, body }
-    const response = await fetch('/api/products/', options)
     if (response.ok){
         const product = await response.json()
         return product
@@ -137,29 +141,19 @@ export default function productReducer(state = initialState, action) {
 
     switch (action.type) {
         case LOAD_PRODUCTS: {
-            const newState = {...state}
-            newState.allProducts = action.products
-            // resets product details when going to allProducts page
-            newState.singleProduct = {}
-            return newState
+            return { ...state, allProducts: { ...action.products}, singleProduct: {...state.singleProduct}}
         }
         case LOAD_PRODUCT: {
-            let newState = { ...state, singleProduct: {...state.singleProduct} }
-            newState.singleProduct = {...action.payload}
-            return newState
+            return { ...state, singleProduct: {...action.payload} }
         }
         case LOAD_USER_PRODUCTS: {
-            const newState = {...state}
-            newState.userProducts = {...action.payload}
-            return newState
+            return {...state, userProducts: { ...action.payload } }
         }
         case POST_PRODUCT: {
-            const newState = { ...state }
-            newState.singleProduct = action.payload
-            return newState
+            return { ...state, singleProduct: { ...action.payload } }
         }
         case DELETE_PRODUCT: {
-            const newState = { ...state }
+            const newState = { ...state, allProducts: {...state.allProducts } }
             delete newState.allProducts[action.payload]
             return newState
         }

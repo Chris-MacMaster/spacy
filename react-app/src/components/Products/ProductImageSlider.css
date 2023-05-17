@@ -1,0 +1,37 @@
+.left-arrow,
+.right-arrow {
+    font-size: 3rem;
+    color: white;
+    opacity: .8;
+    position: absolute;
+    top: 20rem;
+    cursor: pointer;
+    z-index: 1;
+}
+.right-arrow {
+    right: 1rem;
+}
+.left-arrow {
+    left: 1rem;
+}
+.slider-images {
+    width: 41rem;
+    height: 41rem;
+    border-radius: .5rem;
+    object-fit: cover;
+}
+.product-image-slider {
+    position: relative;
+    width: 41rem;
+    height: 41rem;
+    margin: 2rem;
+}
+.slide {
+    opacity: 0;
+    transition-duration: 1s ease;
+}
+.slide.active {
+    opacity: 1;
+    transition-duration: 1s;
+    transform: scale(1.08);
+}

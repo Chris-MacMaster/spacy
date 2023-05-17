@@ -5,12 +5,13 @@ import copy
 from datetime import datetime
 from app.forms import CreateProductForm
 
+from app.api.AWS_helpers import get_unique_filename, upload_file_to_s3
+
 product_routes = Blueprint('/products', __name__)
 
 @product_routes.route('/<int:product_id>/', methods=['GET', 'DELETE', 'PUT'])
 def get_one_product(product_id):
     """returns one product with the specified id"""
-    print("made to get one product -----------------------------")
     if request.method == 'GET':
         product = Product.query.get(product_id)
         productcopy = product.to_dict()
@@ -59,18 +60,16 @@ def get_one_product(product_id):
                 for img in product_image:
                     if img.id < first_img.id:
                         first_img = img
-
-                first_img.url = form.data["url"]
+                # first_img.url = form.data["url"]
+                first_img.url = form.data["image"] #aws
                 db.session.commit()
                 return product.to_dict(), 201
-
-
-
 
 @product_routes.route('/', methods=['GET', 'POST'])
 def get_all_products():
     """returns all products regardless of session"""
     # get products
+    print('REQUEST DATA',request.data)
     if request.method == "GET":
         products = Product.query.all()
         productcopy = copy.deepcopy(products)
@@ -79,7 +78,6 @@ def get_all_products():
         def get_reviews(id):
             return ProductReview.query.filter(ProductReview.product_id == id).all()
         payload = {  product.id: product.to_dict() for product in productcopy }
-
         for product in payload.values():
             product_images = get_images(product['id'])
             product['ProductImages'] = [image.to_dict() for image in product_images]
@@ -89,13 +87,48 @@ def get_all_products():
                 review_sum += review.stars
             product['avgRating'] = round(review_sum / len(reviews), 1) if len(reviews) > 0 else 'New!'
         return  payload, 200
-    #POSTS NEW PRODUCT
     elif request.method == "POST":
         form = CreateProductForm()
         form['csrf_token'].data = request.cookies['csrf_token']
         if not form.validate_on_submit():
+            print("")
+            print("")
+            print("")
+            print("")
+            print("")
+            print("FORM DATA", form.data)
+            print("")
+            print("")
+            print("")
+            print("")
+            print("")
             raise ValueError("Failed flask form validation")
         if form.validate_on_submit():
+            image = form.data["image"] #aws
+            image.filename = get_unique_filename(image.filename)
+            print('')
+            print('')
+            print('')
+            print('')
+            print('')
+            print('')
+            print('')
+            print('')
+            print('')
+            print('IMAGE FILENAME', image.filename)
+            print('')
+            print('')
+            print('')
+            print('')
+            print('')
+            print('')
+            print('')
+            print('')
+            upload = upload_file_to_s3(image)
+            img_url = None
+            if 'url' in upload:
+                img_url = upload['url']
+
             new_product = Product(
                 shop_id = form.data["shop_id"],
                 name = form.data["name"],
@@ -107,14 +140,14 @@ def get_all_products():
             )
             db.session.add(new_product)
             db.session.commit()
-            # addnig an associated image for the newly created product
+            # adding an associated image for the newly created product
             new_product_list = Product.query.all()
             new_product = new_product_list[-1]
             new_product_img = ProductImage(
-                url = form.data["url"],
+                # url = form.data["url"],
+                url = img_url, #aws
                 product_id = new_product.id,
             )
             db.session.add(new_product_img)
             db.session.commit()
-
             return new_product.to_dict(), 201

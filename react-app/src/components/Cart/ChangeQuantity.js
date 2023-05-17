@@ -11,9 +11,9 @@ export default function ChangeQuantity({cartId, quantity, productId, available})
         options.push({value: i})
     }
 
-    const func = updatedQuantity => {
-        dispatch(editCartItemThunk(cartId, updatedQuantity, user.id, productId, available))
-        dispatch(fetchCart()) //Only way I could get it to re-render without infinite rerender. :| I don't like it, and want to refactor it, but also want to move on and make more progress.
+    const func = async updatedQuantity => {
+        await dispatch(editCartItemThunk(cartId, updatedQuantity, user.id, productId, available))
+        await dispatch(fetchCart()) //Only way I could get it to re-render without infinite rerender. :| I don't like it, and want to refactor it, but also want to move on and make more progress.
     }
 
     if(available <= 1) return <></>

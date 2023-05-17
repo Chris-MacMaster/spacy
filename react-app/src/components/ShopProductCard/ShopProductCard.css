@@ -1,7 +1,7 @@
 .shop-product-preview-image {
     object-fit: cover;
-    height: 14em;
-    width: 16rem;
+    height: 14vw;
+    width: 16vw;
     border-radius: .3rem;
     margin-top: 0rem;
     object-fit: cover;
@@ -9,20 +9,16 @@
 .shop-product-card {
     display: flex;
     flex-direction: column;
-    /* align-items: start; */
     font-family: 'Mulish', sans-serif;
     line-height: 1.2rem;
-    height: 17rem;
-    width: 16rem;
     transition: .2s ease-in-out;
     position: sticky;
     border-radius: .5rem;
     position: relative;
-    /* overflow: hidden; */
-    /* margin: 3px; */
 }
 .shop-product-name {
     margin-top: 0rem;
+    font-size: 1.3rem;
 }
 .shop-product-price {
     font-weight: bolder;
@@ -38,11 +34,13 @@ a.product-name, a.shop-product-price {
     margin-top: 0;
     font-size: .9rem;
 }
-
+.shop-product-info {
+    margin-left: .5rem;
+}
 .shop-product-buttons {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-end;
+    position: absolute;
+    bottom: .1rem;
+    right: .1rem;
 }
 .shop-product-bottom {
     display: flex;
@@ -53,13 +51,12 @@ a.product-name, a.shop-product-price {
     padding: .2rem;
     margin: 0;
     text-decoration: none;
-    border: grey .2rem solid;
+    border: grey .1rem solid;
     color: black;
     font-weight: 600;
     font-size: .8rem;
     border-radius: .3rem;
-    margin-bottom: .4rem;
-    margin-left: .4rem;
+    margin-left: .2rem;
     cursor: pointer;
     transition: ease-in-out .3s;
 }
@@ -81,3 +78,51 @@ a.product-name, a.shop-product-price {
     margin: 0;
     text-decoration: none;
 } */
+
+@media only screen and (max-width: 1200px){
+    /* .shop-product-card {
+        height: 13rem;
+        width: 13rem;
+    }
+    .shop-product-preview-image {
+        height: 10rem;
+        width: 13rem;
+    } */
+}
+@media only screen and (max-width: 1024px){
+    /* .shop-product-card {
+        height: 11rem;
+        width: 10rem;
+    }
+    .shop-product-preview-image {
+        height: 8rem;
+        width: 10rem;
+    } */
+    #shop-delete-button,
+    #shop-edit-button,
+    .shop-product-name,
+    .shop-product-price {
+        font-size: .6rem;
+    }
+}
+@media only screen and (max-width: 768px){
+    .shop-product-card {
+        /* height: 8.5rem;
+        width: 8rem; */
+        border-radius: .2rem;
+    }
+    .shop-product-preview-image {
+        /* height: 6rem;
+        width: 8rem; */
+        border-radius: .2rem;
+    }
+    #shop-delete-button,
+    #shop-edit-button,
+    .shop-product-name,
+    .shop-product-price {
+        font-size: .5rem;
+    }
+}
+@media only screen and (max-width: 480px){
+
+}

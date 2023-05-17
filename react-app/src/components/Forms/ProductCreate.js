@@ -16,6 +16,8 @@ export default function ProductCreateForm() {
 
     // const { closeModal } = useModal()
 
+    const formData = new FormData();
+
 
     const [name, setName] = useState("")
     const [available, setAvailable] = useState(0)
@@ -24,7 +26,8 @@ export default function ProductCreateForm() {
     const [freeShipping, setFreeShipping] = useState(false)
     const [price, setPrice] = useState(0)
 
-    const [url1, setUrl1] = useState("")
+    // const [url1, setUrl1] = useState("")
+    const [url, setUrl] = useState(null)
 
     //validation
     const [errors, setErrors] = useState({})
@@ -38,9 +41,9 @@ export default function ProductCreateForm() {
         if (!price || price < 0) e.price = "Must submit a price."
         if (!category) e.category = "Must submit a category"
         if (!description) e.description = "Must submit a description"
-        if (!url1) e.url1 = "Must submit a url."
-        if (!urlCheck(url1)) e.urlCheck = "Must submit a valid url. We accept urls ending in any of the following: jpeg, jpg, svg, png, gif, bmp."
-    }, [name, available, price, category, description, url1])
+        // if (!url1) e.url1 = "Must submit a url."
+        // if (!urlCheck(url1)) e.urlCheck = "Must submit a valid url. We accept urls ending in any of the following: jpeg, jpg, svg, png, gif, bmp."
+    }, [name, available, price, category, description])
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -55,9 +58,14 @@ export default function ProductCreateForm() {
           available,
           freeShipping,
           price,
-          url: url1
+        //   url: url1
         }
-        dispatch(makeProduct(newProduct))
+        for (let key in newProduct) {
+            formData.append(`${key}`, newProduct[key])
+        }
+        formData.append("image", url); //aws
+
+        dispatch(makeProduct(formData))
         dispatch(fetchShops())
         history.push(`/shops/${shopId}`)
     };
@@ -231,9 +239,10 @@ export default function ProductCreateForm() {
                                     Provide a url, pictures are necessary! Nobody wants to buy something sight unseen!
                                 </p>
                             </div>
-                            <input className='product-input input-field' type="text"
-                                    value={url1}
-                                    onChange={(e) => setUrl1(e.target.value)}
+                            <input className='product-input input-field' type="file"
+                                    accept = 'image/*'
+                                    // value={image}
+                                    onChange={(e) => setUrl(e.target.files[0])}
                                     placeholder='URL' />
                             {hasSubmitted && errors.url1 && (
                                 <div className='error'>
