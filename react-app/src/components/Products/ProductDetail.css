@@ -1,23 +1,22 @@
 .product-detail-div {
-    margin-top: 120px;
+    margin-top: 5vh;
     display: flex;
     justify-content: center;
 }
 .product-preview-img {
-    width: 5rem;
-    height: 5rem;
+    width: 5vw;
+    height: 5vw;
     object-fit: cover;
     border-radius: .3rem;
-    margin:  .2rem;
+    margin:  .1vw;
 }
 .product-grid-div {
-    max-width: 70rem;
+    max-width: 70vw;
     display: flex;
     justify-content: space-between;
 }
 .product-grid-div-col-a {
-    min-width: 60%;
-    width: 60%;
+    width: 60vw;
     padding-right: 2rem;
 }
 .chosen-image {
@@ -30,23 +29,18 @@
 .review-card-div {
     display: flex;
 }
-
-
 .prod-price {
     font-weight: bold;
     font-size: 28px;
     margin-bottom: 5px;
 }
-
 .prod-search {
     font-size: 16px;
     margin-bottom: 20px;
 }
-
 .store-sales {
     font-size: 13px;
 }
-
 .store-name {
     margin-bottom: 5px;
 }
@@ -106,9 +100,9 @@
     margin-bottom: 2rem;
 }
 .product-images-div {
-    width: 45rem;
-    margin-left: 2rem;
-    margin-right: 2rem;
+    /* width: 45rem; */
+    margin-left: 3vw;
+    margin-right: 3vw;
 }
 .product-images {
     border-radius: .5rem;
@@ -152,20 +146,6 @@
 }
 .marked {
     border: 4px solid black;
-}
-.less-than {
-    margin-left: 20pxvw;
-}
-.greater-less-p {
-    width: 3rem;
-    height: 3rem;
-    border-radius: 5rem;
-    font-weight: 900;
-    font-size: 1.5rem;
-    box-shadow: 0rem 0rem .5rem darkgrey;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 .review-num-title {
     font-family: 'Marcellus', serif;
