@@ -31,8 +31,8 @@ export default function Footer() {
             {devs.map((d,i)=> (
             <div className='footer-person'
             key={`footerperson${i}`}>
-                <p className='dev-name'
-                key={`footerpersonname${i}`}>{devs[i][0]}</p>
+                <span className='dev-name'
+                key={`footerpersonname${i}`}>{devs[i][0]}</span>
                 <Link to={{ pathname :`${d[1]}`}}
                 target='_blank'>
                 <img src='https://i.imgur.com/RqO5mlh.png'

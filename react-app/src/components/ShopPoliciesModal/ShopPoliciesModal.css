@@ -1,14 +1,17 @@
 .shop-polices {
-    width: 20rem;
+    width: 70vmin;
+    max-width: 20rem;
     margin: 2rem;
 }
 #shop-pol-title {
     width: 20rem;
     margin-top: 1rem;
+    font-size: vmin;
     font-family: 'Marcellus', serif;
 }
 .credit-cards-img {
-    width: 20rem;
+    max-width: 20rem;
+    width: 30vmin;
 }
 .credit-cards,
 .shop-polices,
@@ -17,7 +20,8 @@
 .shop-polices-payments,
 .shop-policies-cancellations,
 .shop-policies-payments {
-    width: 25rem;
+    width: 70vmin;
+    max-width: 25rem;
     margin-left:2rem;
     margin-right: 2rem;
     margin-top: 1rem;
@@ -38,13 +42,14 @@
 }
 .shop-pol-modal > button,
 .shop-pol-modal {
-    width: 10rem;
-    height: 2.5rem;
+    width: 20vmin;
+    height: 4vmin;
     border-radius: 5rem;
-    /* border: black solid 2px; */
+    font-size: 1.5vmin;
     transition: .2s ease-in-out;
     font-family: 'Mulish', sans-serif;
-    font-weight: 600;
+    font-weight: bolder;
+    border: solid darkgray .05rem;
 }
 .shop-pol-modal > button:hover,
 .shop-pol-modal {
