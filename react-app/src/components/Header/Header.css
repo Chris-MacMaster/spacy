@@ -23,7 +23,6 @@
     object-fit: cover;
     height: 7vmin;
     width: 7vmin;
-    margin-left: 2rem;
 }
 .header-tabs {
     display: flex;
@@ -163,15 +162,15 @@ div.navigation:hover {
     position: absolute;
     background-color: rgb(180, 33, 33, .9);
     color: white;
-    font-size: .8rem;
+    font-size: 1.5vmin;
     font-weight: bolder;
     width: fit-content;
-    height: 1rem;
+    /* height: 1rem; */
     padding: .2rem;
     border-radius: 3rem;
     z-index: 100;
-    right: 0rem;
-    top: -.8rem
+    right: -1vmin;
+    top: -1vmin
 }
 
 .cart-total {
@@ -192,5 +191,10 @@ div.navigation:hover {
     .header-tabs {
         display: none;
         content: '';
+    }
+}
+@media only screen and (max-width: 768px){
+    .number-in-cart {
+        top: 0vmin;
     }
 }
