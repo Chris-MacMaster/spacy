@@ -28,7 +28,7 @@ export default function ShopDetails () {
 
     if (!hasLoaded) return <LoadingIcon />
 
-    const allReviews = shop.Products.map(p=>p.Reviews).flat()
+    const allReviews = shop.Products.map(p=>p.Reviews).flat().sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt))
     const handleCreate = (e) => {
         e.preventDefault()
         history.push(`/products/forms/create-product/${shopId}`)

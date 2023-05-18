@@ -37,7 +37,7 @@ export default function ShopBusinessCard({ shop }) {
             <button className='user-manage-button user-manage-edit-shop'
             onClick={onClickEditShop}><i className="fa-solid fa-pen"></i>Edit Shop</button>
             {/* <button className='user-manage-button user-manage-fav-shop'><i className="fa-regular fa-heart"></i>Favorite shop</button> */}
-            <button className='user-manage-button user-manage-delete'
+            <button className='user-manage-button user-manage-delete '
             onClick={onClickDeleteShop}>
                 <i className="fa-solid fa-trash-can"/>Delete
             </button>

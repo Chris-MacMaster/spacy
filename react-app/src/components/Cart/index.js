@@ -26,7 +26,7 @@ export default function DisplayCart(){
 
   if(!user) return (
     <div className="no-user-no-cart">
-    <h1>Due to recent cart theft by space pirates, only verified users are permitted a cart</h1>
+    <h1 className="cart-errors">Due to recent cart theft by space pirates, only verified users are permitted a cart</h1>
     </div>
     )
 
@@ -34,6 +34,9 @@ export default function DisplayCart(){
 
     if (!Object.values(cart).length && hasLoaded && !purchased) {
       return <h2 className="no-items">You have no items in your cart, don't you want to buy something?</h2>
+    }
+    if (!Object.values(cart).length && hasLoaded) {
+      return <h2 className="cart-errors">You have no items in your cart, don't you want to buy something?</h2>
     }
 
     const itemsByStore = groupItemsByStore(cart)

@@ -6,11 +6,12 @@
     align-items: center;
 }
 .product-preview-img {
-    width: 5vw;
-    height: 5vw;
+    width: 5vmin;
+    height: 5vmin;
     object-fit: cover;
     border-radius: .3rem;
     margin:  .3vw;
+    cursor: pointer;
 }
 .product-grid-div {
     max-width: 80vw;
@@ -175,11 +176,36 @@
 
 }
 
-/* @media only screen and (max-width: 768px){
+.shipping-div {
+    align-items: center;
+}
+
+.fa-truck {
+    margin-right: 5px;
+}
+
+.icons {
+    display: flex;
+}
+
+@media only screen and (max-width: 768px){
     .product-detail-div,
     .review-info-div,
     .product-grid-div
     .product-deets-reviews {
         max-width: 96vw;
     }
-} */
+    .both-images-div {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+    .subimage-div {
+        display: flex;
+        flex-direction: row;
+    }
+    .product-preview-img {
+        width: 7vmin;
+        height: 7vmin;
+    }
+
+}

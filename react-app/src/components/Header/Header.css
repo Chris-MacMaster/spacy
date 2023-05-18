@@ -161,14 +161,16 @@ div.navigation:hover {
     font-size: 1.5vmin;
     font-weight: bolder;
     width: fit-content;
-    /* height: 1rem; */
     padding: .2rem;
     border-radius: 3rem;
     z-index: 100;
     right: -1vmin;
-    top: -1vmin
+    top: -1vmin;
 }
-
+.fa-cart-shopping.header-icons,
+.number-in-cart {
+    margin-right: 1vmin;
+}
 .cart-total {
     z-index: 101;
     position: absolute;
@@ -180,10 +182,12 @@ div.navigation:hover {
 
 
 @media only screen and (max-width: 480px) {
-    /* .logo {
-        display: none;
+    /* .header {
+        flex-direction: column;
+    }
+    .icons {
+        display: flex;
     } */
-
   }
 @media only screen and (max-width: 1024px){
     .header-tabs {

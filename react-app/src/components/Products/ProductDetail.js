@@ -1,7 +1,6 @@
 import React from 'react';
 import { useEffect, useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-
 import { useParams } from 'react-router-dom';
 import { fetchOneProduct } from '../../store/product';
 import { fetchProductReviews } from '../../store/review';
@@ -92,23 +91,19 @@ const ProductDetail = () => {
 
                 <div className='product-grid-div-col-b'>
                     <div className='product-info-a'>
-                        <div className='prod-price'>
-                            ${product.price}
-                        </div>
-                        <div className='prod-search'>
-                            {product.name}
-                        </div>
+                    <div className='prod-price'>${product.price}</div>
+                    <div className='prod-search'>{product.name}</div>
 
                     </div>
                     <div className='store-info'>
                         <div className='name-follows'>
-                            <span className='shop-name' onClick={handleShopRedirect}>
+                        <span className='shop-name' onClick={handleShopRedirect}>
                                 {product && product.Shop && product.Shop.name}
-                            </span>
-                            <span className='store-follows'>
-                                <i className="fa-solid fa-heart"/> Follow
+                        </span>
+                        <span className='store-follows'>
+                        <i className="fa-solid fa-heart"/> Follow
                                 {/* feature incoming */}
-                            </span>
+                        </span>
                         </div>
                         <div className='store-sales'>
                             {product && product.Shop && product.Shop.sales} sales
@@ -175,7 +170,8 @@ const ProductDetail = () => {
                     </div>
                     {/* reviews... */}
                     <div className='product-deets-reviews'>
-                    {productReviews && productReviews.length > 0 ? productReviews.map(review => (
+                    {productReviews && productReviews.length > 0 ?
+                    productReviews.sort((a,b)=> Date.parse(b.createdAt) - Date.parse(a.createdAt)).map(review => (
                         <ReviewIndexItem review={review} key={review.id} product={product}/>
                     )): null}
                     </div>

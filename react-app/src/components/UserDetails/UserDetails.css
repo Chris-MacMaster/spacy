@@ -1,24 +1,25 @@
 .user-manage-details {
-    margin: 2rem;
+    margin: 5vmin;
 }
 .user-manage-item-field {
     display: grid;
     grid-template-columns: auto auto auto auto;
-    max-width: 190rem;
-    gap: 1rem;
-    left: 16rem;
+    max-width: 95vw;
+    gap: min(2vmin, 1rem);
+    /* left: 16rem; */
 }
 .user-manage-header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-bottom: 3rem;
+    margin-bottom: 5vmin;
+    align-items: center;
 }
 .user-manage-shop-owners {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: start;
+    /* justify-content: start; */
     font-family: 'Mulish', sans-serif;
 }
 .user-manage-business-cards {
@@ -38,12 +39,21 @@
 .shop-owner-text {
     color: grey;
     font-weight: bolder;
+    font-size: min(2vmin, 1.5rem);
 }
 .user-manage-contact-user {
     margin: 0rem;
+    font-size: min(2vmin, 1.5rem);
+    margin-bottom: 50px;
 }
 .user-manage-shop-policies {
-    width: 15rem;
+    width: min(46vmin, 20rem);
+    display: flex;
+    flex-direction: row;
+}
+.each-shop-policies {
+    display: flex;
+    flex-direction: column;
 }
 .user-manage-footer {
     font-family: 'Mulish', sans-serif;
@@ -57,4 +67,21 @@
 }
 .create-shop-icon {
     color: rgb(74, 74, 74);
+}
+.one-shop-name {
+    font-size: min(3vmin, 2rem);
+}
+.one-shop-policies {
+    font-size: min(2vmin, 1.6rem);
+}
+
+
+.owned-shops-label {
+    font-size: 2em;
+    margin-top: 5px;
+    margin-bottom: 0px;
+}
+
+.create-shop-button {
+    margin-top: 0px;
 }
