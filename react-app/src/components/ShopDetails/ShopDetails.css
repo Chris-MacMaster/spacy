@@ -210,7 +210,7 @@ hr {
 .report,
 .username,
 p.review-paragraph {
-    font-size: min(2.5vmin, 1.7rem);
+    font-size: min(2vmin);
 }
 .product-ref-img{
     object-fit: cover;
@@ -258,5 +258,11 @@ p.review-paragraph {
 @media only screen and (max-width: 768px){
     .accolades-container {
         display: block;
+    }
+    .helpful,
+    .report,
+    .username,
+    p.review-paragraph {
+        font-size: min(2.5vmin);
     }
 }
