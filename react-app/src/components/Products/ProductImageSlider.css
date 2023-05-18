@@ -43,4 +43,22 @@
     .right-arrow {
         font-size: 7vmin;
     }
+    .slider-images {
+        width: 55vw;
+        height: 55vw;
+        border-radius: min(2vmin, .5rem);
+        object-fit: cover;
+    }
+    .product-images-div {
+        width: 60vmin;
+        height: 60vmin;
+        margin: 2vmin;
+    }
+    .left-arrow,
+    .right-arrow {
+        top: 27vmin;
+    }
+    .right-arrow {
+        right: -15vmin;
+    }
 }

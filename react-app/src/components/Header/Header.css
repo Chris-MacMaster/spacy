@@ -166,9 +166,12 @@ div.navigation:hover {
     border-radius: 3rem;
     z-index: 100;
     right: -1vmin;
-    top: -1vmin
+    top: -1vmin;
 }
-
+.fa-cart-shopping.header-icons,
+.number-in-cart {
+    margin-right: 1vmin;
+}
 .cart-total {
     z-index: 101;
     position: absolute;
