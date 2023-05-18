@@ -56,7 +56,7 @@
     display: flex;
     border: darkslategray solid 2px;
     border-radius: 3rem;
-    height: min(3vmin, 1.5rem);
+    height: min(4.5vmin, 2.5rem);
     /* font-size: min(3vmin, 1rem); */
     margin-left: .5rem;
     margin-right: .5rem;
