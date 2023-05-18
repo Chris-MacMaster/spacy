@@ -70,22 +70,25 @@ export const fetchOneShop = id => async dispatch => {
     }
 }
 //post shop
-export const createShop = (data) => async dispatch => {
-    const { name, street_address, city, state, country, description, category, policies, url} = data
+export const createShop = (formData) => async dispatch => {
+    // const { name, street_address, city, state, country, description, category, policies, url} = data
     const response = await fetch('/api/shops/',
     {"method": "POST",
-    "headers": {"Content-Type": "application/json"},
-    "body": JSON.stringify({
-        name,
-        street_address,
-        city,
-        state,
-        country,
-        description,
-        category,
-        policies,
-        url
-    })})
+    // "headers": {"Content-Type": "application/json"},
+    // "body": JSON.stringify({
+    //     name,
+    //     street_address,
+    //     city,
+    //     state,
+    //     country,
+    //     description,
+    //     category,
+    //     policies,
+    //     url
+    // })
+    body: formData
+    }
+    )
     if (response.ok) {
         const newShop = await response.json()
         dispatch(postShop(newShop))
@@ -93,14 +96,19 @@ export const createShop = (data) => async dispatch => {
     }
 }
 //put shop
-export const editShop = (data, id) => async dispatch => {
-    const { name, street_address, city, state, country, description, category, policies, url} = data
-    const response = await fetch(`/api/shops/${id}`,
-    {"method": "PUT",
-    "headers": {"Content-Type": "application/json"},
-    "body": JSON.stringify({
-        id, name, street_address, city, state, country, description, category, policies, url
-    })})
+export const editShop = (formData, id) => async dispatch => {
+    // const { name, street_address, city, state, country, description, category, policies, url} = data
+    // console.log('BACKEND FORM DATA', formData['url'])
+    const response = await fetch(`/api/shops/${id}`, {
+        method: 'PUT',
+        // headers: {'Content-Type': 'application/json'},
+        body: formData
+    })
+    // {"method": "PUT",
+    // "headers": {"Content-Type": "application/json"},
+    // "body": JSON.stringify({
+    //     id, name, street_address, city, state, country, description, category, policies, url
+    // })})
     const edittedShop = await response.json()
     if (response.ok) {
         dispatch(editAShop(edittedShop))
@@ -109,7 +117,10 @@ export const editShop = (data, id) => async dispatch => {
 }
 //delete shop thunk
 export const deleteShopRequest = shopId => async dispatch => {
-    const response = await fetch(`/api/shops/${shopId}`, {method: "DELETE", headers: {"Content-Type": "application/json"}})
+    const response = await fetch(`/api/shops/${shopId}`, {
+        method: "DELETE", 
+        headers: {"Content-Type": "application/json"}
+    })
     if (response.ok) {
         const deleted = await response.json()
         dispatch(deleteAShop(deleted))

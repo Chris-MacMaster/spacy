@@ -56,7 +56,7 @@
     display: flex;
     border: darkslategray solid 2px;
     border-radius: 3rem;
-    height: min(3vmin, 1.5rem);
+    height: min(4.5vmin, 2.5rem);
     /* font-size: min(3vmin, 1rem); */
     margin-left: .5rem;
     margin-right: .5rem;
@@ -69,8 +69,8 @@
     justify-content: center;
     align-items: center;
     align-content: center;
-    padding-right: 1vmin;
-    padding-left: 1vmin;
+    padding-right: min(2vmin, 2rem);
+    padding-left: min(2vmin, 2rem);
     border-radius: 0% 1rem 1rem 0%;
 }
 .header-icons {
