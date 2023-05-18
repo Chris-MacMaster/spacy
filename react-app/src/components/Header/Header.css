@@ -177,10 +177,12 @@ div.navigation:hover {
 }
 
 @media only screen and (max-width: 480px) {
-    /* .logo {
-        display: none;
+    /* .header {
+        flex-direction: column;
+    }
+    .icons {
+        display: flex;
     } */
-
   }
 @media only screen and (max-width: 1024px){
     .header-tabs {

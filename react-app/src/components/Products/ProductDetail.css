@@ -175,6 +175,18 @@
 
 }
 
+.shipping-div {
+    align-items: center;
+}
+
+.fa-truck {
+    margin-right: 5px;
+}
+
+.icons {
+    display: flex;
+}
+
 @media only screen and (max-width: 768px){
     .product-detail-div,
     .review-info-div,
