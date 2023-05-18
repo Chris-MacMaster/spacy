@@ -20,7 +20,6 @@ function Header({ isLoaded }) {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        setParameters('')
         await dispatch(getSearchResults(parameters))
         await dispatch(fetchCart())
         history.push(`/search/${parameters}`)

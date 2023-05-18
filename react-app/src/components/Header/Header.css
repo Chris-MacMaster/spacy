@@ -23,6 +23,8 @@
     object-fit: cover;
     height: 7vmin;
     width: 7vmin;
+    margin-left: 1vmin;
+    margin-top: 1vmin;
 }
 .header-tabs {
     display: flex;
@@ -169,7 +171,7 @@ div.navigation:hover {
 }
 .fa-cart-shopping.header-icons,
 .number-in-cart {
-    margin-right: 1vmin;
+    margin-right: 2vmin;
 }
 .cart-total {
     z-index: 101;
