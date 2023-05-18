@@ -27,7 +27,7 @@ def seed_product_images():
         product_id= 2
     )
     productimage7 = ProductImage(
-        url= 'https://i.imgur.com/glZ1IaZ.jpg',
+        url= 'https://i.imgur.com/BLhrQzf.png',
         product_id= 1
     )
     productimage8 = ProductImage(
@@ -55,7 +55,7 @@ def seed_product_images():
         product_id= 1
     )
     productimage14 = ProductImage(
-        url= 'https://i.imgur.com/BLhrQzf.png',
+        url= 'https://i.imgur.com/glZ1IaZ.jpg',
         product_id= 1
     )
     productimage15 = ProductImage(

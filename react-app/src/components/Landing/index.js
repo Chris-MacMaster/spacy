@@ -43,6 +43,7 @@ function Landing({ isLoaded }) {
     return (
         <div className='landing-div'>
         <div className='landing-header-accent'></div>
+        <div className='landing-80'>
         <div className='landing-header'>
         { !user ? <h1 className='welcome-title'>Incredible style and decor, plus one-of-a-kind gifts right this way</h1> : <h1 className='welcome-title'>Welcome back {user.firstName}</h1>}
 
@@ -100,7 +101,7 @@ function Landing({ isLoaded }) {
                     <h2 className='by-etsy-title'>By Spacey Sellers</h2>
                 </div>
 
-                {data.map(product => (
+                {[products["5"], products["6"], products["7"], products["8"], products["12"], products["1"]].map(product => (
                 product.ProductImages[0].url ? (
                 <NavLink to={`/products/${product.id}`}
                 style={{ textDecoration: 'none' }}
@@ -112,7 +113,11 @@ function Landing({ isLoaded }) {
                 ) : null
                 ))}
 
-                <div className='from-etzy-closing'>Fun fact: behind every sponsored item there is an intelligent lifeform hoping you'll check out their shop</div>
+                <div className='from-etzy-closing'>
+                    <span className='closing-text'>
+                    Fun fact: behind every sponsored item there is an intelligent lifeform hoping you'll check out their shop
+                    </span>
+                </div>
             </div>
 
             <div className='shop-our-selections'>
@@ -145,7 +150,7 @@ function Landing({ isLoaded }) {
 
                 </div>
             </div>
-            <div className='shops-youll-love'>
+            {/* <div className='shops-youll-love'>
                 <div className='shops-youll-love-text'>
                     <h1 className='shops-youll-love-title'>Shops we think you'll love
                     </h1>
@@ -161,7 +166,7 @@ function Landing({ isLoaded }) {
                 </NavLink>
                 ) )) : null }
 
-            </div>
+            </div> */}
             <div className='what-is-etzy'>
                 <h1 className='what-is-title'>What is Spacey</h1>
                 <div className='column-container'>
@@ -180,6 +185,7 @@ function Landing({ isLoaded }) {
                 </div>
                 <h2 className='have-questions'>Have a question? Well, we've got some answers.</h2>
             </div>
+        </div>
         </div>
     )
 }
