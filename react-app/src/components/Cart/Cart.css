@@ -229,3 +229,7 @@
     color: grey;
     font-size: .85rem;
 }
+.cart-errors {
+    font-size: min(3vmin, 1.5rem);
+    margin: 3vmin;
+}
