@@ -90,10 +90,42 @@ def delete_one_shop(shop_id):
         elif shop.owner_id != current_user.id:
             return {"errors": "Only owner may delete their own shop"}
     elif current_user.is_authenticated and request.method == 'PUT':
+        
         shop = Shop.query.get(shop_id)
+        # shop_image = ShopImage.query.filter(ShopImage.shop_id == shop_id).first()
+        # db.session.delete(shop_image)
         form = CreateShopForm()
+        
         form['csrf_token'].data = request.cookies['csrf_token']
         if form.validate_on_submit():
+            print("")
+            print("")
+            print("")
+            print("")
+            print("")
+            print("")
+            print("")
+            print("")
+            print("FORM DATA", form.data)
+            print("")
+            print("")
+            print("")
+            print("")
+            print("")
+            print("")
+            print("")
+            image = form.data["image"] #aws
+            image.filename = get_unique_filename(image.filename)
+            upload = upload_file_to_s3(image)
+            img_url = None
+            if 'url' in upload:
+                img_url = upload['url']
+
+            img_delete = form.data['ogImage']
+            remove_file_from_s3(img_delete)
+            # remove_file_from_s3()
+
+
             shop.name = form.data['name']
             shop.street_address = form.data['street_address']
             shop.city = form.data['city']
@@ -104,7 +136,18 @@ def delete_one_shop(shop_id):
             shop.policies = form.data['policies']
 
             shop_image = ShopImage.query.filter(ShopImage.shop_id == shop_id).first()
-            shop_image.url = form.data['url']
+            db.session.delete(shop_image)
+
+            new_shop_img = ShopImage(
+                # url = form.data['url'],
+                url = img_url, #aws
+                shop_id = shop_id
+            )
+
+            db.session.add(new_shop_img)
+
+            # shop_image = ShopImage.query.filter(ShopImage.shop_id == shop_id).first()
+            # shop_image.url = form.data['url']
             db.session.commit()
             return shop.to_dict, 201
 
