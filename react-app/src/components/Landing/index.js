@@ -137,7 +137,7 @@ function Landing({ isLoaded }) {
                 <div className='selection-card'
                 // onClick={history.push(`/search/${rand.category}`)}
                 key={`div${i}`}>
-                <img src={`${rand?.ProductImages[0]?.url}`}
+                <img src={`${rand?.ProductImages[1]?.url}`}
                         alt='selection-im'
                         key={`img${i}`}
                         className='shop-our-select-img'></img>
