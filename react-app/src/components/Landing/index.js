@@ -42,8 +42,10 @@ function Landing({ isLoaded }) {
 
     return (
         <div className='landing-div'>
+        <div className='landing-header-accent'></div>
         <div className='landing-header'>
         { !user ? <h1 className='welcome-title'>Incredible style and decor, plus one-of-a-kind gifts right this way</h1> : <h1 className='welcome-title'>Welcome back {user.firstName}</h1>}
+
         <div className='top-banner-suggest'>
             <div className='top-banner-suggestions'>
                 <div className='suggest-image-div'>
