@@ -28,7 +28,7 @@ export default function ShopDetails () {
 
     if (!hasLoaded) return <LoadingIcon />
 
-    const allReviews = shop.Products.map(p=>p.Reviews).flat()
+    const allReviews = shop.Products.map(p=>p.Reviews).flat().sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt))
     const handleCreate = (e) => {
         e.preventDefault()
         history.push(`/products/forms/create-product/${shopId}`)
@@ -160,7 +160,7 @@ export default function ShopDetails () {
                             <div className='reviewed-item-name'
                             key={`revieweditem${i}`}>{shop.Products.filter(p=>p.id === r.productId)[0].name}</div>
                             </div>
-                </NavLink>
+                        </NavLink>
                        </div>
                        <div className='feedback'
                        key={`feedback${i}`}>
