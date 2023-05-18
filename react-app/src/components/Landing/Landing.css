@@ -12,7 +12,6 @@
 .landing-header {
     justify-content: center;
     /* background-color: peachpuff; */
-    padding: 4vmin;
     z-index: 1;
     position: absolute;
     top: 5vmin;
@@ -26,10 +25,12 @@
     z-index: 0;
 }
 .top-banner-suggest {
-    display: grid;
-    grid-template-columns: auto auto auto auto auto auto;
+    display: flex;
+    flex-direction: row;
     justify-content: space-between;
+    /* grid-template-columns: auto auto auto auto auto auto; */
     align-items: center;
+    gap: 1.6vmin;
 }
 .top-banner-suggestions {
     transition: .2s ease-in-out;

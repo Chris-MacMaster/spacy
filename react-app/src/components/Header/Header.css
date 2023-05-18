@@ -23,6 +23,8 @@
     object-fit: cover;
     height: 7vmin;
     width: 7vmin;
+    margin-left: 1vmin;
+    margin-top: 1vmin;
 }
 .header-tabs {
     display: flex;
