@@ -3,7 +3,7 @@ import './UserDetails.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { authenticate } from '../../store/session'
-import { fetchShops } from '../../store/shops'
+import { fetchShops, fetchFollowedShops } from '../../store/shops'
 import { fetchProducts } from '../../store/product'
 import ShopProductCard from '../ShopProductCard'
 import ShopBusinessCard from '../ShopBusinessCard'
@@ -20,6 +20,7 @@ export default function UserDetails() {
             await dispatch(authenticate())
             await dispatch(fetchShops())
             await dispatch(fetchProducts())
+            await dispatch(fetchFollowedShops())
             return setHasLoaded(true)
         }
         loadData()
@@ -27,7 +28,10 @@ export default function UserDetails() {
 
     const user = useSelector(state => state.session.user)
     const shops = useSelector(state => state.shops.allShops)
+    const followedShopState = useSelector(state => state.shops.followedShops)
     const products = useSelector(state=> state.products.allProducts)
+
+
 
     if (!hasLoaded) return <LoadingIcon />
     if (!user || parseInt(user.id) !== parseInt(userId) || !shops) return null
@@ -37,18 +41,23 @@ export default function UserDetails() {
     const userProducts = Object.values(products).filter(p=> userShopsIds.includes(p.shopId))
     const onClickCreateShop = () => history.push('/shops/new')
 
+    const followedShops = Object.values(followedShopState)
+
     return (
         <div className='user-manage-details'>
+            <button className='favorite-shop create-shop-button'
+                onClick={onClickCreateShop}>
+                <i className="fa-solid fa-screwdriver-wrench create-shop-icon"></i>
+                Create Shop
+            </button>
                 <p className='owned-shops-label'>
                     Your Owned Shops
                 </p>
             <div className='user-manage-header'>
                 <div className='user-manage-business-cards'>
-
                 {userShops && userShops.length ? userShops.map((s, i) => (
                     <ShopBusinessCard shop={s} key={`shopbusicardcomp${i}`}/>
                 )) : null}
-
                 </div>
                 <div className='user-manage-shop-owners'>
                     <p className='shop-owner-text'>Shop Owner</p>
@@ -61,11 +70,17 @@ export default function UserDetails() {
                 </div>
             </div>
 
-            <button className='favorite-shop'
-                    onClick={onClickCreateShop}>
-                        <i className="fa-solid fa-screwdriver-wrench create-shop-icon"></i>
-                    Create Shop
-            </button>
+            <p className='owned-shops-label'>
+                Your Followed Shops
+            </p>
+            {/* NEED TO IMPLEMENT FOLLOWED SHOPS */}
+            <div className='user-manage-business-cards'>
+                {followedShops && followedShops.length ? followedShops.map((s, i) => (
+                    <ShopBusinessCard shop={s} key={`shopbusicardcomp${i}`} />
+                )) : <p>
+                    You have no followed shops currently
+                    </p>}
+            </div>
 
             <div className='user-manage-items'>
                 <div className='user-manage-item-sidebar'>

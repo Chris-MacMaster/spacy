@@ -13,6 +13,7 @@
     flex-direction: row;
     justify-content: space-between;
     margin-bottom: 5vmin;
+    align-items: center;
 }
 .user-manage-shop-owners {
     display: flex;
@@ -43,6 +44,7 @@
 .user-manage-contact-user {
     margin: 0rem;
     font-size: min(2vmin, 1.5rem);
+    margin-bottom: 50px;
 }
 .user-manage-shop-policies {
     width: min(46vmin, 20rem);
@@ -77,5 +79,9 @@
 .owned-shops-label {
     font-size: 2em;
     margin-top: 5px;
-    margin-bottom: 5px;
+    margin-bottom: 0px;
+}
+
+.create-shop-button {
+    margin-top: 0px;
 }
