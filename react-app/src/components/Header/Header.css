@@ -171,7 +171,7 @@ div.navigation:hover {
 }
 .fa-cart-shopping.header-icons,
 .number-in-cart {
-    margin-right: 1vmin;
+    margin-right: 2vmin;
 }
 .cart-total {
     z-index: 101;
