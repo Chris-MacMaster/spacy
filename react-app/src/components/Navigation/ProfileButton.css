@@ -1,11 +1,10 @@
 button {
     background-color: white;
     border: none;
-    padding: .3rem;
     justify-content: center;
 }
 .fa-user-circle {
-    font-size: 1.5rem;
+    font-size: 2.5vmin;
     color: #A0A7B2
 }
 .hidden {
@@ -13,20 +12,21 @@ button {
 }
 .profile-dropdown {
     position: fixed;
-    border-radius: .5rem;
+    border-radius: 2vmin;
     border: solid slategrey 1px;
-    top: 6rem;
-    right: 7rem;
+    top: 15vmin;
+    right: 10vmin;
     background: white;
-    padding: 2rem;
-    line-height: 2rem;
+    padding: 3vmin;
+    line-height: 4vmin;
     font-family: 'Mulish', sans-serif;
 }
 .subtext {
-    line-height: 1.3rem;
+    line-height: 1.7vmin;
+    font-size: 1.5vmin;
 }
 .drop-down-icons {
-    font-size: 1.5rem;
+    font-size: 2vmin;
     color: #A0A7B2;
 }
 .popout-profile-header {
@@ -35,24 +35,17 @@ button {
     align-items: center;
     line-height: .2rem;
 }
-.popout-profile-header > i {
-    font-size: 1.2rem;
-}
-.popout-profile-header >  {
-    font-size: 1.2rem;
-    margin-left: 1.5rem;
-}
-.subtext {
-    font-size: .8rem;
-}
-.profileburger {
-    cursor: pointer;
+.popout-profile-header > i,
+.profile-drop-item,
+.profile-drop-text,
+.signout-button,
+.drop-down-user-name {
+    font-size: 2vmin;
 }
 .profile-drop-item {
-    margin-right: 1rem;
+    margin-right: 2vmin;
 }
 .signout-button {
     cursor: pointer;
-    font-size: 1rem;
     font-family: 'Mulish', sans-serif;
 }

@@ -7,7 +7,7 @@
     top: 20vw;
     cursor: pointer;
     z-index: 1;
-   border-radius: 50%;
+    border-radius: 50%;
 }
 .right-arrow {
     right: 1vw;
@@ -18,7 +18,7 @@
 .slider-images {
     width: 41vw;
     height: 41vw;
-    border-radius: .5rem;
+    border-radius: min(2vmin, .5rem);
     object-fit: cover;
 }
 .product-image-slider {
@@ -26,6 +26,7 @@
     width: 41vw;
     height: 41vw;
     margin: 2vw;
+    border-radius: min(2vmin, .5rem);
 }
 .slide {
     opacity: 0;
@@ -35,4 +36,11 @@
     opacity: 1;
     transition-duration: 1s;
     transform: scale(1.08);
+}
+
+@media only screen and (max-width: 768px){
+    .left-arrow,
+    .right-arrow {
+        font-size: 7vmin;
+    }
 }

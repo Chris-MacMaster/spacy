@@ -100,10 +100,9 @@ export default function ShopDetails () {
             </div>
             <div className='category-column-buttons'>
 
+            <button className='column-buttons'onClick={() => window.location = `mailto:${shop.Owner.email}`}><i className="fa-solid fa-clipboard-list"></i> Request Custom Order</button>
             <button className='column-buttons'
-            onClick={featureAlert}><i className="fa-solid fa-clipboard-list"></i> Request Custom Order</button>
-            <button className='column-buttons'
-            onClick={featureAlert}><i className="fa-solid fa-message" /> Contact shop owner</button>
+            onClick={() => window.location = `mailto:${shop.Owner.email}`}><i className="fa-solid fa-message" /> Contact shop owner</button>
             </div>
             </div>
             <div className='item-card-display'>

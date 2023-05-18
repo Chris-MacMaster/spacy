@@ -122,8 +122,10 @@
 }
 
 .checkout-cart-button:hover{
-    background-color: aqua;
-    outline: ridge aqua .3rem;
+    background-color: rgb(37, 219, 219);
+    /* outline: ridge aqua .3rem; */
+    cursor: pointer;
+    color: black;
 }
 .names-are-hard {
     width: 70vw;
@@ -168,6 +170,8 @@
     font-size: 30px;
     color: rgb(119, 119, 209);
     margin-left: .5rem;
+    margin-right: .5rem;
+    align-self: center;
 }
 .show {
     color: red;

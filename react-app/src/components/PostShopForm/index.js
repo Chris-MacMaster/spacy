@@ -65,7 +65,7 @@ export default function PostShopForm() {
 
         <div className='create-shop-name create-shop-label' >
         <label className='create-shop-label'>Name</label>
-        <p className='create-shop-grey'>Choose a welcoming name for your shop</p>
+        <div className='create-shop-grey'>Choose a welcoming name for your shop</div>
         </div>
         <div className='create-shop-input'>
             <input type='text' value={name}
@@ -126,7 +126,7 @@ export default function PostShopForm() {
 
         <div className='create-shop-label-grid create-shop-description'>
         <label className='create-shop-label'>Description</label>
-        <p className='create-shop-grey'>Start building you brand by giving a brief description of your shop and what you're known for.</p>
+        <div className='create-shop-grey'>Start building you brand by giving a brief description of your shop and what you're known for.</div>
         </div>
 
         <div className='create-shop-input'>
@@ -140,7 +140,7 @@ export default function PostShopForm() {
 
         <div className='create-shop-label-grid create-shop-category'>
         <label className='create-shop-label '>Category</label>
-        <p className='create-shop-grey'>Providing a category helps you get shown in search results!</p>
+        <div className='create-shop-grey'>Providing a category helps you get shown in search results!</div>
         </div>
 
         <div className='create-shop-input'>
@@ -156,7 +156,7 @@ export default function PostShopForm() {
 
         <div className='create-shop-label-grid'>
         <label className='create-shop-label'>Policies</label>
-        <p className='create-shop-grey'>Give your customers an idea of the sort of service they can expect from you.</p>
+        <div className='create-shop-grey'>Give your customers an idea of the sort of service they can expect from you.</div>
         </div>
 
         <div className='create-shop-input'>
@@ -170,11 +170,11 @@ export default function PostShopForm() {
 
         <div className='create-shop-label-grid'>
         <label className='create-shop-label'>Image URL</label>
-        <p className='create-shop-grey'>Images are mandatory, show off your logo or a good representation of your business!</p>
+        <div className='create-shop-grey'>Images are mandatory, show off your logo or a good representation of your business!</div>
         </div>
 
         <div className='create-shop-input'>
-                        <input className='create-shop-input-field category-input' type='url' value={url} onChange={e => setUrl(e.target.value)} ></input>
+        <input className='create-shop-input-field category-input' type='url' value={url} onChange={e => setUrl(e.target.value)} ></input>
         {hasSubmitted && errors.url && (
             <div className='error'>
                 * {errors.url}
