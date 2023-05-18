@@ -4,11 +4,23 @@
     justify-content: center;
     align-items: center;
     align-content: center;
+    /* position: relative; */
 }
 .landing-header {
     justify-content: center;
-    background-color: peachpuff;
+    /* background-color: peachpuff; */
     padding: 4vmin;
+    z-index: 1;
+    position: absolute;
+    top: 5vmin;
+}
+.landing-header-accent {
+    position: absolute;
+    top: 0rem;
+    width: 100%;
+    height: 28vmin;
+    background-color: #d7e6f5;
+    z-index: 0;
 }
 .top-banner-suggest {
     display: grid;
@@ -17,6 +29,13 @@
     align-items: center;
     gap: 2vw;
     max-width: 75rem;
+}
+.top-banner-suggestions {
+    transition: .2s ease-in-out;
+}
+.top-banner-suggestions:hover {
+    box-shadow: inset 0px -.3vmin rgb(64, 64, 64);
+    scale: 1.08;
 }
 div.top-banner-suggestions > p {
     font-family: 'Mulish', sans-serif;
@@ -57,6 +76,8 @@ p.sponsored {
 .from-etzy-sellers {
     display: grid;
     grid-template-columns: auto auto auto auto;
+    margin-top: 30vmin;
+
     justify-content: center;
     align-content: center;
     flex-wrap: wrap;
@@ -126,7 +147,7 @@ h3.shop-our-title {
 }
 .shops-youll-love {
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: auto auto auto auto;
     flex-wrap: wrap;
     justify-content: center;
     gap: 2vmin;
@@ -185,200 +206,6 @@ h3.shops-youll-love-title {
     font-size: 2vmin;
     line-height: 4vmin;
 }
-/*
-@media only screen and (max-width: 1600px){
-    .suggest-image,
-    .suggest-image-div {
-        max-width: 8rem;
-        max-height: 8rem;
-    }
-    .top-banner-suggestions {
-        max-width: 8rem;
-    }
-}
-@media only screen and (max-width: 1200px){
-    .suggest-image-text {
-        font-size: .8rem;
-    }
-    .selection-card {
-        width: 12rem;
-        height: 12rem;
-        margin: .5rem;
-    }
-    .shop-our-select-img {
-        width: 12rem;
-        height: 9rem;
-    }
-    .column-container {
-        gap: 1rem;
-    }
-    .column-title {
-        font-size: 1.3rem;
-    }
-}
-@media only screen and (max-width: 1024px){
-    .welcome-title {
-        font-size: 1.7rem;
-        margin: 1.7rem;
-    }
-    .suggest-image-text {
-        font-size: .8rem;
-        overflow-wrap: anywhere;
-    }
-    .top-banner-suggest {
-        justify-content: space-between;
-        gap: .5rem;
-    }
-    .top-banner-suggestions {
-        width: 6rem;
-    }
-    .suggest-image,
-    .suggest-image-div {
-        width: 6rem;
-        height: 6rem;
-    }
-    .selection-card {
-        width: 8rem;
-        height: 8rem;
-        margin: .5rem;
-        border-radius: .3rem;
-    }
-    .shop-our-select-img {
-        width: 8rem;
-        height: 6rem;
-        border-radius: .3rem;
-    }
-    .selection-subtitle {
-        font-size: 1rem;
-    }
-    .column-container {
-        gap: 1rem;
-    }
-    .column-title {
-        font-size: 1.3rem;
-    }
-    .what-is-paragraph {
-        font-size: .8rem;
-        line-height: 1.3rem;
-    }
-    .column-title {
-        font-size: 1rem;
-    }
-    .logoim {
-        height: 3rem;
-        width: 3rem;
-        margin-left: .5rem;
-    }
-    .logo {
-        font-size: 2rem;
-        margin-left: .5rem;
-    }
-}
-@media only screen and (max-width: 768px){
-    .welcome-title {
-        font-size: 1rem;
-        margin: 1rem;
-    }
-    .top-banner-suggest {
-        gap: .3rem;
-    }
-    .header-tabs {
-        visibility: hidden;
-    }
-    .header-container {
-        height: 3.5rem;
-    }
-    .suggest-image,
-    .suggest-image-div {
-        width: 4rem;
-        height: 4rem;
-    }
-    .top-banner-suggestions {
-        width: 4rem;
-    }
-    .suggest-image-text {
-        font-size: .6rem;
-        width: 4rem;
-    }
-    .shop-our-select-img {
-        width: 6rem;
-        height: 4rem;
-        border-radius: .2rem;
-    }
-    .selection-card {
-        width: 6rem;
-        height: 6.5rem;
-        margin: .25rem;
-    }
-    .selection-subtitle {
-        font-size: .8rem;
-        margin: 0rem;
-    }
-    .shops-youll-love{
-        margin-top: 2rem;
-        margin-bottom: 2rem;
-    }
-    .column-container {
-        display: flex;
-        flex-direction: column;
-    }
-    .column-title {
-        margin: 1rem;
-    }
-    .search-bar {
-        margin: 0rem;
-    }
-    h2.shop-our-title {
-        font-size: 1.5rem;
-    }
-    h3.shop-our-title {
-        font-size: 1rem;
-    }
-    .shops-youll-love{
-        font-size: .8rem;
-    }
-    .what-is-etzy > h1,
-    .have-questions {
-        font-size: 1.5rem;
-    }
-}
-@media only screen and (max-width: 480px){
-    .logoim {
-        width: 2rem;
-        height: 2rem;
-    }
-    .logo {
-        font-size: 1.5rem;
-    }
-    .search-bar-form,
-    .header-search {
-        height: 1rem;
-    }
-    .search-bar {
-        height: 1.1rem;
-        margin: .2rem;
-    }
-    .fa-magnifying-glass {
-        font-size: .7rem;
-    }
-    .telescope-search {
-        padding: .3rem;
-        padding-top: 0rem;
-        padding-bottom: .4rem;
-    }
-    .header-icons,
-    .fa-user-circle {
-        font-size: 1rem;
-        padding: 0rem;
-    }
-    .landing-header {
-        padding: 1rem;
-        margin: 0rem;
-    }
-    .what-is-paragraph {
-        font-size: .6rem;
-    }
-} */
 
 /*
 @media only screen and (max-width: 1600px){
@@ -395,12 +222,20 @@ h3.shops-youll-love-title {
 
 }
 */
-
+@media only screen and (max-width: 768px){
+    .shops-youll-love {
+        display: grid;
+        grid-template-columns: auto auto;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 2vmin;
+        margin-top: 15vmin;
+        margin-bottom: 15vmin;
+    }
+}
 @media only screen and (max-width: 480px){
     .column-container {
         display: block;
-        /* text-align: center; */
-        /* font-size: 2vmin;
-        line-height: 2vmin; */
+
     }
 }

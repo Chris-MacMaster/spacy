@@ -67,7 +67,6 @@ function Header({ isLoaded }) {
 
         </div>
 
-        <div className='icons'>
             <div className='shop-manager'>
                 {user && user?.id && userShop.length ? (
                     <NavLink to={`/shops/${userShop[0].id}`} >
@@ -105,7 +104,6 @@ function Header({ isLoaded }) {
                 <i className="fa-solid fa-cart-shopping header-icons"></i>
                 </NavLink>
                 </div>
-            </div>
         </div>
 
         <div className='header-tabs'>
