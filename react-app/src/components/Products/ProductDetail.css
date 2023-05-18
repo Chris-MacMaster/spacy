@@ -11,6 +11,7 @@
     object-fit: cover;
     border-radius: .3rem;
     margin:  .3vw;
+    cursor: pointer;
 }
 .product-grid-div {
     max-width: 80vw;
