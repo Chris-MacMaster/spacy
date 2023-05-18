@@ -55,9 +55,7 @@ h2 {
 } */
 
 .formParent {
-    margin-top: 15em;
     display: flex;
-    /* flex-direction: column; */
     justify-content: center;
 }
 .wholeForm {
@@ -65,48 +63,54 @@ h2 {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 20em;
-    height: 20.5em;
+    width: min(70vmin, 20em);
     padding-bottom: 1em;
 }
-
+.wholeForm >h2 {
+    font-size: min(7vmin, 2rem);
+}
 .productPic {
     display: flex;
     flex-direction: row;
+    margin-top: min(7vmin, 2rem);
 }
 
 .productName {
-    margin-top: 3em;
-    margin-left: 1em;
+    margin-left: min(2vmin, 1rem);
 }
 
-.productPic img{
-    margin-top: 3em;
-    width: 5em;
-    height: 5em;
+.productPic img {
+    width: min(20vmin, 10rem);
+    height: min(20vmin, 10rem);
+    border-radius: min(2vmin, .5rem);
+    object-fit: cover;
 }
 
 .reviewText {
-    height: 8rem;
-    width: 25rem;
-    margin: 1em;
+    height: 20vmin;
+    width: min(70vmin, 25rem);
+    margin: 3vmin;
+    font-size: min(3vmin, 1.5rem);
 }
-
+.review-form-text,
+.edit-review-button {
+    font-size: min(3vmin, 1.2rem);
+}
 .submitButtonParent {
     display: flex;
-    margin-bottom: 7rem;
+    margin-bottom: 4vmin;
 }
 .submitButton {
     background-color: black;
     color: white;
     /* padding-left: 6.5em;
     padding-right:6.5em; */
-    padding-top: 1em;
-    padding-bottom: 1em;
-    margin-left: 0.1em;
+    padding-top: 3vmin;
+    padding-bottom: 3vmin;
+    margin-left: 0.1vmin;
     font-weight: bold;
-    border-radius: 15px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.19), 0px 1px 0px rgba(0, 0, 0, 0.23);
+    border-radius: 4vmin;
+    box-shadow: 0px 0px 2vmin rgba(0, 0, 0, 0.19), 0px 1px 0px rgba(0, 0, 0, 0.23);
 }
 .submitButton:hover {
     cursor: pointer;
@@ -118,9 +122,8 @@ h2 {
     display: flex;
     justify-content: center;
 }
-
 .imageURLinput {
-    margin-bottom: 1rem;
+    margin-bottom: 3vmin;
 }
 .edit-review-button {
     z-index: 5;
