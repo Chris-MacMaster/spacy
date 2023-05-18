@@ -64,10 +64,9 @@
 }
 
 .input-field {
-    height: 1.3rem;
+    /* height: min(3vmin, 1.5rem); */
     border-radius: 0.3rem;
 }
-
 
 .product-name-div, .product-description-div {
     align-items: center;
@@ -76,11 +75,6 @@
 .description-text {
     width: 100%;
 }
-
-/* .description-text {
-    height: 1.3rem;
-    border-radius: 0.3rem;
-} */
 
 .description-input {
     height: 100px;
@@ -130,4 +124,8 @@ textarea, option, select {
     height: 30px;
     display: flex;
     justify-content: center;
+}
+#file-upload-button {
+    background-color: white;
+    font-size: min(3vmin, 1rem);
 }
