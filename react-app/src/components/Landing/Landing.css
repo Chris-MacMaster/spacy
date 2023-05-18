@@ -112,8 +112,8 @@ h3.shop-our-title {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 }
 .selection-card {
-    /* width: 16rem;
-    height: 16rem; */
+    width: 16rem;
+    height: 16rem;
     border: lightgray solid .1rem;
     border-radius: .5rem;
     overflow: hidden;
