@@ -98,22 +98,7 @@ def delete_one_shop(shop_id):
         
         form['csrf_token'].data = request.cookies['csrf_token']
         if form.validate_on_submit():
-            print("")
-            print("")
-            print("")
-            print("")
-            print("")
-            print("")
-            print("")
-            print("")
-            print("FORM DATA", form.data)
-            print("")
-            print("")
-            print("")
-            print("")
-            print("")
-            print("")
-            print("")
+
             image = form.data["image"] #aws
             image.filename = get_unique_filename(image.filename)
             upload = upload_file_to_s3(image)
@@ -149,7 +134,7 @@ def delete_one_shop(shop_id):
             # shop_image = ShopImage.query.filter(ShopImage.shop_id == shop_id).first()
             # shop_image.url = form.data['url']
             db.session.commit()
-            return shop.to_dict, 201
+            return shop.to_dict(), 201
 
 
 

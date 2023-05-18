@@ -16,4 +16,5 @@ class CreateShopForm(FlaskForm):
     policies = StringField('policies', validators=[DataRequired()])
     # url = StringField('url', validators=[DataRequired()])
     image = FileField("image", validators=[FileRequired(), FileAllowed(list(ALLOWED_EXTENSIONS))])
+    ogImage = StringField('ogImage')
     sales = IntegerField('sales')
