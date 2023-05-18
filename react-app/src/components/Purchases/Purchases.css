@@ -1,0 +1,72 @@
+.purchase-div {
+    background-color: green;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-self: center;
+}
+.purchase-date-div{
+    border: 1px solid black;
+    background-color: yellowgreen;
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.purchase-product-img-div{
+    /* width: 30vw; */
+}
+
+.purchase-product-img{
+    width: 50%;
+    height: auto;
+}
+
+.purchase-item-div {
+    /* display: flex; */
+}
+
+.purchase-date {
+    font-weight: bold;
+    /* text-align: center; */
+}
+
+.purchase-shop-name {
+    font-weight: bold;
+    /* text-align: center; */
+    width: 100px;
+}
+
+.product-qty-price {
+    /* display: flex; */
+    /* justify-content: space-around; */
+}
+
+.purchase-shop-div {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    grid-auto-rows: minmax(50px, auto);
+    background-color: orange;
+    border: 1px solid black;
+    margin-bottom: 1rem;
+    /* width: 50vw; */
+}
+.one{
+    grid-column: 1;
+}
+.two{
+    grid-column: 2;
+    background: red;
+
+}
+.three{
+    grid-column: 3;
+    background-color: blue;
+
+}
+.four{
+    grid-column: 4;
+    background-color: yellow;
+
+}

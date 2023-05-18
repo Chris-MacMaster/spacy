@@ -1,31 +1,37 @@
 .footer-container {
-    margin-top: 10rem;
-    margin-left: 2rem;
-    margin-right: 2rem;
+    margin-top: 20vmin;
+    margin-left: 5vmin;
+    margin-right: 5vmin;
 }
 .footer-title {
     text-align: center;
+    font-size: 3vmin;
+    margin-bottom: 10vmin;
 }
 .about-creators {
-    margin-top: 3rem;
+    margin-top: 3vmin;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    margin-bottom: 10rem;
+    margin-bottom: 20vmin;
 }
 .dev-name {
     font-weight: bold;
-    /* margin-left: 3rem; */
+    font-size: 2vmin;
 }
 .github-icon,
 .linkedin-icon {
-    width: 2rem;
-    height: 2rem;
+    width: 3vmin;
+    height: 3vmin;
     object-fit: contain;
     margin-left: .5rem;
     align-items: center;
     border-radius: none;
+}
+#curriculum-vitae {
+    width: 3vmin;
+    height: 3vmin;
 }
 .portfolio-svg {
     margin-left: .5rem;
@@ -33,10 +39,10 @@
 .footer-person {
     display: flex;
     flex-direction: row;
-    margin: 1rem;
+    margin: 1.5vmin;
 }
 @media only screen and (max-width: 768px){
-    .dev-name {
+    /* .dev-name {
         font-size: .8rem;
     }
     .github-icon,
@@ -44,5 +50,5 @@
     #curriculum-vitae {
     width: 1.5rem;
     height: 1.5rem;
-    }
+    } */
 }

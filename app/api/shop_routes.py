@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request, redirect
-from app.models import db, Product, Shop, ShopImage, ProductImage, User, ProductReview, ReviewImage
+from app.models import db, Product, Shop, ShopImage, ProductImage, User, ProductReview, ReviewImage, user_shops
 from flask_login import current_user, login_required
 import copy
 shop_routes = Blueprint('/shops', __name__)
@@ -119,7 +119,6 @@ def delete_one_shop(shop_id):
             shop.description = form.data['description']
             shop.category = form.data['category']
             shop.policies = form.data['policies']
-
             shop_image = ShopImage.query.filter(ShopImage.shop_id == shop_id).first()
             db.session.delete(shop_image)
 
@@ -135,9 +134,6 @@ def delete_one_shop(shop_id):
             # shop_image.url = form.data['url']
             db.session.commit()
             return shop.to_dict(), 201
-
-
-
 
 @shop_routes.route('/<int:shop_id>')
 def get_shop_by_id(shop_id):
@@ -197,3 +193,28 @@ def get_my_shops():
             else:
                 shop['ShopImage'] = 'shopImage not available'
         return shopcopy, 200
+
+
+
+@shop_routes.route('/current-followed')
+@login_required
+def get_user_followed_shops():
+    print("HIT URL")
+    print("HIT URL")
+    print("HIT URL")
+    print("HIT URL")
+    print("HIT URL")
+    print("HIT URL")
+    print("HIT URL")
+    print("HIT URL")
+    """Returns the followed shops of User"""
+    if request.method == 'GET':
+        shops = Shop.query.join(user_shops).filter(user_shops.c.user_id == current_user.id).all()
+        if user_shops == None:
+            return {'errors': "Cannot find shops with specified id"}
+        else:
+            shops_copy = copy.deepcopy(shops)
+            payload = {shop.id: shop.to_dict() for shop in shops_copy}
+
+
+            return payload, 200

@@ -3,16 +3,16 @@
     flex-direction: row;
     font-family: 'Mulish', sans-serif;
     text-decoration: none;
-    margin: 1rem;
 }
 .user-manage-shop-pic {
-    width: 8rem;
-    height: 8rem;
+    width: min(15vmin, 8rem);
+    height: min(15vmin, 8rem);
     border-radius: .3rem;
     object-fit: cover;
 }
 .user-manage-business-text {
-    margin-left: 1rem;
+    margin-left: min(1vmin, 1rem);
+    font-size: min(2vmin, 1rem);
 }
 .user-manage-shop-name{
     margin-bottom: 0rem;
@@ -20,13 +20,13 @@
 .user-manage-button {
     border: solid grey 2px;
     border-radius: 0rem;
-    padding: .2rem;
-    margin-right: .5rem;
-    margin-top: .5rem;
+    padding: .5vmin;
+    margin-right: .5vmin;
+    margin-top: 1vmin;
     font-family: 'Mulish', sans-serif;
 }
 .user-manage-button i {
-    font-size: .7rem;
+    font-size: min(1vmin, .7rem);
 }
 .user-manage-edit-shop {
     background-color: rgb(51, 51, 51);
@@ -34,11 +34,17 @@
     font-weight: bolder;
     transition: ease-in-out .3s;
     cursor: pointer;
+    font-size: min(2vmin, 1rem);
+
 }
-.user-manage-create {
+.user-manage-create,
+.user-manage-delete  {
     cursor: pointer;
-}
-.user-manage-edit-shop:hover {
+    font-weight: bolder;
+    font-size: min(1.7vmin, 1rem);
+ }
+.user-manage-delete:hover,
+.user-manage-edit-shop:hover  {
     box-shadow: 0rem 0rem .5rem black;
 }
 .user-manage-edit-shop:active {
@@ -52,9 +58,9 @@
 }
 .fa-pen,
 .fa-screwdriver-wrench {
-    margin-right: .3rem;
+    margin-right: min(1vmin, .3rem);
 }
 .fa-trash-can {
     color: red;
-    margin-right: .2rem;
+    margin-right: min(1vmin, .3rem);
 }

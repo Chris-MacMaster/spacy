@@ -12,7 +12,6 @@ product_routes = Blueprint('/products', __name__)
 @product_routes.route('/<int:product_id>/', methods=['GET', 'DELETE', 'PUT'])
 def get_one_product(product_id):
     """returns one product with the specified id"""
-    print("made to get one product -----------------------------")
     if request.method == 'GET':
         product = Product.query.get(product_id)
         print('')
@@ -127,14 +126,10 @@ def get_one_product(product_id):
                 for img in product_image:
                     if img.id < first_img.id:
                         first_img = img
-
                 # first_img.url = form.data["url"]
                 first_img.url = form.data["image"] #aws
                 db.session.commit()
                 return product.to_dict(), 201
-
-
-
 
 @product_routes.route('/', methods=['GET', 'POST'])
 def get_all_products():
@@ -149,7 +144,6 @@ def get_all_products():
         def get_reviews(id):
             return ProductReview.query.filter(ProductReview.product_id == id).all()
         payload = {  product.id: product.to_dict() for product in productcopy }
-
         for product in payload.values():
             product_images = get_images(product['id'])
             product['ProductImages'] = [image.to_dict() for image in product_images]
@@ -159,7 +153,6 @@ def get_all_products():
                 review_sum += review.stars
             product['avgRating'] = round(review_sum / len(reviews), 1) if len(reviews) > 0 else 'New!'
         return  payload, 200
-    #POSTS NEW PRODUCT
     elif request.method == "POST":
         form = CreateProductForm()
         form['csrf_token'].data = request.cookies['csrf_token']
@@ -213,7 +206,7 @@ def get_all_products():
             )
             db.session.add(new_product)
             db.session.commit()
-            # addnig an associated image for the newly created product
+            # adding an associated image for the newly created product
             new_product_list = Product.query.all()
             new_product = new_product_list[-1]
             new_product_img = ProductImage(
@@ -223,5 +216,4 @@ def get_all_products():
             )
             db.session.add(new_product_img)
             db.session.commit()
-
             return new_product.to_dict(), 201

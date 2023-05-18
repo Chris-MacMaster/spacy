@@ -5,6 +5,7 @@ from flask_login import UserMixin
 from .following_users import FollowingUsers
 from sqlalchemy.sql import func
 from sqlalchemy.orm import validates
+from .user_shops import user_shops
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
@@ -25,6 +26,9 @@ class User(db.Model, UserMixin):
     shops = db.relationship('Shop', backref='users')
     product_reviews = db.relationship('ProductReview', backref='users')
 
+
+    # MANY TO MANY RELATIONSHIP FOR USER SHOPS, SHOPS USER IS FOLLOWING
+    shops = db.relationship("Shop", secondary=user_shops, back_populates="users")
 
     @property
     def password(self):

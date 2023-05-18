@@ -48,63 +48,63 @@ function Header({ isLoaded }) {
     return (
         <div className='header-container'>
         <div className='header'>
-            
+
         <Link to={'/'}>
         <img src='https://i.imgur.com/nJxi8TL.png' alt='logoim' className='logoim'></img>
         </Link>
-
         <Link to={`/`}><span className='logo'>spacey</span></Link>
 
         <div className='search-bar'>
-
-        <form onSubmit={handleSubmit} className='search-bar-form'>
-        <input className='header-search' id='header-search' type='text' value={parameters}
-        onChange={(e) => setParameters(e.target.value)}
-        placeholder='Search for anything in the universe'></input>
-        <div className='telescope-search'>
-        <i className="fa-solid fa-magnifying-glass" onClick={handleSubmit}></i>
-
+            <form onSubmit={handleSubmit} className='search-bar-form'>
+            <input className='header-search' id='header-search' type='text' value={parameters}
+            onChange={(e) => setParameters(e.target.value)}
+            placeholder='Search for anything in the universe'></input>
+            <div className='telescope-search'>
+            <i className="fa-solid fa-magnifying-glass" onClick={handleSubmit}></i>
         </div>
         </form>
 
 
         </div>
-        <div className='shop-manager'>
-            {user && user?.id && userShop.length ? (
-                <NavLink to={`/shops/${userShop[0].id}`} >
-                    <div className='header-tip'>Shop Manager</div>
-                <i className="fa-solid fa-store header-icons"></i>
-                </NavLink>
-            ) : (
-                <i className="fa-solid fa-store header-icons"></i>
-            )}
+
+        <div className='icons'>
+            <div className='shop-manager'>
+                {user && user?.id && userShop.length ? (
+                    <NavLink to={`/shops/${userShop[0].id}`} >
+                        <div className='header-tip'>Shop Manager</div>
+                    <i className="fa-solid fa-store header-icons"></i>
+                    </NavLink>
+                ) : (
+                    <i className="fa-solid fa-store header-icons"></i>
+                )}
+                </div>
+
+            <div className='navigation'>
+                <div className='header-tip'>User Details</div>
+            <Navigation isLoaded={isLoaded} />
+                {isLoaded && (
+                    <Switch>
+                    <Route path="/login" >
+                        <LoginFormModal />
+                    </Route>
+                    <Route path="/signup">
+                        <SignupFormModal />
+                    </Route>
+                    </Switch>)}
             </div>
 
-        <div className='navigation'>
-            <div className='header-tip'>User Details</div>
-        <Navigation isLoaded={isLoaded} />
-            {isLoaded && (
-                <Switch>
-                <Route path="/login" >
-                    <LoginFormModal />
-                </Route>
-                <Route path="/signup">
-                    <SignupFormModal />
-                </Route>
-                </Switch>)}
-        </div>
-
-            <div className='cart'>
-                {user && cartTotal && cartTotal > 0 ? (
-                <NavLink to='/cart'
-                style={{textDecoration: "none"}}>
-                <div className='number-in-cart'>{cartTotal}</div>
+                <div className='cart'>
+                    {user && cartTotal && cartTotal > 0 ? (
+                    <NavLink to='/cart'
+                    style={{textDecoration: "none"}}>
+                    <div className='number-in-cart'>{cartTotal}</div>
+                    </NavLink>
+                    ) : null}
+                <NavLink to='/cart'>
+                    <div className='header-tip'>Cart</div>
+                <i className="fa-solid fa-cart-shopping header-icons"></i>
                 </NavLink>
-                ) : null}
-            <NavLink to='/cart'>
-                <div className='header-tip'>Cart</div>
-            <i className="fa-solid fa-cart-shopping header-icons"></i>
-            </NavLink>
+                </div>
             </div>
         </div>
 

@@ -116,7 +116,7 @@ To learn more about the developers please reach out and network with us. We look
         'https://github.com/Chris-MacMaster'],
 
         ['Marc Guggenheim',
-        'coming-soon',
+        'https://www.linkedin.com/in/marc-guggenheim-270165275/',
         'https://github.com/MarcGugg'
         ]
 ```

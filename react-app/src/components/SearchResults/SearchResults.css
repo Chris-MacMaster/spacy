@@ -1,26 +1,38 @@
 /* color: rgb(130, 52, 149); */
 .search-results-div {
-    margin-left: 2rem;
+    margin-left: 1vmin;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* justify-content: center; */
+    align-content: center;
 }
 .search-result-display {
     display: flex;
     flex-direction: row;
+    width: 95vw;
     flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
 }
 .search-result-img {
-    height: 15rem;
-    width: 21rem;
-    border-radius: .2rem;
+    height: 11vmin;
+    width: 15vmin;
+    border-radius: .5vmin;
     object-fit: cover;
 }
+.search-result-image-div {
+    /* width: 15rem;
+    height: 11rem; */
+    object-fit: contain;
+}
 .est-arrival {
-    border-radius: 3rem;
-    /* height: 2rem; */
+    border-radius: 7vmin;
     width: fit-content;
-    padding: .7rem;
+    padding: 1vmin;
     margin: 1rem;
     border: black solid .1rem;
-    font-size: .8rem;
+    font-size: 1vmin;
 }
 .est-arrival-time {
     font-weight: bolder;
@@ -51,8 +63,8 @@
     color: grey;
 }
 .search-badge {
-color: rgb(130, 52, 149);
-font-size: 1.1rem;
+    color: rgb(130, 52, 149);
+    font-size: 1.1rem;
 }
 .search-star-seller {
     font-size: .8rem;
@@ -74,4 +86,44 @@ font-size: 1.1rem;
     color: black;
     font-weight: bold;
     margin: 0rem;
+}
+
+@media only screen and (max-width: 1024px){
+    .search-result-img {
+        height: 7rem;
+        width: 10rem;
+    }
+    .search-result-price,
+    .search-new-product,
+    .search-results-stars-gold,
+    .search-results-stars-black,
+    .search-more-like,
+    .search-product-name,
+    .search-star-seller {
+        font-size: .7rem;
+    }
+    .search-badge,
+    .search-result-shop  {
+        font-size: .9rem;
+    }
+}
+
+@media only screen and (max-width: 480px){
+    .search-result-img {
+        height: 5rem;
+        width: 8rem;
+    }
+    .search-result-price,
+    .search-new-product,
+    .search-results-stars-gold,
+    .search-results-stars-black,
+    .search-more-like,
+    .search-product-name,
+    .search-star-seller {
+        font-size: .5rem;
+    }
+    .search-badge,
+    .search-result-shop  {
+        font-size: .7rem;
+    }
 }

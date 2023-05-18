@@ -65,14 +65,14 @@ function EditReviewForm() {
                 <div className='productPic'>
                     <img src={reviewToEdit.product.ProductImages[0].url} alt='not found'/>
                     <div className="productName">
-                     <p>{reviewToEdit.product.Shop.name}</p>
-                    <p style={{fontWeight:'bolder', fontSize:'larger'}}>{reviewToEdit.product.name}</p>
+                     <p className="review-form-text">{reviewToEdit.product.Shop.name}</p>
+                    <h3 className="review-form-text review-form-item-name">{reviewToEdit.product.name}</h3>
                     </div>
                 </div>
             </div>
             <h2>My review</h2>
-            <p>What did you like about this product?</p>
-            <p>Help others by sending your feedback.</p>
+            <p className="review-form-text">What did you like about this product?</p>
+            <p className="review-form-text">Help others by sending your feedback.</p>
             <div>
                 {[1, 2, 3, 4, 5].map((ele, i) => (
                     <span className={`review-span`}

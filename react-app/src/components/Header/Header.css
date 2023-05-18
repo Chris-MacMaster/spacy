@@ -1,14 +1,14 @@
 
 .header-container {
-    border-bottom: 1px solid #ccc;
+    border-bottom: 2px solid #ccc;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     position: relative;
     background-color: white;
-    height: 7rem;
-    z-index: 100;
+    /* height: 7rem; */
+    z-index: 2;
     top: 0;
     left: 0;
     right: 0;
@@ -21,9 +21,8 @@
 }
 .logoim {
     object-fit: cover;
-    height: 5rem;
-    width: 5rem;
-    margin-left: 2rem;
+    height: 7vmin;
+    width: 7vmin;
 }
 .header-tabs {
     display: flex;
@@ -36,11 +35,9 @@
 }
 .logo {
     font-family: 'Libre Baskerville', serif;
-    font-size: 2.5rem;
-    font-size: 3rem;
+    font-size: 5vmin;
     align-self: center;
     color: rgb(222, 103, 6);
-    margin-left: 3rem;
     flex-grow: 1;
 }
 .header-search {
@@ -48,38 +45,41 @@
     min-width: 40vw;
     border: none;
     background-color: white;
-    /* marc */
-    height: 1.8rem;
+    /* height: min(3vmin) max(1.5rem); */
+    align-content: center;
     z-index: 1;
     border-radius: 5rem;
+    padding-left: 1rem;
+    font-size: min(1.5vmin, 1.5rem);
 }
 .search-bar {
     display: flex;
     border: darkslategray solid 2px;
     border-radius: 3rem;
-    height: 2rem;
+    height: min(3vmin, 1.5rem);
+    /* font-size: min(3vmin, 1rem); */
     margin-left: .5rem;
     margin-right: .5rem;
     transition: .6s;
     z-index: 1;
 }
 .telescope-search{
-    padding-top: .4em;
-    padding-left: .5rem;
-    padding-right: .5rem;
+    /* padding-top: .5vmin; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    padding-right: 1vmin;
+    padding-left: 1vmin;
     border-radius: 0% 1rem 1rem 0%;
 }
 .header-icons {
-    font-size: 1.5rem;
+    font-size: 2.5vmin;
     color: #A0A7B2;
 }
 /* marc */
 .telescope-search:hover{
     cursor: pointer;
-}
-.cart {
-    margin-right: 2rem;
-    font-size: 1.5rem;
 }
 .header a {
     text-decoration: none;
@@ -90,8 +90,9 @@
     z-index: 0;
 }
 .fa-magnifying-glass{
-    font-size: 1.3rem;
+    font-size: min(2.5vmin, 1.2rem);
     text-align: right;
+    align-content: center;
     right: 20vw;
     transition: .6s;
 }
@@ -157,17 +158,40 @@ div.navigation:hover {
     position: absolute;
     background-color: rgb(180, 33, 33, .9);
     color: white;
-    font-size: .8rem;
+    font-size: 1.5vmin;
     font-weight: bolder;
     width: fit-content;
-    height: 1rem;
     padding: .2rem;
     border-radius: 3rem;
     z-index: 100;
-    right:0rem;
-    top: -.8rem
+    right: -1vmin;
+    top: -1vmin;
+}
+.fa-cart-shopping.header-icons,
+.number-in-cart {
+    margin-right: 1vmin;
 }
 .cart-total {
     z-index: 101;
     position: absolute;
+}
+
+@media only screen and (max-width: 480px) {
+    /* .header {
+        flex-direction: column;
+    }
+    .icons {
+        display: flex;
+    } */
+  }
+@media only screen and (max-width: 1024px){
+    .header-tabs {
+        display: none;
+        content: '';
+    }
+}
+@media only screen and (max-width: 768px){
+    .number-in-cart {
+        top: 0vmin;
+    }
 }

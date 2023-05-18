@@ -87,9 +87,9 @@ export default function ProductCreateForm() {
                         <label className='cp-form-label cp-title q-text' >
                             Title
                         </label>
-                        <p className='create-shop-grey'>
+                        <div className='create-shop-grey'>
                             Choose a name for your product. Incldue keywords that a buyer would use to search for your item.
-                        </p>
+                        </div>
                     </div>
                     <div className='input-div'>
                         <div className='cp-field-div'>
@@ -112,12 +112,12 @@ export default function ProductCreateForm() {
                         <label className='cp-form-label cp-description q-text' >
                             Description
                         </label>
-                        <p className='cp-grey-text sub-q-text create-shop-grey'>
+                        <div className='cp-grey-text sub-q-text create-shop-grey'>
                                 Start with a brief overview that describes your item's findes feature. Shopper will only see the first few lines of your description at first, so make it count!
-                            </p>
-                        <p className='cp-grey-text sub-q-text create-shop-grey'>
+                            </div>
+                        <div className='cp-grey-text sub-q-text create-shop-grey'>
                                 Not sure what else to say? Shoppers also like hearing about your process, and the story behind the item!
-                            </p>
+                            </div>
                         </div>
                     <div className='cp-field-div description-text'>
                         <textarea className='product-input input-field description-input' type="text-area"
@@ -138,9 +138,9 @@ export default function ProductCreateForm() {
                         <label className='cp-form-label cp-available q-text' >
                             Available
                         </label>
-                        <p className='cp-grey-text sub-q-text create-shop-grey'>
+                        <div className='cp-grey-text sub-q-text create-shop-grey'>
                             How many do you currently have in stock?
-                        </p>
+                        </div>
                     </div>
                     <div className='cp-field-div'>
                         <input className='product-input input-field' type="number"
@@ -160,9 +160,9 @@ export default function ProductCreateForm() {
                         <label className='cp-form-label cp-price q-text' >
                             Price
                         </label>
-                        <p className='cp-form-label sub-q-text create-shop-grey'>
+                        <div className='cp-form-label sub-q-text create-shop-grey'>
                             Please dont use denominations other than Empire or New Republic Credits
-                        </p>
+                        </div>
                     </div>
                     <div className='cp-form-field'>
                         <input className='product-input input-field' type="number"
@@ -183,7 +183,7 @@ export default function ProductCreateForm() {
                             <label className='product-label q-text' >
                                 Category
                             </label>
-                            <p className='cp-grey-text sub-q-text create-shop-grey'>Select a category from the options below.</p>
+                            <div className='cp-grey-text sub-q-text create-shop-grey'>Select a category from the options below.</div>
                         </div>
                         <div className='cp-field-div'>
                             <select className='product-category-select' name='category' onChange={(e) => setCategory(e.target.value)}>
@@ -210,9 +210,9 @@ export default function ProductCreateForm() {
                                 <label className='product-label q-text' >
                                     Free Shipping
                                 </label>
-                                <p className='cp-form-label sub-q-text create-shop-grey check-box-text'>
+                                <div className='cp-form-label sub-q-text create-shop-grey check-box-text'>
                                     Check the box to indicate whether or not your product is shipped for free.
-                                </p>
+                                </div>
                                 {/* Either true or false*/}
                                 <div className='cp-field-div'>
                                 <input className='product-input input-field check-box' type="checkbox"
@@ -235,9 +235,9 @@ export default function ProductCreateForm() {
                                 <label className='product-label q-text' >
                                     Image URL
                                 </label>
-                                <p className='cp-grey-text sub-q-text create-shop-grey'>
+                                <div className='cp-grey-text sub-q-text create-shop-grey'>
                                     Provide a url, pictures are necessary! Nobody wants to buy something sight unseen!
-                                </p>
+                                </div>
                             </div>
                             <input className='product-input input-field' type="file"
                                     accept = 'image/*'

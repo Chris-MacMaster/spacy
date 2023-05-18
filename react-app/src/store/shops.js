@@ -1,5 +1,5 @@
 const LOAD_SHOPS = 'shops/LOAD'
-// const LOAD_USER_SHOPS = 'shops/LOAD_USER_SHOPS'
+const LOAD_FOLLOWED_SHOPS = 'shops/FOLLOWED/LOAD'
 const DELETE_SHOP = 'shops/DELETE_SHOP'
 const LOAD_ONE_SHOP = 'shops/LOAD_ONE_SHOP'
 const POST_SHOP = 'shops/POST_SHOP'
@@ -11,6 +11,14 @@ export const actionLoadShops = shops => {
         shops
     }
 }
+
+export const actionLoadFollowedShops = shops  => {
+    return {
+        type: LOAD_FOLLOWED_SHOPS,
+        shops
+    }
+}
+
 export const loadOneShop = shop => {
     return {
         type: LOAD_ONE_SHOP,
@@ -43,6 +51,16 @@ export const fetchShops = () => async dispatch => {
         dispatch(actionLoadShops(shops))
     }
 }
+
+// Shops user follows
+export const fetchFollowedShops = () => async dispatch => {
+    const response = await fetch('/api/shops/current-followed')
+    if (response.ok) {
+        const shops = await response.json()
+        dispatch(actionLoadFollowedShops(shops))
+    }
+}
+
 //shop details
 export const fetchOneShop = id => async dispatch => {
     const response = await fetch(`/api/shops/${id}`)
@@ -114,15 +132,17 @@ const initialState = {}
 export default function shopReducer(state = initialState, action) {
     switch (action.type) {
         case LOAD_SHOPS:
-            return {...state, allShops : { ...state.allShops, ...action.shops }, singleShop : { ...state.singleShop } }
+            return {...state, allShops : { ...state.allShops, ...action.shops }, singleShop : { ...state.singleShop }, followedShops: {...state.followedShops} }
+        case LOAD_FOLLOWED_SHOPS:
+            return { ...state, allShops: { ...state.allShops }, singleShop: { ...state.singleShop }, followedShops: { ...state.followedShops, ...action.shops } }
         case LOAD_ONE_SHOP:
-            return {...state, allShops: { ...state.allShops }, singleShop: { ...action.shop}}
+            return { ...state, allShops: { ...state.allShops }, singleShop: { ...action.shop }, followedShops: { ...state.followedShops } }
         case POST_SHOP:
-            return {...state, allShops : { ...state.allShops, [action.newShop.id]: action.newShop }, singleShop : { ...state.singleShop } }
+            return { ...state, allShops: { ...state.allShops, [action.newShop.id]: action.newShop }, singleShop: { ...state.singleShop }, followedShops: { ...state.followedShops } }
         case EDIT_SHOP:
-            return {...state, allShops : { ...state.allShops, [action.edittedShop.id]: action.edittedShop }, singleShop : { ...state.singleShop } }
+            return { ...state, allShops: { ...state.allShops, [action.edittedShop.id]: action.edittedShop }, singleShop: { ...state.singleShop }, followedShops: { ...state.followedShops } }
         case DELETE_SHOP:
-            const withDeleted = { ...state, allShops: { ...state.allShops }, singleShop: { ...state.singleShop } }
+            const withDeleted = { ...state, allShops: { ...state.allShops }, singleShop: { ...state.singleShop }, followedShops: { ...state.followedShops } }
             delete withDeleted.allShops[String(action.deleted.id)]
             return withDeleted
         default: return state

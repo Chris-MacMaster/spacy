@@ -1,38 +1,45 @@
+.shop-page {
+    left: 0rem;
+    right: 0rem;
+}
 .shop-header {
-    margin-top: 2rem;
+    padding: 4vmin;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     background-color: rgb(242, 242, 242);
-    margin-left: 2rem;
-    margin-right: 2rem;
 }
 .shoplogo {
     object-fit: cover;
-    height: 8em;
-    width: 8rem;
-    border-radius: .5rem;
+    max-height: 8vw;
+    max-width: 8vw;
+    min-width: 10vmin;
+    min-height: 10vmin;
+    border-radius: 1vmin;
 }
 .shop-businesscard  {
     display: flex;
     flex-direction: row;
-    margin-left: 1rem;
 }
 .businesscard-title {
     font-family: 'Marcellus', serif;
-    line-height: 1.5;
+    line-height: 3vmin;
+    margin-bottom: 2vmin;
+    font-size: 3vmin;
+    margin-top: 0rem;
 }
 .shop-businesscard-info {
-    margin-left: 1rem;
-    width: 20rem;
+    margin-left: 2vmin;
+    width: 22vw;
+    min-width: 8rem;
 }
 .sanserif-text {
     font-family: 'Mulish', sans-serif;
-    font-size: .8rem;
-    line-height: 1rem;
+    font-size: 1.5vmin;
+    line-height: 1.5vmin;
 }
 .sanserif-text-location {
-    margin-top: 1rem;
+    margin-top: 2vmin;
 }
 .starseller {
     color: rgb(130, 52, 149);
@@ -40,68 +47,71 @@
 }
 .accolades {
     font-family: 'Mulish', sans-serif;
-    font-size: .8rem;
-    max-width: 20rem;
-    margin: 2rem;
+    margin: .5rem;
+}
+.accolades-container {
+    font-size: 1.5vmin;
+    display: flex;
+    flex-direction: row;
 }
 .purple-icon {
+    font-size: 2vmin;
     color: rgb(130, 52, 149);
-    font-size: 1.2rem;
+    margin-right: 1vmin;
 }
 .fa-message {
-    font-size: 1rem
+    font-size: 2vmin
 }
 .bold-text {
     font-weight: bolder;
-    font-size: .9rem;
+    font-size: 1.7vmin;
 }
 .shop-owner {
     font-family: 'Mulish', sans-serif;
     text-align: center;
     line-height: 1.5rem;
+    font-size: 2vmin;
 }
 .contact-shop-owner {
-    width: 7rem;
+    width: 14vmin;
     border: 1px solid black;
     border-radius: 5rem;
+    font-size: 2vmin;
 }
 .contact-shop-owner:hover {
     cursor: pointer;
 }
 .shop-owner-img {
-    border-radius: 5rem;
+    border-radius: 12vmin;
     object-fit: cover;
-    height: 4em;
-    width: 4rem;
+    height: 10vmin;
+    width: 10vmin;
 }
 .message-shop-owner {
     display: flex;
     flex-direction: row;
 }
 .favorite-shop {
-    border: black solid .15rem;
-    border-radius: 5rem;
-    width: 13rem;
+    border: black solid .2vmin;
+    border-radius: 12vmin;
+    width: 17vw;
+    min-width: 7rem;
     text-align: center;
-    /* font-size: .8rem; */
+    font-size: 2vmin;
     font-family: 'Mulish', sans-serif;
-    padding: .5rem;
-    box-shadow: 0rem 0rem .5rem lightslategray;
-    margin: 1rem;
-    margin-left: 10rem;
+    padding: .5vmin;
+    box-shadow: 0rem 0rem 1vmin lightslategray;
+    margin: 3vh;
     transition: .1s ease-in-out;
 }
 
 .favorite-shop:hover {
-    background-color: darkgray;
-    /* box-shadow: 0rem 0rem 2rem black; */
-}
-h3 {
-    font-family: 'Mulish', sans-serif;
+    outline: min( .5vmin, .3rem) ridge aqua;
 }
 .mapped-categories-title {
-    margin-left: 2rem;
+    font-family: 'Mulish', sans-serif;
 }
+
 .featured-items {
     margin-bottom: 0rem;
 }
@@ -109,15 +119,18 @@ h3 {
     font-family: 'Mulish', sans-serif;
 }
 .item-cards {
-    display: grid;
-    grid-template-columns: auto auto auto auto;
-    max-width: 190rem;
-    gap: 1rem;
-    left: 16rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1vmin;
+    left: 16vw;
 }
-.item-category-sidebar{
-    width: 15rem;
+.item-category-sidebar {
+    width: 24vmin;
+    line-height: 4vmin;
+    font-size: 2vmin;
 }
+
 .mapped-categories {
     border-right: solid .2rem grey;
     padding-bottom: 1rem;
@@ -127,9 +140,7 @@ h3 {
     margin-right: .5rem;
 }
 .category{
-    margin-top: 1rem;
     transition: opacity 0.3s;
-    margin-left: 2rem;
 }
 .category::after {
     border-bottom: none;
@@ -137,22 +148,26 @@ h3 {
 .category:hover {
     box-shadow: 0 .2rem 0 grey;
 }
-.items-section{
+.items-section {
     display: flex;
     flex-direction: row;
-    gap: 2rem;
-    margin-top: 3rem;
+    gap: 2vmin;
+    margin-top: 3vh;
 }
 .column-buttons {
     text-align: center;
-    width: 13rem;
-    border: solid .1rem grey;
-    margin: 1rem;
-    border-radius: .3rem;
+    width: 13vw;
+    border: solid .1vmin grey;
+    border-radius: 1vmin;
+    margin-top: 2vmin;
     transition: opacity 0.3s;
+    cursor: pointer;
+    transition: .1s ease-in-out;
+    font-size: 2vmin;
 }
-.column-buttons:hover {
-    background-color: grey;
+.column-buttons:hover,
+.contact-shop-owner:hover {
+    outline: min(.5vmin, .3rem) ridge aqua;
 }
 .column-buttons::after {
     background-color: none;
@@ -166,19 +181,17 @@ hr {
 }
 .review-title {
     margin-left: 20vw;
-    font-size: 2rem;
-    margin-bottom: 2rem;
+    font-size: 4vmin;
+    margin-bottom: 4vh;
 }
 .fa-flag, .fa-thumbs-up {
     font-size: .7rem;
+    margin-right: .5rem;
 }
 .feedback {
     display: flex;
     flex-direction: row;
-}
-
-.report {
-    margin-left: 10rem;
+    justify-content: space-between;
 }
 .mapping-reviews {
     width: 60vw;
@@ -193,25 +206,32 @@ hr {
     position: absolute;
     left: 12vw;
 }
-.review-paragraph {
-    margin-top: 2rem;
+.helpful,
+.report,
+.username,
+p.review-paragraph {
+    font-size: min(2vmin);
 }
 .product-ref-img{
     object-fit: cover;
-    height: 8rem;
-    width: 8rem;
+    height: 17vw;
+    width: 17vw;
+    min-width: 5rem;
+    min-height: 5rem;
     border-radius: .5rem;
-    margin: 2rem;
+    margin: 2vw;
 }
 .review-image {
     object-fit: cover;
-    height: 18rem;
-    width: 18rem;
+    height: 23vw;
+    width: 23vw;
+    min-height: 5rem;
+    min-width: 5rem;
     margin-top: 1rem;
-    margin: 2rem;
+    margin: 2vw;
 }
 .gold-star, .blank-star {
-    font-size: 1rem;
+    font-size: 2.4vmin;
 }
 .gold-star {
     color: goldenrod
@@ -229,7 +249,20 @@ hr {
     text-align: center;
 }
 .reviewed-item-name{
-    margin-left: 10vw;
-    margin-top: 3rem;
+    margin-left: 10vmin;
+    margin-top: 5vmin;
+    font-size: min(2.5vmin, 1.7rem);
     align-items: center;
+}
+
+@media only screen and (max-width: 768px){
+    .accolades-container {
+        display: block;
+    }
+    .helpful,
+    .report,
+    .username,
+    p.review-paragraph {
+        font-size: min(2.5vmin);
+    }
 }

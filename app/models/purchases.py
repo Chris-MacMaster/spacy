@@ -12,6 +12,7 @@ class Purchase(db.Model):
     quantity = db.Column(db.Integer, nullable=False, default=1)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
     product_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('products.id')))
+    shop_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('shops.id')))
 
     created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
     updated_at = db.Column(db.DateTime(timezone=True), onupdate=func.now())
