@@ -34,8 +34,8 @@
     transition: .2s ease-in-out;
 }
 .top-banner-suggestions:hover {
-    box-shadow: inset 0px -.3vmin rgb(64, 64, 64);
-    scale: 1.08;
+    box-shadow: 0rem .3rem rgb(64, 64, 64);
+    scale: 1.10;
 }
 div.top-banner-suggestions > p {
     font-family: 'Mulish', sans-serif;
