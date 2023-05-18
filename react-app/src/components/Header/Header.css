@@ -177,8 +177,8 @@ div.navigation:hover {
     position: absolute;
 }
 
-.profileburger{
-   /* background-color: red; */
+.profileburger:hover{
+ cursor: pointer;
 }
 
 
