@@ -3,6 +3,8 @@ from app.models import db, Product, Shop, ShopImage, ProductImage, User, Product
 from flask_login import current_user, login_required
 import copy
 shop_routes = Blueprint('/shops', __name__)
+from app.api.AWS_helpers import get_unique_filename, upload_file_to_s3, remove_file_from_s3
+
 from app.forms import CreateShopForm
 
 @shop_routes.route('/', methods=['GET', 'POST'])
@@ -38,6 +40,14 @@ def get_all_shops():
         if not form.validate_on_submit():
             return {'error': 'The provided data could not be validated'}
         if form.validate_on_submit():
+
+            image = form.data["image"] #aws
+            image.filename = get_unique_filename(image.filename)
+            upload = upload_file_to_s3(image)
+            img_url = None
+            if 'url' in upload:
+                img_url = upload['url']
+            
             new_shop = Shop(
                 name = form.data['name'],
                 owner_id = current_user.get_id(),
@@ -54,7 +64,8 @@ def get_all_shops():
             db.session.commit()
             recentshop = db.session.query(Shop).order_by(Shop.id.desc()).first()
             new_shop_img = ShopImage(
-                url = form.data['url'],
+                # url = form.data['url'],
+                url = img_url, #aws
                 shop_id = recentshop.id
             )
             db.session.add(new_shop_img)
@@ -71,16 +82,35 @@ def delete_one_shop(shop_id):
         if shop == None:
             return {"errors": "Cannot find Shop with specified id"}
         elif shop.owner_id == current_user.id:
+            aws_shop_image = copy.deepcopy(shop_image).to_dict()
             db.session.delete(shop)
+            remove_file_from_s3(aws_shop_image['url'])
             db.session.commit()
             return shop.to_dict(), 200
         elif shop.owner_id != current_user.id:
             return {"errors": "Only owner may delete their own shop"}
     elif current_user.is_authenticated and request.method == 'PUT':
+        
         shop = Shop.query.get(shop_id)
+        # shop_image = ShopImage.query.filter(ShopImage.shop_id == shop_id).first()
+        # db.session.delete(shop_image)
         form = CreateShopForm()
+        
         form['csrf_token'].data = request.cookies['csrf_token']
         if form.validate_on_submit():
+
+            image = form.data["image"] #aws
+            image.filename = get_unique_filename(image.filename)
+            upload = upload_file_to_s3(image)
+            img_url = None
+            if 'url' in upload:
+                img_url = upload['url']
+
+            img_delete = form.data['ogImage']
+            remove_file_from_s3(img_delete)
+            # remove_file_from_s3()
+
+
             shop.name = form.data['name']
             shop.street_address = form.data['street_address']
             shop.city = form.data['city']
@@ -90,9 +120,20 @@ def delete_one_shop(shop_id):
             shop.category = form.data['category']
             shop.policies = form.data['policies']
             shop_image = ShopImage.query.filter(ShopImage.shop_id == shop_id).first()
-            shop_image.url = form.data['url']
+            db.session.delete(shop_image)
+
+            new_shop_img = ShopImage(
+                # url = form.data['url'],
+                url = img_url, #aws
+                shop_id = shop_id
+            )
+
+            db.session.add(new_shop_img)
+
+            # shop_image = ShopImage.query.filter(ShopImage.shop_id == shop_id).first()
+            # shop_image.url = form.data['url']
             db.session.commit()
-            return shop.to_dict, 201
+            return shop.to_dict(), 201
 
 @shop_routes.route('/<int:shop_id>')
 def get_shop_by_id(shop_id):

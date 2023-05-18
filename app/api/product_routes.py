@@ -5,7 +5,7 @@ import copy
 from datetime import datetime
 from app.forms import CreateProductForm
 
-from app.api.AWS_helpers import get_unique_filename, upload_file_to_s3
+from app.api.AWS_helpers import get_unique_filename, upload_file_to_s3, remove_file_from_s3
 
 product_routes = Blueprint('/products', __name__)
 
@@ -14,10 +14,45 @@ def get_one_product(product_id):
     """returns one product with the specified id"""
     if request.method == 'GET':
         product = Product.query.get(product_id)
+        print('')
+        print('')
+        print('')
+        print('')
+        print('')
+        print('CURRENT PRODUCT', product.to_dict())
+        print('')
+        print('')
+        print('')
+        print('')
+        print('')
         productcopy = product.to_dict()
         shop = Shop.query.get(product.shop_id)
         images = ProductImage.query.filter(ProductImage.product_id==product_id).all()
+        print('')
+        print('')
+        print('')
+        print('')
+        print('')
+        print('')
+        print('IMAGES', [image.to_dict() for image in images])
+        print('')
+        print('')
+        print('')
+        print('')
+        print('')
+        print('')
         productcopy['ProductImages'] = [image.to_dict() for image in images]
+        print('')
+        print('')
+        print('')
+        print('')
+        print('')
+        print('IMAGES', productcopy)
+        print('')
+        print('')
+        print('')
+        print('')
+        print('')
         productcopy['Shop'] = shop.to_dict()
         def get_reviews(id):
             reviews = ProductReview.query.filter(ProductReview.product_id == id).all()
@@ -32,11 +67,42 @@ def get_one_product(product_id):
     elif request.method == 'DELETE':
         if current_user.is_authenticated:
             product = Product.query.filter_by(id=product_id).first()
+            images = ProductImage.query.filter(ProductImage.product_id == product_id).all()
             if product == None:
                 return { 'errors': "Cannot find product with specified id"}
             #insert owner validation or front end conditional displays?
             else:
+                print('')
+                print('')
+                print('')
+                print('')
+                print('')
+                print('')
+                # print('images', [image.url for image in images])
+                print('')
+                print('')
+                print('')
+                print('')
+                print('')
+                images_delete = [image.to_dict() for image in images]
                 db.session.delete(product)
+                print('')
+                print('')
+                print('')
+                print('')
+                print('')
+                print('')
+                print('IMAGES', images_delete)
+                print('')
+                print('')
+                print('')
+                print('')
+                print('')
+                for image in images_delete:
+                    # print('IMAGE', images_delete)
+                    remove_file_from_s3(image['url'])
+                    # print('IMAGES DELETE')
+
                 db.session.commit()
                 return product.to_dict(), 200
         return { 'errors': 'Not authenticated'}

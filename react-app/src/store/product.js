@@ -118,10 +118,13 @@ export const editProduct = (productBody, productId) => async dispatch => {
 }
 
 export const deleteProduct = (id) => async dispatch => {
-    const method = "DELETE"
-    const headers = { "Content-Type": "application/json" }
-    const options = { method, headers }
-    const response = await fetch(`/api/products/${id}/`, options)
+    // const method = "DELETE"
+    // const headers = { "Content-Type": "application/json" }
+    // const options = { method, headers }
+    const response = await fetch(`/api/products/${id}/`, {
+        method: 'DELETE',
+        headers: {'Content-Type': 'application/json'}
+    })
     if (response.ok) {
         const deleteData = await response.json()
         dispatch(actionDeleteProduct(id))
