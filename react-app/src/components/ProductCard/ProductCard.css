@@ -30,13 +30,13 @@
     text-align: end;
     left: 17vmin;
     font-size: 1.5vmin;
-    position: absolute;
+    /* position: absolute; */
 }
 .product-tooltip-price {
     top: 19vmin;
     left: 1vmin;
     font-size: 1.5vmin;
-    position: absolute;
+    /* position: absolute; */
 }
 .product-tool-tips::after {
     content: '';
