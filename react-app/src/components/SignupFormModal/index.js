@@ -60,9 +60,6 @@ function SignupFormModal() {
 			<form onSubmit={handleSubmit}
 			className="signup-form">
 
-				{/* <label className="signup-label">
-					Email
-				</label> */}
 					<input
 						type="text"
 						value={email}
@@ -71,9 +68,6 @@ function SignupFormModal() {
 						className="signup-input"
 						placeholder="Email"
 					/>
-				{/* <label className="signup-label">
-					Username
-				</label> */}
 					<input
 						type="text"
 						value={username}
@@ -82,10 +76,7 @@ function SignupFormModal() {
 						className="signup-input"
 						placeholder="Username"
 					/>
-{/*
-				<label className="signup-label">
-					First Name
-				</label> */}
+
 				<input
 					type="text"
 					value={firstName}
@@ -94,12 +85,7 @@ function SignupFormModal() {
 					className="signup-input"
 					placeholder="First Name"
 				/>
-				{/* <label className="signup-label"></label> */}
 
-
-				{/* <label className="signup-label">
-					Last Name
-				</label> */}
 				<input
 					type="text"
 					value={lastName}
@@ -108,11 +94,7 @@ function SignupFormModal() {
 					className="signup-input"
 					placeholder="Last Name"
 				/>
-				{/* <label className="signup-label"></label>
 
-				<label className="signup-label">
-					Bio
-				</label> */}
 				<textarea
 					type="text"
 					value={bio}
@@ -121,11 +103,6 @@ function SignupFormModal() {
 					className="signup-input signup-bio"
 					placeholder="Please enter a short bio"
 				/>
-				{/* <label className="signup-label"></label>
-
-				<label className="signup-label">
-					Password
-				</label> */}
 					<input
 						type="password"
 						value={password}
@@ -134,9 +111,7 @@ function SignupFormModal() {
 						className="signup-input"
 						placeholder="Password"
 					/>
-				{/* <label className="signup-label">
-					Confirm Password
-				</label> */}
+
 					<input
 						type="password"
 						value={confirmPassword}

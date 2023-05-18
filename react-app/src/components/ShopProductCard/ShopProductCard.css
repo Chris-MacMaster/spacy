@@ -16,10 +16,6 @@
     border-radius: .5rem;
     position: relative;
 }
-.shop-product-name {
-    margin-top: 0rem;
-    font-size: 1.3rem;
-}
 .shop-product-price {
     font-weight: bolder;
 }
@@ -32,7 +28,9 @@ a.product-name, a.shop-product-price {
 }
 .shop-product-name, .shop-product-price {
     margin-top: 0;
-    font-size: .9rem;
+    font-size: 1.5vmin;
+    line-height: 2vmin;
+    width: 16vw;
 }
 .shop-product-info {
     margin-left: .5rem;
@@ -48,81 +46,23 @@ a.product-name, a.shop-product-price {
 }
 #shop-delete-button,
 #shop-edit-button {
-    padding: .2rem;
+    padding: .2vmin;
     margin: 0;
     text-decoration: none;
     border: grey .1rem solid;
     color: black;
     font-weight: 600;
-    font-size: .8rem;
-    border-radius: .3rem;
-    margin-left: .2rem;
+    font-size: 1vmin;
+    border-radius: .5vmin;
+    margin-left: .5vmin;
     cursor: pointer;
     transition: ease-in-out .3s;
 }
 #shop-delete-button:hover,
 #shop-edit-button:hover {
-    box-shadow: 0rem 0rem .5rem black;
+    box-shadow: 0rem 0rem 1vmin black;
 }
 #shop-delete-button:active,
 #shop-edit-button:active {
     background-color: red;
-}
-/* #shop-delete-button {
-    background-color: rgb(185, 28, 28);
-}
-#shop-edit-button {
-    background-color: rgb(22, 22, 142);
-} */
-/* #shop-edit-button {
-    margin: 0;
-    text-decoration: none;
-} */
-
-@media only screen and (max-width: 1200px){
-    /* .shop-product-card {
-        height: 13rem;
-        width: 13rem;
-    }
-    .shop-product-preview-image {
-        height: 10rem;
-        width: 13rem;
-    } */
-}
-@media only screen and (max-width: 1024px){
-    /* .shop-product-card {
-        height: 11rem;
-        width: 10rem;
-    }
-    .shop-product-preview-image {
-        height: 8rem;
-        width: 10rem;
-    } */
-    #shop-delete-button,
-    #shop-edit-button,
-    .shop-product-name,
-    .shop-product-price {
-        font-size: .6rem;
-    }
-}
-@media only screen and (max-width: 768px){
-    .shop-product-card {
-        /* height: 8.5rem;
-        width: 8rem; */
-        border-radius: .2rem;
-    }
-    .shop-product-preview-image {
-        /* height: 6rem;
-        width: 8rem; */
-        border-radius: .2rem;
-    }
-    #shop-delete-button,
-    #shop-edit-button,
-    .shop-product-name,
-    .shop-product-price {
-        font-size: .5rem;
-    }
-}
-@media only screen and (max-width: 480px){
-
 }

@@ -59,58 +59,58 @@ function ProfileButton({ user }) {
           </div>
 
           <NavLink to={`/users/${user.id}`}><div>
-            <p>{user.firstName} {user.lastName}</p>
-            <p className="subtext">View your profile</p>
+            <p className="drop-down-user-name">{user.firstName} {user.lastName}</p>
+            <div className="subtext">View your profile</div>
           </div>
           </NavLink>
           </div>
-            <p>
+            <div>
               <span className="profile-drop-item" >
                 <i className="fa-solid fa-clipboard-list drop-down-icons"></i>
                 </span>
               <span className="profile-drop-text">Purchases and reviews</span>
-            </p>
-            {/* <p>
+            </div>
+            <div>
               <span className="profile-drop-item" >
                 <i className="fa-solid fa-gift drop-down-icons"></i>
               </span>
               <span className="profile-drop-text">Gift card balance: $0.00</span>
-            </p> */}
-            {/* <p>
+              </div>
+            <div>
               <span className="profile-drop-item" >
                 <i className="fa-solid fa-message drop-down-icons"></i>
               </span>
               <span className="profile-drop-text">Messages</span>
-            </p> */}
-            {/* <p>
+            </div>
+            <div>
               <span className="profile-drop-item" >
                 <i className="fa-solid fa-tag drop-down-icons"></i>
               </span>
               <span className="profile-drop-text">Your offers</span>
-            </p> */}
-            {/* <p>
+            </div>
+            <div>
               <span className="profile-drop-item" >
                 <i className="fa-solid fa-leaf drop-down-icons"></i>
               </span>
               <span className="profile-drop-text">Your impact</span>
-            </p> */}
-            <p>
+            </div>
+            <div>
               <span className="profile-drop-item" >
                 <i className="fa-solid fa-gear drop-down-icons"></i>
               </span>
               <span className="profile-drop-text">Account Settings</span>
-            </p>
-            <NavLink to={`/users/${user.id}`}>
-            <p>
+            </div>
+            <NavLink to={`/users/$divuser.id}`}>
+            <div>
               <span className="profile-drop-item" >
                 <i className="fa-solid fa-store drop-down-icons"></i>
               </span>
           <span className="profile-drop-text">Sell on Spacey</span>
-            </p>
+            </div>
             </NavLink>
-            <p>
+            <div>
               <button onClick={logout}><i className="fa-solid fa-right-from-bracket drop-down-icons profile-drop-item" /><span className="signout-button" >Sign Out</span></button>
-            </p>
+            </div>
           </>
         ) : (
           <>

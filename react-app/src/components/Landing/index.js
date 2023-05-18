@@ -39,7 +39,7 @@ function Landing({ isLoaded }) {
     const rand3 = products[2] ? products[2] : others[Math.floor(Math.random()*others.length)]
     const rand4 = products[14] ? products[14] : others[Math.floor(Math.random()*others.length)]
     const data = Object.values(products).sort((a,b) => Date.parse(b.createdAt) - Date.parse(a.createdAt)).slice(0, 6)
-    
+
     return (
         <div className='landing-div'>
         <div className='landing-header'>
@@ -161,7 +161,7 @@ function Landing({ isLoaded }) {
 
             </div>
             <div className='what-is-etzy'>
-                <h1>What is Spacey</h1>
+                <h1 className='what-is-title'>What is Spacey</h1>
                 <div className='column-container'>
                 <div className='text-column'>
                     <h2 className='column-title'>A community of explorers and curious minds</h2>

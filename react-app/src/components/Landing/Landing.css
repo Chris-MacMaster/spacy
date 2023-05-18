@@ -17,7 +17,6 @@
     align-items: center;
     gap: 2vw;
     max-width: 75rem;
-    /* margin-left: 10vw; */
 }
 div.top-banner-suggestions > p {
     font-family: 'Mulish', sans-serif;
@@ -159,27 +158,33 @@ h3.shops-youll-love-title {
 }
 .column-container {
     font-family: 'Mulish', sans-serif;
-    display: flex;
+    display: grid;
+    grid-template-columns: auto auto auto;
     flex-direction: row;
     max-width: 1200px;
-    gap: 5rem;
+    gap: 3vmin;
     justify-content: center;
     margin: 0 auto;
-    line-height: 2rem;
-    /* margin-left: 2rem;
-    margin-right: 2rem; */
+    line-height: 2vmin;
 }
-.column-title {
-    margin-bottom: 3rem;
-}
+
 .what-is-etzy > h2 {
     text-align: center;
     font-family: 'Mulish', sans-serif;
 }
 .fa-question {
-    font-size: 1rem;
+    font-size: 1.7vmin;
 }
-
+.have-questions,
+.what-is-title,
+.column-title {
+    font-size: 4vmin;
+    line-height: 5vmin;
+}
+.what-is-paragraph {
+    font-size: 2vmin;
+    line-height: 4vmin;
+}
 /*
 @media only screen and (max-width: 1600px){
     .suggest-image,
@@ -391,11 +396,11 @@ h3.shops-youll-love-title {
 }
 */
 
-@media only screen and (max-width: 1024px){
+@media only screen and (max-width: 480px){
     .column-container {
         display: block;
-        text-align: center;
-        font-size: 2vmin;
-        line-height: 2vmin;
+        /* text-align: center; */
+        /* font-size: 2vmin;
+        line-height: 2vmin; */
     }
 }
