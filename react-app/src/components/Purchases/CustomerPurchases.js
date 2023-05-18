@@ -5,7 +5,7 @@ import LoadingIcon from "../LoadingIcon"
 import './Purchases.css'
 
 export default function UserPurchases(){
-    const [user, purchases] = useSelector(state => [state.session.user, state.purchases.userPurchases])
+    const purchases = useSelector(state => state.purchases.userPurchases)
     const dispatch = useDispatch()
     const [hasLoaded, setHasLoaded] = useState(false)
     const [totalCost, setTotalCost] = useState(0)

@@ -1,6 +1,5 @@
 const LOAD_USER_PURCHASES = 'purchase/USER_LOAD'
-const LOAD_STORE_PURCHASES = 'purchcase/STORE_LOAD'
-
+const LOAD_SHOP_PURCHASES = 'purchase/SHOP_LOAD'
 
 export const userPurchases = (purchases) => {
     return {
@@ -9,9 +8,9 @@ export const userPurchases = (purchases) => {
     }
 }
 
-export const storePurchases = (purchases) => {
+export const shopPurchases = (purchases) => {
     return {
-        type: LOAD_STORE_PURCHASES,
+        type: LOAD_SHOP_PURCHASES,
         purchases
     }
 }
@@ -24,23 +23,23 @@ export const fetchUserPuchases = () => async dispatch  =>  {
     }
 }
 
-export const fetchStorePuchases = (storeId) => async dispatch  =>  {
-    const response = await fetch('/api/purchases/store')
+export const fetchStorePuchases = (shopId) => async dispatch  =>  {
+    const response = await fetch(`/api/purchases/shop/${shopId}`)
     if(response.ok) {
         const purchases = await response.json()
-        dispatch(storePurchases(purchases))
+        dispatch(shopPurchases(purchases))
     }
 }
 
-const initialState = { userPurchases: {}, storePurchases: {}}
+const initialState = { userPurchases: {}, shopPurchases: {}}
 
 export default function purchaseReducer(state = initialState, action){
     switch(action.type){
         case LOAD_USER_PURCHASES: {
-            return {...state.storePurchases, userPurchases: action.purchases}
+            return {...state.shopPurchases, userPurchases: action.purchases}
         }
-        case LOAD_STORE_PURCHASES: {
-            return {...state.userPurchases, storePurchases: action.purchases}
+        case LOAD_SHOP_PURCHASES: {
+            return {...state.userPurchases, shopPurchases: action.purchases}
         }
         default: return state
     }

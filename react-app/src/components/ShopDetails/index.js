@@ -160,7 +160,7 @@ export default function ShopDetails () {
                             <div className='reviewed-item-name'
                             key={`revieweditem${i}`}>{shop.Products.filter(p=>p.id === r.productId)[0].name}</div>
                             </div>
-                </NavLink>
+                        </NavLink>
                        </div>
                        <div className='feedback'
                        key={`feedback${i}`}>

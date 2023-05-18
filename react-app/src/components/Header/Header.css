@@ -17,7 +17,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
+    width: 95%;
 }
 .logoim {
     object-fit: cover;
@@ -173,6 +173,11 @@ div.navigation:hover {
     z-index: 101;
     position: absolute;
 }
+
+.profileburger{
+   /* background-color: red; */
+}
+
 
 @media only screen and (max-width: 480px) {
     /* .logo {
