@@ -9,3 +9,4 @@ from .shop import Shop
 from .shop_images import ShopImage
 from .review_images import ReviewImage
 from .purchases import Purchase
+from .user_shops import user_shops

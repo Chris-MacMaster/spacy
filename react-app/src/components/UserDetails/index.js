@@ -39,6 +39,9 @@ export default function UserDetails() {
 
     return (
         <div className='user-manage-details'>
+                <p className='owned-shops-label'>
+                    Your Owned Shops
+                </p>
             <div className='user-manage-header'>
                 <div className='user-manage-business-cards'>
 
@@ -60,7 +63,7 @@ export default function UserDetails() {
 
             <button className='favorite-shop'
                     onClick={onClickCreateShop}>
-                        <i class="fa-solid fa-screwdriver-wrench create-shop-icon"></i>
+                        <i className="fa-solid fa-screwdriver-wrench create-shop-icon"></i>
                     Create Shop
             </button>
 

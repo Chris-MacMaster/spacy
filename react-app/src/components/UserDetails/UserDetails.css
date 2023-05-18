@@ -72,3 +72,10 @@
 .one-shop-policies {
     font-size: min(2vmin, 1.6rem);
 }
+
+
+.owned-shops-label {
+    font-size: 2em;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
