@@ -1,6 +1,5 @@
 const LOAD_SHOPS = 'shops/LOAD'
 const LOAD_FOLLOWED_SHOPS = 'shops/FOLLOWED/LOAD'
-// const LOAD_USER_SHOPS = 'shops/LOAD_USER_SHOPS'
 const DELETE_SHOP = 'shops/DELETE_SHOP'
 const LOAD_ONE_SHOP = 'shops/LOAD_ONE_SHOP'
 const POST_SHOP = 'shops/POST_SHOP'
@@ -55,7 +54,7 @@ export const fetchShops = () => async dispatch => {
 
 // Shops user follows
 export const fetchFollowedShops = () => async dispatch => {
-    const response = await fetch('api/shops/current-followed')
+    const response = await fetch('/api/shops/current-followed')
     if (response.ok) {
         const shops = await response.json()
         dispatch(actionLoadFollowedShops(shops))

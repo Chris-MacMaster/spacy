@@ -157,7 +157,15 @@ def get_my_shops():
 
 @shop_routes.route('/current-followed')
 @login_required
-def get_followed_shops():
+def get_user_followed_shops():
+    print("HIT URL")
+    print("HIT URL")
+    print("HIT URL")
+    print("HIT URL")
+    print("HIT URL")
+    print("HIT URL")
+    print("HIT URL")
+    print("HIT URL")
     """Returns the followed shops of User"""
     if request.method == 'GET':
         shops = Shop.query.join(user_shops).filter(user_shops.c.user_id == current_user.id).all()
