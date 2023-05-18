@@ -71,7 +71,8 @@
     background-color: green;
 }
 .add-to-cart-button:hover {
-    background-color: blue;
+    outline: min(.5vmin, .3rem) ridge aqua;
+    background-color: rgb(0, 172, 172);
 }
 .cant-add-cart-button {
     border-radius: 2rem;
@@ -171,6 +172,7 @@
 
 .shop-name:hover, .shop-policy-button {
     cursor: pointer;
+
 }
 
 /* @media only screen and (max-width: 768px){

@@ -18,7 +18,7 @@
 .slider-images {
     width: 41vw;
     height: 41vw;
-    border-radius: .5rem;
+    border-radius: min(2vmin, .5rem);
     object-fit: cover;
 }
 .product-image-slider {
@@ -26,6 +26,7 @@
     width: 41vw;
     height: 41vw;
     margin: 2vw;
+    border-radius: min(2vmin, .5rem);
 }
 .slide {
     opacity: 0;
