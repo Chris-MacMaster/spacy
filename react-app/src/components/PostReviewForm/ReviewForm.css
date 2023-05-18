@@ -94,7 +94,7 @@ h2 {
 }
 .review-form-text,
 .edit-review-button {
-    font-size: min(3vmin, 1.2rem);
+    font-size: min(3vmin, .8rem);
 }
 .submitButtonParent {
     display: flex;
