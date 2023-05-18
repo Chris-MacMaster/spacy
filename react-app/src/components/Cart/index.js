@@ -14,6 +14,7 @@ export default function DisplayCart(){
   const [user, cart] = useSelector(state => [state.session.user, state.cart.products ?? null])
   const dispatch = useDispatch()
   const [hasLoaded, setHasLoaded] = useState(false)
+  const [purchased, setPurchased] = useState(false)
 
   useEffect(() => {
     const loadData = async () => {
@@ -31,8 +32,8 @@ export default function DisplayCart(){
 
     if(!hasLoaded) return <LoadingIcon />
 
-    if (!Object.values(cart).length && hasLoaded) {
-      return <h2>You have no items in your cart, don't you want to buy something?</h2>
+    if (!Object.values(cart).length && hasLoaded && !purchased) {
+      return <h2 className="no-items">You have no items in your cart, don't you want to buy something?</h2>
     }
 
     const itemsByStore = groupItemsByStore(cart)
@@ -42,7 +43,7 @@ export default function DisplayCart(){
     <div className="order-page">
       <div className="shopping-bar">
         <div className="cart-quantity">
-          <h2>{Object.values(cart).length} items in your cart</h2>
+          <h2 hidden={purchased}>{Object.values(cart).length} items in your cart</h2>
         </div>
         <div className="keep-shopping-div">
         <NavLink to='/' className='keep-shopping-link'>
@@ -109,14 +110,17 @@ export default function DisplayCart(){
 
             </div>
           ))}
+          <div className="thank-you-div" hidden={!purchased}>
+            <h2>Thank you for your purchase</h2>
           </div>
-          <div className="checkout-div">
+          </div>
+         { !purchased && <div className="checkout-div">
             {/* <h3>How you'll pay</h3>
             <h3>We're sorry to inform you that the only way you can pay currently is with depleted uranium</h3>
             <p>Item(s) total: ${totalCost(cart)}</p> */}
             <PaymentMethod totalCost={totalCost(cart)}/>
-            <CheckoutCart/>
-          </div>
+            <CheckoutCart setPurchased={setPurchased}/>
+          </div>}
         </div>
     </div>
     </>

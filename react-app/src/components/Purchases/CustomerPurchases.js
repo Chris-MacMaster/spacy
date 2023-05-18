@@ -16,13 +16,14 @@ export default function UserPurchases(){
 
     if(!hasLoaded) return <LoadingIcon />
     let sortedPurchases = groupItemsBySellDateThenStore(purchases)
-    console.log(sortedPurchases)
+    // console.log(sortedPurchases)
     return (
     <div className="purchase-div">
         <h2>Purchases:</h2>
         {purchases && Object.keys(sortedPurchases).map(el => (
             <div className="purchase-date-div">
                 <p className="purchase-date">{el.slice(0,25)}</p>
+
                 {Object.values(sortedPurchases[el]).map(item => (
                     <div className="purchase-shop-div">
                         <div className="purchase-shop-name"> {item[0].shopName}</div>
@@ -38,9 +39,14 @@ export default function UserPurchases(){
                                 <div className="two">{el.productName}</div>
                                 <div className="three">{el.quantity}</div>
                                 <div className="four">{el.price}</div>
-                                <div>{el.price * el.quantity}</div>
+                                <div>${el.price * el.quantity}</div>
                                 </>
                             ))}
+
+                        <div className="five bld">${item.reduce((acc, el) => {
+                                return acc + (el.quantity * el.price)
+                             }, 0).toFixed(2)}
+                        </div>
                         </div>
                     // </div>
                 ))}

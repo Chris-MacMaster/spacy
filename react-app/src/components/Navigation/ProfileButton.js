@@ -70,30 +70,30 @@ function ProfileButton({ user }) {
                 </span>
               <span className="profile-drop-text">Purchases and reviews</span>
             </p>
-            <p>
+            {/* <p>
               <span className="profile-drop-item" >
                 <i className="fa-solid fa-gift drop-down-icons"></i>
               </span>
               <span className="profile-drop-text">Gift card balance: $0.00</span>
-              </p>
-            <p>
+            </p> */}
+            {/* <p>
               <span className="profile-drop-item" >
                 <i className="fa-solid fa-message drop-down-icons"></i>
               </span>
               <span className="profile-drop-text">Messages</span>
-            </p>
-            <p>
+            </p> */}
+            {/* <p>
               <span className="profile-drop-item" >
                 <i className="fa-solid fa-tag drop-down-icons"></i>
               </span>
               <span className="profile-drop-text">Your offers</span>
-            </p>
-            <p>
+            </p> */}
+            {/* <p>
               <span className="profile-drop-item" >
                 <i className="fa-solid fa-leaf drop-down-icons"></i>
               </span>
               <span className="profile-drop-text">Your impact</span>
-            </p>
+            </p> */}
             <p>
               <span className="profile-drop-item" >
                 <i className="fa-solid fa-gear drop-down-icons"></i>
