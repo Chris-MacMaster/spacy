@@ -102,7 +102,7 @@ function Landing({ isLoaded }) {
                 </div>
 
                 {[products["5"], products["6"], products["7"], products["8"], products["12"], products["1"]].map(product => (
-                product.ProductImages[0].url ? (
+                product.ProductImages[1].url ? (
                 <NavLink to={`/products/${product.id}`}
                 style={{ textDecoration: 'none' }}
                 key={`navlink`+product.id}

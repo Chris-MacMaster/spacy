@@ -12,23 +12,7 @@
     object-fit: cover;
 }
 
-/* .product-tooltip-heart {
-    visibility: hidden;
-    width: fit-content;
-    background-color: white;
-    border-radius: 1rem;
-    color: black;
-    padding: .2vmin;
-    position: absolute;
-    z-index: 1;
-    opacity: 0;
-    transition: opacity 0.3s;
-    box-shadow: 0rem 0rem .5vmin black;
-    font-weight: 600;
-} */
 .product-tooltip-heart {
-    /* top: 5.5vmin; */
-    /* visibility: hidden; */
     opacity: 0;
     border-radius: 50%;
     text-align: end;
@@ -45,7 +29,6 @@
     width: fit-content;
     bottom: 1vmin;
     left: 1vmin;
-    /* font-size: 1.5vmin; */
     position: absolute;
     z-index: 1;
     color: black;
@@ -66,55 +49,3 @@
     opacity: 1;
     z-index: 1;
 }
-/*
-@media only screen and (max-width: 1200px){
-
-        .product-card,
-        .product-card > img,
-        .from-etzy-closing,
-        .by-etsy-header {
-            width: 10rem;
-            height: 10rem;
-        }
-        .by-etsy-title {
-            font-size: 1.3rem;
-            margin: .5rem;
-        }
-
-}
-@media only screen and (max-width: 768px){
-
-        .product-card,
-        .product-card > img,
-        .from-etzy-closing,
-        .by-etsy-header {
-            width: 6rem;
-            height: 6rem;
-        }
-        .by-etsy-title,
-        .sponsored {
-            font-size: 1rem;
-            margin: .3rem;
-        }
-        .from-etzy-closing {
-            font-size: .6rem;
-        }
-}
-@media only screen and (max-width: 480px){
-
-        .product-card,
-        .product-card > img,
-        .from-etzy-closing,
-        .by-etsy-header {
-            width: 4rem;
-            height: 4rem;
-        }
-        .by-etsy-title,
-        .sponsored {
-            font-size: .7rem;
-            margin: .3rem;
-        }
-        .from-etzy-closing {
-            font-size: .4rem;
-        }
-} */
