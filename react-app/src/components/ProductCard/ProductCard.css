@@ -54,5 +54,5 @@
     transition: .2s ease-in-out;
 }
 .product-card  img:hover {
-    box-shadow: 0rem 0rem 1vmin black;
+    box-shadow: 0rem 0rem 2vmin grey;
 }
