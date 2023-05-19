@@ -171,8 +171,9 @@ h3.shops-youll-love-title {
 }
 .popular-gifts-mapped {
     display: grid;
-    grid-template-columns: auto auto auto auto;
-    grid-template-rows: auto;
+    /* grid-template-columns: auto auto auto auto; */
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    /* grid-template-rows: auto; */
     grid-gap: 2vmin;
 }
 .what-is-etzy > h1 {
