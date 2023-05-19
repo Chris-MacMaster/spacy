@@ -35,6 +35,7 @@ export default function ShopDetails () {
     }
     return (
         <div className='shop-page'>
+        <div className='shop-deets-80'>
         <div className='shop-header'>
             <div className='shop-businesscard'>
             <img src={`${shop.ShopImages.url}`} alt='shoplogo' className='shoplogo'></img>
@@ -124,14 +125,13 @@ export default function ShopDetails () {
                 <div className='mapping-reviews'>
                     {allReviews ? allReviews.map((r,i)=> (
                     <>
-                    <div className='review-header'
-                    key={`reviewdivheader${i}`}>
+                    <div className='review-header' key={`reviewdivheader${i}`}>
 
                     <img src='https://i.imgur.com/mMEwXsu.png' alt='usericon'
                     className='user-icon'></img>
-                    <p className='username'
-                    key={`username${i}`}>{r.Reviewer.firstName} on {r.createdAt.slice(0, -12)}</p>
-                    </div>
+                    <div className='shop-deets-user-deets'>
+                    <p className='username' key={`username${i}`}>{r.Reviewer.firstName} on {r.createdAt.slice(0, -12)}</p>
+                    <div className='shop-deets-stars'>
                         {new Array(5).fill(1).map((s,j)=> (
                             j <= r.stars ? (
                                 <i class="fa-solid fa-star gold-star"></i>
@@ -139,6 +139,9 @@ export default function ShopDetails () {
                                 <i class="fa-solid fa-star blank-star"></i>
                             )
                         ))}
+                        </div>
+                        </div>
+                    </div>
                        <div className='iterated-review'
                        key={`div${i}`}>
                         {r.ReviewImages && r.ReviewImages.url ? (
@@ -178,6 +181,7 @@ export default function ShopDetails () {
                         </>
                     )) : null}
                 </div>
+            </div>
             </div>
         </div>
     )
