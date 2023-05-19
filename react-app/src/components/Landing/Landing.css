@@ -145,7 +145,7 @@ h3.shop-our-title {
 }
 .shops-youll-love {
     display: grid;
-    grid-template-columns: auto auto auto auto;
+    grid-template-columns: auto auto;
     flex-wrap: wrap;
     justify-content: center;
     gap: 2vmin;

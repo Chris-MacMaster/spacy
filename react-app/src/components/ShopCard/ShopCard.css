@@ -1,13 +1,18 @@
 .landing-shop-card {
-    width: 100%;
-    height: 100%;
+    width: 45vmin;
+    height: 45vmin;
     box-shadow: 0rem 0rem 1vmin grey;
     border-radius: 1vmin;
     position: relative;
     margin-top: 1vmin;
     justify-content: center;
     align-content: center;
-    transition: .3s ease-in-out;
+}
+.shop-image-grid-image {
+    width:21vmin;
+    height: 16vmin;
+    border-radius: min(.5vmin, .5rem);
+    object-fit: cover;
 }
 .landing-shop-card:hover {
     box-shadow: 0rem 0rem min(2vmin, .5rem) grey;
@@ -16,23 +21,18 @@
     width: 20vmin;
     height: 20vmin;
 }
-.shop-image-grid-image {
-    width: 10vmin;
-    height:  8vmin;
-    object-fit: cover;
-    border-radius: min(.5vmin, .5rem);
-    object-fit: cover;
-}
+
 .shop-image-grid {
     display: grid;
     grid-template-columns: auto auto;
-    grid-template-rows: auto auto;
     position: relative;
-    gap: .5vmin;
+    gap: 1vmin;
+    padding: 1vmin;
+    margin-top: 2vmin;
 }
 .shop-card-logo {
-    width: 4vmin;
-    height: 4vmin;
+    width: 9.5vmin;
+    height: 9.5vmin;
     border-radius: .5vmin;
     margin-left: .5rem;
 }
