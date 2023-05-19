@@ -8,6 +8,7 @@ import ProductCard from '../ProductCard'
 import ShopCard from '../ShopCard'
 import { NavLink } from 'react-router-dom'
 import LoadingIcon from '../LoadingIcon'
+import PopularGifts from '../PopularGifts'
 
 function Landing({ isLoaded }) {
     const dispatch = useDispatch()
@@ -54,7 +55,8 @@ function Landing({ isLoaded }) {
                 alt='product'
                 className='suggest-image'></img>
                 </div>
-                <p className='suggest-image-text'>Jewelry</p></div>
+                <p className='suggest-image-text'>Jewelry</p>
+            </div>
             <div className='top-banner-suggestions'>
                 <div className='suggest-image-div'>
                 <img src='https://i.imgur.com/bKS0Vs5.jpg'
@@ -150,6 +152,17 @@ function Landing({ isLoaded }) {
 
                 </div>
             </div>
+
+            <div className='popular-gifts' >
+            <div className='popular-gifts-titles'>
+                <h1>Popular gifts right now</h1>
+            </div>
+            <div className='popular-gifts-mapped'>
+            {Object.values(products).reverse().map((p,i)=> <PopularGifts product={p} key={i} /> )}
+            </div>
+            </div>
+
+
             <div className='shops-youll-love'>
                 <div className='shops-youll-love-text'>
                     <h1 className='shops-youll-love-title'>Shops we think you'll love

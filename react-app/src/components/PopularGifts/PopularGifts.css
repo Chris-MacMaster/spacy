@@ -1,0 +1,20 @@
+.popular-product-card
+.popular-result-img {
+    width: 100%;
+    height: 20vmin;
+    border-radius: min(2vmin, .5rem);
+    object-fit: cover;
+}
+.popular-product-name,
+.popular-star-seller,
+.popular-result-price {
+    font-size: min(1.7vmin, .8rem);
+}
+.popular-result-price {
+    font-size: min(2.3vmin, 1rem);
+    font-weight: bolder;
+
+}
+.popular-product-name {
+    color: darkgray;
+}

@@ -91,9 +91,6 @@ p.sponsored {
     display: flex;
     align-items: center;
 }
-.shop-our-title {
-    color: black;
-}
 h2.shop-our-title {
     font-family: 'Mulish', sans-serif;
     font-size: min(5vmin, 2rem);
@@ -102,6 +99,7 @@ h2.shop-our-title {
 h3.shop-our-title {
     font-family: 'Thasadith', sans-serif;
     font-size: min(3vmin, 1.7rem);
+    color: rgb(77, 77, 77);
 }
 .shop-our-titles {
     position: relative;
@@ -164,9 +162,18 @@ h3.shops-youll-love-title {
     font-family: 'Thasadith', sans-serif;
     font-size: min(3vmin, 1.5rem);
 }
-.shops-youll-love-text {
-    height: 12em;
-    width: 22rem;
+.popular-gifts {
+    margin-top: 7vmin;
+}
+.popular-gifts-titles {
+    display: flex;
+    font-family: 'Mulish', sans-serif;
+}
+.popular-gifts-mapped {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-template-rows: auto;
+    grid-gap: 2vmin;
 }
 .what-is-etzy > h1 {
     font-family: 'Marcellus', serif;
