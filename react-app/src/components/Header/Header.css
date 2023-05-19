@@ -17,21 +17,21 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
+    width: min(80vw, 70rem);
 }
 .logoim {
     object-fit: cover;
     height: 7vmin;
     width: 7vmin;
-    margin-left: 1vmin;
+    /* margin-left: 1vmin; */
     margin-top: 1vmin;
 }
 .header-tabs {
     display: flex;
     flex-direction: row;
     gap: 1rem;
-    margin-left: 2rem;
-    margin-right: 2rem;
+    /* margin-left: 2rem;
+    margin-right: 2rem; */
     font-family: 'Mulish', sans-serif;
     font-size: .8rem;
 }
@@ -44,7 +44,7 @@
 }
 .header-search {
     background-color: none;
-    min-width: 40vw;
+    width: min(30vw, 40rem);
     border: none;
     background-color: white;
     /* height: min(3vmin) max(1.5rem); */

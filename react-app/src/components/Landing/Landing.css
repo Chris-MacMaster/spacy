@@ -33,7 +33,8 @@
     transition: .2s ease-in-out;
 }
 .top-banner-suggestions:hover {
-    box-shadow: 0rem .3rem rgb(64, 64, 64);
+    box-shadow: inset 0rem -.3rem  rgb(64, 64, 64);
+    /* border-bottom: 1px solid black ; */
     scale: 1.10;
 }
 div.top-banner-suggestions > p {
@@ -224,9 +225,10 @@ h3.shops-youll-love-title {
 */
 @media only screen and (max-width: 1200px){
     .landing-80,
-    .landing-header {
+    .landing-header, .header{
 
         width: min(90vw, 70rem);
+
     }
 }
 @media only screen and (max-width: 768px){
