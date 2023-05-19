@@ -35,6 +35,7 @@ export default function ShopDetails () {
     }
     return (
         <div className='shop-page'>
+        <div className='shop-deets-80'>
         <div className='shop-header'>
             <div className='shop-businesscard'>
             <img src={`${shop.ShopImages.url}`} alt='shoplogo' className='shoplogo'></img>
@@ -178,6 +179,7 @@ export default function ShopDetails () {
                         </>
                     )) : null}
                 </div>
+            </div>
             </div>
         </div>
     )
