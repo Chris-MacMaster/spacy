@@ -157,11 +157,12 @@ h3.shop-our-title {
 h1.shops-youll-love-title{
     font-family: 'Mulish', sans-serif;
     font-weight: 500;
-    font-size: 4.5vmin;
+    font-size: min(4vmin, 1.7rem);
+    font-weight: bold;
 }
 h3.shops-youll-love-title {
     font-family: 'Thasadith', sans-serif;
-    font-size: 3.5vmin;
+    font-size: min(3vmin, 1.5rem);
 }
 .shops-youll-love-text {
     height: 12em;
