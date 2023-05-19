@@ -17,7 +17,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
+    width: 80%;
 }
 .logoim {
     object-fit: cover;
@@ -44,7 +44,7 @@
 }
 .header-search {
     background-color: none;
-    min-width: 40vw;
+    min-width: 30vw;
     border: none;
     background-color: white;
     /* height: min(3vmin) max(1.5rem); */
