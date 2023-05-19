@@ -79,6 +79,7 @@ p.sponsored {
     flex-wrap: wrap;
     gap: 2vmin;
 }
+
 .from-etzy-closing {
     margin: .1vw;
     border-radius: .5rem;
@@ -108,12 +109,10 @@ h3.shop-our-title {
     width: 100%;
 }
 .shop-our-mapped {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    display: flex;
+    flex-direction: row;
 }
 .selection-card {
-    /* width: 16rem;
-    height: 16rem; */
     border: lightgray solid .1rem;
     border-radius: .5rem;
     overflow: hidden;
@@ -124,16 +123,13 @@ h3.shop-our-title {
     box-shadow: 0rem 0rem .5rem grey;
 }
 .shop-our-selections {
-    position: relative;
-    width: 80vw;
     display: flex;
     flex-direction: column;
-    align-items: center;
 }
 
 .shop-our-select-img {
-    width: min(18vmin, 17rem);
-    height: min(14vmin, 13rem);
+    width: min(21vmin, 17rem);
+    height: min(16vmin, 13rem);
     border-radius: .5rem;
     object-fit: cover;
 }

@@ -1,6 +1,7 @@
 .product-card {
     border-radius: .5vmin;
     position: relative;
+    transition: .2s ease-in-out;
 }
 .from-etzy-closing,
 .by-etsy-header,
@@ -48,4 +49,10 @@
     transition-delay: .1s;
     opacity: 1;
     z-index: 1;
+}
+.product-card img {
+    transition: .2s ease-in-out;
+}
+.product-card  img:hover {
+    box-shadow: 0rem 0rem 1vmin black;
 }
