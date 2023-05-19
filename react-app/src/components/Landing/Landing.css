@@ -73,7 +73,7 @@ p.sponsored {
     display: grid;
     grid-template-columns: 7fr 5fr 3fr 5fr;
     grid-auto-rows: 1fr 1fr;
-    margin-top: 35vmin;
+    margin-top: 40vmin;
     justify-content: center;
     align-content: center;
     flex-wrap: wrap;
@@ -109,8 +109,8 @@ h3.shop-our-title {
     width: 100%;
 }
 .shop-our-mapped {
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 }
 .selection-card {
     border: lightgray solid .1rem;
@@ -119,17 +119,21 @@ h3.shop-our-title {
     margin: .5vmin;
     transition: .2s ease-in-out;
 }
+.selection-card > img {
+    width: 100%;
+    height: 20vmin;
+    border-radius: .5vmin;
+    object-fit: cover;
+}
 .selection-card:hover {
     box-shadow: 0rem 0rem .5rem grey;
 }
 .shop-our-selections {
     display: flex;
     flex-direction: column;
+    margin-top: 6vmin;
 }
-
 .shop-our-select-img {
-    width: min(21vmin, 17rem);
-    height: min(16vmin, 13rem);
     border-radius: .5rem;
     object-fit: cover;
 }
@@ -162,12 +166,12 @@ h3.shops-youll-love-title {
 .shops-youll-love-text {
     height: 12em;
     width: 22rem;
-    /* margin-left: 2rem; */
 }
 .what-is-etzy > h1 {
     font-family: 'Marcellus', serif;
     text-align: center;
     margin-bottom: 3rem;
+    font-size: min(5vmin, 2rem);
 }
 .what-is-etzy {
     margin-left: 2rem;
@@ -179,7 +183,7 @@ h3.shops-youll-love-title {
     grid-template-columns: auto auto auto;
     flex-direction: row;
     max-width: 1200px;
-    gap: 3vmin;
+    gap: 2vmin;
     justify-content: center;
     margin: 0 auto;
     line-height: 2vmin;
@@ -188,6 +192,10 @@ h3.shops-youll-love-title {
 .what-is-etzy > h2 {
     text-align: center;
     font-family: 'Mulish', sans-serif;
+    font-size: min(5vmin, 2rem);
+}
+.column-title {
+    font-size: min(5vmin, 2rem);
 }
 .fa-question {
     font-size: 1.7vmin;
@@ -195,8 +203,11 @@ h3.shops-youll-love-title {
 .have-questions,
 .what-is-title,
 .column-title {
-    font-size: 4vmin;
+    font-size: min(5vmin, 2rem);
     line-height: 5vmin;
+}
+.what-is-title {
+    margin-top: 10vmin;
 }
 .what-is-paragraph {
     font-size: 2vmin;
