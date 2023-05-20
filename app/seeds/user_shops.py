@@ -6,10 +6,10 @@ def seed_user_shops():
 
     demo = User.query.get(1)
   
-    shop_1 = Shop.query.get(1)
+    shop_2 = Shop.query.get(2)
     shop_3 = Shop.query.get(3)
    
-    demo.shops.append(shop_1)
+    demo.shops.append(shop_2)
     demo.shops.append(shop_3)
 
     db.session.commit()
