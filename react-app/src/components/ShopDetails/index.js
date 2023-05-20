@@ -2,7 +2,7 @@ import { NavLink, useParams, useHistory } from 'react-router-dom'
 import './ShopDetails.css'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchOneShop, fetchShops } from '../../store/shops'
+import { fetchOneShop, fetchShops, followShop, unfollowShop } from '../../store/shops'
 import ShopProductCard from '../ShopProductCard'
 import { authenticate } from '../../store/session'
 import LoadingIcon from '../LoadingIcon'
@@ -33,6 +33,21 @@ export default function ShopDetails () {
         e.preventDefault()
         history.push(`/products/forms/create-product/${shopId}`)
     }
+
+    const handleFollow = async (e) => {
+        e.preventDefault()
+        e.stopPropagation()
+
+        dispatch(followShop(shop.id))
+    }
+
+    const handleUnfollow = async (e) => {
+        e.preventDefault()
+        e.stopPropagation()
+
+        dispatch(unfollowShop(shop.id))
+    }
+
     return (
         <div className='shop-page'>
         <div className='shop-deets-80'>
@@ -78,9 +93,15 @@ export default function ShopDetails () {
         Create Product</button>
 
         ) : (
-        <button className='favorite-shop' onClick={featureAlert}>
-        <i className="fa-regular fa-heart shop-heart"
-       ></i>Follow Shop</button>
+        <div className='follow-unfollow-shop-div'> 
+            <button className='favorite-shop' onClick={handleFollow}>
+            <i className="fa-regular fa-heart shop-heart"
+            ></i>Follow Shop</button>
+
+            <button className='favorite-shop' onClick={handleUnfollow}>
+            <i className="fa-regular fa-heart shop-heart"
+            ></i>Unfollow Shop</button>
+       </div>
         )}
 
 

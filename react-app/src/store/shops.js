@@ -1,5 +1,6 @@
 const LOAD_SHOPS = 'shops/LOAD'
 const LOAD_FOLLOWED_SHOPS = 'shops/FOLLOWED/LOAD'
+const UNFOLLOW_SHOP = 'shops/FOLLOWED/UNFOLLOW'
 const DELETE_SHOP = 'shops/DELETE_SHOP'
 const LOAD_ONE_SHOP = 'shops/LOAD_ONE_SHOP'
 const POST_SHOP = 'shops/POST_SHOP'
@@ -43,6 +44,15 @@ export const deleteAShop = deleted => {
         deleted
     }
 }
+
+export const actionUnfollowShop = id => {
+    return {
+        type: UNFOLLOW_SHOP,
+        id
+    }
+}
+
+
 //shops for landing page
 export const fetchShops = () => async dispatch => {
     const response = await fetch('/api/shops')
@@ -60,6 +70,34 @@ export const fetchFollowedShops = () => async dispatch => {
         dispatch(actionLoadFollowedShops(shops))
     }
 }
+
+export const followShop = (id) => async dispatch => {
+    const method = "POST"
+    const headers = { "Content-Type": "application/json" }
+    const options = { method, headers }
+
+    const response = await fetch(`/api/shops/current-followed/follow/${id}/`, options)
+    if (response.ok) {
+        const shop = await response.json()
+        dispatch(loadOneShop(shop))
+        return shop
+    }
+}
+
+export const unfollowShop = (id) => async dispatch => {
+    const method = "POST"
+    const headers = { "Content-Type": "application/json" }
+    const options = { method, headers }
+
+    const response = await fetch(`/api/shops/current-followed/unfollow/${id}/`, options)
+    if (response.ok) {
+        const shop = await response.json()
+        dispatch(actionUnfollowShop(id))
+        return shop
+    }
+}
+
+
 
 //shop details
 export const fetchOneShop = id => async dispatch => {
@@ -145,6 +183,10 @@ export default function shopReducer(state = initialState, action) {
             const withDeleted = { ...state, allShops: { ...state.allShops }, singleShop: { ...state.singleShop }, followedShops: { ...state.followedShops } }
             delete withDeleted.allShops[String(action.deleted.id)]
             return withDeleted
+        case UNFOLLOW_SHOP:
+            const withFollowed = { ...state, allShops: { ...state.allShops }, singleShop: { ...state.singleShop }, followedShops: { ...state.followedShops } }
+            delete withFollowed.followedShops[String(action.id)]
+            return withFollowed
         default: return state
     }
 }
