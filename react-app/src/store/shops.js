@@ -115,6 +115,16 @@ export const fetchOneShop = id => async dispatch => {
         return dispatch(loadOneShop(shop))
     }
 }
+
+
+// export const checkFollowShop = id => async dispatch => {
+//     const response = await fetch(`/api/shops/current-followed/check/${id}/`)
+//     if (response.ok) {
+//         const res = await response.json()
+//         return res
+//     }
+// }
+
 //post shop
 export const createShop = (formData) => async dispatch => {
     // const { name, street_address, city, state, country, description, category, policies, url} = data

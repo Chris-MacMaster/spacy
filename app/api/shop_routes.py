@@ -160,6 +160,13 @@ def get_shop_by_id(shop_id):
         def review_image(review_id):
             review_image = ReviewImage.query.filter(ReviewImage.review_id==review_id).first()
             return review_image.to_dict() if review_image else None
+        
+        def check_followed():
+            user = User.query.join(user_shops).filter(user_shops.c.shop_id == shop_id, user_shops.c.user_id == current_user.id).first()
+            if user == None:
+                return {"Status" : "Not Followed"}
+            return {"Status" : "Followed"}
+
         products = shop_products(shopcopy['id'])
         for product in products:
             product['ProductImages'] = get_images(product['id'])
@@ -170,6 +177,7 @@ def get_shop_by_id(shop_id):
         shopcopy['ShopImages'] = get_shop_images(shopcopy['id'])
         shopcopy['Products'] = products
         shopcopy['Owner'] = get_owner(shopcopy['ownerId'])
+        shopcopy['Followed'] = check_followed()
         return shopcopy, 200
     else:
         return {"errors": "Shop by that id does not exist"}, 404
@@ -199,14 +207,6 @@ def get_my_shops():
 @shop_routes.route('/current-followed')
 @login_required
 def get_user_followed_shops():
-    print("HIT URL")
-    print("HIT URL")
-    print("HIT URL")
-    print("HIT URL")
-    print("HIT URL")
-    print("HIT URL")
-    print("HIT URL")
-    print("HIT URL")
     """Returns the followed shops of User"""
     if request.method == 'GET':
         shops = Shop.query.join(user_shops).filter(user_shops.c.user_id == current_user.id).all()
@@ -218,6 +218,16 @@ def get_user_followed_shops():
 
             return payload, 200
         
+@shop_routes.route('/current-followed/check/<int:shop_id>/', methods=['GET', 'POST'])
+@login_required
+def check_shop_followed(shop_id):
+    """Checks if a shop is followed by user"""
+    if request.method == 'GET':
+        shop = user_shops.query.get(shop_id)
+        if shop == None:
+            return {'status': 'shop NOT followed'}
+        else: 
+            return {'status': 'shop followed'}
 
 @shop_routes.route('/current-followed/follow/<int:shop_id>/', methods=['GET', 'POST'])
 def follow_shop(shop_id):
