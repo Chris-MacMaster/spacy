@@ -227,7 +227,7 @@ def follow_shop(shop_id):
     shop = Shop.query.get(shop_id)
     user.shops.append(shop)
     db.session.commit()
-    return user.to_dict()
+    return shop.to_dict()
     # return {'errors': 'Not authenticated'}
 
 
