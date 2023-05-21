@@ -216,5 +216,30 @@ def get_user_followed_shops():
             shops_copy = copy.deepcopy(shops)
             payload = {shop.id: shop.to_dict() for shop in shops_copy}
 
-
             return payload, 200
+        
+
+@shop_routes.route('/current-followed/follow/<int:shop_id>/', methods=['GET', 'POST'])
+def follow_shop(shop_id):
+    """Follows a Shop"""
+    # if current_user.is_authenticated:
+    user = User.query.get(current_user.id)
+    shop = Shop.query.get(shop_id)
+    user.shops.append(shop)
+    db.session.commit()
+    return user.to_dict()
+    # return {'errors': 'Not authenticated'}
+
+
+
+
+@shop_routes.route('/current-followed/unfollow/<int:shop_id>/', methods=['GET', 'POST'])
+def unfollow_shop(shop_id):
+    """Unfollows a Shop"""
+    # if current_user.is_authenticated:
+    user = User.query.get(current_user.id)
+    shop = Shop.query.get(shop_id)
+    user.shops.remove(shop)
+    db.session.commit()
+    return user.to_dict()
+    # return {'errors': 'Not authenticated'}
