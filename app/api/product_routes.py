@@ -171,29 +171,42 @@ def get_all_products():
             raise ValueError("Failed flask form validation")
         if form.validate_on_submit():
             image = form.data["image"] #aws
+            print('')
+            print('')
+            print('')
+            print('')
+            print('')
+            print('')
+            print('images', image)
+            print('')
+            print('')
+            print('')
+            print('')
+            print('')
+            print('')
             image.filename = get_unique_filename(image.filename)
-            print('')
-            print('')
-            print('')
-            print('')
-            print('')
-            print('')
-            print('')
-            print('')
-            print('')
-            print('IMAGE FILENAME', image.filename)
-            print('')
-            print('')
-            print('')
-            print('')
-            print('')
-            print('')
-            print('')
-            print('')
-            upload = upload_file_to_s3(image)
+            # print('')
+            # print('')
+            # print('')
+            # print('')
+            # print('')
+            # print('')
+            # print('')
+            # print('')
+            # print('')
+            # print('IMAGE FILENAME', image.filename)
+            # print('')
+            # print('')
+            # print('')
+            # print('')
+            # print('')
+            # print('')
+            # print('')
+            # print('')
+            # upload = upload_file_to_s3(image)
             img_url = None
-            if 'url' in upload:
-                img_url = upload['url']
+            # if 'url' in upload:
+            #     img_url = upload['url']
 
             new_product = Product(
                 shop_id = form.data["shop_id"],
@@ -204,16 +217,16 @@ def get_all_products():
                 free_shipping = form.data["free_shipping"],
                 price = form.data["price"]
             )
-            db.session.add(new_product)
+            # db.session.add(new_product)
             db.session.commit()
             # adding an associated image for the newly created product
             new_product_list = Product.query.all()
             new_product = new_product_list[-1]
-            new_product_img = ProductImage(
-                # url = form.data["url"],
-                url = img_url, #aws
-                product_id = new_product.id,
-            )
-            db.session.add(new_product_img)
+            # new_product_img = ProductImage(
+            #     # url = form.data["url"],
+            #     url = img_url, #aws
+            #     product_id = new_product.id,
+            # )
+            # db.session.add(new_product_img)
             db.session.commit()
             return new_product.to_dict(), 201

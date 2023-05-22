@@ -64,6 +64,8 @@ export default function ProductCreateForm() {
             formData.append(`${key}`, newProduct[key])
         }
         formData.append("image", url); //aws
+        // console.log('url frontend', url)
+        // console.log('images frontend', formData['image'])
 
         dispatch(makeProduct(formData))
         dispatch(fetchShops())
@@ -73,12 +75,13 @@ export default function ProductCreateForm() {
     const handleDragOver = (e) => {
         e.preventDefault()
     }
-    const images = []
+    // const images = []
     const handleDrop = (e) => {
         e.preventDefault()
-        images.push(e.dataTransfer.files[e.dataTransfer.files.length - 1])
-        console.log('all images',images)
-        setUrl(images)
+        console.log('event data transfer', e.dataTransfer.files)
+        // images.push(e.dataTransfer.files[e.dataTransfer.files.length - 1])
+        // console.log('all images',images)
+        setUrl(Object.values(e.dataTransfer.files))
         console.log('HELLO FROM DROP', url)
     }
     const handleCheck = (e) => {
