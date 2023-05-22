@@ -1,17 +1,22 @@
-import React, { useEffect } from "react"
+import React, { useContext, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { fetchCart, removeCartItemThunk } from "../../store/cart"
+import { CartContext } from "../../context/CartContext"
 
-export default function RemoveItemButton({cartId}){
+export default function RemoveItemButton({cartId, productId}){
     const dispatch = useDispatch()
-    const [user] = useSelector(state => [state.session.user])
-
-    useEffect(() =>{
-        // dispatch(fetchCart())
-    },[dispatch, user])
+    const user = useSelector(state => state.session.user)
+    const { removeFromLocalCart } = useContext(CartContext)
 
     const removeItem = (e) => {
         return dispatch(removeCartItemThunk(cartId))
+    }
+
+    if (!user){
+        return (
+         <button onClick={() => removeFromLocalCart(productId)} className="remove-from-cart-button">
+        Remove
+        </button>)
     }
 
     return (

@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, redirect, request
-from app.models import db, Product, Shop, ProductImage, ProductReview
+from app.models import db, Product, Shop, ProductImage, ProductReview, ShopImage
 from flask_login import current_user, login_required
 import copy
 from datetime import datetime
@@ -14,51 +14,21 @@ def get_one_product(product_id):
     """returns one product with the specified id"""
     if request.method == 'GET':
         product = Product.query.get(product_id)
-        print('')
-        print('')
-        print('')
-        print('')
-        print('')
-        print('CURRENT PRODUCT', product.to_dict())
-        print('')
-        print('')
-        print('')
-        print('')
-        print('')
         productcopy = product.to_dict()
+        # shop = Shop.query.get(product.shop_id)
         shop = Shop.query.get(product.shop_id)
+        shop_image = ShopImage.query.filter(ShopImage.shop_id == product.shop_id).first()
+
         images = ProductImage.query.filter(ProductImage.product_id==product_id).all()
-        print('')
-        print('')
-        print('')
-        print('')
-        print('')
-        print('')
-        print('IMAGES', [image.to_dict() for image in images])
-        print('')
-        print('')
-        print('')
-        print('')
-        print('')
-        print('')
         productcopy['ProductImages'] = [image.to_dict() for image in images]
-        print('')
-        print('')
-        print('')
-        print('')
-        print('')
-        print('IMAGES', productcopy)
-        print('')
-        print('')
-        print('')
-        print('')
-        print('')
         productcopy['Shop'] = shop.to_dict()
+        productcopy['shopImage'] = shop_image.to_dict()['url']
+
         def get_reviews(id):
             reviews = ProductReview.query.filter(ProductReview.product_id == id).all()
             return [r.to_dict() for r in reviews]
         reviews = get_reviews(productcopy['id'])
-        sum =0
+        sum = 0
         for r in reviews:
             sum += r['stars']
         productcopy['Reviews'] = reviews
@@ -72,32 +42,9 @@ def get_one_product(product_id):
                 return { 'errors': "Cannot find product with specified id"}
             #insert owner validation or front end conditional displays?
             else:
-                print('')
-                print('')
-                print('')
-                print('')
-                print('')
-                print('')
-                # print('images', [image.url for image in images])
-                print('')
-                print('')
-                print('')
-                print('')
-                print('')
                 images_delete = [image.to_dict() for image in images]
                 db.session.delete(product)
-                print('')
-                print('')
-                print('')
-                print('')
-                print('')
-                print('')
-                print('IMAGES', images_delete)
-                print('')
-                print('')
-                print('')
-                print('')
-                print('')
+
                 for image in images_delete:
                     # print('IMAGE', images_delete)
                     remove_file_from_s3(image['url'])
