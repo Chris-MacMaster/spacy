@@ -116,14 +116,26 @@ export const fetchOneShop = id => async dispatch => {
     }
 }
 
+export const unfollowSingleShop = id => async dispatch => {
+    const response = await fetch(`/api/shops/${id}`)
+    if (response.ok) {
+        const shop = await response.json()
+        shop.Followed.Status = "Not Followed"
+        return dispatch(loadOneShop(shop))
+    }
+}
 
-// export const checkFollowShop = id => async dispatch => {
-//     const response = await fetch(`/api/shops/current-followed/check/${id}/`)
-//     if (response.ok) {
-//         const res = await response.json()
-//         return res
-//     }
-// }
+export const followSingleShop = id => async dispatch => {
+    const response = await fetch(`/api/shops/${id}`)
+    if (response.ok) {
+        const shop = await response.json()
+        shop.Followed.Status = "Followed"
+        return dispatch(loadOneShop(shop))
+    }
+}
+
+
+
 
 //post shop
 export const createShop = (formData) => async dispatch => {

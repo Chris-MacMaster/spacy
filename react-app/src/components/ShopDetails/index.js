@@ -2,7 +2,7 @@ import { NavLink, useParams, useHistory } from 'react-router-dom'
 import './ShopDetails.css'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchOneShop, fetchShops, followShop, unfollowShop } from '../../store/shops'
+import { fetchOneShop, fetchShops, followShop, followSingleShop, loadOneShop, unfollowShop, unfollowSingleShop } from '../../store/shops'
 import ShopProductCard from '../ShopProductCard'
 import { authenticate } from '../../store/session'
 import LoadingIcon from '../LoadingIcon'
@@ -12,6 +12,9 @@ export default function ShopDetails () {
     const dispatch = useDispatch()
     const history = useHistory()
     const [ hasLoaded, setHasLoaded ] = useState(false)
+    const [isFollowed, setIsFollowed] = useState(false)
+
+
     useEffect(() => {
         const loadData = async () => {
             await dispatch(fetchOneShop(shopId))
@@ -29,6 +32,10 @@ export default function ShopDetails () {
     if (!hasLoaded) return <LoadingIcon />
 
     const allReviews = shop.Products.map(p=>p.Reviews).flat().sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt))
+
+
+
+
     const handleCreate = (e) => {
         e.preventDefault()
         history.push(`/products/forms/create-product/${shopId}`)
@@ -38,14 +45,20 @@ export default function ShopDetails () {
         e.preventDefault()
         e.stopPropagation()
 
+        // updates db join table
         dispatch(followShop(shop.id))
+        // updates followed status in state
+        dispatch(followSingleShop(shop.id))
     }
 
     const handleUnfollow = async (e) => {
         e.preventDefault()
         e.stopPropagation()
 
+        // updates db join table
         dispatch(unfollowShop(shop.id))
+        // updates followed status in state
+        dispatch(unfollowSingleShop(shop.id))
     }
 
     return (
@@ -93,14 +106,19 @@ export default function ShopDetails () {
         Create Product</button>
 
         ) : (
+        
+        
         <div className='follow-unfollow-shop-div'> 
+            {shop.Followed.Status === "Not Followed" &&
             <button className='favorite-shop' onClick={handleFollow}>
             <i className="fa-regular fa-heart shop-heart"
             ></i>Follow Shop</button>
-
+            }
+            {shop.Followed.Status === "Followed" &&
             <button className='favorite-shop' onClick={handleUnfollow}>
             <i className="fa-regular fa-heart shop-heart"
             ></i>Unfollow Shop</button>
+            }
        </div>
         )}
 

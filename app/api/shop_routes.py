@@ -166,6 +166,18 @@ def get_shop_by_id(shop_id):
             if user == None:
                 return {"Status" : "Not Followed"}
             return {"Status" : "Followed"}
+        
+        def get_followers():
+            # shops = Shop.query.join(user_shops).filter(user_shops.c.user_id == current_user.id).all()
+            users = User.query.join(user_shops).filter(user_shops.c.shop_id == shop_id).all()
+            if users == None:
+                return 
+                # return {"None": "No followers for shop"}
+            else:
+                users_copy = copy.deepcopy(users)
+                payload = {user.id: user.to_dict() for user in users_copy}
+                return payload
+        
 
         products = shop_products(shopcopy['id'])
         for product in products:
@@ -178,6 +190,7 @@ def get_shop_by_id(shop_id):
         shopcopy['Products'] = products
         shopcopy['Owner'] = get_owner(shopcopy['ownerId'])
         shopcopy['Followed'] = check_followed()
+        shopcopy['Followers'] = get_followers()
         return shopcopy, 200
     else:
         return {"errors": "Shop by that id does not exist"}, 404
