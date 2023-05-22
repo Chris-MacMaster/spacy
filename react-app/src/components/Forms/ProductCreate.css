@@ -131,3 +131,11 @@ textarea, option, select {
     display: flex;
     justify-content: center;
 }
+
+
+
+
+.dropzone {
+    background-color: gray;
+    height: 7rem;
+}

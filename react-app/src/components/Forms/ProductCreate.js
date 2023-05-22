@@ -70,11 +70,26 @@ export default function ProductCreateForm() {
         history.push(`/shops/${shopId}`)
     };
 
-
+    const handleDragOver = (e) => {
+        e.preventDefault()
+    }
+    const images = []
+    const handleDrop = (e) => {
+        e.preventDefault()
+        images.push(e.dataTransfer.files[e.dataTransfer.files.length - 1])
+        console.log('all images',images)
+        setUrl(images)
+        console.log('HELLO FROM DROP', url)
+    }
     const handleCheck = (e) => {
         freeShipping === true ? setFreeShipping(false) : setFreeShipping(true)
     }
 
+    // if (url) {
+    //     return (
+    //         <h1>hello</h1>
+    //     )
+    // }
 
     return (
         <div className='cp-container'>
@@ -239,11 +254,19 @@ export default function ProductCreateForm() {
                                     Provide a url, pictures are necessary! Nobody wants to buy something sight unseen!
                                 </div>
                             </div>
+                            <div className='dropzone'
+                                    draggable={true}
+                                    // draggable='true'
+                                    onDragOver={handleDragOver}
+                                    onDrop={handleDrop}
+                            >
                             <input className='product-input input-field' type="file"
                                     accept = 'image/*'
                                     // value={image}
-                                    onChange={(e) => setUrl(e.target.files[0])}
+                                    multiple={true}
+                                    onChange={(e) => setUrl(e.target.files)}
                                     placeholder='URL' />
+                            </div>
                             {hasSubmitted && errors.url1 && (
                                 <div className='error'>
                                     * {errors.url1}
