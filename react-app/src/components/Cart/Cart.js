@@ -1,16 +1,11 @@
 import { groupItemsByStore, totalCost } from "./_helpers"
-import React, { useEffect, useState, useContext } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { fetchCart } from "../../store/cart"
+import React, { useState,  } from "react"
 import RemoveItemButton from "./RemoveItemButton"
 import CheckoutCart from "./Checkout"
 import ChangeQuantity from "./ChangeQuantity"
 import { NavLink } from "react-router-dom"
 import PaymentMethod from "./PaymentMethods"
 import './Cart.css'
-import LoadingIcon from "../LoadingIcon"
-import { CartContext } from "../../context/CartContext"
-
 
 export default function TheCart({cart}){
   const [purchased, setPurchased] = useState(false)
@@ -96,7 +91,7 @@ export default function TheCart({cart}){
           <h3>We're sorry to inform you that the only way you can pay currently is with depleted uranium</h3>
           <p>Item(s) total: ${totalCost(cart)}</p> */}
           <PaymentMethod totalCost={totalCost(cart)}/>
-          <CheckoutCart setPurchased={setPurchased}/>
+          <CheckoutCart setPurchased={setPurchased} cartItems={cart}/>
         </div>}
       </div>
   </div>
