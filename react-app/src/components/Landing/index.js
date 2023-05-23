@@ -163,7 +163,12 @@ function Landing({ isLoaded }) {
                 <h1>Popular gifts right now</h1>
             </div>
             <div className='popular-gifts-mapped'>
-            {Object.values(products).reverse().map((p,i)=> <PopularGifts product={p} key={i} /> )}
+            {Object.values(products).reverse().map((p,i)=>
+            <NavLink to={`/products/${p.id}`} style={{textDecoration: "none"}}>
+                <PopularGifts product={p} key={i} />
+
+            </NavLink>
+            )}
             </div>
             </div>
 
