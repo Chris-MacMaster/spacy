@@ -168,7 +168,7 @@ function Landing({ isLoaded }) {
             </div>
 
 
-            <div className='shops-youll-love'>
+            {/* <div className='shops-youll-love'>
                 <div className='shops-youll-love-text'>
                     <h1 className='shops-youll-love-title'>Shops we think you'll love
                     </h1>
@@ -184,7 +184,7 @@ function Landing({ isLoaded }) {
                 </NavLink>
                 ) )) : null }
 
-            </div>
+            </div> */}
             <div className='what-is-etzy'>
                 <h1 className='what-is-title'>What is Spacey</h1>
                 <div className='column-container'>

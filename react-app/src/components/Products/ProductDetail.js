@@ -13,6 +13,7 @@ import OpenModalButton from '../OpenModalButton';
 import ShopPoliciesModal from '../ShopPoliciesModal';
 import LoadingIcon from '../LoadingIcon';
 import ProductImageSlider from './ProductImageSlider';
+import { followShop } from '../../store/shops';
 
 const ProductDetail = () => {
     const dispatch = useDispatch()
@@ -63,6 +64,16 @@ const ProductDetail = () => {
         e.preventDefault()
         history.push(`/shops/${shopId}`)
     }
+
+
+    const handleFollow = async (e) => {
+        e.preventDefault()
+        e.stopPropagation()
+
+        dispatch(followShop(product.Shop.id))
+    }
+
+
     return (
         <div className='product-detail-div'>
             <div className='product-grid-div'>
@@ -101,7 +112,7 @@ const ProductDetail = () => {
                                 {product && product.Shop && product.Shop.name}
                         </span>
                         <span className='store-follows'>
-                        <i className="fa-solid fa-heart"/> Follow
+                        <i onClick={handleFollow} className="fa-solid fa-heart"/> Follow
                                 {/* feature incoming */}
                         </span>
                         </div>
