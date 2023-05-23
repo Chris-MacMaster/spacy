@@ -9,10 +9,11 @@ export default function ShopProductCard({ product, user, shop }) {
     const dispatch = useDispatch()
     const history = useHistory()
 
-    const handleDelete = (e) => {
+    const handleDelete = async (e) => {
         e.preventDefault()
-        dispatch(deleteProduct(product.id))
-        dispatch(fetchOneShop(product.shopId))
+        await dispatch(deleteProduct(product.id))
+        // dispatch(fetchOneShop(product.shopId))
+        dispatch(fetchOneShop(shop.id))
     }
 
     const handleEdit = (e) => {

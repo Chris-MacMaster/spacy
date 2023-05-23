@@ -3,6 +3,8 @@ from app.models import db, Product, Shop, ShopImage, ProductImage, User, Product
 from flask_login import current_user, login_required
 import copy
 shop_routes = Blueprint('/shops', __name__)
+from app.api.AWS_helpers import get_unique_filename, upload_file_to_s3, remove_file_from_s3
+
 from app.forms import CreateShopForm
 
 @shop_routes.route('/', methods=['GET', 'POST'])
@@ -38,6 +40,14 @@ def get_all_shops():
         if not form.validate_on_submit():
             return {'error': 'The provided data could not be validated'}
         if form.validate_on_submit():
+
+            image = form.data["image"] #aws
+            image.filename = get_unique_filename(image.filename)
+            upload = upload_file_to_s3(image)
+            img_url = None
+            if 'url' in upload:
+                img_url = upload['url']
+            
             new_shop = Shop(
                 name = form.data['name'],
                 owner_id = current_user.get_id(),
@@ -54,7 +64,8 @@ def get_all_shops():
             db.session.commit()
             recentshop = db.session.query(Shop).order_by(Shop.id.desc()).first()
             new_shop_img = ShopImage(
-                url = form.data['url'],
+                # url = form.data['url'],
+                url = img_url, #aws
                 shop_id = recentshop.id
             )
             db.session.add(new_shop_img)
@@ -71,16 +82,35 @@ def delete_one_shop(shop_id):
         if shop == None:
             return {"errors": "Cannot find Shop with specified id"}
         elif shop.owner_id == current_user.id:
+            aws_shop_image = copy.deepcopy(shop_image).to_dict()
             db.session.delete(shop)
+            remove_file_from_s3(aws_shop_image['url'])
             db.session.commit()
             return shop.to_dict(), 200
         elif shop.owner_id != current_user.id:
             return {"errors": "Only owner may delete their own shop"}
     elif current_user.is_authenticated and request.method == 'PUT':
+        
         shop = Shop.query.get(shop_id)
+        # shop_image = ShopImage.query.filter(ShopImage.shop_id == shop_id).first()
+        # db.session.delete(shop_image)
         form = CreateShopForm()
+        
         form['csrf_token'].data = request.cookies['csrf_token']
         if form.validate_on_submit():
+
+            image = form.data["image"] #aws
+            image.filename = get_unique_filename(image.filename)
+            upload = upload_file_to_s3(image)
+            img_url = None
+            if 'url' in upload:
+                img_url = upload['url']
+
+            img_delete = form.data['ogImage']
+            remove_file_from_s3(img_delete)
+            # remove_file_from_s3()
+
+
             shop.name = form.data['name']
             shop.street_address = form.data['street_address']
             shop.city = form.data['city']
@@ -90,9 +120,20 @@ def delete_one_shop(shop_id):
             shop.category = form.data['category']
             shop.policies = form.data['policies']
             shop_image = ShopImage.query.filter(ShopImage.shop_id == shop_id).first()
-            shop_image.url = form.data['url']
+            db.session.delete(shop_image)
+
+            new_shop_img = ShopImage(
+                # url = form.data['url'],
+                url = img_url, #aws
+                shop_id = shop_id
+            )
+
+            db.session.add(new_shop_img)
+
+            # shop_image = ShopImage.query.filter(ShopImage.shop_id == shop_id).first()
+            # shop_image.url = form.data['url']
             db.session.commit()
-            return shop.to_dict, 201
+            return shop.to_dict(), 201
 
 @shop_routes.route('/<int:shop_id>')
 def get_shop_by_id(shop_id):
@@ -119,6 +160,25 @@ def get_shop_by_id(shop_id):
         def review_image(review_id):
             review_image = ReviewImage.query.filter(ReviewImage.review_id==review_id).first()
             return review_image.to_dict() if review_image else None
+        
+        def check_followed():
+            user = User.query.join(user_shops).filter(user_shops.c.shop_id == shop_id, user_shops.c.user_id == current_user.id).first()
+            if user == None:
+                return {"Status" : "Not Followed"}
+            return {"Status" : "Followed"}
+        
+        def get_followers():
+            # shops = Shop.query.join(user_shops).filter(user_shops.c.user_id == current_user.id).all()
+            users = User.query.join(user_shops).filter(user_shops.c.shop_id == shop_id).all()
+            if users == None:
+                return 
+                # return {"None": "No followers for shop"}
+            else:
+                users_copy = copy.deepcopy(users)
+                payload = {user.id: user.to_dict() for user in users_copy}
+                return payload
+        
+
         products = shop_products(shopcopy['id'])
         for product in products:
             product['ProductImages'] = get_images(product['id'])
@@ -129,6 +189,8 @@ def get_shop_by_id(shop_id):
         shopcopy['ShopImages'] = get_shop_images(shopcopy['id'])
         shopcopy['Products'] = products
         shopcopy['Owner'] = get_owner(shopcopy['ownerId'])
+        shopcopy['Followed'] = check_followed()
+        shopcopy['Followers'] = get_followers()
         return shopcopy, 200
     else:
         return {"errors": "Shop by that id does not exist"}, 404
@@ -158,14 +220,6 @@ def get_my_shops():
 @shop_routes.route('/current-followed')
 @login_required
 def get_user_followed_shops():
-    print("HIT URL")
-    print("HIT URL")
-    print("HIT URL")
-    print("HIT URL")
-    print("HIT URL")
-    print("HIT URL")
-    print("HIT URL")
-    print("HIT URL")
     """Returns the followed shops of User"""
     if request.method == 'GET':
         shops = Shop.query.join(user_shops).filter(user_shops.c.user_id == current_user.id).all()
@@ -175,5 +229,40 @@ def get_user_followed_shops():
             shops_copy = copy.deepcopy(shops)
             payload = {shop.id: shop.to_dict() for shop in shops_copy}
 
-
             return payload, 200
+        
+@shop_routes.route('/current-followed/check/<int:shop_id>/', methods=['GET', 'POST'])
+@login_required
+def check_shop_followed(shop_id):
+    """Checks if a shop is followed by user"""
+    if request.method == 'GET':
+        shop = user_shops.query.get(shop_id)
+        if shop == None:
+            return {'status': 'shop NOT followed'}
+        else: 
+            return {'status': 'shop followed'}
+
+@shop_routes.route('/current-followed/follow/<int:shop_id>/', methods=['GET', 'POST'])
+def follow_shop(shop_id):
+    """Follows a Shop"""
+    # if current_user.is_authenticated:
+    user = User.query.get(current_user.id)
+    shop = Shop.query.get(shop_id)
+    user.shops.append(shop)
+    db.session.commit()
+    return shop.to_dict()
+    # return {'errors': 'Not authenticated'}
+
+
+
+
+@shop_routes.route('/current-followed/unfollow/<int:shop_id>/', methods=['GET', 'POST'])
+def unfollow_shop(shop_id):
+    """Unfollows a Shop"""
+    # if current_user.is_authenticated:
+    user = User.query.get(current_user.id)
+    shop = Shop.query.get(shop_id)
+    user.shops.remove(shop)
+    db.session.commit()
+    return user.to_dict()
+    # return {'errors': 'Not authenticated'}

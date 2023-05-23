@@ -4,12 +4,11 @@ import { editShop, fetchOneShop } from '../../store/shops'
 import { useHistory, useParams } from 'react-router-dom'
 import { useEffect } from 'react'
 import "../PostShopForm/PostShopForm.css"
-import { urlChecka } from '../Cart/_helpers'
 
 export default function PutShopForm() {
     const dispatch = useDispatch()
     const { shopId } = useParams()
-
+    const formData = new FormData()
     //data
     const [name, setName] = useState('');
     const [streetAddress, setStreetAddress] = useState('');
@@ -26,6 +25,8 @@ export default function PutShopForm() {
     const [hasSubmitted, setHasSubmitted] = useState(false);
     const shopState = useSelector(state => state.shops.singleShop)
 
+    const [ogUrl, setOgUrl] = useState('')
+
     useEffect(() => {
         const err = {}
         if (!name || name.length < 4) err.name = 'Please enter a valid name, at least 4 characters.'
@@ -36,7 +37,7 @@ export default function PutShopForm() {
         if (!description || description.length < 20) err.description = 'Please enter a valid shop description, at least 20 characters'
         if (!category || category.length < 3) err.category = 'Please enter a shop category'
         if (!policies || policies.length < 30) err.policies = 'Please enter shop policies about returns or shipping'
-        if (!urlChecka(url) || !url) err.url = 'Please enter a shop image to represent your shop'
+        // if (!urlChecka(url) || !url) err.url = 'Please enter a shop image to represent your shop'
         setErrors(err)
     }, [name, streetAddress, city, state, country, description, category, policies, url])
 
@@ -50,13 +51,12 @@ export default function PutShopForm() {
         setCategory(shopState && shopState.category ? shopState.category : '')
         setPolicies(shopState && shopState.policies ? shopState.policies : '')
         setUrl(shopState && shopState.ShopImages && shopState.ShopImages.url ? shopState.ShopImages.url : '')
+        setOgUrl(shopState && shopState.ShopImages && shopState.ShopImages.url ? shopState.ShopImages.url : '')
     }, [shopState])
 
     const handleSubmit = e => {
         e.preventDefault();
-
         setHasSubmitted(true)
-
         if (Object.values(errors).length ) return;
         const data = {
             name,
@@ -67,14 +67,20 @@ export default function PutShopForm() {
             description,
             category,
             policies,
-            url
+            // url
         }
-        dispatch(editShop(data, shopId))
+
+        formData.append('image', url)
+        formData.append('ogImage', ogUrl)
+        for (let key in data) {
+            formData.append(`${key}`, data[key])
+        }
+        dispatch(editShop(formData, shopId))
         dispatch(fetchOneShop(shopId))
         history.push(`/users/${user.id}`)
     }
     if (shopState && user.id !== shopState.ownerId) return null
-    
+
     return (
         <div className='post-shop-div'>
             <h1 className='post-shop-title'>Edit Your Shop</h1>
@@ -181,7 +187,7 @@ export default function PutShopForm() {
         </div>
 
         <div className='create-shop-input'>
-                        <textarea className='create-shop-input-field policies-inpu shop-create-description' type='text' value={policies} onChange={e => setPolicies(e.target.value)}></textarea>
+        <textarea className='create-shop-input-field policies-inpu shop-create-description' type='text' value={policies} onChange={e => setPolicies(e.target.value)}></textarea>
         {hasSubmitted && errors.policies && (
             <div className='error'>
                 * {errors.policies}
@@ -195,7 +201,9 @@ export default function PutShopForm() {
         </div>
 
         <div className='create-shop-input'>
-        <input className='create-shop-input-field' type='url' value={url} onChange={e => setUrl(e.target.value)} ></input>
+        <input className='create-shop-input-field' type='file'
+        // value={url}
+         onChange={e => setUrl(e.target.files[0])} ></input>
         {hasSubmitted && errors.url && (
             <div className='error'>
                 * {errors.url}

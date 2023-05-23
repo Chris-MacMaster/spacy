@@ -2,7 +2,7 @@ import { NavLink, useParams, useHistory } from 'react-router-dom'
 import './ShopDetails.css'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchOneShop, fetchShops } from '../../store/shops'
+import { fetchOneShop, fetchShops, followShop, followSingleShop, loadOneShop, unfollowShop, unfollowSingleShop } from '../../store/shops'
 import ShopProductCard from '../ShopProductCard'
 import { authenticate } from '../../store/session'
 import LoadingIcon from '../LoadingIcon'
@@ -12,6 +12,9 @@ export default function ShopDetails () {
     const dispatch = useDispatch()
     const history = useHistory()
     const [ hasLoaded, setHasLoaded ] = useState(false)
+    const [isFollowed, setIsFollowed] = useState(false)
+
+
     useEffect(() => {
         const loadData = async () => {
             await dispatch(fetchOneShop(shopId))
@@ -29,12 +32,38 @@ export default function ShopDetails () {
     if (!hasLoaded) return <LoadingIcon />
 
     const allReviews = shop.Products.map(p=>p.Reviews).flat().sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt))
+
+
+
+
     const handleCreate = (e) => {
         e.preventDefault()
         history.push(`/products/forms/create-product/${shopId}`)
     }
+
+    const handleFollow = async (e) => {
+        e.preventDefault()
+        e.stopPropagation()
+
+        // updates db join table
+        dispatch(followShop(shop.id))
+        // updates followed status in state
+        dispatch(followSingleShop(shop.id))
+    }
+
+    const handleUnfollow = async (e) => {
+        e.preventDefault()
+        e.stopPropagation()
+
+        // updates db join table
+        dispatch(unfollowShop(shop.id))
+        // updates followed status in state
+        dispatch(unfollowSingleShop(shop.id))
+    }
+
     return (
         <div className='shop-page'>
+        <div className='shop-deets-80'>
         <div className='shop-header'>
             <div className='shop-businesscard'>
             <img src={`${shop.ShopImages.url}`} alt='shoplogo' className='shoplogo'></img>
@@ -77,9 +106,20 @@ export default function ShopDetails () {
         Create Product</button>
 
         ) : (
-        <button className='favorite-shop' onClick={featureAlert}>
-        <i className="fa-regular fa-heart shop-heart"
-       ></i>Follow Shop</button>
+        
+        
+        <div className='follow-unfollow-shop-div'> 
+            {shop.Followed.Status === "Not Followed" &&
+            <button className='favorite-shop' onClick={handleFollow}>
+            <i className="fa-regular fa-heart shop-heart"
+            ></i>Follow Shop</button>
+            }
+            {shop.Followed.Status === "Followed" &&
+            <button className='favorite-shop' onClick={handleUnfollow}>
+            <i className="fa-regular fa-heart shop-heart"
+            ></i>Unfollow Shop</button>
+            }
+       </div>
         )}
 
 
@@ -124,14 +164,13 @@ export default function ShopDetails () {
                 <div className='mapping-reviews'>
                     {allReviews ? allReviews.map((r,i)=> (
                     <>
-                    <div className='review-header'
-                    key={`reviewdivheader${i}`}>
+                    <div className='review-header' key={`reviewdivheader${i}`}>
 
                     <img src='https://i.imgur.com/mMEwXsu.png' alt='usericon'
                     className='user-icon'></img>
-                    <p className='username'
-                    key={`username${i}`}>{r.Reviewer.firstName} on {r.createdAt.slice(0, -12)}</p>
-                    </div>
+                    <div className='shop-deets-user-deets'>
+                    <p className='username' key={`username${i}`}>{r.Reviewer.firstName} on {r.createdAt.slice(0, -12)}</p>
+                    <div className='shop-deets-stars'>
                         {new Array(5).fill(1).map((s,j)=> (
                             j <= r.stars ? (
                                 <i class="fa-solid fa-star gold-star"></i>
@@ -139,6 +178,9 @@ export default function ShopDetails () {
                                 <i class="fa-solid fa-star blank-star"></i>
                             )
                         ))}
+                        </div>
+                        </div>
+                    </div>
                        <div className='iterated-review'
                        key={`div${i}`}>
                         {r.ReviewImages && r.ReviewImages.url ? (
@@ -178,6 +220,7 @@ export default function ShopDetails () {
                         </>
                     )) : null}
                 </div>
+            </div>
             </div>
         </div>
     )

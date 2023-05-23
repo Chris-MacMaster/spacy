@@ -8,16 +8,20 @@
     justify-content: center;
     align-content: center;
 }
-.shops-youll-love-text {
-    width: 45vmin;
-    height: 45vmin;
-}
 .shop-image-grid-image {
     width:21vmin;
     height: 16vmin;
-    border-radius: .5vmin;
+    border-radius: min(.5vmin, .5rem);
     object-fit: cover;
 }
+.landing-shop-card:hover {
+    box-shadow: 0rem 0rem min(2vmin, .5rem) grey;
+}
+.shops-youll-love-text {
+    width: 20vmin;
+    height: 20vmin;
+}
+
 .shop-image-grid {
     display: grid;
     grid-template-columns: auto auto;
@@ -32,59 +36,99 @@
     border-radius: .5vmin;
     margin-left: .5rem;
 }
-
 .shop-card-text {
     font-family: 'Mulish', sans-serif;
     line-height: 2vmin;
-    font-size: 2.5vmin;
+    font-size: min(2vmin, .8rem);
     padding: .3rem;
     width: 25vmin;
 }
-.shop-card-stars {
-    margin-top: 2vmin;
-}
 .landing-shops-business-card {
-    /* margin-top: .2rem; */
     display: flex;
     flex-direction: row;
 }
 .landing-shop-stars {
-    font-size: .6rem;
+    font-size: min(2vmin, .6rem);
     margin: 0rem;
     padding:0rem;
+}
+.landing-shop-gold {
+    color: goldenrod;
+}
+.landing-shop-blank {
+    color: grey;
+}
+.shop-image-grid {
+    padding: .3vmin;
 }
 .shop-card-heart {
     align-items: end;
 }
 .landing-shop-heart {
-    font-size: 2.5vmin;
+    font-size: min(2vmin, .8rem);
 }
 
-/* @media only screen and (max-width: 1200px){
-    .landing-shop-card,
-    .shops-youll-love-text {
-        width: 16rem;
-        height: 16rem;
+@media only screen and (max-width: 768px){
+    .landing-shop-card {
+        width: 45vmin;
+        height: 45vmin;
+        box-shadow: 0rem 0rem 1vmin grey;
+        border-radius: 1vmin;
+        position: relative;
+        margin-top: 1vmin;
+        justify-content: center;
+        align-content: center;
     }
-    .shops-youll-love{
-        gap: .5rem;
+    .shops-youll-love-text {
+        width: 45vmin;
+        height: 45vmin;
     }
     .shop-image-grid-image {
-        width: 7rem;
-        height: 6rem;
+        width:21vmin;
+        height: 16vmin;
+        border-radius: .5vmin;
+        object-fit: cover;
     }
-    .shop-card-text,
-    .shop-card-text > p,
+    .shop-image-grid {
+        display: grid;
+        grid-template-columns: auto auto;
+        position: relative;
+        gap: 1vmin;
+        padding: 1vmin;
+        margin-top: 2vmin;
+    }
     .shop-card-logo {
-        margin: 0rem;
-        padding: 0rem;
+        width: 9.5vmin;
+        height: 9.5vmin;
+        border-radius: .5vmin;
         margin-left: .5rem;
     }
+
+    .shop-card-text {
+        font-family: 'Mulish', sans-serif;
+        line-height: 2vmin;
+        font-size: 2.5vmin;
+        padding: .3rem;
+        width: 25vmin;
+    }
+    .shop-card-stars {
+        margin-top: 2vmin;
+    }
     .landing-shops-business-card {
+        /* margin-top: .2rem; */
+        display: flex;
+        flex-direction: row;
+    }
+    .landing-shop-stars {
+        font-size: .6rem;
         margin: 0rem;
+        padding:0rem;
     }
     .shop-card-heart {
-        margin-top: 1.5rem;
+        align-items: end;
+    }
+    .landing-shop-heart {
+        font-size: 2.5vmin;
     }
 
-} */
+}

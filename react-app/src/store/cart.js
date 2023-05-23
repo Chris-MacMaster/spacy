@@ -39,6 +39,13 @@ export const editItemQuantity = cart => {
     }
 }
 //THUNKS
+export const addLocalToUserCartThunk = (data) => async dispatch => {
+    await fetch('/api/cart/addLocalCart', {
+        method: 'POST',
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(data)
+    })
+}
 
 export const fetchCart = () => async dispatch => {
     const response = await fetch('/api/cart/')

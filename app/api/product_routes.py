@@ -1,11 +1,11 @@
 from flask import Blueprint, jsonify, redirect, request
-from app.models import db, Product, Shop, ProductImage, ProductReview
+from app.models import db, Product, Shop, ProductImage, ProductReview, ShopImage
 from flask_login import current_user, login_required
 import copy
 from datetime import datetime
 from app.forms import CreateProductForm
 
-from app.api.AWS_helpers import get_unique_filename, upload_file_to_s3
+from app.api.AWS_helpers import get_unique_filename, upload_file_to_s3, remove_file_from_s3
 
 product_routes = Blueprint('/products', __name__)
 
@@ -15,15 +15,20 @@ def get_one_product(product_id):
     if request.method == 'GET':
         product = Product.query.get(product_id)
         productcopy = product.to_dict()
+        # shop = Shop.query.get(product.shop_id)
         shop = Shop.query.get(product.shop_id)
+        shop_image = ShopImage.query.filter(ShopImage.shop_id == product.shop_id).first()
+
         images = ProductImage.query.filter(ProductImage.product_id==product_id).all()
         productcopy['ProductImages'] = [image.to_dict() for image in images]
         productcopy['Shop'] = shop.to_dict()
+        productcopy['shopImage'] = shop_image.to_dict()['url']
+
         def get_reviews(id):
             reviews = ProductReview.query.filter(ProductReview.product_id == id).all()
             return [r.to_dict() for r in reviews]
         reviews = get_reviews(productcopy['id'])
-        sum =0
+        sum = 0
         for r in reviews:
             sum += r['stars']
         productcopy['Reviews'] = reviews
@@ -32,11 +37,27 @@ def get_one_product(product_id):
     elif request.method == 'DELETE':
         if current_user.is_authenticated:
             product = Product.query.filter_by(id=product_id).first()
+            images = ProductImage.query.filter(ProductImage.product_id == product_id).all()
             if product == None:
                 return { 'errors': "Cannot find product with specified id"}
             #insert owner validation or front end conditional displays?
             else:
+                images_delete = [image.to_dict() for image in images]
                 db.session.delete(product)
+                print('')
+                print('')
+                print('')
+                print('')
+                print('')
+                print('')
+                print('IMAGES', images_delete)
+                print('')
+                print('')
+                print('')
+                print('')
+                print('')
+                for image in images_delete:
+                    remove_file_from_s3(image['url'])
                 db.session.commit()
                 return product.to_dict(), 200
         return { 'errors': 'Not authenticated'}
@@ -91,39 +112,10 @@ def get_all_products():
         form = CreateProductForm()
         form['csrf_token'].data = request.cookies['csrf_token']
         if not form.validate_on_submit():
-            print("")
-            print("")
-            print("")
-            print("")
-            print("")
-            print("FORM DATA", form.data)
-            print("")
-            print("")
-            print("")
-            print("")
-            print("")
             raise ValueError("Failed flask form validation")
         if form.validate_on_submit():
             image = form.data["image"] #aws
             image.filename = get_unique_filename(image.filename)
-            print('')
-            print('')
-            print('')
-            print('')
-            print('')
-            print('')
-            print('')
-            print('')
-            print('')
-            print('IMAGE FILENAME', image.filename)
-            print('')
-            print('')
-            print('')
-            print('')
-            print('')
-            print('')
-            print('')
-            print('')
             upload = upload_file_to_s3(image)
             img_url = None
             if 'url' in upload:

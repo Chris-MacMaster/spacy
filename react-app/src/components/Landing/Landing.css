@@ -5,36 +5,52 @@
     align-items: center;
     align-content: center;
 }
+.landing-80 {
+    width: min(80vw, 70rem);
+}
 .landing-header {
     justify-content: center;
-    background-color: peachpuff;
-    padding: 4vmin;
+    z-index: 1;
+    position: absolute;
+    width: min(80vw, 70rem);
+}
+.landing-header-accent {
+    position: absolute;
+    top: 0rem;
+    width: 100%;
+    height: 33vmin;
+    background-color: #d7e6f5;
+    z-index: 0;
 }
 .top-banner-suggest {
-    display: grid;
-    grid-template-columns: auto auto auto auto auto auto;
-    justify-content: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
-    gap: 2vw;
-    max-width: 75rem;
+    gap: 1.6vmin;
+}
+.top-banner-suggestions {
+    transition: .2s ease-in-out;
+}
+.top-banner-suggestions:hover {
+    box-shadow: inset 0rem -.3rem rgb(64, 64, 64);
+    scale: 1.10;
 }
 div.top-banner-suggestions > p {
     font-family: 'Mulish', sans-serif;
     text-align: center;
     font-weight: bold;
-    width: 10vw;
-    max-width: 10rem;
+    width: 12vmin;
     font-size: 1.5vmin;
 }
 .suggest-image {
     object-fit: cover;
     box-sizing: border-box;
     border-radius: 10vw;
-    width: 10vw;
-    height: 10vw;
-    max-width: 10rem;
-    max-height: 10rem;
+    width: 12vmin;
+    height: 12vmin;
 }
+
 .welcome-title {
     font-family: 'Marcellus', serif;
     font-weight: 200;
@@ -44,75 +60,78 @@ div.top-banner-suggestions > p {
 }
 .by-etsy-header {
     margin: .25rem;
-    /* width: 15rem;
-    height: 15rem; */
     border-radius: .5rem;
 }
 p.sponsored {
-    margin-top: 4vmin;
+    font-size: min(3vmin, 1.5rem);
 }
 .by-etsy-title {
     font-family: 'Mulish', sans-serif;
+    font-size: min(5vmin, 2rem);
 }
 .from-etzy-sellers {
     display: grid;
-    grid-template-columns: auto auto auto auto;
+    grid-template-columns: 7fr 5fr 3fr 5fr;
+    grid-auto-rows: 1fr 1fr;
+    margin-top: 40vmin;
     justify-content: center;
     align-content: center;
     flex-wrap: wrap;
-    /* width: 80vw; */
-    max-width: 70rem;
-    gap: 1vmin;
+    gap: 2vmin;
 }
+
 .from-etzy-closing {
     margin: .1vw;
     border-radius: .5rem;
-    margin-top: 5vmin;
+    font-size: min(2.5vmin, 1.2rem);
+    display: flex;
+    align-content: center;
 }
-.shop-our-title {
-    color: black;
+.closing-text {
+    display: flex;
+    align-items: center;
 }
 h2.shop-our-title {
     font-family: 'Mulish', sans-serif;
-    font-size: 4vmin;
+    font-size: min(5vmin, 2rem);
     margin-top: 8vmin;
 }
 h3.shop-our-title {
     font-family: 'Thasadith', sans-serif;
-    font-size: 3vmin;
+    font-size: min(3vmin, 1.7rem);
+    color: rgb(77, 77, 77);
 }
 .shop-our-titles {
-    max-width: 95vw;
     position: relative;
     position: sticky;
-    width: 80vw;
+    width: 100%;
 }
 .shop-our-mapped {
     display: grid;
-    grid-template-columns: auto auto auto auto auto;
-    justify-content: center;
-    align-content: center;
-    flex-wrap: wrap;
-    /* max-width: 94rem; */
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 }
 .selection-card {
-    /* width: 16rem;
-    height: 16rem; */
     border: lightgray solid .1rem;
     border-radius: .5rem;
     overflow: hidden;
     margin: .5vmin;
+    transition: .2s ease-in-out;
+}
+.selection-card > img {
+    width: 100%;
+    height: 20vmin;
+    border-radius: .5vmin;
+    object-fit: cover;
+}
+.selection-card:hover {
+    box-shadow: 0rem 0rem .5rem grey;
 }
 .shop-our-selections {
-    position: relative;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    margin-top: 6vmin;
 }
-
 .shop-our-select-img {
-    width: 18vmin;
-    height: 15vmin;
     border-radius: .5rem;
     object-fit: cover;
 }
@@ -136,21 +155,32 @@ h3.shop-our-title {
 h1.shops-youll-love-title{
     font-family: 'Mulish', sans-serif;
     font-weight: 500;
-    font-size: 4.5vmin;
+    font-size: min(4vmin, 1.7rem);
+    font-weight: bold;
 }
 h3.shops-youll-love-title {
     font-family: 'Thasadith', sans-serif;
-    font-size: 3.5vmin;
+    font-size: min(3vmin, 1.5rem);
 }
-.shops-youll-love-text {
-    height: 12em;
-    width: 22rem;
-    /* margin-left: 2rem; */
+.popular-gifts {
+    margin-top: 7vmin;
+}
+.popular-gifts-titles {
+    display: flex;
+    font-family: 'Mulish', sans-serif;
+}
+.popular-gifts-mapped {
+    display: grid;
+    /* grid-template-columns: auto auto auto auto; */
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    /* grid-template-rows: auto; */
+    grid-gap: 2vmin;
 }
 .what-is-etzy > h1 {
     font-family: 'Marcellus', serif;
     text-align: center;
     margin-bottom: 3rem;
+    font-size: min(5vmin, 2rem);
 }
 .what-is-etzy {
     margin-left: 2rem;
@@ -162,7 +192,7 @@ h3.shops-youll-love-title {
     grid-template-columns: auto auto auto;
     flex-direction: row;
     max-width: 1200px;
-    gap: 3vmin;
+    gap: 2vmin;
     justify-content: center;
     margin: 0 auto;
     line-height: 2vmin;
@@ -171,6 +201,10 @@ h3.shops-youll-love-title {
 .what-is-etzy > h2 {
     text-align: center;
     font-family: 'Mulish', sans-serif;
+    font-size: min(5vmin, 2rem);
+}
+.column-title {
+    font-size: min(5vmin, 2rem);
 }
 .fa-question {
     font-size: 1.7vmin;
@@ -178,213 +212,22 @@ h3.shops-youll-love-title {
 .have-questions,
 .what-is-title,
 .column-title {
-    font-size: 4vmin;
+    font-size: min(5vmin, 2rem);
     line-height: 5vmin;
+}
+.what-is-title {
+    margin-top: 10vmin;
 }
 .what-is-paragraph {
     font-size: 2vmin;
     line-height: 4vmin;
 }
-/*
-@media only screen and (max-width: 1600px){
-    .suggest-image,
-    .suggest-image-div {
-        max-width: 8rem;
-        max-height: 8rem;
-    }
-    .top-banner-suggestions {
-        max-width: 8rem;
-    }
-}
-@media only screen and (max-width: 1200px){
-    .suggest-image-text {
-        font-size: .8rem;
-    }
-    .selection-card {
-        width: 12rem;
-        height: 12rem;
-        margin: .5rem;
-    }
-    .shop-our-select-img {
-        width: 12rem;
-        height: 9rem;
-    }
-    .column-container {
-        gap: 1rem;
-    }
-    .column-title {
-        font-size: 1.3rem;
-    }
-}
-@media only screen and (max-width: 1024px){
-    .welcome-title {
-        font-size: 1.7rem;
-        margin: 1.7rem;
-    }
-    .suggest-image-text {
-        font-size: .8rem;
-        overflow-wrap: anywhere;
-    }
-    .top-banner-suggest {
-        justify-content: space-between;
-        gap: .5rem;
-    }
-    .top-banner-suggestions {
-        width: 6rem;
-    }
-    .suggest-image,
-    .suggest-image-div {
-        width: 6rem;
-        height: 6rem;
-    }
-    .selection-card {
-        width: 8rem;
-        height: 8rem;
-        margin: .5rem;
-        border-radius: .3rem;
-    }
-    .shop-our-select-img {
-        width: 8rem;
-        height: 6rem;
-        border-radius: .3rem;
-    }
-    .selection-subtitle {
-        font-size: 1rem;
-    }
-    .column-container {
-        gap: 1rem;
-    }
-    .column-title {
-        font-size: 1.3rem;
-    }
-    .what-is-paragraph {
-        font-size: .8rem;
-        line-height: 1.3rem;
-    }
-    .column-title {
-        font-size: 1rem;
-    }
-    .logoim {
-        height: 3rem;
-        width: 3rem;
-        margin-left: .5rem;
-    }
-    .logo {
-        font-size: 2rem;
-        margin-left: .5rem;
-    }
-}
-@media only screen and (max-width: 768px){
-    .welcome-title {
-        font-size: 1rem;
-        margin: 1rem;
-    }
-    .top-banner-suggest {
-        gap: .3rem;
-    }
-    .header-tabs {
-        visibility: hidden;
-    }
-    .header-container {
-        height: 3.5rem;
-    }
-    .suggest-image,
-    .suggest-image-div {
-        width: 4rem;
-        height: 4rem;
-    }
-    .top-banner-suggestions {
-        width: 4rem;
-    }
-    .suggest-image-text {
-        font-size: .6rem;
-        width: 4rem;
-    }
-    .shop-our-select-img {
-        width: 6rem;
-        height: 4rem;
-        border-radius: .2rem;
-    }
-    .selection-card {
-        width: 6rem;
-        height: 6.5rem;
-        margin: .25rem;
-    }
-    .selection-subtitle {
-        font-size: .8rem;
-        margin: 0rem;
-    }
-    .shops-youll-love{
-        margin-top: 2rem;
-        margin-bottom: 2rem;
-    }
-    .column-container {
-        display: flex;
-        flex-direction: column;
-    }
-    .column-title {
-        margin: 1rem;
-    }
-    .search-bar {
-        margin: 0rem;
-    }
-    h2.shop-our-title {
-        font-size: 1.5rem;
-    }
-    h3.shop-our-title {
-        font-size: 1rem;
-    }
-    .shops-youll-love{
-        font-size: .8rem;
-    }
-    .what-is-etzy > h1,
-    .have-questions {
-        font-size: 1.5rem;
-    }
-}
-@media only screen and (max-width: 480px){
-    .logoim {
-        width: 2rem;
-        height: 2rem;
-    }
-    .logo {
-        font-size: 1.5rem;
-    }
-    .search-bar-form,
-    .header-search {
-        height: 1rem;
-    }
-    .search-bar {
-        height: 1.1rem;
-        margin: .2rem;
-    }
-    .fa-magnifying-glass {
-        font-size: .7rem;
-    }
-    .telescope-search {
-        padding: .3rem;
-        padding-top: 0rem;
-        padding-bottom: .4rem;
-    }
-    .header-icons,
-    .fa-user-circle {
-        font-size: 1rem;
-        padding: 0rem;
-    }
-    .landing-header {
-        padding: 1rem;
-        margin: 0rem;
-    }
-    .what-is-paragraph {
-        font-size: .6rem;
-    }
-} */
 
 /*
 @media only screen and (max-width: 1600px){
 
 }
-@media only screen and (max-width: 1200px){
+ @media only screen and (max-width: 1200px){
 
 }
 
@@ -395,12 +238,28 @@ h3.shops-youll-love-title {
 
 }
 */
+@media only screen and (max-width: 1200px){
+    .landing-80,
+    .landing-header, .header{
 
+        width: min(90vw, 70rem);
+
+    }
+}
+@media only screen and (max-width: 768px){
+    .shops-youll-love {
+        display: grid;
+        grid-template-columns: auto auto;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 2vmin;
+        margin-top: 15vmin;
+        margin-bottom: 15vmin;
+    }
+}
 @media only screen and (max-width: 480px){
     .column-container {
         display: block;
-        /* text-align: center; */
-        /* font-size: 2vmin;
-        line-height: 2vmin; */
+
     }
 }

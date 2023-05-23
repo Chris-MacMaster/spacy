@@ -1,12 +1,14 @@
 .shop-product-preview-image {
     object-fit: cover;
-    height: 14vw;
-    width: 21vw;
+    height: min(12vw, 10rem);
+    width: min(17vw, 14rem);
     border-radius: .3rem;
     margin-top: 0rem;
     object-fit: cover;
 }
 .shop-product-card {
+    height: fit-content;
+    width: min(17vw, 14rem);
     display: flex;
     flex-direction: column;
     font-family: 'Mulish', sans-serif;

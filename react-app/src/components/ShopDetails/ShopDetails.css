@@ -1,6 +1,9 @@
 .shop-page {
-    left: 0rem;
-    right: 0rem;
+    display: flex;
+    justify-content: center;
+}
+.shop-deets-80 {
+    width: min(90vw, 70rem);
 }
 .shop-header {
     padding: 4vmin;
@@ -156,14 +159,15 @@
 }
 .column-buttons {
     text-align: center;
-    width: 13vw;
+    width: 23vmin;
     border: solid .1vmin grey;
     border-radius: 1vmin;
     margin-top: 2vmin;
     transition: opacity 0.3s;
     cursor: pointer;
     transition: .1s ease-in-out;
-    font-size: 2vmin;
+    font-size: min(1.7vmin, 1rem);
+    padding: 1vmin;
 }
 .column-buttons:hover,
 .contact-shop-owner:hover {
@@ -180,12 +184,12 @@ hr {
     color: gray;
 }
 .review-title {
-    margin-left: 20vw;
+    /* margin-left: 20vw; */
     font-size: 4vmin;
     margin-bottom: 4vh;
 }
 .fa-flag, .fa-thumbs-up {
-    font-size: .7rem;
+    font-size: min(2vmin, 1rem);
     margin-right: .5rem;
 }
 .feedback {
@@ -195,22 +199,27 @@ hr {
 }
 .mapping-reviews {
     width: 60vw;
-    margin-left: 20vw;
+    margin-left: 10vw;
     font-family: 'Mulish', sans-serif;
+}
+.shop-deets-user-deets {
+    display: flex;
+    flex-direction: column;
 }
 .user-icon {
     object-fit: cover;
     width: 5vw;
     height: 5vw;
     border-radius: 5rem;
-    position: absolute;
-    left: 12vw;
+    position: sticky;
+    margin: 1rem;
 }
 .helpful,
 .report,
 .username,
 p.review-paragraph {
     font-size: min(2vmin);
+    width: fit-content;
 }
 .product-ref-img{
     object-fit: cover;
@@ -229,6 +238,7 @@ p.review-paragraph {
     min-width: 5rem;
     margin-top: 1rem;
     margin: 2vw;
+    margin-left: 25vmin;
 }
 .gold-star, .blank-star {
     font-size: 2.4vmin;
@@ -249,7 +259,7 @@ p.review-paragraph {
     text-align: center;
 }
 .reviewed-item-name{
-    margin-left: 10vmin;
+    /* margin-left: 10vmin; */
     margin-top: 5vmin;
     font-size: min(2.5vmin, 1.7rem);
     align-items: center;
@@ -265,4 +275,9 @@ p.review-paragraph {
     p.review-paragraph {
         font-size: min(2.5vmin);
     }
+    .shop-deets-80 {
+        width: min(90vw, 70rem);
+    }
 }
+
+

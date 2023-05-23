@@ -13,6 +13,7 @@ import OpenModalButton from '../OpenModalButton';
 import ShopPoliciesModal from '../ShopPoliciesModal';
 import LoadingIcon from '../LoadingIcon';
 import ProductImageSlider from './ProductImageSlider';
+import { followShop } from '../../store/shops';
 
 const ProductDetail = () => {
     const dispatch = useDispatch()
@@ -63,6 +64,16 @@ const ProductDetail = () => {
         e.preventDefault()
         history.push(`/shops/${shopId}`)
     }
+
+
+    const handleFollow = async (e) => {
+        e.preventDefault()
+        e.stopPropagation()
+
+        dispatch(followShop(product.Shop.id))
+    }
+
+
     return (
         <div className='product-detail-div'>
             <div className='product-grid-div'>
@@ -73,7 +84,7 @@ const ProductDetail = () => {
 
                             {product && product.ProductImages && (product.ProductImages.map((img, i) =>
                             <img className={chosenImage === i ? 'chosen-image product-preview-img' : 'product-preview-img'}
-                            alt='' key={i} src={img.url} onClick={e=> setChosenImage(i)}/>).slice(0,8))}
+                            alt='' key={i} src={img.url} onClick={e=> setChosenImage(i)}/>))}
 
                             </div>
 
@@ -101,7 +112,7 @@ const ProductDetail = () => {
                                 {product && product.Shop && product.Shop.name}
                         </span>
                         <span className='store-follows'>
-                        <i className="fa-solid fa-heart"/> Follow
+                        <i onClick={handleFollow} className="fa-solid fa-heart"/> Follow
                                 {/* feature incoming */}
                         </span>
                         </div>
@@ -111,7 +122,7 @@ const ProductDetail = () => {
                     </div>
                     <div className='purchase-buttons'>
 
-                        {product.available > 0 ? <AddToCart className='button add-cart-button' product={product} cart={cart}/>
+                        {product.available > 0 ? <AddToCart className='button add-cart-button' product={product} cart={cart} user={user}/>
 
                         :
                         <button className='button cant-add-cart-button'>Out of stock</button>
@@ -141,7 +152,7 @@ const ProductDetail = () => {
 
 
             <div className='review-info-div'>
-                        <p className='review-p review-stars'>
+                        <div className='review-p review-stars'>
                         {productReviews && productReviews.length ?
                             <p className='review-num-title'>{productReviews.length === 1 ? <span>{'1 Review'}</span> : productReviews.length > 1 ? <> {productReviews.length} Reviews</>  : null}
                             { Array(5).fill(1).map((s,i)=> (
@@ -152,7 +163,8 @@ const ProductDetail = () => {
                             )
                             ) ) } </p> : (
                                 <p>New! <i className="fa-solid fa-star gold-star-product-deets"/> </p>
-                            )}                        </p>
+                            )}
+                        </div>
                         {user && user.id !== product?.Shop?.ownerId && !productReviews.length ? (
                        <div>
                             <button className='post-item-review'
