@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { login } from "../../store/session";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import "./LoginForm.css";
 import { fetchCart } from "../../store/cart";
+import { CartContext } from "../../context/CartContext";
+import { addLocalToUserCartThunk } from "../../store/cart";
 
 function LoginFormModal() {
   const dispatch = useDispatch();
@@ -11,6 +13,7 @@ function LoginFormModal() {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
   const { closeModal } = useModal();
+  const { cartItems, clearCart } = useContext(CartContext)
 
 	const validate = () => {
 		const err = []
@@ -26,6 +29,7 @@ function LoginFormModal() {
     if (errors.length) return
     else if (data) setErrors(data);
     else closeModal()
+
     await dispatch(fetchCart())
   };
 
@@ -36,7 +40,11 @@ function LoginFormModal() {
     const data = await dispatch(login(email, password));
     if (data) setErrors(data);
     else closeModal()
+
+    await dispatch(addLocalToUserCartThunk(cartItems))
+    clearCart()
     await dispatch(fetchCart())
+
   };
 
   return (

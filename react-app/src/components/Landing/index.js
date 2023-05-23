@@ -9,10 +9,19 @@ import ShopCard from '../ShopCard'
 import { NavLink } from 'react-router-dom'
 import LoadingIcon from '../LoadingIcon'
 import PopularGifts from '../PopularGifts'
+import { fetchCart } from '../../store/cart'
 
 function Landing({ isLoaded }) {
     const dispatch = useDispatch()
     const [ hasLoaded, setHasLoaded ] = useState(false)
+
+    const products = useSelector(state => state.products.allProducts)
+    const shops = useSelector(state => state.shops)
+    const user = useSelector(state => state.session.user)
+    const under30arr = Object.values(products).filter(p=> parseInt(p.price) < 30)
+    const under30 = under30arr[Math.floor(Math.random()*under30arr.length)]
+    const others = Object.values(products).filter(p=> p !== under30)
+    const title = ['Creating Change...', 'Gifts for Her', 'Gifts for Him', 'Gifts for Kids', 'Gifts Under $30']
 
     useEffect(() => {
         const loadData = async () => {
@@ -25,13 +34,9 @@ function Landing({ isLoaded }) {
         loadData()
     }, [dispatch])
 
-    const products = useSelector(state => state.products.allProducts)
-    const shops = useSelector(state => state.shops)
-    const user = useSelector(state => state.session.user)
-    const under30arr = Object.values(products).filter(p=> parseInt(p.price) < 30)
-    const under30 = under30arr[Math.floor(Math.random()*under30arr.length)]
-    const others = Object.values(products).filter(p=> p !== under30)
-    const title = ['Creating Change...', 'Gifts for Her', 'Gifts for Him', 'Gifts for Kids', 'Gifts Under $30']
+    useEffect(() => {
+        if(user) dispatch(fetchCart())
+    }, [dispatch, user])
 
     if (!hasLoaded) return <LoadingIcon />
 
