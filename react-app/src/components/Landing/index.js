@@ -169,7 +169,6 @@ function Landing({ isLoaded }) {
             </div>
             </div>
 
-
             {/* <div className='shops-youll-love'>
                 <div className='shops-youll-love-text'>
                     <h1 className='shops-youll-love-title'>Shops we think you'll love
