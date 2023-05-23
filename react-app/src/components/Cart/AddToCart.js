@@ -23,10 +23,8 @@ export default function AddToCart({cart, product, user}){
     const addItem = async (e) => {
         if(!user) {
             addToCart(product)
-            console.log(localStorage)
             return
         }
-
 
         let theCart = productCart(Object.values(cart.products))
         if(theCart?.quantity === product.available) {

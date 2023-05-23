@@ -20,12 +20,13 @@ export const CartProvider = ({ children }) => {
   }, [cartItems]);
 
   const addToCart = (item) => {
-    // console.log(cartItems)
+
     const newCart = {...cartItems}
     if (!newCart[item.id]){
         item.quantity = 1
         item.shopName = item.Shop.name
         item.productImage = item.ProductImages[0].url
+        item.productId = item.id
         newCart[item.id] = item
         setCartItems(newCart);
     } else {
@@ -35,19 +36,14 @@ export const CartProvider = ({ children }) => {
   };
 
   const removeFromLocalCart = (itemId) => {
-    console.log("whaddup?")
     const newCart = {...cartItems}
-    console.log(newCart)
-    console.log(itemId)
     delete newCart[itemId]
-    console.log(newCart)
     setCartItems(newCart)
-    console.log(cartItems)
   };
 
-  const quantityChange = (item, quantity) => {
+  const quantityChange = (itemId, quantity) => {
     const newCart = {...cartItems}
-    newCart[item.id].quantity = quantity
+    newCart[itemId].quantity = quantity
     setCartItems(newCart)
   }
 
@@ -62,6 +58,7 @@ export const CartProvider = ({ children }) => {
         cartItems,
         addToCart,
         removeFromLocalCart,
+        quantityChange,
         clearCart,
       }}
     >

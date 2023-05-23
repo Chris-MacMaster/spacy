@@ -98,7 +98,7 @@ function Header({ isLoaded }) {
                         </NavLink>
                         ) : !user && itemsInCart > 0 ? <NavLink to='/cart'
                         style={{textDecoration: "none"}}>
-                        <div className='number-in-cart'>{itemsInCart}</div>
+                        <div className='number-in-cart'>{+itemsInCart}</div>
                         </NavLink> : null}
                     <NavLink to='/cart'>
                         <div className='header-tip'>Cart</div>

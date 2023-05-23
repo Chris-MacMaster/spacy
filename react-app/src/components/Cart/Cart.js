@@ -16,7 +16,6 @@ export default function TheCart({cart}){
   const [purchased, setPurchased] = useState(false)
 
  const itemsByStore = groupItemsByStore(cart)
-  console.log(cart)
   return(
   <div className="order-page">
     <div className="shopping-bar">
