@@ -139,21 +139,8 @@ export const followSingleShop = id => async dispatch => {
 
 //post shop
 export const createShop = (formData) => async dispatch => {
-    // const { name, street_address, city, state, country, description, category, policies, url} = data
     const response = await fetch('/api/shops/',
     {"method": "POST",
-    // "headers": {"Content-Type": "application/json"},
-    // "body": JSON.stringify({
-    //     name,
-    //     street_address,
-    //     city,
-    //     state,
-    //     country,
-    //     description,
-    //     category,
-    //     policies,
-    //     url
-    // })
     body: formData
     }
     )
@@ -165,18 +152,11 @@ export const createShop = (formData) => async dispatch => {
 }
 //put shop
 export const editShop = (formData, id) => async dispatch => {
-    // const { name, street_address, city, state, country, description, category, policies, url} = data
-    // console.log('BACKEND FORM DATA', formData['url'])
     const response = await fetch(`/api/shops/${id}`, {
         method: 'PUT',
-        // headers: {'Content-Type': 'application/json'},
         body: formData
     })
-    // {"method": "PUT",
-    // "headers": {"Content-Type": "application/json"},
-    // "body": JSON.stringify({
-    //     id, name, street_address, city, state, country, description, category, policies, url
-    // })})
+    
     const edittedShop = await response.json()
     if (response.ok) {
         dispatch(editAShop(edittedShop))

@@ -74,7 +74,6 @@ export default function UserDetails() {
             <p className='owned-shops-label'>
                 Your Followed Shops
             </p>
-            {/* NEED TO IMPLEMENT FOLLOWED SHOPS */}
             <div className='user-manage-business-cards'>
                 {followedShops && followedShops.length ? followedShops.map((s, i) => (
                     <FollowShopBusinessCard shop={s} key={`shopbusicardcomp${i}`} />
