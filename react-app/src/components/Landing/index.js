@@ -164,7 +164,6 @@ function Landing({ isLoaded }) {
             {Object.values(products).reverse().map((p,i)=>
             <NavLink to={`/products/${p.id}`} style={{textDecoration: "none"}}>
                 <PopularGifts product={p} key={i} />
-
             </NavLink>
             )}
             </div>
