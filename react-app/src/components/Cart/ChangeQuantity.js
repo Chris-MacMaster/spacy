@@ -1,10 +1,13 @@
-import React from "react"
+import React, {useContext} from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { fetchCart, editCartItemThunk } from "../../store/cart"
+import { CartContext } from "../../context/CartContext"
 
 export default function ChangeQuantity({cartId, quantity, productId, available}){
     const user = useSelector(state => state.session.user)
     const dispatch = useDispatch()
+
+    const { quantityChange } = useContext(CartContext)
 
     const options = []
     for (let i = 1; i <= available; i++){
@@ -17,6 +20,17 @@ export default function ChangeQuantity({cartId, quantity, productId, available})
     }
 
     if(available <= 1) return <></>
+
+    if(!user){
+        return <>
+        <select value={quantity} onChange={(e) => quantityChange(productId, e.target.value)}
+        className="cart-select-quantity">
+            {options.map(i => (
+            <option value={i.value}>{i.value}</option>
+            ))}
+        </select>
+        </>
+    }
 
     return (
         <>

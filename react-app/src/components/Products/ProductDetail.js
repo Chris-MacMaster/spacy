@@ -122,7 +122,7 @@ const ProductDetail = () => {
                     </div>
                     <div className='purchase-buttons'>
 
-                        {product.available > 0 ? <AddToCart className='button add-cart-button' product={product} cart={cart}/>
+                        {product.available > 0 ? <AddToCart className='button add-cart-button' product={product} cart={cart} user={user}/>
 
                         :
                         <button className='button cant-add-cart-button'>Out of stock</button>
@@ -152,7 +152,7 @@ const ProductDetail = () => {
 
 
             <div className='review-info-div'>
-                        <p className='review-p review-stars'>
+                        <div className='review-p review-stars'>
                         {productReviews && productReviews.length ?
                             <p className='review-num-title'>{productReviews.length === 1 ? <span>{'1 Review'}</span> : productReviews.length > 1 ? <> {productReviews.length} Reviews</>  : null}
                             { Array(5).fill(1).map((s,i)=> (
@@ -163,7 +163,8 @@ const ProductDetail = () => {
                             )
                             ) ) } </p> : (
                                 <p>New! <i className="fa-solid fa-star gold-star-product-deets"/> </p>
-                            )}                        </p>
+                            )}
+                        </div>
                         {user && user.id !== product?.Shop?.ownerId && !productReviews.length ? (
                        <div>
                             <button className='post-item-review'

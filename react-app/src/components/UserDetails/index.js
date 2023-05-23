@@ -8,6 +8,7 @@ import { fetchProducts } from '../../store/product'
 import ShopProductCard from '../ShopProductCard'
 import ShopBusinessCard from '../ShopBusinessCard'
 import LoadingIcon from '../LoadingIcon'
+import FollowShopBusinessCard from '../ShopBusinessCard/FollowShopBusinessCard'
 
 export default function UserDetails() {
     const {userId} = useParams()
@@ -73,10 +74,9 @@ export default function UserDetails() {
             <p className='owned-shops-label'>
                 Your Followed Shops
             </p>
-            {/* NEED TO IMPLEMENT FOLLOWED SHOPS */}
             <div className='user-manage-business-cards'>
                 {followedShops && followedShops.length ? followedShops.map((s, i) => (
-                    <ShopBusinessCard shop={s} key={`shopbusicardcomp${i}`} />
+                    <FollowShopBusinessCard shop={s} key={`shopbusicardcomp${i}`} />
                 )) : <p>
                     You have no followed shops currently
                     </p>}

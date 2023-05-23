@@ -8,7 +8,7 @@ class Purchase(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    cart_id = db.Column(db.Integer, nullable=False)
+    cart_id = db.Column(db.Integer, nullable=True)
     quantity = db.Column(db.Integer, nullable=False, default=1)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
     product_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('products.id')))

@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, redirect, request
-from app.models import db, Product, Shop, ProductImage, ProductReview
+from app.models import db, Product, Shop, ProductImage, ProductReview, ShopImage
 from flask_login import current_user, login_required
 import copy
 from datetime import datetime
@@ -15,15 +15,20 @@ def get_one_product(product_id):
     if request.method == 'GET':
         product = Product.query.get(product_id)
         productcopy = product.to_dict()
+        # shop = Shop.query.get(product.shop_id)
         shop = Shop.query.get(product.shop_id)
+        shop_image = ShopImage.query.filter(ShopImage.shop_id == product.shop_id).first()
+
         images = ProductImage.query.filter(ProductImage.product_id==product_id).all()
         productcopy['ProductImages'] = [image.to_dict() for image in images]
         productcopy['Shop'] = shop.to_dict()
+        productcopy['shopImage'] = shop_image.to_dict()['url']
+
         def get_reviews(id):
             reviews = ProductReview.query.filter(ProductReview.product_id == id).all()
             return [r.to_dict() for r in reviews]
         reviews = get_reviews(productcopy['id'])
-        sum =0
+        sum = 0
         for r in reviews:
             sum += r['stars']
         productcopy['Reviews'] = reviews
@@ -39,6 +44,18 @@ def get_one_product(product_id):
             else:
                 images_delete = [image.to_dict() for image in images]
                 db.session.delete(product)
+                print('')
+                print('')
+                print('')
+                print('')
+                print('')
+                print('')
+                print('IMAGES', images_delete)
+                print('')
+                print('')
+                print('')
+                print('')
+                print('')
                 for image in images_delete:
                     remove_file_from_s3(image['url'])
                 db.session.commit()
