@@ -57,6 +57,27 @@ export const fetchOneProduct = (id) => async dispatch => {
         return product
     }
 }
+
+export const followProductShop = (id) => async dispatch => {
+    const response = await fetch(`/api/products/${id}/`)
+    if (response.ok) {
+        const product = await response.json()
+        product.Shop.Followed.Status = "Followed"
+        dispatch(actionLoadProduct(product))
+        return product
+    }
+}
+
+export const unfollowProductShop = (id) => async dispatch => {
+    const response = await fetch(`/api/products/${id}/`)
+    if (response.ok) {
+        const product = await response.json()
+        product.Shop.Followed.Status = "Not Followed"
+        dispatch(actionLoadProduct(product))
+        return product
+    }
+}
+
 export const fetchUserProducts = () => async dispatch => {
     const response = await fetch(`/api/products/current`)
 
@@ -67,21 +88,6 @@ export const fetchUserProducts = () => async dispatch => {
 }
 
 export const makeProduct = (formData) => async dispatch => {
-    // const { name, shop_id, description, category, available, free_shipping, price, url } = productBody
-    // const method = "POST"
-    // const headers = { "Content-Type" : "application/json"}
-    // const body = JSON.stringify({
-    //     name,
-    //     shop_id,
-    //     description,
-    //     category,
-    //     available,
-    //     free_shipping,
-    //     price,
-    //     url
-    // })
-    // const options = { method, headers, body }
-    // const response = await fetch('/api/products/', options)
     const response = await fetch('/api/products/', {
         method: 'POST',
         body: formData
@@ -118,9 +124,6 @@ export const editProduct = (productBody, productId) => async dispatch => {
 }
 
 export const deleteProduct = (id) => async dispatch => {
-    // const method = "DELETE"
-    // const headers = { "Content-Type": "application/json" }
-    // const options = { method, headers }
     const response = await fetch(`/api/products/${id}/`, {
         method: 'DELETE',
         headers: {'Content-Type': 'application/json'}

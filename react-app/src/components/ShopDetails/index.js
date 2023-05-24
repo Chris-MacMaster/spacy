@@ -103,17 +103,19 @@ export default function ShopDetails () {
 
 
         <div className='follow-unfollow-shop-div'>
-            {shop && shop.Followed && shop.Followed.Statu && shop.Followed.Status === "Not Followed" &&
+            {shop && shop.Followed && shop.Followed.Status && shop.Followed.Status === "Not Followed" &&
             <button className='favorite-shop' onClick={handleFollow}>
             <i className="fa-regular fa-heart shop-heart"
             ></i>Follow Shop</button>
             }
-            {shop && shop.Followed && shop.Followed.Statu && shop.Followed.Status === "Followed" &&
+            {shop && shop.Followed && shop.Followed.Status && shop.Followed.Status === "Followed" &&
             <button className='favorite-shop' onClick={handleUnfollow}>
-            <i className="fa-regular fa-heart shop-heart"
+            <i className="fas fa-regular fa-heart shop-heart"
             ></i>Unfollow Shop</button>
             }
        </div>
+
+
         )}
 
 

@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, redirect, request
-from app.models import db, Product, Shop, ProductImage, ProductReview, ShopImage
+from app.models import db, Product, Shop, ProductImage, ProductReview, ShopImage, User, user_shops
 from flask_login import current_user, login_required
 import copy
 from datetime import datetime
@@ -24,6 +24,16 @@ def get_one_product(product_id):
         productcopy['Shop'] = shop.to_dict()
         productcopy['shopImage'] = shop_image.to_dict()['url']
 
+        def check_followed():
+            if current_user.is_authenticated: 
+                user = User.query.join(user_shops).filter(user_shops.c.shop_id == product.shop_id, user_shops.c.user_id == current_user.id).first()
+                if not user:
+                    return {"Status" : "Not Followed"}
+                return {"Status" : "Followed"}
+            return {"Status" : "User Not Signed In"}
+        
+        productcopy['Shop']['Followed'] = check_followed()
+
         def get_reviews(id):
             reviews = ProductReview.query.filter(ProductReview.product_id == id).all()
             return [r.to_dict() for r in reviews]
@@ -44,18 +54,6 @@ def get_one_product(product_id):
             else:
                 images_delete = [image.to_dict() for image in images]
                 db.session.delete(product)
-                print('')
-                print('')
-                print('')
-                print('')
-                print('')
-                print('')
-                print('IMAGES', images_delete)
-                print('')
-                print('')
-                print('')
-                print('')
-                print('')
                 for image in images_delete:
                     remove_file_from_s3(image['url'])
                 db.session.commit()
