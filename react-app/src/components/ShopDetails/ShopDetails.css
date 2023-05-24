@@ -2,15 +2,15 @@
     display: flex;
     justify-content: center;
 }
-.shop-deets-80 {
+/* .shop-deets-80 {
     width: min(90vw, 70rem);
-}
+} */
 .shop-header {
     padding: 4vmin;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    background-color: rgb(242, 242, 242);
+    background-color: rgb(240, 240, 240);
 }
 .shoplogo {
     object-fit: cover;
@@ -77,12 +77,15 @@
 }
 .contact-shop-owner {
     width: 14vmin;
-    border: 1px solid black;
     border-radius: 5rem;
     font-size: 2vmin;
+    cursor: pointer;
+    color: rgb(56, 56, 56);
+    transition: .2s ease-in-out;
 }
 .contact-shop-owner:hover {
-    cursor: pointer;
+    background-color: rgb(224, 224, 224);
+    color: #000000;
 }
 .shop-owner-img {
     border-radius: 12vmin;
@@ -95,7 +98,7 @@
     flex-direction: row;
 }
 .favorite-shop {
-    border: black solid .2vmin;
+    border: rgb(74, 74, 74) solid .2vmin;
     border-radius: 12vmin;
     width: 17vw;
     min-width: 7rem;
@@ -103,13 +106,14 @@
     font-size: 2vmin;
     font-family: 'Mulish', sans-serif;
     padding: .5vmin;
-    box-shadow: 0rem 0rem 1vmin lightslategray;
     margin: 3vh;
-    transition: .1s ease-in-out;
+    transition: .2s ease-in-out;
 }
 
 .favorite-shop:hover {
-    outline: min( .5vmin, .3rem) ridge aqua;
+    scale: 1.1;
+    border: rgb(0, 0, 0) solid .2vmin;
+    box-shadow: 0rem 0rem min(2vmin, 1rem) darkgray;
 }
 .mapped-categories-title {
     font-family: 'Mulish', sans-serif;
@@ -165,13 +169,13 @@
     margin-top: 2vmin;
     transition: opacity 0.3s;
     cursor: pointer;
-    transition: .1s ease-in-out;
+    transition: .2s ease-in-out;
     font-size: min(1.7vmin, 1rem);
     padding: 1vmin;
 }
 .column-buttons:hover,
 .contact-shop-owner:hover {
-    outline: min(.5vmin, .3rem) ridge aqua;
+    scale: 1.1;
 }
 .column-buttons::after {
     background-color: none;
@@ -279,5 +283,3 @@ p.review-paragraph {
         width: min(90vw, 70rem);
     }
 }
-
-
