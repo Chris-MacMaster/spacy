@@ -10,14 +10,11 @@ import './Cart.css'
 export default function TheCart({cart}){
   const [purchased, setPurchased] = useState(false)
 
- const itemsByStore = groupItemsByStore(cart)
- console.log(cart)
- console.log("!!!")
- console.log("!!!")
- console.log("!!!")
-  return(
-  <div className="order-page">
+  const itemsByStore = groupItemsByStore(cart)
 
+  return(
+  <div className="cart-wrapper-div">
+  <div className="order-page">
     <div className="shopping-bar">
       <div className="cart-quantity">
         <h2 hidden={purchased}>{Object.values(cart).length} items in your cart</h2>
@@ -107,6 +104,7 @@ export default function TheCart({cart}){
           <CheckoutCart setPurchased={setPurchased} cartItems={cart}/>
         </div>}
       </div>) : <></>}
+  </div>
   </div>
   )
 }

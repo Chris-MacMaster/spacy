@@ -7,6 +7,7 @@ import { CartContext } from "../../context/CartContext"
 export default function AddToCart({cart, product, user}){
     const dispatch = useDispatch()
     const [btnEnabled, setBtnEndabled] = useState(false)
+    const [quantity, setQuantity] = useState(1)
 
     const { addToCart } = useContext(CartContext)
 
@@ -18,6 +19,11 @@ export default function AddToCart({cart, product, user}){
                 return acc;
             }
         }, null)
+    }
+
+    const options = []
+    for (let i = 1; i <= product.available; i++){
+        options.push({value: i})
     }
 
     const addItem = async (e) => {
@@ -36,9 +42,14 @@ export default function AddToCart({cart, product, user}){
         setBtnEndabled(false)
     }
 
+
+
     return (
-        <button onClick={addItem} className={`add-to-cart-button`} disabled={btnEnabled}>
+        <div className="add-to-cart-div">
+
+        <button onClick={addItem} className='add-to-cart-button' disabled={btnEnabled}>
             Add to cart
         </button>
+        </div>
     )
 }
