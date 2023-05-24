@@ -5,7 +5,6 @@ import { fetchProducts } from '../../store/product'
 import { authenticate } from '../../store/session'
 import { fetchOneShop, fetchShops } from '../../store/shops'
 import ProductCard from '../ProductCard'
-import ShopCard from '../ShopCard'
 import { NavLink } from 'react-router-dom'
 import LoadingIcon from '../LoadingIcon'
 import PopularGifts from '../PopularGifts'
@@ -16,7 +15,6 @@ function Landing({ isLoaded }) {
     const [ hasLoaded, setHasLoaded ] = useState(false)
 
     const products = useSelector(state => state.products.allProducts)
-    const shops = useSelector(state => state.shops)
     const user = useSelector(state => state.session.user)
     const under30arr = Object.values(products).filter(p=> parseInt(p.price) < 30)
     const under30 = under30arr[Math.floor(Math.random()*under30arr.length)]
@@ -163,10 +161,13 @@ function Landing({ isLoaded }) {
                 <h1>Popular gifts right now</h1>
             </div>
             <div className='popular-gifts-mapped'>
-            {Object.values(products).reverse().map((p,i)=> <PopularGifts product={p} key={i} /> )}
+            {Object.values(products).reverse().map((p,i)=>
+            <NavLink to={`/products/${p.id}`} style={{textDecoration: "none"}}>
+                <PopularGifts product={p} key={i} />
+            </NavLink>
+            )}
             </div>
             </div>
-
 
             {/* <div className='shops-youll-love'>
                 <div className='shops-youll-love-text'>

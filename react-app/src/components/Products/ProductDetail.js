@@ -84,7 +84,7 @@ const ProductDetail = () => {
 
                             {product && product.ProductImages && (product.ProductImages.map((img, i) =>
                             <img className={chosenImage === i ? 'chosen-image product-preview-img' : 'product-preview-img'}
-                            alt='' key={i} src={img.url} onClick={e=> setChosenImage(i)}/>).slice(0,8))}
+                            alt='' key={i} src={img.url} onClick={e=> setChosenImage(i)}/>))}
 
                             </div>
 

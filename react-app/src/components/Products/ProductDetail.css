@@ -25,7 +25,14 @@
     min-width: 7rem;
 }
 .chosen-image {
-    outline: ridge aqua .5vmin;
+    outline: ridge black min(.5vmin, .3rem);
+}
+.product-preview-img:not(.chosen-image) {
+    opacity: .7;
+    transition: .2s ease-in-out;
+}
+.product-preview-img:not(.chosen-image):hover {
+    opacity: 100%;
 }
 .review-card-div {
     display: flex;
@@ -188,7 +195,7 @@
     display: flex;
 }
 
-@media only screen and (max-width: 768px){
+/* @media only screen and (max-width: 768px){
     .product-detail-div,
     .review-info-div,
     .product-grid-div
@@ -208,4 +215,4 @@
         height: 7vmin;
     }
 
-}
+} */

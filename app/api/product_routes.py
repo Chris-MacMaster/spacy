@@ -44,12 +44,20 @@ def get_one_product(product_id):
             else:
                 images_delete = [image.to_dict() for image in images]
                 db.session.delete(product)
-
+                print('')
+                print('')
+                print('')
+                print('')
+                print('')
+                print('')
+                print('IMAGES', images_delete)
+                print('')
+                print('')
+                print('')
+                print('')
+                print('')
                 for image in images_delete:
-                    # print('IMAGE', images_delete)
                     remove_file_from_s3(image['url'])
-                    # print('IMAGES DELETE')
-
                 db.session.commit()
                 return product.to_dict(), 200
         return { 'errors': 'Not authenticated'}
@@ -104,39 +112,10 @@ def get_all_products():
         form = CreateProductForm()
         form['csrf_token'].data = request.cookies['csrf_token']
         if not form.validate_on_submit():
-            print("")
-            print("")
-            print("")
-            print("")
-            print("")
-            print("FORM DATA", form.data)
-            print("")
-            print("")
-            print("")
-            print("")
-            print("")
             raise ValueError("Failed flask form validation")
         if form.validate_on_submit():
             image = form.data["image"] #aws
             image.filename = get_unique_filename(image.filename)
-            print('')
-            print('')
-            print('')
-            print('')
-            print('')
-            print('')
-            print('')
-            print('')
-            print('')
-            print('IMAGE FILENAME', image.filename)
-            print('')
-            print('')
-            print('')
-            print('')
-            print('')
-            print('')
-            print('')
-            print('')
             upload = upload_file_to_s3(image)
             img_url = None
             if 'url' in upload:
