@@ -72,6 +72,23 @@ export default function UserDetails() {
             </div>
 
             <p className='owned-shops-label'>
+                Your Created Products 
+            </p>
+            <div className='user-manage-items'>
+                <div className='user-manage-item-sidebar'>
+
+                </div>
+
+                <div className='user-manage-item-field'>
+                {userProducts ? userProducts.map(product =>(
+                    <ShopProductCard product={product}
+                    key={`product${product.id}`}/>
+                )) : <p>
+                        You have no created products currently
+                    </p>}
+                </div>
+
+            <p className='owned-shops-label'>
                 Your Followed Shops
             </p>
             <div className='user-manage-business-cards'>
@@ -82,18 +99,6 @@ export default function UserDetails() {
                     </p>}
             </div>
 
-            <div className='user-manage-items'>
-                <div className='user-manage-item-sidebar'>
-
-                </div>
-
-                <div className='user-manage-item-field'>
-                {userProducts ? userProducts.map(product =>(
-                    <ShopProductCard product={product}
-                    key={`product${product.id}`}/>
-                )) : null}
-
-                </div>
             </div>
             <hr></hr>
             <div className='user-manage-footer'>

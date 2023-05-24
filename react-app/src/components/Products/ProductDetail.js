@@ -2,7 +2,7 @@ import React from 'react';
 import { useEffect, useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink, useParams } from 'react-router-dom';
-import { fetchOneProduct } from '../../store/product';
+import { fetchOneProduct, followProductShop, unfollowProductShop } from '../../store/product';
 import { fetchProductReviews } from '../../store/review';
 import { fetchCart } from '../../store/cart';
 import ReviewIndexItem from '../Reviews/ReviewIndexItem';
@@ -13,7 +13,7 @@ import OpenModalButton from '../OpenModalButton';
 import ShopPoliciesModal from '../ShopPoliciesModal';
 import LoadingIcon from '../LoadingIcon';
 import ProductImageSlider from './ProductImageSlider';
-import { followShop } from '../../store/shops';
+import { followShop, unfollowShop } from '../../store/shops';
 
 const ProductDetail = () => {
     const dispatch = useDispatch()
@@ -64,7 +64,19 @@ const ProductDetail = () => {
         e.preventDefault()
         e.stopPropagation()
         dispatch(followShop(product.Shop.id))
+        dispatch(followProductShop(product.id))
     }
+
+
+    const handleUnfollow = async (e) => {
+        e.preventDefault()
+        e.stopPropagation()
+        // updates db
+        dispatch(unfollowShop(product.Shop.id))
+        // updates singleProduct state
+        dispatch(unfollowProductShop(product.id))
+    }
+
 
 
     return (
@@ -97,10 +109,6 @@ const ProductDetail = () => {
                         <NavLink to={`/shops/${product.Shop.id}`}>
                                 {product && product.Shop && product.Shop.name}
                         </NavLink>
-                        <span className='store-follows'>
-                        <i onClick={handleFollow} className="fa-regular fa-heart"/> Follow
-                                {/* feature incoming */}
-                        </span>
                         </div>
                         <div className='store-sales'>
                             {product && product.Shop && product.Shop.sales} sales
@@ -137,6 +145,19 @@ const ProductDetail = () => {
                             className='shop-pol-modal'
                             onItemClick={closeMenu}
                             modalComponent={<ShopPoliciesModal shop={product.Shop}/>} />
+                        </div>
+
+                        <div className='follow-unfollow-shop-div'>
+                            {product.Shop && product.Shop.Followed && product.Shop.Followed.Status && product.Shop.Followed.Status === "Not Followed" &&
+                                <div className='favorite-shop' onClick={handleFollow}>
+                                    <i className="fa-regular fa-heart shop-heart"
+                                    ></i>Follow Shop</div>
+                            }
+                            {shop && shop.Followed && shop.Followed.Status && shop.Followed.Status === "Followed" &&
+                                <div className='favorite-shop' onClick={handleUnfollow}>
+                                    <i className="fas fa-regular fa-heart shop-heart"
+                                    ></i>Unfollow Shop</div>
+                            }
                         </div>
                     </div>
                 </div>
