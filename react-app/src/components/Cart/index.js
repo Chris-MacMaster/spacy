@@ -29,13 +29,14 @@ export default function DisplayCart(){
   if(!hasLoaded) return <LoadingIcon />
 
 
-  if (user && !Object.values(cart).length && hasLoaded && !purchased) {
-    return <h2 className="no-items">You have no items in your cart, don't you want to buy something?</h2>
-  }
 
-  if (!user && !Object.values(cartItems).length && hasLoaded && !purchased) {
-    return <h2 className="no-items">You have no items in your cart, don't you want to buy something?</h2>
-  }
+  // if (user && !Object.values(cart).length && hasLoaded && !purchased) {
+  //   return <h2 className="no-items">You have no items in your cart, don't you want to buy something?</h2>
+  // }
 
-  return <>{user ? <TheCart cart={cart} /> : <TheCart cart={cartItems}/> }</>
+  // if (!user && !Object.values(cartItems).length && hasLoaded && !purchased) {
+  //   return <h2 className="no-items">You have no items in your cart, don't you want to buy something?</h2>
+  // }
+
+  return <>{user ? <TheCart cart={cart} user={user}/> : <TheCart cart={cartItems} user={user}/> }</>
 }
