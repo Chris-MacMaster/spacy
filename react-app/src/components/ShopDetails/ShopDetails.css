@@ -2,9 +2,9 @@
     display: flex;
     justify-content: center;
 }
-/* .shop-deets-80 {
+.shop-deets-80 {
     width: min(90vw, 70rem);
-} */
+}
 .shop-header {
     padding: 4vmin;
     display: flex;
