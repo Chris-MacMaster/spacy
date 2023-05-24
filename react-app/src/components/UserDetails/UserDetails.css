@@ -1,6 +1,62 @@
 .user-manage-details {
     margin: 5vmin;
 }
+
+.user-deets {
+    display: flex;
+    flex-direction: row;
+}
+.user-deets-icon {
+    width: min(10vmin, 9rem);
+    height: min(10vmin, 9rem);
+    border-radius: 100%;
+    margin: min(3vmin, 1rem);
+}
+.user-name {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: lighter;
+    font-size: min(7vmin, 2rem);
+}
+.user-deets-bullet {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.shop-icon {
+    width: min(3vmin, 1.2rem);
+    height: fit-content;
+    margin-right: min(1vmin, .3rem);
+}
+.user-deets-user-shop {
+    font-size: min(3vmin, 1rem);
+    color: black;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .user-manage-item-field {
     display: grid;
     grid-template-columns: auto auto auto auto;
@@ -80,8 +136,4 @@
     font-size: 2em;
     margin-top: 5px;
     margin-bottom: 0px;
-}
-
-.create-shop-button {
-    margin-top: 0px;
 }

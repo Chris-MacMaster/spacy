@@ -116,6 +116,7 @@ h3.shop-our-title {
     overflow: hidden;
     margin: .5vmin;
     transition: .2s ease-in-out;
+    color: black;
 }
 .selection-card > img {
     width: 100%;
@@ -171,9 +172,7 @@ h3.shops-youll-love-title {
 }
 .popular-gifts-mapped {
     display: grid;
-    /* grid-template-columns: auto auto auto auto; */
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    /* grid-template-rows: auto; */
     grid-gap: 2vmin;
 }
 .what-is-etzy > h1 {

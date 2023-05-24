@@ -110,7 +110,7 @@ function Landing({ isLoaded }) {
                 product.ProductImages[1].url ? (
                 <NavLink to={`/products/${product.id}`}
                 style={{ textDecoration: 'none' }}
-                key={`navlink`+product.id}
+                key={`navlink${product.id}`}
                 >
                     <ProductCard product={product}
                     key={`${product.id}`}/>
