@@ -34,11 +34,11 @@ export default function TheCart({cart}){
       <p className="etsy-purchase-protection">Spacey purchase protection:</p> <p>Shop confidently knowing if something goes wrong, we've got your back!</p>
     </div>
 
-    {/* {!Object.values(cart).length &&
+    {!Object.values(cart).length &&
     <div className="empty-cart">
       <h2>Your Cart is empty</h2>
       <p>Discover something unique to fill it up</p>
-    </div>} */}
+    </div>}
     {Object.values(cart).length !== 0 ?
     (<div className="cart-content">
       <div className="names-are-hard">
