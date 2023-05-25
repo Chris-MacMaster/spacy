@@ -4,8 +4,6 @@ import { Route, Switch } from "react-router-dom";
 import { authenticate } from "./store/session";
 import Header from "./components/Header";
 import Landing from "./components/Landing";
-import ProductsIndex from "./components/Products/ProductsIndex.js";
-import UserProducts from "./components/Products/UserProducts.js"
 import SearchResults from "./components/SearchResults";
 import ProductDetail from "./components/Products/ProductDetail";
 import PostReviewForm from "./components/PostReviewForm";
@@ -34,8 +32,6 @@ function App() {
     <Header isLoaded={isLoaded} />
     <Switch>
       <Route path='/' component={Landing} isLoaded={isLoaded} exact={true} />
-      <Route path='/products' exact={true} component={ProductsIndex} />
-      <Route path='/products/current' exact={true} component={UserProducts} />
       <Route path='/search/:parameters' exact={true} component={SearchResults} />
       <Route path='/products/:productId' exact={true} component={ProductDetail} />
       <Route path='/products/forms/create-product/:shopId' exact={true} component={ProductCreateForm} />
