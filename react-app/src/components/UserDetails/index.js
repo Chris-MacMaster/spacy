@@ -31,7 +31,7 @@ export default function UserDetails() {
     const shops = useSelector(state => state.shops.allShops)
     const followedShopState = useSelector(state => state.shops.followedShops)
     const products = useSelector(state=> state.products.allProducts)
-    
+
     if (!hasLoaded) return <LoadingIcon />
     if (!user || parseInt(user.id) !== parseInt(userId) || !shops) return null
 
@@ -62,18 +62,21 @@ export default function UserDetails() {
 
             </div>
             </div>
-
+            <div className='create-shop-container'>
             <button className='favorite-shop create-shop-button' onClick={onClickCreateShop}>
             <i className="fa-solid fa-screwdriver-wrench create-shop-icon"/>Create Shop
             </button>
 
+            </div>
+
+
             <hr></hr>
 
+            <div className='user-deets-title'>Favorite shops</div>
+            <div className='user-deets-grid'>
             <div className='user-deets-followed-shops'>
-
-            {followedShops && followedShops.length && followedShops.map((s, i) => (
-                <ShopCard shop={s} />
-            ))}
+            {followedShops && followedShops.length && followedShops.map((s, i) => ( <ShopCard shop={shops[s.id]} />))}
+            </div>
 
             </div>
 
