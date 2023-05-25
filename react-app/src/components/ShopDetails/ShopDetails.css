@@ -1,13 +1,16 @@
 .shop-page {
-    left: 0rem;
-    right: 0rem;
+    display: flex;
+    justify-content: center;
+}
+.shop-deets-80 {
+    width: min(90vw, 70rem);
 }
 .shop-header {
     padding: 4vmin;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    background-color: rgb(242, 242, 242);
+    background-color: rgb(240, 240, 240);
 }
 .shoplogo {
     object-fit: cover;
@@ -74,12 +77,15 @@
 }
 .contact-shop-owner {
     width: 14vmin;
-    border: 1px solid black;
     border-radius: 5rem;
     font-size: 2vmin;
+    cursor: pointer;
+    color: rgb(56, 56, 56);
+    transition: .2s ease-in-out;
 }
 .contact-shop-owner:hover {
-    cursor: pointer;
+    background-color: rgb(224, 224, 224);
+    color: #000000;
 }
 .shop-owner-img {
     border-radius: 12vmin;
@@ -91,23 +97,8 @@
     display: flex;
     flex-direction: row;
 }
-.favorite-shop {
-    border: black solid .2vmin;
-    border-radius: 12vmin;
-    width: 17vw;
-    min-width: 7rem;
-    text-align: center;
-    font-size: 2vmin;
-    font-family: 'Mulish', sans-serif;
-    padding: .5vmin;
-    box-shadow: 0rem 0rem 1vmin lightslategray;
-    margin: 3vh;
-    transition: .1s ease-in-out;
-}
 
-.favorite-shop:hover {
-    outline: min( .5vmin, .3rem) ridge aqua;
-}
+
 .mapped-categories-title {
     font-family: 'Mulish', sans-serif;
 }
@@ -156,18 +147,19 @@
 }
 .column-buttons {
     text-align: center;
-    width: 13vw;
+    width: 23vmin;
     border: solid .1vmin grey;
     border-radius: 1vmin;
     margin-top: 2vmin;
     transition: opacity 0.3s;
     cursor: pointer;
-    transition: .1s ease-in-out;
-    font-size: 2vmin;
+    transition: .2s ease-in-out;
+    font-size: min(1.7vmin, 1rem);
+    padding: 1vmin;
 }
 .column-buttons:hover,
 .contact-shop-owner:hover {
-    outline: min(.5vmin, .3rem) ridge aqua;
+    scale: 1.1;
 }
 .column-buttons::after {
     background-color: none;
@@ -180,12 +172,12 @@ hr {
     color: gray;
 }
 .review-title {
-    margin-left: 20vw;
+    /* margin-left: 20vw; */
     font-size: 4vmin;
     margin-bottom: 4vh;
 }
 .fa-flag, .fa-thumbs-up {
-    font-size: .7rem;
+    font-size: min(2vmin, 1rem);
     margin-right: .5rem;
 }
 .feedback {
@@ -195,22 +187,27 @@ hr {
 }
 .mapping-reviews {
     width: 60vw;
-    margin-left: 20vw;
+    margin-left: 10vw;
     font-family: 'Mulish', sans-serif;
+}
+.shop-deets-user-deets {
+    display: flex;
+    flex-direction: column;
 }
 .user-icon {
     object-fit: cover;
     width: 5vw;
     height: 5vw;
     border-radius: 5rem;
-    position: absolute;
-    left: 12vw;
+    position: sticky;
+    margin: 1rem;
 }
 .helpful,
 .report,
 .username,
 p.review-paragraph {
     font-size: min(2vmin);
+    width: fit-content;
 }
 .product-ref-img{
     object-fit: cover;
@@ -229,6 +226,7 @@ p.review-paragraph {
     min-width: 5rem;
     margin-top: 1rem;
     margin: 2vw;
+    margin-left: 25vmin;
 }
 .gold-star, .blank-star {
     font-size: 2.4vmin;
@@ -249,12 +247,26 @@ p.review-paragraph {
     text-align: center;
 }
 .reviewed-item-name{
-    margin-left: 10vmin;
+    /* margin-left: 10vmin; */
     margin-top: 5vmin;
     font-size: min(2.5vmin, 1.7rem);
     align-items: center;
 }
-
+.favorite-shop {
+    border: solid .1rem grey;
+    transition: .2s ease-in-out;
+    cursor: pointer;
+    border-radius: 5rem;
+    padding: min(3vmin, .5rem) min(5vmin, 2rem);
+    font-size: min(2vmin, 1rem);
+}
+.favorite-shop:hover {
+    scale: 1.1;
+    box-shadow: 0rem 0rem 1rem grey;
+}
+.fa-screwdriver-wrench {
+    margin-right: min(2vmin, .5rem);
+}
 @media only screen and (max-width: 768px){
     .accolades-container {
         display: block;
@@ -264,5 +276,8 @@ p.review-paragraph {
     .username,
     p.review-paragraph {
         font-size: min(2.5vmin);
+    }
+    .shop-deets-80 {
+        width: min(90vw, 70rem);
     }
 }

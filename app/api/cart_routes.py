@@ -98,3 +98,27 @@ def return_cart():
         cart[i.id]["productImage"] = i.product.product_images[0].url
         cart[i.id]["shopImage"] = i.product.shops.shop_images[0].url
     return cart, 200
+
+@cart_routes.route('/addLocalCart', methods=['POST'])
+def addLocalCart():
+    cart_dict = request.get_json()
+    if not cart_dict:
+        return {}, 200
+    cart_list = cart_dict.values()
+    for cart in cart_list:
+        current_cart = Cart.query.join(Product).filter((Cart.user_id == current_user.id) & (Cart.product_id == cart['productId'])).first()
+        if current_cart:
+            if current_cart.quantity + cart['quantity'] > current_cart.product.avaiable:
+                current_cart.quantity = current_cart.product.avaiable
+            current_cart.quantity = current_cart.quantity + cart['quantity']
+            db.session.add(current_cart)
+        else:
+            new_cart = Cart(
+                quantity=cart['quantity'],
+                product_id=cart['productId'],
+                user_id=current_user.id,
+                )
+            db.session.add(new_cart)
+
+    db.session.commit()
+    return {}, 200

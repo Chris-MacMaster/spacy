@@ -1,3 +1,7 @@
+body {
+    background: #fff;
+}
+
 
 .header-container {
     border-bottom: 2px solid #ccc;
@@ -12,37 +16,41 @@
     top: 0;
     left: 0;
     right: 0;
+    padding-bottom: 1vmin;
 }
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
+    width: min(80vw, 70rem);
 }
 .logoim {
     object-fit: cover;
     height: 7vmin;
     width: 7vmin;
+    /* margin-left: 1vmin; */
+    margin-top: 1vmin;
 }
 .header-tabs {
     display: flex;
     flex-direction: row;
     gap: 1rem;
-    margin-left: 2rem;
-    margin-right: 2rem;
+    /* margin-left: 2rem;
+    margin-right: 2rem; */
     font-family: 'Mulish', sans-serif;
     font-size: .8rem;
+    margin-top: 1vmin;
 }
 .logo {
     font-family: 'Libre Baskerville', serif;
-    font-size: 5vmin;
+    font-size: 3.5vmin;
     align-self: center;
     color: rgb(222, 103, 6);
     flex-grow: 1;
 }
 .header-search {
     background-color: none;
-    min-width: 40vw;
+    width: min(30vw, 40rem);
     border: none;
     background-color: white;
     /* height: min(3vmin) max(1.5rem); */
@@ -56,7 +64,7 @@
     display: flex;
     border: darkslategray solid 2px;
     border-radius: 3rem;
-    height: min(3vmin, 1.5rem);
+    height: min(4.5vmin, 2.5rem);
     /* font-size: min(3vmin, 1rem); */
     margin-left: .5rem;
     margin-right: .5rem;
@@ -69,13 +77,14 @@
     justify-content: center;
     align-items: center;
     align-content: center;
-    padding-right: 1vmin;
-    padding-left: 1vmin;
+    padding-right: min(2vmin, 2rem);
+    padding-left: min(2vmin, 2rem);
     border-radius: 0% 1rem 1rem 0%;
 }
 .header-icons {
     font-size: 2.5vmin;
     color: #A0A7B2;
+    cursor: pointer;
 }
 /* marc */
 .telescope-search:hover{
@@ -156,24 +165,32 @@ div.navigation:hover {
 }
 .number-in-cart {
     position: absolute;
-    background-color: rgb(180, 33, 33, .9);
-    color: white;
-    font-size: 1.5vmin;
+    background-color: #faa077;
+    font-size: 1.2vmin;
     font-weight: bolder;
-    width: fit-content;
-    padding: .2rem;
-    border-radius: 3rem;
+    width: -moz-fit-content;
+    padding: .3rem;
+    border-radius: 50%;
     z-index: 100;
     right: -1vmin;
     top: -1vmin;
+    height: 1.25vmin;
+    width: 1.25vmin;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .fa-cart-shopping.header-icons,
 .number-in-cart {
-    margin-right: 1vmin;
+    margin-right: 2vmin;
 }
 .cart-total {
     z-index: 101;
     position: absolute;
+}
+
+.profileburger:hover{
+ cursor: pointer;
 }
 
 @media only screen and (max-width: 480px) {
@@ -184,14 +201,9 @@ div.navigation:hover {
         display: flex;
     } */
   }
-@media only screen and (max-width: 1024px){
+@media only screen and (max-width: 1100px){
     .header-tabs {
         display: none;
         content: '';
-    }
-}
-@media only screen and (max-width: 768px){
-    .number-in-cart {
-        top: 0vmin;
     }
 }

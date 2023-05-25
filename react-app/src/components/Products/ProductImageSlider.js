@@ -20,8 +20,8 @@ export default function ProductImageSlider({ data, chosenImage, setChosenImage }
     if (!data || !data.length) return null
     return (
         <div className="product-image-slider">
-            <div className="left-arrow" onClick={prevSlide}><i class="fa-solid fa-circle-left"/></div>
-            <div className="right-arrow" onClick={nextSlide}><i class="fa-solid fa-circle-right"/></div>
+            <div className="left-arrow" onClick={prevSlide}><i className="fa-solid fa-circle-left"/></div>
+            <div className="right-arrow" onClick={nextSlide}><i className="fa-solid fa-circle-right"/></div>
             {data.map((img, i) =>
             <div className={i === current ? 'slide active' : 'slide'} key={i}>
                 {i === current && (

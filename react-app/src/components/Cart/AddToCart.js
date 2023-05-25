@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, useContext } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { fetchCart } from "../../store/cart"
 import { addCartItemThunk } from "../../store/cart"
+import { CartContext } from "../../context/CartContext"
 
-export default function AddToCart({cart, product}){
+export default function AddToCart({cart, product, user}){
     const dispatch = useDispatch()
-    const user = useSelector(state => state.session.user)
     const [btnEnabled, setBtnEndabled] = useState(false)
-    useEffect(() =>{
-        dispatch(fetchCart())
-    },[dispatch, user])
+    const [quantity, setQuantity] = useState(1)
+
+    const { addToCart } = useContext(CartContext)
 
     const productCart = (arrOfCarts) => {
         return arrOfCarts.reduce((acc, currentCart) => {
@@ -21,10 +21,16 @@ export default function AddToCart({cart, product}){
         }, null)
     }
 
+    const options = []
+    for (let i = 1; i <= product.available; i++){
+        options.push({value: i})
+    }
+
     const addItem = async (e) => {
-        if(!user) return (
-            alert("We are woefully sorry to inform you that due to recent attacks by space pirates we can only allow logged in users to add items to cart!")
-        )
+        if(!user) {
+            addToCart(product)
+            return
+        }
 
         let theCart = productCart(Object.values(cart.products))
         if(theCart?.quantity === product.available) {
@@ -36,9 +42,14 @@ export default function AddToCart({cart, product}){
         setBtnEndabled(false)
     }
 
+
+
     return (
-        <button onClick={addItem} className={`add-to-cart-button`} disabled={btnEnabled}>
+        <div className="add-to-cart-div">
+
+        <button onClick={addItem} className='add-to-cart-button' disabled={btnEnabled}>
             Add to cart
         </button>
+        </div>
     )
 }

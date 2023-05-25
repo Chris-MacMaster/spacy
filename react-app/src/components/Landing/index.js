@@ -5,13 +5,21 @@ import { fetchProducts } from '../../store/product'
 import { authenticate } from '../../store/session'
 import { fetchOneShop, fetchShops } from '../../store/shops'
 import ProductCard from '../ProductCard'
-import ShopCard from '../ShopCard'
 import { NavLink } from 'react-router-dom'
 import LoadingIcon from '../LoadingIcon'
+import PopularGifts from '../PopularGifts'
+import { fetchCart } from '../../store/cart'
 
 function Landing({ isLoaded }) {
     const dispatch = useDispatch()
     const [ hasLoaded, setHasLoaded ] = useState(false)
+
+    const products = useSelector(state => state.products.allProducts)
+    const user = useSelector(state => state.session.user)
+    const under30arr = Object.values(products).filter(p=> parseInt(p.price) < 30)
+    const under30 = under30arr[Math.floor(Math.random()*under30arr.length)]
+    const others = Object.values(products).filter(p=> p !== under30)
+    const title = ['Creating Change', 'Gifts for Her', 'Gifts for Him', 'Gifts for Kids', 'Gifts Under $30']
 
     useEffect(() => {
         const loadData = async () => {
@@ -24,13 +32,9 @@ function Landing({ isLoaded }) {
         loadData()
     }, [dispatch])
 
-    const products = useSelector(state => state.products.allProducts)
-    const shops = useSelector(state => state.shops)
-    const user = useSelector(state => state.session.user)
-    const under30arr = Object.values(products).filter(p=> parseInt(p.price) < 30)
-    const under30 = under30arr[Math.floor(Math.random()*under30arr.length)]
-    const others = Object.values(products).filter(p=> p !== under30)
-    const title = ['Creating Change...', 'Gifts for Her', 'Gifts for Him', 'Gifts for Kids', 'Gifts Under $30']
+    useEffect(() => {
+        if(user) dispatch(fetchCart())
+    }, [dispatch, user])
 
     if (!hasLoaded) return <LoadingIcon />
 
@@ -42,8 +46,11 @@ function Landing({ isLoaded }) {
 
     return (
         <div className='landing-div'>
+        <div className='landing-header-accent'></div>
+        <div className='landing-80'>
         <div className='landing-header'>
         { !user ? <h1 className='welcome-title'>Incredible style and decor, plus one-of-a-kind gifts right this way</h1> : <h1 className='welcome-title'>Welcome back {user.firstName}</h1>}
+
         <div className='top-banner-suggest'>
             <div className='top-banner-suggestions'>
                 <div className='suggest-image-div'>
@@ -51,7 +58,8 @@ function Landing({ isLoaded }) {
                 alt='product'
                 className='suggest-image'></img>
                 </div>
-                <p className='suggest-image-text'>Jewelry</p></div>
+                <p className='suggest-image-text'>Jewelry</p>
+            </div>
             <div className='top-banner-suggestions'>
                 <div className='suggest-image-div'>
                 <img src='https://i.imgur.com/bKS0Vs5.jpg'
@@ -98,11 +106,11 @@ function Landing({ isLoaded }) {
                     <h2 className='by-etsy-title'>By Spacey Sellers</h2>
                 </div>
 
-                {data.map(product => (
-                product.ProductImages[0].url ? (
+                {[products["5"], products["6"], products["7"], products["8"], products["12"], products["1"]].map(product => (
+                product.ProductImages[1].url ? (
                 <NavLink to={`/products/${product.id}`}
                 style={{ textDecoration: 'none' }}
-                key={`navlink`+product.id}
+                key={`navlink${product.id}`}
                 >
                     <ProductCard product={product}
                     key={`${product.id}`}/>
@@ -110,7 +118,11 @@ function Landing({ isLoaded }) {
                 ) : null
                 ))}
 
-                <div className='from-etzy-closing'>Fun fact: behind every sponsored item there is an intelligent lifeform hoping you'll check out their shop</div>
+                <div className='from-etzy-closing'>
+                    <span className='closing-text'>
+                    Fun fact: behind every sponsored item there is an intelligent lifeform hoping you'll check out their shop
+                    </span>
+                </div>
             </div>
 
             <div className='shop-our-selections'>
@@ -130,7 +142,7 @@ function Landing({ isLoaded }) {
                 <div className='selection-card'
                 // onClick={history.push(`/search/${rand.category}`)}
                 key={`div${i}`}>
-                <img src={`${rand?.ProductImages[0]?.url}`}
+                <img src={`${rand?.ProductImages[1]?.url}`}
                         alt='selection-im'
                         key={`img${i}`}
                         className='shop-our-select-img'></img>
@@ -143,7 +155,21 @@ function Landing({ isLoaded }) {
 
                 </div>
             </div>
-            <div className='shops-youll-love'>
+
+            <div className='popular-gifts' >
+            <div className='popular-gifts-titles'>
+                <h1>Popular gifts right now</h1>
+            </div>
+            <div className='popular-gifts-mapped'>
+            {Object.values(products).reverse().map((p,i)=>
+            <NavLink to={`/products/${p.id}`} style={{textDecoration: "none"}}>
+                <PopularGifts product={p} key={i} />
+            </NavLink>
+            )}
+            </div>
+            </div>
+
+            {/* <div className='shops-youll-love'>
                 <div className='shops-youll-love-text'>
                     <h1 className='shops-youll-love-title'>Shops we think you'll love
                     </h1>
@@ -159,7 +185,7 @@ function Landing({ isLoaded }) {
                 </NavLink>
                 ) )) : null }
 
-            </div>
+            </div> */}
             <div className='what-is-etzy'>
                 <h1 className='what-is-title'>What is Spacey</h1>
                 <div className='column-container'>
@@ -178,6 +204,7 @@ function Landing({ isLoaded }) {
                 </div>
                 <h2 className='have-questions'>Have a question? Well, we've got some answers.</h2>
             </div>
+        </div>
         </div>
     )
 }

@@ -4,7 +4,6 @@ import { editShop, fetchOneShop } from '../../store/shops'
 import { useHistory, useParams } from 'react-router-dom'
 import { useEffect } from 'react'
 import "../PostShopForm/PostShopForm.css"
-import { urlChecka } from '../Cart/_helpers'
 
 export default function PutShopForm() {
     const dispatch = useDispatch()
@@ -27,7 +26,6 @@ export default function PutShopForm() {
     const shopState = useSelector(state => state.shops.singleShop)
 
     const [ogUrl, setOgUrl] = useState('')
-    console.log('OG URL ', ogUrl)
 
     useEffect(() => {
         const err = {}
@@ -58,9 +56,7 @@ export default function PutShopForm() {
 
     const handleSubmit = e => {
         e.preventDefault();
-
         setHasSubmitted(true)
-
         if (Object.values(errors).length ) return;
         const data = {
             name,
@@ -73,20 +69,18 @@ export default function PutShopForm() {
             policies,
             // url
         }
-        
+
         formData.append('image', url)
         formData.append('ogImage', ogUrl)
         for (let key in data) {
             formData.append(`${key}`, data[key])
         }
-        console.log('handle submit OG URL', ogUrl)
-        console.log('handle submit new URL', url)
         dispatch(editShop(formData, shopId))
         dispatch(fetchOneShop(shopId))
         history.push(`/users/${user.id}`)
     }
     if (shopState && user.id !== shopState.ownerId) return null
-    
+
     return (
         <div className='post-shop-div'>
             <h1 className='post-shop-title'>Edit Your Shop</h1>
@@ -193,7 +187,7 @@ export default function PutShopForm() {
         </div>
 
         <div className='create-shop-input'>
-                        <textarea className='create-shop-input-field policies-inpu shop-create-description' type='text' value={policies} onChange={e => setPolicies(e.target.value)}></textarea>
+        <textarea className='create-shop-input-field policies-inpu shop-create-description' type='text' value={policies} onChange={e => setPolicies(e.target.value)}></textarea>
         {hasSubmitted && errors.policies && (
             <div className='error'>
                 * {errors.policies}
@@ -207,7 +201,7 @@ export default function PutShopForm() {
         </div>
 
         <div className='create-shop-input'>
-        <input className='create-shop-input-field' type='file' 
+        <input className='create-shop-input-field' type='file'
         // value={url}
          onChange={e => setUrl(e.target.files[0])} ></input>
         {hasSubmitted && errors.url && (

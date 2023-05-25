@@ -14,6 +14,7 @@ button {
     position: fixed;
     border-radius: 2vmin;
     border: solid slategrey 1px;
+    box-shadow: 0rem 0rem min(3vmin, 1rem) rgb(110, 110, 110);
     top: 15vmin;
     right: 10vmin;
     background: white;
@@ -49,3 +50,9 @@ button {
     cursor: pointer;
     font-family: 'Mulish', sans-serif;
 }
+
+.profileburger:hover{
+    cursor: pointer;
+}
+
+

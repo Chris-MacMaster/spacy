@@ -1,5 +1,8 @@
+.bld {
+    font-weight: bold;
+}
 .purchase-div {
-    background-color: green;
+    /* background-color: green; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -7,11 +10,12 @@
 }
 .purchase-date-div{
     border: 1px solid black;
-    background-color: yellowgreen;
+    /* background-color: yellowgreen; */
     width: 50vw;
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 1rem;
 }
 .purchase-product-img-div{
     /* width: 30vw; */
@@ -34,7 +38,7 @@
 .purchase-shop-name {
     font-weight: bold;
     /* text-align: center; */
-    width: 100px;
+    /* width: 100px; */
 }
 
 .product-qty-price {
@@ -44,12 +48,14 @@
 
 .purchase-shop-div {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 10px;
+    /* grid-template-columns: repeat(5, 1fr); */
+    grid-template-columns: 3fr 3fr 1fr 2fr 2fr;
+    /* gap: 10px; */
     grid-auto-rows: minmax(50px, auto);
-    background-color: orange;
-    border: 1px solid black;
+    /* background-color: orange; */
+    /* border: 1px solid black; */
     margin-bottom: 1rem;
+    margin: .5rem;
     /* width: 50vw; */
 }
 .one{
@@ -57,16 +63,20 @@
 }
 .two{
     grid-column: 2;
-    background: red;
-
+    /* background: red; */
 }
 .three{
     grid-column: 3;
-    background-color: blue;
-
+    /* background-color: blue; */
 }
 .four{
     grid-column: 4;
-    background-color: yellow;
+    /* background-color: yellow; */
+}
+.five {
+    grid-column: 5;
+}
 
+.two, .three, .four, .five{
+    border-bottom: 1px solid black;
 }

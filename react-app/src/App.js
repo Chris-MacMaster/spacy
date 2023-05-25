@@ -4,8 +4,6 @@ import { Route, Switch } from "react-router-dom";
 import { authenticate } from "./store/session";
 import Header from "./components/Header";
 import Landing from "./components/Landing";
-import ProductsIndex from "./components/Products/ProductsIndex.js";
-import UserProducts from "./components/Products/UserProducts.js"
 import SearchResults from "./components/SearchResults";
 import ProductDetail from "./components/Products/ProductDetail";
 import PostReviewForm from "./components/PostReviewForm";
@@ -20,6 +18,7 @@ import FilteredSearchResults from "./components/FilteredSearchResults";
 import PostShopForm from "./components/PostShopForm";
 import PutShopForm from "./components/PutShopForm";
 import CustomerPurchases from "./components/Purchases/CustomerPurchases"
+import ShopOrders from "./components/Purchases/ShopOrders"
 
 function App() {
   const dispatch = useDispatch();
@@ -33,8 +32,6 @@ function App() {
     <Header isLoaded={isLoaded} />
     <Switch>
       <Route path='/' component={Landing} isLoaded={isLoaded} exact={true} />
-      <Route path='/products' exact={true} component={ProductsIndex} />
-      <Route path='/products/current' exact={true} component={UserProducts} />
       <Route path='/search/:parameters' exact={true} component={SearchResults} />
       <Route path='/products/:productId' exact={true} component={ProductDetail} />
       <Route path='/products/forms/create-product/:shopId' exact={true} component={ProductCreateForm} />
@@ -47,6 +44,7 @@ function App() {
       <Route path='/product-reviews/:reviewId/edit' exact={true} component={EditReviewForm} />
       <Route path='/search/filtered-search/:category' exact={true} component={FilteredSearchResults} />
       <Route path='/shops/edit/:shopId' exact={true} component={PutShopForm} />
+      <Route path='/shops/:shopId/orders' exact={true} component={ShopOrders} />
       <Route path='/purchases' exact={true} component={CustomerPurchases} />
     </Switch>
     <Footer />
