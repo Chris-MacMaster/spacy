@@ -44,10 +44,10 @@
     font-weight: bold;
 }
 .shop-card-text {
+    font-size: min(2.5vmin, 1rem);
     font-family: 'Mulish', sans-serif;
     line-height: 2vmin;
-    padding: min(1vmin, .5rem);
-    width: 25vmin;
+    padding: 0rem min(1vmin, .5rem);
     color: #000000;
 }
 .landing-shops-business-card {
@@ -58,6 +58,7 @@
 }
 .landing-shop-stars {
     font-size: min(2.3vmin, .9rem);
+    margin-top: 1vmin;
 }
 
 .landing-shop-gold {
@@ -68,7 +69,7 @@
 }
 .shop-card-heart {
     align-self: center;
-    margin-right: min(2vmin, .5rem);
+    /* margin-right: min(4vmin, 1rem); */
     font-size: min(3vmin, 1rem);
     border-radius: 50%;
     padding: .3vmin;

@@ -19,7 +19,7 @@ function Landing({ isLoaded }) {
     const under30arr = Object.values(products).filter(p=> parseInt(p.price) < 30)
     const under30 = under30arr[Math.floor(Math.random()*under30arr.length)]
     const others = Object.values(products).filter(p=> p !== under30)
-    const title = ['Creating Change...', 'Gifts for Her', 'Gifts for Him', 'Gifts for Kids', 'Gifts Under $30']
+    const title = ['Creating Change', 'Gifts for Her', 'Gifts for Him', 'Gifts for Kids', 'Gifts Under $30']
 
     useEffect(() => {
         const loadData = async () => {
