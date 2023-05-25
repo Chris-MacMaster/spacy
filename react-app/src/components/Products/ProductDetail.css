@@ -1,9 +1,9 @@
 .product-detail-div {
     margin-top: 5vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    /* justify-content: center;
+    align-items: center; */
 }
 .product-preview-img {
     width: 5vmin;
@@ -14,15 +14,11 @@
     cursor: pointer;
 }
 .product-grid-div {
-    max-width: 80vw;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-content: center;
 }
 
-.product-grid-div-col-b {
-    width: max(40vw, 27rem);
-}
 .chosen-image {
     outline: solid black min(.5vmin, .2rem);
     outline-offset: min(.2vmin, .1rem);
@@ -33,9 +29,6 @@
 }
 .product-preview-img:not(.chosen-image):hover {
     opacity: 100%;
-}
-.product-images-div {
-    margin: 0rem min(5vmin, 4rem) 0rem min(5vmin, 4rem) ;
 }
 .review-card-div {
     display: flex;
@@ -71,7 +64,6 @@
     color: white;
     font-weight: bolder;
     font-size: 2vmin;
-    width: 20vw;
     min-width: 5rem;
     padding: 1vh;
     margin-bottom: 1.5vmin;
@@ -89,10 +81,6 @@
     background-color: grey;
     color: white;
 }
-
-.review-info-div {
-    width: 80vw;
-}
 .store-info {
     margin-bottom: 1vh;
 }
@@ -107,7 +95,8 @@
 .free-shipping-div
 .shop-name,
 .store-follows {
-    font-size: 1.7vmin;
+    font-size: min(2vmin, 1rem);
+    line-height: min(3vmin, 1.5rem);
 }
 .subimage-div {
     display: flex;
@@ -118,6 +107,8 @@
 }
 .both-images-div {
     display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 .product-subimages-div {
     display: flex;
@@ -132,7 +123,7 @@
 }
 .prod-description-p {
     font-weight: bolder;
-    font-size: 2vmin;
+    font-size: (2vmin, 1rem);
 }
 
 .truck-icon {
@@ -140,19 +131,16 @@
     margin-right: min(3vmin, .5rem);
 }
 
-
-
-
-
-
-
-
-
-
-.review-info-div,
-.product-deets-reviews{
-    width: min(90vw, 1600px);
+.favorite-shop {
+    font-size: 2vmin;
+    font-family: 'Mulish', sans-serif;
 }
+.shop-heart-filled {
+    color: red;
+}
+
+
+
 
 .review-num-title {
     font-family: 'Marcellus', serif;
@@ -174,55 +162,6 @@
 .review-p {
     display: inline;
 }
-.reviews-text {
-    margin-right: 1rem;
-}
-.fa-star {
-    padding-left: 0px;
-    padding-right: 0px;
-}
-.shop-name {
-    margin: 0;
-    color: rgb(130, 52, 149);
-    text-decoration: underline;
-    font-size: 1.7vmin;
-}
-
-.shop-name:hover, .shop-policy-button {
+.shop-policy-button {
     cursor: pointer;
-
 }
-
-.shipping-div {
-    align-items: center;
-}
-
-.fa-truck {
-    margin-right: 5px;
-}
-
-.icons {
-    display: flex;
-}
-
-/* @media only screen and (max-width: 768px){
-    .product-detail-div,
-    .review-info-div,
-    .product-grid-div
-    .product-deets-reviews {
-        max-width: 96vw;
-    }
-    .both-images-div {
-        display: flex;
-        flex-direction: column-reverse;
-    }
-    .subimage-div {
-        display: flex;
-        flex-direction: row;
-    }
-    .product-preview-img {
-        width: 7vmin;
-        height: 7vmin;
-    }
-
-} */

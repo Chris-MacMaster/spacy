@@ -57,6 +57,7 @@
 }
 .shop-pol-modal {
     box-shadow: none;
+    width: 100%;
 }
 .shop-pol-modal,
 .shop-pol-modal > button:active {

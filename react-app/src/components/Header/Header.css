@@ -207,8 +207,3 @@ div.navigation:hover {
         content: '';
     }
 }
-@media only screen and (max-width: 768px){
-    .number-in-cart {
-        top: 0vmin;
-    }
-}

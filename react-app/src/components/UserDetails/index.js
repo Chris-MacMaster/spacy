@@ -38,10 +38,7 @@ export default function UserDetails() {
     const onClickCreateShop = () => history.push('/shops/new')
 
     const followedShops = Object.values(followedShopState)
-    // const editOnClick = (e, shop) => {
-    //     // e.stopPropagation()
-    //     history.push(`/shops/edit/${shop.id}`)
-    // }
+    console.log("user ids", userId, user.id)
     return (
         <div className='user-manage-details'>
 
@@ -56,9 +53,13 @@ export default function UserDetails() {
                 <NavLink to={`/shops/${s.id}`} style={{ textDecoration: "none"}}>
                 <span className='user-deets-user-shop'>{s.name}</span>
                 </NavLink>
+                {user.id === userId ? (
+                <>
                 <button id='shop-delete-button' className='user-delete-product' ><i class="fa-solid fa-trash-can"/></button>
                 <button id='shop-edit-button' className='user-edit-product' onClick={e => history.push(`/shops/edit/${s.id}`)}>
                     <i class="fa-solid fa-pen-to-square"/></button>
+                </>
+                ) : null}
                 </div>
             ))}
             </div>
@@ -82,66 +83,6 @@ export default function UserDetails() {
             </div>
 
             </div>
-
-
-
-
-
-
-
-
-
-                {/* <p className='owned-shops-label'>
-                    Your Owned Shops
-                </p>
-            <div className='user-manage-header'>
-                <div className='user-manage-business-cards'>
-                {userShops && userShops.length ? userShops.map((s, i) => (
-                    <ShopBusinessCard shop={s} key={`shopbusicardcomp${i}`}/>
-                )) : null}
-                </div>
-                <div className='user-manage-shop-owners'>
-                    <p className='shop-owner-text'>Shop Owner</p>
-                    <img className='user-manage-icon'
-                    src='https://i.imgur.com/mMEwXsu.png'
-                    alt='usericon'></img>
-                    <p className='user-manage-username'></p>
-                    <p className='user-manage-contact-user'>
-                        <i className="fa-solid fa-message"></i>You!</p>
-                </div>
-            </div>
-
-            <p className='owned-shops-label'>
-                Your Created Products
-            </p>
-            <div className='user-manage-items'>
-                <div className='user-manage-item-sidebar'>
-
-                </div>
-
-                <div className='user-manage-item-field'>
-                {userProducts ? userProducts.map(product =>(
-                    <ShopProductCard product={product}
-                    key={`product${product.id}`}/>
-                )) : <p>
-                        You have no created products currently
-                    </p>}
-                </div>
-
-            <p className='owned-shops-label'>
-                Your Followed Shops
-            </p>
-            <div className='user-manage-business-cards'>
-                {followedShops && followedShops.length ? followedShops.map((s, i) => (
-                    <FollowShopBusinessCard shop={s} key={`shopbusicardcomp${i}`} />
-                )) : <p>
-                    You have no followed shops currently
-                    </p>}
-            </div>
-
-            </div>
-
-            </div> */}
         </div>
     )
 }

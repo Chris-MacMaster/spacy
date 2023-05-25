@@ -4,7 +4,7 @@
     color: white;
     opacity: .8;
     position: absolute;
-    top: 20vw;
+    top: min(20vw, 15rem);
     cursor: pointer;
     z-index: 1;
     border-radius: 50%;
@@ -16,16 +16,16 @@
     left: 1vw;
 }
 .slider-images {
-    width: 41vw;
-    height: 41vw;
+    width: min(57vw, 45rem);
+    height: min(40vw, 30rem);
     border-radius: min(2vmin, .5rem);
     object-fit: cover;
 }
 .product-image-slider {
     position: relative;
-    width: 41vw;
-    height: 41vw;
-    margin: 2vw;
+    width: min(57vw, 45rem);
+    height: min(40vw, 30rem);
+    margin: 0vw 3vw;
     border-radius: min(2vmin, .5rem);
 }
 .slide {
@@ -36,29 +36,4 @@
     opacity: 1;
     transition-duration: 1s;
     transform: scale(1.08);
-}
-
-@media only screen and (max-width: 768px){
-    .left-arrow,
-    .right-arrow {
-        font-size: 7vmin;
-    }
-    .slider-images {
-        width: 55vw;
-        height: 55vw;
-        border-radius: min(2vmin, .5rem);
-        object-fit: cover;
-    }
-    .product-images-div {
-        width: 59vmin;
-        height: 59vmin;
-        margin: 2vmin;
-    }
-    .left-arrow,
-    .right-arrow {
-        top: 27vmin;
-    }
-    .right-arrow {
-        right: -15vmin;
-    }
 }

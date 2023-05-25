@@ -5,7 +5,7 @@ import { NavLink, useParams } from 'react-router-dom';
 import { fetchOneProduct, followProductShop, unfollowProductShop } from '../../store/product';
 import { fetchProductReviews } from '../../store/review';
 import { fetchCart } from '../../store/cart';
-import ReviewIndexItem from '../Reviews/ReviewIndexItem';
+import ReviewIndexItem from '../Reviews';
 import AddToCart from '../Cart/AddToCart';
 import { useHistory } from 'react-router-dom';
 import "./ProductDetail.css"
@@ -54,7 +54,6 @@ const ProductDetail = () => {
     const product = useSelector(state => state.products.singleProduct)
     const productReviews = useSelector(state => state.reviews.productReviews)
     const shop = useSelector(state => state.products?.singleProduct.Shop)
-    const shopId = shop?.id
 
     if (!hasLoaded) return <LoadingIcon />
 
@@ -67,7 +66,6 @@ const ProductDetail = () => {
         dispatch(followProductShop(product.id))
     }
 
-
     const handleUnfollow = async (e) => {
         e.preventDefault()
         e.stopPropagation()
@@ -76,7 +74,6 @@ const ProductDetail = () => {
         // updates singleProduct state
         dispatch(unfollowProductShop(product.id))
     }
-
 
 
     return (
@@ -97,18 +94,64 @@ const ProductDetail = () => {
 
                 </div>
 
+                <div className='review-info-div'>
+                        <div className='review-p review-stars'>
+                        {productReviews && productReviews.length ?
+                            <p className='review-num-title'>{productReviews.length === 1 ? <span>{'1 Review'}</span> : productReviews.length > 1 ? <> {productReviews.length} Reviews</>  : null}
+                            { Array(5).fill(1).map((s,i)=> (
+                            i < product.avgRating ? (
+                                <i className="fa-solid fa-star gold-star-product-deets" key={i}></i>
+                            ) : (
+                                <i className="fa-solid fa-star blank-star-product-deets" key={i}></i>
+                            )
+                            ) ) } </p> : (
+                                <p>New! <i className="fa-solid fa-star gold-star-product-deets"/> </p>
+                            )}
+                        </div>
+                        {user && user.id !== product?.Shop?.ownerId && !productReviews.length ? (
+                       <div>
+                            <button className='post-item-review'
+                            onClick={handleClick}>
+                                Post a Review
+                            </button>
+                        </div>) : user && product.Shop?.ownerId !== user.id && !productReviews?.some(r => r.userId === user.id) ? (
+                            <div>
+                                <button className='post-item-review'
+                                    onClick={handleClick}>
+                                    Post a Review
+                                </button>
+                            </div>)
+                         : null }
+                </div>
+                    {/* reviews... */}
+                    <div className='product-deets-reviews'>
+                    {productReviews && productReviews.length > 0 ?
+                    productReviews.sort((a,b)=> Date.parse(b.createdAt) - Date.parse(a.createdAt)).map(review => (
+                        <ReviewIndexItem review={review} key={review.id} product={product}/>
+                    )): null}
+                    </div>
+            </div>
 
-                <div className='product-grid-div-col-b'>
-                    <div className='product-info-a'>
+            <div className='product-grid-div-col-b'>
                     <div className='prod-price'>${product.price}</div>
                     <div className='prod-search'>{product.name}</div>
 
-                    </div>
                     <div className='store-info'>
                         <div className='name-follows'>
                         <NavLink to={`/shops/${product.Shop.id}`}>
-                                {product && product.Shop && product.Shop.name}
+                                {product.Shop.name}
                         </NavLink>
+                        <div className='follow-unfollow-shop-div'>
+                            {product.Shop && product.Shop.Followed && product.Shop.Followed.Status && product.Shop.Followed.Status === "Not Followed" &&
+                                <div className='favorite-shop' onClick={handleFollow}>
+                                    <i className="fa-regular fa-heart shop-heart"
+                                    ></i>Follow </div>
+                            }
+                            {shop && shop.Followed && shop.Followed.Status && shop.Followed.Status === "Followed" &&
+                                <div className='favorite-shop' onClick={handleUnfollow}>
+                                    <i className="fas fa-regular fa-heart shop-heart-filled"></i>Unfollow </div>
+                            }
+                        </div>
                         </div>
                         <div className='store-sales'>
                             {product && product.Shop && product.Shop.sales} sales
@@ -128,10 +171,7 @@ const ProductDetail = () => {
                             {product.freeShipping === true ?
                             <div className='shipping-div'>
                                 <img src='https://i.imgur.com/oCqcfHM.png' alt='' className='truck-icon' />
-
-
-
-                                <p id='p-icon'>Hooray this product has free shipping!</p></div> : "This product does not have free shipping."}
+                                <span id='p-icon'>Hooray this product has free shipping!</span></div> : "This product does not have free shipping."}
                         </div>
                         <div className='prod-description'>
                             <p className='prod-description-p'>Description</p>
@@ -146,60 +186,9 @@ const ProductDetail = () => {
                             onItemClick={closeMenu}
                             modalComponent={<ShopPoliciesModal shop={product.Shop}/>} />
                         </div>
-
-                        <div className='follow-unfollow-shop-div'>
-                            {product.Shop && product.Shop.Followed && product.Shop.Followed.Status && product.Shop.Followed.Status === "Not Followed" &&
-                                <div className='favorite-shop' onClick={handleFollow}>
-                                    <i className="fa-regular fa-heart shop-heart"
-                                    ></i>Follow Shop</div>
-                            }
-                            {shop && shop.Followed && shop.Followed.Status && shop.Followed.Status === "Followed" &&
-                                <div className='favorite-shop' onClick={handleUnfollow}>
-                                    <i className="fas fa-regular fa-heart shop-heart"
-                                    ></i>Unfollow Shop</div>
-                            }
-                        </div>
                     </div>
                 </div>
-            </div>
 
-
-            <div className='review-info-div'>
-                        <div className='review-p review-stars'>
-                        {productReviews && productReviews.length ?
-                            <p className='review-num-title'>{productReviews.length === 1 ? <span>{'1 Review'}</span> : productReviews.length > 1 ? <> {productReviews.length} Reviews</>  : null}
-                            { Array(5).fill(1).map((s,i)=> (
-                            i < product.avgRating ? (
-                                <i className="fa-solid fa-star gold-star-product-deets" key={i}></i>
-                            ) : (
-                                <i className="fa-solid fa-star blank-star-product-deets" key={i}></i>
-                            )
-                            ) ) } </p> : (
-                                <p>New! <i className="fa-solid fa-star gold-star-product-deets"/> </p>
-                            )}
-                        </div>
-                        {user && user.id !== product?.Shop?.ownerId && !productReviews.length ? (
-                       <div>
-                            <button className='post-item-review'
-                            onClick={handleClick}>
-                                Post a Review
-                                </button>
-                        </div>) : user && product.Shop?.ownerId !== user.id && !productReviews?.some(r => r.userId === user.id) ? (
-                            <div>
-                                <button className='post-item-review'
-                                    onClick={handleClick}>
-                                    Post a Review
-                                </button>
-                            </div>)
-                         : null }
-                    </div>
-                    {/* reviews... */}
-                    <div className='product-deets-reviews'>
-                    {productReviews && productReviews.length > 0 ?
-                    productReviews.sort((a,b)=> Date.parse(b.createdAt) - Date.parse(a.createdAt)).map(review => (
-                        <ReviewIndexItem review={review} key={review.id} product={product}/>
-                    )): null}
-                    </div>
         </div>
     );
 };

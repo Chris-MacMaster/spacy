@@ -46,15 +46,20 @@ a.product-name, a.shop-product-price {
     display: flex;
     flex-direction: row;
 }
+#shop-delete-button {
+    color: #ff0000;
+}
+#shop-edit-button {
+    color: #0000ff;
+}
 #shop-delete-button,
 #shop-edit-button {
     padding: .2vmin;
     margin: 0;
     text-decoration: none;
     border: grey .1rem solid;
-    color: black;
     font-weight: 600;
-    font-size: 1vmin;
+    font-size: min(2vmin, .7rem);
     border-radius: .5vmin;
     margin-left: .5vmin;
     cursor: pointer;
@@ -63,8 +68,4 @@ a.product-name, a.shop-product-price {
 #shop-delete-button:hover,
 #shop-edit-button:hover {
     box-shadow: 0rem 0rem 1vmin black;
-}
-#shop-delete-button:active,
-#shop-edit-button:active {
-    background-color: red;
 }
