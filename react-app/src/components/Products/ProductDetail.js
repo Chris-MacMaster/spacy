@@ -77,6 +77,7 @@ const ProductDetail = () => {
 
 
     return (
+        <div className='product-deets'>
         <div className='product-detail-div'>
             <div className='product-grid-div'>
                 <div className='both-images-div'>
@@ -108,6 +109,7 @@ const ProductDetail = () => {
                                 <p>New! <i className="fa-solid fa-star gold-star-product-deets"/> </p>
                             )}
                         </div>
+                        <hr></hr>
                         {user && user.id !== product?.Shop?.ownerId && !productReviews.length ? (
                        <div>
                             <button className='post-item-review'
@@ -189,6 +191,7 @@ const ProductDetail = () => {
                     </div>
                 </div>
 
+        </div>
         </div>
     );
 };

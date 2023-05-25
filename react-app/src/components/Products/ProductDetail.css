@@ -2,8 +2,12 @@
     margin-top: 5vh;
     display: grid;
     grid-template-columns: 3fr 1fr;
-    /* justify-content: center;
-    align-items: center; */
+    width: min(80vw, 70rem);
+    justify-content: center;
+}
+.product-deets {
+    display: flex;
+    justify-content: center;
 }
 .product-preview-img {
     width: 5vmin;
@@ -67,6 +71,7 @@
     min-width: 5rem;
     padding: 1vh;
     margin-bottom: 1.5vmin;
+    width: 100%;
     transition: .2s ease-in-out;
 }
 .add-to-cart-button:hover {
