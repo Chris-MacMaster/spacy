@@ -12,8 +12,7 @@ product_review_routes = Blueprint('/product-reviews', __name__)
 @product_review_routes.route('/search/<int:review_id>')
 def get_review(review_id):
     """get a single review by id"""
-    review = ProductReview.query.filter(ProductReview.id == review_id).one()
-    print(review.to_dict())
+    review = ProductReview.query.filter(ProductReview.id == review_id).first()
     if review:
         product = Product.query.get(review.product_id)
         product_images = ProductImage.query.filter(ProductImage.product_id == product.id).all()
@@ -40,6 +39,7 @@ def get_all_reviews():
     payload = { review.id: review.to_dict() for review in reviewcopy }
     for review in payload.values():
         review['ReviewImages'] = get_review_images(review['id'])
+
     return { 'ProductReviews': payload }, 200
 
 @product_review_routes.route('/<int:product_id>')
@@ -136,6 +136,5 @@ def add_image_to_review(review_id):
     if review:
         if form.validate_on_submit:
             review.image = form.data['image']
-            print('review with image',review.to_dict())
-            return {review.to_dict()}
+            return review.to_dict(), 200
     return {'No review'}
