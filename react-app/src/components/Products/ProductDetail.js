@@ -46,16 +46,15 @@ const ProductDetail = () => {
             await dispatch(fetchOneProduct(productId))
             await dispatch(fetchProductReviews(productId))
             await dispatch(fetchCart())
-            await dispatch(fetchProductReviews())
             return setHasLoaded(true)
         }
         loadData()
     }, [dispatch, productId])
 
     const product = useSelector(state => state.products.singleProduct)
-    const productReviews = useSelector(state => state.reviews.productReviews)
+    const reviewState = useSelector(state => state.reviews.productReviews)
     const shopFollow = useSelector(state => state.products?.singleProduct.Shop)
-
+    const productReviews = Object.values(reviewState).sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt))
     if (!hasLoaded) return <LoadingIcon />
 
     const handleClick = () => history.push(`/product-reviews/${productId}/new`)
@@ -163,9 +162,7 @@ const ProductDetail = () => {
                         </div>
                     </div>
                     <div className='purchase-buttons'>
-
                         {product.available > 0 ? <AddToCart className='button add-cart-button' product={product} cart={cart} user={user}/>
-
                         :
                         <button className='button cant-add-cart-button'>Out of stock</button>
                         }
