@@ -3,7 +3,7 @@ import './PopularGifts.css'
 export default function PopularGifts({ product }) {
     return (
         <div className="popular-product-card">
-        <div className="popular-result-image-div"><img className='popular-result-img' src={product.ProductImages[2].url} alt='not found'/></div>
+        <div className="popular-result-image-div"><img className='popular-result-img' src={product.ProductImages[2]?.url} alt='not found'/></div>
 
         <div className="popular-product-text">
             <div className="popular-product-name">{product.name}</div>

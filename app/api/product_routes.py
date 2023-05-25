@@ -119,7 +119,7 @@ def get_all_products():
             print('')
             print('')
             print('')
-            print('images', image)
+            print('images', image[0])
             print('')
             print('')
             print('')
@@ -139,7 +139,18 @@ def get_all_products():
             db.session.add(new_product)
             db.session.commit()
 
-            for file in image:
+            for file in image[0]:
+                print("")
+                print("")
+                print("")
+                print("")
+                print("")
+                print("FILE", file)
+                print("")
+                print("")
+                print("")
+                print("")
+                print("")
 
                 file.filename = get_unique_filename(file.name)
                 print('')
