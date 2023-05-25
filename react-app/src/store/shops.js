@@ -156,9 +156,9 @@ export const editShop = (formData, id) => async dispatch => {
         method: 'PUT',
         body: formData
     })
-    
-    const edittedShop = await response.json()
+
     if (response.ok) {
+        const edittedShop = await response.json()
         dispatch(editAShop(edittedShop))
         return edittedShop
     }
@@ -166,7 +166,7 @@ export const editShop = (formData, id) => async dispatch => {
 //delete shop thunk
 export const deleteShopRequest = shopId => async dispatch => {
     const response = await fetch(`/api/shops/${shopId}`, {
-        method: "DELETE", 
+        method: "DELETE",
         headers: {"Content-Type": "application/json"}
     })
     if (response.ok) {

@@ -5,10 +5,7 @@ import { useEffect, useState } from 'react'
 import { authenticate } from '../../store/session'
 import { fetchShops, fetchFollowedShops } from '../../store/shops'
 import { fetchProducts } from '../../store/product'
-import ShopProductCard from '../ShopProductCard'
-import ShopBusinessCard from '../ShopBusinessCard'
 import LoadingIcon from '../LoadingIcon'
-import FollowShopBusinessCard from '../ShopBusinessCard/FollowShopBusinessCard'
 import ShopCard from '../ShopCard'
 export default function UserDetails() {
     const {userId} = useParams()
@@ -41,7 +38,10 @@ export default function UserDetails() {
     const onClickCreateShop = () => history.push('/shops/new')
 
     const followedShops = Object.values(followedShopState)
-
+    // const editOnClick = (e, shop) => {
+    //     // e.stopPropagation()
+    //     history.push(`/shops/edit/${shop.id}`)
+    // }
     return (
         <div className='user-manage-details'>
 
@@ -56,6 +56,9 @@ export default function UserDetails() {
                 <NavLink to={`/shops/${s.id}`} style={{ textDecoration: "none"}}>
                 <span className='user-deets-user-shop'>{s.name}</span>
                 </NavLink>
+                <button id='shop-delete-button' className='user-delete-product' ><i class="fa-solid fa-trash-can"/></button>
+                <button id='shop-edit-button' className='user-edit-product' onClick={e => history.push(`/shops/edit/${s.id}`)}>
+                    <i class="fa-solid fa-pen-to-square"/></button>
                 </div>
             ))}
             </div>
