@@ -54,7 +54,6 @@ const ProductDetail = () => {
     const product = useSelector(state => state.products.singleProduct)
     const productReviews = useSelector(state => state.reviews.productReviews)
     const shop = useSelector(state => state.products?.singleProduct.Shop)
-    const shopId = shop?.id
 
     if (!hasLoaded) return <LoadingIcon />
 
@@ -67,7 +66,6 @@ const ProductDetail = () => {
         dispatch(followProductShop(product.id))
     }
 
-
     const handleUnfollow = async (e) => {
         e.preventDefault()
         e.stopPropagation()
@@ -76,7 +74,6 @@ const ProductDetail = () => {
         // updates singleProduct state
         dispatch(unfollowProductShop(product.id))
     }
-
 
 
     return (
@@ -152,8 +149,7 @@ const ProductDetail = () => {
                             }
                             {shop && shop.Followed && shop.Followed.Status && shop.Followed.Status === "Followed" &&
                                 <div className='favorite-shop' onClick={handleUnfollow}>
-                                    <i className="fas fa-regular fa-heart shop-heart-filled"
-                                    ></i>Unfollow </div>
+                                    <i className="fas fa-regular fa-heart shop-heart-filled"></i>Unfollow </div>
                             }
                         </div>
                         </div>
