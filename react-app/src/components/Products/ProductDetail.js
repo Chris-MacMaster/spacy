@@ -143,20 +143,22 @@ const ProductDetail = () => {
                         <NavLink to={`/shops/${product.Shop.id}`}>
                                 {product.Shop.name}
                         </NavLink>
+                        <i className="fa-solid fa-certificate starseller product-deets-badge"></i>
+                        </div>
+
+                        <div className='store-sales'>
+                            {product && product.Shop && product.Shop.sales} sales
+                        </div>
                         <div className='follow-unfollow-shop-div'>
                             {product.Shop && product.Shop.Followed && product.Shop.Followed.Status && product.Shop.Followed.Status === "Not Followed" &&
-                                <div className='favorite-shop' onClick={handleFollow}>
+                                <div className='follow-shop' onClick={handleFollow}>
                                     <i className="fa-regular fa-heart shop-heart"
                                     ></i>Follow </div>
                             }
                             {shop && shop.Followed && shop.Followed.Status && shop.Followed.Status === "Followed" &&
-                                <div className='favorite-shop' onClick={handleUnfollow}>
+                                <div className='follow-shop' onClick={handleUnfollow}>
                                     <i className="fas fa-regular fa-heart shop-heart-filled"></i>Unfollow </div>
                             }
-                        </div>
-                        </div>
-                        <div className='store-sales'>
-                            {product && product.Shop && product.Shop.sales} sales
                         </div>
                     </div>
                     <div className='purchase-buttons'>

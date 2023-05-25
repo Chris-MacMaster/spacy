@@ -16,16 +16,16 @@
     left: 1vw;
 }
 .slider-images {
-    width: min(57vw, 45rem);
+    width: min(55vw, 45rem);
     height: min(40vw, 30rem);
     border-radius: min(2vmin, .5rem);
     object-fit: cover;
 }
 .product-image-slider {
     position: relative;
-    width: min(57vw, 45rem);
+    width: min(55vw, 45rem);
     height: min(40vw, 30rem);
-    margin: 0vw 3vw;
+    margin: 0vw min(5vw, 3rem) 0rem 3vw;
     border-radius: min(2vmin, .5rem);
 }
 .slide {
@@ -36,4 +36,7 @@
     opacity: 1;
     transition-duration: 1s;
     transform: scale(1.08);
+}
+.product-deets-badge {
+    margin: 0rem min(2vmin, .5rem);
 }

@@ -143,7 +143,10 @@
 .shop-heart-filled {
     color: red;
 }
-
+.follow-unfollow-shop-div {
+    cursor: pointer;
+    margin-top: min(2vmin, .5rem);
+}
 
 
 

@@ -48,7 +48,6 @@ export default function ShopDetails () {
     const handleUnfollow = async (e) => {
         e.preventDefault()
         e.stopPropagation()
-
         // updates db join table
         dispatch(unfollowShop(shop.id))
         // updates followed status in state
