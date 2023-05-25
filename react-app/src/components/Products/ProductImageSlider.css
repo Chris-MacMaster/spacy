@@ -37,28 +37,3 @@
     transition-duration: 1s;
     transform: scale(1.08);
 }
-
-@media only screen and (max-width: 768px){
-    .left-arrow,
-    .right-arrow {
-        font-size: 7vmin;
-    }
-    .slider-images {
-        width: 55vw;
-        height: 55vw;
-        border-radius: min(2vmin, .5rem);
-        object-fit: cover;
-    }
-    .product-images-div {
-        width: 59vmin;
-        height: 59vmin;
-        margin: 2vmin;
-    }
-    .left-arrow,
-    .right-arrow {
-        top: 27vmin;
-    }
-    .right-arrow {
-        right: -15vmin;
-    }
-}

@@ -5,7 +5,7 @@ import { NavLink, useParams } from 'react-router-dom';
 import { fetchOneProduct, followProductShop, unfollowProductShop } from '../../store/product';
 import { fetchProductReviews } from '../../store/review';
 import { fetchCart } from '../../store/cart';
-import ReviewIndexItem from '../Reviews/ReviewIndexItem';
+import ReviewIndexItem from '../Reviews';
 import AddToCart from '../Cart/AddToCart';
 import { useHistory } from 'react-router-dom';
 import "./ProductDetail.css"
@@ -136,16 +136,26 @@ const ProductDetail = () => {
             </div>
 
             <div className='product-grid-div-col-b'>
-                    <div className='product-info-a'>
                     <div className='prod-price'>${product.price}</div>
                     <div className='prod-search'>{product.name}</div>
 
-                    </div>
                     <div className='store-info'>
                         <div className='name-follows'>
                         <NavLink to={`/shops/${product.Shop.id}`}>
-                                {product && product.Shop && product.Shop.name}
+                                {product.Shop.name}
                         </NavLink>
+                        <div className='follow-unfollow-shop-div'>
+                            {product.Shop && product.Shop.Followed && product.Shop.Followed.Status && product.Shop.Followed.Status === "Not Followed" &&
+                                <div className='favorite-shop' onClick={handleFollow}>
+                                    <i className="fa-regular fa-heart shop-heart"
+                                    ></i>Follow </div>
+                            }
+                            {shop && shop.Followed && shop.Followed.Status && shop.Followed.Status === "Followed" &&
+                                <div className='favorite-shop' onClick={handleUnfollow}>
+                                    <i className="fas fa-regular fa-heart shop-heart-filled"
+                                    ></i>Unfollow </div>
+                            }
+                        </div>
                         </div>
                         <div className='store-sales'>
                             {product && product.Shop && product.Shop.sales} sales
@@ -179,19 +189,6 @@ const ProductDetail = () => {
                             className='shop-pol-modal'
                             onItemClick={closeMenu}
                             modalComponent={<ShopPoliciesModal shop={product.Shop}/>} />
-                        </div>
-
-                        <div className='follow-unfollow-shop-div'>
-                            {product.Shop && product.Shop.Followed && product.Shop.Followed.Status && product.Shop.Followed.Status === "Not Followed" &&
-                                <div className='favorite-shop' onClick={handleFollow}>
-                                    <i className="fa-regular fa-heart shop-heart"
-                                    ></i>Follow </div>
-                            }
-                            {shop && shop.Followed && shop.Followed.Status && shop.Followed.Status === "Followed" &&
-                                <div className='favorite-shop' onClick={handleUnfollow}>
-                                    <i className="fas fa-regular fa-heart shop-heart-filled"
-                                    ></i>Unfollow </div>
-                            }
                         </div>
                     </div>
                 </div>

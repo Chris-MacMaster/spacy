@@ -9,10 +9,6 @@ const ReviewIndexItem = ({ review , product}) => {
     const dispatch = useDispatch()
     let user = useSelector((state) => state.session.user)
 
-    const handleClick = (e) => {
-        e.preventDefault()
-    }
-
     const handleDeleteClick = async (e) => {
         e.preventDefault()
         await dispatch(deleteReview(review.id))
@@ -22,7 +18,7 @@ const ReviewIndexItem = ({ review , product}) => {
     if (!Object.values(review).length || !product) return null
 
     return (
-        <div onClick={handleClick} className='reviewIndexItem'>
+        <div  className='reviewIndexItem'>
             <div className='review-card-div' >
                 <div className='rev-col-a'>
                     <div className='rev-stars'>
@@ -47,20 +43,14 @@ const ReviewIndexItem = ({ review , product}) => {
                     </div>
                 {user && Object.values(review).length > 0 && review.userId === user.id ?
                 <div>
-                    {/* <OpenModalButton modalComponent={<DeleteReviewModal reviewId={review.id} product={product}/>} buttonText={'Delete'}/> */}
                     <button className='delete-review-button' onClick={handleDeleteClick}>Delete Review</button>
-
                     <NavLink to={`/product-reviews/${review.id}/edit`}>
                     <button className='edit-review-button'>Edit Review</button>
                     </NavLink>
                 </div>
                 : null}
                 </div>
-                <div className='rev-col-b'>
-                {review?.ReviewImages && (
-                        <img className='review-image-detail' src={review.ReviewImages?.url} alt='not loaded' />
-                    )}
-                </div>
+
             </div>
         </div>
     );
