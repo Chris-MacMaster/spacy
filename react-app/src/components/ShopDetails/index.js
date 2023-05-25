@@ -98,6 +98,7 @@ export default function ShopDetails () {
 
         {user && user.id === shop.ownerId ? (
         <button onClick={handleCreate} className='favorite-shop'>
+             <i className="fa-solid fa-screwdriver-wrench create-shop-icon"/>
         Create Product</button>
 
         ) : (

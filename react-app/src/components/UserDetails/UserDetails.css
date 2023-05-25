@@ -63,3 +63,15 @@
     width: min(80vw, 70rem);
 }
 
+.create-shop-button {
+    border: solid .1rem grey;
+    transition: .2s ease-in-out;
+    cursor: pointer;
+    border-radius: 5rem;
+    padding: min(3vmin, .5rem) min(5vmin, 2rem);
+    font-size: min(2vmin, 1rem);
+}
+.create-shop-button:hover {
+    scale: 1.1;
+    box-shadow: 0rem 0rem 1rem grey;
+}
