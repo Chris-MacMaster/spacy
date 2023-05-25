@@ -54,7 +54,7 @@ function Header({ isLoaded }) {
             <Link to={'/'}>
             <img src='https://i.imgur.com/nJxi8TL.png' alt='logoim' className='logoim'></img>
             </Link>
-            <Link to={`/`}><span className='logo'>spacey</span></Link>
+            <Link to={`/`}><span className='logo'>Spacey</span></Link>
 
             <div className='search-bar'>
                 <form onSubmit={handleSubmit} className='search-bar-form'>

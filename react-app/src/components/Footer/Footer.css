@@ -14,7 +14,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    margin-bottom: 20vmin;
+    /* margin-bottom: 20vmin; */
 }
 .dev-name {
     font-weight: bold;

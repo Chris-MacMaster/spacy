@@ -15,7 +15,9 @@ export default function TheCart({cart}){
   return(
   <div className="cart-wrapper-div">
   <div className="order-page">
-    <div className="shopping-bar">
+
+    {Object.values(cart).length !== 0 ?
+      <div className="shopping-bar">
       <div className="cart-quantity">
         <h2 hidden={purchased}>{Object.values(cart).length} items in your cart</h2>
       </div>
@@ -25,16 +27,22 @@ export default function TheCart({cart}){
       </NavLink>
       </div>
     </div>
+    :
+    <></>
+    }
 
     <div className="purchase-protection">
-    <i className="fa-regular fa-handshake"></i>
-      <p className="etsy-purchase-protection">Spacey purchase protection:</p> <p>Shop confidently knowing if something goes wrong, we've got your back!</p>
+      <p className="etsy-purchase-protection">
+        <i className="fa-regular fa-handshake"/> Spacey purchase protection:</p>
+      <p>Shop confidently knowing if something goes wrong, we've got your back!</p>
     </div>
 
     {!Object.values(cart).length &&
     <div className="empty-cart">
       <h2>Your Cart is empty</h2>
+      <NavLink to="/" className="discover">
       <p>Discover something unique to fill it up</p>
+      </NavLink>
     </div>}
     {Object.values(cart).length !== 0 ?
     (<div className="cart-content">
@@ -68,17 +76,17 @@ export default function TheCart({cart}){
                   </div>
                   </NavLink>
                   <div className="placeholder-name">
-                    <div className="cart-product-info">
+                    <div className="cart-details">
                       <div className="cart-product-info-top">
-                        <NavLink to={`/products/${product.id}`}
-                          style={{ "text-decoration": "none"}}>{product.name}</NavLink>
+                          <NavLink to={`/products/${product.id}`}>{product.name}</NavLink>
                       </div>
+                      <div className="item-description"><p>{product.description}</p></div>
+                      <div className="cart-product-info">
+                      <div className="qty-and-remove">
                       <ChangeQuantity cartId={product.cartId} quantity={product.quantity} productId={product.productId} available={product.available}/>
-                      <p></p>
                       <RemoveItemButton cartId={product.cartId} productId={product.id}/>
+                      </div>
                     </div>
-                    <div>
-                    <div className="item-description"><p>{product.description}</p></div>
                     </div>
                     <div className="cost-block">
                       <span>${(product.price * product.quantity).toFixed(2)}</span>

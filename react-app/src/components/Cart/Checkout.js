@@ -25,7 +25,7 @@ export default function CheckoutCart({setPurchased, cartItems}){
 
     return (
         <button onClick={checkout} className="checkout-cart-button">
-            Checkout!
+            Proceed to checkout
         </button>
     )
 }
