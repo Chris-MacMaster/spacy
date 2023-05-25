@@ -52,7 +52,7 @@ const ProductDetail = () => {
     }, [dispatch, productId])
 
     const product = useSelector(state => state.products.singleProduct)
-    const productReviews = useSelector(state => state.reviews.productReviews)
+    const productReviews = useSelector(state => Object.values(state.reviews.productReviews))
     const shop = useSelector(state => state.products?.singleProduct.Shop)
 
     if (!hasLoaded) return <LoadingIcon />

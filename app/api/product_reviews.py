@@ -12,7 +12,7 @@ product_review_routes = Blueprint('/product-reviews', __name__)
 @product_review_routes.route('/search/<int:review_id>')
 def get_review(review_id):
     """get a single review by id"""
-    review = ProductReview.query.filter(ProductReview.id == review_id).first()
+    review = ProductReview.query.filter(ProductReview.id == review_id).one()
     if review:
         product = Product.query.get(review.product_id)
         product_images = ProductImage.query.filter(ProductImage.product_id == product.id).all()
@@ -39,7 +39,6 @@ def get_all_reviews():
     payload = { review.id: review.to_dict() for review in reviewcopy }
     for review in payload.values():
         review['ReviewImages'] = get_review_images(review['id'])
-
     return { 'ProductReviews': payload }, 200
 
 @product_review_routes.route('/<int:product_id>')
@@ -50,10 +49,13 @@ def get_reviews_of_product(product_id):
         review_image = ReviewImage.query.filter(ReviewImage.review_id==review_id).first()
         if review_image:
             return review_image.to_dict()
-    reviewcopy = [review.to_dict() for review in reviews]
-    for review in reviewcopy:
+    # reviewcopy = [review.to_dict() for review in reviews]
+    reviewcopy = {}
+    for review in reviews:
+        reviewcopy[review.id] = review.to_dict()
+    for review in reviewcopy.values():
         review['ReviewImages'] = review_image(review['id'])
-    for review in reviewcopy:
+    for review in reviewcopy.values():
         review_user = User.query.get(review['userId'])
         review['author_first'] = review_user.first_name
         review['author_last'] = review_user.last_name
@@ -96,7 +98,6 @@ def post_review(product_id):
         db.session.commit()
         # review_image
         if data['image']:
-            print('image', data['image'])
             review_image = ReviewImage(
                 url = data['image'],
                 created_at = datetime.now(),
@@ -108,7 +109,7 @@ def post_review(product_id):
         image = ReviewImage.query.filter(ReviewImage.review_id == new_review.id).first()
         if image:
             review_dict['ReviewImages'] = image.to_dict()
-        return review_dict, 200
+        return review_dict
     return {'error': 'Validation Error'}, 401
 
 @product_review_routes.route('/<int:review_id>/edit', methods=['PUT'])
@@ -136,5 +137,5 @@ def add_image_to_review(review_id):
     if review:
         if form.validate_on_submit:
             review.image = form.data['image']
-            return review.to_dict(), 200
+            return {review.to_dict()}
     return {'No review'}
