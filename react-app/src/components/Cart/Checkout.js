@@ -11,21 +11,21 @@ export default function CheckoutCart({setPurchased, cartItems}){
     const checkout = async (e) => {
         if (user)dispatch(checkoutCartThunk())
         else {
-            let x = await fetch('/api/purchases/', {
+            await fetch('/api/purchases/', {
                 method: 'POST',
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(cartItems)
             })
 
-            // clearCart()
+            clearCart()
         }
-        // setPurchased(true)
-        // alert("We have pinged your position to a backward planet in the Milky-Way galaxy. Please check your local Spacey distribution center in 7-10 years with agreed up on payment")
+        setPurchased(true)
+        alert("We have pinged your position to a backward planet in the Milky-Way galaxy. Please check your local Spacey distribution center in 7-10 years with agreed up on payment")
     }
 
     return (
         <button onClick={checkout} className="checkout-cart-button">
-            Checkout!
+            Proceed to checkout
         </button>
     )
 }

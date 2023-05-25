@@ -102,6 +102,8 @@ def return_cart():
 @cart_routes.route('/addLocalCart', methods=['POST'])
 def addLocalCart():
     cart_dict = request.get_json()
+    if not cart_dict:
+        return {}, 200
     cart_list = cart_dict.values()
     for cart in cart_list:
         current_cart = Cart.query.join(Product).filter((Cart.user_id == current_user.id) & (Cart.product_id == cart['productId'])).first()

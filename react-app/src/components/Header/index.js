@@ -20,7 +20,7 @@ function Header({ isLoaded }) {
     const [ hasLoaded, setHasLoaded ] = useState(false)
 
     const { cartItems } = useContext(CartContext)
-    const itemsInCart = Object.values(cartItems).reduce((acc, el) => acc + el.quantity, 0)
+    const itemsInCart = Object.values(cartItems).reduce((acc, el) => acc + (+el.quantity), 0)
     const handleSubmit = async (e) => {
         e.preventDefault()
         await dispatch(getSearchResults(parameters))
@@ -54,7 +54,7 @@ function Header({ isLoaded }) {
             <Link to={'/'}>
             <img src='https://i.imgur.com/nJxi8TL.png' alt='logoim' className='logoim'></img>
             </Link>
-            <Link to={`/`}><span className='logo'>spacey</span></Link>
+            <Link to={`/`}><span className='logo'>Spacey</span></Link>
 
             <div className='search-bar'>
                 <form onSubmit={handleSubmit} className='search-bar-form'>
@@ -98,7 +98,7 @@ function Header({ isLoaded }) {
                         </NavLink>
                         ) : !user && itemsInCart > 0 ? <NavLink to='/cart'
                         style={{textDecoration: "none"}}>
-                        <div className='number-in-cart'>{+itemsInCart}</div>
+                        <div className='number-in-cart'>{+itemsInCart}{}</div>
                         </NavLink> : null}
                     <NavLink to='/cart'>
                         <div className='header-tip'>Cart</div>

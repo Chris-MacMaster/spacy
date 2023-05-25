@@ -23,18 +23,42 @@
     z-index: 0;
 }
 .top-banner-suggest {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    justify-content: center;
     align-items: center;
     gap: 1.6vmin;
 }
 .top-banner-suggestions {
-    transition: .2s ease-in-out;
+    /* transition: .2s ease-in-out; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 7rem;
+    margin: 0 auto;
 }
-.top-banner-suggestions:hover {
-    box-shadow: inset 0rem -.3rem rgb(64, 64, 64);
-    scale: 1.10;
+.top-banner-suggest > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .top-banner-suggestions:hover {
+    box-shadow: 0px 1px 0px 0px black;
+
+}
+.top-banner-suggestions:hover img {
+    /* box-shadow: 0px 1px 0px 0px black; */
+    animation: ohyeah .1s linear forwards;
+}
+
+  @keyframes ohyeah {
+    0% {
+        scale: 1;
+    }
+    100% {
+      scale: 1.05;
+    }
 }
 div.top-banner-suggestions > p {
     font-family: 'Mulish', sans-serif;
@@ -43,14 +67,24 @@ div.top-banner-suggestions > p {
     width: 12vmin;
     font-size: 1.5vmin;
 }
+.suggest-image-div {
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; */
+}
 .suggest-image {
     object-fit: cover;
     box-sizing: border-box;
-    border-radius: 10vw;
-    width: 12vmin;
-    height: 12vmin;
+    border-radius: 50%;
+    width: 7rem;
+    aspect-ratio: 1;
+    /* height: 12vmin; */
+    /* position: relative; */
 }
-
+.suggest-image-text {
+    text-align: center;
+}
 .welcome-title {
     font-family: 'Marcellus', serif;
     font-weight: 200;

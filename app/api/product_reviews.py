@@ -105,9 +105,10 @@ def post_review(product_id):
             db.session.add(review_image)
             db.session.commit()
         review_dict = new_review.to_dict()
-        image = ReviewImage.query.filter(ReviewImage.review_id == new_review.id).one()
-        review_dict['ReviewImages'] = image.to_dict()
-        return review_dict
+        image = ReviewImage.query.filter(ReviewImage.review_id == new_review.id).first()
+        if image:
+            review_dict['ReviewImages'] = image.to_dict()
+        return review_dict, 200
     return {'error': 'Validation Error'}, 401
 
 @product_review_routes.route('/<int:review_id>/edit', methods=['PUT'])

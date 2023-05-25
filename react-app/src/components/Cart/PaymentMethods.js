@@ -35,7 +35,7 @@ export default function PaymentMethods({totalCost}){
 
     return (
     <div className="payment-methods">
-      <h3>How you'll pay:</h3>
+      <p className="pay-how">How you'll pay:</p>
       <label className="payment-type">
         <input type="radio"
         name="paymentMethod"
