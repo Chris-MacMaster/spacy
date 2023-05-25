@@ -64,3 +64,8 @@
     color: red;
     margin-right: min(1vmin, .3rem);
 }
+
+
+.unfollow-heart {
+    margin-right: min(1vmin, .3rem);
+}

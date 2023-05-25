@@ -1,8 +1,8 @@
 import React from 'react';
 import { useEffect, useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import { fetchOneProduct } from '../../store/product';
+import { NavLink, useParams } from 'react-router-dom';
+import { fetchOneProduct, followProductShop, unfollowProductShop } from '../../store/product';
 import { fetchProductReviews } from '../../store/review';
 import { fetchCart } from '../../store/cart';
 import ReviewIndexItem from '../Reviews/ReviewIndexItem';
@@ -13,7 +13,7 @@ import OpenModalButton from '../OpenModalButton';
 import ShopPoliciesModal from '../ShopPoliciesModal';
 import LoadingIcon from '../LoadingIcon';
 import ProductImageSlider from './ProductImageSlider';
-import { followShop } from '../../store/shops';
+import { followShop, unfollowShop } from '../../store/shops';
 
 const ProductDetail = () => {
     const dispatch = useDispatch()
@@ -60,45 +60,43 @@ const ProductDetail = () => {
 
     const handleClick = () => history.push(`/product-reviews/${productId}/new`)
 
-    const handleShopRedirect = (e) => {
-        e.preventDefault()
-        history.push(`/shops/${shopId}`)
-    }
-
-
     const handleFollow = async (e) => {
         e.preventDefault()
         e.stopPropagation()
-
         dispatch(followShop(product.Shop.id))
+        dispatch(followProductShop(product.id))
     }
+
+
+    const handleUnfollow = async (e) => {
+        e.preventDefault()
+        e.stopPropagation()
+        // updates db
+        dispatch(unfollowShop(product.Shop.id))
+        // updates singleProduct state
+        dispatch(unfollowProductShop(product.id))
+    }
+
 
 
     return (
         <div className='product-detail-div'>
             <div className='product-grid-div'>
-                <div className='product-grid-div-col-a'>
-                    <div className='product-subimages-div'>
-                        <div className='both-images-div'>
-                            <div className='subimage-div'>
+                <div className='both-images-div'>
+                    <div className='subimage-div'>
 
-                            {product && product.ProductImages && (product.ProductImages.map((img, i) =>
-                            <img className={chosenImage === i ? 'chosen-image product-preview-img' : 'product-preview-img'}
+                    {product && product.ProductImages && (product.ProductImages.map((img, i) =>
+                    <img className={chosenImage === i ? 'chosen-image product-preview-img' : 'product-preview-img'}
                             alt='' key={i} src={img.url} onClick={e=> setChosenImage(i)}/>))}
 
-                            </div>
-
-                            <div className='product-images-div'>
-                            <ProductImageSlider data={product.ProductImages} chosenImage={chosenImage} setChosenImage={setChosenImage}/>
-                            </div>
-
-                        </div>
                     </div>
 
-
-
+                    <div className='product-images-div'>
+                    <ProductImageSlider data={product.ProductImages} chosenImage={chosenImage} setChosenImage={setChosenImage}/>
+                    </div>
 
                 </div>
+
 
                 <div className='product-grid-div-col-b'>
                     <div className='product-info-a'>
@@ -108,13 +106,9 @@ const ProductDetail = () => {
                     </div>
                     <div className='store-info'>
                         <div className='name-follows'>
-                        <span className='shop-name' onClick={handleShopRedirect}>
+                        <NavLink to={`/shops/${product.Shop.id}`}>
                                 {product && product.Shop && product.Shop.name}
-                        </span>
-                        <span className='store-follows'>
-                        <i onClick={handleFollow} className="fa-solid fa-heart"/> Follow
-                                {/* feature incoming */}
-                        </span>
+                        </NavLink>
                         </div>
                         <div className='store-sales'>
                             {product && product.Shop && product.Shop.sales} sales
@@ -131,7 +125,13 @@ const ProductDetail = () => {
                     </div>
                     <div className='product-info-b'>
                         <div className='free-shipping-div'>
-                            {product.freeShipping === true ? <div className='shipping-div'><i className="fa-solid fa-truck"></i><p id='p-icon'>Hooray this product has free shipping!</p></div> : "This product does not have free shipping."}
+                            {product.freeShipping === true ?
+                            <div className='shipping-div'>
+                                <img src='https://i.imgur.com/oCqcfHM.png' alt='' className='truck-icon' />
+
+
+
+                                <p id='p-icon'>Hooray this product has free shipping!</p></div> : "This product does not have free shipping."}
                         </div>
                         <div className='prod-description'>
                             <p className='prod-description-p'>Description</p>
@@ -145,6 +145,19 @@ const ProductDetail = () => {
                             className='shop-pol-modal'
                             onItemClick={closeMenu}
                             modalComponent={<ShopPoliciesModal shop={product.Shop}/>} />
+                        </div>
+
+                        <div className='follow-unfollow-shop-div'>
+                            {product.Shop && product.Shop.Followed && product.Shop.Followed.Status && product.Shop.Followed.Status === "Not Followed" &&
+                                <div className='favorite-shop' onClick={handleFollow}>
+                                    <i className="fa-regular fa-heart shop-heart"
+                                    ></i>Follow Shop</div>
+                            }
+                            {shop && shop.Followed && shop.Followed.Status && shop.Followed.Status === "Followed" &&
+                                <div className='favorite-shop' onClick={handleUnfollow}>
+                                    <i className="fas fa-regular fa-heart shop-heart"
+                                    ></i>Unfollow Shop</div>
+                            }
                         </div>
                     </div>
                 </div>

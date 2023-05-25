@@ -27,14 +27,10 @@ export default function ShopDetails () {
 
     const shop = useSelector(state => state.shops.singleShop)
     const user = useSelector(state => state.session.user)
-    const featureAlert = () => alert('Feature coming soon')
-
+    
     if (!hasLoaded) return <LoadingIcon />
 
-    const allReviews = shop.Products.map(p=>p.Reviews).flat().sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt))
-
-
-
+    const allReviews = shop && shop.Products ? shop.Products.map(p=>p.Reviews).flat().sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt)) : null
 
     const handleCreate = (e) => {
         e.preventDefault()
@@ -43,8 +39,6 @@ export default function ShopDetails () {
 
     const handleFollow = async (e) => {
         e.preventDefault()
-        e.stopPropagation()
-
         // updates db join table
         dispatch(followShop(shop.id))
         // updates followed status in state
@@ -66,7 +60,7 @@ export default function ShopDetails () {
         <div className='shop-deets-80'>
         <div className='shop-header'>
             <div className='shop-businesscard'>
-            <img src={`${shop.ShopImages.url}`} alt='shoplogo' className='shoplogo'></img>
+            <img src={`${shop?.ShopImages?.url}`} alt='shoplogo' className='shoplogo'></img>
             <div className='shop-businesscard-info'>
                 <h2 className='businesscard-title'>{shop.name}</h2>
                 <div className='sanserif-text-description sanserif-text'>{shop.description}</div>
@@ -94,9 +88,9 @@ export default function ShopDetails () {
 
             <div className='shop-owner'>
                 <img className='shop-owner-img'
-                src={`${shop.ShopImages.url}`}
+                src={`${shop?.ShopImages?.url}`}
                 alt='user'></img>
-                <div className='shop-owner-name'>{shop.Owner.firstName}</div>
+                <div className='shop-owner-name'>{shop?.Owner?.firstName}</div>
                 <button className='contact-shop-owner' onClick={() => window.location = `mailto:${shop.Owner.email}`}><i className="fa-solid fa-message"></i> Contact</button>
             </div>
         </div>
@@ -106,20 +100,22 @@ export default function ShopDetails () {
         Create Product</button>
 
         ) : (
-        
-        
-        <div className='follow-unfollow-shop-div'> 
-            {shop.Followed.Status === "Not Followed" &&
+
+
+        <div className='follow-unfollow-shop-div'>
+            {shop && shop.Followed && shop.Followed.Status && shop.Followed.Status === "Not Followed" &&
             <button className='favorite-shop' onClick={handleFollow}>
             <i className="fa-regular fa-heart shop-heart"
             ></i>Follow Shop</button>
             }
-            {shop.Followed.Status === "Followed" &&
+            {shop && shop.Followed && shop.Followed.Status && shop.Followed.Status === "Followed" &&
             <button className='favorite-shop' onClick={handleUnfollow}>
-            <i className="fa-regular fa-heart shop-heart"
+            <i className="fas fa-regular fa-heart shop-heart"
             ></i>Unfollow Shop</button>
             }
        </div>
+
+
         )}
 
 
