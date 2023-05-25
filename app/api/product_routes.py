@@ -25,13 +25,13 @@ def get_one_product(product_id):
         productcopy['shopImage'] = shop_image.to_dict()['url']
 
         def check_followed():
-            if current_user.is_authenticated: 
+            if current_user.is_authenticated:
                 user = User.query.join(user_shops).filter(user_shops.c.shop_id == product.shop_id, user_shops.c.user_id == current_user.id).first()
                 if not user:
                     return {"Status" : "Not Followed"}
                 return {"Status" : "Followed"}
             return {"Status" : "User Not Signed In"}
-        
+
         productcopy['Shop']['Followed'] = check_followed()
 
         def get_reviews(id):
@@ -73,7 +73,7 @@ def get_one_product(product_id):
                 product.free_shipping = form.data["free_shipping"]
                 product.price = form.data["price"]
                 db.session.commit()
-                # addnig an associated image for the newly created product
+                # adding an associated image for the newly created product
                 product_image = ProductImage.query.filter(ProductImage.product_id == product_id).all()
                 first_img = product_image[0]
                 for img in product_image:

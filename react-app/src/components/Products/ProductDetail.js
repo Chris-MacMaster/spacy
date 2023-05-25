@@ -46,6 +46,7 @@ const ProductDetail = () => {
             await dispatch(fetchOneProduct(productId))
             await dispatch(fetchProductReviews(productId))
             await dispatch(fetchCart())
+            await dispatch(fetchProductReviews())
             return setHasLoaded(true)
         }
         loadData()
@@ -53,7 +54,7 @@ const ProductDetail = () => {
 
     const product = useSelector(state => state.products.singleProduct)
     const productReviews = useSelector(state => state.reviews.productReviews)
-    const shop = useSelector(state => state.products?.singleProduct.Shop)
+    const shopFollow = useSelector(state => state.products?.singleProduct.Shop)
 
     if (!hasLoaded) return <LoadingIcon />
 
@@ -155,7 +156,7 @@ const ProductDetail = () => {
                                     <i className="fa-regular fa-heart shop-heart"
                                     ></i>Follow </div>
                             }
-                            {shop && shop.Followed && shop.Followed.Status && shop.Followed.Status === "Followed" &&
+                            {shopFollow && shopFollow.Followed && shopFollow.Followed.Status && shopFollow.Followed.Status === "Followed" &&
                                 <div className='follow-shop' onClick={handleUnfollow}>
                                     <i className="fas fa-regular fa-heart shop-heart-filled"></i>Unfollow </div>
                             }

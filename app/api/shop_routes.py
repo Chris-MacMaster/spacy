@@ -23,6 +23,7 @@ def get_all_shops():
             image = ShopImage.query.filter(ShopImage.shop_id == id).first()
             if image:
                 return image.to_dict()
+
         for shop in shopcopy:
             shopimage = get_shop_images(shopcopy[shop]['id'])
             if shopimage:
@@ -162,13 +163,13 @@ def get_shop_by_id(shop_id):
             return review_image.to_dict() if review_image else None
 
         def check_followed():
-            if current_user.is_authenticated: 
+            if current_user.is_authenticated:
                 user = User.query.join(user_shops).filter(user_shops.c.shop_id == shop_id, user_shops.c.user_id == current_user.id).first()
                 if not user:
                     return {"Status" : "Not Followed"}
                 return {"Status" : "Followed"}
             return {"Status" : "User Not Signed In"}
-        
+
         # Out Of Scope
         # def get_followers():
         #     users = User.query.join(user_shops).filter(user_shops.c.shop_id == shop_id).all()
