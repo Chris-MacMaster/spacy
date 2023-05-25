@@ -21,6 +21,7 @@
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font-weight: lighter;
     font-size: min(7vmin, 2rem);
+    margin-top: 2vmin;
 }
 .user-deets-bullet {
     display: flex;
@@ -62,103 +63,3 @@
     width: min(80vw, 70rem);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.user-manage-item-field {
-    display: grid;
-    grid-template-columns: auto auto auto auto;
-    max-width: 95vw;
-    gap: min(2vmin, 1rem);
-    /* left: 16rem; */
-}
-.user-manage-header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-bottom: 5vmin;
-    align-items: center;
-}
-.user-manage-shop-owners {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /* justify-content: start; */
-    font-family: 'Mulish', sans-serif;
-}
-.user-manage-business-cards {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-}
-.user-manage-icon {
-    width: 5vw;
-    height: 5vw;
-    border-radius: 5vw;
-    margin: 0;
-}
-.favorite-shop {
-    cursor: pointer;
-}
-.shop-owner-text {
-    color: grey;
-    font-weight: bolder;
-    font-size: min(2vmin, 1.5rem);
-}
-.user-manage-contact-user {
-    margin: 0rem;
-    font-size: min(2vmin, 1.5rem);
-    margin-bottom: 50px;
-}
-.user-manage-shop-policies {
-    width: min(46vmin, 20rem);
-    display: flex;
-    flex-direction: row;
-}
-.each-shop-policies {
-    display: flex;
-    flex-direction: column;
-}
-.user-manage-footer {
-    font-family: 'Mulish', sans-serif;
-}
-
-.user-manage-create {
-    transition: .2s ease-in-out;
-}
-.user-manage-create:hover {
-    box-shadow: 0rem 0rem .5rem black;
-}
-.create-shop-icon {
-    color: rgb(74, 74, 74);
-}
-.one-shop-name {
-    font-size: min(3vmin, 2rem);
-}
-.one-shop-policies {
-    font-size: min(2vmin, 1.6rem);
-}
-
-
-.owned-shops-label {
-    font-size: 2em;
-    margin-top: 5px;
-    margin-bottom: 0px;
-}
