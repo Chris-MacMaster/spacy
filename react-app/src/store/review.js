@@ -130,7 +130,9 @@ const initialState = {
 export default function reviewReducer(state = initialState, action) {
     switch (action.type) {
         case LOAD_REVIEWS: {
-            const newState = { ...state }
+            const newState = {...state,
+                singleReviewPost: {...state.singleReviewPost},
+                singleReviewGet: {...state.singleReviewGet}}
             newState.productReviews = action.payload
             return newState
         }
@@ -162,7 +164,8 @@ export default function reviewReducer(state = initialState, action) {
         }
         case DELETE_REVIEW: {
             const newState5 = {...state, singleReviewPost: {...state.singleReviewPost}, singleReviewGet: {...state.singleReviewGet}}
-            state.productReviews.map(review => (newState5.productReviews[review.id] = review ))
+
+            newState5.productReviews = state.productReviews.filter(review => (newState5.productReviews[review.id] !== action.reviewId ))
             delete newState5.singleReviewGet
             return newState5
         }
