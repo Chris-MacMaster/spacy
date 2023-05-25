@@ -21,8 +21,7 @@
 }
 
 .product-grid-div-col-b {
-    /* width: 40vw; */
-    min-width: 7rem;
+    width: max(40vw, 27rem);
 }
 .chosen-image {
     outline: solid black min(.5vmin, .2rem);
@@ -36,7 +35,7 @@
     opacity: 100%;
 }
 .product-images-div {
-    margin: min(5vmin, 8rem);
+    margin: 0rem min(5vmin, 4rem) 0rem min(5vmin, 4rem) ;
 }
 .review-card-div {
     display: flex;

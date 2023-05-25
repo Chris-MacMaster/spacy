@@ -1,15 +1,12 @@
-import { useHistory, useParams } from 'react-router-dom'
+import { NavLink, useHistory, useParams } from 'react-router-dom'
 import './UserDetails.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { authenticate } from '../../store/session'
 import { fetchShops, fetchFollowedShops } from '../../store/shops'
 import { fetchProducts } from '../../store/product'
-import ShopProductCard from '../ShopProductCard'
-import ShopBusinessCard from '../ShopBusinessCard'
 import LoadingIcon from '../LoadingIcon'
-import FollowShopBusinessCard from '../ShopBusinessCard/FollowShopBusinessCard'
-
+import ShopCard from '../ShopCard'
 export default function UserDetails() {
     const {userId} = useParams()
     const dispatch = useDispatch()
@@ -32,8 +29,6 @@ export default function UserDetails() {
     const followedShopState = useSelector(state => state.shops.followedShops)
     const products = useSelector(state=> state.products.allProducts)
 
-
-
     if (!hasLoaded) return <LoadingIcon />
     if (!user || parseInt(user.id) !== parseInt(userId) || !shops) return null
 
@@ -43,15 +38,60 @@ export default function UserDetails() {
     const onClickCreateShop = () => history.push('/shops/new')
 
     const followedShops = Object.values(followedShopState)
-
+    // const editOnClick = (e, shop) => {
+    //     // e.stopPropagation()
+    //     history.push(`/shops/edit/${shop.id}`)
+    // }
     return (
         <div className='user-manage-details'>
-            <button className='favorite-shop create-shop-button'
-                onClick={onClickCreateShop}>
-                <i className="fa-solid fa-screwdriver-wrench create-shop-icon"></i>
-                Create Shop
+
+            <div className='user-deets'>
+            <img src='https://i.imgur.com/mMEwXsu.png' alt='' className='user-deets-icon'/>
+            <div className='user-deets-text'>
+            <div className='user-name'>{user.firstName} {user.lastName}</div>
+            <div className='user-deets-user-shops'>
+            {userShops && userShops.length && userShops.map((s,i) => (
+                <div className='user-deets-bullet'>
+                <img src='https://i.imgur.com/bdSjZyV.png' alt='' className='shop-icon'/>
+                <NavLink to={`/shops/${s.id}`} style={{ textDecoration: "none"}}>
+                <span className='user-deets-user-shop'>{s.name}</span>
+                </NavLink>
+                <button id='shop-delete-button' className='user-delete-product' ><i class="fa-solid fa-trash-can"/></button>
+                <button id='shop-edit-button' className='user-edit-product' onClick={e => history.push(`/shops/edit/${s.id}`)}>
+                    <i class="fa-solid fa-pen-to-square"/></button>
+                </div>
+            ))}
+            </div>
+
+            </div>
+            </div>
+            <div className='create-shop-container'>
+            <button className='favorite-shop create-shop-button' onClick={onClickCreateShop}>
+            <i className="fa-solid fa-screwdriver-wrench create-shop-icon"/>Create Shop
             </button>
-                <p className='owned-shops-label'>
+
+            </div>
+
+
+            <hr></hr>
+
+            <div className='user-deets-title'>Favorite shops</div>
+            <div className='user-deets-grid'>
+            <div className='user-deets-followed-shops'>
+            {followedShops && followedShops.length && followedShops.map((s, i) => ( <ShopCard shop={shops[s.id]} />))}
+            </div>
+
+            </div>
+
+
+
+
+
+
+
+
+
+                {/* <p className='owned-shops-label'>
                     Your Owned Shops
                 </p>
             <div className='user-manage-header'>
@@ -72,7 +112,7 @@ export default function UserDetails() {
             </div>
 
             <p className='owned-shops-label'>
-                Your Created Products 
+                Your Created Products
             </p>
             <div className='user-manage-items'>
                 <div className='user-manage-item-sidebar'>
@@ -100,19 +140,8 @@ export default function UserDetails() {
             </div>
 
             </div>
-            <hr></hr>
-            <div className='user-manage-footer'>
-                    <h3>Shop Policies</h3>
-                <div className='user-manage-shop-policies'>
-                    {userShops.length ? userShops.map(s=> (
-                <div className='each-shop-policies'>
-                    <h3 className='one-shop-name'>{s.name}</h3>
-                    <p className='one-shop-policies'>{s.policies}</p>
-                </div>
-                    )) : null}
-                </div>
-                <div className='accepted-payments'></div>
-            </div>
+
+            </div> */}
         </div>
     )
 }

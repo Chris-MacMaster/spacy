@@ -1,6 +1,87 @@
 .user-manage-details {
     margin: 5vmin;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
+
+.user-deets {
+    display: flex;
+    flex-direction: row;
+    width: min(80vw, 70rem)
+}
+.user-deets-icon {
+    width: min(10vmin, 9rem);
+    height: min(10vmin, 9rem);
+    border-radius: 100%;
+    margin: min(3vmin, 1rem);
+}
+.user-name {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: lighter;
+    font-size: min(7vmin, 2rem);
+}
+.user-deets-bullet {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.shop-icon {
+    width: min(3vmin, 1.2rem);
+    height: fit-content;
+    margin-right: min(1vmin, .3rem);
+}
+.user-deets-user-shop {
+    font-size: min(3vmin, 1rem);
+    color: black;
+}
+.user-deets-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.user-deets-followed-shops {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    gap: min(3vmin, 2rem);
+    width: min(80vw, 70rem)
+}
+.create-shop-button {
+    align-items: start;
+}
+.user-deets-title {
+    width: min(80vw, 70rem);
+    font-size: min(7vmin, 2rem);
+    margin-bottom: min(3vmin, 1rem);
+    font-weight: bold;
+}
+
+.create-shop-container {
+    width: min(80vw, 70rem);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .user-manage-item-field {
     display: grid;
     grid-template-columns: auto auto auto auto;
@@ -80,8 +161,4 @@
     font-size: 2em;
     margin-top: 5px;
     margin-bottom: 0px;
-}
-
-.create-shop-button {
-    margin-top: 0px;
 }

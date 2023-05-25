@@ -27,7 +27,7 @@ export default function ShopDetails () {
 
     const shop = useSelector(state => state.shops.singleShop)
     const user = useSelector(state => state.session.user)
-    
+
     if (!hasLoaded) return <LoadingIcon />
 
     const allReviews = shop && shop.Products ? shop.Products.map(p=>p.Reviews).flat().sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt)) : null
@@ -59,6 +59,7 @@ export default function ShopDetails () {
         <div className='shop-page'>
         <div className='shop-deets-80'>
         <div className='shop-header'>
+
             <div className='shop-businesscard'>
             <img src={`${shop?.ShopImages?.url}`} alt='shoplogo' className='shoplogo'></img>
             <div className='shop-businesscard-info'>
