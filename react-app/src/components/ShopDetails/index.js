@@ -48,7 +48,6 @@ export default function ShopDetails () {
     const handleUnfollow = async (e) => {
         e.preventDefault()
         e.stopPropagation()
-
         // updates db join table
         dispatch(unfollowShop(shop.id))
         // updates followed status in state
@@ -98,6 +97,7 @@ export default function ShopDetails () {
 
         {user && user.id === shop.ownerId ? (
         <button onClick={handleCreate} className='favorite-shop'>
+             <i className="fa-solid fa-screwdriver-wrench create-shop-icon"/>
         Create Product</button>
 
         ) : (

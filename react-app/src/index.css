@@ -4,3 +4,6 @@ body {
     font-family: 'Mulish', sans-serif;
     margin: 0px;
 }
+hr {
+    margin: min(3vmin, 1.7rem);
+}

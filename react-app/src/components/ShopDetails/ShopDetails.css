@@ -252,7 +252,21 @@ p.review-paragraph {
     font-size: min(2.5vmin, 1.7rem);
     align-items: center;
 }
-
+.favorite-shop {
+    border: solid .1rem grey;
+    transition: .2s ease-in-out;
+    cursor: pointer;
+    border-radius: 5rem;
+    padding: min(3vmin, .5rem) min(5vmin, 2rem);
+    font-size: min(2vmin, 1rem);
+}
+.favorite-shop:hover {
+    scale: 1.1;
+    box-shadow: 0rem 0rem 1rem grey;
+}
+.fa-screwdriver-wrench {
+    margin-right: min(2vmin, .5rem);
+}
 @media only screen and (max-width: 768px){
     .accolades-container {
         display: block;

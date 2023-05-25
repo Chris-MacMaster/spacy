@@ -84,6 +84,7 @@ body {
 .header-icons {
     font-size: 2.5vmin;
     color: #A0A7B2;
+    cursor: pointer;
 }
 /* marc */
 .telescope-search:hover{
@@ -191,7 +192,6 @@ div.navigation:hover {
 .profileburger:hover{
  cursor: pointer;
 }
-
 
 @media only screen and (max-width: 480px) {
     /* .header {
