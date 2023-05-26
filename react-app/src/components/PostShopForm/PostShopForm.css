@@ -48,10 +48,9 @@ textarea.create-shop-input-field {
     border-style: inset;
     border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
 }
-.create-shop-label {
-    font-size: 3vmin;
-    width: 20vmin;
-}
 .category-input {
     margin-top: 2vmin;
+}
+input#file-upload-button{
+    background-color: aqua;
 }
