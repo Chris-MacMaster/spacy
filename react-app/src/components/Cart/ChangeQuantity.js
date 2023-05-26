@@ -23,7 +23,7 @@ export default function ChangeQuantity({cartId, quantity, productId, available})
 
     if(!user){
         return <>
-        <select value={quantity} onChange={(e) => quantityChange(productId, e.target.value)}
+        <select value={quantity} onChange={(e) => quantityChange(productId, +e.target.value)}
         className="cart-select-quantity">
             {options.map(i => (
             <option value={i.value}>{i.value}</option>

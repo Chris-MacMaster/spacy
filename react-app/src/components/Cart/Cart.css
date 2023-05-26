@@ -123,6 +123,7 @@
 .remove-from-cart-button:hover, .remove-from-cart-button:focus {
     /* background-color: lightgrey; */
     cursor: pointer;
+    animation: loading .33s linear forwards;
 }
 
 
@@ -151,9 +152,7 @@
 
   @keyframes loading {
     0% {
-
-        /* background-position: center; */
-        /* background-size: 0; */
+      background-color: white;
     }
     100% {
       background-color: lightgrey;

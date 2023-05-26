@@ -60,11 +60,13 @@ const ProductDetail = () => {
 
     useEffect(() => {
         const loadShop = async () => {
+            if (!Object.values(product).length) return
             await dispatch(fetchOneShop(product.shopId))
             return setShopLoaded(true)
         }
         loadShop()
     },[product, dispatch])
+    console.log(product)
 
     const shop = useSelector(state => state.shops.singleShop)
     const shopsReviews = shopLoaded ? shop && shop.Products && shop.Products.length && shop.Products.map(ele => ele.Reviews).flat() : null
@@ -89,6 +91,10 @@ const ProductDetail = () => {
         dispatch(unfollowProductShop(product.id))
     }
 
+    const options = []
+    for (let i = 1; i <= product.available; i++){
+        options.push({value: i})
+    }
 
     return (
         <div className='product-deets'>
@@ -181,8 +187,17 @@ const ProductDetail = () => {
                         </div>
                     </div>
                     <div className='purchase-buttons'>
-                        <input className='cart-quantity' type='number' min={1} max={product.available} value={quantity} onChange={e => setQuantity(e.target.value)}></input>
-                        {product.available > 0 ? <AddToCart className='button add-cart-button' product={product} cart={cart} user={user}/>
+
+                        {/* {product.available > 0 &&
+                        <input className='cart-quantity' type='number' min={1} max={product.available} value={quantity} onChange={e => setQuantity(e.target.value)}></input>} */}
+
+                        {product.available > 0 && <select value={quantity} onChange={(e) => setQuantity(e.target.value)}
+                            className="cart-quantity">
+                            {options.map(i => (
+                            <option value={i.value}>{i.value}</option>
+                            ))}
+                        </select>}
+                        {product.available > 0 ? <AddToCart className='button add-cart-button' product={product} cart={cart} user={user} quantity={quantity}/>
                         :
                         <button className='button cant-add-cart-button'>Out of stock</button>
                         }

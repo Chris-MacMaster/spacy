@@ -19,19 +19,21 @@ export const CartProvider = ({ children }) => {
     localStorage.setItem('cart', JSON.stringify(cartItems));
   }, [cartItems]);
 
-  const addToCart = (item) => {
-
+  const addToCart = (item, quantity) => {
+    quantity = +quantity
     const newCart = {...cartItems}
     if (!newCart[item.id]){
-        item.quantity = 1
+        item.quantity = quantity
         item.shopName = item.Shop.name
         item.productImage = item.ProductImages[0].url
         item.productId = item.id
         newCart[item.id] = item
         setCartItems(newCart);
     } else {
-        newCart[item.id].quantity++
-        setCartItems(newCart)
+      newCart[item.id].quantity += quantity
+
+      if (newCart[item.id].available < newCart[item.id].quantity) newCart[item.id].quantity = newCart[item.id].available
+      setCartItems(newCart)
     }
   };
 

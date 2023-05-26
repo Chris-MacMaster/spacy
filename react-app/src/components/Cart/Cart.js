@@ -18,7 +18,7 @@ export default function TheCart({cart}){
 
     {Object.values(cart).length !== 0 ?
       <div className="shopping-bar">
-      <div className="cart-quantity">
+      <div className="items-in-cart">
         <h2 hidden={purchased}>{Object.values(cart).length} items in your cart</h2>
       </div>
       <div className="keep-shopping-div">

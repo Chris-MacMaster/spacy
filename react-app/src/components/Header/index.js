@@ -20,7 +20,9 @@ function Header({ isLoaded }) {
     const [ hasLoaded, setHasLoaded ] = useState(false)
 
     const { cartItems } = useContext(CartContext)
-    const itemsInCart = Object.values(cartItems).reduce((acc, el) => acc + (+el.quantity), 0)
+    const itemsInCart = Object.values(cartItems).reduce((acc, el) => {
+
+        return acc + (+el.quantity)}, 0)
     const handleSubmit = async (e) => {
         e.preventDefault()
         await dispatch(getSearchResults(parameters))

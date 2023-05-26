@@ -40,10 +40,12 @@ def return_cart():
         form['csrf_token'].data = request.cookies['csrf_token']
         if form.validate_on_submit():
             item_already_in_cart = Cart.query.filter((Cart.user_id == form.data["user_id"])\
-                                                  & (Cart.product_id == form.data["product_id"])).first()
-            print(item_already_in_cart)
+                                                  & (Cart.product_id == form.data["product_id"])).join(Product).first()
             if item_already_in_cart:
-                item_already_in_cart.quantity += 1
+                if item_already_in_cart.quantity + form.data['quantity'] > item_already_in_cart.product.available:
+                    item_already_in_cart.quantity = item_already_in_cart.product.available
+                else:
+                    item_already_in_cart.quantity += form.data['quantity']
                 db.session.commit()
                 return item_already_in_cart.to_dict(), 201
             else:
