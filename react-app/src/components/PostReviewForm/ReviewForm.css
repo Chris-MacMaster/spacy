@@ -33,26 +33,6 @@
 .rate > label:hover ~ input:checked ~ label {
     color: #c59b08;
 }
-
-/* everything besides stars below */
-/* h1 {
-    display: flex;
-    justify-content: center;
-} */
-/*
-h2 {
-    margin-top: 1em;
-} */
-
-/* p {
-    margin: 0.4em;
-} */
-
-/* textarea {
-    border-radius: 15px;
-    padding-bottom: 15em;
-} */
-
 .formParent {
     display: flex;
     justify-content: center;
@@ -85,15 +65,11 @@ h2 {
     object-fit: cover;
 }
 
-.reviewText {
+.review-text {
     height: 20vmin;
     width: min(70vmin, 25rem);
     margin: 3vmin;
     font-size: min(3vmin, 1.5rem);
-}
-.review-form-text,
-.edit-review-button {
-    font-size: min(3vmin, .8rem);
 }
 .submitButtonParent {
     display: flex;
@@ -102,8 +78,6 @@ h2 {
 .submitButton {
     background-color: black;
     color: white;
-    /* padding-left: 6.5em;
-    padding-right:6.5em; */
     padding-top: 3vmin;
     padding-bottom: 3vmin;
     margin-left: 0.1vmin;
@@ -132,4 +106,19 @@ h2 {
 }
 .review {
     color: darkgray;
+}
+#imageURL {
+    height: min(4vmin, 2rem);
+}
+#imageURL,
+.review-text {
+    font-size: min(1.7vmin, 11.7rem);
+    transition: .2s ease-in-out;
+    border-radius: min(2vmin, .5rem);
+    font-size: min(3vmin, 1.3rem);
+}
+#imageURL:focus-within,
+.review-text:focus-within {
+    outline: 2px aqua solid;
+    outline-offset: 2px;
 }
