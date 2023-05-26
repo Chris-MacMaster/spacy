@@ -80,7 +80,10 @@
     display: flex;
 }
 
-.unfollow-shop-modal {
+.unfollow-shop-modal > button {
     font-family: 'Mulish', sans-serif;
     cursor: pointer;
+    padding: 0;
+    color: red;
+    font-size: min(2vmin, 1rem);
 }
