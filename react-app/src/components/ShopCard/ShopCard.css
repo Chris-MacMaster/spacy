@@ -76,4 +76,11 @@
     border: solid .1rem  darkgray;
     color: red;
     cursor: pointer;
+
+    display: flex;
+}
+
+.unfollow-shop-modal {
+    font-family: 'Mulish', sans-serif;
+    cursor: pointer;
 }
