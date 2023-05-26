@@ -25,6 +25,10 @@
     justify-content: center;
     align-items: center;
 }
+.create-product label {
+    font-size: min(2vmin, 1.7rem);
+    font-weight: bold;
+}
 .create-product input[type="text" i],
 .create-product input[type="checkbox" i],
 .create-product textarea,
