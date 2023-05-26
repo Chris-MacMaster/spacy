@@ -1,115 +1,58 @@
-.cp-container {
+.create-product-page {
     display: flex;
     flex-direction: column;
-    align-items: center;
-}
-
-.sp-form {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    width: min(80vw, 50rem);
-}
-
-.q-text {
-    font-weight: 700;
-}
-
-.sub-q-text {
-    font-size: 14px;
-}
-
-.product-description-div,
-.product-name-div,
-.product-available-div,
-.product-price-div,
-.product-img1-div {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin-bottom: 5px;
-}
-.product-category-div,
-.product-shipping-div {
-    width: 50%;
-}
-.error {
-    font-size: 14px;
-    color: red;
-}
-.product-name-div,
-.product-available-div,
-.product-price-div,
-.product-img1-div {
-    align-items: center;
-    flex-direction: row;
-}
-.form-title {
-    font-family: 'Libre Baskerville', serif;
-    margin-top: 5rem;
     justify-content: center;
-}
-
-.form-sub {
-    font-family: 'Libre Baskerville', serif;
-    justify-content: center;
-}
-.product-description-div {
-    flex-direction: row;
-}
-.input-field {
-    height: min(3vmin, 1.5rem);
-    border-radius: 0.3rem;
-}
-.product-name-div, .product-description-div {
     align-items: center;
 }
-.description-text {
+.create-product-title {
+    font-size: min(5vmin, 2rem);
+}
+.form-description {
+    font-size: min(2vmin, 1.8rem);
+}
+.create-product {
+    display: grid;
+    grid-template-columns: auto auto;
+    margin-top: 5vmin;
+    width: 80vmin;
+    max-width: 40rem;
+    box-shadow: 0rem 0rem 1vmin grey;
+    padding: 5vmin;
+    border-radius: 1vmin;
+}
+.create-product-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.create-product input[type="text" i],
+.create-product input[type="checkbox" i],
+.create-product textarea,
+.create-product select,
+.create-product input[type="number" i] {
+    height: min(3vmin, 1.7rem);
     width: 100%;
+    font-size: min(3vmin, 1.5rem);
+    padding: 1vmin;
 }
-.description-input {
-    height: 100px;
-    min-height: min-content;
-    padding-bottom: 30px;
-    border-width: 2px;
-    border-style: inset;
-    border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
-}
-
-.description-title-sub-text {
-    position: relative;
-    bottom: 9px;
+.create-product select {
+    height: min(4vmin, 1.7rem);
+    width: 100%;
+    font-size: min(3vmin, 1.5rem);
+    padding: 0;
 }
 
-.product-category-div {
-    margin-bottom: 10px;
-}
-.create-product-button {
-    margin-left: 16px;
+.create-product textarea {
+    height: min(15vmin, 8rem);
 }
 
-textarea, option, select {
-    font-family: 'Mulish', sans-serif;
+.create-product input,
+.create-product textarea {
+    border-radius: min(2vmin, .5rem);
+    transition: .2s ease-in-out;
 }
-
-.category-shipping-div {
-    display: flex;
-    flex-direction: row;
-}
-
-.check-box-text {
-    max-width: fit-content;
-    white-space: wrap;
-        /* prevent the text from wrapping */
-}
-
-.check-box {
-    width: 30px;
-    height: 30px;
-    display: flex;
-    justify-content: center;
-}
-#file-upload-button {
-    background-color: white;
-    font-size: min(3vmin, 1rem);
+.create-product input:focus-within:not(input[type="checkbox" i]),
+.create-product textarea:focus-within {
+    outline: 2px aqua solid;
+    outline-offset: 2px;
 }
