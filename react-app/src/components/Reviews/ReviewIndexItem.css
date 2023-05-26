@@ -1,5 +1,4 @@
 .review-card-div {
-    margin-top: 2vmin;
     padding: 3vmin;
 }
 
@@ -8,7 +7,7 @@
     font-size: 2vmin;
 }
 .rev-stars {
-    margin-bottom: 2vmin;
+    margin-bottom: .5vmin;
     font-size: min(1.5vmin, .9rem);
 }
 #detail-review-icon {
@@ -68,4 +67,7 @@
 .review-index-stars {
     font-size: 2vmin;
     margin: 0rem .1rem;
+}
+.review-hr {
+    margin: 0rem 4vmin;
 }
