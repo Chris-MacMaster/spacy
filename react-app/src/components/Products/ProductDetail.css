@@ -41,7 +41,7 @@
 .prod-price {
     font-weight: bold;
     font-size: min(3vmin, 2rem);
-    margin-bottom: min(3vmin, 2rem);
+    margin-bottom: min(2vmin, 1.5rem);
 }
 .prod-search {
     font-size: 3vmin;
