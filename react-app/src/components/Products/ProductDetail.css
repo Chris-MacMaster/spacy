@@ -24,6 +24,7 @@
 }
 
 .chosen-image {
+    transition: .2s ease-in-out;
     outline: solid black min(.5vmin, .2rem);
     outline-offset: min(.2vmin, .1rem);
 }
@@ -112,6 +113,7 @@
     box-shadow: 0rem 0rem min(1.5vmin, .5rem) grey;
     border: none;
     margin: .2rem 0rem min(3vmin, 1.5rem) 0rem ;
+    transition: .2s ease-in-out;
 }
 .cart-quantity:focus-within {
     outline: solid royalblue;
