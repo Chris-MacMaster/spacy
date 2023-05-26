@@ -7,30 +7,23 @@
     margin-top: 2vmin;
     font-size: 2vmin;
 }
-
-.detail-icon {
-    display: inline-block;
-    position: static;
-}
 .rev-stars {
     margin-bottom: 2vmin;
 }
 #detail-review-icon {
+    display: inline-block;
     position: static;
-    width: 8vmin;
-    max-width: 5rem;
-    height: 8vmin;
-    max-height: 5rem;
-    margin-right: 1vmin;
+    width: 5vmin;
+    max-width: 3rem;
+    height: 5vmin;
+    max-height: 3rem;
+    margin: 0rem min(2vmin, 1rem);
 }
-
-.author-names {
-    display: flex;
+.rev-col-a {
+    width: min(60vmin, 50rem);
 }
-
 .author-subdiv-names, .review-created {
     position: relative;
-    top: 7px;
 }
 
 .author-subdiv-names {
@@ -59,18 +52,19 @@
 .edit-review-button:hover {
     box-shadow: 0rem 0rem .5rem black;
 }
-.rev-col-a {
-    margin:2vmin;
-    font-size: 2vmin;
+.rev-review {
+    font-size: min(2vmin, 1rem);
+    line-height: min(4vmin, 2rem);
 }
 .review-num-title {
-    font-size: 4vmin;
+    font-size: 3vmin;
     margin-top: 4vmin;
     margin-bottom: 4vmin;
 }
 .gold-star.review-index-stars {
-    color: goldenrod;
+    color: black;
 }
 .review-index-stars {
     font-size: 2vmin;
+    margin: 0rem .1rem;
 }

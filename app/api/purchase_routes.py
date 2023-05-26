@@ -49,6 +49,9 @@ def userless_purchase():
         purchases_dict = request.get_json()
         purchases_list = purchases_dict.values()
         for purchase in purchases_list:
+            product = Product.query.get(purchase['productId'])
+            product.available = product.available - int(purchase['quantity'])
+            db.session.add(product)
             db.session.add(Purchase(
                quantity=purchase['quantity'],
                product_id=purchase['productId'],

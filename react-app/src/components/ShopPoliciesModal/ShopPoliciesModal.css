@@ -42,7 +42,7 @@
 }
 .shop-pol-modal > button,
 .shop-pol-modal {
-    width: 20vmin;
+    width: min(20vw, 27rem);
     height: 4vmin;
     border-radius: 5rem;
     font-size: 1.5vmin;
@@ -57,6 +57,7 @@
 }
 .shop-pol-modal {
     box-shadow: none;
+    width: 100%;
 }
 .shop-pol-modal,
 .shop-pol-modal > button:active {

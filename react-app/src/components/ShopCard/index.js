@@ -3,6 +3,7 @@ import './ShopCard.css'
 import { useEffect } from 'react'
 import { fetchProducts } from '../../store/product'
 import { fetchProductReviews } from '../../store/review'
+import { NavLink } from 'react-router-dom'
 
 export default function ShopCard({ shop }) {
     const dispatch = useDispatch()
@@ -21,19 +22,18 @@ export default function ShopCard({ shop }) {
             <div className='shop-image-grid'>
                 {filteredProducts ?
                 filteredProducts.map((p,i)=> (
-                    <img className='shop-image-grid-image'
-                    src={`${p.ProductImages[0].url}}`}
-                    key={`im${i}`}
-                    alt='shopcardimg'></img>
+                    <NavLink to={`/products/${p.id}`} >
+                        <img className='shop-image-grid-image' src={`${p.ProductImages[1].url}}`} key={`im${i}`}alt='shopcardimg'></img>
+                    </NavLink>
 
                 )).slice(0,4) : null}
 
             </div>
             <div className='landing-shops-business-card'>
+            <NavLink to={`/shops/${shop.id}`} style={{ textDecoration: "none", display: "flex"}}>
             <img className='shop-card-logo'
             src={`${shop.ShopImage.url}`}
             alt='shop-card-logo-alt'></img>
-
             <div className='shop-card-text'>
             <span className='shop-card-shop-name'>{shop.name}</span>
             <div className='shop-card-stars'>{Array(5).fill(1).map((s,i)=> (
@@ -44,7 +44,13 @@ export default function ShopCard({ shop }) {
                 )
                 ))} {filteredProducts.length} items</div>
             </div>
-            <div className='shop-card-heart'><i className="fa-regular fa-heart landing-shop-heart"></i></div>
+
+            </NavLink>
+
+            <div className='shop-card-heart'>
+                <i className="fa-solid fa-heart landing-shop-heart"></i>
+
+            </div>
             </div>
         </div>
     )

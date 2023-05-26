@@ -20,7 +20,7 @@ export default function RemoveItemButton({cartId, productId}){
     }
 
     return (
-        <button onClick={removeItem} className="remove-from-cart-button">
+        <button onClick={removeItem} className="remove-from-cart-button loading-bar">
             Remove
         </button>
     )

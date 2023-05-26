@@ -171,9 +171,8 @@ h3.shops-youll-love-title {
 }
 .popular-gifts-mapped {
     display: grid;
-    /* grid-template-columns: auto auto auto auto; */
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    /* grid-template-rows: auto; */
+    grid-template-columns: auto auto auto auto;
+    grid-template-rows: auto;
     grid-gap: 2vmin;
 }
 .what-is-etzy > h1 {
@@ -246,20 +245,9 @@ h3.shops-youll-love-title {
 
     }
 }
-@media only screen and (max-width: 768px){
-    .shops-youll-love {
-        display: grid;
-        grid-template-columns: auto auto;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 2vmin;
-        margin-top: 15vmin;
-        margin-bottom: 15vmin;
-    }
-}
+
 @media only screen and (max-width: 480px){
     .column-container {
         display: block;
-
     }
 }

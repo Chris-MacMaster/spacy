@@ -23,6 +23,7 @@ def get_all_shops():
             image = ShopImage.query.filter(ShopImage.shop_id == id).first()
             if image:
                 return image.to_dict()
+
         for shop in shopcopy:
             shopimage = get_shop_images(shopcopy[shop]['id'])
             if shopimage:
@@ -47,7 +48,7 @@ def get_all_shops():
             img_url = None
             if 'url' in upload:
                 img_url = upload['url']
-            
+
             new_shop = Shop(
                 name = form.data['name'],
                 owner_id = current_user.get_id(),
@@ -90,12 +91,12 @@ def delete_one_shop(shop_id):
         elif shop.owner_id != current_user.id:
             return {"errors": "Only owner may delete their own shop"}
     elif current_user.is_authenticated and request.method == 'PUT':
-        
+
         shop = Shop.query.get(shop_id)
         # shop_image = ShopImage.query.filter(ShopImage.shop_id == shop_id).first()
         # db.session.delete(shop_image)
         form = CreateShopForm()
-        
+
         form['csrf_token'].data = request.cookies['csrf_token']
         if form.validate_on_submit():
 
@@ -155,29 +156,29 @@ def get_shop_by_id(shop_id):
             images = ProductImage.query.filter(ProductImage.product_id == id).all()
             return [image.to_dict() for image in images]
         def get_reviews(id):
-            reviews= ProductReview.query.filter(ProductReview.product_id == id).all()
+            reviews = ProductReview.query.filter(ProductReview.product_id == id).all()
             return [r.to_dict() for r in reviews]
         def review_image(review_id):
             review_image = ReviewImage.query.filter(ReviewImage.review_id==review_id).first()
             return review_image.to_dict() if review_image else None
-        
+
         def check_followed():
-            user = User.query.join(user_shops).filter(user_shops.c.shop_id == shop_id, user_shops.c.user_id == current_user.id).first()
-            if user == None:
-                return {"Status" : "Not Followed"}
-            return {"Status" : "Followed"}
-        
-        def get_followers():
-            # shops = Shop.query.join(user_shops).filter(user_shops.c.user_id == current_user.id).all()
-            users = User.query.join(user_shops).filter(user_shops.c.shop_id == shop_id).all()
-            if users == None:
-                return 
-                # return {"None": "No followers for shop"}
-            else:
-                users_copy = copy.deepcopy(users)
-                payload = {user.id: user.to_dict() for user in users_copy}
-                return payload
-        
+            if current_user.is_authenticated:
+                user = User.query.join(user_shops).filter(user_shops.c.shop_id == shop_id, user_shops.c.user_id == current_user.id).first()
+                if not user:
+                    return {"Status" : "Not Followed"}
+                return {"Status" : "Followed"}
+            return {"Status" : "User Not Signed In"}
+
+        # Out Of Scope
+        # def get_followers():
+        #     users = User.query.join(user_shops).filter(user_shops.c.shop_id == shop_id).all()
+        #     if users == None:
+        #         return
+        #     else:
+        #         users_copy = copy.deepcopy(users)
+        #         payload = {user.id: user.to_dict() for user in users_copy}
+        #         return payload
 
         products = shop_products(shopcopy['id'])
         for product in products:
@@ -190,7 +191,7 @@ def get_shop_by_id(shop_id):
         shopcopy['Products'] = products
         shopcopy['Owner'] = get_owner(shopcopy['ownerId'])
         shopcopy['Followed'] = check_followed()
-        shopcopy['Followers'] = get_followers()
+        # shopcopy['Followers'] = get_followers()
         return shopcopy, 200
     else:
         return {"errors": "Shop by that id does not exist"}, 404
@@ -230,7 +231,7 @@ def get_user_followed_shops():
             payload = {shop.id: shop.to_dict() for shop in shops_copy}
 
             return payload, 200
-        
+
 @shop_routes.route('/current-followed/check/<int:shop_id>/', methods=['GET', 'POST'])
 @login_required
 def check_shop_followed(shop_id):
@@ -239,7 +240,7 @@ def check_shop_followed(shop_id):
         shop = user_shops.query.get(shop_id)
         if shop == None:
             return {'status': 'shop NOT followed'}
-        else: 
+        else:
             return {'status': 'shop followed'}
 
 @shop_routes.route('/current-followed/follow/<int:shop_id>/', methods=['GET', 'POST'])

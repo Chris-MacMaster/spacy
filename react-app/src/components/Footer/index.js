@@ -25,6 +25,7 @@ export default function Footer() {
         ]]
     return (
         <div className='footer-container'>
+            <hr></hr>
             <h3 className='footer-title'>About the creators of Spacey</h3>
             <div className='about-creators'>
 

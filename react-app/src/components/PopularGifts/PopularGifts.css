@@ -5,6 +5,9 @@
     border-radius: min(2vmin, .5rem);
     object-fit: cover;
 }
+.popular-product-card {
+    margin-bottom: min(3vmin, 1rem);
+}
 .popular-product-name,
 .popular-star-seller,
 .popular-result-price {
@@ -13,7 +16,7 @@
 .popular-result-price {
     font-size: min(2.3vmin, 1rem);
     font-weight: bolder;
-
+    color: black;
 }
 .popular-product-name {
     color: rgb(117, 117, 117);

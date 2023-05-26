@@ -55,7 +55,7 @@ export default function FollowShopBusinessCard({ shop }) {
                         <i className="fa-solid fa-trash-can" />Follow
                     </button> */}
                     <button onClick={handleUnfollow} className='user-manage-button user-manage-create'>
-                        <i className="fa-solid fa-screwdriver-wrench create-product-icon"></i>
+                        <i className="fas fa-regular fa-heart unfollow-heart "></i>
                         Unfollow</button>
                 </div>
             </div>
