@@ -173,7 +173,10 @@ const ProductDetail = () => {
                     <i className="fa-solid fa-star product-deets-blank product-deets-stars" key={i}></i>
                 )
                 ))}
-                        </div>
+
+                
+                    </div>
+                        {user && user.id !== product?.Shop?.ownerId && 
                         <div className='follow-unfollow-shop-div'>
                             {product.Shop && product.Shop.Followed && product.Shop.Followed.Status && product.Shop.Followed.Status === "Not Followed" &&
                                 <div className='follow-shop' onClick={handleFollow}>
@@ -185,7 +188,10 @@ const ProductDetail = () => {
                                     <i className="fas fa-regular fa-heart shop-heart-filled"></i>Unfollow </div>
                             }
                         </div>
+                        }
                     </div>
+
+                    
                     <div className='purchase-buttons'>
                         <span className='quantity'>Quantity</span>
                         {/* <input className='cart-quantity' type='number' min={1} max={product.available} value={quantity} onChange={e => setQuantity(e.target.value)}></input>
@@ -226,6 +232,8 @@ const ProductDetail = () => {
                             onItemClick={closeMenu}
                             modalComponent={<ShopPoliciesModal shop={product.Shop}/>} />
                         </div>
+
+
                     </div>
                 </div>
 
