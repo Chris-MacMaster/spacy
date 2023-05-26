@@ -10,7 +10,7 @@ export default function AddToCart({cart, product, user, quantity}){
 
     const { addToCart, cartItems } = useContext(CartContext)
 
-    const productCart = (arrOfCarts) => arrOfCarts.filter(currentCart => currentCart.productId === product.id)
+    const productCart = (arrOfCarts) => arrOfCarts.filter(currentCart => currentCart?.productId === product.id)
     console.log(cartItems)
     const cartItem = Object.values(cartItems).filter(item => item.productId === product.id)[0]
     const addItem = async (e) => {
@@ -29,8 +29,6 @@ export default function AddToCart({cart, product, user, quantity}){
         setBtnEndabled(false)
     }
 
-
-
     console.log(productCart(Object.values(cart.products))[0])
     console.log(cartItem)
     return (
@@ -39,11 +37,11 @@ export default function AddToCart({cart, product, user, quantity}){
         <button onClick={addItem} className='add-to-cart-button' disabled={btnEnabled}>
             Add to cart
         </button>
-        <div className="in-your-cart">
+        {/* <div className="in-your-cart">
             {user ? (Object.values(cart.products).length ? `${productCart(Object.values(cart.products))[0]?.quantity} currently in cart` : <></>)
             :
             cartItem ? `${product.quantity} currently in cart` : <></>}
-        </div>
+        </div> */}
         </div>
     )
 }
