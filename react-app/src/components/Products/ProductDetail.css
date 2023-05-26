@@ -43,8 +43,10 @@
     margin-bottom: 2vh;
 }
 .prod-search {
-    font-size: 2vmin;
-    margin-bottom: 2vmin;
+    font-size: 3vmin;
+    margin-bottom: 1vmin;
+    font-family: 'Thasadith', sans-serif;
+    font-weight: bold;
 }
 .store-sales {
     font-size: 1.5vmin;
@@ -60,11 +62,12 @@
 
 .name-follows {
     display: flex;
+    font-size: min(1.7vmin, .9rem);
 }
 
 .add-to-cart-button {
     border-radius: 24px;
-    background-color: black;
+    background-color: rgb(37, 37, 37);
     color: white;
     font-weight: bolder;
     font-size: 2vmin;
@@ -94,6 +97,39 @@
     margin-bottom: 4vmin;
     font-size: 1.7vmin;
 }
+.product-deets-stars {
+    margin: 0 .1rem;
+    font-size: 1.5vmin;
+}
+.product-deets-blank {
+    color: grey;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 .prod-description-text,
@@ -119,7 +155,8 @@
     display: flex;
 }
 .gold-star-product-deets {
-    color: goldenrod;
+    color: black;
+    margin: 0rem .2rem;
     font-size: 3vmin;
 }
 .blank-star-product-deets {

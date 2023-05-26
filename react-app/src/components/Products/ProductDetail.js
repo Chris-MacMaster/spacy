@@ -13,7 +13,7 @@ import OpenModalButton from '../OpenModalButton';
 import ShopPoliciesModal from '../ShopPoliciesModal';
 import LoadingIcon from '../LoadingIcon';
 import ProductImageSlider from './ProductImageSlider';
-import { followShop, unfollowShop } from '../../store/shops';
+import { fetchOneShop, followShop, unfollowShop } from '../../store/shops';
 
 const ProductDetail = () => {
     const dispatch = useDispatch()
@@ -23,6 +23,7 @@ const ProductDetail = () => {
     const ulRef = useRef(); //for modal
     const { productId } = useParams()
     const [ hasLoaded, setHasLoaded ] = useState(false)
+    const [ shopLoaded, setShopLoaded ] = useState(false)
     const [ chosenImage, setChosenImage ] = useState(0)
     //modal components
     const openMenu = () => {
@@ -55,8 +56,20 @@ const ProductDetail = () => {
     const reviewState = useSelector(state => state.reviews.productReviews)
     const shopFollow = useSelector(state => state.products?.singleProduct.Shop)
     const productReviews = Object.values(reviewState).sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt))
-    if (!hasLoaded) return <LoadingIcon />
 
+    useEffect(() => {
+        const loadShop = async () => {
+            await dispatch(fetchOneShop(product.shopId))
+            return setShopLoaded(true)
+        }
+        loadShop()
+    },[product, dispatch])
+
+    const shop = useSelector(state => state.shops.singleShop)
+    const shopsReviews = shopLoaded ? shop && shop.Products && shop.Products.length && shop.Products.map(ele => ele.Reviews).flat() : null
+    const avgRating = shopsReviews ? shopsReviews.reduce((acc, ele) => ele?.stars + acc, 0) / shopsReviews.length : null
+    console.log('SHOP', avgRating)
+    if (!hasLoaded || !shopLoaded) return <LoadingIcon />
     const handleClick = () => history.push(`/product-reviews/${productId}/new`)
 
     const handleFollow = async (e) => {
@@ -139,15 +152,20 @@ const ProductDetail = () => {
                     <div className='prod-search'>{product.name}</div>
 
                     <div className='store-info'>
-                        <div className='name-follows'>
-                        <NavLink to={`/shops/${product.Shop.id}`}>
-                                {product.Shop.name}
-                        </NavLink>
-                        <i className="fa-solid fa-certificate starseller product-deets-badge"></i>
+                    <div className='name-follows'>
+                    <NavLink to={`/shops/${product.Shop.id}`}>{product.Shop.name}</NavLink>
+                    <i className="fa-solid fa-certificate starseller product-deets-badge"></i>
                         </div>
 
                         <div className='store-sales'>
                             {product && product.Shop && product.Shop.sales} sales
+                {Array(5).fill(1).map((s,i)=> (
+                s <= avgRating ? (
+                    <i className="fa-solid fa-star product-deets-gold product-deets-stars" key={i}></i>
+                ) : (
+                    <i className="fa-solid fa-star product-deets-blank product-deets-stars" key={i}></i>
+                )
+                ))}
                         </div>
                         <div className='follow-unfollow-shop-div'>
                             {product.Shop && product.Shop.Followed && product.Shop.Followed.Status && product.Shop.Followed.Status === "Not Followed" &&

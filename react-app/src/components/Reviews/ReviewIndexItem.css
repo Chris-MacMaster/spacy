@@ -62,8 +62,9 @@
     margin-bottom: 4vmin;
 }
 .gold-star.review-index-stars {
-    color: goldenrod;
+    color: black;
 }
 .review-index-stars {
     font-size: 2vmin;
+    margin: 0rem .1rem;
 }
