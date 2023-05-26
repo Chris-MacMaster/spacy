@@ -1,7 +1,7 @@
 .product-detail-div {
     margin-top: 5vh;
     display: grid;
-    grid-template-columns: 3fr 1fr;
+    grid-template-columns: 3fr 2fr;
     width: min(80vw, 70rem);
     justify-content: center;
 }
@@ -111,16 +111,15 @@
     border-radius: .5rem;
     box-shadow: 0rem 0rem min(1.5vmin, .5rem) grey;
     border: none;
-    margin: min(3vmin, 1.5rem) 0rem;
+    margin: .2rem 0rem min(3vmin, 1.5rem) 0rem ;
 }
 .cart-quantity:focus-within {
     outline: solid royalblue;
     outline-offset: 3px;
 }
-
-
-
-
+.quantity  {
+    font-size: min(1.5vmin, .8rem);
+}
 
 
 
