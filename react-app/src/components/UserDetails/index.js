@@ -3,10 +3,11 @@ import './UserDetails.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { authenticate } from '../../store/session'
-import { fetchShops, fetchFollowedShops, deleteAShop } from '../../store/shops'
+import { fetchShops, fetchFollowedShops } from '../../store/shops'
 import { fetchProducts } from '../../store/product'
 import LoadingIcon from '../LoadingIcon'
 import ShopCard from '../ShopCard'
+import { deleteShopRequest } from '../../store/shops'
 export default function UserDetails() {
     const {userId} = useParams()
     const dispatch = useDispatch()
@@ -39,7 +40,8 @@ export default function UserDetails() {
     const followedShops = Object.values(followedShopState)
     const onClickCreateShop = () => history.push('/shops/new')
     const deleteShop = async (shopId) => {
-        await dispatch(deleteAShop(shopId))
+        console.log('DELETE FUNCTION')
+        await dispatch(deleteShopRequest(shopId))
         await dispatch(fetchShops())
     }
     return (
@@ -50,7 +52,7 @@ export default function UserDetails() {
             <div className='user-deets-text'>
             <div className='user-name'>{user.firstName} {user.lastName}</div>
             <div className='user-deets-user-shops'>
-            {userShops && userShops.length && userShops.map((s,i) => (
+            {userShops && userShops.map((s,i) => (
                 <div className='user-deets-bullet'>
                 <img src='https://i.imgur.com/bdSjZyV.png' alt='' className='shop-icon'/>
                 <NavLink to={`/shops/${s.id}`} style={{ textDecoration: "none"}}>
@@ -82,7 +84,7 @@ export default function UserDetails() {
             <div className='user-deets-title'>Favorite shops</div>
             <div className='user-deets-grid'>
             <div className='user-deets-followed-shops'>
-            {followedShops && followedShops.length && followedShops.map((s, i) => ( <ShopCard shop={shops[s.id]} />))}
+            {followedShops && followedShops.length ? followedShops.map((s, i) => ( <ShopCard shop={shops[s.id]} />)) : <div>Go follow some shops! </div>}
             </div>
 
             </div>
