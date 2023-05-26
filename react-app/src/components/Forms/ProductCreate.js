@@ -10,15 +10,9 @@ import './ProductCreate.css'
 export default function ProductCreateForm() {
     const history = useHistory();
     const dispatch = useDispatch()
-
     const {shopId} = useParams()
-
-
     // const { closeModal } = useModal()
-
     const formData = new FormData();
-
-
     const [name, setName] = useState("")
     const [available, setAvailable] = useState(0)
     const [category, setCategory] = useState("")
@@ -79,7 +73,7 @@ export default function ProductCreateForm() {
     return (
         <div className='cp-container'>
             <h1 className='cp-title form-title'>Listing details</h1>
-            <p className='cp-grey-text sub-q-text form-sub'>Tell the world all about your item and why they'll love it</p>
+            <span className='cp-grey-text sub-q-text form-sub'>Tell the world all about your item and why they'll love it</span>
             <form className='sp-form' onSubmit={handleSubmit} >
 
                 <div className='product-name-div'>
@@ -91,6 +85,7 @@ export default function ProductCreateForm() {
                             Choose a name for your product. Incldue keywords that a buyer would use to search for your item.
                         </div>
                     </div>
+
                     <div className='input-div'>
                         <div className='cp-field-div'>
                             <input className='product-input input-field' type="text"
@@ -106,6 +101,8 @@ export default function ProductCreateForm() {
                     </div>
 
                 </div>
+
+
 
                 <div className='product-description-div'>
                     <div className='description-title-sub-text'>

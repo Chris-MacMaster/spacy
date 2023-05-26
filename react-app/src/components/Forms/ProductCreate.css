@@ -8,7 +8,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    max-width: 600px;
+    width: min(80vw, 50rem);
 }
 
 .q-text {
@@ -41,7 +41,6 @@
 .product-available-div,
 .product-price-div,
 .product-img1-div {
-    /* justify-content: flex-start; */
     align-items: center;
     flex-direction: row;
 }
@@ -59,7 +58,7 @@
     flex-direction: row;
 }
 .input-field {
-    /* height: min(3vmin, 1.5rem); */
+    height: min(3vmin, 1.5rem);
     border-radius: 0.3rem;
 }
 .product-name-div, .product-description-div {
