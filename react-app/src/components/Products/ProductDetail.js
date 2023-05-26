@@ -25,6 +25,7 @@ const ProductDetail = () => {
     const [ hasLoaded, setHasLoaded ] = useState(false)
     const [ shopLoaded, setShopLoaded ] = useState(false)
     const [ chosenImage, setChosenImage ] = useState(0)
+    const [ quantity, setQuantity ] = useState(1)
     //modal components
     const openMenu = () => {
         if (showMenu) return
@@ -180,6 +181,7 @@ const ProductDetail = () => {
                         </div>
                     </div>
                     <div className='purchase-buttons'>
+                        <input className='cart-quantity' type='number' min={1} max={product.available} value={quantity} onChange={e => setQuantity(e.target.value)}></input>
                         {product.available > 0 ? <AddToCart className='button add-cart-button' product={product} cart={cart} user={user}/>
                         :
                         <button className='button cant-add-cart-button'>Out of stock</button>

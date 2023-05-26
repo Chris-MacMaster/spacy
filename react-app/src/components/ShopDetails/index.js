@@ -201,17 +201,13 @@ export default function ShopDetails () {
                             </div>
                         </NavLink>
                        </div>
-                       <div className='feedback'
-                       key={`feedback${i}`}>
-                        <p className='helpful'
-                        key={`helpful${i}`}>
+                       <div className='feedback' key={`feedback${i}`}>
+                        <p className='helpful' key={`helpful${i}`}>
                             <i className="fa-solid fa-thumbs-up"
                             key={`thumb${i}`}></i>
                         Is this review helpful?</p>
-                        <p className='report'
-                        key={`report${i}`}>
-                            <i className="fa-solid fa-flag"
-                            key={`flag${i}`}></i>
+                        <p className='report' key={`report${i}`}>
+                            <i className="fa-solid fa-flag" key={`flag${i}`}></i>
                         Report this review</p></div>
                         <hr key={`hr${i}`}></hr>
                         </>
