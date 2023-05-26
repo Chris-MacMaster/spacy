@@ -187,6 +187,9 @@ const ProductDetail = () => {
                         </div>
                     </div>
                     <div className='purchase-buttons'>
+                        <span className='quantity'>Quantity</span>
+                        <input className='cart-quantity' type='number' min={1} max={product.available} value={quantity} onChange={e => setQuantity(e.target.value)}></input>
+                        {product.available > 0 ? <AddToCart className='button add-cart-button' product={product} cart={cart} user={user}/>
 
                         {/* {product.available > 0 &&
                         <input className='cart-quantity' type='number' min={1} max={product.available} value={quantity} onChange={e => setQuantity(e.target.value)}></input>} */}
