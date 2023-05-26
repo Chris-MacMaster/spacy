@@ -1,14 +1,15 @@
 .review-card-div {
     margin-top: 2vmin;
+    padding: 3vmin;
 }
 
 .rev-author-info {
     display: flex;
-    margin-top: 2vmin;
     font-size: 2vmin;
 }
 .rev-stars {
     margin-bottom: 2vmin;
+    font-size: min(1.5vmin, .9rem);
 }
 #detail-review-icon {
     display: inline-block;
@@ -17,13 +18,13 @@
     max-width: 3rem;
     height: 5vmin;
     max-height: 3rem;
-    margin: 0rem min(2vmin, 1rem);
+    margin: 0rem min(2vmin, 1rem) 0rem 0rem;
 }
-.rev-col-a {
-    width: min(60vmin, 50rem);
-}
+
 .author-subdiv-names, .review-created {
     position: relative;
+    color: rgb(69, 69, 69);
+    font-size: min(1.7vmin, .9rem);
 }
 
 .author-subdiv-names {
@@ -35,7 +36,7 @@
     width: 20vmin;
     object-fit: cover;
     border-radius: .25rem;
-    margin-top: 5vmin;
+    margin-left: 2vmin;
 }
 .delete-review-button,
 .edit-review-button {

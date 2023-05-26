@@ -142,6 +142,7 @@ h3.shop-our-title {
     align-content: center;
     font-size: 2vmin;
     margin-top: .5vmin;
+    color: black;
 }
 .shops-youll-love {
     display: grid;
