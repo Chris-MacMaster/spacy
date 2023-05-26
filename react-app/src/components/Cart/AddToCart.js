@@ -31,7 +31,7 @@ export default function AddToCart({cart, product, user, quantity}){
 
 
 
-    console.log(productCart)
+    console.log(productCart(Object.values(cart.products))[0])
     console.log(cartItem)
     return (
         <div className="add-to-cart-div">
@@ -40,7 +40,7 @@ export default function AddToCart({cart, product, user, quantity}){
             Add to cart
         </button>
         <div className="in-your-cart">
-            {user ? (Object.values(cart.products).length ? `${product.quantity} currently in cart` : <></>)
+            {user ? (Object.values(cart.products).length ? `${productCart(Object.values(cart.products))[0]?.quantity} currently in cart` : <></>)
             :
             cartItem ? `${product.quantity} currently in cart` : <></>}
         </div>
