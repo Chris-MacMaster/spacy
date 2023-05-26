@@ -160,11 +160,13 @@ const ProductDetail = () => {
 
                     <div className='store-info'>
                     <div className='name-follows'>
-                    <NavLink to={`/shops/${product.Shop.id}`}>{product.Shop.name}</NavLink>
+                    <NavLink to={`/shops/${product.Shop.id}`} style={{textDecoration: "none"}}>
+                    <div className='product-deets-shop'>{product.Shop.name}</div>
+                    </NavLink>
                     <i className="fa-solid fa-certificate starseller product-deets-badge"></i>
-                        </div>
+                    </div>
 
-                        <div className='store-sales'>
+                    <div className='store-sales'>
                             {product && product.Shop && product.Shop.sales} sales
                 {Array(5).fill(1).map((s,i)=> (
                 s <= avgRating ? (

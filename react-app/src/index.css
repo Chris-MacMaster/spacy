@@ -7,3 +7,7 @@ body {
 hr {
     margin: min(3vmin, 1.7rem);
 }
+input[type="file" ] {
+    padding: min(2vmin, 1rem);
+    font-size: min(2vmin, 1rem);
+}

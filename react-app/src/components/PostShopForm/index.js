@@ -166,7 +166,7 @@ export default function PostShopForm() {
         </div>
 
         <div className='create-shop-input'>
-                        <textarea className='create-shop-input-field policies-inpu shop-create-description' type='text' value={policies} onChange={e => setPolicies(e.target.value)}></textarea>
+                        <textarea className='create-shop-input-field policies-input shop-create-description' type='text' value={policies} onChange={e => setPolicies(e.target.value)}></textarea>
         {hasSubmitted && errors.policies && (
             <div className='error'>
                 * {errors.policies}
@@ -180,8 +180,8 @@ export default function PostShopForm() {
         </div>
 
         <div className='create-shop-input'>
-                        <input className='create-shop-input-field category-input' type='file' 
-                        // value={url} 
+                        <input className='create-shop-input-field category-input aws-upload' type='file'
+                        // value={url}
                         onChange={e => setUrl(e.target.files[0])} ></input>
         {hasSubmitted && errors.url && (
             <div className='error'>

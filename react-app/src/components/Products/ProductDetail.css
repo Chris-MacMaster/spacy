@@ -40,8 +40,8 @@
 }
 .prod-price {
     font-weight: bold;
-    font-size: 3vh;
-    margin-bottom: 2vh;
+    font-size: min(3vmin, 2rem);
+    margin-bottom: min(2vmin, 1.5rem);
 }
 .prod-search {
     font-size: 3vmin;
@@ -122,11 +122,11 @@
 .quantity  {
     font-size: min(1.5vmin, .8rem);
 }
-
-
-.s-f-div {
-    /* border: none; */
+.product-deets-shop {
+    color: #000;
+    font-weight: bold;
 }
+
 
 
 

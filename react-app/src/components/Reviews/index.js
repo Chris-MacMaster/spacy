@@ -50,8 +50,11 @@ const ReviewIndexItem = ({ review , product}) => {
                 </div>
                 : null}
                 </div>
-
+                {review?.ReviewImages ? (
+                    <img className='review-image-detail' src={review.ReviewImages?.url} alt='not loaded' />
+                ) : null}
             </div>
+            <hr className='review-hr'></hr>
         </div>
     );
 };

@@ -231,9 +231,6 @@ p.review-paragraph {
 .gold-star, .blank-star {
     font-size: min(1.5vmin, .9rem);
 }
-.gold-star {
-    color: goldenrod
-}
 .blank-star {
     color: grey
 }

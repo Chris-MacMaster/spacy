@@ -7,6 +7,7 @@ import { fetchShops, fetchFollowedShops } from '../../store/shops'
 import { fetchProducts } from '../../store/product'
 import LoadingIcon from '../LoadingIcon'
 import ShopCard from '../ShopCard'
+import { deleteShopRequest } from '../../store/shops'
 export default function UserDetails() {
     const {userId} = useParams()
     const dispatch = useDispatch()
@@ -35,10 +36,14 @@ export default function UserDetails() {
     const userShopsIds = shops ? Object.values(shops).filter(s=>parseInt(s.ownerId) === parseInt(user.id)).map(s=>s.id) : null
     const userShops = Object.values(shops).filter(s => parseInt(s.ownerId) === parseInt(userId))
     const userProducts = Object.values(products).filter(p=> userShopsIds.includes(p.shopId))
-    const onClickCreateShop = () => history.push('/shops/new')
 
     const followedShops = Object.values(followedShopState)
-    console.log("user ids", userId, user.id)
+    const onClickCreateShop = () => history.push('/shops/new')
+    const deleteShop = async (shopId) => {
+        console.log('DELETE FUNCTION')
+        await dispatch(deleteShopRequest(shopId))
+        await dispatch(fetchShops())
+    }
     return (
         <div className='user-manage-details'>
 
@@ -47,15 +52,15 @@ export default function UserDetails() {
             <div className='user-deets-text'>
             <div className='user-name'>{user.firstName} {user.lastName}</div>
             <div className='user-deets-user-shops'>
-            {userShops && userShops.length && userShops.map((s,i) => (
+            {userShops && userShops.map((s,i) => (
                 <div className='user-deets-bullet'>
                 <img src='https://i.imgur.com/bdSjZyV.png' alt='' className='shop-icon'/>
                 <NavLink to={`/shops/${s.id}`} style={{ textDecoration: "none"}}>
                 <span className='user-deets-user-shop'>{s.name}</span>
                 </NavLink>
-                {user.id === userId ? (
+                {user.id === parseInt(userId) ? (
                 <>
-                <button id='shop-delete-button' className='user-delete-product' ><i class="fa-solid fa-trash-can"/></button>
+                <button id='shop-delete-button' className='user-delete-product' onClick={e => deleteShop(s.id)}><i class="fa-solid fa-trash-can"/></button>
                 <button id='shop-edit-button' className='user-edit-product' onClick={e => history.push(`/shops/edit/${s.id}`)}>
                     <i class="fa-solid fa-pen-to-square"/></button>
                 </>
@@ -79,7 +84,7 @@ export default function UserDetails() {
             <div className='user-deets-title'>Favorite shops</div>
             <div className='user-deets-grid'>
             <div className='user-deets-followed-shops'>
-            {followedShops && followedShops.length && followedShops.map((s, i) => ( <ShopCard shop={shops[s.id]} />))}
+            {followedShops && followedShops.length ? followedShops.map((s, i) => ( <ShopCard shop={shops[s.id]} />)) : <div>Go follow some shops! </div>}
             </div>
 
             </div>
