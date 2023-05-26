@@ -29,7 +29,7 @@
     outline-offset: min(.2vmin, .1rem);
 }
 .product-preview-img:not(.chosen-image) {
-    opacity: .7;
+    opacity: .6;
     transition: .2s ease-in-out;
 }
 .product-preview-img:not(.chosen-image):hover {
@@ -170,11 +170,11 @@
 .gold-star-product-deets {
     color: black;
     margin: 0rem .2rem;
-    font-size: 3vmin;
+    font-size: min(2vmin, 1rem);
 }
 .blank-star-product-deets {
     color: gray;
-    font-size: 3vmin;
+    font-size: min(2vmin, 1rem);
 }
 .prod-description-p {
     font-weight: bolder;
@@ -210,6 +210,7 @@
     transition: .2s ease-in-out;
     margin: 1rem;
     font-family: 'Marcellus', serif;
+    font-size: min(2vmin, .9rem);
 }
 .post-item-review:hover {
     box-shadow: 0rem 0rem .5rem grey;
