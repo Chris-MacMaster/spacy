@@ -61,7 +61,7 @@ export default function PostReviewForm() {
                 </div>
             </div>
 
-            <p id="review-h2">My review</p>
+            <h2 className="post-review-title">My review</h2>
             <p>What did you like about this product?</p>
             <p>Help others by sending your feedback.</p>
 
@@ -87,7 +87,7 @@ export default function PostReviewForm() {
             )}
 
             <div>
-                <textarea name='review' className='reviewText' value={review} onChange={(e) => setReview(e.target.value)}/>
+                <textarea name='review' className='review-text' value={review} onChange={(e) => setReview(e.target.value)}/>
             </div>
 
             {hasSubmitted && errors.review && (

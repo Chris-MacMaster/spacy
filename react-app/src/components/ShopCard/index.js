@@ -85,19 +85,17 @@ export default function ShopCard({ shop }) {
             </NavLink>
 
             <div className='shop-card-heart' title='Unfollow'>
-                {/* <i onClick={handleUnfollow} className="fa-solid fa-heart landing-shop-heart">
-
-                </i> */}
+                <i onClick={handleUnfollow} className="fa-solid fa-heart landing-shop-heart"></i>
 
                 {/* need to hook up to icon without Unfollow text */}
-                <div className='unfollow-shop-modal'>
+                {/* <div className='unfollow-shop-modal'>
                     <OpenModalButton
                         buttonText={<i className="fa-solid fa-heart landing-shop-heart" ></i>}
                         onClick={openMenu}
                         className='shop-pol-modal'
                         onItemClick={closeMenu}
                         modalComponent={<UnfollowShopModal shopId={shop.id} />} />
-                </div>
+                </div> */}
 
 
             </div>
