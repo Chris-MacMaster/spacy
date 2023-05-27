@@ -42,12 +42,22 @@ def return_cart():
             item_already_in_cart = Cart.query.filter((Cart.user_id == form.data["user_id"])\
                                                   & (Cart.product_id == form.data["product_id"])).join(Product).first()
             if item_already_in_cart:
-                if item_already_in_cart.quantity + form.data['quantity'] > item_already_in_cart.product.available:
+                item_already_in_cart.quantity += form.data['quantity']
+                if item_already_in_cart.quantity > item_already_in_cart.product.available:
                     item_already_in_cart.quantity = item_already_in_cart.product.available
-                else:
-                    item_already_in_cart.quantity += form.data['quantity']
+
                 db.session.commit()
-                return item_already_in_cart.to_dict(), 201
+                return_obj = item_already_in_cart.product.to_dict()
+                return_obj['id'] = item_already_in_cart.product.id
+                return_obj['cartId'] = item_already_in_cart.id
+                return_obj['productImage'] = item_already_in_cart.product.product_images[0].url
+                return_obj['shopImage'] = item_already_in_cart.product.shops.shop_images[0].url
+                return_obj['shopName'] = item_already_in_cart.product.shops.name
+                return_obj['productId'] = item_already_in_cart.product.id
+                return_obj['quantity'] = item_already_in_cart.quantity
+
+
+                return return_obj, 201
             else:
                 new_item = Cart(
                     user_id = form.data["user_id"],
@@ -56,7 +66,16 @@ def return_cart():
                 )
                 db.session.add(new_item)
                 db.session.commit()
-                return new_item.to_dict(), 201
+
+                return_obj = new_item.product.to_dict()
+                return_obj['cartId'] = new_item.id
+                return_obj['productId'] = new_item.product.id
+                return_obj['quantity'] = new_item.quantity
+                return_obj['shopName'] = new_item.product.shops.name
+                return_obj['shopImage'] = new_item.product.shops.shop_images[0].url
+                return_obj['productImage'] = new_item.product.product_images[0].url
+
+                return return_obj, 201
     if request.method == "DELETE":
         req_data = request.get_json()
         cart_id = req_data["cart_id"]
@@ -77,13 +96,12 @@ def return_cart():
             db.session.commit()
 
             return_obj = cart_to_edit.product.to_dict()
-            return_obj['id'] = cart_to_edit.id
             return_obj['cartId'] = cart_to_edit.id
-            return_obj['productImage'] = cart_to_edit.product.product_images[0].url
-            return_obj['shopImage'] = cart_to_edit.product.shops.shop_images[0].url
-            return_obj['shopName'] = cart_to_edit.product.shops.name
             return_obj['productId'] = cart_to_edit.product.id
             return_obj['quantity'] = cart_to_edit.quantity
+            return_obj['shopName'] = cart_to_edit.product.shops.name
+            return_obj['shopImage'] = cart_to_edit.product.shops.shop_images[0].url
+            return_obj['productImage'] = cart_to_edit.product.product_images[0].url
             return return_obj, 200
 
     user_cart = Cart.query\

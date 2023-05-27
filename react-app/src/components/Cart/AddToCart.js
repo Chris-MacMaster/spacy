@@ -11,26 +11,22 @@ export default function AddToCart({cart, product, user, quantity}){
     const { addToCart, cartItems } = useContext(CartContext)
 
     const productCart = (arrOfCarts) => arrOfCarts.filter(currentCart => currentCart?.productId === product.id)
-    console.log(cartItems)
+
     const cartItem = Object.values(cartItems).filter(item => item.productId === product.id)[0]
     const addItem = async (e) => {
         if(!user) {
             addToCart(product, quantity)
             return
         }
-        console.log(cart)
         let theCart = productCart(Object.values(cart.products))
         if(theCart?.quantity === product.available) {
             return alert("Every available item already in cart.")
         }
         setBtnEndabled(true)
         await dispatch(addCartItemThunk(product.id, user.id, quantity))
-        await dispatch(fetchCart())
         setBtnEndabled(false)
     }
 
-    console.log(productCart(Object.values(cart.products))[0])
-    console.log(cartItem)
     return (
         <div className="add-to-cart-div">
 

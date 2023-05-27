@@ -80,7 +80,7 @@ export default function TheCart({cart}){
                       <div className="cart-product-info-top">
                           <NavLink to={`/products/${product.id}`}>{product.name}</NavLink>
                       </div>
-                      <div className="item-description"><p>{product.description}</p></div>
+                      <div className="item-description">{product.description}</div>
                       <div className="cart-product-info">
                       <div className="qty-and-remove">
                       <ChangeQuantity cartId={product.cartId} quantity={product.quantity} productId={product.productId} available={product.available}/>

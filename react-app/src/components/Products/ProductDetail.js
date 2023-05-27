@@ -1,5 +1,5 @@
 import React from 'react';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, useContext } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink, useParams } from 'react-router-dom';
 import { fetchOneProduct, followProductShop, unfollowProductShop } from '../../store/product';
@@ -14,6 +14,8 @@ import ShopPoliciesModal from '../ShopPoliciesModal';
 import LoadingIcon from '../LoadingIcon';
 import ProductImageSlider from './ProductImageSlider';
 import { fetchOneShop, followShop, unfollowShop } from '../../store/shops';
+import { CartContext } from '../../context/CartContext';
+import { numberInCart } from './_numberInCart'
 
 const ProductDetail = () => {
     const dispatch = useDispatch()
@@ -26,11 +28,19 @@ const ProductDetail = () => {
     const [ shopLoaded, setShopLoaded ] = useState(false)
     const [ chosenImage, setChosenImage ] = useState(0)
     const [ quantity, setQuantity ] = useState(1)
+    const [ inCart, setInCart ] = useState(0)
+    const { cartItems } = useContext(CartContext)
     //modal components
     const openMenu = () => {
         if (showMenu) return
         setShowMenu(true)
     }
+
+    useEffect(() => {
+        setInCart(numberInCart(user, cart, cartItems, product.id))
+    }, [cart, cartItems])
+
+
     useEffect(() => {
         if (!showMenu) return;
         const closeMenu = e => {
@@ -66,12 +76,10 @@ const ProductDetail = () => {
         }
         loadShop()
     },[product, dispatch])
-    console.log(product)
 
     const shop = useSelector(state => state.shops.singleShop)
     const shopsReviews = shopLoaded ? shop && shop.Products && shop.Products.length && shop.Products.map(ele => ele.Reviews).flat() : null
     const avgRating = shopsReviews ? shopsReviews.reduce((acc, ele) => ele?.stars + acc, 0) / shopsReviews.length : null
-    console.log('SHOP', avgRating)
     if (!hasLoaded || !shopLoaded) return <LoadingIcon />
     const handleClick = () => history.push(`/product-reviews/${productId}/new`)
 
@@ -155,6 +163,8 @@ const ProductDetail = () => {
             </div>
 
             <div className='product-grid-div-col-b'>
+                    <div className='num-product-in-cart'>{inCart > 0 && (<>{inCart} in your cart </>)}
+                    </div>
                     <div className='prod-price'>${product.price}</div>
                     <div className='prod-search'>{product.name}</div>
 
@@ -176,9 +186,9 @@ const ProductDetail = () => {
                 )
                 ))}
 
-                
+
                     </div>
-                        {user && user.id !== product?.Shop?.ownerId && 
+                        {user && user.id !== product?.Shop?.ownerId &&
                         <div className='follow-unfollow-shop-div'>
                             {product.Shop && product.Shop.Followed && product.Shop.Followed.Status && product.Shop.Followed.Status === "Not Followed" &&
                                 <div className='follow-shop' onClick={handleFollow}>
@@ -193,7 +203,7 @@ const ProductDetail = () => {
                         }
                     </div>
 
-                    
+
                     <div className='purchase-buttons'>
                         <span className='quantity'>Quantity</span>
                         {/* <input className='cart-quantity' type='number' min={1} max={product.available} value={quantity} onChange={e => setQuantity(e.target.value)}></input>
