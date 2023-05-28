@@ -205,7 +205,7 @@ const ProductDetail = () => {
 
 
                     <div className='purchase-buttons'>
-                        <span className='quantity'>Quantity</span>
+                        {product.available > 0 && <span className='quantity'>Quantity</span>}
                         {/* <input className='cart-quantity' type='number' min={1} max={product.available} value={quantity} onChange={e => setQuantity(e.target.value)}></input>
                         {product.available > 0 ? <AddToCart className='button add-cart-button' product={product} cart={cart} user={user}/>
                         :
@@ -213,15 +213,13 @@ const ProductDetail = () => {
                         } */}
                         {/* {product.available > 0 &&
                         <input className='cart-quantity' type='number' min={1} max={product.available} value={quantity} onChange={e => setQuantity(e.target.value)}></input>} */}
-
                         {product.available > 0 && <select value={quantity} onChange={(e) => setQuantity(e.target.value)}
                             className="cart-quantity">
                             {options.map(i => (
                             <option value={i.value}>{i.value}</option>
                             ))}
                         </select>}
-                        {product.available > 0 ? <AddToCart className='button add-cart-button' product={product} cart={cart} user={user} quantity={quantity}/> : <> </>}
-
+                        {product.available > 0 ? <AddToCart className='button add-cart-button' product={product} cart={cart} user={user} quantity={quantity}/> : <button className='button out-of-stock'> Out of stock </button>}
 
                     </div>
                     <div className='product-info-b'>

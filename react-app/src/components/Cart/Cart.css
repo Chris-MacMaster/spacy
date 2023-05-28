@@ -13,10 +13,10 @@
     align-self: center;
 }
 .shop-info{
+    margin-bottom: 1rem;
     border-radius: 1rem;
     box-shadow: 0 4px 20px rgba(34,34,34,.15);
-    padding: .5rem 1rem;
-    margin: 1rem;
+    padding: 0.5rem 1rem;
 }
 .checkout-div{
     flex-direction: column;
@@ -28,12 +28,24 @@
 }
 .cart-product-info-top{
     text-decoration: none;
+    margin-bottom: 1rem;
+    margin-left: 1rem;
 }
+.cart-product-info-top > p {
+
+}
+
 .cart-product-image {
-    width: 10vmax;
+    border: 1px solid black;
+    width: 13vmax;
     margin-right: 2rem;
     margin-bottom: 1rem;
     border-radius: 1rem;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+}
+.cart-product-image img {
+
 }
 .cart-select-quantity {
     /* width: 3rem;
@@ -78,17 +90,18 @@
 .cart-grey-text {
     color: rgb(90, 90, 90);
     font-size: .9rem;
-
+    margin: 0;
+    padding: 0;
 }
 .cart-details {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
 }
 .contact-us-bar{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 2rem;
 }
 .shop-title-and-image > h3 {
     margin-left: .75rem;
@@ -159,7 +172,22 @@
       background-color: lightgrey;
     }
 }
-
+.cart-shop-name {
+    color: black;
+    font-weight: bold;
+}
+.cart-shop-name-nav {
+    text-decoration: none;
+    margin-left: 1rem;
+}
+.cart-product-name:hover,
+.cart-shop-name-nav:hover {
+    text-decoration: underline;
+}
+.cart-product-name {
+    text-decoration: none;
+    color: black;
+}
 
 
 .no-user-no-cart{
@@ -191,8 +219,13 @@
 }
 .qty-and-remove {
     display: flex;
-    align-items: bottom;
-    align-self: flex-end;
+    height: clamp(2.5rem, 3vmin, 4rem);
+    margin: 1rem;
+    /* font-size: 11rem; */
+}
+.qty-and-remove > select {
+    font-size: clamp(1rem, 2.5vmin, 1.25rem);
+    width: clamp(5rem, 2vmin, 15rem);
 }
 .cart-quantity > h2 {
     margin: 0;
@@ -288,7 +321,7 @@
 
 .placeholder-name {
     display: flex;
-    /* width: 100%; */
+    width: 100%;
     justify-content: space-between;
 }
 .cost-block {
@@ -353,7 +386,7 @@
         /* width: 90vw; */
     }
     .remove-from-cart-button {
-        margin: 1vmax;
+        /* margin: 1vmax; */
     }
     .cart-product{
         margin-top: .2rem;

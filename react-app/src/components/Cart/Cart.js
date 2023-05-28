@@ -49,11 +49,10 @@ export default function TheCart({cart}){
       <div className="names-are-hard">
       {Object.keys(itemsByStore).map((storeName) => (
           <div key={storeName} className="shop-info">
-
             <div className="contact-us-bar">
               <div className="shop-title-and-image">
                 <img src={itemsByStore[storeName][0].shopImage} alt="preview" className="cart-shop-icon"/>
-                <h3>{storeName}</h3>
+                <NavLink to={`/shops/${itemsByStore[storeName][0].shopId}`} className="cart-shop-name-nav"><div className="cart-shop-name">{storeName}</div></NavLink>
               </div>
               <div className="contact-shop">
                 <NavLink to={`/shops/${itemsByStore[storeName][0].shopId}`} className="contact-shop">
@@ -78,7 +77,7 @@ export default function TheCart({cart}){
                   <div className="placeholder-name">
                     <div className="cart-details">
                       <div className="cart-product-info-top">
-                          <NavLink to={`/products/${product.id}`}>{product.name}</NavLink>
+                          <NavLink to={`/products/${product.id}`} className='cart-product-name'>{product.name}</NavLink>
                       </div>
                       <div className="item-description">{product.description}</div>
                       <div className="cart-product-info">

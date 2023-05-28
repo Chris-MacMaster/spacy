@@ -29,15 +29,9 @@ export default function AddToCart({cart, product, user, quantity}){
 
     return (
         <div className="add-to-cart-div">
-
-        <button onClick={addItem} className='add-to-cart-button' disabled={btnEnabled}>
-            Add to cart
-        </button>
-        {/* <div className="in-your-cart">
-            {user ? (Object.values(cart.products).length ? `${productCart(Object.values(cart.products))[0]?.quantity} currently in cart` : <></>)
-            :
-            cartItem ? `${product.quantity} currently in cart` : <></>}
-        </div> */}
+            <button onClick={addItem} className='add-to-cart-button' disabled={btnEnabled}>
+                Add to cart
+            </button>
         </div>
     )
 }
