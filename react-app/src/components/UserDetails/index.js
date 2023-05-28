@@ -40,7 +40,6 @@ export default function UserDetails() {
     const followedShops = Object.values(followedShopState)
     const onClickCreateShop = () => history.push('/shops/new')
     const deleteShop = async (shopId) => {
-        console.log('DELETE FUNCTION')
         await dispatch(deleteShopRequest(shopId))
         await dispatch(fetchShops())
     }
@@ -48,7 +47,7 @@ export default function UserDetails() {
         <div className='user-manage-details'>
 
             <div className='user-deets'>
-            <img src='https://i.imgur.com/mMEwXsu.png' alt='' className='user-deets-icon'/>
+            <img src={user && user.profilePic ? user.profilePic : 'https://i.imgur.com/mMEwXsu.png'} alt='' className='user-deets-icon'/>
             <div className='user-deets-text'>
             <div className='user-name'>{user.firstName} {user.lastName}</div>
             <div className='user-deets-user-shops'>
