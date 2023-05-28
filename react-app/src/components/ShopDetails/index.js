@@ -88,7 +88,9 @@ export default function ShopDetails () {
 
             <div className='shop-owner'>
                 <img className='shop-owner-img'
-                src={`${shop?.ShopImages?.url}`}
+                src={shop.Owner.profilePic ? shop.Owner.profilePic
+                    : shop.ShopImages.url ? shop.ShopImages.url
+                    : 'https://i.imgur.com/mMEwXsu.png'}
                 alt='user'></img>
                 <div className='shop-owner-name'>{shop?.Owner?.firstName}</div>
                 <button className='contact-shop-owner' onClick={() => window.location = `mailto:${shop.Owner.email}`}><i className="fa-solid fa-message"></i> Contact</button>

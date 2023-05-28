@@ -45,8 +45,8 @@
     width: min(70vmin, 20em);
     padding-bottom: 1em;
 }
-.wholeForm >h2 {
-    font-size: min(7vmin, 2rem);
+.wholeForm p {
+    font-size: min(2.5vmin, 1rem);
 }
 .productPic {
     display: flex;

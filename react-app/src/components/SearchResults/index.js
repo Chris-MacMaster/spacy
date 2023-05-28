@@ -29,15 +29,14 @@ function SearchResults() {
             <span className="est-arrival-any">Any time</span>
         </div>
         <div className="search-result-display">
-        {Object.values(products).map(product => (
-        <NavLink to={`/products/${product.id}`}
-        style={{ textDecoration: 'none' }}>
-            <div className="search-product-card">
-                <div className="search-result-image-div"><img className='search-result-img' src={product.ProductImages[0].url} alt='not found'/></div>
+        {Object.values(products).map((product, i) => (
+        <NavLink to={`/products/${product.id}`} style={{ textDecoration: 'none' }} key={`linked${i}`}>
+            <div className="search-product-card" key={`prod-card-${i}`}>
+                <div className="search-result-image-div" key={`image-div-${i}`}><img className='search-result-img' src={product.ProductImages[0].url} alt='not found' key={`img${i}`}/></div>
 
-                <div className="search-product-text">
-                    <p className="search-product-name">{product.name}</p>
-                    <p className='search-results-stars'>
+                <div className="search-product-text" key={`prod-text-${i}`}>
+                    <p className="search-product-name" key={`prod-name-${i}`}>{product.name}</p>
+                    <p className='search-results-stars' key={`prod-stars${i}`}>
                     {typeof product.avgRating === 'number'?
                              Array(5).fill(1).map((s,i)=> (
                             i < product.avgRating ? (
@@ -47,13 +46,13 @@ function SearchResults() {
                                 <i className="fa-solid fa-star search-results-stars-black grey-search-stars" key={i}></i>
                             )
                             ) ) : (
-                                <span className="search-new-product">New! <i className="fa-solid fa-star search-results-stars-gold "/> </span>
+                                <span className="search-new-product" key={`new${i}`}>New! <i className="fa-solid fa-star search-results-stars-gold " key={`icon${i}`}/> </span>
                             )} {product.sales}
-                            <span className="search-star-seller"><i className="fa-solid fa-certificate search-badge"></i>Star Seller</span></p>
+                            <span className="search-star-seller" key={`star-seller${i}`}><i className="fa-solid fa-certificate search-badge" key={`badge${i}`}></i>Star Seller</span></p>
 
-                <p className="search-result-price">${product.price}</p>
-                <p className="search-result-shop">{product.shop.name}</p>
-                <p className="search-more-like">More Like This <i className="fa-solid fa-arrow-right search-more-like"></i></p>
+                <p className="search-result-price" key={`price${i}`}>${product.price}</p>
+                <p className="search-result-shop" key={`shop${i}`}>{product.shop.name}</p>
+                <p className="search-more-like" key={`morelikethis${i}`}>More Like This <i className="fa-solid fa-arrow-right search-more-like" key={`arrow${i}`}></i></p>
 
                 </div>
             </div>

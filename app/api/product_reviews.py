@@ -57,8 +57,7 @@ def get_reviews_of_product(product_id):
         review['ReviewImages'] = review_image(review['id'])
     for review in reviewcopy.values():
         review_user = User.query.get(review['userId'])
-        review['author_first'] = review_user.first_name
-        review['author_last'] = review_user.last_name
+        review['User'] = review_user.to_dict()
     return reviewcopy, 200
 
 @product_review_routes.route('/<int:review_id>/delete', methods=['DELETE'])
