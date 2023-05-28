@@ -14,6 +14,7 @@ function SignupFormModal() {
 	const [lastName, setLastName] = useState("");
 	const [bio, setBio] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
+	const [ profilePic, setProfilePic ] = useState('')
 	const [errors, setErrors] = useState([]);
 	const [ disable, setDisable] = useState(true)
 	const { closeModal } = useModal();
@@ -28,6 +29,7 @@ function SignupFormModal() {
 		if (lastName.length < 3) err.push('Please enter a valid last name.')
 		if (bio.length < 20) err.push('Please enter a short bio.')
 		if (confirmPassword !== password || confirmPassword.length < 6) err.push('ConfirmPassword must be 6 characters and match password')
+
 		setErrors(err)
 	}, [email, password, username, firstName, lastName, bio, confirmPassword])
 
@@ -102,6 +104,14 @@ function SignupFormModal() {
 					required
 					className="signup-input signup-bio"
 					placeholder="Please enter a short bio"
+				/>
+				<input
+					type="text"
+					value={profilePic}
+					onChange={(e) => setProfilePic(e.target.value)}
+					required
+					className="signup-input signup-pic"
+					placeholder="Profile Pic URL"
 				/>
 					<input
 						type="password"

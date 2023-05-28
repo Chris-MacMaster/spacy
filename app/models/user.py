@@ -20,6 +20,7 @@ class User(db.Model, UserMixin):
     first_name = db.Column(db.String(50), nullable=False)
     last_name = db.Column(db.String(50), nullable=False)
     bio = db.Column(db.Text)
+    profile_pic = db.Column(db.String)
     created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
     updated_at = db.Column(db.DateTime(timezone=True), onupdate=func.now())
     carts = db.relationship("Cart", backref="users")
@@ -49,6 +50,7 @@ class User(db.Model, UserMixin):
             'firstName': self.first_name,
             'lastName': self.last_name,
             'bio': self.bio,
+            'profilePic': self.profile_pic,
             'createdAt': self.created_at,
             'updatedAt': self.updated_at
         }

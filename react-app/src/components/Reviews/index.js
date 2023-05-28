@@ -13,6 +13,7 @@ const ReviewIndexItem = ({ review , product}) => {
         e.preventDefault()
         await dispatch(deleteReview(review.id))
         await dispatch(fetchProductReviews(product.id))
+        await dispatch(fetch)
     }
 
     if (!Object.values(review).length || !product) return null
@@ -36,9 +37,9 @@ const ReviewIndexItem = ({ review , product}) => {
                     </div>
 
                     <div className='rev-author-info'>
-                            <img id='detail-review-icon' src='https://i.imgur.com/mMEwXsu.png' alt='usericon' className='user-icon detail-icon'></img>
+                            <img id='detail-review-icon' src={review.User.profilePic} alt='usericon' className='user-icon detail-icon'></img>
                             <p className='author-subdiv-names'>
-                                {review.author_first} {review.author_last} {review.createdAt.slice(0, -12)}
+                                {review.User.firstName} {review.User.lastName} {review.createdAt.slice(0, -12)}
                             </p>
                     </div>
                 {user && Object.values(review).length > 0 && review.userId === user.id ?
