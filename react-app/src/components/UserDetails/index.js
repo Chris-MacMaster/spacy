@@ -26,7 +26,6 @@ export default function UserDetails() {
     const user = useSelector(state => state.session.user)
     const shops = useSelector(state => state.shops.allShops)
     const followedShopState = useSelector(state => state.shops.followedShops)
-    console.log('USER', user)
     if (!hasLoaded) return <LoadingIcon />
     if (!user || parseInt(user.id) !== parseInt(userId) || !shops) return null
 

@@ -12,8 +12,6 @@ export default function ShopDetails () {
     const dispatch = useDispatch()
     const history = useHistory()
     const [ hasLoaded, setHasLoaded ] = useState(false)
-    // const [isFollowed, setIsFollowed] = useState(false)
-
 
     useEffect(() => {
         const loadData = async () => {
