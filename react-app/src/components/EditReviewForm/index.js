@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { editReview, getOneReview } from "../../store/review";
 import '../PostReviewForm/ReviewForm.css'
+import LoadingIcon from "../LoadingIcon";
 
 function EditReviewForm() {
 
@@ -11,10 +12,14 @@ function EditReviewForm() {
     const {reviewId} = useParams()
     const reviewToEdit = useSelector((state) => state.reviews.singleReviewGet)
     const user = useSelector((state) => state.session.user)
-
+    const [ hasLoaded, setHasLoaded ] = useState(false)
 
     useEffect(() => {
-        dispatch(getOneReview(reviewId))
+        const loadData = async () => {
+            await dispatch(getOneReview(reviewId))
+            return setHasLoaded(true)
+        }
+        loadData()
     }, [dispatch, reviewId])
 
     const [review, setReview] = useState(reviewToEdit.review || '')
@@ -41,19 +46,15 @@ function EditReviewForm() {
     const handleSubmit = async (e) => {
         e.preventDefault()
         setHasSubmitted(true)
-        if (Object.values(errors).length) {
-            return
-        }
-
+        if (Object.values(errors).length) return;
         await dispatch(editReview(reviewId, review, stars))
-
-        history.push(`/products/${reviewToEdit.product.id}`)
+        history.push(`/products/${reviewToEdit.Product.id}`)
     }
-
+    if (!hasLoaded) return <LoadingIcon />
     if (!Object.values(reviewToEdit).length
         || !user
-        || !Object.keys(reviewToEdit.product).includes('ProductImages')
-        || !Object.keys(reviewToEdit.product).includes('Shop')) {
+        || !Object.keys(reviewToEdit.Product).includes('ProductImages')
+        || !Object.keys(reviewToEdit.Product).includes('Shop')) {
         return null
     }
 
@@ -63,10 +64,10 @@ function EditReviewForm() {
         <form onSubmit={handleSubmit} className='wholeForm'>
             <div className='headerAndReview'>
                 <div className='productPic'>
-                    <img src={reviewToEdit.product.ProductImages[0].url} alt='not found'/>
+                    <img src={reviewToEdit.Product.ProductImages[0].url} alt='not found'/>
                     <div className="productName">
-                     <p className="review-form-text">{reviewToEdit.product.Shop.name}</p>
-                    <h3 className="review-form-text review-form-item-name">{reviewToEdit.product.name}</h3>
+                     <p className="review-form-text">{reviewToEdit.Product.Shop.name}</p>
+                    <h3 className="review-form-text review-form-item-name">{reviewToEdit.Product.name}</h3>
                     </div>
                 </div>
             </div>
@@ -75,10 +76,7 @@ function EditReviewForm() {
             <p className="review-form-text">Help others by sending your feedback.</p>
             <div>
                 {[1, 2, 3, 4, 5].map((ele, i) => (
-                    <span className={`review-span`}
-
-                        onClick={() => setStars(ele)}
-                        key={'star' + ele} >
+                    <span className={`review-span`} onClick={() => setStars(ele)} key={'star' + ele} >
                         <i className={`fa-solid fa-star ${stars >= ele ? `review-filled` : `review-empty`}`} key={ele}></i>
                     </span>
                 ))}
