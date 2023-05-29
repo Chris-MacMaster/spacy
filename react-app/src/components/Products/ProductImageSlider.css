@@ -1,6 +1,6 @@
 .left-arrow,
 .right-arrow {
-    font-size: 4vw;
+    font-size: clamp(1rem, 4vw, 3rem);
     color: white;
     opacity: .8;
     position: absolute;

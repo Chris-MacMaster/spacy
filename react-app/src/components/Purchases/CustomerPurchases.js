@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { fetchStorePuchases, fetchUserPuchases } from "../../store/purchase"
+import { fetchUserPuchases } from "../../store/purchase"
 import LoadingIcon from "../LoadingIcon"
 import './Purchases.css'
 
@@ -8,10 +8,13 @@ export default function UserPurchases(){
     const purchases = useSelector(state => state.purchases.userPurchases)
     const dispatch = useDispatch()
     const [hasLoaded, setHasLoaded] = useState(false)
-    const [totalCost, setTotalCost] = useState(0)
-    useEffect(async () => {
-        await dispatch(fetchUserPuchases())
-        return setHasLoaded(true)
+    // const [totalCost, setTotalCost] = useState(0)
+    useEffect(() => {
+        const loadData = async () => {
+            await dispatch(fetchUserPuchases())
+            return setHasLoaded(true)
+        }
+        loadData()
     }, [dispatch])
 
     if(!hasLoaded) return <LoadingIcon />
@@ -35,7 +38,7 @@ export default function UserPurchases(){
                             {item.map(el => (
                                 // <div className="purchase-item-div">
                                 <>
-                                <div className="purchase-product-img-div one"><img className="purchase-product-img one" src={el.productImage} alt={`${el.productName} Image`}/></div>
+                                <div className="purchase-product-img-div one"><img className="purchase-product-img one" src={el.productImage} alt={`ele${el.productName}`}/></div>
                                 <div className="two">{el.productName}</div>
                                 <div className="three">{el.quantity}</div>
                                 <div className="four">{el.price}</div>

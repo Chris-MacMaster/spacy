@@ -10,7 +10,6 @@ export default function DisplayCart(){
   const [user, cart] = useSelector(state => [state.session.user, state.cart.products ?? null])
   const dispatch = useDispatch()
   const [hasLoaded, setHasLoaded] = useState(false)
-  const [purchased, setPurchased] = useState(false)
   const { cartItems } = useContext(CartContext)
 
   useEffect(() => {

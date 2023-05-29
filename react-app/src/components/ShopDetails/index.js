@@ -2,7 +2,7 @@ import { NavLink, useParams, useHistory } from 'react-router-dom'
 import './ShopDetails.css'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchOneShop, fetchShops, followShop, followSingleShop, loadOneShop, unfollowShop, unfollowSingleShop } from '../../store/shops'
+import { fetchOneShop, fetchShops, followShop, followSingleShop, unfollowShop, unfollowSingleShop } from '../../store/shops'
 import ShopProductCard from '../ShopProductCard'
 import { authenticate } from '../../store/session'
 import LoadingIcon from '../LoadingIcon'
@@ -12,7 +12,7 @@ export default function ShopDetails () {
     const dispatch = useDispatch()
     const history = useHistory()
     const [ hasLoaded, setHasLoaded ] = useState(false)
-    const [isFollowed, setIsFollowed] = useState(false)
+    // const [isFollowed, setIsFollowed] = useState(false)
 
 
     useEffect(() => {
@@ -88,7 +88,9 @@ export default function ShopDetails () {
 
             <div className='shop-owner'>
                 <img className='shop-owner-img'
-                src={`${shop?.ShopImages?.url}`}
+                src={shop.Owner.profilePic ? shop.Owner.profilePic
+                    : shop.ShopImages.url ? shop.ShopImages.url
+                    : 'https://i.imgur.com/mMEwXsu.png'}
                 alt='user'></img>
                 <div className='shop-owner-name'>{shop?.Owner?.firstName}</div>
                 <button className='contact-shop-owner' onClick={() => window.location = `mailto:${shop.Owner.email}`}><i className="fa-solid fa-message"></i> Contact</button>
