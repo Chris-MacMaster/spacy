@@ -170,16 +170,6 @@ def get_shop_by_id(shop_id):
                 return {"Status" : "Followed"}
             return {"Status" : "User Not Signed In"}
 
-        # Out Of Scope
-        # def get_followers():
-        #     users = User.query.join(user_shops).filter(user_shops.c.shop_id == shop_id).all()
-        #     if users == None:
-        #         return
-        #     else:
-        #         users_copy = copy.deepcopy(users)
-        #         payload = {user.id: user.to_dict() for user in users_copy}
-        #         return payload
-
         products = shop_products(shopcopy['id'])
         for product in products:
             product['ProductImages'] = get_images(product['id'])
