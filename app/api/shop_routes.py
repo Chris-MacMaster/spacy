@@ -13,26 +13,15 @@ def get_all_shops():
     if request.method == 'GET':
         shops = Shop.query.all()
         shopcopy = { shop.id: shop.to_dict() for shop in shops}
-        def shop_products(id):
-            products = Product.query.filter(Product.shop_id == id).all()
-            return [product.to_dict() for product in products]
-        def get_images(id):
-            images = ProductImage.query.filter(ProductImage.product_id == id).all()
-            return [image.to_dict() for image in images]
-        def get_shop_images(id):
-            image = ShopImage.query.filter(ShopImage.shop_id == id).first()
-            if image:
-                return image.to_dict()
-
         for shop in shopcopy:
-            shopimage = get_shop_images(shopcopy[shop]['id'])
+            shopimage = ShopImage.query.filter(ShopImage.shop_id == shopcopy[shop]['id']).first()
             if shopimage:
-                shopcopy[shop]['ShopImage'] = shopimage
-            else:
-                shopcopy[shop]['ShopImage'] = 'shopImage not available'
-            shopcopy[shop]['Products'] = shop_products(shopcopy[shop]['id'])
+                shopcopy[shop]['ShopImage'] = shopimage.to_dict()
+            products = Product.query.filter(Product.shop_id == shopcopy[shop]['id']).all()
+            shopcopy[shop]['Products'] = [product.to_dict() for product in products]
             for product in shopcopy[shop]['Products']:
-                product['ProductImages'] = get_images(product['id'])
+                images = ProductImage.query.filter(ProductImage.product_id == product['id']).all()
+                product['ProductImages'] = [image.to_dict() for image in images]
         return shopcopy, 200
     if request.method == 'POST' and current_user.is_authenticated:
         form = CreateShopForm()
@@ -41,14 +30,12 @@ def get_all_shops():
         if not form.validate_on_submit():
             return {'error': 'The provided data could not be validated'}
         if form.validate_on_submit():
-
             image = form.data["image"] #aws
             image.filename = get_unique_filename(image.filename)
             upload = upload_file_to_s3(image)
             img_url = None
             if 'url' in upload:
                 img_url = upload['url']
-
             new_shop = Shop(
                 name = form.data['name'],
                 owner_id = current_user.get_id(),
@@ -65,7 +52,6 @@ def get_all_shops():
             db.session.commit()
             recentshop = db.session.query(Shop).order_by(Shop.id.desc()).first()
             new_shop_img = ShopImage(
-                # url = form.data['url'],
                 url = img_url, #aws
                 shop_id = recentshop.id
             )
@@ -91,27 +77,19 @@ def delete_one_shop(shop_id):
         elif shop.owner_id != current_user.id:
             return {"errors": "Only owner may delete their own shop"}
     elif current_user.is_authenticated and request.method == 'PUT':
-
         shop = Shop.query.get(shop_id)
-        # shop_image = ShopImage.query.filter(ShopImage.shop_id == shop_id).first()
-        # db.session.delete(shop_image)
         form = CreateShopForm()
-
         form['csrf_token'].data = request.cookies['csrf_token']
         if form.validate_on_submit():
-
             image = form.data["image"] #aws
             image.filename = get_unique_filename(image.filename)
             upload = upload_file_to_s3(image)
             img_url = None
             if 'url' in upload:
                 img_url = upload['url']
-
             img_delete = form.data['ogImage']
             remove_file_from_s3(img_delete)
             # remove_file_from_s3()
-
-
             shop.name = form.data['name']
             shop.street_address = form.data['street_address']
             shop.city = form.data['city']
@@ -128,11 +106,7 @@ def delete_one_shop(shop_id):
                 url = img_url, #aws
                 shop_id = shop_id
             )
-
             db.session.add(new_shop_img)
-
-            # shop_image = ShopImage.query.filter(ShopImage.shop_id == shop_id).first()
-            # shop_image.url = form.data['url']
             db.session.commit()
             return shop.to_dict(), 201
 
@@ -223,9 +197,6 @@ def follow_shop(shop_id):
     db.session.commit()
     return shop.to_dict()
     # return {'errors': 'Not authenticated'}
-
-
-
 
 @shop_routes.route('/current-followed/unfollow/<int:shop_id>/', methods=['GET', 'POST'])
 def unfollow_shop(shop_id):
