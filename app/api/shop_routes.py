@@ -12,7 +12,7 @@ def get_all_shops():
     """returns all shops regardless of session, or posts a new shop"""
     if request.method == 'GET':
         shops = Shop.query.all()
-        shopcopy = { str(shop.id): shop.to_dict() for shop in shops}
+        shopcopy = { shop.id: shop.to_dict() for shop in shops}
         def shop_products(id):
             products = Product.query.filter(Product.shop_id == id).all()
             return [product.to_dict() for product in products]

@@ -8,7 +8,6 @@ purchase_routes = Blueprint('/purchases', __name__)
 @login_required
 def all_purchases(shop_id):
     """Get all users purchases"""
-
     purchases = Purchase.query.filter(Purchase.shop_id == shop_id).join(Product)
     return_obj = {}
     for purchase in purchases:
@@ -20,7 +19,6 @@ def all_purchases(shop_id):
         return_obj[purchase.id]["shopName"] = purchase.product.shops.name
         return_obj[purchase.id]["productImage"] = purchase.product.product_images[0].url
         return_obj[purchase.id]["shopImage"] = purchase.product.shops.shop_images[0].url
-
     return return_obj, 200
 
 @purchase_routes.route('/')
