@@ -8,7 +8,6 @@ from app.forms.edit_review import EditReviewForm
 
 product_review_routes = Blueprint('/product-reviews', __name__)
 
-
 @product_review_routes.route('/search/<int:review_id>')
 def get_review(review_id):
     """get a single review by id"""
