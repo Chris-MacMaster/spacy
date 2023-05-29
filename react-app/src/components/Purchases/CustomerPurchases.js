@@ -39,7 +39,7 @@ export default function UserPurchases(){
                                 <div className="two">{el.productName}</div>
                                 <div className="three">{el.quantity}</div>
                                 <div className="four">{el.price}</div>
-                                <div>${el.price * el.quantity}</div>
+                                <div className="five">${(el.price * el.quantity).toFixed(2)}</div>
                                 </>
                             ))}
 

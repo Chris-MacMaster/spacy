@@ -7,7 +7,7 @@ purchase_routes = Blueprint('/purchases', __name__)
 @purchase_routes.route('/shop/<int:shop_id>')
 @login_required
 def all_purchases(shop_id):
-    """Get all users purchases"""
+    """Get all shop purchases"""
 
     purchases = Purchase.query.filter(Purchase.shop_id == shop_id).join(Product)
     return_obj = {}
@@ -26,7 +26,7 @@ def all_purchases(shop_id):
 @purchase_routes.route('/')
 @login_required
 def purchases():
-    """Add new order with post route or view order with """
+    """Get all user purchases"""
 
     purchases = Purchase.query.filter(Purchase.user_id == current_user.id).join(Product).all()
     return_obj = {}
@@ -60,5 +60,5 @@ def userless_purchase():
         db.session.commit()
         return {}, 200
 
-    print(form.data)
+    # print(form.data)
     return {}, 400

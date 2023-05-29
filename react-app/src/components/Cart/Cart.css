@@ -24,7 +24,7 @@
 }
 .cart-product{
     display: flex;
-    margin-top: 2.5rem;
+    margin-top: 1.5rem;
 }
 .cart-product-info-top{
     text-decoration: none;
@@ -187,6 +187,8 @@
 .cart-product-name {
     text-decoration: none;
     color: black;
+    font-size: .9rem;
+    font-weight: bold;
 }
 
 
@@ -337,8 +339,9 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-    line-height: 1.5rem;
+    line-height: 1.1rem;
     margin: 0 1rem;
+    font-size: .85rem;
 }
 
 .single-item-cost {
