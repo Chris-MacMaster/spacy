@@ -4,7 +4,6 @@ from flask_login import current_user, login_required
 import copy
 from datetime import datetime
 from app.forms import CreateProductForm
-
 from app.api.AWS_helpers import get_unique_filename, upload_file_to_s3, remove_file_from_s3
 
 product_routes = Blueprint('/products', __name__)
@@ -15,10 +14,8 @@ def get_one_product(product_id):
     if request.method == 'GET':
         product = Product.query.get(product_id)
         productcopy = product.to_dict()
-        # shop = Shop.query.get(product.shop_id)
         shop = Shop.query.get(product.shop_id)
-        shop_image = ShopImage.query.filter(ShopImage.shop_id == product.shop_id).first()
-
+        shop_image = ShopImage.query.filter_by(shop_id = product.shop_id).first()
         images = ProductImage.query.filter(ProductImage.product_id==product_id).all()
         productcopy['ProductImages'] = [image.to_dict() for image in images]
         productcopy['Shop'] = shop.to_dict()
@@ -31,17 +28,13 @@ def get_one_product(product_id):
                     return {"Status" : "Not Followed"}
                 return {"Status" : "Followed"}
             return {"Status" : "User Not Signed In"}
-
+        
         productcopy['Shop']['Followed'] = check_followed()
-
-        def get_reviews(id):
-            reviews = ProductReview.query.filter(ProductReview.product_id == id).all()
-            return [r.to_dict() for r in reviews]
-        reviews = get_reviews(productcopy['id'])
+        reviews = ProductReview.query.filter(ProductReview.product_id == product_id).all()
         sum = 0
         for r in reviews:
-            sum += r['stars']
-        productcopy['Reviews'] = reviews
+            sum += r.stars
+        productcopy['Reviews'] = [review.to_dict() for review in reviews]
         productcopy['avgRating'] = round(sum / len(reviews), 1) if len(reviews) else "New"
         return productcopy, 200
     elif request.method == 'DELETE':
