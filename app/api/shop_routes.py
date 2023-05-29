@@ -12,27 +12,16 @@ def get_all_shops():
     """returns all shops regardless of session, or posts a new shop"""
     if request.method == 'GET':
         shops = Shop.query.all()
-        shopcopy = { str(shop.id): shop.to_dict() for shop in shops}
-        def shop_products(id):
-            products = Product.query.filter(Product.shop_id == id).all()
-            return [product.to_dict() for product in products]
-        def get_images(id):
-            images = ProductImage.query.filter(ProductImage.product_id == id).all()
-            return [image.to_dict() for image in images]
-        def get_shop_images(id):
-            image = ShopImage.query.filter(ShopImage.shop_id == id).first()
-            if image:
-                return image.to_dict()
-
+        shopcopy = { shop.id: shop.to_dict() for shop in shops}
         for shop in shopcopy:
-            shopimage = get_shop_images(shopcopy[shop]['id'])
+            shopimage = ShopImage.query.filter(ShopImage.shop_id == shopcopy[shop]['id']).first()
             if shopimage:
-                shopcopy[shop]['ShopImage'] = shopimage
-            else:
-                shopcopy[shop]['ShopImage'] = 'shopImage not available'
-            shopcopy[shop]['Products'] = shop_products(shopcopy[shop]['id'])
+                shopcopy[shop]['ShopImage'] = shopimage.to_dict()
+            products = Product.query.filter(Product.shop_id == shopcopy[shop]['id']).all()
+            shopcopy[shop]['Products'] = [product.to_dict() for product in products]
             for product in shopcopy[shop]['Products']:
-                product['ProductImages'] = get_images(product['id'])
+                images = ProductImage.query.filter(ProductImage.product_id == product['id']).all()
+                product['ProductImages'] = [image.to_dict() for image in images]
         return shopcopy, 200
     if request.method == 'POST' and current_user.is_authenticated:
         form = CreateShopForm()
@@ -41,14 +30,12 @@ def get_all_shops():
         if not form.validate_on_submit():
             return {'error': 'The provided data could not be validated'}
         if form.validate_on_submit():
-
             image = form.data["image"] #aws
             image.filename = get_unique_filename(image.filename)
             upload = upload_file_to_s3(image)
             img_url = None
             if 'url' in upload:
                 img_url = upload['url']
-
             new_shop = Shop(
                 name = form.data['name'],
                 owner_id = current_user.get_id(),
@@ -65,7 +52,6 @@ def get_all_shops():
             db.session.commit()
             recentshop = db.session.query(Shop).order_by(Shop.id.desc()).first()
             new_shop_img = ShopImage(
-                # url = form.data['url'],
                 url = img_url, #aws
                 shop_id = recentshop.id
             )
@@ -91,27 +77,19 @@ def delete_one_shop(shop_id):
         elif shop.owner_id != current_user.id:
             return {"errors": "Only owner may delete their own shop"}
     elif current_user.is_authenticated and request.method == 'PUT':
-
         shop = Shop.query.get(shop_id)
-        # shop_image = ShopImage.query.filter(ShopImage.shop_id == shop_id).first()
-        # db.session.delete(shop_image)
         form = CreateShopForm()
-
         form['csrf_token'].data = request.cookies['csrf_token']
         if form.validate_on_submit():
-
             image = form.data["image"] #aws
             image.filename = get_unique_filename(image.filename)
             upload = upload_file_to_s3(image)
             img_url = None
             if 'url' in upload:
                 img_url = upload['url']
-
             img_delete = form.data['ogImage']
             remove_file_from_s3(img_delete)
             # remove_file_from_s3()
-
-
             shop.name = form.data['name']
             shop.street_address = form.data['street_address']
             shop.city = form.data['city']
@@ -128,11 +106,7 @@ def delete_one_shop(shop_id):
                 url = img_url, #aws
                 shop_id = shop_id
             )
-
             db.session.add(new_shop_img)
-
-            # shop_image = ShopImage.query.filter(ShopImage.shop_id == shop_id).first()
-            # shop_image.url = form.data['url']
             db.session.commit()
             return shop.to_dict(), 201
 
@@ -142,26 +116,6 @@ def get_shop_by_id(shop_id):
     shop = Shop.query.filter(Shop.id == shop_id).first()
     if shop:
         shopcopy = shop.to_dict()
-        def get_shop_images(id):
-            image = ShopImage.query.filter(ShopImage.shop_id == id).first()
-            if image:
-                return image.to_dict()
-        def get_owner(id):
-            owner = User.query.filter(User.id == id).first()
-            return owner.to_dict()
-        def shop_products(id):
-            products = Product.query.filter(Product.shop_id == id).all()
-            return [product.to_dict() for product in products]
-        def get_images(id):
-            images = ProductImage.query.filter(ProductImage.product_id == id).all()
-            return [image.to_dict() for image in images]
-        def get_reviews(id):
-            reviews = ProductReview.query.filter(ProductReview.product_id == id).all()
-            return [r.to_dict() for r in reviews]
-        def review_image(review_id):
-            review_image = ReviewImage.query.filter(ReviewImage.review_id==review_id).first()
-            return review_image.to_dict() if review_image else None
-
         def check_followed():
             if current_user.is_authenticated:
                 user = User.query.join(user_shops).filter(user_shops.c.shop_id == shop_id, user_shops.c.user_id == current_user.id).first()
@@ -170,28 +124,25 @@ def get_shop_by_id(shop_id):
                 return {"Status" : "Followed"}
             return {"Status" : "User Not Signed In"}
 
-        # Out Of Scope
-        # def get_followers():
-        #     users = User.query.join(user_shops).filter(user_shops.c.shop_id == shop_id).all()
-        #     if users == None:
-        #         return
-        #     else:
-        #         users_copy = copy.deepcopy(users)
-        #         payload = {user.id: user.to_dict() for user in users_copy}
-        #         return payload
-
-        products = shop_products(shopcopy['id'])
-        for product in products:
-            product['ProductImages'] = get_images(product['id'])
-            product['Reviews'] = get_reviews(product['id'])
+        products = Product.query.filter(Product.shop_id == shopcopy['id']).all()
+        shopcopy['Products'] = [product.to_dict() for product in products]
+        for product in shopcopy['Products']:
+            images = ProductImage.query.filter(ProductImage.product_id == product['id']).all()
+            product['ProductImages'] = [image.to_dict() for image in images]
+            reviews = ProductReview.query.filter(ProductReview.product_id == product['id']).all()
+            product['Reviews'] = [review.to_dict() for review in reviews]
             for r in product['Reviews']:
-                r['ReviewImages'] = review_image(r['id'])
-                r['Reviewer'] = get_owner(r['userId'])
-        shopcopy['ShopImages'] = get_shop_images(shopcopy['id'])
-        shopcopy['Products'] = products
-        shopcopy['Owner'] = get_owner(shopcopy['ownerId'])
+                image = ReviewImage.query.filter(ReviewImage.review_id == r['id']).first()
+                if image:
+                    r['ReviewImages'] = image.to_dict()
+                reviewer = User.query.get(r['userId'])
+                r['Reviewer'] = reviewer.to_dict()
+        shop_image = image = ShopImage.query.filter(ShopImage.shop_id == shopcopy['id']).first()
+        if shop_image:
+            shopcopy['ShopImages'] = shop_image.to_dict()
+        owner = User.query.get(shopcopy['ownerId'])
+        shopcopy['Owner'] = owner.to_dict()
         shopcopy['Followed'] = check_followed()
-        # shopcopy['Followers'] = get_followers()
         return shopcopy, 200
     else:
         return {"errors": "Shop by that id does not exist"}, 404
@@ -200,23 +151,16 @@ def get_shop_by_id(shop_id):
 @login_required
 def get_my_shops():
     """returns current user shops"""
-
     if current_user.is_authenticated:
         shops = Shop.query.filter_by(owner_id=current_user.id).all()
         shopcopy = [shop.to_dict() for shop in shops]
-        def get_shop_images(id):
-            image = ShopImage.query.filter(ShopImage.shop_id == id).first()
-            if image:
-                    return image.to_dict()
         for shop in shopcopy:
-            shopimage = get_shop_images(shop['id'])
+            shopimage = ShopImage.query.filter(ShopImage.shop_id == shop['id']).first()
             if shopimage:
                 shop['ShopImage'] = shopimage
             else:
                 shop['ShopImage'] = 'shopImage not available'
         return shopcopy, 200
-
-
 
 @shop_routes.route('/current-followed')
 @login_required
@@ -253,9 +197,6 @@ def follow_shop(shop_id):
     db.session.commit()
     return shop.to_dict()
     # return {'errors': 'Not authenticated'}
-
-
-
 
 @shop_routes.route('/current-followed/unfollow/<int:shop_id>/', methods=['GET', 'POST'])
 def unfollow_shop(shop_id):

@@ -20,7 +20,6 @@ def all_purchases(shop_id):
         return_obj[purchase.id]["shopName"] = purchase.product.shops.name
         return_obj[purchase.id]["productImage"] = purchase.product.product_images[0].url
         return_obj[purchase.id]["shopImage"] = purchase.product.shops.shop_images[0].url
-
     return return_obj, 200
 
 @purchase_routes.route('/')
