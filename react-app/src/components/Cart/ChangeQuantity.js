@@ -1,6 +1,6 @@
 import React, {useContext} from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { fetchCart, editCartItemThunk } from "../../store/cart"
+import { editCartItemThunk } from "../../store/cart"
 import { CartContext } from "../../context/CartContext"
 
 export default function ChangeQuantity({cartId, quantity, productId, available}){

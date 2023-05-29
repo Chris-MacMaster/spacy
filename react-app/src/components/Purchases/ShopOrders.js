@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { fetchStorePuchases, fetchUserPuchases } from "../../store/purchase"
-import { useHistory, useParams } from 'react-router-dom'
+import { fetchStorePuchases } from "../../store/purchase"
+import { useParams } from 'react-router-dom'
 import LoadingIcon from "../LoadingIcon"
 import './Purchases.css'
 
@@ -10,12 +10,14 @@ export default function StoreOrders () {
     const dispatch = useDispatch()
     const params = useParams()
     const [hasLoaded, setHasLoaded] = useState(false)
-    const [totalCost, setTotalCost] = useState(0)
 
-    useEffect(async () => {
-        await dispatch(fetchStorePuchases(+params.shopId))
-        return setHasLoaded(true)
-    }, [dispatch])
+    useEffect(() => {
+        const loadData = async () => {
+            await dispatch(fetchStorePuchases(+params.shopId))
+            return setHasLoaded(true)
+        }
+        loadData()
+    }, [dispatch, params.shopId])
 
     if(!hasLoaded) return <LoadingIcon />
     if(!purchases) return

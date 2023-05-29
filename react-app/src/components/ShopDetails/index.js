@@ -2,7 +2,7 @@ import { NavLink, useParams, useHistory } from 'react-router-dom'
 import './ShopDetails.css'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchOneShop, fetchShops, followShop, followSingleShop, loadOneShop, unfollowShop, unfollowSingleShop } from '../../store/shops'
+import { fetchOneShop, fetchShops, followShop, followSingleShop, unfollowShop, unfollowSingleShop } from '../../store/shops'
 import ShopProductCard from '../ShopProductCard'
 import { authenticate } from '../../store/session'
 import LoadingIcon from '../LoadingIcon'
@@ -12,7 +12,7 @@ export default function ShopDetails () {
     const dispatch = useDispatch()
     const history = useHistory()
     const [ hasLoaded, setHasLoaded ] = useState(false)
-    const [isFollowed, setIsFollowed] = useState(false)
+    // const [isFollowed, setIsFollowed] = useState(false)
 
 
     useEffect(() => {

@@ -3,7 +3,6 @@ import './PostShopForm.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { createShop } from '../../store/shops'
 import { useHistory } from 'react-router-dom'
-import { urlChecka } from '../Cart/_helpers'
 
 export default function PostShopForm() {
     const history = useHistory()

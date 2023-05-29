@@ -17,7 +17,7 @@ const ReviewIndexItem = ({ review , product}) => {
     }
 
     if (!Object.values(review).length || !product) return null
-
+    console.log('REVIEWS', review)
     return (
         <div  className='reviewIndexItem'>
             <div className='review-card-div' >
@@ -37,7 +37,8 @@ const ReviewIndexItem = ({ review , product}) => {
                     </div>
 
                     <div className='rev-author-info'>
-                            <img id='detail-review-icon' src={review.User.profilePic ? review.User.profilePic : 'https://i.imgur.com/mMEwXsu.png'} alt='usericon' className='user-icon detail-icon'></img>
+                            <img id='detail-review-icon' src={review.User.profilePic ? review.User.profilePic
+                                : 'https://i.imgur.com/mMEwXsu.png'} alt='usericon' className='user-icon detail-icon'></img>
                             <p className='author-subdiv-names'>
                                 {review.User.firstName} {review.User.lastName} {review.createdAt.slice(0, -12)}
                             </p>

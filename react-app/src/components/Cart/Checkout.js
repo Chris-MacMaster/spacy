@@ -1,6 +1,6 @@
-import React, { useContext, useEffect } from "react"
+import React, { useContext } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { fetchCart, checkoutCartThunk } from "../../store/cart"
+import { checkoutCartThunk } from "../../store/cart"
 import { CartContext } from "../../context/CartContext"
 
 export default function CheckoutCart({setPurchased, cartItems}){

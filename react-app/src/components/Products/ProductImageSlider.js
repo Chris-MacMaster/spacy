@@ -15,7 +15,7 @@ export default function ProductImageSlider({ data, chosenImage, setChosenImage }
         setCurrent(chosenImage ? chosenImage
             : chosenImage === 0 ? 0 :
             current)
-    }, [chosenImage])
+    }, [chosenImage, current])
 
     if (!data || !data.length) return null
     return (

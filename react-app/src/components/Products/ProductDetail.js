@@ -36,16 +36,13 @@ const ProductDetail = () => {
         setShowMenu(true)
     }
 
-    useEffect(() => {
-        setInCart(numberInCart(user, cart, cartItems, product.id))
-    }, [cart, cartItems])
 
 
     useEffect(() => {
         if (!showMenu) return;
         const closeMenu = e => {
             if (!ulRef.current.contains(e.target)) {
-             setShowMenu(false);
+                setShowMenu(false);
             }
         }
         document.addEventListener('click', closeMenu)
@@ -67,6 +64,10 @@ const ProductDetail = () => {
     const reviewState = useSelector(state => state.reviews.productReviews)
     const shopFollow = useSelector(state => state.products?.singleProduct.Shop)
     const productReviews = Object.values(reviewState).sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt))
+    
+    useEffect(() => {
+        setInCart(numberInCart(user, cart, cartItems, product.id))
+    }, [cart, cartItems, product.id, user])
 
     useEffect(() => {
         const loadShop = async () => {

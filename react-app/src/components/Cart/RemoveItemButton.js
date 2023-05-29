@@ -1,6 +1,6 @@
-import React, { useContext, useEffect } from "react"
+import React, { useContext } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { fetchCart, removeCartItemThunk } from "../../store/cart"
+import { removeCartItemThunk } from "../../store/cart"
 import { CartContext } from "../../context/CartContext"
 
 export default function RemoveItemButton({cartId, productId}){

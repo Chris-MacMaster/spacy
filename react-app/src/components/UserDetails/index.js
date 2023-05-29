@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { authenticate } from '../../store/session'
 import { fetchShops, fetchFollowedShops } from '../../store/shops'
-import { fetchProducts } from '../../store/product'
 import LoadingIcon from '../LoadingIcon'
 import ShopCard from '../ShopCard'
 import { deleteShopRequest } from '../../store/shops'
@@ -18,7 +17,6 @@ export default function UserDetails() {
         const loadData = async () => {
             await dispatch(authenticate())
             await dispatch(fetchShops())
-            await dispatch(fetchProducts())
             await dispatch(fetchFollowedShops())
             return setHasLoaded(true)
         }
@@ -28,14 +26,11 @@ export default function UserDetails() {
     const user = useSelector(state => state.session.user)
     const shops = useSelector(state => state.shops.allShops)
     const followedShopState = useSelector(state => state.shops.followedShops)
-    const products = useSelector(state=> state.products.allProducts)
-
+    console.log('USER', user)
     if (!hasLoaded) return <LoadingIcon />
     if (!user || parseInt(user.id) !== parseInt(userId) || !shops) return null
 
-    const userShopsIds = shops ? Object.values(shops).filter(s=>parseInt(s.ownerId) === parseInt(user.id)).map(s=>s.id) : null
     const userShops = Object.values(shops).filter(s => parseInt(s.ownerId) === parseInt(userId))
-    const userProducts = Object.values(products).filter(p=> userShopsIds.includes(p.shopId))
 
     const followedShops = Object.values(followedShopState)
     const onClickCreateShop = () => history.push('/shops/new')
@@ -53,15 +48,15 @@ export default function UserDetails() {
             <div className='user-deets-user-shops'>
             {userShops && userShops.map((s,i) => (
                 <div className='user-deets-bullet'>
-                <img src='https://i.imgur.com/bdSjZyV.png' alt='' className='shop-icon'/>
-                <NavLink to={`/shops/${s.id}`} style={{ textDecoration: "none"}}>
-                <span className='user-deets-user-shop'>{s.name}</span>
+                <img src='https://i.imgur.com/bdSjZyV.png' alt='' className='shop-icon' key={`im${i}`}/>
+                <NavLink to={`/shops/${s.id}`} style={{ textDecoration: "none"}} key={`link${i}`}>
+                <span className='user-deets-user-shop' key={`shopname${i}`}>{s.name}</span>
                 </NavLink>
                 {user.id === parseInt(userId) ? (
                 <>
-                <button id='shop-delete-button' className='user-delete-product' onClick={e => deleteShop(s.id)}><i class="fa-solid fa-trash-can"/></button>
-                <button id='shop-edit-button' className='user-edit-product' onClick={e => history.push(`/shops/edit/${s.id}`)}>
-                    <i class="fa-solid fa-pen-to-square"/></button>
+                <button id='shop-delete-button' className='user-delete-product' onClick={e => deleteShop(s.id)} key={`shopdel${i}`}><i class="fa-solid fa-trash-can" key={`deletepen${i}`}/></button>
+                <button id='shop-edit-button' className='user-edit-product' onClick={e => history.push(`/shops/edit/${s.id}`)} key={`shopedit${i}`}>
+                    <i class="fa-solid fa-pen-to-square" key={`editpen${i}`}/></button>
                 </>
                 ) : null}
                 </div>
