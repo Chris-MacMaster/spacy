@@ -88,6 +88,7 @@ export const fetchUserProducts = () => async dispatch => {
 }
 
 export const makeProduct = (formData) => async dispatch => {
+    console.log('FORM DATA IN THUNK', formData)
     const response = await fetch('/api/products/', {
         method: 'POST',
         body: formData

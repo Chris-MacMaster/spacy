@@ -4,7 +4,7 @@ from flask_login import current_user, login_required
 import copy
 from datetime import datetime
 from app.forms import CreateProductForm
-
+import pickle
 from app.api.AWS_helpers import get_unique_filename, upload_file_to_s3, remove_file_from_s3
 
 product_routes = Blueprint('/products', __name__)
@@ -110,17 +110,33 @@ def get_all_products():
         form = CreateProductForm()
         form['csrf_token'].data = request.cookies['csrf_token']
         if not form.validate_on_submit():
+            print("")
+            print("")
+            print("")
+            print("")
+            print("")
+            print("")
+            print("")
+            print("FORM DATA", form.data)
+            print("")
+            print("")
+            print("")
+            print("")
+            print("")
+            print("")
             raise ValueError("Failed flask form validation")
         if form.validate_on_submit():
             image = form.data["image"] #aws
+            # print('load image', pickle.load(image))
+            # print('request files', request.files['image'])
             print('')
             print('')
             print('')
             print('')
             print('')
             print('')
-            print('images', image[0])
-            print('')
+            print('images', request.files)
+            # print('images type', type(image))
             print('')
             print('')
             print('')
@@ -139,20 +155,21 @@ def get_all_products():
             db.session.add(new_product)
             db.session.commit()
 
-            for file in image[0]:
+            for key in request.files:
+                file = request.files[key]
                 print("")
                 print("")
                 print("")
                 print("")
                 print("")
-                print("FILE", file)
+                print("FILE", file.filename)
                 print("")
                 print("")
                 print("")
                 print("")
                 print("")
 
-                file.filename = get_unique_filename(file.name)
+                file.filename = get_unique_filename(file.filename)
                 print('')
                 print('')
                 print('')
