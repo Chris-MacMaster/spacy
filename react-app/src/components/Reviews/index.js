@@ -17,7 +17,7 @@ const ReviewIndexItem = ({ review , product}) => {
     }
 
     if (!Object.values(review).length || !product) return null
-    console.log('REVIEWS', review)
+    // console.log('REVIEWS', review)
     return (
         <div  className='reviewIndexItem'>
             <div className='review-card-div' >

@@ -37,7 +37,9 @@ export default function TheCart({cart}){
       <p>Shop confidently knowing if something goes wrong, we've got your back!</p>
     </div>
 
-    {!Object.values(cart).length &&
+    { purchased && <div>Thank you for your purchase</div> }
+
+    {!Object.values(cart).length && !purchased &&
     <div className="empty-cart">
       <h2>Your Cart is empty</h2>
       <NavLink to="/" className="discover">

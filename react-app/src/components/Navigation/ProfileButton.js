@@ -68,7 +68,9 @@ function ProfileButton({ user }) {
               <span className="profile-drop-item" >
                 <i className="fa-solid fa-clipboard-list drop-down-icons"></i>
                 </span>
-              <span className="profile-drop-text">Purchases and reviews</span>
+              <NavLink to='/purchases'>
+              <span className="profile-drop-text">Purchases</span>
+              </NavLink>
             </div>
             {/* <div>
               <span className="profile-drop-item" >

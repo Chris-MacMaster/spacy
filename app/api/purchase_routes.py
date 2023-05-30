@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request, session
 from flask_login import current_user, login_required
-from app.models import Purchase, Product, db
+from app.models import Purchase, Product, db, ProductReview
 from app.forms import PurchaseForm
 purchase_routes = Blueprint('/purchases', __name__)
 
@@ -18,6 +18,7 @@ def all_purchases(shop_id):
         return_obj[purchase.id]["quantity"] = purchase.quantity
         return_obj[purchase.id]["price"] = purchase.product.price
         return_obj[purchase.id]["shopName"] = purchase.product.shops.name
+        return_obj[purchase.id]["shopId"] = purchase.product.shops.id
         return_obj[purchase.id]["productImage"] = purchase.product.product_images[0].url
         return_obj[purchase.id]["shopImage"] = purchase.product.shops.shop_images[0].url
     return return_obj, 200
@@ -36,8 +37,20 @@ def purchases():
         return_obj[purchase.id]["quantity"] = purchase.quantity
         return_obj[purchase.id]["price"] = purchase.product.price
         return_obj[purchase.id]["shopName"] = purchase.product.shops.name
+        return_obj[purchase.id]["shopId"] = purchase.product.shops.id
         return_obj[purchase.id]["productImage"] = purchase.product.product_images[0].url
         return_obj[purchase.id]["shopImage"] = purchase.product.shops.shop_images[0].url
+
+        review = ProductReview.query.filter((ProductReview.user_id == current_user.id)\
+                                            & (ProductReview.product_id == purchase.product.id)).first()
+        if review:
+            pass
+            return_obj[purchase.id]["review"] = review.review
+            return_obj[purchase.id]["stars"] = review.stars
+            return_obj[purchase.id]["reviewId"] = review.id
+
+        print(review)
+
     return return_obj, 200
 
 @purchase_routes.route('/', methods=['POST'])

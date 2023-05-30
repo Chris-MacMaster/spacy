@@ -127,6 +127,7 @@
     border: none;
     margin: .2rem 0rem min(3vmin, 1.5rem) 0rem ;
     transition: .2s ease-in-out;
+    padding-left: .5rem;
 }
 .cart-quantity:hover {
     cursor: pointer;

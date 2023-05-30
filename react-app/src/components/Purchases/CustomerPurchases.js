@@ -1,14 +1,19 @@
 import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { fetchUserPuchases } from "../../store/purchase"
+import { NavLink, useHistory } from "react-router-dom/"
 import LoadingIcon from "../LoadingIcon"
 import './Purchases.css'
+import AddToCart from "../Cart/AddToCart"
+import { deleteReview } from '../../store/review';
+
 
 export default function UserPurchases(){
-    const purchases = useSelector(state => state.purchases.userPurchases)
     const dispatch = useDispatch()
+    const history = useHistory()
+    const [purchases, cart, user] = useSelector(state => [state.purchases.userPurchases, state.cart, state.session.user])
     const [hasLoaded, setHasLoaded] = useState(false)
-    // const [totalCost, setTotalCost] = useState(0)
+
     useEffect(() => {
         const loadData = async () => {
             await dispatch(fetchUserPuchases())
@@ -17,41 +22,83 @@ export default function UserPurchases(){
         loadData()
     }, [dispatch])
 
+    const toReview = (productId) => history.push(`/product-reviews/${productId}/new`)
+    const toEditReview = (reviewId) => history.push(`/product-reviews/${reviewId}/edit`)
+
+    const handleDeleteClick = async (e, reviewId) => {
+        e.preventDefault()
+        await dispatch(deleteReview(reviewId))
+        await dispatch(fetchUserPuchases())
+    }
+
+
     if(!hasLoaded) return <LoadingIcon />
     let sortedPurchases = groupItemsBySellDateThenStore(purchases)
-    // console.log(sortedPurchases)
     return (
     <div className="purchase-div">
         <h2>Purchases:</h2>
+        {console.log(sortedPurchases)}
         {purchases && Object.keys(sortedPurchases).map(el => (
             <div className="purchase-date-div">
-                <p className="purchase-date">{el.slice(0,25)}</p>
 
                 {Object.values(sortedPurchases[el]).map(item => (
                     <div className="purchase-shop-div">
-                        <div className="purchase-shop-name"> {item[0].shopName}</div>
-                        <div className="two">Product</div>
-                        <div className="three">Qty </div>
-                        <div className="four">Price</div>
-                        <div className="five">Total</div>
-                        {/* <div className="item-map-div"> */}
+                        <div className="purchase-shop-wrapper">
+                        <div className="name-and-cost">
+                            <span className="purchase-shop-name">Purchased from <NavLink to={`/shops/${item[0].shopId}`}>{item[0].shopName}</NavLink> on {el.slice(0,25)}</span>
+                            <span className="total-cost">${item.reduce((acc, el) => acc + (el.quantity * el.price), 0).toFixed(2)}</span>
+                        </div>
+                        <div className="follow-this-shop">
+                            Follow this shop for updates and special offers
+                        </div>
+                        </div>
+                        <div className="item-map-div">
                             {item.map(el => (
                                 // <div className="purchase-item-div">
-                                <>
-                                <div className="purchase-product-img-div one"><img className="purchase-product-img one" src={el.productImage} alt={`ele${el.productName}`}/></div>
-                                <div className="two">{el.productName}</div>
-                                <div className="three">{el.quantity}</div>
-                                <div className="four">{el.price}</div>
-                                <div className="five">${(el.price * el.quantity).toFixed(2)}</div>
-                                </>
-                            ))}
+                                <div className="item-container">
+                                     <div className="purchase-product-img-div one"><img className="purchase-product-img one" src={el.productImage} alt={`ele${el.productName}`}/></div>
+                                    <div className="item-information">
+                                    <div className="product-name-div">
+                                        <NavLink className="product-name-div" to={`/products/${el.productId}`}>
+                                        {el.productName}
+                                        </NavLink>
+                                    </div>
 
-                        <div className="five bld">${item.reduce((acc, el) => {
-                                return acc + (el.quantity * el.price)
-                             }, 0).toFixed(2)}
+                                    { el.review ?
+                                        <div className="purchase-review">
+                                            <div className='rev-stars purchase-stars'>
+                                            <span>
+                                            {Array(5).fill(1).map((s, i) => (
+                                                i < el.stars ? (
+                                                    <i className="fa-solid fa-star gold-star  review-index-stars" key={`star${i}`}></i>
+                                                ) : (
+                                                    <i className="fa-solid fa-star blank-star review-index-stars" key={`star${i}`}></i>
+                                                )
+                                            ))}
+                                            </span>
+                                            </div>
+                                            <div className="the-review">{el.review}</div>
+                                            <button className="purchase-edit-review" onClick={() => toEditReview(el.reviewId)}>Edit review</button>
+                                            <button className="purchase-edit-review" onClick={(e) => handleDeleteClick(e, el.reviewId)}>Delete review</button>
+                                        </div>
+                                        :
+                                        <div className="review-item-button-div">
+                                        <button className="review-this-item" onClick={() => toReview(el.productId)}>
+                                        Review this item
+                                        </button>
+                                        </div>}
+
+                                    <div className="flx">
+
+
+                                        <AddToCart className="buy-it-again" cart={cart} product={{id: el.productId}} quantity={1} user={user} txt="Buy this again"/>
+                                        <div className="el-price">${el.price}</div>
+                                    </div>
+                                    </div>
+                                </div>
+                            ))}
                         </div>
                         </div>
-                    // </div>
                 ))}
             </div>
         ))}

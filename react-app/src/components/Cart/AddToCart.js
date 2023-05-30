@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux"
 import { addCartItemThunk } from "../../store/cart"
 import { CartContext } from "../../context/CartContext"
 
-export default function AddToCart({cart, product, user, quantity}){
+export default function AddToCart({cart, product, user, quantity, txt}){
     const dispatch = useDispatch()
     const [btnEnabled, setBtnEndabled] = useState(false)
 
@@ -18,7 +18,8 @@ export default function AddToCart({cart, product, user, quantity}){
             return
         }
         let theCart = productCart(Object.values(cart.products))
-        if(theCart?.quantity === product.available) {
+
+        if(theCart?.quantity === product.available && !txt) {
             return alert("Every available item already in cart.")
         }
         setBtnEndabled(true)
@@ -29,7 +30,7 @@ export default function AddToCart({cart, product, user, quantity}){
     return (
         <div className="add-to-cart-div">
             <button onClick={addItem} className='add-to-cart-button' disabled={btnEnabled}>
-                Add to cart
+                {txt ? txt : 'Add to cart'}
             </button>
         </div>
     )

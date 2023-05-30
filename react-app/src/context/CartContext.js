@@ -20,12 +20,13 @@ export const CartProvider = ({ children }) => {
   }, [cartItems]);
 
   const addToCart = (item, quantity) => {
+    console.log(item)
     quantity = +quantity
     const newCart = {...cartItems}
     if (!newCart[item.id]){
         item.quantity = quantity
-        item.shopName = item.Shop.name
-        item.productImage = item.ProductImages[0].url
+        item.shopName = item.Shop?.name
+        item.productImage = item?.ProductImages[0]?.url
         item.productId = item.id
         newCart[item.id] = item
         setCartItems(newCart);

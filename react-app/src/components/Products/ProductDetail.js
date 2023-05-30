@@ -36,8 +36,6 @@ const ProductDetail = () => {
         setShowMenu(true)
     }
 
-
-
     useEffect(() => {
         if (!showMenu) return;
         const closeMenu = e => {
@@ -64,7 +62,7 @@ const ProductDetail = () => {
     const reviewState = useSelector(state => state.reviews.productReviews)
     const shopFollow = useSelector(state => state.products?.singleProduct.Shop)
     const productReviews = Object.values(reviewState).sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt))
-    
+
     useEffect(() => {
         setInCart(numberInCart(user, cart, cartItems, product.id))
     }, [cart, cartItems, product.id, user])
@@ -206,13 +204,6 @@ const ProductDetail = () => {
 
                     <div className='purchase-buttons'>
                         {product.available > 0 && <span className='quantity'>Quantity</span>}
-                        {/* <input className='cart-quantity' type='number' min={1} max={product.available} value={quantity} onChange={e => setQuantity(e.target.value)}></input>
-                        {product.available > 0 ? <AddToCart className='button add-cart-button' product={product} cart={cart} user={user}/>
-                        :
-                        <button className='button cant-add-cart-button'>Out of stock</button>
-                        } */}
-                        {/* {product.available > 0 &&
-                        <input className='cart-quantity' type='number' min={1} max={product.available} value={quantity} onChange={e => setQuantity(e.target.value)}></input>} */}
                         {product.available > 0 && <select value={quantity} onChange={(e) => setQuantity(e.target.value)}
                             className="cart-quantity">
                             {options.map(i => (
