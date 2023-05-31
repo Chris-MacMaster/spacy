@@ -97,15 +97,39 @@ def get_all_products():
         form = CreateProductForm()
         form['csrf_token'].data = request.cookies['csrf_token']
         if not form.validate_on_submit():
+            print("")
+            print("")
+            print("")
+            print("")
+            print("")
+            print("")
+            print("")
+            print("FORM DATA", form.data)
+            print("")
+            print("")
+            print("")
+            print("")
+            print("")
+            print("")
             raise ValueError("Failed flask form validation")
         if form.validate_on_submit():
             image = form.data["image"] #aws
-            image.filename = get_unique_filename(image.filename)
-            upload = upload_file_to_s3(image)
-            img_url = None
-            if 'url' in upload:
-                img_url = upload['url']
-
+            # print('load image', pickle.load(image))
+            # print('request files', request.files['image'])
+            print('')
+            print('')
+            print('')
+            print('')
+            print('')
+            print('')
+            print('images', request.files)
+            # print('images type', type(image))
+            print('')
+            print('')
+            print('')
+            print('')
+            print('')
+            #create product object then iterate through images and do aws stuff
             new_product = Product(
                 shop_id = form.data["shop_id"],
                 name = form.data["name"],
@@ -117,14 +141,54 @@ def get_all_products():
             )
             db.session.add(new_product)
             db.session.commit()
-            # adding an associated image for the newly created product
-            new_product_list = Product.query.all()
-            new_product = new_product_list[-1]
-            new_product_img = ProductImage(
-                # url = form.data["url"],
-                url = img_url, #aws
-                product_id = new_product.id,
-            )
-            db.session.add(new_product_img)
+
+            for key in request.files:
+                file = request.files[key]
+                print("")
+                print("")
+                print("")
+                print("")
+                print("")
+                print("FILE", file.filename)
+                print("")
+                print("")
+                print("")
+                print("")
+                print("")
+
+                file.filename = get_unique_filename(file.filename)
+                print('')
+                print('')
+                print('')
+                print('')
+                print('')
+                print('')
+                print('')
+                print('')
+                print('')
+                print('IMAGE FILENAME', file.filename)
+                print('')
+                print('')
+                print('')
+                print('')
+                print('')
+                print('')
+                print('')
+                print('')
+                upload = upload_file_to_s3(file)
+                img_url = None
+                if 'url' in upload:
+                    img_url = upload['url']
+
+                # adding an associated image for the newly created product
+                new_product_list = Product.query.all()
+                new_product = new_product_list[-1]
+                new_product_img = ProductImage(
+                    # url = form.data["url"],
+                    url = img_url, #aws
+                    product_id = new_product.id,
+                )
+                db.session.add(new_product_img)
+
             db.session.commit()
             return new_product.to_dict(), 201

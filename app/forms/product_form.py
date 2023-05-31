@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, IntegerField, BooleanField, URLField
-from wtforms.validators import DataRequired, URL
+from wtforms import StringField, IntegerField, BooleanField, URLField, FieldList, MultipleFileField
+from wtforms.validators import DataRequired, URL, Length
 from app.models import  User
 
 from flask_wtf.file import FileField, FileAllowed, FileRequired
@@ -20,5 +20,8 @@ class CreateProductForm(FlaskForm):
     
     # url = StringField('url')
     #URL()
-    image = FileField("image", validators=[FileRequired(), FileAllowed(list(ALLOWED_EXTENSIONS))])
+    # image = FileField("image", validators=[FileRequired(), FileAllowed(list(ALLOWED_EXTENSIONS))])
+    # image = MultipleFileField("image", validators=[FileRequired(), FileAllowed(list(ALLOWED_EXTENSIONS))])
+    image = MultipleFileField("image")
+    # image = FieldList(FileField('image', validators=[FileRequired(), FileAllowed(list(ALLOWED_EXTENSIONS)), Length(min=1, max=50)]), min_entries=1)
 

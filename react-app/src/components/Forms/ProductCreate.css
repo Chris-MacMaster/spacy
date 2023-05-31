@@ -60,3 +60,11 @@
     outline: 2px aqua solid;
     outline-offset: 2px;
 }
+
+
+
+
+.dropzone {
+    background-color: gray;
+    height: 7rem;
+}

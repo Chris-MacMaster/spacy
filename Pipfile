@@ -30,6 +30,7 @@ pycodestyle = "*"
 pylint = "*"
 rope = "*"
 boto3 = "*"
+pickle = "*"
 
 [dev-packages]
 
