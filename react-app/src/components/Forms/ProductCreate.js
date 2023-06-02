@@ -59,10 +59,8 @@ export default function ProductCreateForm() {
         }
         // formData.append("image", url); //aws
         Object.values(url).forEach((file, index) => {
-            console.log('looping through the images')
             formData.append(`file${index}`, file);
           });
-        console.log('url frontend', url)
         // console.log('images frontend', formData['image'])
 
         dispatch(makeProduct(formData))
@@ -228,7 +226,7 @@ export default function ProductCreateForm() {
                                 * {errors.category}
                             </div>
                         )}
-                                </div>
+                        </div>
 
 
                         <div className='create-product-label-side'>
@@ -259,7 +257,7 @@ export default function ProductCreateForm() {
                 </div>
 
 
-                    </div>
+                    <div>
                         <div className='product-img1-div'>
                             <div >
                                 <label className='product-label q-text' >
@@ -293,6 +291,7 @@ export default function ProductCreateForm() {
                                     * {errors.urlCheck}
                                 </div>
                             )}
+                    </div>
 
 
             <input onClick={handleSubmit} className='submit-button form-create-button favorite-shop submit-create-shop create-product-button' type="submit" value="Create Product" />
