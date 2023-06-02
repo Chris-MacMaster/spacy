@@ -402,6 +402,18 @@
     }
 }
 
+.imperial-credit {
+    width: 2rem;
+    aspect-ratio: 1;
+    object-fit: cover;
+}
+
+.local-currency {
+    height: 2rem;
+}
+.thank-you {
+    justify-self: center;
+}
 @media only screen and (max-width: 650px){
     .purchase-protection{
         flex-direction: column;

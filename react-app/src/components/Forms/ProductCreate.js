@@ -65,15 +65,7 @@ export default function ProductCreateForm() {
 
         dispatch(makeProduct(formData))
         dispatch(fetchShops())
-        //COMMENT THIS BACK IN
-        //COMMENT THIS BACK IN
-        //COMMENT THIS BACK IN
-        //COMMENT THIS BACK IN
-        //COMMENT THIS BACK IN
-        //COMMENT THIS BACK IN
-        //COMMENT THIS BACK IN
-        //COMMENT THIS BACK IN
-        // history.push(`/shops/${shopId}`)
+        history.push(`/shops/${shopId}`)
     };
 
     const handleDragOver = (e) => {
