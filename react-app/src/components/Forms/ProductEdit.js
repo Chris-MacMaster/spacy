@@ -250,7 +250,7 @@ const ProductEditForm = () => {
                     </div>
 
 
-            <input onClick={handleSubmit} className='submit-button form-create-button favorite-shop submit-create-shop create-product-button' type="submit" value="Create Product" />
+            <input onClick={handleSubmit} className='submit-button form-create-button favorite-shop submit-create-shop create-product-button' type="submit" value="Update Product" />
             </form>
             </div>
 
