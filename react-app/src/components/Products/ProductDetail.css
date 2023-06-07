@@ -143,22 +143,9 @@
     color: #000;
     font-weight: bold;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.slider-images {
+    margin-top: 2vmin;
+}
 
 
 
@@ -217,8 +204,6 @@
     margin-top: min(2vmin, .5rem);
 }
 
-
-
 .review-num-title {
     font-family: 'Marcellus', serif;
 }
@@ -245,7 +230,6 @@
 }
 
 .num-product-in-cart {
-/* background-color: red; */
 color: green;
 margin-bottom: .75rem;
 height: 1rem;
