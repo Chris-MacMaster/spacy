@@ -74,6 +74,14 @@ button {
 }
 .profile-drop-item {
     margin-right: 2vmin;
+    background-color: green;
+    height: 3vmin;
+    aspect-ratio: 1;
+    display: flex;
+}
+.profile-drop-div{
+    background-color: blue;
+    display: flex;
 }
 .signout-button {
     cursor: pointer;
@@ -82,4 +90,21 @@ button {
 
 .profileburger:hover{
     cursor: pointer;
+}
+
+.inside-div {
+    display: flex;
+    align-items: center;
+    /* justify-content: space-between; */
+    color: black;
+}
+.icon-span {
+    /* background-color: green; */
+    /* color: black; */
+    height: 3vmin;
+    aspect-ratio: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: .5rem;
 }
