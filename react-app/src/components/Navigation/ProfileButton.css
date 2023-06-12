@@ -22,7 +22,22 @@ button {
     line-height: 4vmin;
     font-family: 'Mulish', sans-serif;
     color: black;
+    left: 50%;
+    transform: translateX(-50%);
+    width: max-content;
+    top: 30px;
 }
+.profile-dropdown::before{
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 10px solid transparent; /* Adjust border size as needed */
+    border-right: 10px solid transparent; /* Adjust border size as needed */
+    border-bottom: 10px solid white; /* Adjust border size and color as needed */
+  }
+
 .subtext {
     line-height: 1.7vmin;
     font-size: 1.5vmin;
