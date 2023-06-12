@@ -17,8 +17,8 @@ input[type="radio" i] {
     appearance: auto;
     box-sizing: border-box;
     margin: 1vmin;
-    padding: initial;
-    border: initial;
-    transform: scale(1.7);
+    transform: scale(2);
+    transition: .2s all linear;
+    filter: grayscale(1)
 }
 
