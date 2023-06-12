@@ -101,7 +101,7 @@
     border-radius: 10%;
 }
 .names-are-hard{
-    margin-right: 1rem;
+    /* margin-right: 1rem; */
 }
 .remove-from-cart-button{
     padding: 1vmin 1vmin;
@@ -307,7 +307,7 @@
 
 .single-item-cost {
     text-align: end;
-    /* width: 7rem; */
+    width: max-content;
     color: grey;
     font-size: .85rem;
 }
@@ -351,6 +351,7 @@
     }
     .single-item-cost {
         margin: 0rem;
+        /* width: auto; */
     }
     .checkout-div {
         width: auto;
