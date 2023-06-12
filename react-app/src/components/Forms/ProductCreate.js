@@ -57,46 +57,18 @@ export default function ProductCreateForm() {
         for (let key in newProduct) {
             formData.append(`${key}`, newProduct[key])
         }
-        // formData.append("image", url); //aws
-        Object.values(url).forEach((file, index) => {
-            formData.append(`file${index}`, file);
-          });
-        // console.log('images frontend', formData['image'])
+        formData.append("image", url); //aws
 
         dispatch(makeProduct(formData))
         dispatch(fetchShops())
         history.push(`/shops/${shopId}`)
     };
 
-    const handleDragOver = (e) => {
-        e.preventDefault()
-    }
-    // const images = []
-    const handleDrop = (e) => {
-        e.preventDefault()
-        console.log('event data transfer', e.dataTransfer.files)
-        console.log('data transfer sata type', typeof(e.dataTransfer.files))
-        // images.push(e.dataTransfer.files[e.dataTransfer.files.length - 1])
-        // console.log('all images',images)
-        // console.log('file list', e.dataTransfer.files.FileList)
-        setUrl(e.dataTransfer.files)
-        console.log('url type', typeof(url))
-        console.log('HELLO FROM DROP', url)
-    }
-    const handleFile = (e) => {
-        e.preventDefault()
-        setUrl(e.target.files[0])
-        console.log('URL', url)
-    }
+
     const handleCheck = (e) => {
         freeShipping === true ? setFreeShipping(false) : setFreeShipping(true)
     }
 
-    // if (url) {
-    //     return (
-    //         <h1>hello</h1>
-    //     )
-    // }
 
     return (
         <div className='create-product-page'>
@@ -218,7 +190,7 @@ export default function ProductCreateForm() {
                                 * {errors.category}
                             </div>
                         )}
-                        </div>
+                                </div>
 
 
                         <div className='create-product-label-side'>
@@ -248,41 +220,12 @@ export default function ProductCreateForm() {
                 </div>
                 </div>
 
-
-                    <div>
-                        <div className='product-img1-div'>
-                            <div >
-                                <label className='product-label q-text' >
-                                    Image URL
-                                </label>
-                                <div className='cp-grey-text sub-q-text create-shop-grey'>
-                                    Provide a url, pictures are necessary! Nobody wants to buy something sight unseen!
-                                </div>
-                            </div>
-                            <div className='dropzone'
-                                    draggable={true}
-                                    // draggable='true'
-                                    onDragOver={handleDragOver}
-                                    onDrop={handleDrop}
-                            >
-                            <input className='product-input input-field' type="file"
-                                    accept = 'image/*'
-                                    // value={image}
-                                    multiple={true}
-                                    onChange={handleFile}
-                                    placeholder='URL' />
-                            </div>
-                            {hasSubmitted && errors.url1 && (
-                                <div className='error'>
-                                    * {errors.url1}
-                                </div>
-                            )}
+                <div className='create-product-input-side'>                    <input className='product-input input-field' type="file" accept = 'image/*' onChange={(e) => setUrl(e.target.files[0])} placeholder='URL' />
+            {hasSubmitted && errors.url1 && (
+                        <div className='error'>
+                            * {errors.url1}
                         </div>
-                            {hasSubmitted && errors.urlCheck && (
-                                <div className='error'>
-                                    * {errors.urlCheck}
-                                </div>
-                            )}
+                    )}
                     </div>
 
 
