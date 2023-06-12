@@ -49,15 +49,7 @@ button {
     font-size: 2vmin;
     color: black;
 }
-.popout-profile-header > i,
-.profile-drop-item,
-.profile-drop-text,
-.signout-button,
-.drop-down-user-name,
-.subtext,
-.drop-down-icons {
-    color: black;
-}
+
 .profile-drop-item {
     margin-right: 2vmin;
 }
@@ -68,4 +60,15 @@ button {
 
 .profileburger:hover{
     cursor: pointer;
+}
+.dropdown-row,
+.drop-down-icons,
+.subtext {
+    color: black;
+}
+.dropdown-row {
+    transition: .2s ease-in-out;
+}
+.dropdown-row:hover {
+    background-color: #b4b4b4;
 }
