@@ -84,9 +84,9 @@
     margin-left: 1vmin;
 }
 .shop-title-and-image{
-    margin-top: 1rem;
+    margin-top: min(2vmin, 1rem);
     display: flex;
-    height: 2.5rem;
+    height: min(3vmin, 2.5rem);
     align-items: center;
 }
 .shop-title-and-image > h3 {
@@ -100,16 +100,13 @@
     border: 1px solid black;
     border-radius: 10%;
 }
-.names-are-hard{
-    /* margin-right: 1rem; */
-}
+
 .remove-from-cart-button{
     padding: 1vmin 1vmin;
     font-weight: bolder;
-    border-radius: 50%;
+    border-radius: 20%;
     margin: 0 2vmin;
 }
-
 .remove-from-cart-button:hover, .remove-from-cart-button:focus {
     cursor: pointer;
     animation: loading .33s linear forwards;
