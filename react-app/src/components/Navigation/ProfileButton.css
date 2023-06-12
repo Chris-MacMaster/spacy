@@ -2,6 +2,7 @@ button {
     background-color: white;
     border: none;
     justify-content: center;
+    padding: 0;
 }
 .fa-user-circle {
     font-size: 2.5vmin;
@@ -21,6 +22,7 @@ button {
     padding: 3vmin;
     line-height: 4vmin;
     font-family: 'Mulish', sans-serif;
+    color: black;
 }
 .subtext {
     line-height: 1.7vmin;
@@ -36,12 +38,25 @@ button {
     align-items: center;
     line-height: .2rem;
 }
+.drop-down-user-name {
+    margin: 1vmin 0;
+}
 .popout-profile-header > i,
 .profile-drop-item,
 .profile-drop-text,
 .signout-button,
 .drop-down-user-name {
     font-size: 2vmin;
+    color: black;
+}
+.popout-profile-header > i,
+.profile-drop-item,
+.profile-drop-text,
+.signout-button,
+.drop-down-user-name,
+.subtext,
+.drop-down-icons {
+    color: black;
 }
 .profile-drop-item {
     margin-right: 2vmin;
@@ -54,5 +69,3 @@ button {
 .profileburger:hover{
     cursor: pointer;
 }
-
-
