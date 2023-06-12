@@ -346,7 +346,7 @@
 
 .single-item-cost {
     text-align: end;
-    /* width: 7rem; */
+    width: 6rem;
     color: grey;
     font-size: .85rem;
 }
@@ -396,6 +396,7 @@
     }
     .single-item-cost {
         margin: 0rem;
+        width: auto;
     }
     .checkout-div {
         width: auto;
