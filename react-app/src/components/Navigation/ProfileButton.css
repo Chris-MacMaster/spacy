@@ -11,16 +11,29 @@ button {
     display: none;
 }
 .profile-dropdown {
-    position: fixed;
+    position: absolute;
+    display: block;
     border-radius: 2vmin;
     border: solid slategrey 1px;
     box-shadow: 0rem 0rem min(3vmin, 1rem) rgb(110, 110, 110);
-    top: 15vmin;
-    right: 10vmin;
     background: white;
-    padding: 3vmin;
+    padding: 1.5vmin;
     line-height: 4vmin;
     font-family: 'Mulish', sans-serif;
+    width: max-content;
+    left: 50%;
+    top: 35px;
+    transform: translateX(-50%);
+}
+.profile-dropdown::before{
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: clamp(1rem, 1.5vmin, 1.5rem) solid transparent;
+  border-right: clamp(1rem, 1.5vmin, 1.5rem) solid transparent;
+  border-bottom: clamp(1rem, 1.5vmin, 1.5rem) solid white;
 }
 .subtext {
     line-height: 1.7vmin;
@@ -54,5 +67,3 @@ button {
 .profileburger:hover{
     cursor: pointer;
 }
-
-

@@ -11,7 +11,6 @@ function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
-  //when user logs out, redirected to homepage
   const history = useHistory();
   const openMenu = () => {
     if (showMenu) return;
@@ -37,7 +36,6 @@ function ProfileButton({ user }) {
     e.preventDefault();
     dispatch(sessionActions.logout());
     closeMenu();
-    //when user logs out, redirected to homepage
     history.push('/')
   };
 

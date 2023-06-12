@@ -163,6 +163,9 @@ input:focus, text:focus .header-search {
 div.navigation:hover {
     cursor: pointer;
 }
+.navigation {
+    position: relative;
+}
 .number-in-cart {
     position: absolute;
     background-color: #faa077;
@@ -182,7 +185,7 @@ div.navigation:hover {
 }
 .fa-cart-shopping.header-icons,
 .number-in-cart {
-    margin-right: 2vmin;
+    /* margin-right: 2vmin; */
 }
 .cart-total {
     z-index: 101;

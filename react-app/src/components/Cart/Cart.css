@@ -383,3 +383,10 @@
         padding: 0 .75rem;
     }
 }
+
+@media only screen and (max-width: 500px){
+    .cart-wrapper-div{
+        width: 425px;
+        margin: 1.25rem;
+    }
+}
