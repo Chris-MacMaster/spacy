@@ -8,6 +8,9 @@ button {
     font-size: 2.5vmin;
     color: #A0A7B2
 }
+.fa-user-circle:hover {
+    color: black;
+}
 .hidden {
     display: none;
 }
@@ -82,6 +85,8 @@ button {
 }
 .profileburger:hover{
     cursor: pointer;
+    /* background-color: rgba(230, 36, 36, 0.5);
+    border-radius: 50%; */
 }
 
 .inside-div {
@@ -124,8 +129,10 @@ button {
 .login-signup:hover {
 }
 
+.modal-button {
+    padding: 0 1rem;
+}
 .modal-button:hover {
-
     background-color: rgba(100, 100, 100, .5);
 }
 .modal-button > button {

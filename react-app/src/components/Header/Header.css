@@ -135,6 +135,7 @@ input:focus, text:focus .header-search {
     left:50%;
     transform: translate(-50%);
     font-size: 1rem;
+    color:black;
 }
 .shop-manager:hover .header-tip {
     visibility: visible;
@@ -160,11 +161,13 @@ input:focus, text:focus .header-search {
     transform: rotate(0deg);
     border-radius: 4px 4px 0 0;
 }
-div.navigation:hover {
-    cursor: pointer;
-}
+
 .navigation {
     position: relative;
+}
+
+div.navigation:hover {
+    cursor: pointer;
 }
 .number-in-cart {
     position: absolute;
