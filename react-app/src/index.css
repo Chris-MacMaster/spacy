@@ -22,3 +22,9 @@ input[type="radio" i] {
     filter: grayscale(1)
 }
 
+h2 {
+    font-size: min(4vmin, 1.8rem);
+}
+h4 {
+    font-size: min(2.5vmin, 1.5rem);
+}
