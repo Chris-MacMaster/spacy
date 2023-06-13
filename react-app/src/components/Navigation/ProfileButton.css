@@ -18,7 +18,7 @@ button {
     border: solid slategrey 1px;
     box-shadow: 0rem 0rem min(3vmin, 1rem) rgb(110, 110, 110);
     background: white;
-    padding: 1.5vmin;
+    /* padding: 1.5vmin; */
     line-height: 4vmin;
     font-family: 'Mulish', sans-serif;
     color: black;
@@ -26,6 +26,7 @@ button {
     transform: translateX(-50%);
     width: max-content;
     top: 30px;
+    padding: 1.5vmin 0;
 }
 .profile-dropdown::before{
     content: '';
@@ -63,15 +64,7 @@ button {
     font-size: 2vmin;
     color: black;
 }
-.popout-profile-header > i,
-.profile-drop-item,
-.profile-drop-text,
-.signout-button,
-.drop-down-user-name,
-.subtext,
-.drop-down-icons {
-    color: black;
-}
+
 .profile-drop-item {
     margin-right: 2vmin;
     background-color: green;
@@ -87,7 +80,6 @@ button {
     cursor: pointer;
     font-family: 'Mulish', sans-serif;
 }
-
 .profileburger:hover{
     cursor: pointer;
 }
@@ -97,6 +89,10 @@ button {
     align-items: center;
     /* justify-content: space-between; */
     color: black;
+    padding: 0 2vmin;
+}
+.inside-div:hover{
+    background-color: rgba(100, 100, 100, .5);
 }
 .icon-span {
     /* background-color: green; */
@@ -107,4 +103,31 @@ button {
     justify-content: center;
     align-items: center;
     margin-right: .5rem;
+}
+.dropdown-row,
+.drop-down-icons,
+.subtext {
+    color: black;
+}
+.drop-down-icons {
+    /* width: 2vmin; */
+}
+.dropdown-row {
+    transition: .2s ease-in-out;
+}
+.dropdown-row:hover {
+    background-color: #b4b4b4;
+}
+.login-signup {
+    /* padding: 0vmin 1vmin; */
+}
+.login-signup:hover {
+}
+
+.modal-button:hover {
+
+    background-color: rgba(100, 100, 100, .5);
+}
+.modal-button > button {
+    background: none;
 }
