@@ -307,6 +307,7 @@
 }
 .cost-times-quantity {
     position: relative;
+    width: 4.5rem;
 }
 .single-item-cost {
     text-align: end;
