@@ -244,6 +244,19 @@ export default function ProductCreateForm() {
                     )}
                     </div>
 
+                    <div className='dropzone'
+                                    draggable={true}
+                                    // draggable='true'
+                                    onDragOver={handleDragOver}
+                                    onDrop={handleDrop}
+                            >
+                            <input className='product-input input-field' type="file"
+                                    accept = 'image/*'
+                                    // value={image}
+                                    multiple={true}
+                                    onChange={handleFile}
+                                    placeholder='URL' />
+                            </div>
 
             <input onClick={handleSubmit} className='submit-button form-create-button favorite-shop submit-create-shop create-product-button' type="submit" value="Create Product" />
             </form>
