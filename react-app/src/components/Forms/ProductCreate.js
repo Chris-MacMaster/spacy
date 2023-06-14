@@ -64,6 +64,22 @@ export default function ProductCreateForm() {
         history.push(`/shops/${shopId}`)
     };
 
+    const handleDrop = (e) => {
+        e.preventDefault()
+        console.log('event data transfer', e.dataTransfer.files)
+        console.log('data transfer sata type', typeof(e.dataTransfer.files))
+        // images.push(e.dataTransfer.files[e.dataTransfer.files.length - 1])
+        // console.log('all images',images)
+        // console.log('file list', e.dataTransfer.files.FileList)
+        setUrl(e.dataTransfer.files)
+        console.log('url type', typeof(url))
+        console.log('HELLO FROM DROP', url)
+    }
+    const handleFile = (e) => {
+        e.preventDefault()
+        setUrl(e.target.files[0])
+        console.log('URL', url)
+    }
 
     const handleCheck = (e) => {
         freeShipping === true ? setFreeShipping(false) : setFreeShipping(true)
