@@ -65,7 +65,7 @@ function ProfileButton({ user }) {
                 </NavLink>
               </div>
               <div>
-                <NavLink to='/'>
+                <NavLink to='/purchases'>
                   <div className="inside-div">
                     <span className="icon-span">
                       <i className="fa-solid fa-clipboard-list drop-down-icons" />
@@ -77,7 +77,7 @@ function ProfileButton({ user }) {
                 </NavLink>
               </div>
               <div>
-                <NavLink to='/'>
+                <NavLink to={`/users/${user.id}`}>
                   <div className="inside-div">
                     <span className="icon-span">
                     <i className="fa-solid fa-store drop-down-icons" />

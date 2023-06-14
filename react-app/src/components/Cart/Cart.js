@@ -90,7 +90,7 @@ export default function TheCart({cart}){
                     </div>
                     </div>
                     <div className="cost-block">
-                      <span>${(product.price * product.quantity).toFixed(2)}</span>
+                      <span className="cost-times-quantity">${(product.price * product.quantity).toFixed(2)}</span>
                       <span className="single-item-cost">
                       {product.quantity > 1 ? `(${product.price} each)`: null}
                       </span>
