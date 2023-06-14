@@ -64,6 +64,10 @@ export default function ProductCreateForm() {
         history.push(`/shops/${shopId}`)
     };
 
+    const handleDragOver = (e) => {
+        e.preventDefault()
+    }
+
     const handleDrop = (e) => {
         e.preventDefault()
         console.log('event data transfer', e.dataTransfer.files)
