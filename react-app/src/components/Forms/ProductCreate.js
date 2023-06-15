@@ -254,12 +254,12 @@ export default function ProductCreateForm() {
                                     onDragOver={handleDragOver}
                                     onDrop={handleDrop}
                             >
-                            <input className='product-input input-field' type="file"
+                            {/* <input className='product-input input-field' type="file"
                                     accept = 'image/*'
                                     // value={image}
                                     multiple={true}
                                     onChange={handleFile}
-                                    placeholder='URL' />
+                                    placeholder='URL' /> */}
                             </div>
 
             <input onClick={handleSubmit} className='submit-button form-create-button favorite-shop submit-create-shop create-product-button' type="submit" value="Create Product" />

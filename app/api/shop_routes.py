@@ -64,7 +64,31 @@ def get_all_shops():
 def delete_one_shop(shop_id):
     """deletes one shop according to id, or posts edits according to id"""
     shop = Shop.query.get(shop_id)
-    shop_image = ShopImage.query.get(shop_id)
+    print('')
+    print('')
+    print('')
+    print('')
+    print('')
+    print('')
+    print('SHOP', shop)
+    print('')
+    print('')
+    print('')
+    print('')
+    print('')
+    print('')
+    shop_image = ShopImage.query.filter(shop_id == shop_id).first()
+    print('')
+    print('')
+    print('')
+    print('')
+    print('')
+    print('SHOP IMAGE', shop_image)
+    print('')
+    print('')
+    print('')
+    print('')
+    print('')
     if current_user.is_authenticated and request.method == 'DELETE':
         if shop == None:
             return {"errors": "Cannot find Shop with specified id"}
