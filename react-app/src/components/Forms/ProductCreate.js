@@ -57,7 +57,12 @@ export default function ProductCreateForm() {
         for (let key in newProduct) {
             formData.append(`${key}`, newProduct[key])
         }
-        formData.append("image", url); //aws
+        // formData.append("image", url); //aws
+
+        Object.values(url).forEach((file, index) => {
+            console.log('looping through the images')
+            formData.append(`file${index}`, file);
+        });
 
         dispatch(makeProduct(formData))
         dispatch(fetchShops())
