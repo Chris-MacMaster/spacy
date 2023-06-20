@@ -5,14 +5,17 @@ import { fetchProducts } from '../../store/product'
 import { authenticate } from '../../store/session'
 import { fetchOneShop, fetchShops } from '../../store/shops'
 import ProductCard from '../ProductCard'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useHistory } from 'react-router-dom'
 import LoadingIcon from '../LoadingIcon'
 import PopularGifts from '../PopularGifts'
 import { fetchCart } from '../../store/cart'
+import { getSearchResults } from '../../store/search'
 
 function Landing({ isLoaded }) {
     const dispatch = useDispatch()
     const [ hasLoaded, setHasLoaded ] = useState(false)
+
+    const history = useHistory()
 
     const products = useSelector(state => state.products.allProducts)
     const user = useSelector(state => state.session.user)
@@ -36,6 +39,52 @@ function Landing({ isLoaded }) {
         if(user) dispatch(fetchCart())
     }, [dispatch, user])
 
+
+    const handleSubmitJewelry = async (e) => {
+        e.preventDefault()
+        await dispatch(getSearchResults("Jewelry"))
+        await dispatch(fetchCart())
+        history.push(`/search/${"Jewelry"}`)
+    }
+
+    const handleSubmitAdventureOutfitting = async (e) => {
+        e.preventDefault()
+        await dispatch(getSearchResults("Adventure Outfitting"))
+        await dispatch(fetchCart())
+        history.push(`/search/${"Adventure Outfitting"}`)
+    }
+
+    const handleSubmitRationsandFoodstuffs = async (e) => {
+        e.preventDefault()
+        await dispatch(getSearchResults("Rations and Foodstuffs"))
+        await dispatch(fetchCart())
+        history.push(`/search/${"Rations and Foodstuffs"}`)
+    }
+
+    const handleSubmitFurnitureandDecor = async (e) => {
+        e.preventDefault()
+        await dispatch(getSearchResults("Furniture and Decor"))
+        await dispatch(fetchCart())
+        history.push(`/search/${"Furniture and Decor"}`)
+    }
+
+    const handleSubmitAdventureOutfittingexclaim = async (e) => {
+        e.preventDefault()
+        await dispatch(getSearchResults("Adventure Outfitting!"))
+        await dispatch(fetchCart())
+        history.push(`/search/${"Adventure Outfitting!"}`)
+    }
+
+    const handleSubmitOnSale = async (e) => {
+        e.preventDefault()
+        await dispatch(getSearchResults("On Sale"))
+        await dispatch(fetchCart())
+        history.push(`/search/${"On Sale"}`)
+    }
+
+
+
+
     if (!hasLoaded) return <LoadingIcon />
 
     const rand1 = products[13] ? products[13] : others[Math.floor(Math.random()*others.length)]
@@ -51,7 +100,7 @@ function Landing({ isLoaded }) {
         { !user ? <h1 className='welcome-title'>Incredible style and decor, plus one-of-a-kind gifts right this way</h1> : <h1 className='welcome-title'>Welcome back {user.firstName}</h1>}
 
         <div className='top-banner-suggest'>
-            <div className='top-banner-suggestions'>
+            <div className='top-banner-suggestions' onClick={handleSubmitJewelry}>
                 <div className='suggest-image-div'>
                 <img src='https://i.imgur.com/NtSDPdE.png'
                 alt='product'
@@ -59,21 +108,21 @@ function Landing({ isLoaded }) {
                 </div>
                 <p className='suggest-image-text'>Jewelry</p>
             </div>
-            <div className='top-banner-suggestions'>
+            <div className='top-banner-suggestions' onClick={handleSubmitAdventureOutfitting}>
                 <div className='suggest-image-div'>
                 <img src='https://i.imgur.com/bKS0Vs5.jpg'
                 alt='product'
                 className='suggest-image'></img>
                 </div>
                 <p className='suggest-image-text'>Adventure Outfitting</p></div>
-            <div className='top-banner-suggestions'>
+            <div className='top-banner-suggestions' onClick={handleSubmitRationsandFoodstuffs}>
                 <div className='suggest-image-div'>
                 <img src='https://i.imgur.com/WQ691xR.png'
                 alt='product'
                 className='suggest-image'></img>
                 </div>
                 <p className='suggest-image-text'>Rations and Foodstuffs</p></div>
-            <div className='top-banner-suggestions'>
+            <div className='top-banner-suggestions' onClick={handleSubmitFurnitureandDecor}>
                 <div className='suggest-image-div'>
                 <img src='https://i.imgur.com/KWP0Qte.png'
                 alt='product'
@@ -81,7 +130,7 @@ function Landing({ isLoaded }) {
                 </div>
                 <p className='suggest-image-text'>Furniture and Decor</p>
             </div>
-            <div className='top-banner-suggestions'>
+                        <div className='top-banner-suggestions' onClick={handleSubmitAdventureOutfittingexclaim}>
                 <div className='suggest-image-div'>
                 <img src='https://i.imgur.com/pePufdv.jpg'
                 alt='product'
@@ -89,7 +138,7 @@ function Landing({ isLoaded }) {
                 </div>
                 <p className='suggest-image-text'>Adventure Outfitting!</p>
             </div>
-            <div className='top-banner-suggestions'>
+            <div className='top-banner-suggestions' onClick={handleSubmitOnSale}>
                 <div className='suggest-image-div'>
                 <img src='https://i.imgur.com/gdYYdaQ.png'
                 alt='product'
