@@ -217,23 +217,6 @@ function Landing({ isLoaded }) {
             </div>
             </div>
 
-            {/* <div className='shops-youll-love'>
-                <div className='shops-youll-love-text'>
-                    <h1 className='shops-youll-love-title'>Shops we think you'll love
-                    </h1>
-                    <h3 className='shops-youll-love-title'>Based on your recent activity</h3>
-                </div>
-
-                {shops.allShops && Object.values(shops.allShops).length ? (Object.values(shops.allShops).filter(s=> s.Products.length > 3).map((s, i)=> (
-                <NavLink to={`/shops/${s.id}`}
-                style={{ textDecoration: 'none' }}
-                key={i}>
-                    <ShopCard shop={s}
-                    key={`shopkey${i}`}/>
-                </NavLink>
-                ) )) : null }
-
-            </div> */}
             <div className='what-is-etzy'>
                 <h1 className='what-is-title'>What is Spacey</h1>
                 <div className='column-container'>
