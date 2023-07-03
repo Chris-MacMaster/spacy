@@ -206,6 +206,7 @@
 
 .review-num-title {
     font-family: 'Marcellus', serif;
+    margin: 7vmin 3vmin;
 }
 .post-item-review {
     border: .1rem solid slategrey;

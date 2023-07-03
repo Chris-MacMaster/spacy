@@ -27,12 +27,12 @@ export default function PostReviewForm() {
     const [hasSubmitted, setHasSubmitted] = useState(false);
 
     useEffect(() => {
-        let e = {}
-        setErrors(e)
-        if (!review) e.review = "Must submit a review"
-        if (review.length < 40) e.reviewLength = "Review must be at least 40 characters"
-        if (!stars) e.stars = "Must submit a value for stars."
-        if(!urlChecka(imageURL) && imageURL !== "") e.imageURL = "Submitted urls must be valid."
+        const err = {}
+        setErrors(err)
+        if (!review) err.review = "Must submit a review"
+        if (review.length < 40) err.reviewLength = "Review must be at least 40 characters"
+        if (!stars) err.stars = "Must submit a value for stars."
+        if(!urlChecka(imageURL) && imageURL !== "") err.imageURL = "Submitted urls must be valid."
     }, [review, stars, imageURL])
 
     const handleSubmit = async (e) => {
@@ -67,7 +67,9 @@ export default function PostReviewForm() {
 
             <div>
                 <div className="rate">
+
                   <input type="radio" id="star5" name="rate" value='5' onChange={(e) => setStars(Number(e.target.value))} />
+
                   <label htmlFor="star5" title="text">5 stars</label>
                   <input type="radio" id="star4" name="rate" value='4' onChange={(e) => setStars(Number(e.target.value))} />
                   <label htmlFor="star4" title="text">4 stars</label>
