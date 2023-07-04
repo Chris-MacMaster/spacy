@@ -72,9 +72,11 @@ def delete_review_by_id(review_id):
 def post_review(product_id):
     """posts a review by product id if a user is signed in"""
     if request.method == 'POST':
+
         form = ReviewForm()
         form['csrf_token'].data = request.cookies['csrf_token']
         if form.validate_on_submit():
+            print(form.data)
             new_review = ProductReview(
                 review = form.data['review'],
                 product_id = product_id,
@@ -85,6 +87,10 @@ def post_review(product_id):
             db.session.add(new_review)
             db.session.commit()
             # review_image AWS
+            print(form.data)
+            print(form.data)
+            print(form.data)
+            print(form.data)
             if 'url' not in request.files:
                 return {'errors': 'File not found'}, 400
             review_url = request.files['url']

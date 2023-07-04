@@ -54,7 +54,8 @@ export const fetchProductReviews = (productId) => async dispatch => {
 export const createProductReview = reviewData => async dispatch => {
     const formData = new FormData()
     for (let key in reviewData) formData.append(`${key}`, reviewData[key])
-    formData.set('url', reviewData.url[0])
+    formData.set('url', reviewData.url)
+    console.log(reviewData.url)
     const res = await fetch(`/api/product-reviews/${reviewData.product_id}`, {
         method: 'POST',
         body: formData
