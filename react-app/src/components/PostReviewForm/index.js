@@ -40,7 +40,7 @@ export default function PostReviewForm() {
         if (Object.values(errors).length) return;
         const reviewData = { product_id: productId, review, stars, url }
         await dispatch(createProductReview(reviewData))
-        // history.push(`/products/${productId}`)
+        history.push(`/products/${productId}`)
     }
 
 
