@@ -172,7 +172,7 @@ div.navigation:hover {
 .number-in-cart {
     position: absolute;
     background-color: #faa077;
-    font-size: 1.2vmin;
+    font-size: .8rem;
     font-weight: bolder;
     width: -moz-fit-content;
     padding: .3rem;
@@ -186,10 +186,7 @@ div.navigation:hover {
     justify-content: center;
     align-items: center;
 }
-.fa-cart-shopping.header-icons,
-.number-in-cart {
-    /* margin-right: 2vmin; */
-}
+
 .cart-total {
     z-index: 101;
     position: absolute;
@@ -199,14 +196,7 @@ div.navigation:hover {
  cursor: pointer;
 }
 
-@media only screen and (max-width: 480px) {
-    /* .header {
-        flex-direction: column;
-    }
-    .icons {
-        display: flex;
-    } */
-  }
+
 @media only screen and (max-width: 1100px){
     .header-tabs {
         display: none;
