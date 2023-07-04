@@ -42,7 +42,7 @@ export default function PaymentMethods({totalCost}){
         value="local"
         checked={paymentMethod === 'local'}
         onChange={handlePaymentChange} />
-        <img className="local-currency" src='https://i.imgur.com/QfGSupn.png' />
+        <img className="local-currency" src='https://i.imgur.com/QfGSupn.png' alt=""/>
       </label>
       <label className="payment-type">
         <input type="radio"
@@ -50,7 +50,7 @@ export default function PaymentMethods({totalCost}){
         value="Imperial Credits"
         checked={paymentMethod === 'Imperial Credits'}
         onChange={handlePaymentChange} />
-        <img className="imperial-credit" src='https://images.nightcafe.studio/jobs/MynFADDjnZKN338yrwgQ/MynFADDjnZKN338yrwgQ--1--g6z3l.jpg?tr=w-1600,c-at_max' />
+        <img className="imperial-credit" src='https://images.nightcafe.studio/jobs/MynFADDjnZKN338yrwgQ/MynFADDjnZKN338yrwgQ--1--g6z3l.jpg?tr=w-1600,c-at_max' alt=""/>
         Imperial Credits
       </label>
       <label className="payment-type">
@@ -59,7 +59,7 @@ export default function PaymentMethods({totalCost}){
         value="Republic Credits"
         checked={paymentMethod === 'Republic Credits'}
         onChange={handlePaymentChange} />
-        <img className="imperial-credit" src='https://images.nightcafe.studio/jobs/r4epoSTLJNCb21bQxZ3l/r4epoSTLJNCb21bQxZ3l--1--ssghy.jpg?tr=w-1600,c-at_max' />
+        <img className="imperial-credit" src='https://images.nightcafe.studio/jobs/r4epoSTLJNCb21bQxZ3l/r4epoSTLJNCb21bQxZ3l--1--ssghy.jpg?tr=w-1600,c-at_max' alt=""/>
         Republic Credits
       </label>
       <label className="payment-type">
@@ -68,7 +68,7 @@ export default function PaymentMethods({totalCost}){
         value="DepletedUranium"
         checked={paymentMethod === 'DepletedUranium'}
         onChange={handlePaymentChange} />
-        <img className="imperial-credit" src='https://m.media-amazon.com/images/I/31RsALNt1JL._AC_.jpg' />
+        <img className="imperial-credit" src='https://m.media-amazon.com/images/I/31RsALNt1JL._AC_.jpg' alt=""/>
         Depleted Uranium
       </label>
       {theFunc(totalCost)}

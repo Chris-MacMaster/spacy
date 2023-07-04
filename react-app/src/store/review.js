@@ -51,30 +51,14 @@ export const fetchProductReviews = (productId) => async dispatch => {
     }
 }
 
-export const createProductReview = (productId, review, stars, image) => async dispatch => {
-
-    let res
-    if (image) {
-        res = await fetch(`/api/product-reviews/${productId}/new`, {
-            method: 'POST',
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({
-                'review': review,
-                'stars': stars,
-                'image': image
-            })
-        })
-    } else {
-        res = await fetch(`/api/product-reviews/${productId}/new`, {
-            method: 'POST',
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({
-                'review': review,
-                'stars': stars
-            })
-        })
-    }
-
+export const createProductReview = reviewData => async dispatch => {
+    const formData = new FormData()
+    for (let key in reviewData) formData.append(`${key}`, reviewData[key])
+    formData.set('url', reviewData.url[0])
+    const res = await fetch(`/api/product-reviews/${reviewData.product_id}`, {
+        method: 'POST',
+        body: formData
+    })
     if (res.ok) {
         const newReview = await res.json()
         dispatch(actionPostReview(newReview))

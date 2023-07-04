@@ -32,7 +32,6 @@ export default function PostShopForm() {
         if (!description || description.length < 20) err.description = 'Please enter a valid shop description, at least 20 characters'
         if (!category || category.length <3) err.category = 'Please enter a shop category'
         if (!policies || policies.length < 30) err.policies = 'Please enter shop policies about returns or shipping'
-        // if (!urlChecka(url) || !url) err.url = 'Please enter a shop image to represent your shop'
         setErrors(err)
     }, [name, streetAddress, city, state, country, description, category, policies, url])
 

@@ -22,3 +22,8 @@ input[type="radio" i] {
     filter: grayscale(1)
 }
 
+
+button,
+.post-item-review {
+    padding: 1vmin;
+}
