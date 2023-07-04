@@ -1,6 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import IntegerField, StringField
-from wtforms.validators import DataRequired, Email, ValidationError
+from wtforms import IntegerField
 
 class PurchaseForm(FlaskForm):
     quantity = IntegerField('quantity')
