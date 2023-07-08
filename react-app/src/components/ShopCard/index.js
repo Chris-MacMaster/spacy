@@ -5,39 +5,42 @@ import { fetchProducts } from '../../store/product'
 import { fetchProductReviews } from '../../store/review'
 import { NavLink } from 'react-router-dom'
 // import OpenModalButton from '../OpenModalButton'
-import { useRef } from 'react'
+// import { useRef } from 'react'
 import { useState } from 'react'
 // import UnfollowShopModal from '../UnfollowShopModal/UnfollowShopModal'
 import { unfollowShop } from '../../store/shops'
 
 export default function ShopCard({ shop }) {
     const dispatch = useDispatch()
-    const ulRef = useRef(); //for modal
+    const [ hasLoaded, setHasLoaded ] = useState(false)
 
 
-    const [showMenu, setShowMenu] = useState(false); //for opening modal
-
-
-
+    // option modal
+    // const ulRef = useRef(); //for modal
+    // const [showMenu, setShowMenu] = useState(false);
     //modal components
-    const openMenu = () => {
-        if (showMenu) return
-        setShowMenu(true)
-    }
-    useEffect(() => {
-        if (!showMenu) return;
-        const closeMenu = e => {
-            if (!ulRef.current.contains(e.target)) {
-                setShowMenu(false);
-            }
-        }
-        document.addEventListener('click', closeMenu)
-    }, [showMenu])
-    const closeMenu = () => setShowMenu(false)
+    // const openMenu = () => {
+    //     if (showMenu) return
+    //     setShowMenu(true)
+    // }
+    // useEffect(() => {
+    //     if (!showMenu) return;
+    //     const closeMenu = e => {
+    //         if (!ulRef.current.contains(e.target)) {
+    //             setShowMenu(false);
+    //         }
+    //     }
+    //     document.addEventListener('click', closeMenu)
+    // }, [showMenu])
+    // const closeMenu = () => setShowMenu(false)
 
     useEffect(() => {
-        dispatch(fetchProducts())
-        dispatch(fetchProductReviews())
+        const loadData = async () => {
+            dispatch(fetchProducts())
+            dispatch(fetchProductReviews())
+            return setHasLoaded(true)
+        }
+        loadData()
     }, [dispatch])
 
 
@@ -50,7 +53,7 @@ export default function ShopCard({ shop }) {
 
     const products = useSelector(state=> state.products.allProducts)
     const reviews = useSelector(state=> state)
-    if (!products || !reviews) return null
+    if (!hasLoaded || !products || !reviews) return null
     const filteredProducts = Object.values(products).filter(p=>p.shopId===shop.id)
     const reviewedProducts = filteredProducts.filter(p=> typeof p.avgRating != 'string')
     const shopRating = reviewedProducts.reduce((acc,p)=> typeof p.avgRating === 'string' ? acc + 0 :acc + p.avgRating,0)/reviewedProducts.length
