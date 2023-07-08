@@ -135,6 +135,7 @@ input:focus, text:focus .header-search {
     left:50%;
     transform: translate(-50%);
     font-size: 1rem;
+    color:black;
 }
 .shop-manager:hover .header-tip {
     visibility: visible;
@@ -160,16 +161,18 @@ input:focus, text:focus .header-search {
     transform: rotate(0deg);
     border-radius: 4px 4px 0 0;
 }
-div.navigation:hover {
-    cursor: pointer;
-}
+
 .navigation {
     position: relative;
+}
+
+div.navigation:hover {
+    cursor: pointer;
 }
 .number-in-cart {
     position: absolute;
     background-color: #faa077;
-    font-size: 1.2vmin;
+    font-size: .8rem;
     font-weight: bolder;
     width: -moz-fit-content;
     padding: .3rem;
@@ -183,10 +186,7 @@ div.navigation:hover {
     justify-content: center;
     align-items: center;
 }
-.fa-cart-shopping.header-icons,
-.number-in-cart {
-    /* margin-right: 2vmin; */
-}
+
 .cart-total {
     z-index: 101;
     position: absolute;
@@ -196,14 +196,7 @@ div.navigation:hover {
  cursor: pointer;
 }
 
-@media only screen and (max-width: 480px) {
-    /* .header {
-        flex-direction: column;
-    }
-    .icons {
-        display: flex;
-    } */
-  }
+
 @media only screen and (max-width: 1100px){
     .header-tabs {
         display: none;

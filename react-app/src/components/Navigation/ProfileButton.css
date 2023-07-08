@@ -8,6 +8,9 @@ button {
     font-size: 2.5vmin;
     color: #A0A7B2
 }
+.fa-user-circle:hover {
+    color: black;
+}
 .hidden {
     display: none;
 }
@@ -18,7 +21,7 @@ button {
     border: solid slategrey 1px;
     box-shadow: 0rem 0rem min(3vmin, 1rem) rgb(110, 110, 110);
     background: white;
-    padding: 1.5vmin;
+    /* padding: 1.5vmin; */
     line-height: 4vmin;
     font-family: 'Mulish', sans-serif;
     color: black;
@@ -26,6 +29,7 @@ button {
     transform: translateX(-50%);
     width: max-content;
     top: 30px;
+    padding: 1.5vmin 0;
 }
 .profile-dropdown::before{
     content: '';
@@ -66,6 +70,14 @@ button {
 
 .profile-drop-item {
     margin-right: 2vmin;
+    background-color: green;
+    height: 3vmin;
+    aspect-ratio: 1;
+    display: flex;
+}
+.profile-drop-div{
+    background-color: blue;
+    display: flex;
 }
 .signout-button {
     cursor: pointer;
@@ -73,6 +85,29 @@ button {
 }
 .profileburger:hover{
     cursor: pointer;
+    /* background-color: rgba(230, 36, 36, 0.5);
+    border-radius: 50%; */
+}
+
+.inside-div {
+    display: flex;
+    align-items: center;
+    /* justify-content: space-between; */
+    color: black;
+    padding: 0 2vmin;
+}
+.inside-div:hover{
+    background-color: rgba(100, 100, 100, .5);
+}
+.icon-span {
+    /* background-color: green; */
+    /* color: black; */
+    height: 3vmin;
+    aspect-ratio: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: .5rem;
 }
 .dropdown-row,
 .drop-down-icons,
@@ -80,11 +115,26 @@ button {
     color: black;
 }
 .drop-down-icons {
-    width: 2vmin;
+    /* width: 2vmin; */
 }
 .dropdown-row {
     transition: .2s ease-in-out;
 }
 .dropdown-row:hover {
     background-color: #b4b4b4;
+}
+.login-signup {
+    /* padding: 0vmin 1vmin; */
+}
+.login-signup:hover {
+}
+
+.modal-button {
+    padding: 0 1rem;
+}
+.modal-button:hover {
+    background-color: rgba(100, 100, 100, .5);
+}
+.modal-button > button {
+    background: none;
 }

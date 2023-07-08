@@ -1,10 +1,10 @@
 from flask import Blueprint, request, render_template, jsonify
 from app.models import db, Product, ProductReview, ReviewImage, ProductImage, Shop, User
-import copy
 from flask_login import current_user, login_required
 from datetime import datetime
 from app.forms.post_review import ReviewForm
 from app.forms.edit_review import EditReviewForm
+from app.api.AWS_helpers import get_unique_filename, upload_file_to_s3, remove_file_from_s3, allowed_file
 
 product_review_routes = Blueprint('/product-reviews', __name__)
 
@@ -67,39 +67,55 @@ def delete_review_by_id(review_id):
     else:
         {"error": "Please sign in to delete a review"}
 
-@product_review_routes.route('/<int:product_id>/new', methods=['POST'])
+@product_review_routes.route('/<int:product_id>', methods=['POST'])
 @login_required
 def post_review(product_id):
     """posts a review by product id if a user is signed in"""
-    form = ReviewForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
-    if form.validate_on_submit():
-        data = form.data
-        new_review = ProductReview(
-            review = data['review'],
-            product_id = product_id,
-            user_id = current_user.id,
-            stars = data['stars'],
-            created_at = datetime.now(),
-            updated_at = None
-        )
-        db.session.add(new_review)
-        db.session.commit()
-        # review_image
-        if data['image']:
+    if request.method == 'POST':
+
+        form = ReviewForm()
+        form['csrf_token'].data = request.cookies['csrf_token']
+        if form.validate_on_submit():
+            print(form.data)
+            new_review = ProductReview(
+                review = form.data['review'],
+                product_id = product_id,
+                user_id = current_user.id,
+                stars = form.data['stars'],
+            )
+
+            db.session.add(new_review)
+            db.session.commit()
+            # review_image AWS
+            print(form.data)
+            print(form.data)
+            print(form.data)
+            print(form.data)
+            if 'url' not in request.files:
+                return {'errors': 'File not found'}, 400
+            review_url = request.files['url']
+            if not allowed_file(review_url.filename):
+                return {'errors': 'File type not permitted'}, 400
+            review_url.filename = get_unique_filename(review_url.filename)
+            review_url_upload = upload_file_to_s3(review_url)
+            print('****************** ********* ************* *********** ******* *******', review_url_upload)
+            if 'url' not in review_url_upload:
+                return review_url_upload, 400
+
+            aws_upload = review_url_upload['url']
+            print("AWS upload:", aws_upload)
+            # end of AWS
+
             review_image = ReviewImage(
-                url = data['image'],
-                created_at = datetime.now(),
+                url = aws_upload,
                 review_id = new_review.id
             )
             db.session.add(review_image)
             db.session.commit()
-        review_dict = new_review.to_dict()
-        image = ReviewImage.query.filter(ReviewImage.review_id == new_review.id).first()
-        if image:
-            review_dict['ReviewImages'] = image.to_dict()
-        return review_dict
-    return {'error': 'Validation Error'}, 401
+            review_dict = new_review.to_dict()
+            review_dict['ReviewImages'] = review_image.to_dict()
+            return review_dict, 200
+        return {'error': 'Validation Error'}, 401
 
 @product_review_routes.route('/<int:review_id>/edit', methods=['PUT'])
 @login_required
@@ -116,15 +132,3 @@ def edit_review(review_id):
             db.session.commit()
             return review_to_edit.to_dict()
     return {"error": 'Review does not exist or user did not write this review'}
-
-@product_review_routes.route('/<int:review_id>/add-image', methods=['PUT'])
-@login_required
-def add_image_to_review(review_id):
-    review = ProductReview.query.get(review_id)
-    form = ReviewForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
-    if review:
-        if form.validate_on_submit:
-            review.image = form.data['image']
-            return {review.to_dict()}
-    return {'No review'}

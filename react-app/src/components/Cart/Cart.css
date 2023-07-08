@@ -17,7 +17,7 @@
     align-self: center;
 }
 .shop-info{
-    width: fit-content;
+    /* width: fit-content; */
     margin-bottom: min(2.5vmin, 1rem);
     border-radius: min(2.5vmin, 1rem);
     box-shadow: 0 .5vmin 1vmin rgba(34,34,34,.15);
@@ -288,6 +288,7 @@
 }
 .cost-block {
     margin-left: 1rem;
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: flex-end
@@ -303,10 +304,15 @@
     margin: 0 1rem;
     font-size: min(1.7vmin, .85rem);
 }
-
+.cost-times-quantity {
+    position: relative;
+    width: 4.5rem;
+}
 .single-item-cost {
     color: grey;
     font-size: min(2vmin, .85rem);
+    position: absolute;
+    top: 1rem;
 }
 .cart-errors {
     font-size: min(3vmin, 1.5rem);

@@ -17,7 +17,7 @@ def seed_products():
         shop_id='1',
         name='Rocket Backpack',
         description='A backpack shaped like a rocket ship, perfect for carrying all your space gear.',
-        category='Accessories',
+        category='Adventure Outfitting',
         available=20,
         free_shipping=False,
         price=149.99
@@ -29,7 +29,7 @@ def seed_products():
         shop_id='1',
         name='Planet Coasters',
         description='Set of 6 coasters featuring different planets of our solar system.',
-        category='Home Decor',
+        category='On Sale',
         available=100,
         free_shipping=True,
         price=14.99
@@ -41,7 +41,7 @@ def seed_products():
         shop_id='1',
         name='Astronaut Figurine',
         description='A highly detailed figurine of an astronaut in a space suit.',
-        category='Collectibles',
+        category='On Sale',
         available=10,
         free_shipping=False,
         price=99.99
@@ -53,7 +53,7 @@ def seed_products():
         shop_id='1',
         name='Solar System Poster',
         description='A beautiful poster featuring all the planets in our solar system.',
-        category='Wall Art',
+        category='Furniture and Decor',
         available=200,
         free_shipping=True,
         price=19.99
@@ -73,7 +73,7 @@ def seed_products():
         shop_id='3',
         name='Moon Lamp',
         description='A realistic and detailed 3D printed lamp in the shape of the moon.',
-        category='Lighting',
+        category='Furniture and Decor',
         available=30,
         free_shipping=True,
         price=39.99
@@ -85,7 +85,7 @@ def seed_products():
         shop_id='1',
         name='Space Shuttle Model',
         description='A highly detailed model of the space shuttle, with all its parts and functions.',
-        category='Collectibles',
+        category='On Sale',
         available=15,
         free_shipping=False,
         price=199.99
@@ -95,7 +95,7 @@ def seed_products():
         shop_id='2',
         name='Astronaut Ice Cream',
         description='Freeze-dried ice cream, just like the astronauts eat in space!',
-        category='Food',
+        category='Rations and Foodstuffs',
         available=1000,
         free_shipping=True,
         price=4.99
@@ -105,7 +105,7 @@ def seed_products():
         shop_id='3',
         name='Galactic T-Shirt',
         description='A cool t-shirt with a galaxy print, perfect for space enthusiasts.',
-        category='Apparel',
+        category='Adventure Outfitting',
         available=75,
         free_shipping=False,
         price=24.99
@@ -115,7 +115,7 @@ def seed_products():
         shop_id='2',
         name='Space MREs',
         description="Here's the thing about space food. While it might seem exotic to people here on Earth — to people who live in some relative proximity to a farm or a grocery store — space food is awesome only in the sense that it is eaten in space. Otherwise, the stuff is not at all awesome. Space food tends to be dry. Or else slimy. Or else just weird: different enough from the product it's trying to emulate that it serves only as a sad reminder of what it is not. Space food — when actually consumed, rather than bought at a gift shop — is pretty horrendous.",
-        category='Foodstuffs',
+        category='Rations and Foodstuffs',
         available=750,
         free_shipping=False,
         price=14.99
@@ -124,7 +124,7 @@ def seed_products():
         shop_id='2',
         name='Space Macaroons',
         description="The space macaroon is a delectable dessert that is popular among space travelers and those who reside in distant colonies on other planets. This futuristic treat consists of a light and fluffy pastry shell made with a special blend of space flour and enriched with a variety of vitamins and minerals. The shell is then filled with a creamy and flavorful space frosting that is infused with exotic spices and extracts from distant planets.",
-        category='Foodstuffs',
+        category='Rations and Foodstuffs',
         available=75,
         free_shipping=False,
         price=20.99
@@ -133,7 +133,7 @@ def seed_products():
         shop_id='2',
         name='Space Coffee Cup',
         description="Over the past few years, NASA has been working on a space cup that keeps liquid in its place, even with an open top. The technology is improving life for astronauts living in the weightless environment aboard the International Space Station while giving scientists new insights into how to design other plumbing systems in space. The cup functions just like cups here on Earth, but instead of relying on gravity, it uses a combination of surface tension, wetting and cup geometry to keep the liquids in place. The use of this special cup will allow astronauts to drink a variety of liquids while they are in space, from simple ones like water and juice to more “complex” fluids like cocoa, coffees, espressos and fruit smoothies. Apart from making life easier for astronauts, this technology could also potentially help reduce the volume and weight of drinking bags that need to be sent to space.",
-        category='Dishware',
+        category='On Sale',
         available=75,
         free_shipping=False,
         price=24.99
@@ -142,7 +142,7 @@ def seed_products():
         shop_id='2',
         name='Slurm!',
         description="Introducing Slurm, the newest craze in carbonated beverages! This neon green drink packs a sweet and tangy punch that will leave your taste buds buzzing with excitement. Made from a secret blend of the finest ingredients, Slurm is the ultimate thirst quencher for the adventurous drinker. With its bubbly texture and unique flavor profile, Slurm is perfect for any occasion. Whether you're partying with friends, powering through a long day at work, or exploring the depths of space, Slurm is the perfect companion. But what sets Slurm apart from other drinks on the market is its unique origin story. Made from the excretions of a rare alien worm, Slurm is the perfect blend of science and nature. And despite its unusual origins, Slurm is a completely safe and legal beverage, tested and approved by the most rigorous safety standards in the galaxy. So if you're looking for a drink that's out of this world, look no further than Slurm. With its eye-catching color, unique taste, and fascinating backstory, Slurm is sure to be the next big thing in the beverage industry.",
-        category='Soft Drink',
+        category='Rations and Foodstuffs',
         available=75,
         free_shipping=False,
         price=24.99

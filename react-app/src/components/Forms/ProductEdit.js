@@ -35,7 +35,7 @@ const ProductEditForm = () => {
         if (!category) e.category = "Must submit a category"
         if (!description) e.description = "Must submit a description"
         if (!url) e.url = "Must submit a url"
-        if (!urlCheck(url)) e.urlCheck = "Must submit a valid url. We accept urls ending in any of the following: jpeg, jpg, svg, png, gif, bmp."
+        // if (!urlCheck(url)) e.urlCheck = "Must submit a valid url. We accept urls ending in any of the following: jpeg, jpg, svg, png, gif, bmp."
     }, [name, available, price, category, description, url])
 
     useEffect(() => {

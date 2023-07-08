@@ -5,7 +5,6 @@ import { fetchOneProduct } from "../../store/product";
 import { createProductReview } from "../../store/review";
 import './ReviewForm.css'
 import { fetchOneShop } from "../../store/shops";
-import { urlChecka } from "../Cart/_helpers";
 
 export default function PostReviewForm() {
 
@@ -14,7 +13,7 @@ export default function PostReviewForm() {
     const {productId} = useParams()
     const product = useSelector((state) => state.products.singleProduct)
     const user = useSelector((state) => state.session.user)
-    const [imageURL, setImageURL] = useState('')
+    const [url, setUrl] = useState(null)
 
     useEffect(() => {
         dispatch(fetchOneProduct(productId))
@@ -27,19 +26,20 @@ export default function PostReviewForm() {
     const [hasSubmitted, setHasSubmitted] = useState(false);
 
     useEffect(() => {
-        let e = {}
-        setErrors(e)
-        if (!review) e.review = "Must submit a review"
-        if (review.length < 40) e.reviewLength = "Review must be at least 40 characters"
-        if (!stars) e.stars = "Must submit a value for stars."
-        if(!urlChecka(imageURL) && imageURL !== "") e.imageURL = "Submitted urls must be valid."
-    }, [review, stars, imageURL])
+        const err = {}
+        setErrors(err)
+        if (!review) err.review = "Must submit a review"
+        if (review.length < 40) err.reviewLength = "Review must be at least 40 characters"
+        if (!stars) err.stars = "Must submit a value for stars."
+        if(!url) err.url = "Please upload an image."
+    }, [review, stars, url])
 
     const handleSubmit = async (e) => {
         e.preventDefault()
         setHasSubmitted(true)
         if (Object.values(errors).length) return;
-        await dispatch(createProductReview(product.id, review, stars, imageURL))
+        const reviewData = { product_id: productId, review, stars, url }
+        await dispatch(createProductReview(reviewData))
         history.push(`/products/${productId}`)
     }
 
@@ -67,7 +67,9 @@ export default function PostReviewForm() {
 
             <div>
                 <div className="rate">
+
                   <input type="radio" id="star5" name="rate" value='5' onChange={(e) => setStars(Number(e.target.value))} />
+
                   <label htmlFor="star5" title="text">5 stars</label>
                   <input type="radio" id="star4" name="rate" value='4' onChange={(e) => setStars(Number(e.target.value))} />
                   <label htmlFor="star4" title="text">4 stars</label>
@@ -104,11 +106,10 @@ export default function PostReviewForm() {
 
             <div>
                 <div className="imageURLdiv">
-                <label >Image URL
-                </label>
+                <label >Image</label>
                 </div>
                 <div className="imageURLinput">
-                <input type='text' id='imageURL' value={imageURL} onChange={(e) => setImageURL(e.target.value)}></input>
+                <input type='file' id='imageURL' name='url' accept="image/*" onChange={(e) => setUrl(e.target.files[0])}></input>
                 </div>
             </div>
 

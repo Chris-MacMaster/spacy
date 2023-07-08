@@ -10,6 +10,9 @@
     margin: 0.06rem;
     margin-bottom: 0.02rem;
 }
+.modalButton > button {
+    background: none;
+}
 .modalButton:hover {
     cursor: pointer;
     background-color: darkgray;
