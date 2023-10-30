@@ -3,6 +3,7 @@ from .db import db, SCHEMA, environment, add_prefix_for_prod
 from sqlalchemy.sql import func
 from .user_shops import user_shops
 
+
 class Shop(db.Model):
     __tablename__ = "shops"
 
@@ -11,7 +12,8 @@ class Shop(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False)
-    owner_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))
+    owner_id = db.Column(db.Integer, db.ForeignKey(
+        add_prefix_for_prod("users.id")))
     street_address = db.Column(db.String(255))
     city = db.Column(db.String(50))
     state = db.Column(db.String(50))
@@ -20,14 +22,17 @@ class Shop(db.Model):
     category = db.Column(db.String, nullable=False)
     sales = db.Column(db.Integer, default=0)
     policies = db.Column(db.Text)
-    created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
+    created_at = db.Column(db.DateTime(timezone=True),
+                           server_default=func.now())
     updated_at = db.Column(db.DateTime(timezone=True), onupdate=func.now())
-    products = db.relationship("Product", back_populates="shops", cascade="all, delete")
-    shop_images = db.relationship("ShopImage", backref="shop", cascade="all, delete")
-
+    products = db.relationship(
+        "Product", back_populates="shops", cascade="all, delete")
+    shop_images = db.relationship(
+        "ShopImage", backref="shop", cascade="all, delete")
 
     # MANY TO MANY RELATIONSHIP, SHOPS HAVE FOLLOWERS
-    users = db.relationship("User", secondary=user_shops, back_populates='shops')
+    users = db.relationship(
+        "User", secondary=user_shops, back_populates='shops')
 
     def to_dict(self):
         return {
@@ -38,7 +43,7 @@ class Shop(db.Model):
             'city': self.city,
             'state': self.state,
             'country': self.country,
-            'description':self.description,
+            'description': self.description,
             'category': self.category,
             'sales': self.sales,
             'policies': self.policies,

@@ -7,6 +7,7 @@ from sqlalchemy.sql import func
 from sqlalchemy.orm import validates
 from .user_shops import user_shops
 
+
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
 
@@ -21,15 +22,16 @@ class User(db.Model, UserMixin):
     last_name = db.Column(db.String(50), nullable=False)
     bio = db.Column(db.Text)
     profile_pic = db.Column(db.String)
-    created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
+    created_at = db.Column(db.DateTime(timezone=True),
+                           server_default=func.now())
     updated_at = db.Column(db.DateTime(timezone=True), onupdate=func.now())
     carts = db.relationship("Cart", backref="users")
     shops = db.relationship('Shop', backref='users')
     product_reviews = db.relationship('ProductReview', backref='users')
 
-
     # MANY TO MANY RELATIONSHIP FOR USER SHOPS, SHOPS USER IS FOLLOWING
-    shops = db.relationship("Shop", secondary=user_shops, back_populates="users")
+    shops = db.relationship(
+        "Shop", secondary=user_shops, back_populates="users")
 
     @property
     def password(self):
