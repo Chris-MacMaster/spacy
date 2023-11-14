@@ -17,9 +17,33 @@
   left: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.7);
+  transition: ease-in-out;
+  transition-duration: 300ms;
 }
 
 #modal-content {
   position: absolute;
   background-color:white;
+  transition: ease-in-out;
+  transition-duration: 300ms;
+  transition-property: all;
+}
+
+.scale-100 {
+  transform: scale(1);
+}
+.scale-0 {
+  transform: scale(0);
+}
+.opacity-100 {
+  opacity: 1;
+}
+.opacity-0 {
+  opacity: 0;
+}
+.backdrop-mounting {
+  opacity: 1;
+}
+.backdrop-dismounting {
+  opacity: 0;
 }
