@@ -1,70 +1,67 @@
 .create-product-page {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .create-product-title {
-    font-size: min(5vmin, 2rem);
+  font-size: min(5vmin, 2rem);
 }
 .form-description {
-    font-size: min(2vmin, 1.8rem);
+  font-size: min(2vmin, 1.8rem);
 }
 .create-product {
-    display: grid;
-    grid-template-columns: auto auto;
-    margin-top: 5vmin;
-    width: 80vmin;
-    max-width: 40rem;
-    box-shadow: 0rem 0rem 1vmin grey;
-    padding: 5vmin;
-    border-radius: 1vmin;
+  display: grid;
+  grid-template-columns: auto auto;
+  margin-top: 5vmin;
+  width: 80vmin;
+  max-width: 40rem;
+  box-shadow: 0rem 0rem 1vmin grey;
+  padding: 5vmin;
+  border-radius: 1vmin;
 }
 .create-product-grid {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .create-product label {
-    font-size: min(2vmin, 1.7rem);
-    font-weight: bold;
+  font-size: min(2vmin, 1.7rem);
+  font-weight: bold;
 }
 .create-product input[type="text" i],
 .create-product input[type="checkbox" i],
 .create-product textarea,
 .create-product select,
 .create-product input[type="number" i] {
-    height: min(3vmin, 1.7rem);
-    width: 100%;
-    font-size: min(3vmin, 1.5rem);
-    padding: 1vmin;
+  height: min(3vmin, 1.7rem);
+  width: 100%;
+  font-size: min(3vmin, 1.5rem);
+  padding: 1vmin;
 }
 .create-product select {
-    height: min(4vmin, 1.7rem);
-    width: 100%;
-    font-size: min(3vmin, 1.5rem);
-    padding: 0;
+  height: min(4vmin, 1.7rem);
+  width: 100%;
+  font-size: min(3vmin, 1.5rem);
+  padding: 0;
 }
 
 .create-product textarea {
-    height: min(15vmin, 8rem);
+  height: min(15vmin, 8rem);
 }
 
 .create-product input,
 .create-product textarea {
-    border-radius: min(2vmin, .5rem);
-    transition: .2s ease-in-out;
+  border-radius: min(2vmin, 0.5rem);
+  transition: 0.2s ease-in-out;
 }
 .create-product input:focus-within:not(input[type="checkbox" i]),
 .create-product textarea:focus-within {
-    outline: 2px aqua solid;
-    outline-offset: 2px;
+  outline: 2px aqua solid;
+  outline-offset: 2px;
 }
 
-
-
-
 .dropzone {
-    background-color: gray;
-    height: 7rem;
+  background-color: gray;
+  height: 7rem;
 }

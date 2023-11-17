@@ -1,241 +1,236 @@
 .product-detail-div {
-    margin-top: 5vh;
-    display: grid;
-    grid-template-columns: 3fr 2fr;
-    width: min(80vw, 70rem);
-    justify-content: center;
+  margin-top: 5vh;
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  width: min(80vw, 70rem);
+  justify-content: center;
 }
 .product-deets {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 .product-preview-img {
-    width: 5vmin;
-    height: 5vmin;
-    object-fit: cover;
-    border-radius: .3rem;
-    margin:  .3vw;
-    cursor: pointer;
+  width: 5vmin;
+  height: 5vmin;
+  object-fit: cover;
+  border-radius: 0.3rem;
+  margin: 0.3vw;
+  cursor: pointer;
 }
 .product-grid-div {
-    display: flex;
-    flex-direction: column;
-    align-content: center;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
 }
 
 .chosen-image {
-    transition: .2s ease-in-out;
-    outline: solid black min(.5vmin, .2rem);
-    outline-offset: min(.2vmin, .1rem);
+  transition: 0.2s ease-in-out;
+  outline: solid black min(0.5vmin, 0.2rem);
+  outline-offset: min(0.2vmin, 0.1rem);
 }
 .product-preview-img:not(.chosen-image) {
-    opacity: .6;
-    transition: .2s ease-in-out;
+  opacity: 0.6;
+  transition: 0.2s ease-in-out;
 }
 .product-preview-img:not(.chosen-image):hover {
-    opacity: 100%;
+  opacity: 100%;
 }
 .review-card-div {
-    display: flex;
-    overflow-wrap: anywhere;
-    width: min(90%, auto);
+  display: flex;
+  overflow-wrap: anywhere;
+  width: min(90%, auto);
 }
 .prod-price {
-    font-weight: bold;
-    font-size: min(3vmin, 2rem);
-    margin-bottom: min(2vmin, 1.5rem);
+  font-weight: bold;
+  font-size: min(3vmin, 2rem);
+  margin-bottom: min(2vmin, 1.5rem);
 }
 .prod-search {
-    font-size: 3vmin;
-    margin-bottom: 1vmin;
-    font-family: 'Thasadith', sans-serif;
-    font-weight: bold;
+  font-size: 3vmin;
+  margin-bottom: 1vmin;
+  font-family: "Thasadith", sans-serif;
+  font-weight: bold;
 }
 .store-sales {
-    font-size: 1.5vmin;
+  font-size: 1.5vmin;
 }
 .store-name {
-    margin-bottom: 5px;
+  margin-bottom: 5px;
 }
 
 .shipping-div {
-    display: flex;
-    color: black;
+  display: flex;
+  color: black;
 }
 
 .name-follows {
-    display: flex;
-    font-size: min(1.7vmin, .9rem);
+  display: flex;
+  font-size: min(1.7vmin, 0.9rem);
 }
 
 .add-to-cart-button {
-    border-radius: 24px;
-    background-color: rgb(37, 37, 37);
-    color: white;
-    font-weight: bolder;
-    font-size: 2vmin;
-    min-width: 5rem;
-    padding: 1vh;
-    margin-bottom: 1.5vmin;
-    width: 100%;
-    transition: .2s ease-in-out;
+  border-radius: 24px;
+  background-color: rgb(37, 37, 37);
+  color: white;
+  font-weight: bolder;
+  font-size: 2vmin;
+  min-width: 5rem;
+  padding: 1vh;
+  margin-bottom: 1.5vmin;
+  width: 100%;
+  transition: 0.2s ease-in-out;
 }
 .add-to-cart-button:hover {
-    cursor: pointer;
-    background-color: rgb(91, 91, 91);
-    scale: 1.05;
+  cursor: pointer;
+  background-color: rgb(91, 91, 91);
+  scale: 1.05;
 }
 .out-of-stock {
-    border-radius: 24px;
-    background-color: rgb(80, 80, 80);
-    color: rgb(238, 222, 222);
-    font-weight: bolder;
-    font-size: 2vmin;
-    min-width: 5rem;
-    padding: 1vh;
-    margin-bottom: 1.5vmin;
-    width: 100%;
+  border-radius: 24px;
+  background-color: rgb(80, 80, 80);
+  color: rgb(238, 222, 222);
+  font-weight: bolder;
+  font-size: 2vmin;
+  min-width: 5rem;
+  padding: 1vh;
+  margin-bottom: 1.5vmin;
+  width: 100%;
 }
 
 .cant-add-cart-button {
-    border-radius: 2rem;
-    display: block;
-    padding: 1vmin;
-    margin-bottom: 1vmin;
-    background-color: grey;
-    color: white;
+  border-radius: 2rem;
+  display: block;
+  padding: 1vmin;
+  margin-bottom: 1vmin;
+  background-color: grey;
+  color: white;
 }
 .store-info {
-    margin-bottom: 1vh;
+  margin-bottom: 1vh;
 }
 
 .free-shipping-div {
-    margin-bottom: 4vmin;
-    font-size: 1.7vmin;
+  margin-bottom: 4vmin;
+  font-size: 1.7vmin;
 }
 .product-deets-stars {
-    margin: 0 .1rem;
-    font-size: 1.5vmin;
+  margin: 0 0.1rem;
+  font-size: 1.5vmin;
 }
 .product-deets-blank {
-    color: grey;
+  color: grey;
 }
 .cart-quantity {
-    width: 100%;
-    height: 4vmin;
-    font-size: 2vmin;
-    border-radius: .5rem;
-    box-shadow: 0rem 0rem min(1.5vmin, .5rem) grey;
-    border: none;
-    margin: .2rem 0rem min(3vmin, 1.5rem) 0rem ;
-    transition: .2s ease-in-out;
-    padding-left: .5rem;
+  width: 100%;
+  height: 4vmin;
+  font-size: 2vmin;
+  border-radius: 0.5rem;
+  box-shadow: 0rem 0rem min(1.5vmin, 0.5rem) grey;
+  border: none;
+  margin: 0.2rem 0rem min(3vmin, 1.5rem) 0rem;
+  transition: 0.2s ease-in-out;
+  padding-left: 0.5rem;
 }
 .cart-quantity:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 .cart-quantity:focus-within {
-    outline: solid royalblue;
-    outline-offset: 2px;
+  outline: solid royalblue;
+  outline-offset: 2px;
 }
-.quantity  {
-    font-size: min(1.5vmin, .8rem);
+.quantity {
+  font-size: min(1.5vmin, 0.8rem);
 }
 .product-deets-shop {
-    color: #000;
-    font-weight: bold;
+  color: #000;
+  font-weight: bold;
 }
 .slider-images {
-    margin-top: 2vmin;
+  margin-top: 2vmin;
 }
-
-
-
-
 
 .prod-description-text,
-.free-shipping-div
-.shop-name,
+.free-shipping-div .shop-name,
 .store-follows {
-    font-size: min(2vmin, 1rem);
-    line-height: min(3vmin, 1.5rem);
+  font-size: min(2vmin, 1rem);
+  line-height: min(3vmin, 1.5rem);
 }
 .subimage-div {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 .product-subimage {
-    object-fit: cover;
+  object-fit: cover;
 }
 .both-images-div {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 .product-subimages-div {
-    display: flex;
+  display: flex;
 }
 .gold-star-product-deets {
-    color: black;
-    margin: 0rem .2rem;
-    font-size: min(2vmin, 1rem);
+  color: black;
+  margin: 0rem 0.2rem;
+  font-size: min(2vmin, 1rem);
 }
 .blank-star-product-deets {
-    color: gray;
-    font-size: min(2vmin, 1rem);
+  color: gray;
+  font-size: min(2vmin, 1rem);
 }
 .prod-description-p {
-    font-weight: bolder;
-    font-size: (2vmin, 1rem);
+  font-weight: bolder;
+  font-size: (2vmin, 1rem);
 }
 
 .truck-icon {
-    height: min(5vmin, 3rem);
-    margin-right: min(3vmin, .5rem);
+  height: min(5vmin, 3rem);
+  margin-right: min(3vmin, 0.5rem);
 }
 
 .favorite-shop {
-    font-size: 2vmin;
-    font-family: 'Mulish', sans-serif;
+  font-size: 2vmin;
+  font-family: "Mulish", sans-serif;
 }
 .shop-heart-filled {
-    color: red;
+  color: red;
 }
 .follow-unfollow-shop-div {
-    cursor: pointer;
-    margin-top: min(2vmin, .5rem);
+  cursor: pointer;
+  margin-top: min(2vmin, 0.5rem);
 }
 
 .review-num-title {
-    font-family: 'Marcellus', serif;
-    margin: 7vmin 3vmin;
+  font-family: "Marcellus", serif;
+  margin: 7vmin 3vmin;
 }
 .post-item-review {
-    border: .1rem solid slategrey;
-    border-radius: .3rem;
-    font-weight: bold;
-    transition: .2s ease-in-out;
-    margin: 1rem;
-    font-family: 'Marcellus', serif;
-    font-size: min(2vmin, .9rem);
+  border: 0.1rem solid slategrey;
+  border-radius: 0.3rem;
+  font-weight: bold;
+  transition: 0.2s ease-in-out;
+  margin: 1rem;
+  font-family: "Marcellus", serif;
+  font-size: min(2vmin, 0.9rem);
 }
 .post-item-review:hover {
-    box-shadow: 0rem 0rem .5rem grey;
+  box-shadow: 0rem 0rem 0.5rem grey;
 }
 .mapping-div {
-    list-style-type: none;
+  list-style-type: none;
 }
 .review-p {
-    display: inline;
+  display: inline;
 }
 .shop-policy-button {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .num-product-in-cart {
-    color: green;
-    margin-bottom: .75rem;
-    height: 1rem;
-    width: auto;
-    font-size: 1.75vmin;
+  color: green;
+  margin-bottom: 0.75rem;
+  height: 1rem;
+  width: auto;
+  font-size: 1.75vmin;
 }

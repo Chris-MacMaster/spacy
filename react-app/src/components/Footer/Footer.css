@@ -1,48 +1,48 @@
 .footer-container {
-    margin-top: 10vmin;
-    margin-left: 5vmin;
-    margin-right: 5vmin;
+  margin-top: 10vmin;
+  margin-left: 5vmin;
+  margin-right: 5vmin;
 }
 .footer-title {
-    text-align: center;
-    font-size: 3vmin;
-    margin-bottom: 10vmin;
+  text-align: center;
+  font-size: 3vmin;
+  margin-bottom: 10vmin;
 }
 .about-creators {
-    margin-top: 3vmin;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    /* margin-bottom: 20vmin; */
+  margin-top: 3vmin;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  /* margin-bottom: 20vmin; */
 }
 .dev-name {
-    font-weight: bold;
-    font-size: 2vmin;
+  font-weight: bold;
+  font-size: 2vmin;
 }
 .github-icon,
 .linkedin-icon {
-    width: 3vmin;
-    height: 3vmin;
-    object-fit: contain;
-    margin-left: .5rem;
-    align-items: center;
-    border-radius: none;
+  width: 3vmin;
+  height: 3vmin;
+  object-fit: contain;
+  margin-left: 0.5rem;
+  align-items: center;
+  border-radius: none;
 }
 #curriculum-vitae {
-    width: 3vmin;
-    height: 3vmin;
+  width: 3vmin;
+  height: 3vmin;
 }
 .portfolio-svg {
-    margin-left: .5rem;
+  margin-left: 0.5rem;
 }
 .footer-person {
-    display: flex;
-    flex-direction: row;
-    margin: 1.5vmin;
+  display: flex;
+  flex-direction: row;
+  margin: 1.5vmin;
 }
-@media only screen and (max-width: 768px){
-    /* .dev-name {
+@media only screen and (max-width: 768px) {
+  /* .dev-name {
         font-size: .8rem;
     }
     .github-icon,

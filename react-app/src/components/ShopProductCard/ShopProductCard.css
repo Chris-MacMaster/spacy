@@ -1,71 +1,73 @@
 .shop-product-preview-image {
-    object-fit: cover;
-    height: min(12vw, 10rem);
-    width: min(17vw, 14rem);
-    border-radius: .3rem;
-    margin-top: 0rem;
-    object-fit: cover;
+  object-fit: cover;
+  height: min(12vw, 10rem);
+  width: min(17vw, 14rem);
+  border-radius: 0.3rem;
+  margin-top: 0rem;
+  object-fit: cover;
 }
 .shop-product-card {
-    height: fit-content;
-    width: min(17vw, 14rem);
-    display: flex;
-    flex-direction: column;
-    font-family: 'Mulish', sans-serif;
-    line-height: 1.2rem;
-    transition: .2s ease-in-out;
-    position: sticky;
-    border-radius: .5rem;
-    position: relative;
+  height: fit-content;
+  width: min(17vw, 14rem);
+  display: flex;
+  flex-direction: column;
+  font-family: "Mulish", sans-serif;
+  line-height: 1.2rem;
+  transition: 0.2s ease-in-out;
+  position: sticky;
+  border-radius: 0.5rem;
+  position: relative;
 }
 .shop-product-price {
-    font-weight: bolder;
+  font-weight: bolder;
 }
-a.product-name, a.shop-product-price {
-    text-decoration: none;
+a.product-name,
+a.shop-product-price {
+  text-decoration: none;
 }
 .shop-product-card:hover {
-    box-shadow: 0rem 0rem 1rem grey;
-    outline: 1px solid transparent;
+  box-shadow: 0rem 0rem 1rem grey;
+  outline: 1px solid transparent;
 }
-.shop-product-name, .shop-product-price {
-    margin-top: 0;
-    font-size: 1.5vmin;
-    line-height: 2vmin;
-    width: 16vw;
+.shop-product-name,
+.shop-product-price {
+  margin-top: 0;
+  font-size: 1.5vmin;
+  line-height: 2vmin;
+  width: 16vw;
 }
 .shop-product-info {
-    margin-left: .5rem;
+  margin-left: 0.5rem;
 }
 .shop-product-buttons {
-    position: absolute;
-    bottom: .1rem;
-    right: .1rem;
+  position: absolute;
+  bottom: 0.1rem;
+  right: 0.1rem;
 }
 .shop-product-bottom {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 #shop-delete-button {
-    color: #ff0000;
+  color: #ff0000;
 }
 #shop-edit-button {
-    color: #0000ff;
+  color: #0000ff;
 }
 #shop-delete-button,
 #shop-edit-button {
-    padding: .2vmin;
-    margin: 0;
-    text-decoration: none;
-    border: grey .1rem solid;
-    font-weight: 600;
-    font-size: min(2vmin, .7rem);
-    border-radius: .5vmin;
-    margin-left: .5vmin;
-    cursor: pointer;
-    transition: ease-in-out .3s;
+  padding: 0.2vmin;
+  margin: 0;
+  text-decoration: none;
+  border: grey 0.1rem solid;
+  font-weight: 600;
+  font-size: min(2vmin, 0.7rem);
+  border-radius: 0.5vmin;
+  margin-left: 0.5vmin;
+  cursor: pointer;
+  transition: ease-in-out 0.3s;
 }
 #shop-delete-button:hover,
 #shop-edit-button:hover {
-    box-shadow: 0rem 0rem 1vmin black;
+  box-shadow: 0rem 0rem 1vmin black;
 }

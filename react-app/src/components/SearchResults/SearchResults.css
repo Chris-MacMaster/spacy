@@ -1,129 +1,127 @@
 /* color: rgb(130, 52, 149); */
 .search-results-div {
-    margin-left: 1vmin;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    /* justify-content: center; */
-    align-content: center;
+  margin-left: 1vmin;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  /* justify-content: center; */
+  align-content: center;
 }
 .search-result-display {
-    display: flex;
-    flex-direction: row;
-    width: 95vw;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-content: center;
+  display: flex;
+  flex-direction: row;
+  width: 95vw;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
 }
 .search-result-img {
-    height: 11vmin;
-    width: 15vmin;
-    border-radius: .5vmin;
-    object-fit: cover;
+  height: 11vmin;
+  width: 15vmin;
+  border-radius: 0.5vmin;
+  object-fit: cover;
 }
 .search-result-image-div {
-    /* width: 15rem;
-    height: 11rem; */
-    object-fit: contain;
+  object-fit: contain;
 }
 .est-arrival {
-    border-radius: 7vmin;
-    width: fit-content;
-    padding: 1vmin;
-    margin: 1rem;
-    border: black solid .1rem;
-    font-size: 1vmin;
+  border-radius: 7vmin;
+  width: fit-content;
+  padding: 1vmin;
+  margin: 1rem;
+  border: black solid 0.1rem;
+  font-size: 1vmin;
 }
 .est-arrival-time {
-    font-weight: bolder;
+  font-weight: bolder;
 }
 .search-product-card {
-    margin: .5rem;
+  margin: 0.5rem;
 }
 .search-product-name {
-    font-size: 1rem;
-    margin: 0rem
+  font-size: 1rem;
+  margin: 0rem;
 }
 .search-stars {
-    color: black;
-    font-size: .9rem;
+  color: black;
+  font-size: 0.9rem;
 }
 .grey-search-stars,
 .search-new-product {
-    font-size: .9rem;
-    margin: 0rem;
+  font-size: 0.9rem;
+  margin: 0rem;
 }
-.search-results-stars{
-    margin: 0rem;
+.search-results-stars {
+  margin: 0rem;
 }
 .search-results-stars-gold {
-    color: black;
+  color: black;
 }
 .search-results-stars-black {
-    color: grey;
+  color: grey;
 }
 .search-badge {
-    color: rgb(130, 52, 149);
-    font-size: 1.1rem;
+  color: rgb(130, 52, 149);
+  font-size: 1.1rem;
 }
 .search-star-seller {
-    font-size: .8rem;
-    font-weight: bolder;
+  font-size: 0.8rem;
+  font-weight: bolder;
 }
 .search-result-price {
-    font-weight: 900;
-    color: black;
-    margin: 0rem;
+  font-weight: 900;
+  color: black;
+  margin: 0rem;
 }
 .search-result-shop {
-    color: rgb(70, 70, 70);
-    font-weight: 300;
-    font-size: .8rem;
-    margin: 0rem;
+  color: rgb(70, 70, 70);
+  font-weight: 300;
+  font-size: 0.8rem;
+  margin: 0rem;
 }
 .search-more-like {
-    font-size: .8rem;
-    color: black;
-    font-weight: bold;
-    margin: 0rem;
+  font-size: 0.8rem;
+  color: black;
+  font-weight: bold;
+  margin: 0rem;
 }
 
-@media only screen and (max-width: 1024px){
-    .search-result-img {
-        height: 7rem;
-        width: 10rem;
-    }
-    .search-result-price,
-    .search-new-product,
-    .search-results-stars-gold,
-    .search-results-stars-black,
-    .search-more-like,
-    .search-product-name,
-    .search-star-seller {
-        font-size: .7rem;
-    }
-    .search-badge,
-    .search-result-shop  {
-        font-size: .9rem;
-    }
+@media only screen and (max-width: 1024px) {
+  .search-result-img {
+    height: 7rem;
+    width: 10rem;
+  }
+  .search-result-price,
+  .search-new-product,
+  .search-results-stars-gold,
+  .search-results-stars-black,
+  .search-more-like,
+  .search-product-name,
+  .search-star-seller {
+    font-size: 0.7rem;
+  }
+  .search-badge,
+  .search-result-shop {
+    font-size: 0.9rem;
+  }
 }
 
-@media only screen and (max-width: 480px){
-    .search-result-img {
-        height: 5rem;
-        width: 8rem;
-    }
-    .search-result-price,
-    .search-new-product,
-    .search-results-stars-gold,
-    .search-results-stars-black,
-    .search-more-like,
-    .search-product-name,
-    .search-star-seller {
-        font-size: .5rem;
-    }
-    .search-badge,
-    .search-result-shop  {
-        font-size: .7rem;
-    }
+@media only screen and (max-width: 480px) {
+  .search-result-img {
+    height: 5rem;
+    width: 8rem;
+  }
+  .search-result-price,
+  .search-new-product,
+  .search-results-stars-gold,
+  .search-results-stars-black,
+  .search-more-like,
+  .search-product-name,
+  .search-star-seller {
+    font-size: 0.5rem;
+  }
+  .search-badge,
+  .search-result-shop {
+    font-size: 0.7rem;
+  }
 }

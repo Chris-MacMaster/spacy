@@ -1,124 +1,124 @@
 .rate {
-    float: left;
-    height: 46px;
-    padding: 0 10px;
+  float: left;
+  height: 46px;
+  padding: 0 10px;
 }
 .rate:not(:checked) > input {
-    position:absolute;
-    top:-9999px;
+  position: absolute;
+  top: -9999px;
 }
 .rate:not(:checked) > label {
-    float:right;
-    width:1em;
-    overflow:hidden;
-    white-space:nowrap;
-    cursor:pointer;
-    font-size:30px;
-    color:#ccc;
+  float: right;
+  width: 1em;
+  overflow: hidden;
+  white-space: nowrap;
+  cursor: pointer;
+  font-size: 30px;
+  color: #ccc;
 }
 .rate:not(:checked) > label:before {
-    content: '★ ';
+  content: "★ ";
 }
 .rate > input:checked ~ label {
-    color: #ffc700;
+  color: #ffc700;
 }
 .rate:not(:checked) > label:hover,
 .rate:not(:checked) > label:hover ~ label {
-    color: #deb217;
+  color: #deb217;
 }
 .rate > input:checked + label:hover,
 .rate > input:checked + label:hover ~ label,
 .rate > input:checked ~ label:hover,
 .rate > input:checked ~ label:hover ~ label,
 .rate > label:hover ~ input:checked ~ label {
-    color: #c59b08;
+  color: #c59b08;
 }
 .formParent {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 .wholeForm {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: min(70vmin, 20em);
-    padding-bottom: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: min(70vmin, 20em);
+  padding-bottom: 1em;
 }
 .wholeForm p {
-    font-size: min(2.5vmin, 1rem);
+  font-size: min(2.5vmin, 1rem);
 }
 .productPic {
-    display: flex;
-    flex-direction: row;
-    margin-top: min(7vmin, 2rem);
+  display: flex;
+  flex-direction: row;
+  margin-top: min(7vmin, 2rem);
 }
 
 .productName {
-    margin-left: min(2vmin, 1rem);
+  margin-left: min(2vmin, 1rem);
 }
 
 .productPic img {
-    width: min(20vmin, 10rem);
-    height: min(20vmin, 10rem);
-    border-radius: min(2vmin, .5rem);
-    object-fit: cover;
+  width: min(20vmin, 10rem);
+  height: min(20vmin, 10rem);
+  border-radius: min(2vmin, 0.5rem);
+  object-fit: cover;
 }
 
 .review-text {
-    height: 20vmin;
-    width: min(70vmin, 25rem);
-    margin: 3vmin;
-    font-size: min(3vmin, 1.5rem);
+  height: 20vmin;
+  width: min(70vmin, 25rem);
+  margin: 3vmin;
+  font-size: min(3vmin, 1.5rem);
 }
 .submitButtonParent {
-    display: flex;
-    margin-bottom: 4vmin;
+  display: flex;
+  margin-bottom: 4vmin;
 }
 .submitButton {
-    background-color: black;
-    color: white;
-    padding-top: 3vmin;
-    padding-bottom: 3vmin;
-    margin-left: 0.1vmin;
-    font-weight: bold;
-    border-radius: 4vmin;
-    box-shadow: 0px 0px 2vmin rgba(0, 0, 0, 0.19), 0px 1px 0px rgba(0, 0, 0, 0.23);
+  background-color: black;
+  color: white;
+  padding-top: 3vmin;
+  padding-bottom: 3vmin;
+  margin-left: 0.1vmin;
+  font-weight: bold;
+  border-radius: 4vmin;
+  box-shadow: 0px 0px 2vmin rgba(0, 0, 0, 0.19), 0px 1px 0px rgba(0, 0, 0, 0.23);
 }
 .submitButton:hover {
-    cursor: pointer;
-    background-color: lightgray;
-    color: black;
+  cursor: pointer;
+  background-color: lightgray;
+  color: black;
 }
 
 .imageURLdiv {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 .imageURLinput {
-    margin-bottom: 3vmin;
+  margin-bottom: 3vmin;
 }
 .edit-review-button {
-    z-index: 5;
+  z-index: 5;
 }
 .review-filled {
-    color: goldenrod;
+  color: goldenrod;
 }
 .review {
-    color: darkgray;
+  color: darkgray;
 }
 #imageURL {
-    height: min(4vmin, 2rem);
+  height: min(4vmin, 2rem);
 }
 #imageURL,
 .review-text {
-    font-size: min(1.7vmin, 11.7rem);
-    transition: .2s ease-in-out;
-    border-radius: min(2vmin, .5rem);
-    font-size: min(3vmin, 1.3rem);
+  font-size: min(1.7vmin, 11.7rem);
+  transition: 0.2s ease-in-out;
+  border-radius: min(2vmin, 0.5rem);
+  font-size: min(3vmin, 1.3rem);
 }
 #imageURL:focus-within,
 .review-text:focus-within {
-    outline: 2px aqua solid;
-    outline-offset: 2px;
+  outline: 2px aqua solid;
+  outline-offset: 2px;
 }

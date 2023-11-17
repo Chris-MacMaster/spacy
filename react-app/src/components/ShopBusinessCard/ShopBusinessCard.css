@@ -1,71 +1,69 @@
 .shop-business-card {
-    display: flex;
-    flex-direction: row;
-    font-family: 'Mulish', sans-serif;
-    text-decoration: none;
+  display: flex;
+  flex-direction: row;
+  font-family: "Mulish", sans-serif;
+  text-decoration: none;
 }
 .user-manage-shop-pic {
-    width: min(15vmin, 8rem);
-    height: min(15vmin, 8rem);
-    border-radius: .3rem;
-    object-fit: cover;
+  width: min(15vmin, 8rem);
+  height: min(15vmin, 8rem);
+  border-radius: 0.3rem;
+  object-fit: cover;
 }
 .user-manage-business-text {
-    margin-left: min(1vmin, 1rem);
-    font-size: min(2vmin, 1rem);
+  margin-left: min(1vmin, 1rem);
+  font-size: min(2vmin, 1rem);
 }
-.user-manage-shop-name{
-    margin-bottom: 0rem;
+.user-manage-shop-name {
+  margin-bottom: 0rem;
 }
 .user-manage-button {
-    border: solid grey 2px;
-    border-radius: 0rem;
-    padding: .5vmin;
-    margin-right: .5vmin;
-    margin-top: 1vmin;
-    font-family: 'Mulish', sans-serif;
+  border: solid grey 2px;
+  border-radius: 0rem;
+  padding: 0.5vmin;
+  margin-right: 0.5vmin;
+  margin-top: 1vmin;
+  font-family: "Mulish", sans-serif;
 }
 .user-manage-button i {
-    font-size: min(1vmin, .7rem);
+  font-size: min(1vmin, 0.7rem);
 }
 .user-manage-edit-shop {
-    background-color: rgb(51, 51, 51);
-    color: white;
-    font-weight: bolder;
-    transition: ease-in-out .3s;
-    cursor: pointer;
-    font-size: min(2vmin, 1rem);
-
+  background-color: rgb(51, 51, 51);
+  color: white;
+  font-weight: bolder;
+  transition: ease-in-out 0.3s;
+  cursor: pointer;
+  font-size: min(2vmin, 1rem);
 }
 .user-manage-create,
-.user-manage-delete  {
-    cursor: pointer;
-    font-weight: bolder;
-    font-size: min(1.7vmin, 1rem);
- }
+.user-manage-delete {
+  cursor: pointer;
+  font-weight: bolder;
+  font-size: min(1.7vmin, 1rem);
+}
 .user-manage-delete:hover,
-.user-manage-edit-shop:hover  {
-    box-shadow: 0rem 0rem .5rem black;
+.user-manage-edit-shop:hover {
+  box-shadow: 0rem 0rem 0.5rem black;
 }
 .user-manage-edit-shop:active {
-    background-color: rgb(103, 103, 103);
+  background-color: rgb(103, 103, 103);
 }
 .user-manage-edit-shop i {
-    color: white;
+  color: white;
 }
 .create-product-icon {
-    color: rgb(81, 81, 81);
+  color: rgb(81, 81, 81);
 }
 .fa-pen,
 .fa-screwdriver-wrench {
-    margin-right: min(1vmin, .3rem);
+  margin-right: min(1vmin, 0.3rem);
 }
 .fa-trash-can {
-    color: red;
-    margin-right: min(1vmin, .3rem);
+  color: red;
+  margin-right: min(1vmin, 0.3rem);
 }
 
-
 .unfollow-heart {
-    margin-right: min(1vmin, .3rem);
+  margin-right: min(1vmin, 0.3rem);
 }

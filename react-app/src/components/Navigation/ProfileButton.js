@@ -4,9 +4,9 @@ import { useDispatch } from "react-redux";
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
-import * as sessionActions from '../../store/session'
+import * as sessionActions from "../../store/session";
 import { NavLink, useHistory } from "react-router-dom";
-import './ProfileButton.css'
+import "./ProfileButton.css";
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
@@ -26,7 +26,7 @@ function ProfileButton({ user }) {
       }
     };
 
-    document.addEventListener('click', closeMenu);
+    document.addEventListener("click", closeMenu);
 
     return () => document.removeEventListener("click", closeMenu);
   }, [showMenu]);
@@ -36,70 +36,70 @@ function ProfileButton({ user }) {
     e.preventDefault();
     dispatch(sessionActions.logout());
     closeMenu();
-    history.push('/')
+    history.push("/");
   };
 
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
 
   return (
     <>
-    <div className="profileburger">
-      <button onClick={openMenu} className="profileburger">
-        <i className="fas fa-user-circle" />
-      </button>
-    </div>
+      <div className="profileburger">
+        <button onClick={openMenu} className="profileburger">
+          <i className="fas fa-user-circle" />
+        </button>
+      </div>
       <div className={ulClassName} ref={ulRef}>
         {user ? (
           <>
-              <div>
-                <NavLink to={`/users/${user.id}`}>
-                  <div className="inside-div">
-                    <span className="icon-span">
-                      <i className="fas fa-user-circle" />
-                    </span>
-                    <span>
-                      <div>{user.firstName} {user.lastName}</div>
-                      <div className="subtext">View your profile</div>
-                    </span>
-                  </div>
-                </NavLink>
-              </div>
-              <div>
-                <NavLink to='/purchases'>
-                  <div className="inside-div">
-                    <span className="icon-span">
-                      <i className="fa-solid fa-clipboard-list drop-down-icons" />
-                    </span>
-                    <span>
-                      <div>Purchases</div>
-                    </span>
-                  </div>
-                </NavLink>
-              </div>
-              <div>
-                <NavLink to={`/users/${user.id}`}>
-                  <div className="inside-div">
-                    <span className="icon-span">
+            <div>
+              <NavLink to={`/users/${user.id}`}>
+                <div className="inside-div">
+                  <span className="icon-span">
+                    <i className="fas fa-user-circle" />
+                  </span>
+                  <span>
+                    <div>
+                      {user.firstName} {user.lastName}
+                    </div>
+                    <div className="subtext">View your profile</div>
+                  </span>
+                </div>
+              </NavLink>
+            </div>
+            <div>
+              <NavLink to="/purchases">
+                <div className="inside-div">
+                  <span className="icon-span">
+                    <i className="fa-solid fa-clipboard-list drop-down-icons" />
+                  </span>
+                  <span>
+                    <div>Purchases</div>
+                  </span>
+                </div>
+              </NavLink>
+            </div>
+            <div>
+              <NavLink to={`/users/${user.id}`}>
+                <div className="inside-div">
+                  <span className="icon-span">
                     <i className="fa-solid fa-store drop-down-icons" />
-                    </span>
-                    <span>
-                      <div>Sell on Spacey</div>
-                    </span>
-                  </div>
-                </NavLink>
+                  </span>
+                  <span>
+                    <div>Sell on Spacey</div>
+                  </span>
+                </div>
+              </NavLink>
+            </div>
+            <div>
+              <div className="inside-div" onClick={logout}>
+                <span className="icon-span">
+                  <i className="fa-solid fa-right-from-bracket drop-down-icons" />
+                </span>
+                <span>
+                  <div>Sign Out</div>
+                </span>
               </div>
-              <div>
-                  <div className="inside-div" onClick={logout}>
-                    <span className="icon-span">
-                      <i className="fa-solid fa-right-from-bracket drop-down-icons" />
-                    </span>
-                    <span>
-                      <div>
-                        Sign Out
-                      </div>
-                    </span>
-                  </div>
-              </div>
+            </div>
 
             {/* <div>
               <span className="profile-drop-item" >
@@ -131,7 +131,7 @@ function ProfileButton({ user }) {
               </span>
               <span className="profile-drop-text">Account Settings</span>
             </div> */}
-          {/* <div className="popout-profile-header dropdown-row">
+            {/* <div className="popout-profile-header dropdown-row">
           <div>
             <i className="fas fa-user-circle profile-drop-item" />
           </div>
@@ -165,19 +165,19 @@ function ProfileButton({ user }) {
         ) : (
           <div className="login-signup">
             <div className="modal-button">
-            <OpenModalButton
-              className='modal-button'
-              buttonText="Log In"
-              onItemClick={closeMenu}
-              modalComponent={<LoginFormModal />}
-            />
+              <OpenModalButton
+                className="modal-button"
+                buttonText="Log In"
+                onItemClick={closeMenu}
+                modalComponent={<LoginFormModal />}
+              />
             </div>
-            <div className='modal-button'>
-            <OpenModalButton
-              buttonText="Sign Up"
-              onItemClick={closeMenu}
-              modalComponent={<SignupFormModal />}
-            />
+            <div className="modal-button">
+              <OpenModalButton
+                buttonText="Sign Up"
+                onItemClick={closeMenu}
+                modalComponent={<SignupFormModal />}
+              />
             </div>
           </div>
         )}
