@@ -17,7 +17,6 @@
     align-self: center;
 }
 .shop-info{
-    /* width: fit-content; */
     margin-bottom: min(2.5vmin, 1rem);
     border-radius: min(2.5vmin, 1rem);
     box-shadow: 0 .5vmin 1vmin rgba(34,34,34,.15);

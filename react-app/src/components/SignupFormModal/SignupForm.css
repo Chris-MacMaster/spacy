@@ -8,7 +8,7 @@
     flex-direction: column;
     height: 70vh;
     margin-top: 0rem;
-    overflow: scroll;
+    padding: 1rem;
 }
 .signup-title {
     font-family: 'Marcellus', serif;

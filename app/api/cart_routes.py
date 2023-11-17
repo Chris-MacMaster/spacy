@@ -5,19 +5,21 @@ from app.forms import CartForm, SignUpForm
 
 cart_routes = Blueprint('/cart', __name__)
 
+
 @cart_routes.route('/empty', methods=['DELETE'])
 def checkout():
 
-    carts_to_process = Cart.query.filter(Cart.user_id == current_user.id).join(Product).all()
+    carts_to_process = Cart.query.filter(
+        Cart.user_id == current_user.id).join(Product).all()
     purchases = []
     for cart in carts_to_process:
         purchases.append(Purchase(
-            cart_id = cart.id,
-            user_id = cart.user_id,
-            quantity = cart.quantity,
-            product_id = cart.product_id,
-            shop_id = cart.product.shop_id
-            ))
+            cart_id=cart.id,
+            user_id=cart.user_id,
+            quantity=cart.quantity,
+            product_id=cart.product_id,
+            shop_id=cart.product.shop_id
+        ))
         product = Product.query.get(cart.product_id)
         product.available -= cart.quantity
         db.session.delete(cart)
@@ -25,7 +27,8 @@ def checkout():
     db.session.commit()
     return {"message": "Checkout Complete"}, 204
 
-@cart_routes.route('/', methods=['GET','POST', 'PUT', 'DELETE'])
+
+@cart_routes.route('/', methods=['GET', 'POST', 'PUT', 'DELETE'])
 # @login_required
 def return_cart():
     """
@@ -39,8 +42,8 @@ def return_cart():
         form = CartForm()
         form['csrf_token'].data = request.cookies['csrf_token']
         if form.validate_on_submit():
-            item_already_in_cart = Cart.query.filter((Cart.user_id == form.data["user_id"])\
-                                                  & (Cart.product_id == form.data["product_id"])).join(Product).first()
+            item_already_in_cart = Cart.query.filter((Cart.user_id == form.data["user_id"])
+                                                     & (Cart.product_id == form.data["product_id"])).join(Product).first()
             if item_already_in_cart:
                 item_already_in_cart.quantity += form.data['quantity']
                 if item_already_in_cart.quantity > item_already_in_cart.product.available:
@@ -56,13 +59,12 @@ def return_cart():
                 return_obj['productId'] = item_already_in_cart.product.id
                 return_obj['quantity'] = item_already_in_cart.quantity
 
-
                 return return_obj, 201
             else:
                 new_item = Cart(
-                    user_id = form.data["user_id"],
-                    product_id = form.data["product_id"],
-                    quantity = form.data["quantity"]
+                    user_id=form.data["user_id"],
+                    product_id=form.data["product_id"],
+                    quantity=form.data["quantity"]
                 )
                 db.session.add(new_item)
                 db.session.commit()
@@ -105,8 +107,8 @@ def return_cart():
             return return_obj, 200
 
     user_cart = Cart.query\
-    .join(Product)\
-    .filter(Cart.user_id == current_user.id).all()
+        .join(Product)\
+        .filter(Cart.user_id == current_user.id).all()
     cart = {}
     for i in user_cart:
         product = i.product.to_dict()
@@ -119,6 +121,7 @@ def return_cart():
         cart[i.id]["shopImage"] = i.product.shops.shop_images[0].url
     return cart, 200
 
+
 @cart_routes.route('/addLocalCart', methods=['POST'])
 def addLocalCart():
     cart_dict = request.get_json()
@@ -126,7 +129,8 @@ def addLocalCart():
         return {}, 200
     cart_list = cart_dict.values()
     for cart in cart_list:
-        current_cart = Cart.query.join(Product).filter((Cart.user_id == current_user.id) & (Cart.product_id == cart['productId'])).first()
+        current_cart = Cart.query.join(Product).filter(
+            (Cart.user_id == current_user.id) & (Cart.product_id == cart['productId'])).first()
         if current_cart:
             if current_cart.quantity + cart['quantity'] > current_cart.product.avaiable:
                 current_cart.quantity = current_cart.product.avaiable
@@ -137,7 +141,7 @@ def addLocalCart():
                 quantity=cart['quantity'],
                 product_id=cart['productId'],
                 user_id=current_user.id,
-                )
+            )
             db.session.add(new_cart)
 
     db.session.commit()

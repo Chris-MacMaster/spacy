@@ -9,23 +9,27 @@ export function ModalProvider({ children }) {
   const [modalContent, setModalContent] = useState(null);
   // callback function that will be called when modal is closing
   const [onModalClose, setOnModalClose] = useState(null);
+  const [open, setOpen] = useState(false);
 
   const closeModal = () => {
-    setModalContent(null); // clear the modal contents
-    // If callback function is truthy, call the callback function and reset it
-    // to null:
-    if (typeof onModalClose === 'function') {
-      setOnModalClose(null);
-      onModalClose();
-    }
+    setOpen(false);
+    setTimeout(() => {
+      setModalContent(null);
+      if (typeof onModalClose === "function") {
+        onModalClose();
+      }
+    }, 300);
   };
+
 
   const contextValue = {
     modalRef, // reference to modal div
     modalContent, // React component to render inside modal
     setModalContent, // function to set the React component to render inside modal
     setOnModalClose, // function to set the callback function called when modal is closing
-    closeModal // function to close the modal
+    closeModal, // function to close the modal
+    open,
+    setOpen, // function to close the modal
   };
 
   return (
@@ -39,7 +43,7 @@ export function ModalProvider({ children }) {
 }
 
 export function Modal() {
-  const { modalRef, modalContent, closeModal } = useContext(ModalContext);
+  const { modalRef, modalContent, closeModal, open } = useContext(ModalContext);
   // If there is no div referenced by the modalRef or modalContent is not a
   // truthy value, render nothing:
   if (!modalRef || !modalRef.current || !modalContent) return null;
@@ -47,8 +51,15 @@ export function Modal() {
   // Render the following component to the div referenced by the modalRef
   return ReactDOM.createPortal(
     <div id="modal">
-      <div id="modal-background" onClick={closeModal} />
-      <div id="modal-content">
+      <div
+        id="modal-background"
+        onClick={closeModal}
+        className={`${open ? "opacity-100" : "opacity-0"}`}
+      />
+      <div
+        id="modal-content"
+        className={`${open ? "scale-100 opacity-100" : "scale-0 opacity-0"}`}
+      >
         {modalContent}
       </div>
     </div>,
