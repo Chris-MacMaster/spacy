@@ -48,17 +48,6 @@ function Header({ isLoaded }) {
   const shops = useSelector((state) => state.shops.allShops);
   const user = useSelector((state) => state.session.user);
 
-  const headerTabs = [
-    "Gifts & Gift Cards",
-    "Craft Supplies",
-    "Art & Collectibles",
-    "Toys & Entertainment",
-    "Wedding & Party",
-    "Home & Living",
-    "Clothing & Shoes",
-    "Jewelry & Accessories",
-    "Home Favorites",
-  ];
 
   if (!hasLoaded) return null;
 
@@ -142,13 +131,6 @@ function Header({ isLoaded }) {
         </div>
       </div>
 
-      <div className="header-tabs">
-        {headerTabs?.map((tab) => (
-          <span className="header-tab" key={`${tab}`}>
-            {tab}
-          </span>
-        ))}
-      </div>
     </div>
   );
 }
