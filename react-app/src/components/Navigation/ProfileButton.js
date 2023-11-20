@@ -39,8 +39,6 @@ function ProfileButton({ user }) {
     history.push("/");
   };
 
-  const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
-
   return (
     <>
       <div className="profileburger">
@@ -48,7 +46,12 @@ function ProfileButton({ user }) {
           <i className="fas fa-user-circle" />
         </button>
       </div>
-      <div className={ulClassName} ref={ulRef}>
+      <div
+        className={`absolute right-0 top-20 bg-white rounded-xl drop-shadow-lg p-8 transition ease-in-out duration-400 w-64 z-20 ${
+          showMenu ? "opacity-100 scale-100" : "opacity-0 scale-0"
+        }`}
+        ref={ulRef}
+      >
         {user ? (
           <>
             <div>
@@ -100,85 +103,28 @@ function ProfileButton({ user }) {
                 </span>
               </div>
             </div>
-
-            {/* <div>
-              <span className="profile-drop-item" >
-                <i className="fa-solid fa-gift drop-down-icons"></i>
-              </span>
-              <span className="profile-drop-text">Gift card balance: $0.00</span>
-            </div> */}
-            {/* <div>
-              <span className="profile-drop-item" >
-                <i className="fa-solid fa-message drop-down-icons"></i>
-              </span>
-              <span className="profile-drop-text">Messages</span>
-            </div> */}
-            {/* <div>
-              <span className="profile-drop-item" >
-                <i className="fa-solid fa-tag drop-down-icons"></i>
-              </span>
-              <span className="profile-drop-text">Your offers</span>
-            </div> */}
-            {/* <div>
-              <span className="profile-drop-item" >
-                <i className="fa-solid fa-leaf drop-down-icons"></i>
-              </span>
-              <span className="profile-drop-text">Your impact</span>
-            </div> */}
-            {/* <div>
-              <span className="profile-drop-item" >
-                <i className="fa-solid fa-gear drop-down-icons"></i>
-              </span>
-              <span className="profile-drop-text">Account Settings</span>
-            </div> */}
-            {/* <div className="popout-profile-header dropdown-row">
-          <div>
-            <i className="fas fa-user-circle profile-drop-item" />
-          </div>
-
-          <NavLink to={`/users/${user.id}`}><div>
-            <p className="drop-down-user-name">{user.firstName} {user.lastName}</p>
-            <div className="subtext">View your profile</div>
-          </div>
-          </NavLink>
-          </div>
-            <div className="dropdown-row">
-              <span className="profile-drop-item" >
-                <i className="fa-solid fa-clipboard-list drop-down-icons"></i>
-                </span>
-              <NavLink to='/purchases'>
-              <span className="profile-drop-text">Purchases</span>
-              </NavLink>
-            </div>
-            <NavLink to={`/users/${user.id}`}>
-            <div className="dropdown-row">
-              <span className="profile-drop-item" >
-                <i className="fa-solid fa-store drop-down-icons"></i>
-              </span>
-          <span className="profile-drop-text">Sell on Spacey</span>
-            </div>
-            </NavLink>
-            <div className="dropdown-row">
-              <div onClick={logout}><i className="fa-solid fa-right-from-bracket drop-down-icons profile-drop-item" /><span className="signout-button" >Sign Out</span></div>
-            </div> */}
           </>
         ) : (
-          <div className="login-signup">
-            <div className="modal-button">
-              <OpenModalButton
-                className="modal-button"
-                buttonText="Log In"
-                onItemClick={closeMenu}
-                modalComponent={<LoginFormModal />}
-              />
-            </div>
-            <div className="modal-button">
-              <OpenModalButton
-                buttonText="Sign Up"
-                onItemClick={closeMenu}
-                modalComponent={<SignupFormModal />}
-              />
-            </div>
+          <div className="flex flex-col">
+            <OpenModalButton
+              className="modal-button"
+              buttonText={
+                <button className="hover:bg-slate-300 p-2 rounded-xl w-full font-bold transition ease-in-out duration-200 uppercase">
+                  Log In
+                </button>
+              }
+              onItemClick={closeMenu}
+              modalComponent={<LoginFormModal />}
+            />
+            <OpenModalButton
+              buttonText={
+                <button className="hover:bg-slate-300 p-2 rounded-xl w-full font-bold transition ease-in-out duration-200 uppercase">
+                  Sign In
+                </button>
+              }
+              onItemClick={closeMenu}
+              modalComponent={<SignupFormModal />}
+            />
           </div>
         )}
       </div>

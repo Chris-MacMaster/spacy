@@ -1,7 +1,5 @@
 import { Link } from "react-router-dom";
-import "./Footer.css";
-import IconPortfolio from "../IconPortfolio";
-import logo from "../../images/favicon.png";
+import logo from "../images/favicon.png";
 export default function Footer() {
   const devs = [
     [
@@ -36,39 +34,39 @@ export default function Footer() {
     <div className="flex flex-row flex-wrap w-full min-h-96 bg-slate-600  justify-center pb-16 mt-16">
       <div className=" mt-16 ml-16 w-80 ">
         <img src={logo} alt="logo" className=" object-cover w-20 sm:w-24" />
-        <p className="my-2 font-serif marcellus sm:text-xl">
+        <p className="my-2 font-serif baskerville sm:text-lg text-slate-900">
           Spacey Industries Ltd.
         </p>
-        <p className="my-2 font-serif marcellus sm:text-xl">
+        <p className="my-2 font-serif baskerville sm:text-lg text-slate-900">
           Providing e-commerce since 2023
         </p>
       </div>
       <div className=" min-w-96 mt-16 ml-16">
-        <h2 className=" font-bold text-2xl marcellus">DEVELOPERS </h2>
+        <h2 className=" font-bold text-2xl baskerville text-slate-900">DEVELOPERS </h2>
         <div className="flex flex-row mt-4">
           {devs.map((dev, i) => (
             <div className="flex flex-col mx-4" key={`footerperson${i}`}>
-              <p className=" font-bold" key={`footerpersonname${i}`}>
+              <p className=" font-bold uppercase text-slate-900 marcellus" key={`footerpersonname${i}`}>
                 {devs[i][0]}
               </p>
               <Link
                 to={{ pathname: `${dev[1]}` }}
                 target="_blank"
-                className=" flex text-slate-400 visited:text-slate-300 hover:underline"
+                className=" flex text-slate-400 visited:text-slate-300 hover:underline marcellus"
               >
                 LinkedIn
               </Link>
               <Link
                 to={{ pathname: `${dev[2]}` }}
                 target="_blank"
-                className=" flex text-slate-400 visited:text-slate-300 hover:underline"
+                className=" flex text-slate-400 visited:text-slate-300 hover:underline marcellus"
               >
                 Github
               </Link>
               <Link
                 to={{ pathname: `${dev[3]}` }}
                 target="_blank"
-                className=" flex text-slate-400 visited:text-slate-300 hover:underline"
+                className=" flex text-slate-400 visited:text-slate-300 hover:underline marcellus"
               >
                 Portfolio
               </Link>
