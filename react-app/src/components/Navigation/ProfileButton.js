@@ -41,13 +41,11 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <div className="profileburger">
-        <button onClick={openMenu} className="profileburger">
+        <button onClick={openMenu} className=" hover:text-slate-800 transition ease-in-out ">
           <i className="fas fa-user-circle" />
         </button>
-      </div>
       <div
-        className={`absolute right-0 top-20 bg-white rounded-xl drop-shadow-lg p-8 transition ease-in-out duration-400 w-64 z-20 ${
+        className={`absolute right-0 top-16 bg-white rounded-xl drop-shadow-2xl p-4 transition ease-in-out duration-400 w-64 z-20 border-solid border-[1px] border-gray-200 ${
           showMenu ? "opacity-100 scale-100" : "opacity-0 scale-0"
         }`}
         ref={ulRef}
