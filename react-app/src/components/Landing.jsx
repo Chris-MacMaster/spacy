@@ -1,15 +1,14 @@
 import { useEffect, useState } from "react";
-import "./Landing.css";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProducts } from "../../store/product";
-import { authenticate } from "../../store/session";
-import { fetchOneShop, fetchShops } from "../../store/shops";
-import ProductCard from "../ProductCard";
+import { fetchProducts } from "../store/product";
+import { authenticate } from "../store/session";
+import { fetchOneShop, fetchShops } from "../store/shops";
+import ProductCard from "./ProductCard";
 import { NavLink, useHistory } from "react-router-dom";
-import LoadingIcon from "../LoadingIcon";
-import PopularGifts from "../PopularGifts";
-import { fetchCart } from "../../store/cart";
-import { getSearchResults } from "../../store/search";
+import LoadingIcon from "./LoadingIcon";
+import PopularGifts from "./PopularGifts";
+import { fetchCart } from "../store/cart";
+import { getSearchResults } from "../store/search";
 
 function Landing({ isLoaded }) {
   const dispatch = useDispatch();
@@ -105,107 +104,98 @@ function Landing({ isLoaded }) {
     : others[Math.floor(Math.random() * others.length)];
 
   return (
-    <div className="landing-div">
-      <div className="landing-header-accent"></div>
-      <div className="landing-80">
-        <div className="landing-header">
+    <div className="flex flex-col justify-center items-center content-center min-h-screen mx-4">
+      <div className=" absolute top-0 w-screen h-[33vmin] bg-sky-200 z-0"></div>
+      <div className="max-w-screen-lg z-10">
+        <div className="w-full justify-center ">
           {!user ? (
-            <h1 className="welcome-title">
+            <h1 className=" marcellus text-center m-8 text-[4vmin]">
               Incredible style and decor, plus one-of-a-kind gifts right this
               way
             </h1>
           ) : (
-            <h1 className="welcome-title">Welcome back {user.firstName}</h1>
+            <h1 className=" marcellus text-center m-[3vmin] text-[4vmin]">
+              Welcome back {user.firstName}
+            </h1>
           )}
 
-          <div className="top-banner-suggest">
+          <div className="flex flex-row justify-between cursor-pointer">
             <div
-              className="top-banner-suggestions"
+              className="border-b-4 border-b-transparent transition ease-in-out duration-200 font-bold text-center hover:scale-110 hover:border-b-slate-800 w-[12vmin]"
               onClick={handleSubmitJewelry}
             >
-              <div className="suggest-image-div">
-                <img
-                  src="https://i.imgur.com/NtSDPdE.png"
-                  alt="product"
-                  className="suggest-image"
-                ></img>
-              </div>
-              <p className="suggest-image-text">Jewelry</p>
+              <img
+                src="https://i.imgur.com/NtSDPdE.png"
+                alt="product"
+                className=" object-cover rounded-full aspect-square w-[12vmin]"
+              ></img>
+
+              <p className="break-words text-[2vmin]">Jewelry</p>
             </div>
             <div
-              className="top-banner-suggestions"
+              className="border-b-4 border-b-transparent transition ease-in-out duration-200 font-bold text-center hover:scale-110 hover:border-b-slate-800 w-[12vmin]"
               onClick={handleSubmitAdventureOutfitting}
             >
-              <div className="suggest-image-div">
-                <img
-                  src="https://i.imgur.com/bKS0Vs5.jpg"
-                  alt="product"
-                  className="suggest-image"
-                ></img>
-              </div>
-              <p className="suggest-image-text">Adventure Outfitting</p>
+              <img
+                src="https://i.imgur.com/bKS0Vs5.jpg"
+                alt="product"
+                className=" object-cover rounded-full aspect-square w-[12vmin]"
+              ></img>
+              <p className=" break-words text-[2vmin]">Adventure Outfitting</p>
             </div>
             <div
-              className="top-banner-suggestions"
+              className="border-b-4 border-b-transparent transition ease-in-out duration-200 font-bold text-center hover:scale-110 hover:border-b-slate-800 w-[12vmin]"
               onClick={handleSubmitRationsandFoodstuffs}
             >
-              <div className="suggest-image-div">
-                <img
-                  src="https://i.imgur.com/WQ691xR.png"
-                  alt="product"
-                  className="suggest-image"
-                ></img>
-              </div>
-              <p className="suggest-image-text">Rations and Foodstuffs</p>
+              <img
+                src="https://i.imgur.com/WQ691xR.png"
+                alt="product"
+                className=" object-cover rounded-full aspect-square w-[12vmin]"
+              ></img>
+              <p className=" text-[2vmin]">Rations and Foodstuffs</p>
             </div>
             <div
-              className="top-banner-suggestions"
+              className="border-b-4 border-b-transparent transition ease-in-out duration-200 font-bold text-center hover:scale-110 hover:border-b-slate-800 w-[12vmin]"
               onClick={handleSubmitFurnitureandDecor}
             >
-              <div className="suggest-image-div">
-                <img
-                  src="https://i.imgur.com/KWP0Qte.png"
-                  alt="product"
-                  className="suggest-image"
-                ></img>
-              </div>
-              <p className="suggest-image-text">Furniture and Decor</p>
+              <img
+                src="https://i.imgur.com/KWP0Qte.png"
+                alt="product"
+                className=" object-cover rounded-full aspect-square w-[12vmin]"
+              ></img>
+              <p className=" text-[2vmin]">Furniture and Decor</p>
             </div>
             <div
-              className="top-banner-suggestions"
+              className="border-b-4 border-b-transparent transition ease-in-out duration-200 font-bold text-center hover:scale-110 hover:border-b-slate-800 w-[12vmin]"
               onClick={handleSubmitAdventureOutfittingexclaim}
             >
-              <div className="suggest-image-div">
-                <img
-                  src="https://i.imgur.com/pePufdv.jpg"
-                  alt="product"
-                  className="suggest-image"
-                ></img>
-              </div>
-              <p className="suggest-image-text">Adventure Outfitting!</p>
+              <img
+                src="https://i.imgur.com/pePufdv.jpg"
+                alt="product"
+                className=" object-cover rounded-full aspect-square w-[12vmin]"
+              ></img>
+              <p className=" text-[2vmin]">Holiday Gifts!</p>
             </div>
             <div
-              className="top-banner-suggestions"
+              className="border-b-4 border-b-transparent transition ease-in-out duration-200 font-bold text-center hover:scale-110 hover:border-b-slate-800 w-[12vmin]"
               onClick={handleSubmitOnSale}
             >
-              <div className="suggest-image-div">
-                <img
-                  src="https://i.imgur.com/gdYYdaQ.png"
-                  alt="product"
-                  className="suggest-image"
-                ></img>
-              </div>
-              <p className="suggest-image-text">On Sale</p>
+              <img
+                src="https://i.imgur.com/gdYYdaQ.png"
+                alt="product"
+                className=" object-cover rounded-full aspect-square w-[12vmin]"
+              ></img>
+              <p className=" text-[2vmin]">On Sale</p>
             </div>
           </div>
         </div>
 
-        <div className="from-etzy-sellers">
-          <div className="by-etsy-header">
-            <p className="sponsored">
-              Sponsored <i className="fa-solid fa-question"></i>
+        <div className="grid grid-rows-2 grid-cols-4 landing-columns mt-12 gap-3">
+          <div className=" m-[3vmin]">
+            <p className=" text-[2vmin]">
+              Sponsored <i className="fa-solid fa-question"/>
             </p>
-            <h2 className="by-etsy-title">By Spacey Sellers</h2>
+            <h2 className="text-[4vmin] marcellus">By Spacey Sellers</h2>
           </div>
 
           {[
@@ -219,7 +209,6 @@ function Landing({ isLoaded }) {
             product?.ProductImages[1]?.url ? (
               <NavLink
                 to={`/products/${product.id}`}
-                style={{ textDecoration: "none" }}
                 key={`navlink${product.id}`}
               >
                 <ProductCard product={product} key={`${product.id}`} />
@@ -227,63 +216,55 @@ function Landing({ isLoaded }) {
             ) : null
           )}
 
-          <div className="from-etzy-closing">
-            <span className="closing-text">
+          <div className="flex flex-col m-[1vmin] marcellus justify-center">
+            <span className=" text-[2vmin] ">
               Fun fact: behind every sponsored item there is an intelligent
               lifeform hoping you'll check out their shop
             </span>
           </div>
         </div>
 
-        <div className="shop-our-selections">
-          <div className="shop-our-titles">
-            <h2 className="shop-our-title">
+        <div className="flex flex-col mt-[6vmin]">
+          <div className="relative w-full">
+            <h2 className="thasadith text-[3vmin] font-bold">
               Shop our selections{" "}
-              <i className="fa-solid fa-arrow-right shop-our-title"></i>
+              <i className="fa-solid fa-arrow-right text-[3vmin]"></i>
             </h2>
-            <h3 className="shop-our-title">
+            <h3 className="thasadith text-[3vmin]">
               Curated hand-picked by spacey editors
             </h3>
           </div>
 
-          <div className="shop-our-mapped">
+          <div className="grid grid-cols-5 gap-2">
             {[rand1, rand2, rand3, rand4, under30].map((rand, i) => (
               <NavLink
                 to={`/search/filtered-search/${title[i]}`}
-                style={{ textDecoration: "none" }}
                 key={i}
+                className=" overflow-hidden border-[1.5px] border-slate-200 rounded-xl transition ease-in-out hover:shadow-2xl duration-200"
               >
-                <div
-                  className="selection-card"
-                  // onClick={history.push(`/search/${rand.category}`)}
-                  key={`div${i}`}
-                >
+
                   <img
                     src={`${rand?.ProductImages[1]?.url}`}
                     alt="selection-im"
                     key={`img${i}`}
-                    className="shop-our-select-img"
+                    className="aspect-square object-cover"
                   ></img>
-                  <h3 key={`h3${i}`} className="selection-subtitle">
+                  <h3 key={`h3${i}`} className="text-center text=[2vmin] mt-[.5vmin] font-bold thasadith">
                     {title[i]}
                   </h3>
-                </div>
               </NavLink>
             ))}
           </div>
         </div>
 
-        <div className="popular-gifts">
-          <div className="popular-gifts-titles">
-            <h1>Popular gifts right now</h1>
-          </div>
-          <div className="popular-gifts-mapped">
+        <div className=" my-[6vmin]">
+            <h1 className="thasadith text-[3vmin] font-bold">Popular gifts right now</h1>
+          <div className="grid grid-cols-4 gap-3">
             {Object.values(products)
               .reverse()
               .map((p, i) => (
                 <NavLink
                   to={`/products/${p.id}`}
-                  style={{ textDecoration: "none" }}
                 >
                   <PopularGifts product={p} key={i} />
                 </NavLink>
@@ -291,14 +272,14 @@ function Landing({ isLoaded }) {
           </div>
         </div>
 
-        <div className="what-is-etzy">
-          <h1 className="what-is-title">What is Spacey</h1>
-          <div className="column-container">
+        <div className="">
+          <h1 className="text-center marcellus text-[4vmin] mb-[6vmin]">What is Spacey</h1>
+          <div className="flex flex-col gap-6 mb-[6vmin] sm:grid sm:grid-cols-3 sm:gap-4">
             <div className="text-column">
-              <h2 className="column-title">
+              <h2 className=" thasadith text-[3vmin]">
                 A community of explorers and curious minds
               </h2>
-              <p className="what-is-paragraph">
+              <p className="text-[2vmin] mt-[2vmin] leading-[5vmin] ">
                 {" "}
                 Spacey is a online marketplace where people come together to
                 expand our horizons and the horizons of mankind. Around here we
@@ -307,8 +288,8 @@ function Landing({ isLoaded }) {
               </p>
             </div>
             <div className="text-column">
-              <h2 className="column-title">Support independent creators</h2>
-              <p className="what-is-paragraph">
+              <h2 className=" thasadith text-[3vmin]">Support independent creators</h2>
+              <p className="text-[2vmin] mt-[2vmin] leading-[5vmin] ">
                 {" "}
                 There's no centralized warehouse at Spacey, not even a central
                 solar systems, just billions of intelligent lifeforms sharing
@@ -318,8 +299,8 @@ function Landing({ isLoaded }) {
               </p>
             </div>
             <div className="text-column">
-              <h2 className="column-title">Peace of mind</h2>
-              <p className="what-is-paragraph">
+              <h2 className=" thasadith text-[3vmin]">Peace of mind</h2>
+              <p className="text-[2vmin] mt-[2vmin] leading-[5vmin] ">
                 {" "}
                 Who is out there? When we finally make contact, will they wish
                 us harm? Coerce our labor in mining camps on a barely habitable
@@ -330,7 +311,7 @@ function Landing({ isLoaded }) {
               </p>
             </div>
           </div>
-          <h2 className="have-questions">
+          <h2 className=" thasadith text-[4vmin]">
             Have a question? Well, we've got some answers.
           </h2>
         </div>

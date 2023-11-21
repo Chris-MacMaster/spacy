@@ -17,7 +17,9 @@
 .thasadith {
   font-family: "Thasadith", sans-serif;
 }
-
+.landing-columns {
+  grid-template-columns: 7fr 5fr 3fr 5fr;
+}
 body {
   font-family: "Mulish", sans-serif;
   margin: 0px;

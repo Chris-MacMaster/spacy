@@ -3,7 +3,7 @@ import logo from "../images/favicon.png";
 export default function Footer() {
   const devs = [
     [
-      "Christian Ludwell",
+      "Chris Ludwell",
       "https://www.linkedin.com/in/christian-ludwell-047b18247/",
       "https://github.com/cludwell",
       "https://cludwell.github.io/#",
@@ -17,7 +17,7 @@ export default function Footer() {
     ],
 
     [
-      "Christopher MacMaster",
+      "Chris MacMaster",
       "https://www.linkedin.com/in/christopher-macmaster-9b05b3113/",
       "https://github.com/Chris-MacMaster",
       "https://chris-macmaster.github.io/Portfolio/",
