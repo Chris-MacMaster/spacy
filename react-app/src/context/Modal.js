@@ -53,11 +53,14 @@ export function Modal() {
       <div
         id="modal-background"
         onClick={closeModal}
-        className={`${open ? "opacity-100" : "opacity-0"}`}
+        className={`fixed inset-0 flex justify-center items-center transition-colors z-10 duration-300
+        ${open ? "visible bg-black/40" : "invisible"}
+    `}
       />
       <div
         id="modal-content"
-        className={`${open ? "scale-100 opacity-100" : "scale-0 opacity-0"}`}
+        className={`shadow p-6 transition-all duration-300 mx-4 absolute bg-white rounded-xl z-20
+      ${open ? "scale-100 opacity-100" : "scale-0 opacity-0"}`}
       >
         {modalContent}
       </div>
