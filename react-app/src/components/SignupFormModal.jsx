@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useModal } from "../../context/Modal";
-import { signUp } from "../../store/session";
-import "./SignupForm.css";
+import { useModal } from "../context/Modal";
+import { signUp } from "../store/session";
 import { useEffect } from "react";
 
 function SignupFormModal() {
@@ -66,15 +65,15 @@ function SignupFormModal() {
   };
 
   return (
-    <div className="signup-modal">
-      <h1 className="signup-title">Sign Up</h1>
-      <form onSubmit={handleSubmit} className="signup-form">
+    <div className="">
+      <h1 className="baskerville text-2xl">Sign Up</h1>
+      <form onSubmit={handleSubmit} className="flex flex-col">
         <input
           type="text"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
-          className="signup-input"
+          className=" border-2 border-gray-300 rounded-xl p-2 bg-slate-100 focus-within:bg-white transition duration-200 ease-in-out focus:outline-2 focus:outline-cyan-300 focus:outline my-2"
           placeholder="Email"
         />
         <input
@@ -82,7 +81,7 @@ function SignupFormModal() {
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
-          className="signup-input"
+          className=" border-2 border-gray-300 rounded-xl p-2 bg-slate-100 focus-within:bg-white transition duration-200 ease-in-out focus:outline-2 focus:outline-cyan-300 focus:outline"
           placeholder="Username"
         />
 
@@ -91,7 +90,7 @@ function SignupFormModal() {
           value={firstName}
           onChange={(e) => setFirstName(e.target.value)}
           required
-          className="signup-input"
+          className=" border-2 border-gray-300 rounded-xl p-2 bg-slate-100 focus-within:bg-white transition duration-200 ease-in-out focus:outline-2 focus:outline-cyan-300 focus:outline my-2"
           placeholder="First Name"
         />
 
@@ -100,7 +99,7 @@ function SignupFormModal() {
           value={lastName}
           onChange={(e) => setLastName(e.target.value)}
           required
-          className="signup-input"
+          className=" border-2 border-gray-300 rounded-xl p-2 bg-slate-100 focus-within:bg-white transition duration-200 ease-in-out focus:outline-2 focus:outline-cyan-300 focus:outline my-2"
           placeholder="Last Name"
         />
 
@@ -109,7 +108,7 @@ function SignupFormModal() {
           value={bio}
           onChange={(e) => setBio(e.target.value)}
           required
-          className="signup-input signup-bio"
+          className=" border-2 border-gray-300 rounded-xl p-2 bg-slate-100 focus-within:bg-white transition duration-200 ease-in-out focus:outline-2 focus:outline-cyan-300 focus:outline my-2"
           placeholder="Please enter a short bio"
         />
         <input
@@ -117,7 +116,7 @@ function SignupFormModal() {
           value={profilePic}
           onChange={(e) => setProfilePic(e.target.value)}
           required
-          className="signup-input signup-pic"
+          className=" border-2 border-gray-300 rounded-xl p-2 bg-slate-100 focus-within:bg-white transition duration-200 ease-in-out focus:outline-2 focus:outline-cyan-300 focus:outline my-2"
           placeholder="Profile Pic URL"
         />
         <input
@@ -125,7 +124,7 @@ function SignupFormModal() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
-          className="signup-input"
+          className=" border-2 border-gray-300 rounded-xl p-2 bg-slate-100 focus-within:bg-white transition duration-200 ease-in-out focus:outline-2 focus:outline-cyan-300 focus:outline my-2"
           placeholder="Password"
         />
 
@@ -134,7 +133,7 @@ function SignupFormModal() {
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
           required
-          className="signup-input"
+          className=" border-2 border-gray-300 rounded-xl p-2 bg-slate-100 focus-within:bg-white transition duration-200 ease-in-out focus:outline-2 focus:outline-cyan-300 focus:outline my-2"
           placeholder="Verify Password"
         />
         <ul>
@@ -146,7 +145,10 @@ function SignupFormModal() {
               </li>
             ))}
         </ul>
-        <button type="submit" id="register-button">
+        <button
+          type="submit"
+          className=" rounded-full bg-stone-900 text-white font-bold mt-4 w-72 hover:bg-stone-800 active:scale-95 transition-all ease-in-out duration-300"
+        >
           Register
         </button>
       </form>

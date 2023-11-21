@@ -48,7 +48,7 @@ function LoginFormModal() {
   };
 
   return (
-    <div className="login-modal">
+    <div className="">
       <h1 className=" baskerville text-2xl">Log In</h1>
       <form onSubmit={handleSubmit} className="flex flex-col">
         <label className="font-bold mt-4">Email</label>
