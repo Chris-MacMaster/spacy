@@ -53,7 +53,7 @@ export function Modal() {
       <div
         id="modal-background"
         onClick={closeModal}
-        className={`fixed inset-0 flex justify-center items-center transition-colors z-10 duration-300
+        className={`fixed inset-0 flex justify-center items-center transition-colors z-100 duration-300
         ${open ? "visible bg-black/40" : "invisible"}
     `}
       />
