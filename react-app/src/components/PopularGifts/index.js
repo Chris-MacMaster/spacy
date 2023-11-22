@@ -3,43 +3,41 @@ import "./PopularGifts.css";
 export default function PopularGifts({ product }) {
   return (
     <div className="popular-product-card">
-      <div className="popular-result-image-div">
         <img
-          className="popular-result-img"
+          className=" h-[20vmin] rounded-xl object-cover w-full"
           src={product.ProductImages[2]?.url}
           alt="not found"
         />
-      </div>
 
       <div className="popular-product-text">
-        <div className="popular-product-name">{product.name}</div>
-        <div className="popular-results-stars">
+        <div className="text-[1.7vmin] text-gray-700">{product.name}</div>
+        <div className="text-[1.5vmin]">
           {typeof product.avgRating === "number" ? (
             Array(5)
               .fill(1)
               .map((s, i) =>
                 i < product.avgRating ? (
                   <i
-                    className="fa-solid fa-star search-results-stars-gold search-stars"
+                    className="fa-solid fa-star "
                     key={i}
                   ></i>
                 ) : (
                   <i
-                    className="fa-solid fa-star search-results-stars-black grey-search-stars"
+                    className="fa-solid fa-star "
                     key={i}
                   ></i>
                 )
               )
           ) : (
             <span className="search-new-product">
-              New! <i className="fa-solid fa-star search-results-stars-gold " />{" "}
+              New! <i className="fa-solid fa-star" />{" "}
             </span>
           )}{" "}
           {product.sales}
-          {/* <span className="popular-star-seller"><i className="fa-solid fa-certificate search-badge"></i>Star Seller</span> */}
+
         </div>
 
-        <div className="popular-result-price">${product.price}</div>
+        <div className="font-bold text-[1.3vmin]">${product.price}</div>
       </div>
     </div>
   );
