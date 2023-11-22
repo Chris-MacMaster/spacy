@@ -2,11 +2,10 @@ export default function PopularGifts({ product }) {
   return (
     <div className="popular-product-card">
       <img
-        className=" h-[20vmin] rounded-xl object-cover w-full"
+        className=" h-[20vmin] rounded-lg object-cover w-full"
         src={product.ProductImages[2]?.url}
         alt="not found"
       />
-
       <div className="popular-product-text">
         <div className="text-[1.7vmin] text-gray-700">{product.name}</div>
         <div className="text-[1.5vmin]">
@@ -27,7 +26,6 @@ export default function PopularGifts({ product }) {
           )}{" "}
           {product.sales}
         </div>
-
         <div className="font-bold text-[1.3vmin]">${product.price}</div>
       </div>
     </div>
