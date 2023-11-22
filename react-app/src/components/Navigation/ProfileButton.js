@@ -45,8 +45,8 @@ function ProfileButton({ user }) {
           <i className="fas fa-user-circle" />
         </button>
       <div
-        className={`absolute right-0 top-16 bg-white rounded-xl drop-shadow-2xl p-4 transition ease-in-out duration-400 w-64 z-30 border-solid border-[1px] border-gray-200 ${
-          showMenu ? "opacity-100 scale-100 z-30" : "opacity-0 scale-0"
+        className={`absolute right-0 top-16 bg-white rounded-xl drop-shadow-2xl p-4 transition ease-in-out duration-400 w-64 z-10 border-solid border-[1px] border-gray-200 ${
+          showMenu ? "scale-100" : "scale-0"
         }`}
         ref={ulRef}
       >

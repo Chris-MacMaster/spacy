@@ -65,8 +65,9 @@ function Header({ isLoaded }) {
             className="logoim"
           ></img>
         </Link>
-        <Link to={`/`}>
-          <span className="logo">Spacey</span>
+        <Link to={`/`}
+        className=" text-orange-700 text-[4vmin] baskerville">
+          Spacey
         </Link>
 
         <div className="search-bar">

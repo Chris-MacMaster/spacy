@@ -68,7 +68,7 @@ function LoginFormModal() {
           required
         />
         <button type="submit submit-login"
-        className=" rounded-full bg-stone-900 text-white font-bold mt-4 w-72 hover:bg-stone-800 active:scale-95 transition-all ease-in-out duration-300"
+        className=" rounded-full bg-stone-900 text-white font-bold p-2 mt-4 w-72 hover:bg-stone-800 active:scale-95 transition-all ease-in-out duration-300"
         >
           Log In
         </button>
@@ -76,7 +76,7 @@ function LoginFormModal() {
       <div className="demo-user">
         <form onSubmit={demoUser}>
           <button type="submit submit-login"
-          className=" rounded-full bg-stone-900 text-white font-bold mt-4 w-72 hover:bg-stone-800 active:scale-95 transition-all ease-in-out duration-300">
+          className=" rounded-full bg-stone-900 text-white font-bold p-2 mt-4 w-72 hover:bg-stone-800 active:scale-95 transition-all ease-in-out duration-300">
             Demo User
           </button>
         </form>

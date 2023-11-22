@@ -105,8 +105,8 @@ function Landing({ isLoaded }) {
 
   return (
     <div className="flex flex-col justify-center items-center content-center min-h-screen mx-4">
-      <div className=" absolute top-0 w-screen h-[33vmin] bg-sky-200 z-0 "></div>
-      <div className="max-w-screen-lg ">
+      <div className=" absolute top-0 w-screen h-[33vmin] bg-sky-200 z-0"></div>
+      <div className="max-w-screen-lg z-[1]">
         <div className="w-full justify-center ">
           {!user ? (
             <h1 className=" marcellus text-center m-8 text-[4vmin]">
@@ -121,7 +121,7 @@ function Landing({ isLoaded }) {
 
           <div className="flex flex-row justify-between ">
             <div
-              className="border-b-4 border-b-transparent transition ease-in-out duration-200 font-bold text-center hover:scale-110 hover:border-b-slate-800 w-[12vmin]"
+              className="border-b-4 border-b-transparent transition ease-in-out duration-200 font-bold text-center hover:scale-110 hover:border-b-slate-800 w-[12vmin] cursor-pointer"
               onClick={handleSubmitJewelry}
             >
               <img
@@ -133,7 +133,7 @@ function Landing({ isLoaded }) {
               <p className="break-words text-[2vmin]">Jewelry</p>
             </div>
             <div
-              className="border-b-4 border-b-transparent transition ease-in-out duration-200 font-bold text-center hover:scale-110 hover:border-b-slate-800 w-[12vmin]"
+              className="border-b-4 border-b-transparent transition ease-in-out duration-200 font-bold text-center hover:scale-110 hover:border-b-slate-800 w-[12vmin] cursor-pointer"
               onClick={handleSubmitAdventureOutfitting}
             >
               <img
@@ -144,7 +144,7 @@ function Landing({ isLoaded }) {
               <p className=" break-words text-[2vmin]">Adventure Outfitting</p>
             </div>
             <div
-              className="border-b-4 border-b-transparent transition ease-in-out duration-200 font-bold text-center hover:scale-110 hover:border-b-slate-800 w-[12vmin]"
+              className="border-b-4 border-b-transparent transition ease-in-out duration-200 font-bold text-center hover:scale-110 hover:border-b-slate-800 w-[12vmin] cursor-pointer"
               onClick={handleSubmitRationsandFoodstuffs}
             >
               <img
@@ -155,7 +155,7 @@ function Landing({ isLoaded }) {
               <p className=" text-[2vmin]">Rations and Foodstuffs</p>
             </div>
             <div
-              className="border-b-4 border-b-transparent transition ease-in-out duration-200 font-bold text-center hover:scale-110 hover:border-b-slate-800 w-[12vmin]"
+              className="border-b-4 border-b-transparent transition ease-in-out duration-200 font-bold text-center hover:scale-110 hover:border-b-slate-800 w-[12vmin] cursor-pointer"
               onClick={handleSubmitFurnitureandDecor}
             >
               <img
@@ -166,7 +166,7 @@ function Landing({ isLoaded }) {
               <p className=" text-[2vmin]">Furniture and Decor</p>
             </div>
             <div
-              className="border-b-4 border-b-transparent transition ease-in-out duration-200 font-bold text-center hover:scale-110 hover:border-b-slate-800 w-[12vmin]"
+              className="border-b-4 border-b-transparent transition ease-in-out duration-200 font-bold text-center hover:scale-110 hover:border-b-slate-800 w-[12vmin] cursor-pointer"
               onClick={handleSubmitAdventureOutfittingexclaim}
             >
               <img
@@ -177,7 +177,7 @@ function Landing({ isLoaded }) {
               <p className=" text-[2vmin]">Holiday Gifts!</p>
             </div>
             <div
-              className="border-b-4 border-b-transparent transition ease-in-out duration-200 font-bold text-center hover:scale-110 hover:border-b-slate-800 w-[12vmin]"
+              className="border-b-4 border-b-transparent transition ease-in-out duration-200 font-bold text-center hover:scale-110 hover:border-b-slate-800 w-[12vmin] cursor-pointer"
               onClick={handleSubmitOnSale}
             >
               <img
