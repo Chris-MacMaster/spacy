@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import "./ProductImageSlider.css";
 
 export default function ProductImageSlider({
   data,
@@ -22,17 +21,17 @@ export default function ProductImageSlider({
 
   if (!data || !data.length) return null;
   return (
-    <div className="product-image-slider">
-      <div className="left-arrow" onClick={prevSlide}>
-        <i className="fa-solid fa-circle-left" />
+    <div className="relative w-[50vmin] h-[40vmin] mb-[5vmin]">
+      <div className=" text-[4vmin] text-white opacity-80 absolute top-[20vmin] z-[1] rounded-full transition ease-in-out duration-300 left-[1vmin] " onClick={prevSlide}>
+        <i className="fa-solid fa-circle-left " />
       </div>
-      <div className="right-arrow" onClick={nextSlide}>
+      <div className=" text-[4vmin] text-white opacity-80 absolute top-[20vmin] z-[1] rounded-full transition ease-in-out duration-300 right-[1vmin]" onClick={nextSlide}>
         <i className="fa-solid fa-circle-right" />
       </div>
       {data.map((img, i) => (
-        <div className={i === current ? "slide active" : "slide"} key={i}>
+        <div className={`transition ease-in-out duration-400 ${i === current ? "opacity-100 scale-100" : "opacity-0 scale-90"}`} key={i}>
           {i === current && (
-            <img src={img.url} className="slider-images" alt="" key={i} />
+            <img src={img.url} className="w-[50vmin] h-[40vmin] rounded-xl object-cover" alt="" key={i} />
           )}
         </div>
       ))}

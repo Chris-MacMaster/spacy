@@ -16,7 +16,7 @@ import "./ProductDetail.css";
 import OpenModalButton from "../OpenModalButton";
 import ShopPoliciesModal from "../ShopPoliciesModal";
 import LoadingIcon from "../LoadingIcon";
-import ProductImageSlider from "./ProductImageSlider";
+import ProductImageSlider from "../ProductImageSlider";
 import { fetchOneShop, followShop, unfollowShop } from "../../store/shops";
 import { CartContext } from "../../context/CartContext";
 import { numberInCart } from "./_numberInCart";

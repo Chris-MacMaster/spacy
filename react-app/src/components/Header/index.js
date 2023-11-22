@@ -114,14 +114,13 @@ function Header({ isLoaded }) {
         </div>
         <div className="cart">
           {user && cartTotal && cartTotal > 0 ? (
-            <NavLink to="/cart" style={{ textDecoration: "none" }}>
+            <NavLink to="/cart" >
               <div className="number-in-cart">{cartTotal}</div>
             </NavLink>
           ) : !user && itemsInCart > 0 ? (
-            <NavLink to="/cart" style={{ textDecoration: "none" }}>
+            <NavLink to="/cart" >
               <div className="number-in-cart">
                 {+itemsInCart}
-                {}
               </div>
             </NavLink>
           ) : null}
@@ -131,7 +130,6 @@ function Header({ isLoaded }) {
           </NavLink>
         </div>
       </div>
-
     </div>
   );
 }
