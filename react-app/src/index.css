@@ -23,6 +23,12 @@
 .product-columns {
   grid-template-columns: 2fr 1fr;
 }
+
+/* search bar transition */
+.peer:focus ~ .telescope-search .fa-magnifying-glass {
+  color: white; /* This will change the icon's color when the input is focused */
+}
+
 body {
   font-family: "Mulish", sans-serif;
   margin: 0px;

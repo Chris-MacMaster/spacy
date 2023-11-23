@@ -56,13 +56,13 @@ function Header({ isLoaded }) {
     : null;
 
   return (
-    <div className="header-container">
-      <div className="header">
+    <div className="border-b-2 border-slate-300 z-[2] flex flex-col justify-between items-center relative bg-white pb-[1vmin]">
+      <div className="flex flex-row justify-between items-center w-full max-w-screen-lg">
         <Link to={"/"}>
           <img
             src="https://i.imgur.com/nJxi8TL.png"
-            alt="logoim"
-            className="logoim"
+            alt="logo-png"
+            className="object-cover w-[7vmin] mt-[1vmin]"
           ></img>
         </Link>
         <Link to={`/`}
@@ -70,36 +70,34 @@ function Header({ isLoaded }) {
           Spacey
         </Link>
 
-        <div className="search-bar">
-          <form onSubmit={handleSubmit} className="search-bar-form">
+        <div className="flex mx-2 z-[1]">
+          <form onSubmit={handleSubmit} className="search-bar-form header-search flex flex-row border-slate-800 border-2 rounded-full z-[1]">
             <input
-              className="header-search"
-              id="header-search"
+              className="w-[30vmin] bg-white content-center  rounded-full pl-4 text-[1.5vmin] peer focus-within:outline-none"
               type="text"
               value={parameters}
               onChange={(e) => setParameters(e.target.value)}
               placeholder="Search for anything in the universe"
             ></input>
-            <div className="telescope-search">
+            <div className="telescope-search flex justify-center items-center content-center px-[2vmin] rounded-r-full cursor-pointer p-2 peer-focus:bg-slate-800 transition duration-300">
               <i
-                className="fa-solid fa-magnifying-glass"
+                className="fa-solid fa-magnifying-glass peer-focus:text-white text-[2.3vmin]text-right content-center"
                 onClick={handleSubmit}
-              ></i>
+              />
             </div>
           </form>
         </div>
 
-        <div className="shop-manager">
+        <div className="relative">
           {user && user?.id && userShop.length > 0 && (
             <NavLink to={`/shops/${userShop[0].id}`}>
               <div className="header-tip">Shop Manager</div>
-              <i className="fa-solid fa-store header-icons"></i>
+              <i className="fa-solid fa-store text-[2.5vmin] text-slate-500"></i>
             </NavLink>
           )}
         </div>
 
         <div className="navigation">
-          <div className="header-tip">User Details</div>
           <Navigation isLoaded={isLoaded} />
           {isLoaded && (
             <Switch>
@@ -119,14 +117,14 @@ function Header({ isLoaded }) {
             </NavLink>
           ) : !user && itemsInCart > 0 ? (
             <NavLink to="/cart" >
-              <div className="number-in-cart">
-                {+itemsInCart}
+              <div className=" absolute bg-orange-300 p-2">
+                {+itemsInCart}hey
               </div>
             </NavLink>
           ) : null}
           <NavLink to="/cart">
-            <div className="header-tip">Cart</div>
-            <i className="fa-solid fa-cart-shopping header-icons"></i>
+            <div className="header-tip bg-white rounded-xl shadow-xl border-[1.5px] border-slate-300 absolute top-20 right-3 font-bold transition-all opacity-0 group-hover:opacity-100">Cart</div>
+            <i className="fa-solid fa-cart-shopping text-[2.5vmin] text-slate-500"></i>
           </NavLink>
         </div>
       </div>

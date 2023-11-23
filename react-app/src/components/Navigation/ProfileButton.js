@@ -42,7 +42,7 @@ function ProfileButton({ user }) {
   return (
     <>
         <button onClick={openMenu} className=" hover:text-slate-800 transition ease-in-out ">
-          <i className="fas fa-user-circle" />
+          <i className="fas fa-user-circle text-slate-500" />
         </button>
       <div
         className={`absolute right-0 top-16 bg-white rounded-xl drop-shadow-2xl p-4 transition ease-in-out duration-400 w-64 z-10 border-solid border-[1px] border-gray-200 ${
