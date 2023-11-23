@@ -226,15 +226,19 @@ const ProductDetail = () => {
           <div className="text-[2vmin] text-green-600 font-bold">
             {inCart > 0 && <>{inCart} in your cart </>}
           </div>
-          <div className="text-[3vmin] thasadith font-bold">${product.price}</div>
+          <div className="text-[3vmin] thasadith font-bold">
+            ${product.price}
+          </div>
           <div className="text-[3vmin] thasadith font-bold">{product.name}</div>
 
           <div className="store-info">
-              <NavLink to={`/shops/${product.Shop.id}`}
-              className="flex font-bold text-[2vmin] hover:underline">
-                <div className="product-deets-shop">{product.Shop.name}</div>
+            <NavLink
+              to={`/shops/${product.Shop.id}`}
+              className="flex font-bold text-[2vmin] hover:underline"
+            >
+              <div>{product.Shop.name}</div>
               <i className="fa-solid fa-certificate text-fuchsia-700 m-1"></i>
-              </NavLink>
+            </NavLink>
 
             <div className="store-sales">
               {product && product.Shop && product.Shop.sales} sales
@@ -242,34 +246,28 @@ const ProductDetail = () => {
                 .fill(1)
                 .map((s, i) =>
                   s <= avgRating ? (
-                    <i
-                      className="fa-solid fa-star product-deets-gold product-deets-stars"
-                      key={i}
-                    ></i>
+                    <i className="fa-solid fa-star " key={i}></i>
                   ) : (
-                    <i
-                      className="fa-solid fa-star product-deets-blank product-deets-stars"
-                      key={i}
-                    ></i>
+                    <i className="fa-solid fa-star text-slate-600" key={i}></i>
                   )
                 )}
             </div>
             {user && user.id !== product?.Shop?.ownerId && (
-              <div className="follow-unfollow-shop-div">
+              <div className="">
                 {product.Shop &&
                   product.Shop.Followed &&
                   product.Shop.Followed.Status &&
                   product.Shop.Followed.Status === "Not Followed" && (
-                    <div className="follow-shop" onClick={handleFollow}>
-                      <i className="fa-regular fa-heart shop-heart"></i>Follow{" "}
+                    <div className=" cursor-pointer w-fit" onClick={handleFollow}>
+                      <i className="fa-regular fa-heart mx-2"></i>Follow{" "}
                     </div>
                   )}
                 {shopFollow &&
                   shopFollow.Followed &&
                   shopFollow.Followed.Status &&
                   shopFollow.Followed.Status === "Followed" && (
-                    <div className="follow-shop" onClick={handleUnfollow}>
-                      <i className="fas fa-regular fa-heart shop-heart-filled"></i>
+                    <div className=" cursor-pointer w-fit" onClick={handleUnfollow}>
+                      <i className="fas fa-regular fa-heart text-red-600 mx-2"></i>
                       Unfollow{" "}
                     </div>
                   )}
@@ -279,13 +277,13 @@ const ProductDetail = () => {
 
           <div className="purchase-buttons">
             {product.available > 0 && (
-              <span className="quantity">Quantity</span>
+              <span className=" text-[1.5vmin]">Quantity</span>
             )}
             {product.available > 0 && (
               <select
                 value={quantity}
                 onChange={(e) => setQuantity(e.target.value)}
-                className="cart-quantity"
+                className=" w-full bg-slate-200 border-neutral-500 border-2 rounded-xl p-2 text-[2vmin] drop-shadow-lg mb-8 transition-all duration-200 ease-in-out focus:outline focus:outline-2 focus:outline-cyan-400"
               >
                 {options.map((i) => (
                   <option value={i.value}>{i.value}</option>
@@ -294,7 +292,6 @@ const ProductDetail = () => {
             )}
             {product.available > 0 ? (
               <AddToCart
-                className="button add-cart-button"
                 product={product}
                 cart={cart}
                 user={user}
@@ -325,16 +322,16 @@ const ProductDetail = () => {
               <p className="prod-description-p">Description</p>
               <p className="prod-description-text">{product.description}</p>
             </div>
-              <OpenModalButton
-                buttonText={
-                  <button className="m-0 mt-[3vmin] font-bold p-3 text-white text-[2vmin] w-[30vmin] marcellus bg-slate-700 transition ease-in-out duration-200 rounded-full hover:scale-95 active:bg-slate-900">
-                    View Shop Policies
-                  </button>
-                }
-                onClick={openMenu}
-                onItemClick={closeMenu}
-                modalComponent={<ShopPoliciesModal shop={product.Shop} />}
-              />
+            <OpenModalButton
+              buttonText={
+                <button className="m-0 mt-[3vmin] font-bold p-3 text-white text-[2vmin] w-[30vmin] marcellus bg-slate-700 transition ease-in-out duration-200 rounded-full hover:scale-95 active:bg-slate-900">
+                  View Shop Policies
+                </button>
+              }
+              onClick={openMenu}
+              onItemClick={closeMenu}
+              modalComponent={<ShopPoliciesModal shop={product.Shop} />}
+            />
           </div>
         </div>
       </div>
