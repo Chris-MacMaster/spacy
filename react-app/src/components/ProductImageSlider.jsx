@@ -23,13 +23,13 @@ export default function ProductImageSlider({
   return (
     <div className="relative w-[50vmin] h-[40vmin] mb-[5vmin]">
       <div
-        className=" text-[4vmin] text-white opacity-80 absolute top-[20vmin] z-[1] rounded-full transition ease-in-out duration-300 left-[1vmin] "
+        className=" text-[4vmin] text-white opacity-80 absolute top-[20vmin] z-[1] rounded-full transition ease-in-out duration-300 left-[1vmin]  cursor-pointer"
         onClick={prevSlide}
       >
         <i className="fa-solid fa-circle-left " />
       </div>
       <div
-        className=" text-[4vmin] text-white opacity-80 absolute top-[20vmin] z-[1] rounded-full transition ease-in-out duration-900 right-[1vmin]"
+        className=" text-[4vmin] text-white opacity-80 absolute top-[20vmin] z-[1] rounded-full transition ease-in-out duration-900 right-[1vmin] cursor-pointer"
         onClick={nextSlide}
       >
         <i className="fa-solid fa-circle-right" />

@@ -311,7 +311,7 @@ function Landing({ isLoaded }) {
               </p>
             </div>
           </div>
-          <h2 className=" thasadith text-[4vmin]">
+          <h2 className=" thasadith text-[4vmin] text-center">
             Have a question? Well, we've got some answers.
           </h2>
         </div>

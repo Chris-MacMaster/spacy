@@ -20,6 +20,9 @@
 .landing-columns {
   grid-template-columns: 7fr 5fr 3fr 5fr;
 }
+.product-columns {
+  grid-template-columns: 2fr 1fr;
+}
 body {
   font-family: "Mulish", sans-serif;
   margin: 0px;
