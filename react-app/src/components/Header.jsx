@@ -1,6 +1,5 @@
 import { Link, NavLink, useHistory } from "react-router-dom";
-import Navigation from "./Navigation";
-import { Switch, Route } from "react-router-dom";
+
 import { getSearchResults } from "../store/search";
 import { useContext, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,8 +7,7 @@ import { useEffect } from "react";
 import { fetchShops } from "../store/shops";
 import { authenticate } from "../store/session";
 import { fetchCart } from "../store/cart";
-import LoginFormModal from "./LoginFormModal";
-import SignupFormModal from "./SignupFormModal";
+
 import { CartContext } from "../context/CartContext";
 import ProfileButton from "./ProfileButton";
 
