@@ -30,7 +30,7 @@ export default function AddToCart({ cart, product, user, quantity, txt }) {
   return (
       <button
         onClick={addItem}
-        className=" w-full bg-stone-800 rounded-full text-white font-bold text-[2vmin] my-4 active:bg-stone-700 hover:scale-95 transition-all duration-300 ease-in-out"
+        className=" w-full bg-stone-800 rounded-full text-white font-bold text-[2vmin] my-4 p-2 active:bg-stone-700 hover:scale-95 transition-all duration-300 ease-in-out"
         disabled={btnEnabled}
       >
         {txt ? txt : "Add to cart"}

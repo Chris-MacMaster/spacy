@@ -1,17 +1,16 @@
-import "./Header.css";
 import { Link, NavLink, useHistory } from "react-router-dom";
-import Navigation from "../Navigation";
+import Navigation from "./Navigation";
 import { Switch, Route } from "react-router-dom";
-import { getSearchResults } from "../../store/search";
+import { getSearchResults } from "../store/search";
 import { useContext, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { fetchShops } from "../../store/shops";
-import { authenticate } from "../../store/session";
-import { fetchCart } from "../../store/cart";
-import LoginFormModal from "../LoginFormModal";
-import SignupFormModal from "../SignupFormModal";
-import { CartContext } from "../../context/CartContext";
+import { fetchShops } from "../store/shops";
+import { authenticate } from "../store/session";
+import { fetchCart } from "../store/cart";
+import LoginFormModal from "./LoginFormModal";
+import SignupFormModal from "./SignupFormModal";
+import { CartContext } from "../context/CartContext";
 
 function Header({ isLoaded }) {
   const [parameters, setParameters] = useState("");
@@ -97,7 +96,7 @@ function Header({ isLoaded }) {
           )}
         </div>
 
-        <div className="navigation">
+        <div className="relative hover:cursor-pointer">
           <Navigation isLoaded={isLoaded} />
           {isLoaded && (
             <Switch>
@@ -110,21 +109,21 @@ function Header({ isLoaded }) {
             </Switch>
           )}
         </div>
-        <div className="cart">
+        <div className="cart relative group">
           {user && cartTotal && cartTotal > 0 ? (
             <NavLink to="/cart" >
-              <div className="number-in-cart">{cartTotal}</div>
+              <div className="absolute font-bold text-[1.2vmin] bottom-[1.5vmin] right-0 bg-orange-300 p-1 rounded-full ">{cartTotal}</div>
             </NavLink>
           ) : !user && itemsInCart > 0 ? (
             <NavLink to="/cart" >
-              <div className=" absolute bg-orange-300 p-2">
-                {+itemsInCart}hey
+              <div className=" absolute font-bold text-[1.2vmin] bottom-[1.5vmin] right-0 bg-orange-300 p-1 rounded-full ">
+                {+itemsInCart}
               </div>
             </NavLink>
           ) : null}
-          <NavLink to="/cart">
-            <div className="header-tip bg-white rounded-xl shadow-xl border-[1.5px] border-slate-300 absolute top-20 right-3 font-bold transition-all opacity-0 group-hover:opacity-100">Cart</div>
-            <i className="fa-solid fa-cart-shopping text-[2.5vmin] text-slate-500"></i>
+          <NavLink to="/cart" className="group">
+            <div className="header-tip bg-white rounded-xl shadow-xl border-[1.5px] border-slate-300 absolute top-12  font-bold transition-all opacity-0  p-3 right-0 group-hover:opacity-100 tooltip">Cart</div>
+            <i className="fa-solid fa-cart-shopping text-[2.5vmin] text-slate-500 hover:text-slate-800"></i>
           </NavLink>
         </div>
       </div>

@@ -29,6 +29,9 @@
   color: white; /* This will change the icon's color when the input is focused */
 }
 
+/* tooltip caret */
+
+
 body {
   font-family: "Mulish", sans-serif;
   margin: 0px;
