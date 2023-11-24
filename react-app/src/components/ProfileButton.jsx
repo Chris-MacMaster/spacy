@@ -1,12 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 // import { logout } from "../../store/session";
-import OpenModalButton from "../OpenModalButton";
-import LoginFormModal from "../LoginFormModal";
-import SignupFormModal from "../SignupFormModal";
-import * as sessionActions from "../../store/session";
+import OpenModalButton from "./OpenModalButton";
+import LoginFormModal from "./LoginFormModal";
+import SignupFormModal from "./SignupFormModal";
+import * as sessionActions from "../store/session";
 import { NavLink, useHistory } from "react-router-dom";
-import "./ProfileButton.css";
+import IconClipboard from "./IconClipboard";
+import IconShop from "./IconShop";
+import IconSignOut from "./IconSignOut";
+import IconUser from "./IconUser";
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
@@ -41,9 +44,12 @@ function ProfileButton({ user }) {
 
   return (
     <>
-        <button onClick={openMenu} className=" hover:text-slate-800 transition ease-in-out ">
-          <i className="fas fa-user-circle text-slate-500" />
-        </button>
+      <button
+        onClick={openMenu}
+        className=" hover:text-slate-800 transition ease-in-out "
+      >
+        <i className="fas fa-user-circle text-slate-500 text-[2.5vmin] hover:text-slate-800" />
+      </button>
       <div
         className={`absolute right-0 top-16 bg-white rounded-xl drop-shadow-2xl p-4 transition ease-in-out duration-400 w-64 z-10 border-solid border-[1px] border-gray-200 ${
           showMenu ? "scale-100" : "scale-0"
@@ -54,24 +60,26 @@ function ProfileButton({ user }) {
           <>
             <div>
               <NavLink to={`/users/${user.id}`}>
-                <div className="inside-div">
-                  <span className="icon-span">
-                    <i className="fas fa-user-circle" />
+                <div className="rounded-xl hover:bg-slate-300 flex content-center text-black p-3 transition ease-in-out duration-300">
+                  <span className="w-[3vmin] flex justify-center items-center mr-4">
+                    <IconUser />{" "}
                   </span>
                   <span>
-                    <div>
+                    <div className=" font-bold baskerville">
                       {user.firstName} {user.lastName}
                     </div>
-                    <div className="subtext">View your profile</div>
+                    <div className="text-cyan-700 text-[1.5vmin] ">
+                      View your profile
+                    </div>
                   </span>
                 </div>
               </NavLink>
             </div>
             <div>
               <NavLink to="/purchases">
-                <div className="inside-div">
-                  <span className="icon-span">
-                    <i className="fa-solid fa-clipboard-list drop-down-icons" />
+                <div className="rounded-xl hover:bg-slate-300 flex content-center text-black p-3 transition ease-in-out duration-300">
+                  <span className="w-[3vmin] flex justify-center items-center mr-4">
+                    <IconClipboard />
                   </span>
                   <span>
                     <div>Purchases</div>
@@ -81,9 +89,9 @@ function ProfileButton({ user }) {
             </div>
             <div>
               <NavLink to={`/users/${user.id}`}>
-                <div className="inside-div">
-                  <span className="icon-span">
-                    <i className="fa-solid fa-store drop-down-icons" />
+                <div className="rounded-xl hover:bg-slate-300 flex content-center text-black p-3 transition ease-in-out duration-300">
+                  <span className="w-[3vmin] flex justify-center items-center mr-4">
+                    <IconShop />
                   </span>
                   <span>
                     <div>Sell on Spacey</div>
@@ -92,9 +100,12 @@ function ProfileButton({ user }) {
               </NavLink>
             </div>
             <div>
-              <div className="inside-div" onClick={logout}>
-                <span className="icon-span">
-                  <i className="fa-solid fa-right-from-bracket drop-down-icons" />
+              <div
+                className="rounded-xl hover:bg-slate-300 flex content-center text-black p-3 transition ease-in-out duration-300"
+                onClick={logout}
+              >
+                <span className="w-[3vmin] flex justify-center items-center mr-4">
+                  <IconSignOut />
                 </span>
                 <span>
                   <div>Sign Out</div>
@@ -105,7 +116,6 @@ function ProfileButton({ user }) {
         ) : (
           <div className="flex flex-col">
             <OpenModalButton
-              className="modal-button"
               buttonText={
                 <button className="hover:bg-slate-300 p-2 rounded-xl w-full font-bold transition ease-in-out duration-200 uppercase">
                   Log In

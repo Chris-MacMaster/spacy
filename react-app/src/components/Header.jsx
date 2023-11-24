@@ -56,7 +56,7 @@ function Header({ isLoaded }) {
 
   return (
     <div className="border-b-2 border-slate-300 z-[2] flex flex-col justify-between items-center relative bg-white pb-[1vmin]">
-      <div className="flex flex-row justify-between items-center w-full max-w-screen-lg">
+      <div className="flex flex-row justify-around items-center w-full max-w-screen-lg">
         <Link to={"/"}>
           <img
             src="https://i.imgur.com/nJxi8TL.png"
