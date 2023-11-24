@@ -1,5 +1,4 @@
 import { NavLink, useHistory, useParams } from "react-router-dom";
-import "./UserDetails.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { authenticate } from "../store/session";
