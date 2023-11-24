@@ -11,6 +11,7 @@ import { fetchCart } from "../store/cart";
 import LoginFormModal from "./LoginFormModal";
 import SignupFormModal from "./SignupFormModal";
 import { CartContext } from "../context/CartContext";
+import ProfileButton from "./ProfileButton";
 
 function Header({ isLoaded }) {
   const [parameters, setParameters] = useState("");
@@ -47,7 +48,6 @@ function Header({ isLoaded }) {
   const shops = useSelector((state) => state.shops.allShops);
   const user = useSelector((state) => state.session.user);
 
-
   if (!hasLoaded) return null;
 
   const userShop = user
@@ -64,13 +64,15 @@ function Header({ isLoaded }) {
             className="object-cover w-[7vmin] mt-[1vmin]"
           ></img>
         </Link>
-        <Link to={`/`}
-        className=" text-orange-700 text-[4vmin] baskerville">
+        <Link to={`/`} className=" text-orange-700 text-[4vmin] baskerville">
           Spacey
         </Link>
 
         <div className="flex mx-2 z-[1]">
-          <form onSubmit={handleSubmit} className="search-bar-form header-search flex flex-row border-slate-800 border-2 rounded-full z-[1]">
+          <form
+            onSubmit={handleSubmit}
+            className="search-bar-form header-search flex flex-row border-slate-800 border-2 rounded-full z-[1]"
+          >
             <input
               className="w-[30vmin] bg-white content-center  rounded-full pl-4 text-[1.5vmin] peer focus-within:outline-none"
               type="text"
@@ -97,32 +99,26 @@ function Header({ isLoaded }) {
         </div>
 
         <div className="relative hover:cursor-pointer">
-          <Navigation isLoaded={isLoaded} />
-          {isLoaded && (
-            <Switch>
-              <Route path="/login">
-                <LoginFormModal />
-              </Route>
-              <Route path="/signup">
-                <SignupFormModal />
-              </Route>
-            </Switch>
-          )}
+          <ProfileButton user={user} />
         </div>
         <div className="cart relative group">
           {user && cartTotal && cartTotal > 0 ? (
-            <NavLink to="/cart" >
-              <div className="absolute font-bold text-[1.2vmin] bottom-[1.5vmin] right-0 bg-orange-300 p-1 rounded-full ">{cartTotal}</div>
+            <NavLink to="/cart">
+              <div className="absolute font-bold text-[1.2vmin] bottom-[1.5vmin] right-0 bg-orange-300 p-1 rounded-full ">
+                {cartTotal}
+              </div>
             </NavLink>
           ) : !user && itemsInCart > 0 ? (
-            <NavLink to="/cart" >
+            <NavLink to="/cart">
               <div className=" absolute font-bold text-[1.2vmin] bottom-[1.5vmin] right-0 bg-orange-300 p-1 rounded-full ">
                 {+itemsInCart}
               </div>
             </NavLink>
           ) : null}
           <NavLink to="/cart" className="group">
-            <div className="header-tip bg-white rounded-xl shadow-xl border-[1.5px] border-slate-300 absolute top-12  font-bold transition-all opacity-0  p-3 right-0 group-hover:opacity-100 tooltip">Cart</div>
+            <div className="header-tip bg-white rounded-xl shadow-xl border-[1.5px] border-slate-300 absolute top-12  font-bold transition-all opacity-0  p-3 right-0 group-hover:opacity-100 tooltip">
+              Cart
+            </div>
             <i className="fa-solid fa-cart-shopping text-[2.5vmin] text-slate-500 hover:text-slate-800"></i>
           </NavLink>
         </div>
