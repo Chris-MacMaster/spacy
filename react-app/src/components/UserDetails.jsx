@@ -2,11 +2,13 @@ import { NavLink, useHistory, useParams } from "react-router-dom";
 import "./UserDetails.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { authenticate } from "../../store/session";
-import { fetchShops, fetchFollowedShops } from "../../store/shops";
-import LoadingIcon from "../LoadingIcon";
-import ShopCard from "../ShopCard";
-import { deleteShopRequest } from "../../store/shops";
+import { authenticate } from "../store/session";
+import { fetchShops, fetchFollowedShops } from "../store/shops";
+import LoadingIcon from "./LoadingIcon";
+import ShopCard from "./ShopCard";
+import { deleteShopRequest } from "../store/shops";
+import IconWrenchScrewDriver from "./IconWrench";
+import IconShop from "./IconShop";
 export default function UserDetails() {
   const { userId } = useParams();
   const dispatch = useDispatch();
@@ -27,7 +29,7 @@ export default function UserDetails() {
   const shops = useSelector((state) => state.shops.allShops);
   const followedShopState = useSelector((state) => state.shops.followedShops);
   if (!hasLoaded) return <LoadingIcon />;
-  if (!user || parseInt(user.id) !== parseInt(userId) || !shops) return null;
+  // if (!user || parseInt(user.id) !== parseInt(userId) || !shops) return null;
 
   const userShops = Object.values(shops).filter(
     (s) => parseInt(s.ownerId) === parseInt(userId)
@@ -40,39 +42,32 @@ export default function UserDetails() {
     await dispatch(fetchShops());
   };
   return (
-    <div className="user-manage-details">
-      <div className="user-deets">
+    <div className=" min-h-screen max-w-screen-lg flex flex-col items-center mx-auto ">
+      <div className="flex flex-row w-full">
         <img
           src={
             user && user.profilePic
               ? user.profilePic
               : "https://i.imgur.com/mMEwXsu.png"
           }
-          alt=""
-          className="user-deets-icon"
+          alt="profile pic"
+          className=" rounded-full aspect-square object-cover w-[10vmin] my-[3vmin] mr-[1vmin]"
         />
-        <div className="user-deets-text">
-          <div className="user-name">
+        <div className="flex flex-col justify-center">
+          <div className=" marcellus text-[3vmin] ">
             {user.firstName} {user.lastName}
           </div>
           <div className="user-deets-user-shops">
             {userShops &&
               userShops.map((s, i) => (
-                <div className="user-deets-bullet">
-                  <img
-                    src="https://i.imgur.com/bdSjZyV.png"
-                    alt=""
-                    className="shop-icon"
-                    key={`im${i}`}
-                  />
+                <div className="flex flex-row justify-center">
                   <NavLink
                     to={`/shops/${s.id}`}
-                    style={{ textDecoration: "none" }}
                     key={`link${i}`}
+                    className=" flex flex-row font-bold text-cyan-600 via-fuchsia-700 hover:underline text-[1.8vmin]"
                   >
-                    <span className="user-deets-user-shop" key={`shopname${i}`}>
-                      {s.name}
-                    </span>
+                    <IconShop />
+                    <span key={`shopname${i}`}>{s.name}</span>
                   </NavLink>
                   {user.id === parseInt(userId) ? (
                     <>
@@ -82,10 +77,7 @@ export default function UserDetails() {
                         onClick={(e) => deleteShop(s.id)}
                         key={`shopdel${i}`}
                       >
-                        <i
-                          class="fa-solid fa-trash-can"
-                          key={`deletepen${i}`}
-                        />
+                        <IconWrenchScrewDriver />
                       </button>
                       <button
                         id="shop-edit-button"
@@ -105,21 +97,21 @@ export default function UserDetails() {
           </div>
         </div>
       </div>
-      <div className="create-shop-container">
+      <div className="w-full">
         <button
-          className="favorite-shop create-shop-button"
+          className="flex flex-row font-bold p-3 px-8 text-white uppercase bg-orange-700 transition ease-in-out duration-200 rounded-md hover:scale-95 active:bg-orange-900 "
           onClick={onClickCreateShop}
         >
-          <i className="fa-solid fa-screwdriver-wrench create-shop-icon" />
+          <IconWrenchScrewDriver />
           Create Shop
         </button>
       </div>
 
       <hr></hr>
 
-      <div className="user-deets-title">Favorite shops</div>
-      <div className="user-deets-grid">
-        <div className="user-deets-followed-shops">
+      <div className="text-[3vmin] mb-[5vmin] font-bold w-full marcellus">Favorite shops</div>
+      <div className="flex flex-col items-center w-full">
+        <div className=" grid grid-cols-2 items-center gap-2 w-full">
           {followedShops && followedShops.length ? (
             followedShops.map((s, i) => <ShopCard shop={shops[s.id]} />)
           ) : (
