@@ -13,6 +13,7 @@ import {
 import ShopProductCard from "../ShopProductCard";
 import { authenticate } from "../../store/session";
 import LoadingIcon from "../LoadingIcon";
+import IconTruck from "../IconTruck";
 
 export default function ShopDetails() {
   const { shopId } = useParams();
@@ -65,27 +66,25 @@ export default function ShopDetails() {
   };
 
   return (
-    <div className="shop-page">
-      <div className="shop-deets-80">
-        <div className="shop-header">
-          <div className="shop-businesscard">
+    <div className="flex flex-col items-center">
+      <div className=" min-h-screen max-w-screen-lg">
+        <div className=" p-4 flex flex-row justify-between bg-stone-300 w-fit">
+          <div className="flex flex-row">
             <img
               src={`${shop?.ShopImages?.url}`}
               alt="shoplogo"
-              className="shoplogo"
+              className=" object-cover rounded-lg w-[10vmin] h-[10vmin]"
             ></img>
-            <div className="shop-businesscard-info">
-              <h2 className="businesscard-title">{shop.name}</h2>
-              <div className="sanserif-text-description sanserif-text">
-                {shop.description}
-              </div>
-              <div className="sanserif-text-location sanserif-text">
+            <div className="w-[35vmin] mx-3">
+              <h2 className="text-[2vmin] marcellus font-bold">{shop.name}</h2>
+              <div className=" leading-5 my-3">{shop.description}</div>
+              <div className="leading-5 my-3">
                 {shop.state}, {shop.country}
               </div>
               <div className="sanserif-text">
-                <span className="starseller">
+                <span className="text-purple-700">
                   <i className="fa-solid fa-certificate starseller"></i>Star
-                  seller!{" "}
+                  Seller!{" "}
                 </span>{" "}
                 | {Math.floor(Math.random() * 20000)}{" "}
                 <span className="shop-details-sales">
@@ -95,11 +94,14 @@ export default function ShopDetails() {
             </div>
           </div>
           <div className="accolades-container">
-            <div className="accolades">
-              <div className="bold-text">
-                <i className="fa-solid fa-truck purple-icon" /> Smooth shipping
+            <div className="">
+              <div className="bold-text flex ">
+                <span className="text-purple-700 ">
+                  <IconTruck />
+                </span>
+                Smooth shipping
               </div>
-              <span className="accolades-description">
+              <span className="text-xs">
                 Has a history of shipping on time with tracking.
               </span>
             </div>

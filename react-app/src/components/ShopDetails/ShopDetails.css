@@ -1,36 +1,4 @@
-.shop-page {
-  display: flex;
-  justify-content: center;
-}
-.shop-deets-80 {
-  width: min(90vw, 70rem);
-}
-.shop-header {
-  padding: 4vmin;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  background-color: rgb(240, 240, 240);
-}
-.shoplogo {
-  object-fit: cover;
-  max-height: 8vw;
-  max-width: 8vw;
-  min-width: 10vmin;
-  min-height: 10vmin;
-  border-radius: 1vmin;
-}
-.shop-businesscard {
-  display: flex;
-  flex-direction: row;
-}
-.businesscard-title {
-  font-family: "Marcellus", serif;
-  line-height: 3vmin;
-  margin-bottom: 2vmin;
-  font-size: 3vmin;
-  margin-top: 0rem;
-}
+
 .shop-businesscard-info {
   margin-left: 2vmin;
   width: 22vw;
@@ -43,14 +11,6 @@
 }
 .sanserif-text-location {
   margin-top: 2vmin;
-}
-.starseller {
-  color: rgb(130, 52, 149);
-  font-weight: bolder;
-}
-.accolades {
-  font-family: "Mulish", sans-serif;
-  margin: 0.5rem;
 }
 .accolades-container {
   font-size: 1.5vmin;
