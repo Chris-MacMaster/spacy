@@ -6,7 +6,7 @@ import { fetchShops, fetchFollowedShops } from "../store/shops";
 import LoadingIcon from "./LoadingIcon";
 import ShopCard from "./ShopCard";
 import { deleteShopRequest } from "../store/shops";
-import IconWrenchScrewDriver from "./IconWrench";
+import IconWrenchScrewDriver from "./IconWrenchScrewDriver";
 import IconShop from "./IconShop";
 export default function UserDetails() {
   const { userId } = useParams();

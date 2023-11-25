@@ -14,6 +14,10 @@ import ShopProductCard from "../ShopProductCard";
 import { authenticate } from "../../store/session";
 import LoadingIcon from "../LoadingIcon";
 import IconTruck from "../IconTruck";
+import IconEnvelope from "../IconEnvelope";
+import IconSpeechBubble from "../IconSpeechBubble";
+import IconWrenchScrewDriver from "../IconWrenchScrewDriver";
+import IconClipboard from "../IconClipboard.jsx";
 
 export default function ShopDetails() {
   const { shopId } = useParams();
@@ -66,10 +70,10 @@ export default function ShopDetails() {
   };
 
   return (
-    <div className="flex flex-col items-center">
-      <div className=" min-h-screen max-w-screen-lg">
-        <div className=" p-4 flex flex-row justify-between bg-stone-300 w-fit">
-          <div className="flex flex-row">
+    <div className="flex flex-col items-center mx-4">
+      <div className=" min-h-screen max-w-screen-lg my-4">
+        <div className=" p-4 flex flex-row justify-between bg-stone-300 w-fit rounded-md">
+          <div className="flex flex-row text-[1.5vmin]">
             <img
               src={`${shop?.ShopImages?.url}`}
               alt="shoplogo"
@@ -77,8 +81,8 @@ export default function ShopDetails() {
             ></img>
             <div className="w-[35vmin] mx-3">
               <h2 className="text-[2vmin] marcellus font-bold">{shop.name}</h2>
-              <div className=" leading-5 my-3">{shop.description}</div>
-              <div className="leading-5 my-3">
+              <div className="  my-3">{shop.description}</div>
+              <div className=" my-3">
                 {shop.state}, {shop.country}
               </div>
               <div className="sanserif-text">
@@ -87,48 +91,49 @@ export default function ShopDetails() {
                   Seller!{" "}
                 </span>{" "}
                 | {Math.floor(Math.random() * 20000)}{" "}
-                <span className="shop-details-sales">
-                  | Sales {shop.avgReview}{" "}
-                </span>
+                <span className="">| Sales {shop.avgReview} </span>
               </div>
             </div>
           </div>
-          <div className="accolades-container">
+          <div className="flex flex-row text-[1.3vmin] gap-4 items-center">
             <div className="">
-              <div className="bold-text flex ">
+              <div className="font-bold flex flex-row text-[1.5vmin] items-center">
                 <span className="text-purple-700 ">
                   <IconTruck />
                 </span>
                 Smooth shipping
               </div>
-              <span className="text-xs">
+              <span className="text-[1.5vmin]">
                 Has a history of shipping on time with tracking.
               </span>
             </div>
 
-            <div className="speedy-replies accolades">
-              <div className="bold-text">
-                <i class="fa-solid fa-envelope purple-icon" />
+            <div className="">
+              <div className="font-bold flex flex-row text-[1.5vmin] items-center">
+                <span className="text-purple-700 ">
+                  <IconEnvelope />
+                </span>
                 Speedy Replies
               </div>
-              <span className="accolades-description">
+              <span className="text-[1.5vmin]">
                 Has a history of replying to messages quickly.
               </span>
             </div>
-            <div className="rave-reviews accolades">
-              <div className="bold-text">
+
+            {/* <div className="rave-reviews accolades">
+              <div className="bold-text flex text-[1.5vmin]">
                 <i className="fa-solid fa-comments purple-icon" />
                 Rave Reviews
               </div>
               <span className="accolades-description">
                 Average review rating is 4.8 or higher
               </span>
-            </div>
+            </div> */}
           </div>
 
-          <div className="shop-owner">
+          <div className="text-center leading-4 flex flex-col items-center">
             <img
-              className="shop-owner-img"
+              className="rounded-full object-cover w-[10vmin] m-3"
               src={
                 shop.Owner.profilePic
                   ? shop.Owner.profilePic
@@ -138,50 +143,62 @@ export default function ShopDetails() {
               }
               alt="user"
             ></img>
-            <div className="shop-owner-name">{shop?.Owner?.firstName}</div>
+            <div className="text-[2vmin]">{shop?.Owner?.firstName}</div>
             <button
-              className="contact-shop-owner"
+              className="flex flex-row justify-center items-center p-3 px-6 my-3 rounded-full bg-slate-500 font-bold text-white  hover:scale-95 active:bg-slate-700 drop-slate-lg transition-all ease-in-out duration-300 "
               onClick={() => (window.location = `mailto:${shop.Owner.email}`)}
             >
-              <i className="fa-solid fa-message"></i> Contact
+              <span className="mr-2">
+                <IconSpeechBubble />
+              </span>
+              Contact
             </button>
           </div>
         </div>
 
         {user && user.id === shop.ownerId ? (
-          <button onClick={handleCreate} className="favorite-shop">
-            <i className="fa-solid fa-screwdriver-wrench create-shop-icon" />
+          <button
+            onClick={handleCreate}
+            className="rounded-xl bg-fuschia-600 active:bg-fuschia-800 text-white uppercase px-8 hover:scale-95 transition-all duration-300 ease-in-out my-4"
+          >
+            <IconWrenchScrewDriver />
             Create Product
           </button>
         ) : (
-          <div className="follow-unfollow-shop-div">
+          <div className="">
             {shop &&
               shop.Followed &&
               shop.Followed.Status &&
               shop.Followed.Status === "Not Followed" && (
-                <button className="favorite-shop" onClick={handleFollow}>
-                  <i className="fa-regular fa-heart shop-heart"></i>Follow Shop
+                <button
+                  className="rounded-xl bg-emerald-600 active:bg-emerald-800 text-white uppercase px-8 hover:scale-95 transition-all duration-300 ease-in-out my-4"
+                  onClick={handleFollow}
+                >
+                  <i className="fa-regular fa-heart shop-heart mr-3"></i>Follow
+                  Shop
                 </button>
               )}
             {shop &&
               shop.Followed &&
               shop.Followed.Status &&
               shop.Followed.Status === "Followed" && (
-                <button className="favorite-shop" onClick={handleUnfollow}>
-                  <i className="fas fa-regular fa-heart shop-heart"></i>Unfollow
-                  Shop
+                <button
+                  className="rounded-xl bg-emerald-600 active:bg-emerald-800 text-white uppercase px-8 hover:scale-95 transition-all duration-300 ease-in-out my-4"
+                  onClick={handleUnfollow}
+                >
+                  <i className="fas fa-regular fa-heart shop-heart text-red-600 mr-3"></i>
+                  Unfollow Shop
                 </button>
               )}
           </div>
         )}
 
-        <div className="items-section">
-          <div className="item-category-sidebar">
-            <h3 className="mapped-categories-title">Items</h3>
-            <div className="mapped-categories">
+        <div className=" flex flex-row gap-2">
+          <div className=" text-[1.5vmin] leading-7">
+            {/* <div className="mapped-categories">
               {shop.Products
                 ? shop.Products.map((p, i) => (
-                    <div className="category">
+                    <div className=" border-b-2 border-transparent hover:border-b-slate-400 transition-all ease-in-out duration-200">
                       <span className="category-list" key={`catp${i}`}>
                         {p.category}
                       </span>
@@ -191,25 +208,33 @@ export default function ShopDetails() {
                     </div>
                   ))
                 : null}
-            </div>
-            <div className="category-column-buttons">
+            </div> */}
+            <div className="">
               <button
-                className="column-buttons"
+                className=" w-56 flex bg-cyan-600 active:bg-cyan-800 my-4 rounded-xl font-bold text-white hover:scale-95 transition-all duration-300 ease-in-out"
                 onClick={() => (window.location = `mailto:${shop.Owner.email}`)}
               >
-                <i className="fa-solid fa-clipboard-list"></i> Request Custom
-                Order
+                <span className="mr-3">
+                  {" "}
+                  <IconClipboard />{" "}
+                </span>{" "}
+                Request Custom Order
               </button>
               <button
-                className="column-buttons"
+                className=" w-56 flex bg-cyan-600 active:bg-cyan-800 my-4 rounded-xl font-bold text-white hover:scale-95 transition-all duration-300 ease-in-out"
                 onClick={() => (window.location = `mailto:${shop.Owner.email}`)}
               >
-                <i className="fa-solid fa-message" /> Contact shop owner
+                <span className="mr-3">
+                  <IconSpeechBubble />
+                </span>{" "}
+                Contact shop owner
               </button>
             </div>
           </div>
           <div className="item-card-display">
-            <h3 className="featured-items">Featured Items</h3>
+            <h3 className="marcellus font-bold text-[2vmin] mb-[2vmin]">
+              Featured Items
+            </h3>
             <div className="item-cards">
               {shop.Products
                 ? shop.Products.map((product) => (
