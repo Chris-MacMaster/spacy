@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useModal } from "../context/Modal";
 import { signUp } from "../store/session";
 import { useEffect } from "react";
-
+import IconAlert from "./IconAlert";
 function SignupFormModal() {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
@@ -140,7 +140,8 @@ function SignupFormModal() {
           {hasSubmitted &&
             errors.length &&
             errors?.map((error, idx) => (
-              <li key={idx} className="errors">
+              <li key={idx} className="flex flex-row p-3 bg-red-300 text-red-900 rounded-xl my-2">
+                <IconAlert />
                 {error}
               </li>
             ))}

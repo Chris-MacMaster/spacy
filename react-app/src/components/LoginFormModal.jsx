@@ -5,7 +5,7 @@ import { useModal } from "../context/Modal";
 import { fetchCart } from "../store/cart";
 import { CartContext } from "../context/CartContext";
 import { addLocalToUserCartThunk } from "../store/cart";
-
+import IconAlert from "./IconAlert";
 function LoginFormModal() {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
@@ -82,7 +82,8 @@ function LoginFormModal() {
         </form>
       </div>
       {errors?.map((error, idx) => (
-        <div className="errors" key={`${idx}error`}>
+        <div className="flex flex-row p-3 bg-red-300 text-red-900 rounded-xl my-2" key={`${idx}error`}>
+          <IconAlert />
           {error}
         </div>
       ))}

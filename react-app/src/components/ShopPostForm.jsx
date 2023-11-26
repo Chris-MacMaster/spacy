@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createShop } from "../store/shops";
 import { useHistory } from "react-router-dom";
+import IconAlert from "./IconAlert";
 
 export default function PostShopForm() {
   const history = useHistory();
@@ -100,7 +101,7 @@ export default function PostShopForm() {
               onChange={(e) => setName(e.target.value)}
             ></input>
             {hasSubmitted && errors.name && (
-              <div className="error">* {errors.name}</div>
+              <div className="flex flex-row p-3 bg-red-300 text-red-900 rounded-xl my-2"> <IconAlert /> {errors.name}</div>
             )}
           </div>
 
@@ -114,7 +115,7 @@ export default function PostShopForm() {
               onChange={(e) => setStreetAddress(e.target.value)}
             ></input>
             {hasSubmitted && errors.streetAddress && (
-              <div className="error">* {errors.streetAddress}</div>
+              <div className="flex flex-row p-3 bg-red-300 text-red-900 rounded-xl my-2"> <IconAlert />  {errors.streetAddress}</div>
             )}
           </div>
 
@@ -128,7 +129,7 @@ export default function PostShopForm() {
               onChange={(e) => setCity(e.target.value)}
             ></input>
             {hasSubmitted && errors.city && (
-              <div className="error">* {errors.city}</div>
+              <div className="flex flex-row p-3 bg-red-300 text-red-900 rounded-xl my-2"> <IconAlert />  {errors.city}</div>
             )}
           </div>
 
@@ -142,7 +143,7 @@ export default function PostShopForm() {
               onChange={(e) => setState(e.target.value)}
             ></input>
             {hasSubmitted && errors.state && (
-              <div className="error">* {errors.state}</div>
+              <div className="flex flex-row p-3 bg-red-300 text-red-900 rounded-xl my-2"> <IconAlert />  {errors.state}</div>
             )}
           </div>
 
@@ -156,7 +157,7 @@ export default function PostShopForm() {
               onChange={(e) => setCountry(e.target.value)}
             ></input>
             {hasSubmitted && errors.country && (
-              <div className="error">* {errors.country}</div>
+              <div className="flex flex-row p-3 bg-red-300 text-red-900 rounded-xl my-2"> <IconAlert />  {errors.country}</div>
             )}
           </div>
 
@@ -177,7 +178,7 @@ export default function PostShopForm() {
               onChange={(e) => setDescription(e.target.value)}
             ></textarea>
             {hasSubmitted && errors.description && (
-              <div className="error">* {errors.description}</div>
+              <div className="flex flex-row p-3 bg-red-300 text-red-900 rounded-xl my-2"> <IconAlert />  {errors.description}</div>
             )}
           </div>
 
@@ -197,7 +198,7 @@ export default function PostShopForm() {
               onChange={(e) => setCategory(e.target.value)}
             ></input>
             {hasSubmitted && errors.category && (
-              <div className="error">* {errors.category}</div>
+              <div className="flex flex-row p-3 bg-red-300 text-red-900 rounded-xl my-2"> <IconAlert />  {errors.category}</div>
             )}
           </div>
 
@@ -218,7 +219,7 @@ export default function PostShopForm() {
               onChange={(e) => setPolicies(e.target.value)}
             ></textarea>
             {hasSubmitted && errors.policies && (
-              <div className="error">* {errors.policies}</div>
+              <div className="flex flex-row p-3 bg-red-300 text-red-900 rounded-xl my-2"> <IconAlert />  {errors.policies}</div>
             )}
           </div>
 
@@ -238,7 +239,7 @@ export default function PostShopForm() {
               onChange={(e) => setUrl(e.target.files[0])}
             ></input>
             {hasSubmitted && errors.url && (
-              <div className="error">* {errors.url}</div>
+              <div className="flex flex-row p-3 bg-red-300 text-red-900 rounded-xl my-2"> <IconAlert />  {errors.url}</div>
             )}
           </div>
 
