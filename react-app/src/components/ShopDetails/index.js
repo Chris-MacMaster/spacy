@@ -10,7 +10,7 @@ import {
   unfollowShop,
   unfollowSingleShop,
 } from "../../store/shops";
-import ShopProductCard from "../ShopProductCard";
+import ShopProductCard from "../ShopProductCard.jsx";
 import { authenticate } from "../../store/session";
 import LoadingIcon from "../LoadingIcon.jsx";
 import IconTruck from "../IconTruck";
@@ -159,7 +159,7 @@ export default function ShopDetails() {
         {user && user.id === shop.ownerId ? (
           <button
             onClick={handleCreate}
-            className="rounded-xl bg-fuchsia-600 active:bg-fuchsia-800 text-white uppercase px-8 hover:scale-95 transition-all duration-300 ease-in-out my-4 flex flex-row font-bold"
+            className="rounded-xl bg-fuchsia-600 active:bg-fuchsia-800 text-white uppercase px-8 hover:scale-95 transition-all duration-300 ease-in-out my-4 flex flex-row font-bold p-3"
           >
             <span className="mr-3">
               <IconWrenchScrewDriver />
@@ -173,7 +173,7 @@ export default function ShopDetails() {
               shop.Followed.Status &&
               shop.Followed.Status === "Not Followed" && (
                 <button
-                  className="rounded-xl bg-emerald-600 active:bg-emerald-800 text-white uppercase px-8 hover:scale-95 transition-all duration-300 ease-in-out my-4"
+                  className="rounded-xl bg-emerald-600 active:bg-emerald-800 text-white uppercase px-8 hover:scale-95 transition-all duration-300 ease-in-out my-4 p-3"
                   onClick={handleFollow}
                 >
                   <i className="fa-regular fa-heart shop-heart mr-3"></i>Follow
@@ -185,7 +185,7 @@ export default function ShopDetails() {
               shop.Followed.Status &&
               shop.Followed.Status === "Followed" && (
                 <button
-                  className="rounded-xl bg-emerald-600 active:bg-emerald-800 text-white uppercase px-8 hover:scale-95 transition-all duration-300 ease-in-out my-4"
+                  className="rounded-xl bg-emerald-600 active:bg-emerald-800 text-white uppercase px-8 p-3 hover:scale-95 transition-all duration-300 ease-in-out my-4"
                   onClick={handleUnfollow}
                 >
                   <i className="fas fa-regular fa-heart shop-heart text-red-600 mr-3"></i>
@@ -213,7 +213,7 @@ export default function ShopDetails() {
             </div> */}
             <div className="">
               <button
-                className=" w-56 flex bg-cyan-600 active:bg-cyan-800 my-4 rounded-xl font-bold text-white hover:scale-95 transition-all duration-300 ease-in-out"
+                className=" w-56 flex bg-cyan-600 active:bg-cyan-800 my-4 rounded-xl font-bold text-white hover:scale-95 transition-all duration-300 ease-in-out p-3"
                 onClick={() => (window.location = `mailto:${shop.Owner.email}`)}
               >
                 <span className="mr-3">
@@ -223,7 +223,7 @@ export default function ShopDetails() {
                 Request Custom Order
               </button>
               <button
-                className=" w-56 flex bg-cyan-600 active:bg-cyan-800 my-4 rounded-xl font-bold text-white hover:scale-95 transition-all duration-300 ease-in-out"
+                className=" w-56 flex bg-cyan-600 active:bg-cyan-800 my-4 rounded-xl font-bold text-white hover:scale-95 transition-all duration-300 ease-in-out p-3"
                 onClick={() => (window.location = `mailto:${shop.Owner.email}`)}
               >
                 <span className="mr-3">

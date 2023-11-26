@@ -1,8 +1,9 @@
 import { NavLink, useHistory } from "react-router-dom";
-import "./ShopProductCard.css";
 import { useDispatch } from "react-redux";
-import { deleteProduct } from "../../store/product";
-import { fetchOneShop } from "../../store/shops";
+import { deleteProduct } from "../store/product";
+import { fetchOneShop } from "../store/shops";
+import IconPencilSquare from "./IconPencilSquare";
+import IconTrashCan from "./IconTrashCan";
 // import { authenticate } from '../../store/session'
 
 export default function ShopProductCard({ product, user, shop }) {
@@ -24,40 +25,37 @@ export default function ShopProductCard({ product, user, shop }) {
   if (!product.ProductImages[0]?.url) return null;
 
   return (
-    <div className="shop-product-card">
       <NavLink
         to={`/products/${product.id}`}
+        className=" shadow-xl rounded-lg hover:shadow-2xl transition-all duration-300 ease-in-out w-fit h-fit "
       >
         <img
           src={`${product.ProductImages[0].url}`}
           alt="preview"
-          className="shop-product-preview-image"
+          className="object-cover w-44 h-44 rounded-t-lg"
         />
-        <div className="shop-product-bottom">
-          <div className="shop-product-info">
-            <div className="shop-product-name">{product.name}</div>
-            <div className="shop-product-price">${product.price}</div>
+        <div className="w-44 relative">
+          <div className=" mx-2">
+            <div className=" text-sm">{product.name}</div>
+            <div className=" font-bold">${product.price}</div>
           </div>
           {user && user.id === shop.ownerId ? (
-            <div className="shop-product-buttons">
+            <div className=" flex flex-row justify-end absolute right-0 bottom-0 ">
               <button
-                id="shop-delete-button"
                 onClick={handleDelete}
-                className="user-delete-product"
+                className="mx-1 hover:scale-95 transition-all ease-in-out duration-300"
               >
-                <i class="fa-solid fa-trash-can" />
+                <IconTrashCan />
               </button>
               <button
-                id="shop-edit-button"
                 onClick={handleEdit}
-                className="user-edit-product"
+                className="mx-1 hover:scale-95 transition-all ease-in-out duration-300"
               >
-                <i class="fa-solid fa-pen-to-square" />
+                <IconPencilSquare />
               </button>
             </div>
           ) : null}
         </div>
       </NavLink>
-    </div>
   );
 }
