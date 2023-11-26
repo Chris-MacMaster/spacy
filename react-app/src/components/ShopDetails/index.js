@@ -133,7 +133,7 @@ export default function ShopDetails() {
 
           <div className="text-center leading-4 flex flex-col items-center">
             <img
-              className="rounded-full object-cover w-[10vmin] m-3"
+              className="rounded-full object-cover w-[10vmin] h-[10vmin] m-3"
               src={
                 shop.Owner.profilePic
                   ? shop.Owner.profilePic

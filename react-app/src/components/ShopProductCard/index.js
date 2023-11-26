@@ -27,7 +27,6 @@ export default function ShopProductCard({ product, user, shop }) {
     <div className="shop-product-card">
       <NavLink
         to={`/products/${product.id}`}
-        style={{ textDecoration: "none" }}
       >
         <img
           src={`${product.ProductImages[0].url}`}
