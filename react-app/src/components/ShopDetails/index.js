@@ -12,7 +12,7 @@ import {
 } from "../../store/shops";
 import ShopProductCard from "../ShopProductCard";
 import { authenticate } from "../../store/session";
-import LoadingIcon from "../LoadingIcon";
+import LoadingIcon from "../LoadingIcon.jsx";
 import IconTruck from "../IconTruck";
 import IconEnvelope from "../IconEnvelope";
 import IconSpeechBubble from "../IconSpeechBubble";
