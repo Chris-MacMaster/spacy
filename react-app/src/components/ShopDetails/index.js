@@ -159,9 +159,11 @@ export default function ShopDetails() {
         {user && user.id === shop.ownerId ? (
           <button
             onClick={handleCreate}
-            className="rounded-xl bg-fuschia-600 active:bg-fuschia-800 text-white uppercase px-8 hover:scale-95 transition-all duration-300 ease-in-out my-4"
+            className="rounded-xl bg-fuchsia-600 active:bg-fuchsia-800 text-white uppercase px-8 hover:scale-95 transition-all duration-300 ease-in-out my-4 flex flex-row font-bold"
           >
-            <IconWrenchScrewDriver />
+            <span className="mr-3">
+              <IconWrenchScrewDriver />
+            </span>
             Create Product
           </button>
         ) : (

@@ -87,10 +87,10 @@ function Header({ isLoaded }) {
           </form>
         </div>
 
-        <div className="relative">
+        <div className="relative group">
           {user && user?.id && userShop.length > 0 && (
             <NavLink to={`/shops/${userShop[0].id}`}>
-              <div className="header-tip">Shop Manager</div>
+              <div className="bg-white rounded-xl shadow-xl border-[1.5px] border-slate-300 absolute top-12  font-bold transition-all opacity-0  p-3 right-0 group-hover:opacity-100 tooltip">Shop Manager</div>
               <i className="fa-solid fa-store text-[2.5vmin] text-slate-500"></i>
             </NavLink>
           )}
@@ -114,7 +114,7 @@ function Header({ isLoaded }) {
             </NavLink>
           ) : null}
           <NavLink to="/cart" className="group">
-            <div className="header-tip bg-white rounded-xl shadow-xl border-[1.5px] border-slate-300 absolute top-12  font-bold transition-all opacity-0  p-3 right-0 group-hover:opacity-100 tooltip">
+            <div className=" bg-white rounded-xl shadow-xl border-[1.5px] border-slate-300 absolute top-12  font-bold transition-all opacity-0  p-3 right-0 group-hover:opacity-100 tooltip">
               Cart
             </div>
             <i className="fa-solid fa-cart-shopping text-[2.5vmin] text-slate-500 hover:text-slate-800"></i>
