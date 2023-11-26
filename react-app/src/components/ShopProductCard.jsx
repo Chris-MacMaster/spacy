@@ -27,7 +27,7 @@ export default function ShopProductCard({ product, user, shop }) {
   return (
       <NavLink
         to={`/products/${product.id}`}
-        className=" shadow-xl rounded-lg hover:shadow-2xl transition-all duration-300 ease-in-out w-fit h-fit "
+        className=" shadow-xl rounded-lg hover:shadow-2xl transition-all duration-300 ease-in-out w-fit h-fit border-[1px] border-slate-300"
       >
         <img
           src={`${product.ProductImages[0].url}`}
