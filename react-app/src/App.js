@@ -15,8 +15,8 @@ import Footer from "./components/Footer";
 import ProductCreateForm from "./components/Forms/ProductCreate";
 import ProductEditForm from "./components/Forms/ProductEdit";
 import FilteredSearchResults from "./components/FilteredSearchResults";
-import PostShopForm from "./components/PostShopForm";
-import PutShopForm from "./components/PutShopForm";
+import PostShopForm from "./components/ShopPostForm";
+import PutShopForm from "./components/ShopPutForm";
 import CustomerPurchases from "./components/Purchases/CustomerPurchases"
 import ShopOrders from "./components/Purchases/ShopOrders"
 

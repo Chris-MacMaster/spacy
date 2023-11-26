@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
-import "./PostShopForm.css";
 import { useDispatch, useSelector } from "react-redux";
-import { createShop } from "../../store/shops";
+import { createShop } from "../store/shops";
 import { useHistory } from "react-router-dom";
 
 export default function PostShopForm() {
@@ -77,14 +76,19 @@ export default function PostShopForm() {
   };
 
   return (
-    <div className="post-shop-div">
-      <h1 className="post-shop-title">Create New Shop</h1>
+    <div className="m-8 min-h-screen max-w-screen-lg mx-auto">
+      <h1 className=" text-center text-4xl marcellus">Create New Shop</h1>
 
-      <div className="post-shop-grid">
-        <form onSubmit={handleSubmit} id="post-shop" className="post-shop-form">
+      <div className="flex justify-center items-center rounded-lg">
+        <form
+          onSubmit={handleSubmit}
+          className=" grid grid-cols-2 mt-4 gap-4 drop-shadow-lg max-w-3xl shadow-2xl p-8 m-4 rounded-xl border-[1px] border-slate-300"
+        >
           <div className="create-shop-name create-shop-label">
-            <label className="create-shop-label">Name</label>
-            <div className="create-shop-grey">
+            <label className=" font-bold text-2xl thasadith text-cyan-600">
+              Name
+            </label>
+            <div className="text-xs text-slate-600">
               Choose a welcoming name for your shop
             </div>
           </div>
@@ -92,7 +96,7 @@ export default function PostShopForm() {
             <input
               type="text"
               value={name}
-              className="create-shop-input-field"
+              className=" w-full border-2 border-gray-300 rounded-xl p-2 bg-slate-100 focus-within:bg-white transition duration-200 ease-in-out focus:outline-2 focus:outline-cyan-300 focus:outline"
               onChange={(e) => setName(e.target.value)}
             ></input>
             {hasSubmitted && errors.name && (
@@ -100,11 +104,11 @@ export default function PostShopForm() {
             )}
           </div>
 
-          <label className="create-shop-label">Street Address</label>
+          <label className=" font-bold text-2xl thasadith text-cyan-600">Street Address</label>
 
           <div className="create-shop-input">
             <input
-              className="create-shop-input-field"
+              className=" w-full border-2 border-gray-300 rounded-xl p-2 bg-slate-100 focus-within:bg-white transition duration-200 ease-in-out focus:outline-2 focus:outline-cyan-300 focus:outline"
               type="text"
               value={streetAddress}
               onChange={(e) => setStreetAddress(e.target.value)}
@@ -114,11 +118,11 @@ export default function PostShopForm() {
             )}
           </div>
 
-          <label className="create-shop-label">City</label>
+          <label className=" font-bold text-2xl thasadith text-cyan-600">City</label>
 
           <div className="create-shop-input">
             <input
-              className="create-shop-input-field"
+              className=" w-full border-2 border-gray-300 rounded-xl p-2 bg-slate-100 focus-within:bg-white transition duration-200 ease-in-out focus:outline-2 focus:outline-cyan-300 focus:outline"
               type="text"
               value={city}
               onChange={(e) => setCity(e.target.value)}
@@ -128,11 +132,11 @@ export default function PostShopForm() {
             )}
           </div>
 
-          <label className="create-shop-label">State</label>
+          <label className=" font-bold text-2xl thasadith text-cyan-600">State</label>
 
           <div className="create-shop-input">
             <input
-              className="create-shop-input-field"
+              className=" w-full border-2 border-gray-300 rounded-xl p-2 bg-slate-100 focus-within:bg-white transition duration-200 ease-in-out focus:outline-2 focus:outline-cyan-300 focus:outline"
               type="text"
               value={state}
               onChange={(e) => setState(e.target.value)}
@@ -142,13 +146,13 @@ export default function PostShopForm() {
             )}
           </div>
 
-          <label className="create-shop-label">Country</label>
+          <label className=" font-bold text-2xl thasadith text-cyan-600">Country</label>
 
           <div className="create-shop-input">
             <input
               type="text"
               value={country}
-              className="create-shop-input-field"
+              className=" w-full border-2 border-gray-300 rounded-xl p-2 bg-slate-100 focus-within:bg-white transition duration-200 ease-in-out focus:outline-2 focus:outline-cyan-300 focus:outline"
               onChange={(e) => setCountry(e.target.value)}
             ></input>
             {hasSubmitted && errors.country && (
@@ -157,8 +161,8 @@ export default function PostShopForm() {
           </div>
 
           <div className="create-shop-label-grid create-shop-description">
-            <label className="create-shop-label">Description</label>
-            <div className="create-shop-grey">
+            <label className=" font-bold text-2xl thasadith text-cyan-600">Description</label>
+            <div className="text-xs text-slate-600">
               Start building you brand by giving a brief description of your
               shop and what you're known for.
             </div>
@@ -166,7 +170,8 @@ export default function PostShopForm() {
 
           <div className="create-shop-input">
             <textarea
-              className="create-shop-input-field shop-create-description"
+          className="w-full border-2 border-gray-300 rounded-xl p-2 bg-slate-100 focus-within:bg-white transition duration-200 ease-in-out focus:outline-2 focus:outline-cyan-300 focus:outline"
+
               type="textarea"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
@@ -177,8 +182,8 @@ export default function PostShopForm() {
           </div>
 
           <div className="create-shop-label-grid create-shop-category">
-            <label className="create-shop-label ">Category</label>
-            <div className="create-shop-grey">
+            <label className=" font-bold text-2xl thasadith text-cyan-600">Category</label>
+            <div className="text-xs text-slate-600">
               Providing a category helps you get shown in search results!
             </div>
           </div>
@@ -187,7 +192,8 @@ export default function PostShopForm() {
             <input
               type="text"
               value={category}
-              className="create-shop-input-field category-input"
+              className="w-full border-2 border-gray-300 rounded-xl p-2 bg-slate-100 focus-within:bg-white transition duration-200 ease-in-out focus:outline-2 focus:outline-cyan-300 focus:outline"
+
               onChange={(e) => setCategory(e.target.value)}
             ></input>
             {hasSubmitted && errors.category && (
@@ -196,8 +202,8 @@ export default function PostShopForm() {
           </div>
 
           <div className="create-shop-label-grid">
-            <label className="create-shop-label">Policies</label>
-            <div className="create-shop-grey">
+            <label className=" font-bold text-2xl thasadith text-cyan-600">Policies</label>
+            <div className="text-xs text-slate-600">
               Give your customers an idea of the sort of service they can expect
               from you.
             </div>
@@ -205,7 +211,8 @@ export default function PostShopForm() {
 
           <div className="create-shop-input">
             <textarea
-              className="create-shop-input-field policies-input shop-create-description"
+          className="w-full border-2 border-gray-300 rounded-xl p-2 bg-slate-100 focus-within:bg-white transition duration-200 ease-in-out focus:outline-2 focus:outline-cyan-300 focus:outline"
+
               type="text"
               value={policies}
               onChange={(e) => setPolicies(e.target.value)}
@@ -216,8 +223,8 @@ export default function PostShopForm() {
           </div>
 
           <div className="create-shop-label-grid">
-            <label className="create-shop-label">Image URL</label>
-            <div className="create-shop-grey">
+            <label className=" font-bold text-2xl thasadith text-cyan-600">Image URL</label>
+            <div className="text-xs text-slate-600">
               Images are mandatory, show off your logo or a good representation
               of your business!
             </div>
@@ -225,7 +232,7 @@ export default function PostShopForm() {
 
           <div className="create-shop-input">
             <input
-              className="create-shop-input-field category-input aws-upload"
+              className="create-shop-input-field category-input aws-upload h-fit"
               type="file"
               // value={url}
               onChange={(e) => setUrl(e.target.files[0])}
@@ -238,7 +245,7 @@ export default function PostShopForm() {
           <div className="create-shop-div">
             <input
               onClick={handleSubmit}
-              className="submit-button form-create-button favorite-shop submit-create-shop create-product-button"
+              className=" bg-orange-600 active:bg-orange-800 w-full p-3 rounded-lg text-white uppercase font-bold hover:scale-95 transition-all ease-in-out duration-300 cursor-pointer"
               type="submit"
               value="Create Shop"
             />
