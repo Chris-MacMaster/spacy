@@ -1,13 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { fetchProducts } from "../../store/product";
-import { fetchProductReviews } from "../../store/review";
+import { fetchProducts } from "../store/product";
+import { fetchProductReviews } from "../store/review";
 import { NavLink } from "react-router-dom";
-import OpenModalButton from '../OpenModalButton'
+import OpenModalButton from './OpenModalButton'
 import { useRef } from 'react'
 import { useState } from "react";
-import UnfollowShopModal from '../UnfollowShopModal'
-import { unfollowShop } from "../../store/shops";
+import UnfollowShopModal from './UnfollowShopModal'
+import { unfollowShop } from "../store/shops";
 
 export default function ShopCard({ shop }) {
   const dispatch = useDispatch();
