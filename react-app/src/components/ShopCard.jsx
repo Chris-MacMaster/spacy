@@ -3,10 +3,10 @@ import { useEffect } from "react";
 import { fetchProducts } from "../store/product";
 import { fetchProductReviews } from "../store/review";
 import { NavLink } from "react-router-dom";
-import OpenModalButton from './OpenModalButton'
-import { useRef } from 'react'
+import OpenModalButton from "./OpenModalButton";
+import { useRef } from "react";
 import { useState } from "react";
-import UnfollowShopModal from './UnfollowShopModal'
+import UnfollowShopModal from "./UnfollowShopModal";
 import { unfollowShop } from "../store/shops";
 
 export default function ShopCard({ shop }) {
@@ -18,19 +18,19 @@ export default function ShopCard({ shop }) {
   const [showMenu, setShowMenu] = useState(false);
   // modal components
   const openMenu = () => {
-      if (showMenu) return
-      setShowMenu(true)
-  }
+    if (showMenu) return;
+    setShowMenu(true);
+  };
   useEffect(() => {
-      if (!showMenu) return;
-      const closeMenu = e => {
-          if (!ulRef.current.contains(e.target)) {
-              setShowMenu(false);
-          }
+    if (!showMenu) return;
+    const closeMenu = (e) => {
+      if (!ulRef.current.contains(e.target)) {
+        setShowMenu(false);
       }
-      document.addEventListener('click', closeMenu)
-  }, [showMenu])
-  const closeMenu = () => setShowMenu(false)
+    };
+    document.addEventListener("click", closeMenu);
+  }, [showMenu]);
+  const closeMenu = () => setShowMenu(false);
 
   useEffect(() => {
     const loadData = async () => {
@@ -40,11 +40,6 @@ export default function ShopCard({ shop }) {
     };
     loadData();
   }, [dispatch]);
-
-  const handleUnfollow = (e) => {
-    e.preventDefault();
-    dispatch(unfollowShop(shop.id));
-  };
 
   const products = useSelector((state) => state.products.allProducts);
   const reviews = useSelector((state) => state);
@@ -93,15 +88,9 @@ export default function ShopCard({ shop }) {
                 .fill(1)
                 .map((s, i) =>
                   s <= shopRating ? (
-                    <i
-                      className="fa-solid fa-star text-black"
-                      key={i}
-                    ></i>
+                    <i className="fa-solid fa-star text-black" key={i}></i>
                   ) : (
-                    <i
-                      className="fa-solid fa-star text-slate-600"
-                      key={i}
-                    ></i>
+                    <i className="fa-solid fa-star text-slate-600" key={i}></i>
                   )
                 )}{" "}
               {filteredProducts.length} items
@@ -109,21 +98,26 @@ export default function ShopCard({ shop }) {
           </div>
         </NavLink>
 
-        <div className="self-center rounded-full border-[1px] border-slate-300 shadow-lg text-red-600 cursor-pointer px-1" title="Unfollow">
+        <div
+          className="self-center rounded-full border-[1px] border-slate-300 shadow-lg text-red-600 cursor-pointer px-1"
+          title="Unfollow"
+        >
           {/* <i
             onClick={handleUnfollow}
             className="fa-solid fa-heart landing-shop-heart"
           ></i> */}
 
           {/* need to hook up to icon without Unfollow text */}
-          <div className='unfollow-shop-modal'>
-                    <OpenModalButton
-                        buttonText={<i className="fa-solid fa-heart landing-shop-heart" ></i>}
-                        onClick={openMenu}
-                        className='shop-pol-modal'
-                        onItemClick={closeMenu}
-                        modalComponent={<UnfollowShopModal shopId={shop.id} />} />
-                </div>
+          <div className="unfollow-shop-modal">
+            <OpenModalButton
+              buttonText={
+                <i className="fa-solid fa-heart landing-shop-heart"></i>
+              }
+              onClick={openMenu}
+              onItemClick={closeMenu}
+              modalComponent={<UnfollowShopModal shopId={shop.id} />}
+            />
+          </div>
         </div>
       </div>
     </div>

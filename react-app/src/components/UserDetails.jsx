@@ -5,18 +5,20 @@ import { authenticate } from "../store/session";
 import { fetchShops, fetchFollowedShops } from "../store/shops";
 import LoadingIcon from "./LoadingIcon";
 import ShopCard from "./ShopCard";
-import { deleteShopRequest } from "../store/shops";
 import IconWrenchScrewDriver from "./IconWrenchScrewDriver";
 import IconShop from "./IconShop";
 import IconPencilSquare from "./IconPencilSquare";
 import IconTrashCan from "./IconTrashCan";
-
+import OpenModalButton from "./OpenModalButton";
+import { useRef } from "react";
+import ShopDeleteModal from "./ShopDeleteModal";
 export default function UserDetails() {
   const { userId } = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
   const [hasLoaded, setHasLoaded] = useState(false);
-
+  const ulRef = useRef(); //for modal
+  const [showMenu, setShowMenu] = useState(false);
   useEffect(() => {
     const loadData = async () => {
       await dispatch(authenticate());
@@ -26,6 +28,21 @@ export default function UserDetails() {
     };
     loadData();
   }, [dispatch]);
+
+  const openMenu = () => {
+    if (showMenu) return;
+    setShowMenu(true);
+  };
+  useEffect(() => {
+    if (!showMenu) return;
+    const closeMenu = (e) => {
+      if (!ulRef.current.contains(e.target)) {
+        setShowMenu(false);
+      }
+    };
+    document.addEventListener("click", closeMenu);
+  }, [showMenu]);
+  const closeMenu = () => setShowMenu(false);
 
   const user = useSelector((state) => state.session.user);
   const shops = useSelector((state) => state.shops.allShops);
@@ -39,10 +56,7 @@ export default function UserDetails() {
 
   const followedShops = Object.values(followedShopState);
   const onClickCreateShop = () => history.push("/shops/new");
-  const deleteShop = async (shopId) => {
-    await dispatch(deleteShopRequest(shopId));
-    await dispatch(fetchShops());
-  };
+
   return (
     <div className=" min-h-screen max-w-screen-lg flex flex-col items-center mx-auto">
       <div className="flex flex-row w-full">
@@ -73,13 +87,14 @@ export default function UserDetails() {
                   </NavLink>
                   {user.id === parseInt(userId) ? (
                     <>
-                      <button
-                        className="user-delete-product"
-                        onClick={(e) => deleteShop(s.id)}
-                        key={`shopdel${i}`}
-                      >
-                        <IconTrashCan  key={`trash${i}`}/>
-                      </button>
+                      <OpenModalButton
+                      buttonText={<IconTrashCan  key={`trash${i}`}/>}
+                      onClick={openMenu}
+                      onItemClick={closeMenu}
+                      modalComponent={<ShopDeleteModal shopId={s.id} />}
+                      key={`deleteshopmodal${i}`}
+                      />
+
                       <button
                         className="user-edit-product"
                         onClick={(e) => history.push(`/shops/edit/${s.id}`)}
