@@ -8,6 +8,9 @@ import ShopCard from "./ShopCard";
 import { deleteShopRequest } from "../store/shops";
 import IconWrenchScrewDriver from "./IconWrenchScrewDriver";
 import IconShop from "./IconShop";
+import IconPencilSquare from "./IconPencilSquare";
+import IconTrashCan from "./IconTrashCan";
+
 export default function UserDetails() {
   const { userId } = useParams();
   const dispatch = useDispatch();
@@ -41,7 +44,7 @@ export default function UserDetails() {
     await dispatch(fetchShops());
   };
   return (
-    <div className=" min-h-screen max-w-screen-lg flex flex-col items-center mx-auto ">
+    <div className=" min-h-screen max-w-screen-lg flex flex-col items-center mx-auto">
       <div className="flex flex-row w-full">
         <img
           src={
@@ -71,23 +74,18 @@ export default function UserDetails() {
                   {user.id === parseInt(userId) ? (
                     <>
                       <button
-                        id="shop-delete-button"
                         className="user-delete-product"
                         onClick={(e) => deleteShop(s.id)}
                         key={`shopdel${i}`}
                       >
-                        <IconWrenchScrewDriver />
+                        <IconTrashCan  key={`trash${i}`}/>
                       </button>
                       <button
-                        id="shop-edit-button"
                         className="user-edit-product"
                         onClick={(e) => history.push(`/shops/edit/${s.id}`)}
                         key={`shopedit${i}`}
                       >
-                        <i
-                          class="fa-solid fa-pen-to-square"
-                          key={`editpen${i}`}
-                        />
+                        <IconPencilSquare key={`editpen${i}`} />
                       </button>
                     </>
                   ) : null}
@@ -108,7 +106,9 @@ export default function UserDetails() {
 
       <hr></hr>
 
-      <div className="text-[3vmin] mb-[5vmin] font-bold w-full marcellus">Favorite shops</div>
+      <div className="text-[3vmin] mb-[5vmin] font-bold w-full marcellus">
+        Favorite shops
+      </div>
       <div className="flex flex-col items-center w-full">
         <div className=" grid grid-cols-2 items-center gap-2 w-full">
           {followedShops && followedShops.length ? (

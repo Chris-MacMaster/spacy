@@ -1,12 +1,12 @@
 export default function PopularGifts({ product }) {
   return (
-    <div className="popular-product-card">
+    <div className="popular-product-card hover:shadow-2xl rounded-lg shadow-md transition-all ease-in-out duration-300">
       <img
         className=" h-[20vmin] rounded-lg object-cover w-full"
         src={product.ProductImages[2]?.url}
         alt="not found"
       />
-      <div className="popular-product-text">
+      <div className="p-2">
         <div className="text-[1.7vmin] text-gray-700">{product.name}</div>
         <div className="text-[1.5vmin]">
           {typeof product.avgRating === "number" ? (

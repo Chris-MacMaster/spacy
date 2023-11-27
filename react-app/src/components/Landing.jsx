@@ -191,7 +191,7 @@ function Landing({ isLoaded }) {
         </div>
 
         <div className="grid grid-rows-2 grid-cols-4 landing-columns mt-12 gap-3">
-          <div className=" m-[3vmin]">
+          <div className=" p-[3vmin] shadow-xl rounded-lg">
             <p className=" text-[2vmin]">
               Sponsored <i className="fa-solid fa-question"/>
             </p>
@@ -216,7 +216,7 @@ function Landing({ isLoaded }) {
             ) : null
           )}
 
-          <div className="flex flex-col m-[1vmin] marcellus justify-center">
+          <div className="flex flex-col marcellus justify-center shadow-xl rounded-lg p-3">
             <span className=" text-[2vmin] ">
               Fun fact: behind every sponsored item there is an intelligent
               lifeform hoping you'll check out their shop
@@ -240,7 +240,7 @@ function Landing({ isLoaded }) {
               <NavLink
                 to={`/search/filtered-search/${title[i]}`}
                 key={i}
-                className=" overflow-hidden border-[1.5px] border-slate-200 rounded-xl transition ease-in-out hover:shadow-2xl duration-200"
+                className=" overflow-hidden border-[1px] border-slate-200 rounded-xl transition ease-in-out shadow-md hover:shadow-2xl duration-200"
               >
 
                   <img
