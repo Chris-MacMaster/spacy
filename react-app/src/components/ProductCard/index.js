@@ -4,7 +4,7 @@ export default function ProductCard({ product }) {
   if (!product.ProductImages[0].url) return null;
 
   return (
-    <div className="product-card">
+    <div className="product-card shadow-lg rounded-md ">
       <div className="product-tooltip-heart product-tool-tips">
         <i className="fa-regular fa-heart"></i>
       </div>

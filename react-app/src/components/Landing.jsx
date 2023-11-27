@@ -130,7 +130,7 @@ function Landing({ isLoaded }) {
                 className=" object-cover rounded-full aspect-square w-[12vmin]"
               ></img>
 
-              <p className="break-words text-[2vmin]">Jewelry</p>
+              <p className="break-words text-[2vmin] mt-2">Jewelry</p>
             </div>
             <div
               className="border-b-4 border-b-transparent transition ease-in-out duration-200 font-bold text-center hover:scale-110 hover:border-b-slate-800 w-[12vmin] cursor-pointer"
@@ -141,7 +141,7 @@ function Landing({ isLoaded }) {
                 alt="product"
                 className=" object-cover rounded-full aspect-square w-[12vmin]"
               ></img>
-              <p className=" break-words text-[2vmin]">Adventure Outfitting</p>
+              <p className=" break-words text-[1.8vmin] mt-2">Adventure Outfitting</p>
             </div>
             <div
               className="border-b-4 border-b-transparent transition ease-in-out duration-200 font-bold text-center hover:scale-110 hover:border-b-slate-800 w-[12vmin] cursor-pointer"
@@ -152,7 +152,7 @@ function Landing({ isLoaded }) {
                 alt="product"
                 className=" object-cover rounded-full aspect-square w-[12vmin]"
               ></img>
-              <p className=" text-[2vmin]">Rations and Foodstuffs</p>
+              <p className=" text-[1.8vmin] mt-2">Rations and Foodstuffs</p>
             </div>
             <div
               className="border-b-4 border-b-transparent transition ease-in-out duration-200 font-bold text-center hover:scale-110 hover:border-b-slate-800 w-[12vmin] cursor-pointer"
@@ -163,7 +163,7 @@ function Landing({ isLoaded }) {
                 alt="product"
                 className=" object-cover rounded-full aspect-square w-[12vmin]"
               ></img>
-              <p className=" text-[2vmin]">Furniture and Decor</p>
+              <p className=" text-[1.8vmin] mt-2">Furniture and Decor</p>
             </div>
             <div
               className="border-b-4 border-b-transparent transition ease-in-out duration-200 font-bold text-center hover:scale-110 hover:border-b-slate-800 w-[12vmin] cursor-pointer"
@@ -174,7 +174,7 @@ function Landing({ isLoaded }) {
                 alt="product"
                 className=" object-cover rounded-full aspect-square w-[12vmin]"
               ></img>
-              <p className=" text-[2vmin]">Holiday Gifts!</p>
+              <p className=" text-[1.8vmin] mt-2">Holiday Gifts!</p>
             </div>
             <div
               className="border-b-4 border-b-transparent transition ease-in-out duration-200 font-bold text-center hover:scale-110 hover:border-b-slate-800 w-[12vmin] cursor-pointer"
@@ -185,7 +185,7 @@ function Landing({ isLoaded }) {
                 alt="product"
                 className=" object-cover rounded-full aspect-square w-[12vmin]"
               ></img>
-              <p className=" text-[2vmin]">On Sale</p>
+              <p className=" text-[1.8vmin] mt-2">On Sale</p>
             </div>
           </div>
         </div>
