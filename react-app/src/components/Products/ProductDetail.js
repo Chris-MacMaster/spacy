@@ -69,6 +69,7 @@ const ProductDetail = () => {
     (a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt)
   );
 
+  console.log('PRODUCT REVIEWS', productReviews)
   useEffect(() => {
     setInCart(numberInCart(user, cart, cartItems, product.id));
   }, [cart, cartItems, product.id, user]);

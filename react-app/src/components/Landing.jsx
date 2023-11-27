@@ -121,7 +121,7 @@ function Landing({ isLoaded }) {
 
           <div className="flex flex-row justify-between ">
             <div
-              className="border-b-4 border-b-transparent transition ease-in-out duration-200 font-bold text-center hover:scale-110 hover:border-b-slate-800 w-[12vmin] cursor-pointer"
+              className="border-b-4 border-b-transparent transition ease-in-out duration-200 font-bold text-center hover:scale-95 hover:border-b-slate-800 w-[12vmin] cursor-pointer"
               onClick={handleSubmitJewelry}
             >
               <img
@@ -130,10 +130,10 @@ function Landing({ isLoaded }) {
                 className=" object-cover rounded-full aspect-square w-[12vmin]"
               ></img>
 
-              <p className="break-words text-[2vmin] mt-2">Jewelry</p>
+              <p className="break-words text-[1.8vmin] mt-2">Jewelry</p>
             </div>
             <div
-              className="border-b-4 border-b-transparent transition ease-in-out duration-200 font-bold text-center hover:scale-110 hover:border-b-slate-800 w-[12vmin] cursor-pointer"
+              className="border-b-4 border-b-transparent transition ease-in-out duration-200 font-bold text-center hover:scale-95 hover:border-b-slate-800 w-[12vmin] cursor-pointer"
               onClick={handleSubmitAdventureOutfitting}
             >
               <img
@@ -144,7 +144,7 @@ function Landing({ isLoaded }) {
               <p className=" break-words text-[1.8vmin] mt-2">Adventure Outfitting</p>
             </div>
             <div
-              className="border-b-4 border-b-transparent transition ease-in-out duration-200 font-bold text-center hover:scale-110 hover:border-b-slate-800 w-[12vmin] cursor-pointer"
+              className="border-b-4 border-b-transparent transition ease-in-out duration-200 font-bold text-center hover:scale-95 hover:border-b-slate-800 w-[12vmin] cursor-pointer"
               onClick={handleSubmitRationsandFoodstuffs}
             >
               <img
@@ -155,7 +155,7 @@ function Landing({ isLoaded }) {
               <p className=" text-[1.8vmin] mt-2">Rations and Foodstuffs</p>
             </div>
             <div
-              className="border-b-4 border-b-transparent transition ease-in-out duration-200 font-bold text-center hover:scale-110 hover:border-b-slate-800 w-[12vmin] cursor-pointer"
+              className="border-b-4 border-b-transparent transition ease-in-out duration-200 font-bold text-center hover:scale-95 hover:border-b-slate-800 w-[12vmin] cursor-pointer"
               onClick={handleSubmitFurnitureandDecor}
             >
               <img
@@ -166,7 +166,7 @@ function Landing({ isLoaded }) {
               <p className=" text-[1.8vmin] mt-2">Furniture and Decor</p>
             </div>
             <div
-              className="border-b-4 border-b-transparent transition ease-in-out duration-200 font-bold text-center hover:scale-110 hover:border-b-slate-800 w-[12vmin] cursor-pointer"
+              className="border-b-4 border-b-transparent transition ease-in-out duration-200 font-bold text-center hover:scale-95 hover:border-b-slate-800 w-[12vmin] cursor-pointer"
               onClick={handleSubmitAdventureOutfittingexclaim}
             >
               <img
@@ -177,7 +177,7 @@ function Landing({ isLoaded }) {
               <p className=" text-[1.8vmin] mt-2">Holiday Gifts!</p>
             </div>
             <div
-              className="border-b-4 border-b-transparent transition ease-in-out duration-200 font-bold text-center hover:scale-110 hover:border-b-slate-800 w-[12vmin] cursor-pointer"
+              className="border-b-4 border-b-transparent transition ease-in-out duration-200 font-bold text-center hover:scale-95 hover:border-b-slate-800 w-[12vmin] cursor-pointer"
               onClick={handleSubmitOnSale}
             >
               <img

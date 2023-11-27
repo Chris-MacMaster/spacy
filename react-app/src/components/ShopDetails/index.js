@@ -274,9 +274,9 @@ export default function ShopDetails() {
                             .fill(1)
                             .map((s, j) =>
                               j <= r.stars ? (
-                                <i class="fa-solid fa-star gold-star"></i>
+                                <i className="fa-solid fa-star gold-star"></i>
                               ) : (
-                                <i class="fa-solid fa-star blank-star"></i>
+                                <i className="fa-solid fa-star blank-star"></i>
                               )
                             )}
                         </div>
