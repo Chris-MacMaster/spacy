@@ -1,33 +1,65 @@
-/* TODO Add site wide styles */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.baskerville {
+  font-family: "Libre Baskerville", serif;
+}
+.marcellus {
+  font-family: "Marcellus", serif;
+}
+.mulish {
+  font-family: "Mulish", sans-serif;
+}
+.orbitron {
+  font-family: "Orbitron", sans-serif;
+}
+.thasadith {
+  font-family: "Thasadith", sans-serif;
+}
+.landing-columns {
+  grid-template-columns: 7fr 5fr 3fr 5fr;
+}
+.product-columns {
+  grid-template-columns: 2fr 1fr;
+}
+
+/* search bar transition */
+.peer:focus ~ .telescope-search .fa-magnifying-glass {
+  color: white; /* This will change the icon's color when the input is focused */
+}
+
+/* tooltip caret */
+
 
 body {
-    font-family: 'Mulish', sans-serif;
-    margin: 0px;
+  font-family: "Mulish", sans-serif;
+  margin: 0px;
 }
 hr {
-    margin: min(3vmin, 1.7rem);
+  margin: min(3vmin, 1.7rem);
 }
-input[type="file" ] {
-    padding: min(2vmin, 1rem);
-    font-size: min(2vmin, 1rem);
+input[type="file"] {
+  padding: min(2vmin, 1rem);
+  font-size: min(2vmin, 1rem);
 }
 input[type="radio" i] {
-    background-color: initial;
-    cursor: default;
-    appearance: auto;
-    box-sizing: border-box;
-    margin: 1vmin;
-    transform: scale(2);
-    transition: .2s all linear;
-    filter: grayscale(1)
+  background-color: initial;
+  cursor: default;
+  appearance: auto;
+  box-sizing: border-box;
+  margin: 1vmin;
+  transform: scale(2);
+  transition: 0.2s all linear;
+  filter: grayscale(1);
 }
 h2 {
-    font-size: min(4vmin, 1.8rem);
+  font-size: min(4vmin, 1.8rem);
 }
 h4 {
-    font-size: min(2.5vmin, 1.5rem);
+  font-size: min(2.5vmin, 1.5rem);
 }
-button,
+/* button,
 .post-item-review {
-    padding: 1vmin;
-}
+  padding: 1vmin;
+} */

@@ -16,7 +16,7 @@ import "./ProductDetail.css";
 import OpenModalButton from "../OpenModalButton";
 import ShopPoliciesModal from "../ShopPoliciesModal";
 import LoadingIcon from "../LoadingIcon";
-import ProductImageSlider from "./ProductImageSlider";
+import ProductImageSlider from "../ProductImageSlider";
 import { fetchOneShop, followShop, unfollowShop } from "../../store/shops";
 import { CartContext } from "../../context/CartContext";
 import { numberInCart } from "./_numberInCart";
@@ -69,6 +69,7 @@ const ProductDetail = () => {
     (a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt)
   );
 
+  console.log('PRODUCT REVIEWS', productReviews)
   useEffect(() => {
     setInCart(numberInCart(user, cart, cartItems, product.id));
   }, [cart, cartItems, product.id, user]);
@@ -118,20 +119,20 @@ const ProductDetail = () => {
   }
 
   return (
-    <div className="product-deets">
-      <div className="product-detail-div">
-        <div className="product-grid-div">
-          <div className="both-images-div">
-            <div className="subimage-div">
+    <div className="flex justify-center">
+      <div className="grid grid-cols-2 max-w-screen-lg min-h-screen product-columns mx-4 gap-2 mt-6">
+        <div className="flex flex-col">
+          <div className="flex flex-row justify-around">
+            <div className=" flex flex-col">
               {product &&
                 product.ProductImages &&
                 product.ProductImages.map((img, i) => (
                   <img
-                    className={
+                    className={`w-[5vmin] h-[5vmin] object-cover rounded-lg m-[.4vmin] hover:opacity-100 transition-all ease-in-out duration-200 cursor-pointer ${
                       chosenImage === i
-                        ? "chosen-image product-preview-img"
-                        : "product-preview-img"
-                    }
+                        ? "outline outline-4 outline-indigo-700 outline-offset-1 opacity-100"
+                        : "opacity-80"
+                    }`}
                     alt=""
                     key={i}
                     src={img.url}
@@ -140,19 +141,17 @@ const ProductDetail = () => {
                 ))}
             </div>
 
-            <div className="product-images-div">
-              <ProductImageSlider
-                data={product.ProductImages}
-                chosenImage={chosenImage}
-                setChosenImage={setChosenImage}
-              />
-            </div>
+            <ProductImageSlider
+              data={product.ProductImages}
+              chosenImage={chosenImage}
+              setChosenImage={setChosenImage}
+            />
           </div>
 
-          <div className="review-info-div">
-            <div className="review-p review-stars">
+          <div className="">
+            <div className="marcellus text-[3vmin]">
               {productReviews && productReviews.length ? (
-                <p className="review-num-title">
+                <p className="">
                   {productReviews.length === 1 ? (
                     <span>{"1 Review"}</span>
                   ) : productReviews.length > 1 ? (
@@ -163,12 +162,12 @@ const ProductDetail = () => {
                     .map((s, i) =>
                       i < product.avgRating ? (
                         <i
-                          className="fa-solid fa-star gold-star-product-deets"
+                          className="fa-solid fa-star m-1 text-[2.5vmin]"
                           key={i}
                         ></i>
                       ) : (
                         <i
-                          className="fa-solid fa-star blank-star-product-deets"
+                          className="fa-solid fa-star text-gray-500 m-1 text-[2.5vmin]"
                           key={i}
                         ></i>
                       )
@@ -186,7 +185,10 @@ const ProductDetail = () => {
             user.id !== product?.Shop?.ownerId &&
             !productReviews.length ? (
               <div>
-                <button className="post-item-review" onClick={handleClick}>
+                <button
+                  className=" font-bold p-3 px-8 text-white uppercase bg-orange-700 transition ease-in-out duration-200 rounded-md hover:scale-95 active:bg-orange-900"
+                  onClick={handleClick}
+                >
                   Post a Review
                 </button>
               </div>
@@ -194,14 +196,17 @@ const ProductDetail = () => {
               product.Shop?.ownerId !== user.id &&
               !productReviews?.some((r) => r.userId === user.id) ? (
               <div>
-                <button className="post-item-review" onClick={handleClick}>
+                <button
+                  className=" font-bold p-3 px-8 text-white uppercase bg-orange-700 transition ease-in-out duration-200 rounded-md hover:scale-95 active:bg-orange-900"
+                  onClick={handleClick}
+                >
                   Post a Review
                 </button>
               </div>
             ) : null}
           </div>
           {/* reviews... */}
-          <div className="product-deets-reviews">
+          <div className="">
             {productReviews && productReviews.length > 0
               ? productReviews
                   .sort(
@@ -218,20 +223,23 @@ const ProductDetail = () => {
           </div>
         </div>
 
-        <div className="product-grid-div-col-b">
-          <div className="num-product-in-cart">
+        <div className="">
+          <div className="text-[2vmin] text-green-600 font-bold">
             {inCart > 0 && <>{inCart} in your cart </>}
           </div>
-          <div className="prod-price">${product.price}</div>
-          <div className="prod-search">{product.name}</div>
+          <div className="text-[3vmin] thasadith font-bold">
+            ${product.price}
+          </div>
+          <div className="text-[3vmin] thasadith font-bold">{product.name}</div>
 
           <div className="store-info">
-            <div className="name-follows">
-              <NavLink to={`/shops/${product.Shop.id}`}>
-                <div className="product-deets-shop">{product.Shop.name}</div>
-              </NavLink>
-              <i className="fa-solid fa-certificate starseller product-deets-badge"></i>
-            </div>
+            <NavLink
+              to={`/shops/${product.Shop.id}`}
+              className="flex font-bold text-[2vmin] hover:underline"
+            >
+              <div>{product.Shop.name}</div>
+              <i className="fa-solid fa-certificate text-fuchsia-700 m-1"></i>
+            </NavLink>
 
             <div className="store-sales">
               {product && product.Shop && product.Shop.sales} sales
@@ -239,34 +247,28 @@ const ProductDetail = () => {
                 .fill(1)
                 .map((s, i) =>
                   s <= avgRating ? (
-                    <i
-                      className="fa-solid fa-star product-deets-gold product-deets-stars"
-                      key={i}
-                    ></i>
+                    <i className="fa-solid fa-star " key={i}></i>
                   ) : (
-                    <i
-                      className="fa-solid fa-star product-deets-blank product-deets-stars"
-                      key={i}
-                    ></i>
+                    <i className="fa-solid fa-star text-slate-600" key={i}></i>
                   )
                 )}
             </div>
             {user && user.id !== product?.Shop?.ownerId && (
-              <div className="follow-unfollow-shop-div">
+              <div className="">
                 {product.Shop &&
                   product.Shop.Followed &&
                   product.Shop.Followed.Status &&
                   product.Shop.Followed.Status === "Not Followed" && (
-                    <div className="follow-shop" onClick={handleFollow}>
-                      <i className="fa-regular fa-heart shop-heart"></i>Follow{" "}
+                    <div className=" cursor-pointer w-fit" onClick={handleFollow}>
+                      <i className="fa-regular fa-heart mx-2"></i>Follow{" "}
                     </div>
                   )}
                 {shopFollow &&
                   shopFollow.Followed &&
                   shopFollow.Followed.Status &&
                   shopFollow.Followed.Status === "Followed" && (
-                    <div className="follow-shop" onClick={handleUnfollow}>
-                      <i className="fas fa-regular fa-heart shop-heart-filled"></i>
+                    <div className=" cursor-pointer w-fit" onClick={handleUnfollow}>
+                      <i className="fas fa-regular fa-heart text-red-600 mx-2"></i>
                       Unfollow{" "}
                     </div>
                   )}
@@ -276,13 +278,13 @@ const ProductDetail = () => {
 
           <div className="purchase-buttons">
             {product.available > 0 && (
-              <span className="quantity">Quantity</span>
+              <span className=" text-[1.5vmin]">Quantity</span>
             )}
             {product.available > 0 && (
               <select
                 value={quantity}
                 onChange={(e) => setQuantity(e.target.value)}
-                className="cart-quantity"
+                className=" w-full bg-slate-200 border-neutral-500 border-2 rounded-xl p-2 text-[2vmin] drop-shadow-lg mb-8 transition-all duration-200 ease-in-out focus:outline focus:outline-2 focus:outline-cyan-400"
               >
                 {options.map((i) => (
                   <option value={i.value}>{i.value}</option>
@@ -291,7 +293,6 @@ const ProductDetail = () => {
             )}
             {product.available > 0 ? (
               <AddToCart
-                className="button add-cart-button"
                 product={product}
                 cart={cart}
                 user={user}
@@ -322,16 +323,16 @@ const ProductDetail = () => {
               <p className="prod-description-p">Description</p>
               <p className="prod-description-text">{product.description}</p>
             </div>
-            <div className="shop-pol-modal">
-              <OpenModalButton
-                id="shop-policy-button"
-                buttonText="View Shop Policies"
-                onClick={openMenu}
-                className="shop-pol-modal"
-                onItemClick={closeMenu}
-                modalComponent={<ShopPoliciesModal shop={product.Shop} />}
-              />
-            </div>
+            <OpenModalButton
+              buttonText={
+                <button className="m-0 mt-[3vmin] font-bold p-3 text-white text-[2vmin] w-[30vmin] marcellus bg-slate-700 transition ease-in-out duration-200 rounded-full hover:scale-95 active:bg-slate-900">
+                  View Shop Policies
+                </button>
+              }
+              onClick={openMenu}
+              onItemClick={closeMenu}
+              modalComponent={<ShopPoliciesModal shop={product.Shop} />}
+            />
           </div>
         </div>
       </div>

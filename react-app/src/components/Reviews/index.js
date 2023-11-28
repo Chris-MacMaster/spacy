@@ -1,20 +1,37 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./ReviewIndexItem.css";
 import { useSelector } from "react-redux";
 import { deleteReview, fetchProductReviews } from "../../store/review";
 import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
+import OpenModalButton from "../OpenModalButton";
+import DeleteReviewModal from "../ReviewDeleteModal";
 
 const ReviewIndexItem = ({ review, product }) => {
   const dispatch = useDispatch();
   let user = useSelector((state) => state.session.user);
-
+  const [showMenu, setShowMenu] = useState(false)
+  const ulRef = useRef();
   const handleDeleteClick = async (e) => {
     e.preventDefault();
     await dispatch(deleteReview(review.id));
     await dispatch(fetchProductReviews(product.id));
-    await dispatch(fetch);
   };
+  const openMenu = () => {
+    if (showMenu) return;
+    setShowMenu(true);
+  };
+
+  useEffect(() => {
+    if (!showMenu) return;
+    const closeMenu = (e) => {
+      if (!ulRef.current.contains(e.target)) {
+        setShowMenu(false);
+      }
+    };
+    document.addEventListener("click", closeMenu);
+  }, [showMenu]);
+  const closeMenu = () => setShowMenu(false);
 
   if (!Object.values(review).length || !product) return null;
   // console.log('REVIEWS', review)
@@ -62,14 +79,25 @@ const ReviewIndexItem = ({ review, product }) => {
           Object.values(review).length > 0 &&
           review.userId === user.id ? (
             <div>
-              <button
-                className="delete-review-button"
-                onClick={handleDeleteClick}
-              >
-                Delete Review
-              </button>
+              <OpenModalButton
+                buttonText={
+                  <button
+                    className=" p-3 rounded-lg px-8 m-4 uppercase text-white transition-all ease-in-out duration-300 font-bold text-xs bg-red-600 active:bg-red-800 hover:scale-95"
+                  >
+                    Delete Review
+                  </button>
+                }
+                modalComponent={
+                  <DeleteReviewModal reviewId={review.id} product={product} />
+                }
+                onClick={openMenu}
+              onItemClick={closeMenu}
+              />
+
               <NavLink to={`/product-reviews/${review.id}/edit`}>
-                <button className="edit-review-button">Edit Review</button>
+                <button className=" p-3 rounded-lg px-8 m-4 uppercase text-white transition-all text-xs ease-in-out duration-300 font-bold  bg-cyan-600 active:bg-cyan-800 hover:scale-95">
+                  Edit Review
+                </button>
               </NavLink>
             </div>
           ) : null}

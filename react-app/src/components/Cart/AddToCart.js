@@ -12,14 +12,13 @@ export default function AddToCart({ cart, product, user, quantity, txt }) {
   const productCart = (arrOfCarts) =>
     arrOfCarts.filter((currentCart) => currentCart?.productId === product.id);
 
-  // const cartItem = Object.values(cartItems).filter(item => item.productId === product.id)[0]
+
   const addItem = async (e) => {
     if (!user) {
       addToCart(product, quantity);
       return;
     }
     let theCart = productCart(Object.values(cart.products));
-
     if (theCart?.quantity === product.available && !txt) {
       return alert("Every available item already in cart.");
     }
@@ -29,14 +28,12 @@ export default function AddToCart({ cart, product, user, quantity, txt }) {
   };
 
   return (
-    <div className="add-to-cart-div">
       <button
         onClick={addItem}
-        className="add-to-cart-button"
+        className=" w-full bg-stone-800 rounded-full text-white font-bold text-[2vmin] my-4 p-2 active:bg-stone-700 hover:scale-95 transition-all duration-300 ease-in-out"
         disabled={btnEnabled}
       >
         {txt ? txt : "Add to cart"}
       </button>
-    </div>
   );
 }

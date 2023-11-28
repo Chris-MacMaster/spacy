@@ -1,10 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useParams } from "react-router-dom";
-
 import { getFilteredSearchResults } from "../../store/search";
-
-import "../SearchResults/SearchResults.css";
 
 function FilteredSearchResults() {
   const dispatch = useDispatch();

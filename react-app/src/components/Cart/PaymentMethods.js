@@ -43,7 +43,7 @@ export default function PaymentMethods({ totalCost }) {
   return (
     <div className="payment-methods">
       <p className="pay-how">How you'll pay:</p>
-      <label className="payment-type">
+      <label className="my-1 flex flex-row">
         <input
           type="radio"
           name="paymentMethod"
@@ -57,7 +57,7 @@ export default function PaymentMethods({ totalCost }) {
           alt=""
         />
       </label>
-      <label className="payment-type">
+      <label className="my-1 flex flex-row">
         <input
           type="radio"
           name="paymentMethod"
@@ -72,7 +72,7 @@ export default function PaymentMethods({ totalCost }) {
         />
         Imperial Credits
       </label>
-      <label className="payment-type">
+      <label className="my-1 flex flex-row">
         <input
           type="radio"
           name="paymentMethod"
@@ -87,7 +87,7 @@ export default function PaymentMethods({ totalCost }) {
         />
         Republic Credits
       </label>
-      <label className="payment-type">
+      <label className="my-1 flex flex-row">
         <input
           type="radio"
           name="paymentMethod"
