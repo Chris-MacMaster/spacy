@@ -1,3 +1,6 @@
+App was been refactored to use tailwind css
+Previous main branch has been place in archive branch, if any legacy code is needed for reference
+
 4/6
 We should probably commit to either camel or snake case
 --copy undo seeder funcs and replace table name
@@ -12,8 +15,8 @@ Full CRUD
 ✅get all of users shops
 ✅delete a shop
 ✅get shop by id
-🔲create a shop
-🔲update shop
+✅create a shop
+✅update shop
 
 
 --Products
@@ -92,7 +95,7 @@ Christopher ---edit product creation url
 ChrisL ---custom README
        ---create product form
        ---post a review
-       
+
 
 
 FONTS
