@@ -29,7 +29,7 @@ export default function DeleteReviewModal({ reviewId, product }) {
       <div className="flex flex-col mt-12 items-center">
         <button
           onClick={handleClick}
-          className="flex flex-row justify-center items-center p-3 uppercase text-white rounded-lg my-3 w-64 bg-emerald-600 hover:scale-95 active:bg-emerald-800 transition-all duration-300 ease-in-out"
+          className="flex flex-row justify-center items-center p-3 uppercase text-white font-bold rounded-lg my-3 w-64 bg-emerald-600 hover:scale-95 active:bg-emerald-800 transition-all duration-300 ease-in-out"
         >
           <span className="mr-3">
             <IconTrashCan />
@@ -38,7 +38,7 @@ export default function DeleteReviewModal({ reviewId, product }) {
         </button>
         <button
           onClick={closeModal}
-          className="flex flex-row justify-center p-3 uppercase text-white rounded-lg my-3 w-64 bg-red-600 hover:scale-95 active:bg-red-800 transition-all duration-300 ease-in-out"
+          className="flex flex-row justify-center p-3 uppercase text-white font-bold rounded-lg my-3 w-64 bg-red-600 hover:scale-95 active:bg-red-800 transition-all duration-300 ease-in-out"
         >
           <span className="mr-3">
             <IconX />
