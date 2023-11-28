@@ -6,8 +6,8 @@ import Header from "./components/Header";
 import Landing from "./components/Landing";
 import SearchResults from "./components/SearchResults";
 import ProductDetail from "./components/Products/ProductDetail";
-import PostReviewForm from "./components/PostReviewForm";
-import EditReviewForm from "./components/EditReviewForm";
+import ReviewPostForm from "./components/ReviewPostForm";
+import ReviewPutForm from "./components/ReviewPutForm";
 import DisplayCart from "./components/Cart";
 import ShopDetails from "./components/ShopDetails";
 import UserDetails from "./components/UserDetails";
@@ -59,12 +59,12 @@ function App() {
         <Route
           path="/product-reviews/:productId/new"
           exact={true}
-          component={PostReviewForm}
+          component={ReviewPostForm}
         />
         <Route
           path="/product-reviews/:reviewId/edit"
           exact={true}
-          component={EditReviewForm}
+          component={ReviewPutForm}
         />
         <Route
           path="/search/filtered-search/:category"
