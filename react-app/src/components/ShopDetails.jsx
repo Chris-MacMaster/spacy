@@ -1,5 +1,4 @@
 import { NavLink, useParams, useHistory } from "react-router-dom";
-import "./ShopDetails.css";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -9,15 +8,14 @@ import {
   followSingleShop,
   unfollowShop,
   unfollowSingleShop,
-} from "../../store/shops";
-import ShopProductCard from "../ShopProductCard.jsx";
-import { authenticate } from "../../store/session";
-import LoadingIcon from "../LoadingIcon.jsx";
-import IconTruck from "../IconTruck";
-import IconEnvelope from "../IconEnvelope";
-import IconSpeechBubble from "../IconSpeechBubble";
-import IconWrenchScrewDriver from "../IconWrenchScrewDriver";
-import IconClipboard from "../IconClipboard.jsx";
+} from "../store/shops.js";
+import ShopProductCard from "./ShopProductCard.jsx";
+import { authenticate } from "../store/session.js";
+import LoadingIcon from "./LoadingIcon.jsx";
+import IconTruck from "./IconTruck.jsx";
+import IconEnvelope from "./IconEnvelope.jsx";
+import IconSpeechBubble from "./IconSpeechBubble.jsx";
+import IconWrenchScrewDriver from "./IconWrenchScrewDriver.jsx";
 
 export default function ShopDetails() {
   const { shopId } = useParams();
@@ -68,7 +66,7 @@ export default function ShopDetails() {
     // updates followed status in state
     dispatch(unfollowSingleShop(shop.id));
   };
-
+  console.log("all reviews", allReviews);
   return (
     <div className="flex flex-col items-center mx-4">
       <div className=" min-h-screen max-w-screen-lg my-4">
@@ -211,7 +209,7 @@ export default function ShopDetails() {
                   ))
                 : null}
             </div> */}
-            <div className="">
+            {/* <div className="">
               <button
                 className=" w-56 flex bg-cyan-600 active:bg-cyan-800 my-4 rounded-xl font-bold text-white hover:scale-95 transition-all duration-300 ease-in-out p-3"
                 onClick={() => (window.location = `mailto:${shop.Owner.email}`)}
@@ -231,13 +229,13 @@ export default function ShopDetails() {
                 </span>{" "}
                 Contact shop owner
               </button>
-            </div>
+            </div> */}
           </div>
           <div className="item-card-display">
             <h3 className="marcellus font-bold text-[2vmin] mb-[2vmin]">
               Featured Items
             </h3>
-            <div className="item-cards">
+            <div className=" flex flex-row flex-wrap gap-4">
               {shop.Products
                 ? shop.Products.map((product) => (
                     <ShopProductCard
@@ -253,30 +251,33 @@ export default function ShopDetails() {
         </div>
         <hr></hr>
         <div className="review-section">
-          <h3 className="review-title">Reviews</h3>
-
-          <div className="mapping-reviews">
+          <h3 className=" marcellus text-4xl mb-20">Reviews</h3>
+          <div className="">
             {allReviews
               ? allReviews.map((r, i) => (
                   <>
-                    <div className="review-header" key={`reviewdivheader${i}`}>
+                    <div className="flex flex-row" key={`reviewdivheader${i}`}>
                       <img
-                        src="https://i.imgur.com/mMEwXsu.png"
+                        src={
+                          r.Reviewer.profilePic
+                            ? r?.Reviewer?.profilePic
+                            : "https://i.imgur.com/mMEwXsu.png"
+                        }
                         alt="usericon"
-                        className="user-icon"
+                        className="object-cover h-[7vmin] w-[7vmin] rounded-full mr-3"
                       ></img>
-                      <div className="shop-deets-user-deets">
-                        <p className="username" key={`username${i}`}>
+                      <div className="flex flex-col justify-center">
+                        <p className="text-lg" key={`username${i}`}>
                           {r.Reviewer.firstName} on {r.createdAt.slice(0, -12)}
                         </p>
-                        <div className="shop-deets-stars">
+                        <div className="">
                           {new Array(5)
                             .fill(1)
                             .map((s, j) =>
                               j <= r.stars ? (
-                                <i className="fa-solid fa-star gold-star"></i>
+                                <i className="fa-solid fa-star"></i>
                               ) : (
-                                <i className="fa-solid fa-star blank-star"></i>
+                                <i className="fa-solid fa-star text-slate-500"></i>
                               )
                             )}
                         </div>
@@ -285,7 +286,7 @@ export default function ShopDetails() {
                     <div className="iterated-review" key={`div${i}`}>
                       {r.ReviewImages && r.ReviewImages.url ? (
                         <img
-                          className="review-image"
+                          className=" obect-cover h-[23vmin] w-[23vmin] rounded-lg mx-auto my-8"
                           src={`${r.ReviewImages.url}`}
                           alt="reviewimg"
                           key={`reviewimage${i}`}
@@ -308,12 +309,12 @@ export default function ShopDetails() {
                                 (p) => p.id === r.productId
                               )[0].ProductImages[0].url
                             }`}
-                            className="product-ref-img"
+                            className=" object-cover w-[17vmin] h-[17vmin] rounded-lg m-6"
                             alt="productreviewed"
                             key={`productreviewedimg${i}`}
                           ></img>
                           <div
-                            className="reviewed-item-name"
+                            className="mt-[5vmin] text-xl font-bold"
                             key={`revieweditem${i}`}
                           >
                             {
@@ -325,19 +326,7 @@ export default function ShopDetails() {
                         </div>
                       </NavLink>
                     </div>
-                    <div className="feedback" key={`feedback${i}`}>
-                      <p className="helpful" key={`helpful${i}`}>
-                        <i
-                          className="fa-solid fa-thumbs-up"
-                          key={`thumb${i}`}
-                        ></i>
-                        Is this review helpful?
-                      </p>
-                      <p className="report" key={`report${i}`}>
-                        <i className="fa-solid fa-flag" key={`flag${i}`}></i>
-                        Report this review
-                      </p>
-                    </div>
+
                     <hr key={`hr${i}`}></hr>
                   </>
                 ))
