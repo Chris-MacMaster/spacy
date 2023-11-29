@@ -9,7 +9,7 @@ import {
 } from "../../store/product";
 import { fetchProductReviews } from "../../store/review";
 import { fetchCart } from "../../store/cart";
-import ReviewIndexItem from "../Reviews";
+import ReviewIndexItem from "../ReviewIndexItem";
 import AddToCart from "../Cart/AddToCart";
 import { useHistory } from "react-router-dom";
 import "./ProductDetail.css";

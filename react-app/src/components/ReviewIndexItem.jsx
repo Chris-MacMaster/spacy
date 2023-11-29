@@ -1,22 +1,21 @@
 import React, { useEffect, useRef, useState } from "react";
-import "./ReviewIndexItem.css";
 import { useSelector } from "react-redux";
-import { deleteReview, fetchProductReviews } from "../../store/review";
-import { useDispatch } from "react-redux";
+// import { deleteReview, fetchProductReviews } from "../store/review";
+// import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
-import OpenModalButton from "../OpenModalButton";
-import DeleteReviewModal from "../ReviewDeleteModal";
+import OpenModalButton from "./OpenModalButton";
+import DeleteReviewModal from "./ReviewDeleteModal";
 
 const ReviewIndexItem = ({ review, product }) => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   let user = useSelector((state) => state.session.user);
   const [showMenu, setShowMenu] = useState(false)
   const ulRef = useRef();
-  const handleDeleteClick = async (e) => {
-    e.preventDefault();
-    await dispatch(deleteReview(review.id));
-    await dispatch(fetchProductReviews(product.id));
-  };
+  // const handleDeleteClick = async (e) => {
+  //   e.preventDefault();
+  //   await dispatch(deleteReview(review.id));
+  //   await dispatch(fetchProductReviews(product.id));
+  // };
   const openMenu = () => {
     if (showMenu) return;
     setShowMenu(true);
@@ -37,40 +36,39 @@ const ReviewIndexItem = ({ review, product }) => {
   // console.log('REVIEWS', review)
   return (
     <div className="reviewIndexItem">
-      <div className="review-card-div">
+      <div className=" p-[3vmin]">
         <div className="rev-col-a">
-          <div className="rev-stars">
+          <div className=" mb-[.5vmin] text-[1.5vmin]">
             {Array(5)
               .fill(1)
               .map((s, i) =>
                 i < review.stars ? (
                   <i
-                    className="fa-solid fa-star gold-star  review-index-stars"
+                    className="fa-solid fa-star"
                     key={`star${i}`}
                   ></i>
                 ) : (
                   <i
-                    className="fa-solid fa-star blank-star review-index-stars"
+                    className="fa-solid fa-star text-slate-500"
                     key={`star${i}`}
                   ></i>
                 )
               )}
             {review.stars} (stars)
           </div>
-          <div className="rev-review">{review.review}</div>
+          <div className="">{review.review}</div>
 
-          <div className="rev-author-info">
+          <div className="flex flex-row items-center text-[2vmin] my-[1vmin]">
             <img
-              id="detail-review-icon"
               src={
                 review.User.profilePic
                   ? review.User.profilePic
                   : "https://i.imgur.com/mMEwXsu.png"
               }
               alt="usericon"
-              className="user-icon detail-icon"
-            ></img>
-            <p className="author-subdiv-names">
+              className=" object-cover w-[7vmin] h-[7vmin] mr-3 min-h rounded-full"
+            />
+            <p className=" relative text-slate-600 text-sm">
               {review.User.firstName} {review.User.lastName}{" "}
               {review.createdAt.slice(0, -12)}
             </p>
@@ -104,13 +102,13 @@ const ReviewIndexItem = ({ review, product }) => {
         </div>
         {review?.ReviewImages ? (
           <img
-            className="review-image-detail"
+            className=" rounded-lg w-[20vmin] h-[20vmin] object-cover mx-auto my-4"
             src={review.ReviewImages?.url}
             alt="not loaded"
           />
         ) : null}
       </div>
-      <hr className="review-hr"></hr>
+      <hr />
     </div>
   );
 };
