@@ -148,7 +148,7 @@ function SignupFormModal() {
         </ul>
         <button
           type="submit"
-          className=" rounded-full bg-stone-900 text-white font-bold mt-4 w-72 hover:bg-stone-800 active:scale-95 transition-all ease-in-out duration-300"
+          className=" rounded-full bg-stone-900 text-white font-bold mt-4 w-72 hover:bg-stone-800 active:scale-95 transition-all ease-in-out duration-300 p-3"
         >
           Register
         </button>
