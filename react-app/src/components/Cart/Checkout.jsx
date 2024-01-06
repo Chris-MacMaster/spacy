@@ -26,7 +26,7 @@ export default function CheckoutCart({ setPurchased, cartItems }) {
   };
 
   return (
-    <button onClick={checkout} className="checkout-cart-button">
+    <button onClick={checkout} className=" bg-stone-900 text-white p-[2vmin] rounded-full w-full my-4 font-bold text-[3vmin] marcellus transition duration-300 ease-in-out hover:scale-95 active:bg-stone-800">
       Proceed to checkout
     </button>
   );

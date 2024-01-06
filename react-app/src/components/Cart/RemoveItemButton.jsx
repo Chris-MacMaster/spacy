@@ -12,21 +12,10 @@ export default function RemoveItemButton({ cartId, productId }) {
     return dispatch(removeCartItemThunk(cartId));
   };
 
-  if (!user) {
-    return (
-      <button
-        onClick={() => removeFromLocalCart(productId)}
-        className="remove-from-cart-button"
-      >
-        Remove
-      </button>
-    );
-  }
-
   return (
     <button
-      onClick={removeItem}
-      className="remove-from-cart-button loading-bar"
+      onClick={() => (user ? removeItem() : removeFromLocalCart(productId))}
+      className="p-[2vmin] font-bold bg-orange-600 flex justify-center items-center rounded-lg hover:scale-90 active:bg-orange-800 mx-4 transition-all duration-200 ease-in-out text-white"
     >
       Remove
     </button>
