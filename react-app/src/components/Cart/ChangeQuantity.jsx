@@ -19,7 +19,7 @@ export default function ChangeQuantity({
     options.push({ value: i });
   }
 
-  const func = async (updatedQuantity) => {
+  const userQuantityChange = async (updatedQuantity) => {
     await dispatch(
       editCartItemThunk(cartId, updatedQuantity, user.id, productId, available)
     );
@@ -28,28 +28,16 @@ export default function ChangeQuantity({
 
   if (available <= 1) return <></>;
 
-  if (!user) {
-    return (
-      <>
-        <select
-          value={quantity}
-          onChange={(e) => quantityChange(productId, +e.target.value)}
-          className="cart-select-quantity"
-        >
-          {options.map((i) => (
-            <option value={i.value}>{i.value}</option>
-          ))}
-        </select>
-      </>
-    );
-  }
-
   return (
     <>
       <select
         value={quantity}
-        onChange={(e) => func(e.target.value)}
-        className="cart-select-quantity"
+        onChange={(e) =>
+          user
+            ? userQuantityChange(e.target.value)
+            : quantityChange(productId, +e.target.value)
+        }
+        className="border-2 border-gray-300 rounded-xl p-2 bg-slate-100 focus-within:bg-white transition duration-200 ease-in-out focus:outline-2 focus:outline-cyan-300 focus:outline"
       >
         {options.map((i) => (
           <option value={i.value}>{i.value}</option>

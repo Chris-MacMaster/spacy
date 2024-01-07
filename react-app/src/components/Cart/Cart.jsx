@@ -5,7 +5,6 @@ import CheckoutCart from "./Checkout";
 import ChangeQuantity from "./ChangeQuantity";
 import { NavLink } from "react-router-dom";
 import PaymentMethod from "./PaymentMethods";
-import "./Cart.css";
 
 export default function TheCart({ cart }) {
   const [purchased, setPurchased] = useState(false);
@@ -13,28 +12,24 @@ export default function TheCart({ cart }) {
   const itemsByStore = groupItemsByStore(cart);
 
   return (
-    <div className="cart-wrapper-div">
-      <div className="order-page">
+    <div className="flex flex-col items-center mx-4">
+      <div className=" min-h-screen grid grid-cols-1 max-w-screen-lg ">
         {Object.values(cart).length !== 0 ? (
-          <div className="shopping-bar">
-            <div className="items-in-cart">
+          <div className=" flex justify-between items-center self-center text-2xl my-2">
               <h2 hidden={purchased}>
                 {Object.values(cart).length} items in your cart
               </h2>
-            </div>
-            <div className="keep-shopping-div">
-              <NavLink to="/" className="keep-shopping-link">
-                <h4 className="keep-shopping-text">Keep shopping</h4>
+              <NavLink to="/" className=" font-bold  text-orange-600 visited:text-orange-800 hover:underline">
+                Keep shopping
               </NavLink>
-            </div>
           </div>
         ) : (
           <></>
         )}
 
-        <div className="purchase-protection">
+        <div className="flex my-4 py-3 px-4 bg-sky-200 rounded-xl items-center drop-shadow-lg h-fit">
           <p className="etsy-purchase-protection">
-            <i className="fa-regular fa-handshake" /> Spacey purchase
+            <i className="fa-regular fa-handshake mr-4 self-cente text-teal-700 text-3xl" /> Spacey purchase
             protection:
           </p>
           <p>
@@ -44,11 +39,11 @@ export default function TheCart({ cart }) {
         </div>
 
         {purchased && (
-          <h2 className="thank-you">Thank you for your purchase</h2>
+          <h2 className=" justify-center">Thank you for your purchase</h2>
         )}
 
         {!Object.values(cart).length && !purchased && (
-          <div className="empty-cart">
+          <div className="text-center">
             <h2>Your Cart is empty</h2>
             <NavLink to="/" className="discover">
               <p>Discover something unique to fill it up</p>
@@ -56,37 +51,37 @@ export default function TheCart({ cart }) {
           </div>
         )}
         {Object.values(cart).length !== 0 ? (
-          <div className="cart-content">
-            <div className="names-are-hard">
+          <div className="">
+            <div className="">
               {Object.keys(itemsByStore).map((storeName) => (
-                <div key={storeName} className="shop-info">
-                  <div className="contact-us-bar">
-                    <div className="shop-title-and-image">
+                <div key={storeName} className="mb-4 shadow-xl rounded-xl p-4 border-slate-200 border-[1px]">
+                  <div className="flex flex-row justify-between">
+                    <div
+                    className=" flex flex-row gap-4 mb-2"
+                    >
                       <img
                         src={itemsByStore[storeName][0].shopImage}
                         alt="preview"
-                        className="cart-shop-icon"
+                        className=" rounded-md object-cover w-10 h-10"
                       />
                       <NavLink
                         to={`/shops/${itemsByStore[storeName][0].shopId}`}
-                        className="cart-shop-name-nav"
+                        className=" font-bold hover:underline text-indigo-600 visited:text-indigo-800 text-lg"
                       >
-                        <div className="cart-shop-name">{storeName}</div>
+                   {storeName}
                       </NavLink>
                     </div>
-                    <div className="contact-shop">
                       <NavLink
                         to={`/shops/${itemsByStore[storeName][0].shopId}`}
-                        className="contact-shop"
+                        className=" text-slate-500 hover:underline"
                       >
-                        <h4 className="">Contact Shop</h4>
+                        Contact Shop
                       </NavLink>
-                    </div>
                   </div>
 
                   {itemsByStore[storeName].freeShipping ? (
                     <>
-                      <p className="cart-grey-text">
+                      <p className=" text-slate-500">
                         {" "}
                         Free shipping on this order.
                       </p>
@@ -94,31 +89,27 @@ export default function TheCart({ cart }) {
                   ) : null}
 
                   {itemsByStore[storeName].map((product, index) => (
-                    <li key={index} className="cart-product">
+                    <li key={index} className="flex my-4">
                       <NavLink to={`/products/${product.productId}`}>
-                        <div className="cart-product-image-div">
+
                           <img
                             src={product.productImage}
                             alt="preview"
-                            className="cart-product-image"
+                            className=" object-cover rounded-lg w-[18vmin] aspect-[3/2]"
                           />
-                        </div>
                       </NavLink>
-                      <div className="placeholder-name">
-                        <div className="cart-details">
-                          <div className="cart-product-info-top">
+                      <div className="flex w-full justify-between">
+                        <div className="ml-[2vmin]">
                             <NavLink
                               to={`/products/${product.id}`}
-                              className="cart-product-name"
+                              className=" font-bold text-lg hover:underline text-indigo-600 visited:text-indigo-800"
                             >
                               {product.name}
                             </NavLink>
-                          </div>
-                          <div className="item-description">
+                          <div className="">
                             {product.description}
                           </div>
-                          <div className="cart-product-info">
-                            <div className="qty-and-remove">
+                            <div className="flex h-10 my-2">
                               <ChangeQuantity
                                 cartId={product.cartId}
                                 quantity={product.quantity}
@@ -130,15 +121,14 @@ export default function TheCart({ cart }) {
                                 productId={product.id}
                               />
                             </div>
-                          </div>
                         </div>
-                        <div className="cost-block">
-                          <span className="cost-times-quantity">
+                        <div className="ml-4 flex flex-col">
+                          <span className="">
                             ${(product.price * product.quantity).toFixed(2)}
                           </span>
-                          <span className="single-item-cost">
+                          <span className=" text-sm text-slate-500">
                             {product.quantity > 1
-                              ? `(${product.price} each)`
+                              ? `$${product.price} each`
                               : null}
                           </span>
                         </div>
@@ -148,13 +138,13 @@ export default function TheCart({ cart }) {
                 </div>
               ))}
 
-              <div className="thank-you-div" hidden={!purchased}>
+              <div className="" hidden={!purchased}>
                 <h2>Thank you for your purchase</h2>
               </div>
             </div>
 
             {!purchased && (
-              <div className="checkout-div">
+              <div className="">
                 <PaymentMethod totalCost={totalCost(cart)} />
                 <CheckoutCart setPurchased={setPurchased} cartItems={cart} />
               </div>

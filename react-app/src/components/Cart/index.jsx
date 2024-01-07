@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCart } from "../../store/cart";
-import "./Cart.css";
 import LoadingIcon from "../LoadingIcon";
 import { CartContext } from "../../context/CartContext";
 import TheCart from "./Cart";
