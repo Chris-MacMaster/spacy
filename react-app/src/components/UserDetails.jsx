@@ -88,11 +88,11 @@ export default function UserDetails() {
                   {user.id === parseInt(userId) ? (
                     <>
                       <OpenModalButton
-                      buttonText={<IconTrashCan  key={`trash${i}`}/>}
-                      onClick={openMenu}
-                      onItemClick={closeMenu}
-                      modalComponent={<ShopDeleteModal shopId={s.id} />}
-                      key={`deleteshopmodal${i}`}
+                        buttonText={<IconTrashCan key={`trash${i}`} />}
+                        onClick={openMenu}
+                        onItemClick={closeMenu}
+                        modalComponent={<ShopDeleteModal shopId={s.id} />}
+                        key={`deleteshopmodal${i}`}
                       />
 
                       <button
@@ -110,13 +110,15 @@ export default function UserDetails() {
         </div>
       </div>
       <div className="w-full">
-        <button
-          className="flex flex-row font-bold p-3 px-8 text-white uppercase bg-orange-700 transition ease-in-out duration-200 rounded-md hover:scale-95 active:bg-orange-900 "
-          onClick={onClickCreateShop}
-        >
-          <IconWrenchScrewDriver />
-          Create Shop
-        </button>
+        {user.id === userId && (
+          <button
+            className="flex flex-row font-bold p-3 px-8 text-white uppercase bg-orange-700 transition ease-in-out duration-200 rounded-md hover:scale-95 active:bg-orange-900 "
+            onClick={onClickCreateShop}
+          >
+            <IconWrenchScrewDriver />
+            Create Shop
+          </button>
+        )}
       </div>
 
       <hr></hr>
