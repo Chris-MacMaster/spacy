@@ -6,19 +6,18 @@ import {
   fetchOneProduct,
   followProductShop,
   unfollowProductShop,
-} from "../../store/product";
-import { fetchProductReviews } from "../../store/review";
-import { fetchCart } from "../../store/cart";
-import ReviewIndexItem from "../ReviewIndexItem";
-import AddToCart from "../Cart/AddToCart";
+} from "../store/product";
+import { fetchProductReviews } from "../store/review";
+import { fetchCart } from "../store/cart";
+import ReviewIndexItem from "./ReviewIndexItem";
+import AddToCart from "./Cart/AddToCart";
 import { useHistory } from "react-router-dom";
-import "./ProductDetail.css";
-import OpenModalButton from "../OpenModalButton";
-import ShopPoliciesModal from "../ShopPoliciesModal";
-import LoadingIcon from "../LoadingIcon";
-import ProductImageSlider from "../ProductImageSlider";
-import { fetchOneShop, followShop, unfollowShop } from "../../store/shops";
-import { CartContext } from "../../context/CartContext";
+import OpenModalButton from "./OpenModalButton";
+import ShopPoliciesModal from "./ShopPoliciesModal";
+import LoadingIcon from "./LoadingIcon";
+import ProductImageSlider from "./ProductImageSlider";
+import { fetchOneShop, followShop, unfollowShop } from "../store/shops";
+import { CartContext } from "../context/CartContext";
 import { numberInCart } from "./_numberInCart";
 
 const ProductDetail = () => {
@@ -151,7 +150,7 @@ const ProductDetail = () => {
           <div className="">
             <div className="marcellus text-[3vmin]">
               {productReviews && productReviews.length ? (
-                <p className="">
+                <p className=" ">
                   {productReviews.length === 1 ? (
                     <span>{"1 Review"}</span>
                   ) : productReviews.length > 1 ? (
@@ -241,7 +240,7 @@ const ProductDetail = () => {
               <i className="fa-solid fa-certificate text-fuchsia-700 m-1"></i>
             </NavLink>
 
-            <div className="store-sales">
+            <div className="mb-8">
               {product && product.Shop && product.Shop.sales} sales
               {Array(5)
                 .fill(1)
@@ -284,7 +283,7 @@ const ProductDetail = () => {
               <select
                 value={quantity}
                 onChange={(e) => setQuantity(e.target.value)}
-                className=" w-full bg-slate-200 border-neutral-500 border-2 rounded-xl p-2 text-[2vmin] drop-shadow-lg mb-8 transition-all duration-200 ease-in-out focus:outline focus:outline-2 focus:outline-cyan-400"
+                className=" w-full bg-slate-200 border-neutral-500 border-2 rounded-xl p-2 text-[2vmin] drop-shadow-lg mb-8 transition-all duration-200 ease-in-out focus:outline focus:outline-2 focus:outline-cyan-400 cursor-pointer"
               >
                 {options.map((i) => (
                   <option value={i.value}>{i.value}</option>
@@ -299,19 +298,19 @@ const ProductDetail = () => {
                 quantity={quantity}
               />
             ) : (
-              <button className="button out-of-stock"> Out of stock </button>
+              <button className="rounded-full bg-slate-600 text-white font-bold text-xl p-3 mb-10 w-full"> Out of stock </button>
             )}
           </div>
-          <div className="product-info-b">
-            <div className="free-shipping-div">
+          <div className="">
+            <div className=" mb-8 ">
               {product.freeShipping === true ? (
-                <div className="shipping-div">
+                <div className="flex flex-row items-center">
                   <img
                     src="https://i.imgur.com/oCqcfHM.png"
                     alt=""
-                    className="truck-icon"
+                    className=" w-12 mr-2"
                   />
-                  <span id="p-icon">
+                  <span className="text-sm ">
                     Hooray this product has free shipping!
                   </span>
                 </div>
@@ -320,8 +319,8 @@ const ProductDetail = () => {
               )}
             </div>
             <div className="prod-description">
-              <p className="prod-description-p">Description</p>
-              <p className="prod-description-text">{product.description}</p>
+              <p className="font-bold text-lg">Description</p>
+              <p className="leading-8 my-4">{product.description}</p>
             </div>
             <OpenModalButton
               buttonText={

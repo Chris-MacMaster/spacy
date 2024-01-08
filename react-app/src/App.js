@@ -5,7 +5,7 @@ import { authenticate } from "./store/session";
 import Header from "./components/Header";
 import Landing from "./components/Landing";
 import SearchResults from "./components/SearchResults";
-import ProductDetail from "./components/Products/ProductDetail";
+import ProductDetail from "./components/ProductDetail";
 import ReviewPostForm from "./components/ReviewPostForm";
 import ReviewPutForm from "./components/ReviewPutForm";
 import DisplayCart from "./components/Cart";
