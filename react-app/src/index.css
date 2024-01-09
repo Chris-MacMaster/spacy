@@ -28,7 +28,11 @@
 .peer:focus ~ .telescope-search .fa-magnifying-glass {
   color: white; /* This will change the icon's color when the input is focused */
 }
-
+/* purchase item grid */
+.purchase-container {
+  display: grid;
+  grid-template-columns: clamp(5rem, 15vmin, 15rem) 1fr;
+}
 /* tooltip caret */
 
 

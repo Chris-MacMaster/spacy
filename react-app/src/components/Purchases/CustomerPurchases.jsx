@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchUserPuchases } from "../../store/purchase";
 import { NavLink, useHistory } from "react-router-dom/";
 import LoadingIcon from "../LoadingIcon";
-import "./Purchases.css";
 import AddToCart from "../Cart/AddToCart";
 import { deleteReview } from "../../store/review";
 
@@ -39,111 +38,110 @@ export default function UserPurchases() {
   if (!hasLoaded) return <LoadingIcon />;
   let sortedPurchases = groupItemsBySellDateThenStore(purchases);
   return (
-    <div className="purchase-div">
-      <h2>Purchases:</h2>
+    <div className=" flex flex-col items-center justify-center">
+      <h2 className="marcellus text-3xl font-bold mt-8 ">Purchases</h2>
       {console.log(sortedPurchases)}
       {purchases &&
         Object.keys(sortedPurchases).map((el) => (
-          <div className="purchase-date-div">
+          <div className=" flex flex-col items-center m-4">
             {Object.values(sortedPurchases[el]).map((item) => (
-              <div className="purchase-shop-div">
+              <div className="m-2 w-[50vw] min-w-96 rounded-lg">
                 <div className="purchase-shop-wrapper">
-                  <div className="name-and-cost">
-                    <span className="purchase-shop-name">
+                  <div className="p-4 flex justify-between">
+                    <span className=" text-slate-600">
                       Purchased from{" "}
+
                       <NavLink to={`/shops/${item[0].shopId}`}>
                         {item[0].shopName}
                       </NavLink>{" "}
+                      <p></p>
                       on {el.slice(0, 25)}
                     </span>
-                    <span className="total-cost">
+                    <span className=" font-bold underline">
                       $
                       {item
                         .reduce((acc, el) => acc + el.quantity * el.price, 0)
                         .toFixed(2)}
                     </span>
                   </div>
-                  <div className="follow-this-shop">
-                    Follow this shop for updates and special offers
-                  </div>
                 </div>
-                <div className="item-map-div">
+                <div className="item-map-div border-[1px] border-slate-300 rounded-lg mt-2 shadow-lg">
                   {item.map((el) => (
                     // <div className="purchase-item-div">
-                    <div className="item-container">
-                      <div className="purchase-product-img-div one">
+                    <div className="purchase-container p-4 rounded-lg my-2 gap-4">
+
                         <img
-                          className="purchase-product-img one"
+                          className=" object-cover rounded-lg aspect-square"
                           src={el.productImage}
                           alt={`ele${el.productName}`}
                         />
-                      </div>
-                      <div className="item-information">
-                        <div className="product-name-div">
+                      <div className="flex flex-col">
+
                           <NavLink
-                            className="product-name-div"
+                            className=" text-xl font-bold hover:underline visited:text-slate-700"
                             to={`/products/${el.productId}`}
                           >
                             {el.productName}
                           </NavLink>
-                        </div>
 
                         {el.review ? (
-                          <div className="purchase-review">
-                            <div className="rev-stars purchase-stars">
+                          <div className="p-2 bg-stone-200 rounded-lg">
+                            <div className="">
                               <span>
                                 {Array(5)
                                   .fill(1)
                                   .map((s, i) =>
                                     i < el.stars ? (
                                       <i
-                                        className="fa-solid fa-star gold-star  review-index-stars"
+                                        className="fa-solid fa-star text-black"
                                         key={`star${i}`}
                                       ></i>
                                     ) : (
                                       <i
-                                        className="fa-solid fa-star blank-star review-index-stars"
+                                        className="fa-solid fa-star text-slate-500"
                                         key={`star${i}`}
                                       ></i>
                                     )
                                   )}
                               </span>
                             </div>
-                            <div className="the-review">{el.review}</div>
+                            <div className="my-4">{el.review}</div>
+                            <div className="flex flex-row justify-between">
                             <button
-                              className="purchase-edit-review"
+                              className=" bg-green-700 text-white hover:scale-90 font-bold p-2 rounded-lg active:bg-green-900 transition duration-200 ease-in-out uppercase"
                               onClick={() => toEditReview(el.reviewId)}
                             >
-                              Edit review
+                              Edit
                             </button>
                             <button
-                              className="purchase-edit-review"
+                              className=" bg-red-700 text-white hover:scale-90 font-bold p-2 rounded-lg active:bg-red-900 transition duration-200 ease-in-out uppercase"
                               onClick={(e) => handleDeleteClick(e, el.reviewId)}
                             >
-                              Delete review
+                              Delete
                             </button>
+                              </div>
                           </div>
                         ) : (
-                          <div className="review-item-button-div">
                             <button
-                              className="review-this-item"
-                              onClick={() => toReview(el.productId)}
+                            className=" bg-blue-700 text-white hover:scale-90 font-bold p-2 rounded-lg active:bg-blue-900 transition duration-200 ease-in-out "
+                            onClick={() => toReview(el.productId)}
                             >
                               Review this item
                             </button>
-                          </div>
                         )}
 
-                        <div className="flx">
+                        <div className="flex items-center justify-between ">
+                          <div className="w-40">
+
                           <AddToCart
-                            className="buy-it-again"
                             cart={cart}
                             product={{ id: el.productId }}
                             quantity={1}
                             user={user}
-                            txt="Buy this again"
+                            txt="Buy again"
                           />
-                          <div className="el-price">${el.price}</div>
+                          </div>
+                          <div className="">${el.price}</div>
                         </div>
                       </div>
                     </div>

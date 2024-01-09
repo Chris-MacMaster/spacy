@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchStorePuchases } from "../../store/purchase";
 import { useParams } from "react-router-dom";
 import LoadingIcon from "../LoadingIcon";
-import "./Purchases.css";
 
 export default function StoreOrders() {
   const purchases = useSelector((state) => state.purchases.shopPurchases);

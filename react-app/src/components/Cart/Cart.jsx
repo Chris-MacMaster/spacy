@@ -28,14 +28,14 @@ export default function TheCart({ cart }) {
         )}
 
         <div className="flex my-4 py-3 px-4 bg-sky-200 rounded-xl items-center drop-shadow-lg h-fit">
-          <p className="etsy-purchase-protection">
+          <span className=" flex flex-row items-center">
             <i className="fa-regular fa-handshake mr-4 self-cente text-teal-700 text-3xl" /> Spacey purchase
             protection:
-          </p>
-          <p>
+          </span>
+          <span className=" text-center items-center ml-4">
             Shop confidently knowing if something goes wrong, we've got your
             back!
-          </p>
+          </span>
         </div>
 
         {purchased && (
@@ -138,8 +138,8 @@ export default function TheCart({ cart }) {
                 </div>
               ))}
 
-              <div className="" hidden={!purchased}>
-                <h2>Thank you for your purchase</h2>
+              <div className="w-full" hidden={!purchased}>
+                <h2 className=" marcellus text-2xl text-center">Thank you for your purchase</h2>
               </div>
             </div>
 
