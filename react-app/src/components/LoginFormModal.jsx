@@ -5,7 +5,7 @@ import { useModal } from "../context/Modal";
 import { fetchCart } from "../store/cart";
 import { CartContext } from "../context/CartContext";
 import { addLocalToUserCartThunk } from "../store/cart";
-import IconAlert from "./IconAlert";
+import IconAlert from "./Icons/IconAlert";
 function LoginFormModal() {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");

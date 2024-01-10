@@ -1,10 +1,10 @@
 import { useDispatch } from "react-redux";
 import { deleteShopRequest, fetchShops } from "../store/shops";
-import IconX from "./IconX";
-import IconTrashCan from "./IconTrashCan";
+import IconX from "./Icons/IconX";
+import IconTrashCan from "./Icons/IconTrashCan";
 import { useModal } from "../context/Modal";
 import { useState } from "react";
-import IconAlert from "./IconAlert";
+import IconAlert from "./Icons/IconAlert";
 
 export default function ShopDeleteModal({ shopId }) {
   const dispatch = useDispatch();

@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { fetchShops } from "../store/shops";
-import IconPadlock from "./IconPadlock";
+import IconPadlock from "./Icons/IconPadlock";
 
 export default function ShopPoliciesModal({ shop }) {
   const dispatch = useDispatch();

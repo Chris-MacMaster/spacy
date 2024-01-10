@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useModal } from "../context/Modal";
 import { signUp } from "../store/session";
 import { useEffect } from "react";
-import IconAlert from "./IconAlert";
+import IconAlert from "./Icons/IconAlert";
 function SignupFormModal() {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");

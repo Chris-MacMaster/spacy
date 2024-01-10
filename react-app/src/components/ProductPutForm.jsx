@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { editProduct, fetchOneProduct } from "../store/product";
-import IconAlert from "./IconAlert";
-import IconDropFile from "./IconDropFile";
+import IconAlert from "./Icons/IconAlert";
+import IconDropFile from "./Icons/IconDropFile";
 
 export default function ProductPutForm() {
   const history = useHistory();

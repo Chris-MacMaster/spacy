@@ -2,8 +2,8 @@ import { NavLink, useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { deleteProduct } from "../store/product";
 import { fetchOneShop } from "../store/shops";
-import IconPencilSquare from "./IconPencilSquare";
-import IconTrashCan from "./IconTrashCan";
+import IconPencilSquare from "./Icons/IconPencilSquare";
+import IconTrashCan from "./Icons/IconTrashCan";
 // import { authenticate } from '../../store/session'
 
 export default function ShopProductCard({ product, user, shop }) {

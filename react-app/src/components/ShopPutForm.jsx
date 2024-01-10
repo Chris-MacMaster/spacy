@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { editShop, fetchOneShop } from "../store/shops";
 import { useHistory, useParams } from "react-router-dom";
 import { useEffect } from "react";
-import IconAlert from "./IconAlert";
+import IconAlert from "./Icons/IconAlert";
 export default function PutShopForm() {
   const dispatch = useDispatch();
   const { shopId } = useParams();

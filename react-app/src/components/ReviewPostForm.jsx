@@ -4,7 +4,7 @@ import { useHistory, useParams } from "react-router-dom";
 import { fetchOneProduct } from "../store/product";
 import { createProductReview } from "../store/review";
 import { fetchOneShop } from "../store/shops";
-import IconAlert from "./IconAlert";
+import IconAlert from "./Icons/IconAlert";
 export default function ReviewPostForm() {
   const dispatch = useDispatch();
   const history = useHistory();

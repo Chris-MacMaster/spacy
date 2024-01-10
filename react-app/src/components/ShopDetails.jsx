@@ -12,10 +12,10 @@ import {
 import ShopProductCard from "./ShopProductCard.jsx";
 import { authenticate } from "../store/session.js";
 import LoadingIcon from "./LoadingIcon.jsx";
-import IconTruck from "./IconTruck.jsx";
-import IconEnvelope from "./IconEnvelope.jsx";
-import IconSpeechBubble from "./IconSpeechBubble.jsx";
-import IconWrenchScrewDriver from "./IconWrenchScrewDriver.jsx";
+import IconTruck from "./Icons/IconTruck.jsx";
+import IconEnvelope from "./Icons/IconEnvelope.jsx";
+import IconSpeechBubble from "./Icons/IconSpeechBubble.jsx";
+import IconWrenchScrewDriver from "./Icons/IconWrenchScrewDriver.jsx";
 
 export default function ShopDetails() {
   const { shopId } = useParams();

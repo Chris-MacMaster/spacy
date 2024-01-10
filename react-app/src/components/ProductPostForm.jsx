@@ -4,8 +4,8 @@ import { useHistory, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { makeProduct } from "../store/product";
 import { fetchShops } from "../store/shops";
-import IconDropFile from './IconDropFile'
-import IconAlert from "./IconAlert";
+import IconDropFile from './Icons/IconDropFile'
+import IconAlert from "./Icons/IconAlert";
 export default function ProductPostForm() {
   const history = useHistory();
   const dispatch = useDispatch();

@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../context/Modal";
 import { fetchFollowedShops, unfollowShop } from "../store/shops";
-import IconX from "./IconX";
+import IconX from "./Icons/IconX";
 
 export default function UnfollowShopModal({ shopId }) {
   const { closeModal } = useModal();

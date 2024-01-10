@@ -6,10 +6,10 @@ import LoginFormModal from "./LoginFormModal";
 import SignupFormModal from "./SignupFormModal";
 import * as sessionActions from "../store/session";
 import { NavLink, useHistory } from "react-router-dom";
-import IconClipboard from "./IconClipboard";
-import IconShop from "./IconShop";
-import IconSignOut from "./IconSignOut";
-import IconUser from "./IconUser";
+import IconClipboard from "./Icons/IconClipboard";
+import IconShop from "./Icons/IconShop";
+import IconSignOut from "./Icons/IconSignOut";
+import IconUser from "./Icons/IconUser";
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { editReview, getOneReview } from "../store/review";
 import LoadingIcon from "./LoadingIcon";
-import IconAlert from "./IconAlert";
+import IconAlert from "./Icons/IconAlert";
 
 export default function ReviewPutForm() {
   const history = useHistory();

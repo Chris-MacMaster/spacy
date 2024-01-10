@@ -3,8 +3,8 @@ import { useDispatch } from "react-redux";
 import { useModal } from "../context/Modal";
 import { deleteReview, fetchProductReviews } from "../store/review";
 import { fetchOneProduct } from "../store/product";
-import IconTrashCan from "./IconTrashCan";
-import IconX from "./IconX";
+import IconTrashCan from "./Icons/IconTrashCan";
+import IconX from "./Icons/IconX";
 
 export default function DeleteReviewModal({ reviewId, product }) {
   const { closeModal } = useModal();

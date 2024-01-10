@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createShop } from "../store/shops";
 import { useHistory } from "react-router-dom";
-import IconAlert from "./IconAlert";
+import IconAlert from "./Icons/IconAlert";
 
 export default function PostShopForm() {
   const history = useHistory();
