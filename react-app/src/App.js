@@ -17,8 +17,7 @@ import ProductPutForm from "./components/ProductPutForm.jsx";
 import FilteredSearchResults from "./components/FilteredSearchResults";
 import PostShopForm from "./components/ShopPostForm";
 import PutShopForm from "./components/ShopPutForm";
-import CustomerPurchases from "./components/Purchases/CustomerPurchases";
-import ShopOrders from "./components/Purchases/ShopOrders";
+import CustomerPurchases from "./components/CustomerPurchases.jsx";
 
 function App() {
   const dispatch = useDispatch();
@@ -76,11 +75,7 @@ function App() {
           exact={true}
           component={PutShopForm}
         />
-        <Route
-          path="/shops/:shopId/orders"
-          exact={true}
-          component={ShopOrders}
-        />
+
         <Route path="/purchases" exact={true} component={CustomerPurchases} />
       </Switch>
       <Footer />

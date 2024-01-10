@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUserPuchases } from "../../store/purchase";
+import { fetchUserPuchases } from "../store/purchase";
 import { NavLink, useHistory } from "react-router-dom/";
-import LoadingIcon from "../LoadingIcon";
-import AddToCart from "../Cart/AddToCart";
-import { deleteReview } from "../../store/review";
+import LoadingIcon from "./LoadingIcon";
+import AddToCart from "./Cart/AddToCart";
+import { deleteReview } from "../store/review";
 
 export default function UserPurchases() {
   const dispatch = useDispatch();
