@@ -194,43 +194,7 @@ export default function ShopDetails() {
         )}
 
         <div className=" flex flex-row gap-2">
-          <div className=" text-[1.5vmin] leading-7">
-            {/* <div className="mapped-categories">
-              {shop.Products
-                ? shop.Products.map((p, i) => (
-                    <div className=" border-b-2 border-transparent hover:border-b-slate-400 transition-all ease-in-out duration-200">
-                      <span className="category-list" key={`catp${i}`}>
-                        {p.category}
-                      </span>
-                      <span className="catgory-number" key={`catn${i}`}>
-                        {Math.floor(Math.random() * 100)}
-                      </span>
-                    </div>
-                  ))
-                : null}
-            </div> */}
-            {/* <div className="">
-              <button
-                className=" w-56 flex bg-cyan-600 active:bg-cyan-800 my-4 rounded-xl font-bold text-white hover:scale-95 transition-all duration-300 ease-in-out p-3"
-                onClick={() => (window.location = `mailto:${shop.Owner.email}`)}
-              >
-                <span className="mr-3">
-                  {" "}
-                  <IconClipboard />{" "}
-                </span>{" "}
-                Request Custom Order
-              </button>
-              <button
-                className=" w-56 flex bg-cyan-600 active:bg-cyan-800 my-4 rounded-xl font-bold text-white hover:scale-95 transition-all duration-300 ease-in-out p-3"
-                onClick={() => (window.location = `mailto:${shop.Owner.email}`)}
-              >
-                <span className="mr-3">
-                  <IconSpeechBubble />
-                </span>{" "}
-                Contact shop owner
-              </button>
-            </div> */}
-          </div>
+
           <div className="item-card-display">
             <h3 className="marcellus font-bold text-[2vmin] mb-[2vmin]">
               Featured Items
@@ -286,7 +250,7 @@ export default function ShopDetails() {
                     <div className="iterated-review" key={`div${i}`}>
                       {r.ReviewImages && r.ReviewImages.url ? (
                         <img
-                          className=" obect-cover h-[23vmin] w-[23vmin] rounded-lg mx-auto my-8"
+                          className=" object-cover h-[23vmin] w-[23vmin] rounded-lg mx-auto my-8"
                           src={`${r.ReviewImages.url}`}
                           alt="reviewimg"
                           key={`reviewimage${i}`}
@@ -297,7 +261,6 @@ export default function ShopDetails() {
                       </p>
                       <NavLink
                         to={`/products/${r.productId}`}
-                        style={{ textDecoration: "none" }}
                       >
                         <div
                           className="product-reviewed"
