@@ -66,14 +66,14 @@ function SignupFormModal() {
 
   return (
     <div className="">
-      <h1 className="baskerville text-2xl">Sign Up</h1>
+      <h1 className="text-2xl baskerville">Sign Up</h1>
       <form onSubmit={handleSubmit} className="flex flex-col">
         <input
           type="text"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
-          className=" border-2 border-gray-300 rounded-xl p-2 bg-slate-100 focus-within:bg-white transition duration-200 ease-in-out focus:outline-2 focus:outline-cyan-300 focus:outline my-2"
+          className="p-2 my-2 transition duration-200 ease-in-out border-2 border-gray-300 rounded-xl bg-slate-100 focus-within:bg-white focus:outline-2 focus:outline-cyan-300 focus:outline"
           placeholder="Email"
         />
         <input
@@ -81,7 +81,7 @@ function SignupFormModal() {
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
-          className=" border-2 border-gray-300 rounded-xl p-2 bg-slate-100 focus-within:bg-white transition duration-200 ease-in-out focus:outline-2 focus:outline-cyan-300 focus:outline"
+          className="p-2 transition duration-200 ease-in-out border-2 border-gray-300 rounded-xl bg-slate-100 focus-within:bg-white focus:outline-2 focus:outline-cyan-300 focus:outline"
           placeholder="Username"
         />
 
@@ -90,7 +90,7 @@ function SignupFormModal() {
           value={firstName}
           onChange={(e) => setFirstName(e.target.value)}
           required
-          className=" border-2 border-gray-300 rounded-xl p-2 bg-slate-100 focus-within:bg-white transition duration-200 ease-in-out focus:outline-2 focus:outline-cyan-300 focus:outline my-2"
+          className="p-2 my-2 transition duration-200 ease-in-out border-2 border-gray-300 rounded-xl bg-slate-100 focus-within:bg-white focus:outline-2 focus:outline-cyan-300 focus:outline"
           placeholder="First Name"
         />
 
@@ -99,7 +99,7 @@ function SignupFormModal() {
           value={lastName}
           onChange={(e) => setLastName(e.target.value)}
           required
-          className=" border-2 border-gray-300 rounded-xl p-2 bg-slate-100 focus-within:bg-white transition duration-200 ease-in-out focus:outline-2 focus:outline-cyan-300 focus:outline my-2"
+          className="p-2 my-2 transition duration-200 ease-in-out border-2 border-gray-300 rounded-xl bg-slate-100 focus-within:bg-white focus:outline-2 focus:outline-cyan-300 focus:outline"
           placeholder="Last Name"
         />
 
@@ -108,7 +108,7 @@ function SignupFormModal() {
           value={bio}
           onChange={(e) => setBio(e.target.value)}
           required
-          className=" border-2 border-gray-300 rounded-xl p-2 bg-slate-100 focus-within:bg-white transition duration-200 ease-in-out focus:outline-2 focus:outline-cyan-300 focus:outline my-2"
+          className="p-2 my-2 transition duration-200 ease-in-out border-2 border-gray-300 rounded-xl bg-slate-100 focus-within:bg-white focus:outline-2 focus:outline-cyan-300 focus:outline"
           placeholder="Please enter a short bio"
         />
         <input
@@ -116,7 +116,7 @@ function SignupFormModal() {
           value={profilePic}
           onChange={(e) => setProfilePic(e.target.value)}
           required
-          className=" border-2 border-gray-300 rounded-xl p-2 bg-slate-100 focus-within:bg-white transition duration-200 ease-in-out focus:outline-2 focus:outline-cyan-300 focus:outline my-2"
+          className="p-2 my-2 transition duration-200 ease-in-out border-2 border-gray-300 rounded-xl bg-slate-100 focus-within:bg-white focus:outline-2 focus:outline-cyan-300 focus:outline"
           placeholder="Profile Pic URL"
         />
         <input
@@ -124,7 +124,7 @@ function SignupFormModal() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
-          className=" border-2 border-gray-300 rounded-xl p-2 bg-slate-100 focus-within:bg-white transition duration-200 ease-in-out focus:outline-2 focus:outline-cyan-300 focus:outline my-2"
+          className="p-2 my-2 transition duration-200 ease-in-out border-2 border-gray-300 rounded-xl bg-slate-100 focus-within:bg-white focus:outline-2 focus:outline-cyan-300 focus:outline"
           placeholder="Password"
         />
 
@@ -133,14 +133,17 @@ function SignupFormModal() {
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
           required
-          className=" border-2 border-gray-300 rounded-xl p-2 bg-slate-100 focus-within:bg-white transition duration-200 ease-in-out focus:outline-2 focus:outline-cyan-300 focus:outline my-2"
+          className="p-2 my-2 transition duration-200 ease-in-out border-2 border-gray-300 rounded-xl bg-slate-100 focus-within:bg-white focus:outline-2 focus:outline-cyan-300 focus:outline"
           placeholder="Verify Password"
         />
         <ul>
           {hasSubmitted &&
             errors.length &&
             errors?.map((error, idx) => (
-              <li key={idx} className="flex flex-row p-3 bg-red-300 text-red-900 rounded-xl my-2">
+              <li
+                key={idx}
+                className="flex flex-row p-3 my-2 text-red-900 bg-red-300 rounded-xl"
+              >
                 <IconAlert />
                 {error}
               </li>
@@ -148,7 +151,7 @@ function SignupFormModal() {
         </ul>
         <button
           type="submit"
-          className=" rounded-full bg-stone-900 text-white font-bold mt-4 w-72 hover:bg-stone-800 active:scale-95 transition-all ease-in-out duration-300 p-3"
+          className="p-3 mt-4 font-bold text-white transition-all duration-300 ease-in-out rounded-full bg-stone-900 w-72 hover:bg-stone-800 active:scale-95"
         >
           Register
         </button>

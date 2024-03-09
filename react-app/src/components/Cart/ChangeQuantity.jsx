@@ -23,7 +23,6 @@ export default function ChangeQuantity({
     await dispatch(
       editCartItemThunk(cartId, updatedQuantity, user.id, productId, available)
     );
-
   };
 
   if (available <= 1) return <></>;
@@ -37,7 +36,7 @@ export default function ChangeQuantity({
             ? userQuantityChange(e.target.value)
             : quantityChange(productId, +e.target.value)
         }
-        className="border-2 border-gray-300 rounded-xl p-2 bg-slate-100 focus-within:bg-white transition duration-200 ease-in-out focus:outline-2 focus:outline-cyan-300 focus:outline"
+        className="p-2 transition duration-200 ease-in-out border-2 border-gray-300 rounded-xl bg-slate-100 focus-within:bg-white focus:outline-2 focus:outline-cyan-300 focus:outline"
       >
         {options.map((i) => (
           <option value={i.value}>{i.value}</option>

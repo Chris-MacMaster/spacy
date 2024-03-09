@@ -20,15 +20,16 @@ export default function CheckoutCart({ setPurchased, cartItems }) {
       clearCart();
     }
     setPurchased(true);
-
   };
 
   return (
     <a href="#thank-you">
-
-    <button onClick={checkout} className=" bg-stone-900 text-white p-3 rounded-full w-full my-4 font-bold text-xl marcellus transition duration-300 ease-in-out hover:scale-95 active:bg-stone-800">
-      Proceed to checkout
-    </button>
+      <button
+        onClick={checkout}
+        className="w-full p-3 my-4 text-xl font-bold text-white transition duration-300 ease-in-out rounded-full bg-stone-900 marcellus hover:scale-95 active:bg-stone-800"
+      >
+        Proceed to checkout
+      </button>
     </a>
   );
 }

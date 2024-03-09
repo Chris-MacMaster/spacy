@@ -42,15 +42,15 @@ export default function PaymentMethods({ totalCost }) {
 
   return (
     <div className="flex flex-col">
-      <p className="text-xl font-bold marcellus mb-4">Select Payment Method</p>
-      <label className="my-1 flex flex-row">
+      <p className="mb-4 text-xl font-bold marcellus">Select Payment Method</p>
+      <label className="flex flex-row my-1">
         <input
           type="radio"
           name="paymentMethod"
           value="local"
           checked={paymentMethod === "local"}
           onChange={handlePaymentChange}
-          className=" scale-125 mx-2"
+          className="mx-2 scale-125 "
         />
         <img
           className="h-8 ml-2"
@@ -58,49 +58,49 @@ export default function PaymentMethods({ totalCost }) {
           alt=""
         />
       </label>
-      <label className="my-1 flex flex-row">
+      <label className="flex flex-row my-1">
         <input
           type="radio"
           name="paymentMethod"
           value="Imperial Credits"
           checked={paymentMethod === "Imperial Credits"}
           onChange={handlePaymentChange}
-          className=" scale-125 mx-2"
+          className="mx-2 scale-125 "
         />
         <img
-          className=" object-cover w-8 h-8 mx-2"
+          className="object-cover w-8 h-8 mx-2 "
           src="https://images.nightcafe.studio/jobs/MynFADDjnZKN338yrwgQ/MynFADDjnZKN338yrwgQ--1--g6z3l.jpg?tr=w-1600,c-at_max"
           alt=""
         />
         Imperial Credits
       </label>
-      <label className="my-1 flex flex-row">
+      <label className="flex flex-row my-1">
         <input
           type="radio"
           name="paymentMethod"
           value="Republic Credits"
           checked={paymentMethod === "Republic Credits"}
           onChange={handlePaymentChange}
-          className=" scale-125 mx-2"
+          className="mx-2 scale-125 "
         />
         <img
-          className=" object-cover w-8 h-8 mx-2"
+          className="object-cover w-8 h-8 mx-2 "
           src="https://images.nightcafe.studio/jobs/r4epoSTLJNCb21bQxZ3l/r4epoSTLJNCb21bQxZ3l--1--ssghy.jpg?tr=w-1600,c-at_max"
           alt=""
         />
         Republic Credits
       </label>
-      <label className="my-1 flex flex-row">
+      <label className="flex flex-row my-1">
         <input
           type="radio"
           name="paymentMethod"
           value="DepletedUranium"
           checked={paymentMethod === "DepletedUranium"}
           onChange={handlePaymentChange}
-          className=" scale-125 mx-2"
+          className="mx-2 scale-125 "
         />
         <img
-          className=" object-cover w-8 h-8 mx-2"
+          className="object-cover w-8 h-8 mx-2 "
           src="https://m.media-amazon.com/images/I/31RsALNt1JL._AC_.jpg"
           alt=""
         />

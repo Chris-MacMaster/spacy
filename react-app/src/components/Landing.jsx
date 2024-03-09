@@ -104,10 +104,10 @@ function Landing({ isLoaded }) {
     : others[Math.floor(Math.random() * others.length)];
 
   return (
-    <div className="flex flex-col justify-center items-center content-center min-h-screen mx-4">
+    <div className="flex flex-col items-center content-center justify-center min-h-screen mx-4">
       <div className=" absolute top-0 w-screen h-[33vmin] bg-sky-200 z-0"></div>
       <div className="max-w-screen-lg z-[1]">
-        <div className="w-full justify-center ">
+        <div className="justify-center w-full ">
           {!user ? (
             <h1 className=" marcellus text-center m-8 text-[4vmin]">
               Incredible style and decor, plus one-of-a-kind gifts right this
@@ -190,7 +190,7 @@ function Landing({ isLoaded }) {
           </div>
         </div>
 
-        <div className="grid grid-rows-2 grid-cols-4 landing-columns mt-12 gap-3">
+        <div className="grid grid-cols-4 grid-rows-2 gap-3 mt-12 landing-columns">
           <div className=" p-[3vmin] shadow-xl rounded-lg">
             <p className=" text-[2vmin]">
               Sponsored <i className="fa-solid fa-question"/>
@@ -216,7 +216,7 @@ function Landing({ isLoaded }) {
             ) : null
           )}
 
-          <div className="flex flex-col marcellus justify-center shadow-xl rounded-lg p-3">
+          <div className="flex flex-col justify-center p-3 rounded-lg shadow-xl marcellus">
             <span className=" text-[2vmin] ">
               Fun fact: behind every sponsored item there is an intelligent
               lifeform hoping you'll check out their shop
@@ -247,7 +247,7 @@ function Landing({ isLoaded }) {
                     src={`${rand?.ProductImages[1]?.url}`}
                     alt="selection-im"
                     key={`img${i}`}
-                    className="aspect-square object-cover"
+                    className="object-cover aspect-square"
                   ></img>
                   <h3 key={`h3${i}`} className="text-center text=[2vmin] mt-[.5vmin] font-bold thasadith">
                     {title[i]}

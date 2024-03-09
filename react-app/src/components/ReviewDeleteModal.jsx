@@ -22,14 +22,14 @@ export default function DeleteReviewModal({ reviewId, product }) {
 
   return (
     <div className="max-w-lg">
-      <h1 className=" baskerville text-3xl text-center mb-12">
+      <h1 className="mb-12 text-3xl text-center  baskerville">
         Confirm Delete
       </h1>
       <h3>Are you sure you want to delete this review?</h3>
-      <div className="flex flex-col mt-12 items-center">
+      <div className="flex flex-col items-center mt-12">
         <button
           onClick={handleClick}
-          className="flex flex-row justify-center items-center p-3 uppercase text-white font-bold rounded-lg my-3 w-64 bg-emerald-600 hover:scale-95 active:bg-emerald-800 transition-all duration-300 ease-in-out"
+          className="flex flex-row items-center justify-center w-64 p-3 my-3 font-bold text-white uppercase transition-all duration-300 ease-in-out rounded-lg bg-emerald-600 hover:scale-95 active:bg-emerald-800"
         >
           <span className="mr-3">
             <IconTrashCan />
@@ -38,7 +38,7 @@ export default function DeleteReviewModal({ reviewId, product }) {
         </button>
         <button
           onClick={closeModal}
-          className="flex flex-row justify-center p-3 uppercase text-white font-bold rounded-lg my-3 w-64 bg-red-600 hover:scale-95 active:bg-red-800 transition-all duration-300 ease-in-out"
+          className="flex flex-row justify-center w-64 p-3 my-3 font-bold text-white uppercase transition-all duration-300 ease-in-out bg-red-600 rounded-lg hover:scale-95 active:bg-red-800"
         >
           <span className="mr-3">
             <IconX />

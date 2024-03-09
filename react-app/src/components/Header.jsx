@@ -54,7 +54,7 @@ function Header({ isLoaded }) {
 
   return (
     <div className="border-b-2 border-slate-300 z-[2] flex flex-col justify-between items-center relative bg-white pb-[1vmin]">
-      <div className="flex flex-row justify-around items-center w-full max-w-screen-lg">
+      <div className="flex flex-row items-center justify-around w-full max-w-screen-lg">
         <Link to={"/"}>
           <img
             src="https://i.imgur.com/nJxi8TL.png"
@@ -99,7 +99,7 @@ function Header({ isLoaded }) {
         <div className="relative hover:cursor-pointer">
           <ProfileButton user={user} />
         </div>
-        <div className="cart relative group">
+        <div className="relative cart group">
           {user && cartTotal && cartTotal > 0 ? (
             <NavLink to="/cart">
               <div className="absolute font-bold text-[1.2vmin] bottom-[1.5vmin] right-0 bg-orange-300 p-1 rounded-full ">

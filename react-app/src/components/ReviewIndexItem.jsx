@@ -9,7 +9,7 @@ import DeleteReviewModal from "./ReviewDeleteModal";
 const ReviewIndexItem = ({ review, product }) => {
   // const dispatch = useDispatch();
   let user = useSelector((state) => state.session.user);
-  const [showMenu, setShowMenu] = useState(false)
+  const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
   // const handleDeleteClick = async (e) => {
   //   e.preventDefault();
@@ -43,10 +43,7 @@ const ReviewIndexItem = ({ review, product }) => {
               .fill(1)
               .map((s, i) =>
                 i < review.stars ? (
-                  <i
-                    className="fa-solid fa-star"
-                    key={`star${i}`}
-                  ></i>
+                  <i className="fa-solid fa-star" key={`star${i}`}></i>
                 ) : (
                   <i
                     className="fa-solid fa-star text-slate-500"
@@ -68,7 +65,7 @@ const ReviewIndexItem = ({ review, product }) => {
               alt="usericon"
               className=" object-cover w-[7vmin] h-[7vmin] mr-3 min-h rounded-full"
             />
-            <p className=" relative text-slate-600 text-sm">
+            <p className="relative text-sm text-slate-600">
               {review.User.firstName} {review.User.lastName}{" "}
               {review.createdAt.slice(0, -12)}
             </p>
@@ -79,9 +76,7 @@ const ReviewIndexItem = ({ review, product }) => {
             <div>
               <OpenModalButton
                 buttonText={
-                  <button
-                    className=" p-3 rounded-lg px-8 m-4 uppercase text-white transition-all ease-in-out duration-300 font-bold text-xs bg-red-600 active:bg-red-800 hover:scale-95"
-                  >
+                  <button className="p-3 px-8 m-4 text-xs font-bold text-white uppercase transition-all duration-300 ease-in-out bg-red-600 rounded-lg active:bg-red-800 hover:scale-95">
                     Delete Review
                   </button>
                 }
@@ -89,11 +84,11 @@ const ReviewIndexItem = ({ review, product }) => {
                   <DeleteReviewModal reviewId={review.id} product={product} />
                 }
                 onClick={openMenu}
-              onItemClick={closeMenu}
+                onItemClick={closeMenu}
               />
 
               <NavLink to={`/product-reviews/${review.id}/edit`}>
-                <button className=" p-3 rounded-lg px-8 m-4 uppercase text-white transition-all text-xs ease-in-out duration-300 font-bold  bg-cyan-600 active:bg-cyan-800 hover:scale-95">
+                <button className="p-3 px-8 m-4 text-xs font-bold text-white uppercase transition-all duration-300 ease-in-out rounded-lg bg-cyan-600 active:bg-cyan-800 hover:scale-95">
                   Edit Review
                 </button>
               </NavLink>

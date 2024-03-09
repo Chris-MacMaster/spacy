@@ -49,40 +49,46 @@ function LoginFormModal() {
 
   return (
     <div className="">
-      <h1 className=" baskerville text-2xl">Log In</h1>
+      <h1 className="text-2xl baskerville">Log In</h1>
       <form onSubmit={handleSubmit} className="flex flex-col">
-        <label className="font-bold mt-4">Email</label>
+        <label className="mt-4 font-bold">Email</label>
         <input
           type="text"
           value={email}
-          className=" border-2 border-gray-300 rounded-xl p-2 bg-slate-100 focus-within:bg-white transition duration-200 ease-in-out focus:outline-2 focus:outline-cyan-300 focus:outline"
+          className="p-2 transition duration-200 ease-in-out border-2 border-gray-300 rounded-xl bg-slate-100 focus-within:bg-white focus:outline-2 focus:outline-cyan-300 focus:outline"
           onChange={(e) => setEmail(e.target.value)}
           required
         />
-        <label className="font-bold mt-4">Password</label>
+        <label className="mt-4 font-bold">Password</label>
         <input
           type="password"
           value={password}
-          className="  border-2 border-gray-300 rounded-xl p-2 bg-slate-100 focus-within:bg-white transition duration-200 ease-in-out focus:outline-2 focus:outline-cyan-300 focus:outline"
+          className="p-2 transition duration-200 ease-in-out border-2 border-gray-300 rounded-xl bg-slate-100 focus-within:bg-white focus:outline-2 focus:outline-cyan-300 focus:outline"
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <button type="submit submit-login"
-        className=" rounded-full bg-stone-900 text-white font-bold p-2 mt-4 w-72 hover:bg-stone-800 active:scale-95 transition-all ease-in-out duration-300"
+        <button
+          type="submit submit-login"
+          className="p-2 mt-4 font-bold text-white transition-all duration-300 ease-in-out rounded-full bg-stone-900 w-72 hover:bg-stone-800 active:scale-95"
         >
           Log In
         </button>
       </form>
       <div className="demo-user">
         <form onSubmit={demoUser}>
-          <button type="submit submit-login"
-          className=" rounded-full bg-stone-900 text-white font-bold p-2 mt-4 w-72 hover:bg-stone-800 active:scale-95 transition-all ease-in-out duration-300">
+          <button
+            type="submit submit-login"
+            className="p-2 mt-4 font-bold text-white transition-all duration-300 ease-in-out rounded-full bg-stone-900 w-72 hover:bg-stone-800 active:scale-95"
+          >
             Demo User
           </button>
         </form>
       </div>
       {errors?.map((error, idx) => (
-        <div className="flex flex-row p-3 bg-red-300 text-red-900 rounded-xl my-2" key={`${idx}error`}>
+        <div
+          className="flex flex-row p-3 my-2 text-red-900 bg-red-300 rounded-xl"
+          key={`${idx}error`}
+        >
           <IconAlert />
           {error}
         </div>

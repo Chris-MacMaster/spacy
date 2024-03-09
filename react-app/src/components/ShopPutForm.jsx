@@ -111,16 +111,16 @@ export default function PutShopForm() {
   if (shopState && user.id !== shopState.ownerId) return null;
 
   return (
-    <div className="m-8 min-h-screen max-w-screen-lg mx-auto">
-      <h1 className=" text-center text-4xl marcellus">Edit Your Shop</h1>
+    <div className="max-w-screen-lg min-h-screen m-8 mx-auto">
+      <h1 className="text-4xl text-center marcellus">Edit Your Shop</h1>
 
-      <div className="flex justify-center items-center rounded-lg">
+      <div className="flex items-center justify-center rounded-lg">
         <form
           onSubmit={handleSubmit}
           className=" grid grid-cols-2 mt-4 gap-4 drop-shadow-lg max-w-3xl shadow-2xl p-8 m-4 rounded-xl border-[1px] border-slate-300"
         >
           <div className="create-shop-name create-shop-label">
-            <label className=" font-bold text-2xl thasadith text-cyan-600">
+            <label className="text-2xl font-bold thasadith text-cyan-600">
               Name
             </label>
             <div className="text-xs text-slate-600">
@@ -131,72 +131,97 @@ export default function PutShopForm() {
             <input
               type="text"
               value={name}
-              className=" w-full border-2 border-gray-300 rounded-xl p-2 bg-slate-100 focus-within:bg-white transition duration-200 ease-in-out focus:outline-2 focus:outline-cyan-300 focus:outline"
+              className="w-full p-2 transition duration-200 ease-in-out border-2 border-gray-300 rounded-xl bg-slate-100 focus-within:bg-white focus:outline-2 focus:outline-cyan-300 focus:outline"
               onChange={(e) => setName(e.target.value)}
             ></input>
             {hasSubmitted && errors.name && (
-              <div className="flex flex-row p-3 bg-red-300 text-red-900 rounded-xl my-2"> <IconAlert />  {errors.name}</div>
+              <div className="flex flex-row p-3 my-2 text-red-900 bg-red-300 rounded-xl">
+                {" "}
+                <IconAlert /> {errors.name}
+              </div>
             )}
           </div>
 
-          <label className=" font-bold text-2xl thasadith text-cyan-600">Street Address</label>
+          <label className="text-2xl font-bold thasadith text-cyan-600">
+            Street Address
+          </label>
 
           <div className="create-shop-input">
             <input
-              className=" w-full border-2 border-gray-300 rounded-xl p-2 bg-slate-100 focus-within:bg-white transition duration-200 ease-in-out focus:outline-2 focus:outline-cyan-300 focus:outline"
+              className="w-full p-2 transition duration-200 ease-in-out border-2 border-gray-300 rounded-xl bg-slate-100 focus-within:bg-white focus:outline-2 focus:outline-cyan-300 focus:outline"
               type="text"
               value={streetAddress}
               onChange={(e) => setStreetAddress(e.target.value)}
             ></input>
             {hasSubmitted && errors.streetAddress && (
-              <div className="flex flex-row p-3 bg-red-300 text-red-900 rounded-xl my-2"> <IconAlert />  {errors.streetAddress}</div>
+              <div className="flex flex-row p-3 my-2 text-red-900 bg-red-300 rounded-xl">
+                {" "}
+                <IconAlert /> {errors.streetAddress}
+              </div>
             )}
           </div>
 
-          <label className=" font-bold text-2xl thasadith text-cyan-600">City</label>
+          <label className="text-2xl font-bold thasadith text-cyan-600">
+            City
+          </label>
 
           <div className="create-shop-input">
             <input
-              className=" w-full border-2 border-gray-300 rounded-xl p-2 bg-slate-100 focus-within:bg-white transition duration-200 ease-in-out focus:outline-2 focus:outline-cyan-300 focus:outline"
+              className="w-full p-2 transition duration-200 ease-in-out border-2 border-gray-300 rounded-xl bg-slate-100 focus-within:bg-white focus:outline-2 focus:outline-cyan-300 focus:outline"
               type="text"
               value={city}
               onChange={(e) => setCity(e.target.value)}
             ></input>
             {hasSubmitted && errors.city && (
-              <div className="flex flex-row p-3 bg-red-300 text-red-900 rounded-xl my-2"> <IconAlert />  {errors.city}</div>
+              <div className="flex flex-row p-3 my-2 text-red-900 bg-red-300 rounded-xl">
+                {" "}
+                <IconAlert /> {errors.city}
+              </div>
             )}
           </div>
 
-          <label className=" font-bold text-2xl thasadith text-cyan-600">State</label>
+          <label className="text-2xl font-bold thasadith text-cyan-600">
+            State
+          </label>
 
           <div className="create-shop-input">
             <input
-              className=" w-full border-2 border-gray-300 rounded-xl p-2 bg-slate-100 focus-within:bg-white transition duration-200 ease-in-out focus:outline-2 focus:outline-cyan-300 focus:outline"
+              className="w-full p-2 transition duration-200 ease-in-out border-2 border-gray-300 rounded-xl bg-slate-100 focus-within:bg-white focus:outline-2 focus:outline-cyan-300 focus:outline"
               type="text"
               value={state}
               onChange={(e) => setState(e.target.value)}
             ></input>
             {hasSubmitted && errors.state && (
-              <div className="flex flex-row p-3 bg-red-300 text-red-900 rounded-xl my-2"> <IconAlert />  {errors.state}</div>
+              <div className="flex flex-row p-3 my-2 text-red-900 bg-red-300 rounded-xl">
+                {" "}
+                <IconAlert /> {errors.state}
+              </div>
             )}
           </div>
 
-          <label className=" font-bold text-2xl thasadith text-cyan-600">Country</label>
+          <label className="text-2xl font-bold thasadith text-cyan-600">
+            Country
+          </label>
 
           <div className="create-shop-input">
             <input
               type="text"
               value={country}
-              className=" w-full border-2 border-gray-300 rounded-xl p-2 bg-slate-100 focus-within:bg-white transition duration-200 ease-in-out focus:outline-2 focus:outline-cyan-300 focus:outline"
+              className="w-full p-2 transition duration-200 ease-in-out border-2 border-gray-300 rounded-xl bg-slate-100 focus-within:bg-white focus:outline-2 focus:outline-cyan-300 focus:outline"
               onChange={(e) => setCountry(e.target.value)}
             ></input>
             {hasSubmitted && errors.country && (
-              <div className="flex flex-row p-3 bg-red-300 text-red-900 rounded-xl my-2"> <IconAlert />  {errors.country}</div>
+              <div className="flex flex-row p-3 my-2 text-red-900 bg-red-300 rounded-xl">
+                {" "}
+                <IconAlert /> {errors.country}
+              </div>
             )}
           </div>
 
           <div className="create-shop-label-grid create-shop-description">
-            <label className=" font-bold text-2xl thasadith text-cyan-600">Description</label>
+            <label className="text-2xl font-bold thasadith text-cyan-600">
+              Description
+            </label>
             <div className="text-xs text-slate-600">
               Start building you brand by giving a brief description of your
               shop and what you're known for.
@@ -205,19 +230,23 @@ export default function PutShopForm() {
 
           <div className="create-shop-input">
             <textarea
-          className="w-full border-2 border-gray-300 rounded-xl p-2 bg-slate-100 focus-within:bg-white transition duration-200 ease-in-out focus:outline-2 focus:outline-cyan-300 focus:outline"
-
+              className="w-full p-2 transition duration-200 ease-in-out border-2 border-gray-300 rounded-xl bg-slate-100 focus-within:bg-white focus:outline-2 focus:outline-cyan-300 focus:outline"
               type="textarea"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
             ></textarea>
             {hasSubmitted && errors.description && (
-              <div className="flex flex-row p-3 bg-red-300 text-red-900 rounded-xl my-2"> <IconAlert />  {errors.description}</div>
+              <div className="flex flex-row p-3 my-2 text-red-900 bg-red-300 rounded-xl">
+                {" "}
+                <IconAlert /> {errors.description}
+              </div>
             )}
           </div>
 
           <div className="create-shop-label-grid create-shop-category">
-            <label className=" font-bold text-2xl thasadith text-cyan-600">Category</label>
+            <label className="text-2xl font-bold thasadith text-cyan-600">
+              Category
+            </label>
             <div className="text-xs text-slate-600">
               Providing a category helps you get shown in search results!
             </div>
@@ -227,17 +256,21 @@ export default function PutShopForm() {
             <input
               type="text"
               value={category}
-              className="w-full border-2 border-gray-300 rounded-xl p-2 bg-slate-100 focus-within:bg-white transition duration-200 ease-in-out focus:outline-2 focus:outline-cyan-300 focus:outline"
-
+              className="w-full p-2 transition duration-200 ease-in-out border-2 border-gray-300 rounded-xl bg-slate-100 focus-within:bg-white focus:outline-2 focus:outline-cyan-300 focus:outline"
               onChange={(e) => setCategory(e.target.value)}
             ></input>
             {hasSubmitted && errors.category && (
-              <div className="flex flex-row p-3 bg-red-300 text-red-900 rounded-xl my-2"> <IconAlert />  {errors.category}</div>
+              <div className="flex flex-row p-3 my-2 text-red-900 bg-red-300 rounded-xl">
+                {" "}
+                <IconAlert /> {errors.category}
+              </div>
             )}
           </div>
 
           <div className="create-shop-label-grid">
-            <label className=" font-bold text-2xl thasadith text-cyan-600">Policies</label>
+            <label className="text-2xl font-bold thasadith text-cyan-600">
+              Policies
+            </label>
             <div className="text-xs text-slate-600">
               Give your customers an idea of the sort of service they can expect
               from you.
@@ -246,19 +279,23 @@ export default function PutShopForm() {
 
           <div className="create-shop-input">
             <textarea
-          className="w-full border-2 border-gray-300 rounded-xl p-2 bg-slate-100 focus-within:bg-white transition duration-200 ease-in-out focus:outline-2 focus:outline-cyan-300 focus:outline"
-
+              className="w-full p-2 transition duration-200 ease-in-out border-2 border-gray-300 rounded-xl bg-slate-100 focus-within:bg-white focus:outline-2 focus:outline-cyan-300 focus:outline"
               type="text"
               value={policies}
               onChange={(e) => setPolicies(e.target.value)}
             ></textarea>
             {hasSubmitted && errors.policies && (
-              <div className="flex flex-row p-3 bg-red-300 text-red-900 rounded-xl my-2"> <IconAlert />  {errors.policies}</div>
+              <div className="flex flex-row p-3 my-2 text-red-900 bg-red-300 rounded-xl">
+                {" "}
+                <IconAlert /> {errors.policies}
+              </div>
             )}
           </div>
 
           <div className="create-shop-label-grid">
-            <label className=" font-bold text-2xl thasadith text-cyan-600">Image URL</label>
+            <label className="text-2xl font-bold thasadith text-cyan-600">
+              Image URL
+            </label>
             <div className="text-xs text-slate-600">
               Images are mandatory, show off your logo or a good representation
               of your business!
@@ -273,14 +310,17 @@ export default function PutShopForm() {
               onChange={(e) => setUrl(e.target.files[0])}
             ></input>
             {hasSubmitted && errors.url && (
-              <div className="flex flex-row p-3 bg-red-300 text-red-900 rounded-xl my-2"> <IconAlert />  {errors.url}</div>
+              <div className="flex flex-row p-3 my-2 text-red-900 bg-red-300 rounded-xl">
+                {" "}
+                <IconAlert /> {errors.url}
+              </div>
             )}
           </div>
 
           <div className="create-shop-div">
             <input
               onClick={handleSubmit}
-              className=" bg-orange-600 active:bg-orange-800 w-full p-3 rounded-lg text-white uppercase font-bold hover:scale-95 transition-all ease-in-out duration-300 cursor-pointer"
+              className="w-full p-3 font-bold text-white uppercase transition-all duration-300 ease-in-out bg-orange-600 rounded-lg cursor-pointer active:bg-orange-800 hover:scale-95"
               type="submit"
               value="Create Shop"
             />

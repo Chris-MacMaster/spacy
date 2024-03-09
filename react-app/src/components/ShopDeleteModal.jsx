@@ -20,7 +20,7 @@ export default function ShopDeleteModal({ shopId }) {
     return errors;
   };
   const deleteShop = async (e, shopId) => {
-    e.preventDefault()
+    e.preventDefault();
     await validate();
     if (shopId === 1 || errors.length > 0) {
       return;
@@ -31,17 +31,17 @@ export default function ShopDeleteModal({ shopId }) {
     }
   };
   return (
-    <form className=" max-w-lg">
-        <h1 className=" baskerville text-3xl text-center mb-12">
-          Confirm Unfollow
-        </h1>
-        <h3>
-          Are you sure you want to delete this shop? All items in the
-          shop will be deleted as well.
-        </h3>
-      <div className="flex flex-col mt-12 items-center">
+    <form className="max-w-lg ">
+      <h1 className="mb-12 text-3xl text-center baskerville">
+        Confirm Unfollow
+      </h1>
+      <h3>
+        Are you sure you want to delete this shop? All items in the shop will be
+        deleted as well.
+      </h3>
+      <div className="flex flex-col items-center mt-12">
         <button
-          className="flex flex-row justify-center items-center p-3 uppercase text-white rounded-lg my-3 w-64 bg-emerald-600 hover:scale-95 active:bg-emerald-800 transition-all duration-300 ease-in-out"
+          className="flex flex-row items-center justify-center w-64 p-3 my-3 text-white uppercase transition-all duration-300 ease-in-out rounded-lg bg-emerald-600 hover:scale-95 active:bg-emerald-800"
           onClick={deleteShop}
         >
           <span className="mr-3">
@@ -51,7 +51,7 @@ export default function ShopDeleteModal({ shopId }) {
         </button>
 
         <button
-          className="flex flex-row justify-center p-3 uppercase text-white rounded-lg my-3 w-64 bg-red-600 hover:scale-95 active:bg-red-800 transition-all duration-300 ease-in-out"
+          className="flex flex-row justify-center w-64 p-3 my-3 text-white uppercase transition-all duration-300 ease-in-out bg-red-600 rounded-lg hover:scale-95 active:bg-red-800"
           onClick={closeModal}
         >
           <span className="mr-3">
@@ -63,7 +63,7 @@ export default function ShopDeleteModal({ shopId }) {
           hasSubmitted &&
           errors.map((err, i) => (
             <div
-              className="flex flex-row p-3 bg-red-300 text-red-900 rounded-xl my-2"
+              className="flex flex-row p-3 my-2 text-red-900 bg-red-300 rounded-xl"
               key={`shop-delete-modal-error${i}`}
             >
               <IconAlert /> {err}

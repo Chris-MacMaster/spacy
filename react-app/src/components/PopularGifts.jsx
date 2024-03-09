@@ -1,6 +1,6 @@
 export default function PopularGifts({ product }) {
   return (
-    <div className="popular-product-card hover:shadow-2xl rounded-lg shadow-md transition-all ease-in-out duration-300">
+    <div className="transition-all duration-300 ease-in-out rounded-lg shadow-md popular-product-card hover:shadow-2xl">
       <img
         className=" h-[20vmin] rounded-lg object-cover w-full"
         src={product.ProductImages[2]?.url}

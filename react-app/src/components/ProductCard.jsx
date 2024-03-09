@@ -13,7 +13,7 @@ export default function ProductCard({ product }) {
       <img
         src={`${product.ProductImages[0].url}`}
         alt="preview"
-        className="object-cover h-full w-full"
+        className="object-cover w-full h-full"
       />
     </div>
   );

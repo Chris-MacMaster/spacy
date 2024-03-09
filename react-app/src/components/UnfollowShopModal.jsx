@@ -17,9 +17,9 @@ export default function UnfollowShopModal({ shopId }) {
   };
 
   return (
-    <div className=" max-w-lg">
-      <div className=" ">
-        <h1 className=" baskerville text-3xl text-center mb-12">
+    <div className="max-w-lg ">
+      <div className="">
+        <h1 className="mb-12 text-3xl text-center baskerville">
           Confirm Unfollow
         </h1>
         <h3>
@@ -27,18 +27,22 @@ export default function UnfollowShopModal({ shopId }) {
           your followed shops list.
         </h3>
       </div>
-      <div className="flex flex-col mt-12 items-center">
+      <div className="flex flex-col items-center mt-12">
         <button
-          className="flex flex-row justify-center items-center p-3 uppercase text-white rounded-lg my-3 w-64 bg-emerald-600 hover:scale-95 active:bg-emerald-800 transition-all duration-300 ease-in-out"
+          className="flex flex-row items-center justify-center w-64 p-3 my-3 text-white uppercase transition-all duration-300 ease-in-out rounded-lg bg-emerald-600 hover:scale-95 active:bg-emerald-800"
           onClick={handleUnfollow}
         >
-          <i className="fas fa-regular fa-heart mr-3"></i>Unfollow Shop
+          <i className="mr-3 fas fa-regular fa-heart"></i>Unfollow Shop
         </button>
 
-        <button className="flex flex-row justify-center p-3 uppercase text-white rounded-lg my-3 w-64 bg-red-600 hover:scale-95 active:bg-red-800 transition-all duration-300 ease-in-out" onClick={closeModal}>
+        <button
+          className="flex flex-row justify-center w-64 p-3 my-3 text-white uppercase transition-all duration-300 ease-in-out bg-red-600 rounded-lg hover:scale-95 active:bg-red-800"
+          onClick={closeModal}
+        >
           <span className="mr-3">
             <IconX />
-          </span>Cancel
+          </span>
+          Cancel
         </button>
       </div>
     </div>

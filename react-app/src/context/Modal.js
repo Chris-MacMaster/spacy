@@ -49,8 +49,9 @@ export function Modal() {
 
   // Render the following component to the div referenced by the modalRef
   return ReactDOM.createPortal(
-    <div id="modal"
-    // className="fixed flex justify-center items-center z-20 inset-0"
+    <div
+      id="modal "
+      class="fixed top-0 right-0 left-0 bottom-0 flex justify-center items-center z-10"
     >
       <div
         id="modal-background"

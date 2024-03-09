@@ -69,8 +69,8 @@ export default function ShopDetails() {
   console.log("all reviews", allReviews);
   return (
     <div className="flex flex-col items-center mx-4">
-      <div className=" min-h-screen max-w-screen-lg my-4">
-        <div className=" p-4 flex flex-row justify-between bg-stone-300 w-fit rounded-md">
+      <div className="max-w-screen-lg min-h-screen my-4 ">
+        <div className="flex flex-row justify-between p-4 rounded-md bg-stone-300 w-fit">
           <div className="flex flex-row text-[1.5vmin]">
             <img
               src={`${shop?.ShopImages?.url}`}
@@ -79,8 +79,8 @@ export default function ShopDetails() {
             ></img>
             <div className="w-[35vmin] mx-3">
               <h2 className="text-[2vmin] marcellus font-bold">{shop.name}</h2>
-              <div className="  my-3">{shop.description}</div>
-              <div className=" my-3">
+              <div className="my-3 ">{shop.description}</div>
+              <div className="my-3 ">
                 {shop.state}, {shop.country}
               </div>
               <div className="sanserif-text">
@@ -129,7 +129,7 @@ export default function ShopDetails() {
             </div> */}
           </div>
 
-          <div className="text-center leading-4 flex flex-col items-center">
+          <div className="flex flex-col items-center leading-4 text-center">
             <img
               className="rounded-full object-cover w-[10vmin] h-[10vmin] m-3"
               src={
@@ -143,7 +143,7 @@ export default function ShopDetails() {
             ></img>
             <div className="text-[2vmin]">{shop?.Owner?.firstName}</div>
             <button
-              className="flex flex-row justify-center items-center p-3 px-6 my-3 rounded-full bg-slate-500 font-bold text-white  hover:scale-95 active:bg-slate-700 drop-slate-lg transition-all ease-in-out duration-300 "
+              className="flex flex-row items-center justify-center p-3 px-6 my-3 font-bold text-white transition-all duration-300 ease-in-out rounded-full bg-slate-500 hover:scale-95 active:bg-slate-700 drop-slate-lg "
               onClick={() => (window.location = `mailto:${shop.Owner.email}`)}
             >
               <span className="mr-2">
@@ -157,7 +157,7 @@ export default function ShopDetails() {
         {user && user.id === shop.ownerId ? (
           <button
             onClick={handleCreate}
-            className="rounded-xl bg-fuchsia-600 active:bg-fuchsia-800 text-white uppercase px-8 hover:scale-95 transition-all duration-300 ease-in-out my-4 flex flex-row font-bold p-3"
+            className="flex flex-row p-3 px-8 my-4 font-bold text-white uppercase transition-all duration-300 ease-in-out rounded-xl bg-fuchsia-600 active:bg-fuchsia-800 hover:scale-95"
           >
             <span className="mr-3">
               <IconWrenchScrewDriver />
@@ -171,10 +171,10 @@ export default function ShopDetails() {
               shop.Followed.Status &&
               shop.Followed.Status === "Not Followed" && (
                 <button
-                  className="rounded-xl bg-emerald-600 active:bg-emerald-800 text-white uppercase px-8 hover:scale-95 transition-all duration-300 ease-in-out my-4 p-3"
+                  className="p-3 px-8 my-4 text-white uppercase transition-all duration-300 ease-in-out rounded-xl bg-emerald-600 active:bg-emerald-800 hover:scale-95"
                   onClick={handleFollow}
                 >
-                  <i className="fa-regular fa-heart shop-heart mr-3"></i>Follow
+                  <i className="mr-3 fa-regular fa-heart shop-heart"></i>Follow
                   Shop
                 </button>
               )}
@@ -183,23 +183,22 @@ export default function ShopDetails() {
               shop.Followed.Status &&
               shop.Followed.Status === "Followed" && (
                 <button
-                  className="rounded-xl bg-emerald-600 active:bg-emerald-800 text-white uppercase px-8 p-3 hover:scale-95 transition-all duration-300 ease-in-out my-4"
+                  className="p-3 px-8 my-4 text-white uppercase transition-all duration-300 ease-in-out rounded-xl bg-emerald-600 active:bg-emerald-800 hover:scale-95"
                   onClick={handleUnfollow}
                 >
-                  <i className="fas fa-regular fa-heart shop-heart text-red-600 mr-3"></i>
+                  <i className="mr-3 text-red-600 fas fa-regular fa-heart shop-heart"></i>
                   Unfollow Shop
                 </button>
               )}
           </div>
         )}
 
-        <div className=" flex flex-row gap-2">
-
+        <div className="flex flex-row gap-2 ">
           <div className="item-card-display">
             <h3 className="marcellus font-bold text-[2vmin] mb-[2vmin]">
               Featured Items
             </h3>
-            <div className=" flex flex-row flex-wrap gap-4">
+            <div className="flex flex-row flex-wrap gap-4 ">
               {shop.Products
                 ? shop.Products.map((product) => (
                     <ShopProductCard
@@ -215,7 +214,7 @@ export default function ShopDetails() {
         </div>
         <hr></hr>
         <div className="review-section">
-          <h3 className=" marcellus text-4xl mb-20">Reviews</h3>
+          <h3 className="mb-20 text-4xl marcellus">Reviews</h3>
           <div className="">
             {allReviews
               ? allReviews.map((r, i) => (
@@ -259,9 +258,7 @@ export default function ShopDetails() {
                       <p className="review-paragraph" key={`review${i}`}>
                         {r.review}
                       </p>
-                      <NavLink
-                        to={`/products/${r.productId}`}
-                      >
+                      <NavLink to={`/products/${r.productId}`}>
                         <div
                           className="product-reviewed"
                           key={`productreviewed${i}`}

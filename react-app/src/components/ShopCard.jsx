@@ -7,7 +7,7 @@ import OpenModalButton from "./OpenModalButton";
 import { useRef } from "react";
 import { useState } from "react";
 import UnfollowShopModal from "./UnfollowShopModal";
-import { unfollowShop } from "../store/shops";
+// import { unfollowShop } from "../store/shops";
 
 export default function ShopCard({ shop }) {
   const dispatch = useDispatch();
@@ -58,7 +58,7 @@ export default function ShopCard({ shop }) {
     ) / reviewedProducts.length;
   return (
     <div className="border-[1px] border-slate-300 rounded-xl relative flex flex-col justify-center content-center shadow-lg hover:shadow-2xl transition-all duration-300 ease-in-out">
-      <div className="grid grid-cols-4 gap-1 relative rounded-t-xl overflow-hidden">
+      <div className="relative grid grid-cols-4 gap-1 overflow-hidden rounded-t-xl">
         {filteredProducts
           ? filteredProducts
               .map((p, i) => (
@@ -81,14 +81,14 @@ export default function ShopCard({ shop }) {
             src={`${shop.ShopImage.url}`}
             alt="shop-card-logo-alt"
           ></img>
-          <div className=" ml-2">
-            <span className=" font-bold">{shop.name}</span>
+          <div className="ml-2 ">
+            <span className="font-bold ">{shop.name}</span>
             <div className="shop-card-stars">
               {Array(5)
                 .fill(1)
                 .map((s, i) =>
                   s <= shopRating ? (
-                    <i className="fa-solid fa-star text-black" key={i}></i>
+                    <i className="text-black fa-solid fa-star" key={i}></i>
                   ) : (
                     <i className="fa-solid fa-star text-slate-600" key={i}></i>
                   )

@@ -10,11 +10,13 @@ import IconClipboard from "./Icons/IconClipboard";
 import IconShop from "./Icons/IconShop";
 import IconSignOut from "./Icons/IconSignOut";
 import IconUser from "./Icons/IconUser";
+
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
+  const history = useHistory();
+
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
-  const history = useHistory();
   const openMenu = () => {
     if (showMenu) return;
     setShowMenu(true);
@@ -22,19 +24,17 @@ function ProfileButton({ user }) {
 
   useEffect(() => {
     if (!showMenu) return;
-
     const closeMenu = (e) => {
       if (!ulRef.current.contains(e.target)) {
         setShowMenu(false);
       }
     };
-
     document.addEventListener("click", closeMenu);
-
     return () => document.removeEventListener("click", closeMenu);
   }, [showMenu]);
 
   const closeMenu = () => setShowMenu(false);
+
   const logout = (e) => {
     e.preventDefault();
     dispatch(sessionActions.logout());
@@ -46,7 +46,7 @@ function ProfileButton({ user }) {
     <>
       <button
         onClick={openMenu}
-        className=" hover:text-slate-800 transition ease-in-out "
+        className="transition ease-in-out hover:text-slate-800"
       >
         <i className="fas fa-user-circle text-slate-500 text-[2.5vmin] hover:text-slate-800" />
       </button>
@@ -60,12 +60,12 @@ function ProfileButton({ user }) {
           <>
             <div>
               <NavLink to={`/users/${user.id}`}>
-                <div className="rounded-xl hover:bg-slate-300 flex content-center text-black p-3 transition ease-in-out duration-300">
+                <div className="flex content-center p-3 text-black transition duration-300 ease-in-out rounded-xl hover:bg-slate-300">
                   <span className="w-[3vmin] flex justify-center items-center mr-4">
                     <IconUser />{" "}
                   </span>
                   <span>
-                    <div className=" font-bold baskerville">
+                    <div className="font-bold baskerville">
                       {user.firstName} {user.lastName}
                     </div>
                     <div className="text-cyan-700 text-[1.5vmin] ">
@@ -77,7 +77,7 @@ function ProfileButton({ user }) {
             </div>
             <div>
               <NavLink to="/purchases">
-                <div className="rounded-xl hover:bg-slate-300 flex content-center text-black p-3 transition ease-in-out duration-300">
+                <div className="flex content-center p-3 text-black transition duration-300 ease-in-out rounded-xl hover:bg-slate-300">
                   <span className="w-[3vmin] flex justify-center items-center mr-4">
                     <IconClipboard />
                   </span>
@@ -89,7 +89,7 @@ function ProfileButton({ user }) {
             </div>
             <div>
               <NavLink to={`/users/${user.id}`}>
-                <div className="rounded-xl hover:bg-slate-300 flex content-center text-black p-3 transition ease-in-out duration-300">
+                <div className="flex content-center p-3 text-black transition duration-300 ease-in-out rounded-xl hover:bg-slate-300">
                   <span className="w-[3vmin] flex justify-center items-center mr-4">
                     <IconShop />
                   </span>
@@ -101,7 +101,7 @@ function ProfileButton({ user }) {
             </div>
             <div>
               <div
-                className="rounded-xl hover:bg-slate-300 flex content-center text-black p-3 transition ease-in-out duration-300"
+                className="flex content-center p-3 text-black transition duration-300 ease-in-out rounded-xl hover:bg-slate-300"
                 onClick={logout}
               >
                 <span className="w-[3vmin] flex justify-center items-center mr-4">
@@ -117,7 +117,7 @@ function ProfileButton({ user }) {
           <div className="flex flex-col">
             <OpenModalButton
               buttonText={
-                <button className="hover:bg-slate-300 p-2 rounded-xl w-full font-bold transition ease-in-out duration-200 uppercase">
+                <button className="w-full p-2 font-bold uppercase transition duration-200 ease-in-out hover:bg-slate-300 rounded-xl">
                   Log In
                 </button>
               }
@@ -126,7 +126,7 @@ function ProfileButton({ user }) {
             />
             <OpenModalButton
               buttonText={
-                <button className="hover:bg-slate-300 p-2 rounded-xl w-full font-bold transition ease-in-out duration-200 uppercase">
+                <button className="w-full p-2 font-bold uppercase transition duration-200 ease-in-out hover:bg-slate-300 rounded-xl">
                   Sign In
                 </button>
               }

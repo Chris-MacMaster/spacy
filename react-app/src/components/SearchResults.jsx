@@ -22,8 +22,8 @@ function SearchResults() {
 
   return (
     <div className="mx-4">
-      <div className=" min-h-screen max-w-screen-lg mx-auto">
-        <div className=" rounded-full border-solid border-black border-2 w-fit p-2 text-sm my-4">
+      <div className="max-w-screen-lg min-h-screen mx-auto ">
+        <div className="p-2 my-4 text-sm border-2 border-black border-solid rounded-full  w-fit">
           <span className="font-bold">Esitmated Arrival Time: </span>
           <span className="">Any time</span>
         </div>
@@ -32,7 +32,7 @@ function SearchResults() {
             <NavLink to={`/products/${product.id}`} key={`linked${i}`}>
               <div className="" key={`prod-card-${i}`}>
                   <img
-                    className=" object-cover h-32 w-40 rounded-lg"
+                    className="object-cover w-40 h-32 rounded-lg "
                     src={product.ProductImages[0].url}
                     alt="not found"
                     key={`img${i}`}
@@ -49,12 +49,12 @@ function SearchResults() {
                         .map((s, i) =>
                           i < product.avgRating ? (
                             <i
-                              className="fa-solid fa-star text-sm"
+                              className="text-sm fa-solid fa-star"
                               key={i}
                             ></i>
                           ) : (
                             <i
-                              className="fa-solid fa-star text-sm"
+                              className="text-sm fa-solid fa-star"
                               key={i}
                             ></i>
                           )
@@ -63,7 +63,7 @@ function SearchResults() {
                       <span className="text-sm" key={`new${i}`}>
                         New!{" "}
                         <i
-                          className="fa-solid fa-star text-sm"
+                          className="text-sm fa-solid fa-star"
                           key={`icon${i}`}
                         />{" "}
                       </span>
@@ -74,7 +74,7 @@ function SearchResults() {
                       key={`star-seller${i}`}
                     >
                       <i
-                        className="fa-solid fa-certificate text-purple-700 text-sm"
+                        className="text-sm text-purple-700 fa-solid fa-certificate"
                         key={`badge${i}`}
                       ></i>
                       Star Seller
@@ -84,7 +84,7 @@ function SearchResults() {
                   <p className="font-bold" key={`price${i}`}>
                     ${product.price}
                   </p>
-                  <p className=" text-sm" key={`shop${i}`}>
+                  <p className="text-sm " key={`shop${i}`}>
                     {product.shop.name} <i
                       className="fa-solid fa-arrow-right"
                       key={`arrow${i}`}

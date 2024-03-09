@@ -58,7 +58,7 @@ export default function UserDetails() {
   const onClickCreateShop = () => history.push("/shops/new");
 
   return (
-    <div className=" min-h-screen max-w-screen-lg flex flex-col items-center mx-auto">
+    <div className="flex flex-col items-center max-w-screen-lg min-h-screen mx-auto ">
       <div className="flex flex-row w-full">
         <img
           src={
@@ -112,7 +112,7 @@ export default function UserDetails() {
       <div className="w-full">
         {user.id === userId && (
           <button
-            className="flex flex-row font-bold p-3 px-8 text-white uppercase bg-orange-700 transition ease-in-out duration-200 rounded-md hover:scale-95 active:bg-orange-900 "
+            className="flex flex-row p-3 px-8 font-bold text-white uppercase transition duration-200 ease-in-out bg-orange-700 rounded-md hover:scale-95 active:bg-orange-900 "
             onClick={onClickCreateShop}
           >
             <IconWrenchScrewDriver />
@@ -127,7 +127,7 @@ export default function UserDetails() {
         Favorite shops
       </div>
       <div className="flex flex-col items-center w-full">
-        <div className=" grid grid-cols-2 items-center gap-2 w-full">
+        <div className="grid items-center w-full grid-cols-2 gap-2 ">
           {followedShops && followedShops.length ? (
             followedShops.map((s, i) => <ShopCard shop={shops[s.id]} />)
           ) : (

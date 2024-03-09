@@ -25,37 +25,37 @@ export default function ShopProductCard({ product, user, shop }) {
   if (!product.ProductImages[0]?.url) return null;
 
   return (
-      <NavLink
-        to={`/products/${product.id}`}
-        className=" shadow-xl rounded-lg hover:shadow-2xl transition-all duration-300 ease-in-out w-fit h-fit border-[1px] border-slate-300"
-      >
-        <img
-          src={`${product.ProductImages[0].url}`}
-          alt="preview"
-          className="object-cover w-44 h-44 rounded-t-lg"
-        />
-        <div className="w-44 relative">
-          <div className=" mx-2">
-            <div className=" text-sm">{product.name}</div>
-            <div className=" font-bold">${product.price}</div>
-          </div>
-          {user && user.id === shop.ownerId ? (
-            <div className=" flex flex-row justify-end absolute right-0 bottom-0 ">
-              <button
-                onClick={handleDelete}
-                className="mx-1 hover:scale-95 transition-all ease-in-out duration-300"
-              >
-                <IconTrashCan />
-              </button>
-              <button
-                onClick={handleEdit}
-                className="mx-1 hover:scale-95 transition-all ease-in-out duration-300"
-              >
-                <IconPencilSquare />
-              </button>
-            </div>
-          ) : null}
+    <NavLink
+      to={`/products/${product.id}`}
+      className=" shadow-xl rounded-lg hover:shadow-2xl transition-all duration-300 ease-in-out w-fit h-fit border-[1px] border-slate-300"
+    >
+      <img
+        src={`${product.ProductImages[0].url}`}
+        alt="preview"
+        className="object-cover rounded-t-lg w-44 h-44"
+      />
+      <div className="relative w-44">
+        <div className="mx-2 ">
+          <div className="text-sm ">{product.name}</div>
+          <div className="font-bold ">${product.price}</div>
         </div>
-      </NavLink>
+        {user && user.id === shop.ownerId ? (
+          <div className="absolute bottom-0 right-0 flex flex-row justify-end ">
+            <button
+              onClick={handleDelete}
+              className="mx-1 transition-all duration-300 ease-in-out hover:scale-95"
+            >
+              <IconTrashCan />
+            </button>
+            <button
+              onClick={handleEdit}
+              className="mx-1 transition-all duration-300 ease-in-out hover:scale-95"
+            >
+              <IconPencilSquare />
+            </button>
+          </div>
+        ) : null}
+      </div>
+    </NavLink>
   );
 }

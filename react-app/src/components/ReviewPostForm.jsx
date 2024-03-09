@@ -51,9 +51,9 @@ export default function ReviewPostForm() {
 
   return (
     <>
-      <div className=" min-h-screen flex flex-col items-center">
+      <div className="flex flex-col items-center min-h-screen ">
         <form
-          className="max-w-screen-lg flex flex-col items-center"
+          className="flex flex-col items-center max-w-screen-lg"
           onSubmit={handleSubmit}
         >
           <div className="flex flex-row my-12">
@@ -64,19 +64,19 @@ export default function ReviewPostForm() {
                 className="object-cover w-[20vmin] h-[20vmin] rounded-lg"
               />
             ) : null}
-            <div className=" ml-6 ">
-              <p className=" thasadith text-2xl">{product.Shop.name}</p>
-              <p className=" font-bold marcellus text-xl">{product.name}</p>
+            <div className="ml-6 ">
+              <p className="text-2xl  thasadith">{product.Shop.name}</p>
+              <p className="text-xl font-bold  marcellus">{product.name}</p>
             </div>
           </div>
 
-          <h2 className="thasadith font-bold text-center text-3xl">
+          <h2 className="text-3xl font-bold text-center thasadith">
             My review
           </h2>
-          <p className=" text-xs text-slate-600 my-3 text-center">
+          <p className="my-3 text-xs text-center  text-slate-600">
             What did you like about this product?
           </p>
-          <p className=" text-xs text-slate-600 my-3 text-center">
+          <p className="my-3 text-xs text-center  text-slate-600">
             Help others by sending your feedback.
           </p>
 
@@ -105,24 +105,24 @@ export default function ReviewPostForm() {
 
           <textarea
             name="review"
-            className=" border-2 border-gray-300 rounded-xl p-2 bg-slate-100 focus-within:bg-white transition duration-200 ease-in-out focus:outline-2 focus:outline-cyan-300 focus:outline my-2 w-full"
+            className="w-full p-2 my-2 transition duration-200 ease-in-out border-2 border-gray-300  rounded-xl bg-slate-100 focus-within:bg-white focus:outline-2 focus:outline-cyan-300 focus:outline"
             value={review}
             onChange={(e) => setReview(e.target.value)}
           />
 
           {hasSubmitted && errors.review && (
-            <div className="flex flex-row p-3 bg-red-300 text-red-900 rounded-xl my-2">
+            <div className="flex flex-row p-3 my-2 text-red-900 bg-red-300 rounded-xl">
               <IconAlert /> {errors.review}
             </div>
           )}
 
           {hasSubmitted && errors.reviewLength && (
-            <div className="flex flex-row p-3 bg-red-300 text-red-900 rounded-xl my-2">
+            <div className="flex flex-row p-3 my-2 text-red-900 bg-red-300 rounded-xl">
               <IconAlert /> {errors.reviewLength}
             </div>
           )}
           <div className="flex flex-row items-center justify-center">
-            <label className=" font-bold text-2xl thasadith text-cyan-600">
+            <label className="text-2xl font-bold  thasadith text-cyan-600">
               Image
             </label>
             <input
@@ -134,13 +134,13 @@ export default function ReviewPostForm() {
           </div>
 
           {hasSubmitted && errors.imageURL && (
-            <div className="flex flex-row p-3 bg-red-300 text-red-900 rounded-xl my-2">
+            <div className="flex flex-row p-3 my-2 text-red-900 bg-red-300 rounded-xl">
               <IconAlert /> {errors.imageURL}
             </div>
           )}
 
           <button
-            className="bg-orange-700 font-bold text-white p-3 px-8 rounded-lg uppercase active:bg-orange-800 hover:scale-95 transition-all ease-in-out duration-300 mx-auto"
+            className="p-3 px-8 mx-auto font-bold text-white uppercase transition-all duration-300 ease-in-out bg-orange-700 rounded-lg active:bg-orange-800 hover:scale-95"
             type="submit"
           >
             Post your review

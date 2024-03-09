@@ -38,16 +38,16 @@ export default function UserPurchases() {
   if (!hasLoaded) return <LoadingIcon />;
   let sortedPurchases = groupItemsBySellDateThenStore(purchases);
   return (
-    <div className=" flex flex-col items-center justify-center">
-      <h2 className="marcellus text-3xl font-bold mt-8 ">Purchases</h2>
+    <div className="flex flex-col items-center justify-center ">
+      <h2 className="mt-8 text-3xl font-bold marcellus ">Purchases</h2>
       {console.log(sortedPurchases)}
       {purchases &&
         Object.keys(sortedPurchases).map((el) => (
-          <div className=" flex flex-col items-center m-4">
+          <div className="flex flex-col items-center m-4 ">
             {Object.values(sortedPurchases[el]).map((item) => (
               <div className="m-2 w-[50vw] min-w-96 rounded-lg">
                 <div className="purchase-shop-wrapper">
-                  <div className="p-4 flex justify-between">
+                  <div className="flex justify-between p-4">
                     <span className=" text-slate-600">
                       Purchased from{" "}
 
@@ -57,7 +57,7 @@ export default function UserPurchases() {
                       <p></p>
                       on {el.slice(0, 25)}
                     </span>
-                    <span className=" font-bold underline">
+                    <span className="font-bold underline ">
                       $
                       {item
                         .reduce((acc, el) => acc + el.quantity * el.price, 0)
@@ -68,24 +68,24 @@ export default function UserPurchases() {
                 <div className="item-map-div border-[1px] border-slate-300 rounded-lg mt-2 shadow-lg">
                   {item.map((el) => (
                     // <div className="purchase-item-div">
-                    <div className="purchase-container p-4 rounded-lg my-2 gap-4">
+                    <div className="gap-4 p-4 my-2 rounded-lg purchase-container">
 
                         <img
-                          className=" object-cover rounded-lg aspect-square"
+                          className="object-cover rounded-lg aspect-square"
                           src={el.productImage}
                           alt={`ele${el.productName}`}
                         />
                       <div className="flex flex-col">
 
                           <NavLink
-                            className=" text-xl font-bold hover:underline visited:text-slate-700"
+                            className="text-xl font-bold hover:underline visited:text-slate-700"
                             to={`/products/${el.productId}`}
                           >
                             {el.productName}
                           </NavLink>
 
                         {el.review ? (
-                          <div className="p-2 bg-stone-200 rounded-lg">
+                          <div className="p-2 rounded-lg bg-stone-200">
                             <div className="">
                               <span>
                                 {Array(5)
@@ -93,7 +93,7 @@ export default function UserPurchases() {
                                   .map((s, i) =>
                                     i < el.stars ? (
                                       <i
-                                        className="fa-solid fa-star text-black"
+                                        className="text-black fa-solid fa-star"
                                         key={`star${i}`}
                                       ></i>
                                     ) : (
@@ -108,13 +108,13 @@ export default function UserPurchases() {
                             <div className="my-4">{el.review}</div>
                             <div className="flex flex-row justify-between">
                             <button
-                              className=" bg-green-700 text-white hover:scale-90 font-bold p-2 rounded-lg active:bg-green-900 transition duration-200 ease-in-out uppercase"
+                              className="p-2 font-bold text-white uppercase transition duration-200 ease-in-out bg-green-700 rounded-lg hover:scale-90 active:bg-green-900"
                               onClick={() => toEditReview(el.reviewId)}
                             >
                               Edit
                             </button>
                             <button
-                              className=" bg-red-700 text-white hover:scale-90 font-bold p-2 rounded-lg active:bg-red-900 transition duration-200 ease-in-out uppercase"
+                              className="p-2 font-bold text-white uppercase transition duration-200 ease-in-out bg-red-700 rounded-lg hover:scale-90 active:bg-red-900"
                               onClick={(e) => handleDeleteClick(e, el.reviewId)}
                             >
                               Delete
@@ -123,7 +123,7 @@ export default function UserPurchases() {
                           </div>
                         ) : (
                             <button
-                            className=" bg-blue-700 text-white hover:scale-90 font-bold p-2 rounded-lg active:bg-blue-900 transition duration-200 ease-in-out "
+                            className="p-2 font-bold text-white transition duration-200 ease-in-out bg-blue-700 rounded-lg hover:scale-90 active:bg-blue-900"
                             onClick={() => toReview(el.productId)}
                             >
                               Review this item
