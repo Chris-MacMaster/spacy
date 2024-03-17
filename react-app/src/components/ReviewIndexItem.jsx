@@ -38,7 +38,7 @@ const ReviewIndexItem = ({ review, product }) => {
     <div className="reviewIndexItem">
       <div className=" p-[3vmin]">
         <div className="rev-col-a">
-          <div className=" mb-[.5vmin] text-[1.5vmin]">
+          <div className=" mb-[.5vmin] ">
             {Array(5)
               .fill(1)
               .map((s, i) =>
