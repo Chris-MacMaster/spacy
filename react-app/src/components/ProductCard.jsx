@@ -7,7 +7,7 @@ export default function ProductCard({ product }) {
       {/* <div className="product-tooltip-heart product-tool-tips">
         <i className="fa-regular fa-heart"></i>
       </div> */}
-      <div className="absolute bottom-3 left-3 bg-white p-2 rounded-lg shadow-lg border-[1px] border-slate-300 font-bold text-xs">
+      <div className="absolute bottom-3 left-1 sm:left-3 bg-white p-1 md:p-2 rounded-lg shadow-lg border-[1px] border-slate-300 font-bold text-xs">
         ${product.price}
       </div>
       <img

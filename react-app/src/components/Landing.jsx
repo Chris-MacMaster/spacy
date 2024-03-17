@@ -249,7 +249,7 @@ function Landing({ isLoaded }) {
                     key={`img${i}`}
                     className="object-cover aspect-square"
                   ></img>
-                  <h3 key={`h3${i}`} className="text-center text=[2vmin] mt-[.5vmin] font-bold thasadith">
+                  <h3 key={`h3${i}`} className="text-center text-[2vmin] mt-[.5vmin] font-bold thasadith">
                     {title[i]}
                   </h3>
               </NavLink>
